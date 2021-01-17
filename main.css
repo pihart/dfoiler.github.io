@@ -4,6 +4,8 @@ body
 	font-size: 18px;
 	color: #454545;
 	margin: 2em auto;
+	padding-right: 2em;
+	padding-left: 2em;
 	max-width: 800px;
 }
 
