@@ -14,6 +14,7 @@ def header(level):
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="'''+'../'*level+'''main.css">
+		<link rel=icon href="'''+'../'*level+'''p.ico">
 		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
 		<script>
 			MathJax = {
@@ -42,10 +43,12 @@ def process_tex(tex):
 	# Fix < and > signs for HTML
 	tex = tex.replace('<','{\\lt}')
 	tex = tex.replace('>','{\\gt}')
+	# We process \href manually
 	return tex
 
 def get_blurb(tex):
 	blurb = tex[tex.index('Today I '):]
+	# Look for the end of the sentence
 	for end in range(len(blurb)):
 		if blurb[end:end+2] in ['. ','.\n','.$']:
 			blurb = blurb[:end+2]
