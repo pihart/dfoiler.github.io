@@ -23,7 +23,8 @@ def header(level):
 				}
 			});
 		</script>
-		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<!-- https://www.mathjax.org/cdn-shutting-down/ -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 	</head>\n'''
 
 def start_html(level):
@@ -33,9 +34,11 @@ def start_html(level):
 	return html
 
 def process_tex(tex):
+	# Fix quotation marks from TeX
 	tex = tex.replace('``','"')
-	tex = tex.replace('<','\\lt')
-	tex = tex.replace('>','\\gt')
+	# Fix < and > signs for HTML
+	tex = tex.replace('<','{\\lt}')
+	tex = tex.replace('>','{\\gt}')
 	return tex
 
 def get_blurb(tex):
@@ -60,6 +63,7 @@ def to_html(tex):
 	# We work line-by-line
 	# I use many of my own TeX conventions for this
 	# I.e., this is not general purpose and will not work for your TeX
+	first_item = False
 	for line in tex:
 		# A starting line
 		if '\\subsubsection' in line:
@@ -69,24 +73,31 @@ def to_html(tex):
 			day = h3[1]
 			day_html += '\t\t<h2><a href="./index.html">'+month+'</a> '+day+'</h2>\n'
 			day = day[:-len('th')]
+			print(h2)
 			month_html += '\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
-			# We attach the ipreamble here
+			# We attach the preamble here
 			day_html += '\t\t<p>'+pre
 		# Two consecutive new lines implies new paragraph
 		elif line == '':
 			day_html += '</p>\n\t\t<p>'
 		# Various list commands
+		# We start the first item
 		elif '\\begin{itemize}' in line:
-			day_html += '\t\t</p>\n\t\t<ul>'
+			day_html += '\t\t</p>\n\t\t<ul>\n\t\t\t<li>'
+			first_item = True
 		elif '\\end{itemize}' in line:
-			day_html += '\t\t</ul>\n\t\t<p>'
+			day_html += '</li>\n\t\t</ul>\n\t\t<p>'
 		elif '\\begin{enumerate}' in line:
-			day_html += '\t\t</p>\n\t\t<ol>'
+			day_html += '\t\t</p>\n\t\t<ol>\n\t\t\t<li>'
+			first_item = True
 		elif '\\end{enumerate}' in line:
-			day_html += '\t\t</ol>\n\t\t<p>'
+			day_html += '</li>\n\t\t</ol>\n\t\t<p>'
 		elif '\\item' in line:
 			line = line.replace('\\item','')
-			day_html += '\n\t\t\t<li>'+line+'</li>'
+			if not first_item:
+				day_html += '</li>\n\t\t\t<li>'
+			first_item = False
+			day_html += line
 		# Catch-all
 		else:
 			day_html += line
