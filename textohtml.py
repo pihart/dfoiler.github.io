@@ -130,7 +130,8 @@ for year in os.listdir('TeX'):
 		os.mkdir('TIL/'+year)
 	# Increment the total file
 	total_html += '\t\t<h2><a href="./'+year+'/index.html">'+year+'</a></h2>\n'
-	for month in os.listdir(PATH+'TeX/'+year):
+	year_months = sorted(os.listdir(PATH+'TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
+	for month in year_months:
 		# Make month if not there
 		month = month[:-len('.tex')]
 		if month not in os.listdir('TIL/'+year):
