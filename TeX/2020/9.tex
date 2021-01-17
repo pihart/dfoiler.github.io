@@ -1,0 +1,538 @@
+\subsection{September}
+
+\subsubsection{September 8th}
+Today I learned the definition of perfect fields, from \href{https://kconrad.math.uconn.edu/blurbs/galoistheory/perfect.pdf}{Keith Conrad}: $K$ is perfect if and only if all irreducible polynomials $K[x]$ are separable. (Separable means that it doesn't have double roots when factored in the algebraic closure.) So $\QQ$ is perfect because for $\pi(x)\in\QQ[x],$ we can look at $\gcd(\pi(x),\pi'(x)),$ which will have degree less than $\pi(x)$ and divide into $\QQ[x]$ but divide $\pi(x).$ If $\pi(x)$ is linear, then we're already done, but if $\deg\pi>1,$ then $\deg\pi'=\deg\pi-1>0,$ so
+\[\deg\gcd(\pi,\pi')>0,\]
+which is our contradiction to the irreducibility of $\pi.$ The necessary hypothesis we used was that $\QQ[x]$ has characteristic $0$ so that $\deg\pi'=\deg\pi-1$ by direct computation.
+
+\subsubsection{September 9th}
+Today I learned the definition of the different. Consider the standard setup:
+\begin{center}
+    \begin{tikzcd}
+        L                            & \mathcal O_L                    \\
+        K \arrow[u, no head]         & \mathcal O_K \arrow[u, no head] \\
+        \mathbb Q \arrow[u, no head] & \mathbb Z \arrow[u, no head]   
+    \end{tikzcd}
+\end{center}
+Then fix some additive subgroup $A\subseteq L.$ We define $A^{-1}$ the same way we define the inverse of fractional ideals, and we define $A^*$ by
+\[A^*=\{\alpha\in L:\op T_K^L(\alpha A)\subseteq\mathcal O_K\}.\]
+This is slightly weaker than asserting $\alpha A\subseteq\mathcal O_L$ (so $A^*\subseteq A^{-1}$) but I don't have an intuitive feel for this thing yet. Then the \textit{different} is $\diff A=(A^*)^{-1}.$ Of note is that $A$ is not necessarily a fractional ideal.
+
+\subsubsection{September 10th}
+Today I learned the definition of ``uniformly continuous'' from one of Tom's riddles: show that any uniformly continuous function defined on a bounded domain is bounded.
+
+Uniformly continuous means that for any $\varepsilon>0,$ there exists a $\delta>0$ such that $|x-y|<\varepsilon$ implies $|f(x)-f(y)|<\delta.$ (Note that this $\delta$ works uniformly for all $x.$) The visual image is that $f(x)$ doesn't grow ``too fast'' globally: for any vertical error, we can find a suitably thin rectangle so that the rectangle centered along the curve never has the curve go through the tops of the rectangle. (Image on Wikipedia.) So this puzzle is intuitively clear.
+
+Now to prove this, force $\varepsilon=1$ so that we get a $\delta$ such that $|x-y|\le\delta$ implies $|f(x)-f(y)|<1.$ The main lemma is that if we look over intervals $[k\delta,(k+1)\delta]$ for $k\in\ZZ,$ the image of $f$ here is bounded.
+\begin{enumerate}[label=(\alph*)]
+    \item If $f$ is defined nowhere in the interval, then this is vacuously true.
+    \item Else, fix $x\in[k\delta,(k+1)\delta]$ so that $f(x)$ exists. Then for any $y\in[k\delta,(k+1)\delta]$ for which $f(y)$ exists, we know for free that
+    \[|x-y|\le(k+1)\delta-k\delta=\delta,\]
+    so we know $|f(x)-f(y)|<1.$ It follows that the image of $f$ is bounded in $[f(x)-1,f(x)+1].$
+\end{enumerate}
+This completes the proof of the lemma.
+
+To finish the proof, note the fact that $f$ has a bounded domain means that we can say the domain of $f$ lives in $[-M\delta, M\delta]$ for some sufficiently large positive integer $M.$ But then the image of $f$ is
+\[\op{Im}(f)=f([-M\delta,M\delta])=\bigcup_{k=-M}^{M-1}f([k\delta,(k+1)\delta]),\]
+a finite union of $2M$ bounded sets. It follows that the total image of $f$ is bounded, so we're done.
+
+\subsubsection{September 11th}
+Today I learned some facts about the different ideal $\diff I,$ where $I$ is a fractional ideal of $\mathcal O_K.$ I think the most interesting is that
+\[\diff I=I\diff\mathcal O_K,\]
+Namely, this means we really only care about the global information $\diff\mathcal O_K,$ even though $I^*$ does not look super well-behaved. Without rigor, this is not hard to convince oneself of, for it is equivalent to
+\[I^*=I^{-1}\mathcal O_K^*\]
+after taking inverses of everything. (One has to show that $I^*$ and $\diff I$ are fractional ideals first, which is not easy.) Taking a moment for philosophy, we see that the reason we can talk intelligently about $\diff I$ in terms of the entire number ring is that ``difficulty'' in the $I^*$ can be translated seamlessly upwards to $\mathcal O_K^*.$ Anyways, the above is equivalent to
+\[II^*=\mathcal O_K^*.\]
+Then this we can prove in steps, showing $II^*\subseteq\mathcal O_K^*$ and $I^{-1}\mathcal O_K^*\subseteq I^*,$ which completes the proof. Neither of these lemmas are particularly enlightening. As an aside, taking $I\mapsto I^*$ in the above tells us that $II^*=\mathcal O_K^*=I^*(I^*)^*,$ from which $I=(I^*)^*$ follows.
+
+\subsubsection{September 12th}
+Today I learned that $\FF_q$ is also a perfect field for prime-powers $q,$ continuing from the Conrad expository paper. Namely, we want to show that no irreducible polynomial $\pi(x)\in\FF_q[x]$ has repeated roots in the algebraic closure $\overline{\FF_q}.$ The outline is to show that $\pi(x)$ divides into a polynomial with no repeated roots, from which the result will follow. Note that
+\[\frac{\FF_q[x]}{(\pi(x))}\]
+is a finite field, of order $Q:=q^{\deg\pi}.$ In fact, this is the splitting field of $\pi(x),$ but we don't that strong of information to complete the proof completely. Note if $\pi(x)=x,$ then we're already done; else look at $x$ in the above finite field, which is a nonzero element with multiplicative order dividing $Q-1.$ It follows
+\[x^Q\equiv x\pmod{\pi(x)}.\]
+Thus, $\pi(x)\mid x^Q-x.$ However, $x^Q-x$ has no repeated roots in the algebraic closure: its derivative is $Qx^{Q-1}-1=-1$ has \textit{no roots at all!} So it follows that $\pi(x)$ cannot have repeated roots for $x^Q-x$ to also have no repeated roots, which completes the proof.
+
+As an aside, the paper has a pretty clean finish which avoids the derivative. Namely, suppose $\alpha$ is a root of $x^Q-x$ so that we want to know that $(x-\alpha)^2$ is not a root. Well, just write
+\[x^Q-x=x^Q-x-\left(\alpha^Q-\alpha\right)=(x-\alpha)^Q-(x-\alpha)=(x-\alpha)\left((x-\alpha)^{Q-1}-1\right).\]
+However, $\alpha$ is not a root of the other factor because it gives $\alpha-\alpha=0,$ so this evaluates to $-1.$ This is roughly isomorphic to taking the derivative (note that the end contradiction $-1\ne0$ is the same), but it's a bit more clever with the $\alpha^Q-\alpha$ trick.
+
+\subsubsection{September 13th}
+Today I learned that the Cayley-Hamilton Theorem can sometimes be used as a lemma (!) instead of just always a theorem, from one of Tom's riddles. Ready yourself; this is exceedingly cool. The statement is that for a finite extension $K/\QQ,$ given the existence of an embedding of rings
+\[\varphi:K\hookrightarrow\QQ^{n\times n}\]
+for some $n\in\NN,$ then $[K:\QQ]\le n.$ In particular, $K\cong\varphi(K).$ Intuitively, we feel this result as a size constraint: as an embedding of groups, an idiot degree bound says that $[K:\QQ]\le n^2.$ Somehow the extra ring structure is sharpening this bound in a natural way.
+
+To set up the proof, we recall that every finite extension is generated by a single element, so fix $K=\QQ(\alpha).$ This is nice because it tells us that $\varphi$ is entirely determined by $\varphi(\alpha)=:\bf A,$ so we may focus on $\bf A$ alone. In particular, we can use the Cayley-Hamilton Theorem (!) we know that $\bf A$ is a root of
+\[p(x)=\det({\bf A}-x{\bf I})\]
+extended to $\QQ^{n\times n}.$ But $\bf A$ is an $n\times n$ matrix as is, so $\deg p=n.$ Then, using our isomorphism $K\cong\varphi(K),$ we see that $\alpha=\varphi^{-1}(\bf A)$ is also a root of $p(x).$
+
+To convince you that this argument is cool, we remark that this implies that no matter what our embedding $\varphi$ looks like, the fact $p(x)\in\QQ[x]$ implies that all Galois conjugates of $\alpha$ are eigenvalues of $\bf A.$ To reiterate, we know nothing about what $\varphi$ looks like a priori, but its structure is still very strangely forced by its input field $K.$
+
+Anyways, it remains to finish the argument. We know that $\alpha$ is a root of $p$ of degree $\deg p=n,$ so $\alpha^n$ can be written as a $\QQ$-linear combination of lesser powers of $\alpha.$ But then the basis $\left\{1,\alpha,\alpha^2,\ldots\right\}$ of $K$ has no more than $n$ elements, from which $[K:\QQ]\le n$ follows.
+
+\subsubsection{September 14th}
+Today I learned a more geometric interpretation of the $A^*$ in the definition of the different ideal. As usual, fix a finite extension $L/K$ of degree $n,$ and let $A$ be generated by $\{\alpha_1,\ldots,\alpha_n\}.$ Mathematics says that the natural thing is not to focus on the particular elements in $L/K$ but also put all the embeddings on the same fitting. So it is natural to organize things into
+\[{\bf A}=\begin{bmatrix}
+    \sigma_1(\alpha_1) & \sigma_2(\alpha_1) & \cdots & \sigma_n(\alpha_1) \\
+    \sigma_1(\alpha_2) & \sigma_2(\alpha_2) & \cdots & \sigma_n(\alpha_2) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \sigma_1(\alpha_n) & \sigma_2(\alpha_n) & \cdots & \sigma_n(\alpha_n)
+\end{bmatrix}.\]
+This matrix, naturally, defines a lattice. Then $A^*$ is associated with the \textit{dual lattice} of $A,$ generated by ${\bf A}^{-\intercal}.$ One can show that the this matrix takes form
+\[{\bf A}^{-\intercal}=\begin{bmatrix}
+    \sigma_1(\beta_1) & \sigma_2(\beta_1) & \cdots & \sigma_n(\beta_1) \\
+    \sigma_1(\beta_2) & \sigma_2(\beta_2) & \cdots & \sigma_n(\beta_2) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \sigma_1(\beta_n) & \sigma_2(\beta_n) & \cdots & \sigma_n(\beta_n)
+\end{bmatrix}.\]
+The inverse, of course, exists. There is some technicality showing that the rows are generated by single $\beta_k,$ but we can show this by considering what happens when applying some $\sigma_\ell\sigma_k^{-1}.$
+
+It happens that these $\{\beta_1,\ldots,\beta_n\}$ generate $A^*.$ To provide some reasoning why, the reason the trace appears at all is that
+\[\begin{bmatrix}
+    \sigma_1(\alpha_1) & \cdots & \sigma_n(\alpha_1) \\
+    \vdots & \ddots & \vdots \\
+    \sigma_1(\alpha_n) & \cdots & \sigma_n(\alpha_n)
+\end{bmatrix}
+\begin{bmatrix}
+    \sigma_1(\beta_1) & \cdots & \sigma_1(\beta_n) \\
+    \vdots & \ddots & \vdots \\
+    \sigma_n(\beta_1) & \cdots & \sigma_n(\beta_n)
+\end{bmatrix}=
+\begin{bmatrix}
+    \op T_K^L(\alpha_1\beta_1) & \cdots & \op T_K^L(\alpha_1\beta_n) \\
+    \vdots & \ddots & \vdots \\
+    \op T_K^L(\alpha_n\beta_1) & \cdots & \op T_K^L(\alpha_n\beta_n)
+\end{bmatrix},\]
+so we get some trace information encoded by our definition of the lattice dual. There's a nice picture of the dual lattice that I don't really fully understand, but it's comforting to know that $A^*$ isn't coming out purely nowhere. For example, the determinant of the lattice is inverted, so there is some notion that $\diff I=(I^*)^{-1}$ is taking ``incomptabile'' inverses to create an object that should still encode some information about $I.$
+
+\subsubsection{September 15th}
+Today I learned the definition and some examples of the functor of points, which I think is my prototypical example of a contravariant functor. The most natural example is the contravariant functor $\texttt{Vec}_k\to\texttt{Vec}_k$ taking every space to its dual. Explicitly, our mapping takes objects
+\[V\longmapsto\op{Hom}(V, k).\]
+Then for a linear map $f:V\to W,$ we can naturally induce a mapping $\op{Hom}(W,k)\to\op{Hom}(V,k)$ to make the following diagram work.
+\begin{center}
+    \begin{tikzcd}
+        V \arrow[r, "f"] \arrow[rd, dashed] & W \arrow[d, "{\operatorname{Hom}(W,k)}"] \\
+                                            & k                                       
+    \end{tikzcd}
+\end{center}
+Explicitly, we take each $g\in\op{Hom}(W,k):W\to k$ to $gf:V\to W\to k.$
+
+Of note is the special role that $k$ plays as a final object: the fact that everyone has nice arrows to $k$ is letting us induce the mapping. This idea lets us define the functor. In general, let $\mathcal C$ be a category, and fix some object $A$ which will serve a similar purpose as $k.$ Then, we define the contravariant functor taking $\mathcal C\to\texttt{Set}$ taking objects
+\[B\longmapsto\op{Mor}(B,A).\]
+Then we map arrows $f:B_1\to B_2$ to mappings $\op{Mor}(B_2,A)\to\op{Mor}(B_1,A)$ induced by the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        B_1 \arrow[r, "f"] \arrow[rd, dashed] & B_2 \arrow[d, "{\operatorname{Mor}(B_2,A)}"] \\
+                                              & A                                           
+    \end{tikzcd}
+\end{center}
+Explicitly, for a mapping $f\in\op{Mor}(B_1,B_2),$ we map $g\in\op{Mor}(B_2,A)$ to $gf\in\op{Mor}(B_1,A).$
+
+\subsubsection{September 16th}
+Today I learned the definition of localization of a ring. Namely, if we have a commutative ring $R$ and multiplicatively closed subset $S\subseteq R$ containing $1\in S,$ then we very roughly define
+\[S^{-1}R=\{r/s:r\in R\text{ and }s\in S\}\]
+to be the set of fractions of $R$ having elements of $S$ as denominators. There is a caveat that $r_1/s_1=r_2/s_2$ if and only if there exists some $s\in S$ satisfying $s(r_1s_2-r_2s_1)=0$; i.e., $r_1s_2-r_2s_1$ is a zero divisor instead of being actually $0.$ Otherwise, addition and multiplication work exactly as expected. For example, when $R$ is an integral domain, we can set $S=R\setminus\{0\},$ and the above is the field of fractions. With this intuition in mind, we note the mapping
+\[r\longmapsto r/1\]
+taking $R\to S^{-1}R.$
+
+This motivates a categorical definition of localization: the above mapping $\varphi:R\to S^{-1}R$ is initial among all maps $R\to R'$ where $S$ is sent to units of $R'.$ In other words, for any mapping $f:R\to R'$ sending $S$ to units of $R',$ $f$ factors uniquely through $\varphi.$
+\begin{center}
+    \begin{tikzcd}
+        S \arrow[rrdd, "f"'] & R \arrow[rrdd, "f"'] \arrow[rr, "\varphi"] &          & S^{-1}R \arrow[dd, dashed] \\
+                             &                                            &          &                            \\
+                             &                                            & (R')^\times & R'                        
+    \end{tikzcd}
+\end{center}
+Indeed, our explicit construction for $f=g\varphi$ is $g(r/s)=f(r)f(s)^{-1},$ which just a categorical way to think about quotients. By construction addition and multiplication are well-behaved, so this is valid mapping $S^{-1}R\to R'.$ To show that this is forced, suppose we have a $g$ with $f=g\varphi.$ Then we know for free that $f(r)=g\varphi(r)=f(r)=g(r/1).$ But because $g$ is a homomorphism, we see
+\[g(r/s)g(s/1)=g(rs/s1)=g(r/1).\]
+From this it follows $g(r/s)=f(r)f(s)^{-1}$ is forced, which is what we wanted.
+
+\subsubsection{September 17th}
+Today I learned a very natural proof of Lucas's Theorem: for $p$ prime and integers $m=\sum_km_kp^k$ and $n=\sum_kn_kp^k$ written in base $p,$ we have
+\[\binom mn\equiv\prod_{k=0}^\infty\binom{m_k}{n_k}\pmod p.\]
+
+What I really like about this proof is that it's really just an answer to ``What happens if I apply the Frobenius to base-$p$ expansions?'' Everything else follows naturally. Indeed, the main ingredient in the proof is generating functions. Observe that
+\[(1+x)^p=1+x^p\pmod p\]
+in $\FF_p[x].$ From this it follwos $(1+x)^{p^k}=1+x^{p^k}$ by induction. So to prove the result, we combine base-$p$ representations with this automorphism. On one hand, we see
+\[(1+x)^m=\sum_{n=0}^m\binom mnx^n.\]
+It follows in the resulting discussion we know that we want to isolate $x^n.$ So on the other hand, we can write
+\[(1+x)^m=(1+x)^{\sum_km_kp^k}=\prod_{k=0}^\infty(1+x)^{m_kp^k}.\]
+But applying the Frobenius automorphism, this looks like
+\[(1+x)^m=\prod_{k=0}^\infty\left(1+x^{p^k}\right)^{m_k}=\prod_{k=0}^\infty\left(\sum_{n_k=0}^{m_k}\binom{m_k}{n_k}x^{n_kp^k}\right)\]
+after expanding. Now because $m_k<p,$ we can extend this into
+\[(1+x)^m=\prod_{k=0}^\infty\left(\sum_{n_k=0}^{p-1}\binom{m_k}{n_k}x^{n_kp^k}\right).\]
+Now we can collect powers of $x$ easily because $x^n$ will have a unique base-$p$ expansion from the $n_k,$ giving
+\[(1+x)^m=\sum_{n=0}^\infty\left(\prod_{k=0}^\infty\binom{m_k}{n_k}\right)x^n.\]
+Comparing coefficients with our original expression gives the result.
+
+\subsubsection{September 19th}
+Today I learned the categorical definition of the direct sum/coproduct. Essentially, for sets $\{S_\alpha\},$ we define that prod $\prod_\alpha S_\alpha$ with projections $\pi_\alpha:\prod_\alpha S_\alpha\to S_\alpha$ so that any time we have maps $T\to S_\alpha,$ these maps factor uniquely through the $\pi_\alpha.$ In pictures, this diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        S_\alpha & \displaystyle\prod_\alpha S_\alpha \arrow[l, "\pi_\alpha"'] \\
+        & T \arrow[lu] \arrow[u, dashed]
+    \end{tikzcd}
+\end{center}
+Then for the direct sum, we just want to reverse the arrows. Namely, we want this diagram to commute.
+\begin{center}
+    \begin{tikzcd}
+        S_\alpha \arrow[rd] \arrow[r, "\iota_\alpha"] & \displaystyle\bigoplus_\alpha S_\alpha \arrow[d, dashed] \\
+        & T
+    \end{tikzcd}
+\end{center}
+Formally, we define $\bigoplus_\alpha S_\alpha$ with inclusions $\iota_\alpha:S_\alpha\to\bigoplus_\alpha S_\alpha$ so that any time we have maps $S_\alpha\to T,$ then these maps factor uniquely through $\iota_\alpha.$
+
+\subsubsection{September 18th}
+Today I learned an example a proof by universal properties, by proving that localization commutes with arbitrary direct sums. We show this here, with many pretty commutative diagrams.
+
+For our first proof, we start with the obvious mappings as follows.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[r] \arrow[d] & \displaystyle\bigoplus_\alpha M_\alpha       \\
+        S^{-1}M_\alpha \arrow[r]     & \displaystyle\bigoplus_\alpha S^{-1}M_\alpha
+    \end{tikzcd}
+\end{center}
+The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[r] \arrow[d] & \displaystyle\bigoplus_\alpha M_\alpha \arrow[d, "\oplus", dashed] \\
+        S^{-1}M_\alpha \arrow[r]     & \displaystyle\bigoplus_\alpha S^{-1}M_\alpha                      
+    \end{tikzcd}
+\end{center}
+We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        \displaystyle\bigoplus_\alpha M_\alpha \arrow[d] \arrow[rdd, bend left, shift left] &   \\
+        \displaystyle\bigoplus_\alpha S^{-1}M_\alpha \arrow[rd, dashed]                     &   \\
+                                                                                            & N
+    \end{tikzcd}
+\end{center}
+Indeed, re-expand out the diagram as before.
+\begin{center}
+    \begin{tikzcd}
+    M_\alpha \arrow[d] \arrow[r]                                                     & \displaystyle\bigoplus_\alpha M_\alpha \arrow[d] \arrow[rdd, bend left, shift left] &   \\
+    S^{-1}M_\alpha \arrow[r]  & \displaystyle\bigoplus_\alpha S^{-1}M_\alpha                                        &   \\
+                                                                                     &                                                                                     & N
+    \end{tikzcd}
+\end{center}
+Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[d] \arrow[r]                                           & \displaystyle\bigoplus_\alpha M_\alpha \arrow[rdd, bend left, shift left] &   \\
+        S^{-1}M_\alpha \arrow[rrd, "S^{-1}"', dashed, bend right, shift right] &                                                                           &   \\
+                                                                               &                                                                           & N
+    \end{tikzcd}
+\end{center}
+So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        S^{-1}M_\alpha \arrow[rrd, bend right, shift right] \arrow[r] & \displaystyle\bigoplus_\alpha S^{-1}M_\alpha \arrow[rd, "\oplus", dashed] &   \\
+                                                                      &                                                                           & N
+    \end{tikzcd}
+\end{center}
+This is what we wanted. To review, the entire following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[d] \arrow[r]                                                           & \displaystyle\bigoplus_\alpha M_\alpha \arrow[d] \arrow[rdd, bend left, shift left=1] &   \\
+        S^{-1}M_\alpha \arrow[rrd, "S^{-1}" description, dashed, bend right, shift right] \arrow[r] & \displaystyle\bigoplus_\alpha S^{-1}M_\alpha \arrow[rd, "\oplus" description, dashed]                               &   \\
+                                                                                               &                                                                                                                & N
+    \end{tikzcd}
+\end{center}
+
+We now provide a second proof. Again we start with the obvious mappings.
+\begin{center}
+    \begin{tikzcd}
+    M_\alpha \arrow[d] \arrow[r] & \displaystyle\bigoplus_\alpha M_\alpha \arrow[d]          \\
+    S^{-1}M_\alpha               & S^{-1}\left(\displaystyle\bigoplus_\alpha M_\alpha\right)
+    \end{tikzcd}
+\end{center}
+Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[d] \arrow[r]                & \displaystyle\bigoplus_\alpha M_\alpha \arrow[d]          \\
+        S^{-1}M_\alpha \arrow[r, "S^{-1}"', dashed] & S^{-1}\left(\displaystyle\bigoplus_\alpha M_\alpha\right)
+    \end{tikzcd}
+\end{center}
+We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.
+\begin{center}
+    \begin{tikzcd}
+        S^{-1}M_\alpha \arrow[r] \arrow[rrd, bend right, shift right=1] & S^{-1}\left(\displaystyle\bigoplus_\alpha M_\alpha\right) \arrow[rd, dashed] &   \\
+        &   & N
+    \end{tikzcd}
+\end{center}
+However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[d] \arrow[r]                          & \displaystyle\bigoplus_\alpha M_\alpha \arrow[rdd, "\oplus", dashed, bend left, shift left=1] &   \\
+        S^{-1}M_\alpha \arrow[rrd, bend right, shift right=1] &                                                                                               &   \\
+                                                              &                                                                                               & N
+    \end{tikzcd}
+\end{center}
+But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.
+\begin{center}
+    \begin{tikzcd}
+        \displaystyle\bigoplus_\alpha M_\alpha \arrow[rdd, bend left, shift left=1] \arrow[d]    &   \\
+        \displaystyle S^{-1}\left(\bigoplus_\alpha M_\alpha\right) \arrow[rd, "S^{-1}"', dashed] &   \\
+                                                                                                 & N
+    \end{tikzcd}
+\end{center}
+This is what we wanted. To review, the entire following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        M_\alpha \arrow[r] \arrow[d]                                             & \displaystyle\bigoplus_\alpha M_\alpha \arrow[rdd, "\oplus" description, dashed, bend left, shift left=1] \arrow[d] &   \\
+        S^{-1}M_\alpha \arrow[r] \arrow[rrd, bend right, shift right=1] & \displaystyle S^{-1}\left(\bigoplus_\alpha M_\alpha\right) \arrow[rd, "S^{-1}" description, dashed]                 &   \\
+                                                                                 &                                                                                                                     & N
+    \end{tikzcd}
+\end{center}
+The pretty pictures are pretty.
+
+\subsubsection{September 20th}
+Today I learned about fibered products, which are basically products that make diagrams commute. In particular, given objects $X$ and $Y$ with maps $\alpha:X\to Z$ and $\beta:Y\to Z,$ then the fibered product begin by being an object $X\times_ZY$ with maps $\pi_X$ and $\pi_Y$ such that the following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        X\times_ZY\arrow[r, "\pi_Y"]\arrow[d,"\pi_X"'] & Y\arrow[d, "\beta"'] \\
+        X\arrow[r, "\alpha"] & Z
+    \end{tikzcd}
+\end{center}
+But to finish the universal property definition, we assert that for any object $W$ with maps $W\to X$ and $W\to Y$ commuting with $\alpha$ and $\beta,$ then those maps factor uniquely through $X\times_ZY.$
+\begin{center}
+    \begin{tikzcd}
+        W \arrow[rrd, shift left] \arrow[rdd, shift right] \arrow[rd, dashed] &                                                   &                      \\
+                                                                                                     & X\times_ZY \arrow[d, "\pi_X"'] \arrow[r, "\pi_Y"] & Y \arrow[d, "\beta"] \\
+                                                                                                     & X \arrow[r, "\alpha"']                            & Z                   
+    \end{tikzcd}
+\end{center}
+
+So for example, in the category of sets, we claim that $X\times_ZY=\{(x,y):\alpha(x)=\beta(y)\},$ which as claimed is pretty much ``$X\times Y$ which makes the diagram commute.'' Indeed, the diagram does commute, and for any $W$ with $f:W\to X$ and $g:W\to Y$ satisfying $\alpha f=\beta g,$ we claim a unique $\varphi$ such that $f=\pi_X\phi$ and $g=\pi_Y\varphi.$ But then this forces
+\[\varphi(w)=(f(w),g(w))\]
+in order to make the projections work. (Formally, if $\varphi(w)=(w_x,w_y),$ we must have $w_x=\pi_X\varphi(w)=f(w)$ and $w_y=\pi_Y\varphi(w)=g(w).$) This is indeed a map $\varphi:W\to X\times_ZY$ because $f$ ad $g$ commute with $\alpha$ and $\beta$ already, so we have our unique factorization.
+
+As another example, if $Z$ is a final object in the category, then all of our mappings kind of collapse into each other, implying that we should have $X\times_ZY=X\times Y.$ Indeed, look at the associated diagram.
+\begin{center}
+    \begin{tikzcd}
+        W \arrow[rrd, shift left] \arrow[rdd, shift right] \arrow[rd, dashed] &                                                   &                      \\
+                                                                                                     & X\times Y \arrow[d] \arrow[r] & Y \arrow[d] \\
+                                                                                                     & X \arrow[r]                            & Z                   
+    \end{tikzcd}
+\end{center}
+Note that $Z$ being final implies that there is only one mapping $X\to Z$ and $Y\to Z,$ and for the same reason, the maps $X\times Y\to X\to Z$ and $X\times Y\to Y\to Z$ commute for free as both are $X\times Y\to Z.$ So we are allowed to place $X\times Y$ in this diagram. Now, given maps $W\to X$ and $W\to Y,$ the universal property of $X\times Y$ gives us the unique map for which $W\to X\times Y$ commutes with the diagram, satisfying the universal property of $X\times_ZY,$ so we are done here.
+
+\subsubsection{September 21st}
+Today I learned some applications of the idea that prime-splitting can tell us useful information about Galois groups. For example, suppose we have a normal extension $L/K$ with primes $\mf q/\mf p$ so that $\mf p$ splits completely in every intermediate nontrivial subfield between $L$ and $K$ but not in $L.$
+
+Then we claim that $D=D(\mf q/\mf p)$ is the unique smallest nontrivial subgroup of $\op{Gal}(L/K).$ For this we use the argument suggested in \textit{Number Fields}. We are given that $e(\mf q/\mf p)f(\mf q/\mf p)>1$ because $\mf p$ does not split completely in $L,$ so we get that $[L:L_D]>1.$ So it follows $D$ is actually a nontrivial subgroup. Further, for any other subgroup $H\ne\langle e\rangle$ of $G,$ there is an intermediate field $L_H\le L$ with $\mf q_H$ between $\mf p$ and $\mf q.$ So it follows $e(\mf q_H/\mf p)f(\mf q_H/\mf p)=1,$ which implies
+\[[L:L_EL_H]=e(\mf q/\mf q_H)f(\mf q/\mf q_H)=e(\mf q/\mf p)f(\mf q/\mf p)=[L:L_E].\]
+It follows that $L_H\subseteq L_E,$ so $E\subseteq H.$
+
+It might not appear a very strong condition that we have a unique smallest nontrivial subgroup, but there are quite a few things that we get out of this. For example, we get that $D$ must be a subset and therefore equal to all of its conjugate subgroups, so $D$ is a normal subgroup. Further, considering any prime $p$ dividing into the order of $\op{Gal}(L/K),$ we know that the $D$ is a subgroup of any subgroup of order $p$ (guaranteed by Cauchy's Theorem), so in fact the Galois group is of prime-power order!
+
+Sure, the condition is esoteric, but it ought be not terribly odd to think that perfect knowledge of prime-splitting should give perfect knowledge of the field extension; after all, the above discussion centers around information about a single prime $\mf p\subseteq K.$
+
+\subsubsection{September 22nd}
+Today I learned about Yoneda's Lemma. The intuition here is that two objects $A$ and $A'$ in a category $\mathcal C$ with ``the same'' mappings from the rest of the objects in $\mathcal C$ should be isomorphic. We quantify this by asserting bijective mappings $\iota_C$ for objects $C\in\mathcal C$ which biject
+\[\op{Mor}(C,A)\stackrel{\iota_C}\longrightarrow\op{Mor}(C,A').\]
+
+Having a one-to-one correspondence of arrows isn't terribly interesting without asserting some structure behind those arrows; namely, all we know is that the number of arrows is the same, which in most categories we care about is probably just countably infinite anyways. So we also introduce a contravariant functor $h_A=\mathcal C\to\op{Sets}$ which maps objects $B\mapsto\op{Mor}(B,A)$ and arrows $B\to C$ to $\op{Mor}(C,A)\to\op{Mor}(B,A)$ by
+\[B\to C\longmapsto (C\to A)\to(B\to C\to A).\]
+In words, out map $\op{Mor}(C,A)\to\op{Mor}(B,A)$ takes maps $C\to A$ and takes them to other maps $B\to C\to A,$ using the arrow $B\to C.$ The structure of arrows we're going to guarantee is that the following diagram commutes, for any objects $B$ and $C$ with an implicit mapping $B\to C.$
+\begin{center}
+    \begin{tikzcd}
+        {\operatorname{Mor}(C,A)} \arrow[d, "\iota_C"'] \arrow[r] & {\operatorname{Mor}(B,A)} \arrow[d, "\iota_B"] \\
+        {\operatorname{Mor}(C,A')} \arrow[r]                      & {\operatorname{Mor}(B,A')}                    
+    \end{tikzcd}
+\end{center}
+
+So we claim now that $A$ and $A'$ are isomorphic. We begin by studying the commutative diagram. We claim that there is a mapping $g:A\to A'$ such that $\iota_C$ just takes maps $C\to A$ to $C\to A\stackrel g\to A'.$ To prove this claim, notice that we can force $\iota_\bullet$ to extract out our $g$ by watching where $\iota_A$ takes $\op{id}_A.$ Namely, fix a mapping $f:B\to A,$ and we know the following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        {\operatorname{Mor}(A,A)} \arrow[d, "\iota_C"'] \arrow[r] & {\operatorname{Mor}(B,A)} \arrow[d, "\iota_A"] \\
+        {\operatorname{Mor}(A,A')} \arrow[r]                      & {\operatorname{Mor}(B,A')}                    
+    \end{tikzcd}
+\end{center}
+Now, focusing on $\op{id}_A\in\op{Mor}(A,A),$ the diagram looks like the following.
+\begin{center}
+    \begin{tikzcd}
+        A\stackrel{\operatorname{id}_A}\to A \arrow[d, "\iota_A"', maps to] \arrow[r, maps to] & B\stackrel f\to A \arrow[d, "\iota_B", dashed, maps to] \\
+        A\stackrel g\to A' \arrow[r, maps to]                                                  & B\stackrel f\to A\stackrel g\to A'                     
+    \end{tikzcd}
+\end{center}
+The top-right is our starting point. The top-left mapping is just our named $f:B\to A$ because the identity does not modify the mapping. We name $g=\iota_A(\op{id}_A),$ as claimed earlier, and when we follow it across the bottom, we see the bottom-right corner is $B\stackrel f\to A\stackrel g\to A'.$ But then focusing on how $\iota_B$ commutes, we see that $\iota_B$ indeed sends $B\stackrel f\to A$ to $B\stackrel f\to A\stackrel g\to A',$ which is what we wanted.
+
+Only now that we've discussed the commutative diagram do we bring in the information that our $\iota_\bullet$ are actually bijections. We claim that $g$ is actually an isomorphism. In light of the above work, the fact $\iota_C$ are all bijections means that for any mapping $C\to A',$ there is a unique mapping $C\to A$ such that $C\to A'=C\to A\stackrel g\to A'.$ In other words, all maps $C\to A'$ factor uniquely through $g,$ or there is a unique induced arrow in the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        C \arrow[rd] \arrow[r, dashed] & A \arrow[d, "g"] \\
+                                       & A'              
+    \end{tikzcd}
+\end{center}
+As an intuitive aside, the words ``factor uniquely'' suggest that an isomorphism is about to be constructed in the same way that they appeared for the product. Anyways, to finish the proof, fix $C=A'$ and look at $\op{id}_{A'}:A'\to A'.$ In particular, we know there is a unique $g'$ making the following diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        A' \arrow[rd, "\operatorname{id}_{A'}"'] \arrow[r, "g'", dashed] & A \arrow[d, "g"] \\
+                                                                         & A'              
+    \end{tikzcd}
+\end{center}
+So we know that $g\circ g'=\op{id}_{A'}.$ For $g$ to be an isomorphism, we need to know that $g'\circ g=\op{id}_A$ as well. This is not extraordinarily hard, for $g\circ g'=\op{id}_{A'}$ implies that
+\[g\circ(g'\circ g)=(g\circ g')\circ g=\op{id}_{A'}\circ g=g\circ\op{id}_A.\]
+But this means there are two functions that make the following diagram commute---both $\op{id}_A$ and $g'\circ g.$
+\begin{center}
+    \begin{tikzcd}
+    A \arrow[rd, "g"'] \arrow[r, dashed] & A \arrow[d, "g"] \\
+                                         & A'              
+    \end{tikzcd}
+\end{center}
+It follows that $g'\circ g=\op{id}_A,$ which finishes the proof.
+
+\subsubsection{September 23rd}
+Today I learned that the relative different is kind of multiplicative in towers, which unsurprisingly follows roughly from the behavior of trace in towers, with some fudging around.
+
+Outlining somewhat, fix extensions $M$ over $L$ over $K,$ and we'll show that
+\[\diff(\mathcal O_M/\mathcal O_K)=\diff(\mathcal O_M/\mathcal O_L)(\diff(\mathcal O_L/\mathcal O_K)\mathcal O_M).\]
+For convenience, we'll fix $T=\mathcal O_M,$ $S=\mathcal O_L,$ and $R=\mathcal O_K.$ Then let $T^*_R$ be the dual of $T$ with respect to $R,$ and define $T_S^*$ and $S_R^*$ similarly. After taking inverses, it suffices to show that
+\[T_R^*=T_S^*(S_R^*T).\]
+This is done in two steps.
+\begin{enumerate}[label=\arabic*.]
+    \item In one direction, we show $T_S^*(S_R^*T)\subseteq T_R^*$ by taking traces directly:
+    roughly, we have
+    \[\op T_K^M\left(T_S^*(S_R^*T)T\right)=\op T_K^L\op T_L^M\left(S_R^*\op T_L^M(T^*_ST)\right)=\op T_K^L\left(S_R^*\op T_L^M(T^*_ST)\right)\subseteq\op T_K^L(S_R^*S)\subseteq R\]
+    from the transitivity of trace.
+    
+    \item In the other direction, we show $T_R^*(S_R^*)^{-1}T\subseteq T_S^*$ with some finagling. Roughly, this needs
+    \[\op T_L^M\left(T_R^*(S_R^*)^{-1}T\right)\subseteq S.\]
+    The left-hand side is
+    \[\op T_L^M\left(T_R^*(S_R^*)^{-1}T\right)=(S_R^*)^{-1}\op T_L^M\left(T_R^*T\right),\]
+    which is a subset of $S$ if and only if $\op T_L^M\left(T_R^*T\right)\subseteq S_R^*.$ But this follows from taking $\op T_K^L$ and then using transitivity of trace.
+\end{enumerate}
+As promised, it's not super exciting.
+
+\subsubsection{September 24th}
+Today I learned the definition of a filtered poset for the categorical colimit. The basic case for partially ordered sets is essentially saying that \todo{finish this}
+
+\subsubsection{September 25th}
+Today I learned a proof that the relative different perfectly encodes ramification information of an extension $L/K.$ The proof is quite long and annoying, so I guess I'll outline the main steps. Suppose $\mf q\subseteq\mathcal O_L$ is a prime over $\mf p\subseteq\mathcal O_K$ which is unramified but divides into $\diff(\mathcal O_L/\mathcal O_K).$ We'll derive a contradiction from this.
+
+Unsurprisingly, we begin by extending $L/K$ to a normal extension $M$ with $\mf u$ over $\mf q$; we'll set $E=E(\mf u/\mf p)$ and $D=D(\mf u/\mf p).$ In order to sneak out some more structure from the system, check out $M_E$: we know $\mf u_E$ is unramified over $\mf p,$ and in fact it is the largest subfield of $M$ satisfying this, so $L$ is below $M_E$ as well. Further, multiplicativity of $\diff$ in towers tells us that $\mf q\mid\diff(\mathcal O_L/\mathcal O_K)$ implies
+\[\mf u_E\mid\diff(\mathcal O_{M_E}/\mathcal O_K).\]
+This tells us that we might as well prove that there's a contradiction where $\mf u_E$ over $\mf p$ unramified while dividing its own different. So we reassign notation, fixing $\mf q=\mf u_E$ and $L=M_E.$
+
+To continue, we study the unramified condition a bit closer. Write $\mf p\mathcal O_L=\mf qI$ for comfort. Playing around with maximality tells us that $\mathcal O_M=\mathcal O_L+\mf u$ and $\mathcal O_L=I+\mf q$ (details omitted), which implies
+\[\mathcal O_M=I+\mf u.\]
+Intuitively, this is telling us that $I$ and $\mf u$ are relatively prime. To formalize this, we show that every other prime in $\mathcal O_M$ over $\mf p$ contains $I.$ Indeed, fixing $\mf u'\ne\mf u$ dividing $\mf p\mathcal O_M,$ we see that $\mf u'_E\ne\mf u_E=\mf q$ because $\mf u$ is totally ramified over $\mf u_E,$ so $\mf u'_E$ must instead divide into $I.$ (It's a prime dividing $\mf p\mathcal O_L=\mf qI.$) This is what we wanted.
+
+Now, accessing the different requires some thoughts on the trace. Because $\mf q\mid\diff(\mathcal O_L/\mathcal O_K),$ we see that $\mf q^{-1}\subseteq\mathcal O_L^*,$ from which
+\[\op T_K^L(\mf q^{-1}\mathcal O_L)\subseteq\mathcal O_K\]
+follows. The previous paragraph gave us information about $I,$ so we focus there. In particular, we know $I=\mf q^{-1}(\mf p\mathcal O_L),$ which roughly implies that
+\[\op T_K^L(I)\subseteq\mathcal O_L.\tag{$*$}\]
+This is kind of weird, though, because every prime of $\mathcal O_M$ over $\mf p$ is either $\mf u$ or contains $I.$ In particular, for $\sigma^{-1}\in\op{Gal}(M/K)\setminus D(\mf u/\mf p),$ we know $\sigma^{-1}(\mf u)\ne\mf u,$ so $I\subseteq\sigma^{-1}(\mf u)$ and
+\[\sigma(I)\subseteq\mf u.\]
+So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\not\in D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:
+\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\sigma(I)\subseteq\mf u.\]
+Because $\mathcal O_M=I+\mf u,$ we can extend the above statement from $I$ to all of $\mathcal O_M.$
+
+To finish, the last trick is to look$\pmod{\mf u}.$ Namely, each $\sigma\in D\cap\op{Emb}(L/K)$ induces an automorphism $\overline\sigma$ of $\mathcal O_M/\mf u,$ so taking mods tells us that in fact
+\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\overline\sigma\equiv0\pmod{\mf u}.\]
+However, we can show that these $\overline\sigma$ are distinct automorphisms of $\mathcal O_M/\mf u$ and therefore must be linearly independent, which is our final contradiction.
+
+\subsubsection{September 26th}
+Today I learned the sequence construction for the inverse limit in \texttt{Set}, or \texttt{Grp} or \texttt{Rings} or \texttt{Vec}$_k$ for that matter.
+
+Namely, fix an index category $\mathcal I$ and a category $\mathcal C$ with a functor $F:\mathcal I\to\mathcal C$ taking $\bullet\in\mathcal I$ to $A_\bullet\in\mathcal C.$ We claim that
+\[A:=\left\{(a_i)_{i\in\mathcal I}\in\prod_{i\in\mathcal I}A_i:a_j\stackrel{F(m)}\longmapsto a_k\text{ when }k\stackrel m\longmapsto k\right\}\]
+is the limit $\varprojlim A_i$ we're looking for. Note we also have the natural projections $\pi_i:A\to A_i$ by taking $a\in A$ to to the component belonging to $i\in\mathcal I,$ which lives in $A_i.$
+
+To get some feeling for this construction, we can say that it's thinking about $p$-adics like
+\[\ZZ_p=\left(a\pmod p,\,a\pmod{p^2},\,a\pmod{p^3},\ldots\right),\]
+for some $a\in\ZZ_p.$ If we squint really hard and chant the world ``analysis'' three times, this can be even viewed as a kind of limiting sequence, approaching whatever element of $a\in\ZZ_p$ we were looking at.
+
+Further, if there is some $B$ with maps $\varphi_i:B\to A_i$ which commute with the $F(m)$ maps, then we need to show that there is a unique induced map $\varphi:B\to A$ which also commutes, as follows.
+\begin{center}
+    \begin{tikzcd}
+        B \arrow[rdd, "\varphi_k", bend left, shift left=2] \arrow[dd, "\varphi_j"', bend right, shift right=2] \arrow[d, "\varphi", dashed] &     \\
+        A \arrow[d, "\pi_j"'] \arrow[rd, "\pi_k"]                                                                                            &     \\
+        A_j \arrow[r, "m"]                                                                                                                   & A_k
+    \end{tikzcd}
+\end{center}
+Indeed, for $b\in B,$ this mapping $\varphi$ works if and only if it satisfies $\pi_i\varphi(b)=\varphi_i(b)$ for each $i.$ But this forces
+\[\varphi(b)=(\varphi_i(b))_{i\in\mathcal I},\]
+which works with our projections as promised.
+
+Something that's a bit bothersome is that we haven't even proven that $A$ has any elements. After all, it's not trivial to me why we can make the elements in the sequence indexed by $\mathcal I$ like that are going to commute with the category of $\mathcal I$'s maps nicely. But even if $A$ were empty, then this isn't really a huge problem: $A$ works as proven, so apparently the empty set works fine as a limit.
+
+\subsubsection{September 27th}
+Today I learned why the Solovay--Strassen (probable) primality test can give confidence of $\left(\frac12\right)^{\text{witnesses}}.$ The primality test for some integer $N$ is done by choosing a random value $a\in(\ZZ/N\ZZ)^\times$ and then comparing the values of
+\[a^{(N-1)/2}\equiv\left(\frac aN\right)\pmod N.\]
+Note on the right-hand side we are computing the Jacobi symbol, which can be done quickly using the Euclidean algorithm and quadratic reciprocity; the left-hand side can be done quickly using modular exponentiation via repeated squaring.
+
+For this, assume there exists at least one witness $a\in(\ZZ/N\ZZ)^\times.$ We show that at least half of all elements of $(\ZZ/N\ZZ)^\times$ are witnesses. Indeed, suppose $b$ is a liar; that is, we know
+\[b^{(N-1)/2}\equiv\left(\frac bN\right)\pmod N.\]
+However, both $(\bullet)^{(N-1)/2}$ and $\left(\frac\bullet N\right)$ are completely multiplicative, so we see that
+\[(ab)^{(N-1)/2}=a^{(N-1)/2}\cdot b^{(N-1)/2}\equiv a^{(N-1)/2}\left(\frac bN\right)\not\equiv\left(\frac aN\right)\left(\frac bN\right)=\left(\frac{ab}N\right)\pmod N.\]
+It follows that $ab$ is also a witness. So for every liar, there exists a witness by multiplying by $a,$ and because multiplication by $a$ is a bijection (it's invertible because $a^{-1}$ exists), this means that at least half of all of $(\ZZ/N\ZZ)^\times$ is a witness.
+
+I don't currently know why a single witness should exist, but it's claimed all over the place.
+
+\subsubsection{September 28th}
+Today I learned the definition of ramification groups. Let $L/K$ be a normal extesion of number fields. I think it's natural to introduce these as generalizations of the inertia subgroup, noting that we can generalize
+\[E(\mf q/\mf p)=\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q}~~\forall\alpha\}\]
+to
+\[V_m=\left\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q^{m+1}}\right\}.\]
+In particular, $V_{-1}=\op{Gal}(L/K)$ and $V_0=E.$ Composing automorphisms shows that these are indeed subgroups; in particular, $\op{id}$ is in every $V_m$ because it's the identity, and we also have $\op{id}(\alpha)=\alpha\equiv\alpha\pmod{\mf q^\bullet}$ always.
+
+What follow are some basic properties. For example, we can quickly show that the $V_m$ are normal subgroups of $D(\mf q/\mf p)$ because for $\sigma\in D(\mf q/\mf p),$ we see
+\[\sigma V_m\sigma^{-1}\left(\alpha+\mf q^{m+1}\right)=\sigma V_m\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\sigma\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\alpha+\mf q^{m+1}.\]
+This implies $\sigma V_m\sigma^{-1}\subseteq V_m,$ which is what we wanted.
+
+Because $\mf q^{m+1}\subsetneq\mf q^m,$ we see that $\sigma(\alpha)\equiv\alpha\pmod{q^{m+1}}$ implies $\sigma(\alpha)\equiv\alpha\pmod{\mf q^m},$ so the $V_m$ are a (not strictly) decreasing sequence of subgroups. And in fact, we claim that there is an $M$ for which $V_m=\{\op{id}\}$ for any integer $m\ge M.$ In fact, we can construct that $M$ explicitly: fix $L=K[\alpha]$ where $\alpha\in\mathcal O_L.$ (Certainly an $\alpha$ exists; multiplying it by a sufficient constant will make its polynomial monic.) Then we claim/I think
+\[M=\max\left\{\nu_\mf q\left((\sigma(\alpha)-\alpha)\mathcal O_L\right):\sigma\in\op{Gal}(L/K)\setminus\{\op{id}\}\right\}\]
+works and is in fact sharp. Quickly, note that $M$ is well-defined because for $\alpha\ne\op{id},$ we have $\sigma(\alpha)\ne\alpha.$ Indeed, $\sigma(\alpha)=\alpha$ forces all polynomials and ratios of polynomials of $\alpha$ to be fixed by $\sigma,$ which is all of $L.$
+
+Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\not\in V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if
+\[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]
+But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if
+\[\sigma(\alpha)-\alpha\not\in\mf q^{m+1}\]
+because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\not\in V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.
+
+\subsubsection{September 29th}
+Today I learned a construction giving a construction for a witness to the Solovay-Strassen primality test, from \href{https://kconrad.math.uconn.edu/blurbs/ugradnumthy/solovaystrassen.pdf}{Keith Conrad}. It's roughly what I expected, but the construction gets kind of involved in places. Take $n$ an odd composite. We have two cases.
+\begin{enumerate}[label=(\alph*)]
+    \item $n$ is squarefree; write $n=p_1\cdots p_r,$ taking $r>1.$ Because $p_1>2,$ we may conjure some $b$ for which $\left(\frac b{p_1}\right)=-1.$ Then, from the Chinese Remainder Theorem, we find $a$ satisfying
+    \[\begin{cases}
+        a\equiv b\pmod{p_1} \\
+        a\equiv1\pmod{p_k} & k>1.
+    \end{cases}\]
+    We claim that $a$ is a witness. Indeed, it follows that
+    \[\left(\frac an\right)=\prod_{k=1}^r\left(\frac a{p_k}\right)=-1\cdot\prod_{k=2}^r1=-1.\]
+    On the other hand, $a\equiv1\pmod{p_2},$ so
+    \[\left(\frac an\right)\equiv-1\not\equiv1\equiv a^{(n-1)/2}\pmod{p_2},\]
+    from which it follows that $\left(\frac an\right)\not\equiv a^{(n-1)/2}\pmod n.$
+    
+    \item $n$ is the divisible by the square of a prime; write $n=p^km$ with $k=\nu_p(n)>1.$ We'll show that $a$ cannot even be a Carmichael number, which will be good enough. This time we set $a$ so that
+    \[\begin{cases}
+        a \equiv 1+p\pmod{p^2} \\ 
+        a \equiv 1\pmod m.
+    \end{cases}\]
+    Certainly $\gcd(a,n)=1,$ so to witness $n$ is not a Carmichael number, we need $a^{n-1}\not\equiv1\pmod n.$ Indeed, note that
+    \[a^{n-1}\equiv(1+p)^{n-1}\equiv 1+(n-1)p\pmod{p^2}\]
+    from the binomial theorem. But $p\mid n$ implies that $1+(n-1)p\not\equiv1\pmod{p^2},$ so $a^{n-1}\not\equiv1\pmod{p^2}.$ It follows $a^{n-1}\not\equiv1\pmod n$ as well, which means that $a$ is a witness for $n.$
+\end{enumerate}
+This covers all $n,$ so we are done here. I would have hoped for a single-case proof, but it's a bit obnoxious to deal with perfect squares without having some kind of separation like this.
+
+\subsubsection{September 30th}
+Today I learned a somewhat easy precursor to the classification of finite abelian groups; it wasn't even as hard as it felt it would be in my head. The claim is that any finite abelian group can be decomposed into an isomorphic direct product of (abelian) groups of prime-power order. Namely, I haven't seen a proof that these groups of prime-power order can be decomposed into a direct product of cyclic groups.
+
+Anyways, fix $G$ a finite abelian group. Suppose $|G|=ab$ and $\gcd(a,b)=1.$ We show that $G=A\times B$ where $|A|=a$ and $|B|=b$; writing $|G|$ with its unique prime factorization and then inductively applying this lemma will give the result. (As an aside, we can read this as decomposing $G$ into the direct products of its Sylow $p$-subgroups.) For this, we explicitly construct
+\[A=\left\{x\in G:x^a=e\right\}\qquad\text{and}\qquad B=\left\{x\in G:x^b=e\right\}.\]
+We begin by showing that $G\cong A\times B$ and then will afterwards show that $|A|=a$ and $|B|=b$ with a size argument.
+
+Here we show $G\cong A\times B.$ We begin with $G=AB$ and then will show that $(x,y)\mapsto xy$ is an isomorphism. Showing $G=AB$ is surprisingly not that bad; fix $g\in G$ which we want to show is in $AB.$ Using $\gcd(a,b)=1,$ B\`ezout's gives us integers $r$ and $s$ such that $ar+bs=1,$ so we can write
+\[g=g^{ar+bs}=\left(g^b\right)^s\cdot\left(g^a\right)^r\]
+However, $g^{ab}=g^{|G|}=e$ by Lagrange's Theorem, so $g^b\in A$ and $g^a\in B.$ It follows that $g$ is a product of elements in $A$ and $B.$
+
+To finish showing that $G\cong A\times B,$ we have to show that $\varphi:(x,y)\mapsto xy$ is an isomorphism from $A\times B\to G.$ Unsurprisingly, let's use the homomorphism theorme. Certainly $\varphi$ is a homomorphism because $G$ is abelian, so we write
+\[\varphi((x_1,y_1))\varphi((x_2,y_2))=(x_1y_1)(x_2y_2)=(x_1x_2)(y_1y_2)=\varphi((x_1x_2,y_1y_2)).\]
+So to show that $\varphi$ is an isomorphism, we finish by showing that it has trivial kernel. Suppose $\varphi((x,y))=e$ so that we want to know $(x,y)=(e,e).$ We know that $xy=e.$ But this means that $x=y^{-1}$ is an element of both $A$ and $B.$ But $x\in A\cap B$ satisfies $x^a=x^b=e,$ which means that $x=x^{ar+bs}=e,$ so we must have had $x=y=e$ to begin with. This is what we wanted.
+
+We take a moment here to recognize that we have shown that for subgroups $A$ and $B$ of an abelian group, we have $A\times B\cong AB$ provided that $A\cap B=\{e\}.$ Explicitly, the isomorphism is $(x,y)\mapsto xy,$ which is a homomorphism because abelian and is a bijection because $A\cap B=\{e\},$ as above.
+
+So now we know that $G\cong A\times B.$ As promised, we use a size argument to show that $|A|=a$ and $|B|=b,$ which will complete the claim. Observe that $\gcd(|A|,b)=1$ because 
+\[p\mid\gcd(|A|,b)\]
+would give by Cauchy's Theorem an element in $A$ of order dividing $b,$ requiring the element to live in $A\cap B=\{e\}.$ It follows $|A|\le|G|/b=a.$ The same reasoning tells us that $|B|\le b.$ But $|G|=|A|\cdot|B|\le ab=|G|$ forces equality in both cases, so we are done here.

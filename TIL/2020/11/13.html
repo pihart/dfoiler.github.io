@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>November 13th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that the inverse Galois problem holds for abelian groups, and it's actually fairly nice. Fix a finite abelian group $A.$ The restriction that we make is to try to find $A$ as an extension over $\QQ,$ and the rest of the proof is forced.</p>
+<p>From Kronecker-Weber, we know that every abelian extension is a subextension of a cyclotomic extension, so we look inside cyclotomic extensions. These all have Galois groups $(\ZZ/N\ZZ)^\times,$ so if our approach is possible, we had better be able to fit $A$ inside of such a group. However, the only way to access $(\ZZ/N\ZZ)^\times$ is via Chinese Remainder Theorem. With this in mind, we would like to express $A$ as a product of cyclic groups, so we invoke the classification of finite abelian groups to write\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\]for some sequence of integers $\{n_k\}.$ For example, the classification of finite abelian groups gives $n_k$ each a power of a prime.</p>
+<p>Now we proceed with the construction. We can actually show (classically) that there are infinitely many primes $1\pmod{n_k}$ for any of the $k,$ so we may fix $\{q_k\}$ a sequence of strictly increasing primes such that $q_k\equiv1\pmod{n_k}.$ This technically follows from Dirichlet's theorem, so we don't talk about this more here. Let $Q$ be the product of these primes, and now we see\[(\ZZ/Q\ZZ)^\times\cong\prod_{k=1}^N(\ZZ/q_k\ZZ)^\times\cong\prod_{k=1}^N\ZZ/(q_k-1)\ZZ.\]In particular, we $n_k\mid q_k-1$ implies that\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\cong\prod_{k=1}^n\frac{\ZZ/(q_k-1)\ZZ}{n_k\ZZ/(q_k-1)\ZZ}\cong(\ZZ/Q\ZZ)^\times\bigg/\prod_{k=1}^Nn_k\ZZ/(q_k-1)/\ZZ.\]The last isomorphism holds by looking at the kernel of $\ZZ/Q\ZZ$ onto the middle group. So we let $B$ be the subgroup giving $A\cong(\ZZ/Q\ZZ)^\times/B.$ Therefore we have fit $A$ inside of $(\ZZ/Q\ZZ)^\times.$</p>
+<p>The rest of the finish is Galois theory. We know $\op{Gal}(\QQ(\zeta_Q)/\QQ)\cong(\ZZ/Q\ZZ)^\times,$ and from the Galois correspondence, every subgroup of $(\ZZ/Q\ZZ)^\times$ appears as a fixed field. Let $K$ be the fixed field corresponding to $B.$ Then, because our extension is abelian, every subgroup and therefore every extension is normal, so we see\[\op{Gal}(K/\QQ)\cong\op{Gal}(\QQ(\zeta_Q)/\QQ)/B\cong(\ZZ/Q\ZZ)^\times/B\cong A.\]This is what we wanted, so we're done here.</p>
+<p></p>
+<p>
+</p>
+</body>

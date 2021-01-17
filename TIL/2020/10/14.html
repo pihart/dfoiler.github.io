@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>October 14th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that for a number field $K,$ there exists an extension $L/K$ such that every ideal $I\subseteq\mathcal O_K$ has $I\mathcal O_L$ principal (!), from \href{https://math.stackexchange.com/questions/294150/motivation-behind-the-definition-of-ideal-class-group?rq=1}{this post}. This follows, roughly, from the finiteness of the class group.</p>
+<p>We begin with a lemma, showing that principal ideals do indeed form a class. Namely, we already know that principals are closed under multiplication, but we can show that $(\alpha)\cdot I=(\beta)$ implies $I=(\gamma)$ for some $\gamma,$ where we are dealing with ideals in $\mathcal O_K.$ For this, note that the equality gives us an element $\gamma\in I$ such that\[\alpha\gamma=\beta.\]Indeed, there is some $\alpha\gamma_\alpha\in(\alpha)$ and $\gamma_I\in I$ such that $\alpha\gamma_\alpha\gamma_I=(\beta),$ but surely $\gamma=\gamma_\alpha\gamma_I\in I.$ Now we know $(\gamma)\subseteq I.$ For the reverse, fix any $i\in I$ and write\[\alpha i=\beta j=\alpha\gamma j.\]Because we live inside an integral domain, we may cancel so that $i=\gamma j\in(\gamma).$ So $I$ is indeed principal, and this is a class. (This discussion is roughly isomorphic to saying $I=(\alpha)/(\beta)$ in the fractional ideals.)</p>
+<p>Now we proceed in steps, more or less. We began by showing that there exists an extension $L$ for which $I\mathcal O_L$ for a particular ideal $I.$ For this, let $n=|\op{Cl}_K|$ so that $I^n$ must belong to the class of principal ideals ($[I]$ has order dividing $n$). But then $I^n=(\gamma),$ and we claim $I\mathcal O_L=(\sqrt[n]{\gamma})$ in $L=K(\sqrt[n]{\gamma}),$ which will prove this step. Indeed, simply note that\[(I\mathcal O_L)^n=I^n\mathcal O_L=(\gamma)=(\sqrt[n]\gamma)^n.\]This lets us use unique prime factorization for a quick finish: for any prime $\mf p\subseteq\mathcal O_L,$ we have that $n\nu_\mf p(I\mathcal O_L)=n\nu_\mf p((\sqrt[n]\gamma)).$ Thus, $\nu_\mf p(I\mathcal O_L)=\nu_\mf p((\sqrt[n]\gamma)),$ so the two ideals have the same prime factorization and therefore must be equal.</p>
+<p>To finish, we note that the class group is finite, so we consider $L=K(\sqrt[n]{\gamma_1},\ldots,\sqrt[n]{\gamma_n}),$ where we adjoin a $\sqrt[n]{\gamma_\bullet}$ for a representative of each ideal class. Now we claim all ideals are principal in $L.$ Indeed, fix some $I\subseteq\mathcal O_L$ an ideal, and let $J$ be its representative from the class group so that $J\mathcal O_L=(\sqrt[n]{\gamma_\bullet}).$ We know there exist $\alpha$ and $\beta$ such that\[\alpha I=\beta J\]as an alternate definition of the class group. But then\[(\alpha)\cdot I\mathcal O_L=(\beta)\cdot J\mathcal O_L=(\beta\sqrt[n]{\gamma_\bullet}).\]It remains to show that $I\mathcal O_L$ is principal from this, which is an application of the lemma we began with.</p>
+<p>What I like about this result is that it kind of speaks to some of this history Professor Kedlaya gave when talking about ideals. Namely, when we're trying to fix unique prime factorization with respect to bad things like\[2\cdot3=6=(1+\sqrt{-5})\cdot(1-\sqrt{-5}),\]Kummer's idea was to create "ideal numbers'' $\mf p_1,\mf p_2,\mf p_3,\mf p_4$ so that this factorization dissolved into\[(\mf p_1\mf p_2)(\mf p_3\mf p_4)=(\mf p_1\mf p_3)(\mf p_2\mf p_4).\]Professor Kedlaya mentioned in passing that we technically always can extend into a field where all of our ideals are indeed principal, and here we kind of see that. Namely, we would like to conjure $\mf p_1$ from a far-off field as the legitimate greatest common divisor of $2$ and $1+\sqrt{-5},$ the generator of $(2,1+\sqrt{-5}),$ and this generator does exist in a far-off field. The problem, of course, is that the far-off field need not be a principal ideal domain, so we run into somewhat of a recursive problem---we'd like to extend again to make ideals principal, and so on.</p>
+<p></p>
+<p>
+</p>
+</body>

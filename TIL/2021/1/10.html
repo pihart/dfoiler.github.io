@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>January 10th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned which elements of $\FF_q[[t]]^\times$ can be written as the sum of two squares for $q$ odd. The main idea is that Hensel-type lifting will imply that an element of $K[[t]]^\times$ is a square if and only if its constant term is square, for $K$ of characteristic not $2.$ (In characteristic $2,$ everything is a square, so this is uninteresting.) The forward direction is easy; if $a(t)\in K[[t]]^\times$ is a square, then\[a(t)\equiv b(t)^2\pmod t\]implies that $a(0)=b(0)^2,$ so our constant term is square.</p>
+<p>The reverse direction is essentially Hensel lifting, as promised. Fix $a(t)=\sum_kx_kt^k\in K[[t]]^\times$ with $x_0=y_0^2$ in $K$; note $x_0\ne0$ implies $y_0\ne0.$ We construct $b(t)\in K[[t]]^\times$ inductively. We show that for any $n,$ we may construct $b_n(t):=\sum_{k=0}^ny_kt^k$ so that $b_{n+1}\equiv b_n\pmod{t^{n+1}}$ and\[a(t)\equiv b_n^2\pmod{t^{n+1}}.\]Sending $n\to\infty$ gives the result; I suppose a more rigorous proof would need some topology on $K[[t]]$ like that exists in $\ZZ_p,$ but we don't bother. Anyways, our base case is $b_0(t)=y_0,$ for which the conclusion holds by construction of $y_0.$</p>
+<p>Now suppose we have $b_n$ so that we can construct $b_{n+1}\equiv b_n\pmod{t^{n+1}}$ satisfying the conclusion. Well, we write $b_{n+1}(t)=b_n(t)+y_{n+1}t^{n+1}$ for $y_{n+1}$ to be determined later, and the conclusion requires\[a(t)\equiv b_{n+1}^2=\left(b_n(t)+y_{n+1}t^{n+1}\right)^2\pmod{t^{n+2}}.\]Observe that $2n+2\ge n+2$ because $n\ge0,$ so this expands to\[a(t)\equiv b_n^2+2y_{n+1}t^{n+1}\left(\sum_{k=0}^ny_kt^k\right)\equiv b_n^2+\left(2b_0y_0t^{n+1}\right)y_{n+1}\pmod{t^{n+2}}.\]It follows\[y_{n+1}\equiv\frac{a(t)-b_n^2}{2b_0y_0t^{n+1}}\pmod t\]determines $y_{n+1}$ and completes the inductive step. This division is well-defined because all of $2,b_0,y_0\in K^\times$ are units, and $t^{n+1}$ divides the numerator by the inductive hypothesis.</p>
+<p>Anyways, it remains to talk about sums of two squares in $\FF_q[[t]]^\times$ for $q$ odd. This is somewhat anticlimactic and roughly amounts to showing that every element of $\FF_q^\times$ can be written as the sum of two squares and then using the above machinery. Indeed, if $a\in \FF_q[[t]]^\times$ has $a(0)=b_0^2+c_0^2,$ then not both $b_0=c_0=0,$ and so $a-b_0^2\in\FF_q[[t]]^\times$ with square constant term, so it is itself a square. It follows\[a=b_0^2+c^2,\]which finishes, albeit in a boring way.</p>
+<p>It remains to show that every element of $\FF_q$ can be written as the sum of two squares, which is pretty much combinatorics. Fix $x\in\FF_q,$ and observe that we want a square in\[\left\{x-y^2:y\in\FF_q\right\}.\]This set has $\frac{q+1}2$ total elements. Additionally, the squares in $\FF_q$ also have $\frac{q+1}2$ elements, for these sets to be disjoint, we would need at least $q+1$ elements between them. Of course, we only have $\#\FF_q=q$ elements to go around, so this is impossible.</p>
+<p>Extending the result from $K[[t]]^\times$ to all of $K[[t]]$ doesn't look hard. Namely, I think we just have to specify that the term of lowest degree is even. Certainly if our lowest degree is even, we can just divide it out, apply the above, and then factor it into the square root. And conversely, being a square lets us track the term of lowest degree, which gets directly squared and will therefore have even degree after the squaring.</p>
+<p>Extending this from $\FF_q[[t]]^\times$ to all of $\FF_q[[t]]$ looks a bit harrier. The problem is that cancellation might come in between our squares to create terms which are not trivially the sum of two squares, as we had above. I don't know how to resolve this issue.</p>
+<p></p>
+<p>
+</p>
+</body>

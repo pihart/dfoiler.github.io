@@ -1,0 +1,1261 @@
+\subsection{December}
+
+\subsubsection{December 1st}
+Today I learned the formalization of the intuition that $\ZZ_p$ consists of ``formal power series evaluated at $p.$'' This is made explicit in the isomorphism
+\[\frac{\ZZ[[x]]}{(x-p)}\cong\ZZ_p.\]
+Namely, modding out a function field by $(x-\alpha)$ is typically the equivalent of evaluating at $\alpha,$ so the above isomorphism is the rigorous way of ``plugging in $p$'' into a generating function.
+
+Proving this is not terribly exciting, though it is somewhat satisfying. We do this with the homomorphism theorem, unsurprisingly. Namely, define $\varphi:\ZZ[[x]]\to\ZZ_p$ by
+\[\sum_{k=0}^\infty c_kx^k\stackrel\varphi\longmapsto(a_n)_{n=0}^\infty,\,a_n=\sum_{k=0}^nc_kp^k,\]
+where $(a_n)$ is supposed to be a Cauchy sequence in $\ZZ_p.$ This makes the plugging in by $p$ rigorous. Indeed, it is Cauchy because, for $n>m$ (without loss of generality),
+\[|a_n-a_m|_p=\left|\sum_{k=m+1}^nc_kp^k\right|\le\max_{m+1\le k\le n}\left|c_kp^k\right|_p\le\frac1{p^{m+1}},\]
+which goes to $0$ as $m,n\to\infty.$ Also, $\varphi$ is a homomorphism by the way addition and multiplication are defined in each ring. In particular,
+\begin{align*}
+    \varphi\left(\sum_{k=0}^\infty c_kx^k\right)+\varphi\left(\sum_{k=0}^\infty d_kx^k\right)&=\left(\sum_{k=0}^nc_kp^k\right)_{n=0}^\infty+\left(\sum_{k=0}^nd_kp^k\right)_{n=0}^\infty \\
+    &=\left(\sum_{k=0}^n(c_k+d_k)p^k\right)_{n=0}^\infty \\
+    &=\varphi\left(\sum_{k=0}^\infty(c_k+d_k)x^k\right),
+\end{align*}
+and similar for multiplication. This isn't terribly interesting.
+
+To show the desired isomorphism, the interesting parts are showing that $\varphi$ is surjective and with kernel $(x-p),$ which will finish by the homomorphism theorem. Showing surjectivity is easier. For some $a\in\ZZ_p,$ we can associate it with the Cauchy sequence $a=(a_1,a_2,\ldots)$ where $a_\bullet\equiv a\pmod{p^\bullet}$ and $a_\bullet\in[0,p^\bullet).$ Alternatively, this follows directly from the $\varprojlim\ZZ/p^\bullet\ZZ$ definition. Now define $a_0=0$ and let
+\[P(x)=\sum_{k=0}^\infty\left(\frac{a_{k+1}-a_k}{p^k}\right)x^k.\]
+This is in $\ZZ[[x]]$ because $p^k\mid a_{k+1}-a_k$ by definition of $a.$ We claim $\varphi(P)=a.$ Indeed,
+\[\varphi(P)=\left(\sum_{k=0}^n\left(\frac{a_{k+1}-a_k}{p^k}\right)p^k\right)_{n=0}^\infty=\left(\sum_{k=0}^n(a_{k+1}-a_k)\right)_{n=0}^\infty=(a_{n+1})_{n=0}^\infty.\]
+This sequence is exactly $(a_1,a_2,\ldots)=a,$ so we've successfully found an input $P\in\ZZ[[x]]$ for each $a\in\ZZ_p.$
+
+The main trickery comes with evaluating the kernel. We want to show $(x-p)=\ker(\varphi).$ Quickly, observe that $\varphi(p-x)=(p,0,0,0,\ldots),$ which converges to $0\in\ZZ_p.$ This tells us $x-p\in\ker(\varphi),$ so $(x-p)\subseteq\ker(\varphi)$ as well because $\ker(\varphi)$ is an ideal. It remains to show the reverse inclusion. Pick up any $P\in\ker(\varphi),$ named $P(x)=\sum c_kx^k.$ We would like to construct a polynomial $Q(x)\in\ZZ[[x]]$ such that
+\[P(x)=(x-p)Q(x).\]
+However, $x-p$ is a unit in $\QQ[[x]],$ so we can go ahead and compute $Q(x)$ as if this were an equation in $\QQ[[x]].$ Indeed, it should be
+\[Q(x)=\frac{P(x)}{x-p}=-\frac1p\cdot\frac1{1-(x/p)}\cdot P(x)=-\frac1p\left(\sum_{\ell=0}^\infty\frac{x^\ell}{p^\ell}\right)\left(\sum_{k=0}^\infty c_kx^k\right)\]
+using infinite geometric series. This multiplies out to
+\[Q(x)=\sum_{n=0}^\infty\left(-\frac1p\sum_{k=0}^n\frac{c_k}{p^{n-k}}\right)x^n=\sum_{n=0}^\infty\left(-\frac1{p^{n+1}}\sum_{k=0}^nc_kp^k\right)x^n.\]
+We use $P\in\ker(\varphi)$ in order to show $Q(x)\in\ZZ[[x]].$ In particular, we know that as $n\to\infty,$ we have
+\[a_n=\sum_{k=0}^nc_kp^k\to0.\]
+It follows that for all sufficiently large $N,$ we have $|a_N|_p<1/p^{n+1},$ so $p^{n+1}\mid a_N.$ Choosing any $N$ bigger than $n,$ we see that
+\[\sum_{k=0}^nc_kp^k\equiv a_N\equiv0\pmod{p^{n+1}}.\]
+It follows that the coefficients of $Q(x)$ are indeed integers. Because $\ZZ[[x]]$ is embedded in $\QQ[[x]],$ the fact that all polynomials in
+\[P(x)=\sum_{k=0}^\infty c_kx^k=(x-p)\left(\sum_{n=0}^\infty\left(\frac1{p^{n+1}}\sum_{k=0}^nc_kp^k\right)x^n\right)=(x-p)Q(x)\]
+are in $\ZZ[[x]]$ means that we can read this equation as in $\ZZ[[x]].$ It follows that $P(x)\in(x-p),$ so we are done here.
+
+This completes the proof. As an aside, this proof can be pretty much lifted directly into a proof that $\ZZ((x))/(x-p)\cong\QQ_p,$ where $\ZZ((x))$ is $\QQ((x))$ with integer coefficients. Notably, $\ZZ((x))$ is not closed under inversion. The only complication is that we have to allow for negative terms, but the finite negative terms of $\ZZ((x))$ match up directly with the finite negative terms of $\QQ_p,$ so it works out.
+
+\subsubsection{December 2nd}
+Today I learned that products commute with limits, categorically speaking. This is a special case of the fact that limits commute with limits in general, but whatever. To be precise, suppose that $A_\bullet$ and $B_\bullet$ are diagrams indexed by the category $\mathcal I.$ Assuming that all of the following objects exist, we claim that
+\[\varprojlim_{\bullet\in\mathcal I}(A_\bullet\times B_\bullet)\cong\varprojlim_{\bullet\in\mathcal I}A_\bullet\times\varprojlim_{\bullet\in\mathcal I}B_\bullet.\]
+For convenience we let $A=\varprojlim A_\bullet$ and $B=\varprojlim B_\bullet.$ To show the above isomorphism, we show that $A\times B$ satisfies the universal property of $\varprojlim(A_\bullet\times B_\bullet).$ Quickly, definitions of limits and products induce contains the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[d] & A\times B \arrow[r] \arrow[l]                 & B \arrow[d] \\
+        A_\bullet   & A_\bullet\times B_\bullet \arrow[l] \arrow[r] & B_\bullet  
+    \end{tikzcd}
+\end{center}
+Our maps $A\times B\to A\to A_\bullet$ and $A\times B\to B\to B_\bullet$ force the existence of a unique morphism $A\times B\to A_\bullet\times B_\bullet$ commuting. So we are interested in the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[d] & A\times B \arrow[r] \arrow[l] \arrow[d, "!" description, dashed] & B \arrow[d] \\
+        A_\bullet   & A_\bullet\times B_\bullet \arrow[l] \arrow[r]                    & B_\bullet  
+    \end{tikzcd}
+\end{center}
+
+To show that our $A\times B$ with the induced morphisms to $A_\bullet\times B_\bullet$ is $\varprojlim(A_\bullet\times B_\bullet),$ we show it satisfies its universal property, as alluded. So fix some $X$ with maps to each $A_\bullet\times B_\bullet$ commuting with the diagram indexed by $\mathcal I.$ Here's our diagram.
+\begin{center}
+    \begin{tikzcd}
+                    & X \arrow[dd, bend right]                        &             \\
+        A \arrow[d] & A\times B \arrow[r] \arrow[l] \arrow[d, dashed] & B \arrow[d] \\
+        A_\bullet   & A_\bullet\times B_\bullet \arrow[l] \arrow[r]   & B_\bullet  
+    \end{tikzcd}
+\end{center}
+Very quickly, we can compose $X\to A_\bullet\times B_\bullet\to A_\bullet$ and $B_\bullet,$ so there exists a unique $X\to A$ commuting with the $X\to A_\bullet$ maps and a unique $X\to B$ commuting with the $X\to B_\bullet$ maps. But having maps $X\to A$ and $X\to B$ gives us a unique map $\varphi:X\to A\times B$ commuting with these maps. So we have the following commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+                    & X \arrow[dd, bend right] \arrow[ld] \arrow[rd] \arrow[d, "\varphi" description, dashed] &             \\
+        A \arrow[d] & A\times B \arrow[r] \arrow[l] \arrow[d, dashed]                  & B \arrow[d] \\
+        A_\bullet   & A_\bullet\times B_\bullet \arrow[l] \arrow[r]                    & B_\bullet  
+    \end{tikzcd}
+\end{center}
+We want to show that the two dashed arrows commute, and the top arrow is unique in commuting. Namely, we need to show the $X\to A_\bullet\times B_\bullet$ is equal to $X\to A\times B\to A_\bullet\times B_\bullet,$ and the given map $X\to A\times B$ is the only one which will give this equality.
+
+To show that the equality does hold, note that there is exactly one map $X\to A_\bullet\times B_\bullet$ which commutes with the $X\to A_\bullet$ and $X\to B_\bullet$ maps. By definition of the limit, these are equal to our mappings $X\to A\to A_\bullet$ and $X\to B\to B_\bullet.$ However, $A\times B\to A_\bullet\times B_\bullet$ is defined as the map which commutes with $A\times B\to A\to A_\bullet$ and similar for $B.$ It follows
+\[X\to A_\bullet=X\to A\to A_\bullet=X\to A\times B\to A\to A_\bullet=X\to A\times B\to A_\bullet\times B_\bullet\to A_\bullet\]
+and similar for $B.$ It follows that the map $X\to A\times B\to A_\bullet\times B_\bullet$ commutes with the $X\to A_\bullet$ and $X\to B_\bullet$ maps, so we must have $X\to A\times B\to A_\bullet\times B_\bullet=X\to A_\bullet\times B_\bullet.$
+
+It remains to show uniqueness. Suppose that we have a mapping $X\to A\times B$ such that we always have $X\to A\times B\to A_\bullet\times B_\bullet=X\to A_\bullet\times B_\bullet.$ We claim that this map is the constructed one, $\varphi.$ Our key property of $A\times B\to A_\bullet\times B_\bullet$ is that it makes the diagram commute, which implies that
+\[X\to A\times B\to A\to A_\bullet=X\to A\times B\to A_\bullet\times B_\bullet\to A_\bullet.\]
+It follows that $X\to A\times B\to A\to A_\bullet$ commutes with the normal $X\to A_\bullet$ maps, and we've factored the map through $A,$ so properties of limits implies that $X\to A\times B\to A$ is the unique map commuting like this. The same holds for $B.$ Now our constructed map $\varphi$ was defined to be the unique map commuting with $X\to A$ and $X\to B.$ However, we know that
+\[X\to A\times B\to A=X\to A\]
+and same for $B$ already, so the uniqueness of $\varphi$ here forces the map $X\to A\times B$ to equal $\varphi.$ This completes the proof.
+
+\subsubsection{December 3rd}
+Today I learned about Hall's Marriage Theorem. This is the statement that a bipartite graph $G$ (divided into $A$ and $B$) with $|A|=|B|$ has a perfect matching if and only if any subset of vertices of $A$ has at least as many neighbors in $B$ than vertices in the subset. Call this second condition ``happy.''
+
+To get a feeling for this condition, one direction of this statement is easy. Indeed, if there existed a perfect matching, then for any subset of vertices $A'\subseteq A,$ we can follow the edge of the perfect matching of $A'$ to produce a unique neighbor in $B.$ So there are at least as many neighbors in $B$ as there are vertices in our subset $A'.$ It follows that our bipartite graph is happy.
+
+The reverse implication is harder. We show the statement by induction on the number of vertices in $|A|.$ I guess we could make our base case $|A|=0,$ for which there isn't anything to prove, but this isn't helpful. If $|A|=1,$ then being happy forces the subset $\{a\}=A$ to have at least one neighbor in $B,$ which is the only vertex in $B.$ So our graph looks like the following.
+\begin{center}
+    \begin{asy}
+        unitsize(2cm);
+        dot((0,0));
+        dot((1,0));
+        draw((0,0)--(1,0));
+    \end{asy}
+\end{center}
+The perfect matching in this happy graph is drawn for us.
+
+It remains to show the inductive step. Suppose that all happy graphs with $|A|<n$ have a perfect matching so that we want to show all graphs with $|A|=n$ do. We will technically run this as an induction on the number of edges in the graph, but there is no point in saying that explicitly. Anyways, pick up any happy graph $G$ with $|A|=n$ so that we want to show it has a perfect matching.
+
+The main idea is that we can continue to subtract off vertices from $G$---while keeping $G$ happy---until $G$ has been divided into two separate components, letting us trigger induction. Basically, if for all nonempty subsets $A'$ of $A,$ the number of neighbors is strictly larger than the number of elements of $A',$ then we can subtract off any edge, and $G$ will still be happy. Indeed, now a subset $A'\subseteq A$ either wasn't affected by this subtraction, or it was subtracted by one, and the number of neighbors is still at least $|A'|.$
+
+It remains to deal with the case where there exists a nonempty subset $A'\subseteq A$ which has exactly $|A'|$ neighbors $B'$ in $B.$ Note that the subgraph induced by the vertices
+\[A'\cup B'\]
+is happy because any subset of $A'$ (looking up in $G$) will have at least as many neighbors in $B,$ but all those neighbors live in $B',$ so the happiness condition gets inherited from $G$ directly. It's a bit harder to show that the subgraph $H$ of $G$ induced by the vertices
+\[(A\setminus A')\cup(B\setminus B')\]
+is happy. Essentially, for any subset of vertices of $A\setminus A'$ named $A'',$ we note that the number of neighbors of $A''\cup A'$ (looking up in $G$) in $B$ is at least $|A''|+|A'|$ because $G$ is happy. Extracting the vertices which live in $B'$ leaves us with at least
+\[|A''|+|A'|-|B'|=|A''|\]
+vertices because $|A'|=|B'|.$ Thus this subgraph is also happy.
+
+It follows that we have divided $G$ into two subgraphs induced by vertices which are both smaller than $G$ ($A'$ is nonempty) and therefore have perfect matchings by the induction. It follows that the union of these two perfect matchings will be a valid perfect matching of $G.$ So we are done here.
+
+As an aside, this induction is somewhat necessary because this statement fails for infinite graphs. Here is a counterexample.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        dot((0,1));
+        for(int i = 0; i > -5; --i)
+        {
+            dot((0,i)); dot((2,i));
+            draw((0,i)--(2,i));
+            draw((0,1)--(2,i));
+        }
+        label("$\vdots$", (1,-4.5));
+    \end{asy}
+\end{center}
+Indeed, let the left-hand vertex set be $A=\{0,1,2,\ldots\}$ and the right-hand vertex set be $B=\{1,2,\ldots\}$ so that $\{a,b\}$ is an edge if and only if $a\in A$ and $b\in B$ with $a=0$ or with $a=b$ (or with $a$ and $b$ reversed). This is happy because either our subset of $A$ contains $0$ or does not. If containing $0,$ the set of neighbors is countably infinite directly implying that the set of vertices in $A$ is no more than the neighbors. If not containing $0,$ then each $a\in A\setminus\{a\}$ is associated just on the other side with a vertex in $B.$
+
+However, this graph has no perfect matching. Indeed, $0$ would have to connect somewhere, say $b\in B.$ But then $b$'s only other neighbor in $A$ is left with no friends, breaking our ability to create a perfect matching.
+
+\subsubsection{December 4th}
+Today I learned that in all nonarchimedean fields $K$ with absolute value $|\bullet|,$ all triangles are isosceles. This was a lemma in a larger result which was kind of disgusting to state in the midst of a homework problem. Anyways, the statement that all triangles are isosceles is really saying that if $|x|\ne|y|,$ then
+\[|x+y|=\max\{|x|,|y|\}.\]
+That is, for a triangle with side lengths $x,$ $y,$ and $x+y$ (translate a triangle to one with vertices at the origin, $x,$ and $-y$) we have that two of the sides must always be the same. That is, if $|x|=|y|,$ then we're done; else, the side $|x+y|$ is equal to one of the other two.
+
+Let's prove this quickly. Without loss of generality, $|x|>|y|$ so that we want to show $|x+y|=|x|.$ Because our absolute value is nonarchimedean, we already know that
+\[|x+y|\le\max\{|x|,|y|\}=|x|.\]
+But in the other direction, we may write
+\[|x|=|(x+y)+(-y)|\le\max\{|x+y|,|y|\}.\]
+The maximum looks ambiguous, but we know that $|x|>|y|,$ so the statement $|x|<|y|$ is impossible, so $|x+y|$ must instead be the maximum. It follows $|x|\le|x+y|,$ from which the equality $|x|=|x+y|$ follows.
+
+This result generalizes the fact that all triangles are isosceles in $\QQ_p$ to any field equipped with a nonarchimedean absolute value. Explicitly, in $\QQ_p,$ the statement that $|x|_p\ne|y|_p$ implies
+\[|x+y|_p=\max\{|x|_p,|y|_p\}\]
+is really saying that $\nu_p(x+y)=\min\{\nu_p(x),\nu_p(y)\}$ when $\nu_p(x)\ne\nu_p(y).$ Here, we'll say $\nu_p(x)<\nu_p(y)$ without loss of generality. Note if $x=0,$ then done. Writing $x=p^\alpha a$ and $y=p^\beta b$ with $\alpha=\nu_p(x)>\beta=\nu_p(y),$ we have that
+\[p^\alpha a+p^\beta b=p^\alpha\left(a+p^{\beta-\alpha}b\right),\]
+and $p$ does not divide the second factor because $\beta-\alpha>0.$ So indeed, all triangles are isosceles in $\QQ_p,$ and we can attempt to push the proof a bit harder to generalize to the above, but it's not super conducive.
+
+\subsubsection{December 5th}
+Today I learned that, for any prime $p,$ every quadratic extension of $\QQ_p$ is contained in some cyclotomic field (not dependent on the quadratic extension). As some setup, note that for any quadratic extension $K/\QQ_p,$ we can give it a basis $\{1,\alpha\}$ for some $\alpha.$ In particular, $K=\QQ(\alpha).$ Then $\alpha^2$ will have to be a linear combination of $1$ and $\alpha,$ so we get to write
+\[\alpha^2+b\alpha+c=0\]
+for some $b,c\in\QQ_p.$ It follows that
+\[\alpha=\frac{-b\pm\sqrt{b^2-4c}}2.\]
+It follows that $K\subseteq\QQ_p(\sqrt{b^2-4c}),$ and we also see $\sqrt{b^2-4c}=\pm(2\alpha+b),$ so in fact $K=\QQ_p(\sqrt{b^2-4c}).$ It follows that all quadratic extensions take the form $\QQ_p(\sqrt m)$ for some $m\in\QQ_p.$ Therefore it suffices to show that there exists a cyclotomic extension $\QQ_p(\zeta_\bullet)$ for which every element of $\QQ_p$ is square; that is, for each $m\in\QQ_p,$ there exists a $\sqrt m\in\QQ_p(\zeta_\bullet).$
+
+Very quickly, observe that it really suffices to get $\sqrt p$ and $\ZZ_p\setminus p\ZZ_p$ instead of needing all of $\QQ_p.$ Indeed, if $m=\frac ab$ where $a,b\in\ZZ_p,$ then we should be able to write
+\[\sqrt m=\frac{\sqrt a}{\sqrt b},\]
+so provided that all of $\ZZ_p$ is a square, then all of $\QQ_p$ is a square in $\QQ_p(\zeta_\bullet)$. Further, if we're trying to get $m=p^{2\alpha+\beta}m'\in\ZZ_p$ where $m'\in\ZZ_p\setminus p\ZZ_p,$ then we may write
+\[\sqrt m=p^\alpha\cdot\sqrt p\cdot\sqrt{m'}.\]
+So it suffices to get $\sqrt p$ and all of $\ZZ_p\setminus p\ZZ_p$ to be a square in $\QQ_p(\zeta_\bullet).$ Nothing so far has been remarkable; in particular, these arguments would also hold for quadratic extensions of $\QQ,$ for which the statement we're trying to prove is false.
+
+We have to do $p=2$ separately, so we'll do it as an instructive example. We claim that $\QQ_2(\zeta_{24})$ contains all quadratic extensions of $\QQ_2.$ The key observation is that all elements $m\in\ZZ_2\setminus2\ZZ_2$ which are $m\equiv1\pmod8$ are already squares in $\QQ_2$ from Hensel-type arguments. We claim that $\sqrt2,\sqrt{-1},\sqrt3$ are all in $\QQ_2(\zeta_{24}),$ which we will prove shortly. This covers $\sqrt2,$ but to see why this is enough to cover $m\in\ZZ_2\setminus2\ZZ_2,$ we consider the following cases.
+\begin{itemize}
+    \item If $m\equiv1\pmod8,$ then we're already done because $m$ is square in $\QQ_2.$ So $\sqrt m\in\QQ_2(\zeta_{24}).$
+    \item If $m\equiv3\pmod8,$ then note that $\sqrt m=\sqrt{3m}/\sqrt3,$ which is in $\QQ_2(\zeta_{24})$ because $3m\equiv1\pmod8$ (enough by (a)) and $\sqrt3\in\QQ_2(\zeta_{24}).$
+    \item If $m\equiv5\pmod8,$ then note that $\sqrt m=\sqrt{-3m}/\sqrt{-3},$ which is in $\QQ_2(\zeta_{24})$ because $-3m\equiv1\pmod8$ (enough by (a)) and $\sqrt{-3}=\sqrt{-1}\cdot\sqrt{-3}\in\QQ_2(\zeta_{24}).$
+    \item If $m\equiv3\pmod8,$ then note that $\sqrt m=\sqrt{-m}/\sqrt{-1},$ which is in $\QQ_2(\zeta_{24})$ because $-m\equiv1\pmod8$ (enough by (a)) and $\sqrt{-1}\in\QQ_2(\zeta_{24}).$
+\end{itemize}
+The above arguments can be stated succinctly as proving that
+\[\QQ_2^\times/(\QQ_2^\times)^2=\left\langle\sqrt2,\sqrt{-1},\sqrt3\right\rangle.\]
+It remains to show that $\sqrt2,\sqrt{-1},\sqrt3\in\QQ_2(\zeta_{24}).$ Well, we'll define $\zeta_{24}$ as a root of $\zeta_{24}^8-\zeta{24}^4+1=0.$ Then notice that
+\[\left(\zeta_{24}^3+\zeta_{24}^{-3}\right)=\zeta_{24}^6+\zeta_{24}^{-6}+2=\zeta_{24}^{-6}\left(\zeta_{24}^8-\zeta_{24}^4+1\right)+2=2\]
+because $\zeta_{24}^{12}=\zeta_{24}^8-\zeta_{24}^4.$ Continuing,
+\[\left(\zeta_{24}^6\right)^2=\zeta_{24}^6-\zeta_{24}^4=-1\]
+for the same reason. Finally,
+\[\left(\zeta_{24}^2+\zeta_{24}^{-2}\right)^2=\zeta_{24}^4+\zeta_{24}^{-4}+2=\zeta_{24}^{-4}\left(\zeta_{24}^8-\zeta_{24}^4+1\right)+3=3.\]
+This completes the proof that all quadratic extensions of $\QQ_2$ live in $\QQ_2(\zeta_{24}).$
+
+This provides a model for odd primes. For odd primes, Gaussian period theory (say) tells us that
+\[\sqrt{(-1)^{(p-1)/2}p}\in\QQ(\zeta_p).\]
+So for $p\equiv3\pmod4,$ it suffices to get $\sqrt p$ by starting with $\QQ_p(\zeta_{4p})$; otherwise $p\equiv1\pmod4$ can start with $\QQ_p(\zeta_p).$ As for $m\in\ZZ_p\setminus p\ZZ_p,$ $x^2-m$ has a root $x$ in $\QQ_p$ if and only if $\left(\frac mp\right)=1.$ To get the rest of $\ZZ_p\setminus p\ZZ_p,$ suppose that we can get $\sqrt a$ in $\QQ_p(\zeta_\bullet)$ for some $a\in\ZZ$ with $\left(\frac ap\right)=-1$; we'll show how to do this shortly. Then for any $m\in\ZZ_p\setminus p\ZZ_p$ with $\left(\frac mp\right)=-1,$ we see
+\[\sqrt m=\frac{\sqrt{am}}{\sqrt a}.\]
+It follows that we can get $\sqrt m$ in $\QQ_p(\zeta_\bullet)$ because $\left(\frac{am}p\right)=1$ implies $\sqrt{am}\in\QQ_p,$ and we already have $\sqrt a\in\QQ_p(\zeta_\bullet).$ Now to get a $\sqrt a$ in some $\QQ_p(\zeta_\bullet),$ we divide this into two cases for clarity.
+\begin{itemize}
+    \item If $p\equiv3\pmod4,$ then $\QQ_p(\zeta_{4p})$ works because $\zeta_4=\sqrt{-1},$ and $-1$ is a quadratic non-residue.
+    \item If $p\equiv1\pmod4,$ we choose $a$ to be the smallest positive quadratic non-residue. We claim that $a$ is a prime. Indeed, if we can factor $a=bc,$ then taking Legendre symbols tells us that one of $b$ or $c$ must also be a non-residue, but minimality of $a$ would force $a=b$ or $a=c,$ implying that $a$ is prime. It follows $\sqrt a\in\QQ(\zeta_{4a}),$ so $\QQ_p(\zeta_{4ap})$ works.
+\end{itemize}
+It follows that all quadratic extensions of $\QQ_p$ are contained in some fixed cyclotomic extension, constructed above.
+
+\subsubsection{December 6th}
+Today I learned the matrix form of the fast Fourier transform. Essentially, we fix the scaled discrete Fourier transform matrix to
+\[F_n=\begin{bmatrix}
+    1 & 1 & 1 & \cdots & 1 \\
+    1 & \zeta_n & \zeta_n^2 & \cdots & \zeta_n^{n-1} \\
+    1 & \zeta_n^2 & \zeta_n^4 & \cdots & \zeta_n^{n-2} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & \zeta_n^{n-1} & \zeta_n^{n-2} & \cdots & \zeta_n
+\end{bmatrix}\]
+The main claim is that
+\[F_{2n}=\begin{bmatrix}
+    I & \phantom-D \\
+    I & -D
+\end{bmatrix}\begin{bmatrix}
+    F_n & 0 \\
+    0 & F_n
+\end{bmatrix}P,\]
+where $D$ is a diagonal matrix and $P$ is an easily computable permutation matrix. Explicitly, $D$ has $n$ entries of $\zeta_{2n}^\bullet$ along the diagonal, and
+\[P=\begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & 0 & 0 & \cdots & 1 & 0 \\
+    0 & 1 & 0 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & 0 & 0 & \cdots & 0 & 1
+\end{bmatrix}.\]
+Essentially, this $P$ takes out all the evens and then all the odds, mapping 
+\[\langle x_0,x_1,\ldots,x_{2n-1}\rangle\mapsto\langle x_0,x_2,\ldots,x_{2n-2},x_1,x_3,\ldots,x_{2n-2}\rangle.\]
+The main claim is probably easiest seen by just direct evaluation; fix a basis vector $e_k$ for any integer $k\in[0,2n).$ We do casework on parity.
+\begin{itemize}
+    \item If $k=2\ell,$ then $Pe_k=e_\ell.$ Because $\ell<n,$ we further have that
+    \[\begin{bmatrix}
+        F_n & 0 \\
+        0 & F_n
+    \end{bmatrix}Pe_k=\left\langle1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell},0,\cdots,0\right\rangle\]
+    by only hitting the top-left $F_n.$ With the last half of this vector $0$s, we can write
+    \[\begin{bmatrix}
+        I & \phantom-D \\
+        I & -D
+    \end{bmatrix}\begin{bmatrix}
+        F_n & 0 \\
+        0 & F_n
+    \end{bmatrix}Pe_k=\left\langle1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell},1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell}\right\rangle\]
+    because we only hit the $I$ in this matrix. However, $\zeta_n^\ell=\zeta_{2n}^k,$ so this vector is indeed $\left\langle1,\zeta_{2n}^k,\cdots,\zeta_{2n}^{-k}\right\rangle$ as needed.
+    
+    \item If $k=2\ell+1,$ then $Pe_k=e_{\ell+n}.$ Because $\ell+n\ge n,$ we now have that
+    \[\begin{bmatrix}
+        F_n & 0 \\
+        0 & F_n
+    \end{bmatrix}Pe_k=\left\langle0,\cdots,0,1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell}\right\rangle\]
+    by only hitting the bottom-right $F_n.$ With the first half of this vector $0$s, we can write
+    \[\begin{bmatrix}
+        I & \phantom-D \\
+        I & -D
+    \end{bmatrix}\begin{bmatrix}
+        F_n & 0 \\
+        0 & F_n
+    \end{bmatrix}Pe_k=\left\langle1,\zeta_{2n}\zeta_n^\ell,\zeta_{2n}^2\zeta_n^{2\ell},\cdots,\zeta_{2n}^{n-1}\zeta_n^{-\ell},-1,-\zeta_{2n}\zeta_n^\ell,-\zeta_{2n}^2\zeta_n^{2\ell},\cdots,-\zeta_{2n}^{n-1}\zeta_n^{-\ell}\right\rangle\]
+    because we hit both $D$ matrices. In the first half, the vector evaluates to $\left(\zeta_{2n}\zeta_n^\ell\right)^\bullet=\left(\zeta_{2n}^{1+2\ell}\right)^\bullet=\zeta_{2n}^{k\bullet},$ and the second half is $-\left(\zeta_{2n}\zeta_n^\ell\right)^\bullet=\zeta_{2n}^{n+(1+2\ell)\bullet}=\zeta_{2n}^{n+k\bullet}.$ So this vector is indeed $\left\langle1,\zeta_{2n}^k,\cdots,\zeta_{2n}^{-k}\right\rangle$ as needed.
+\end{itemize}
+The main claim follows because both matrices on each side of the equation are equal on each basis vector $e_k.$
+
+\subsubsection{December 7th}
+Today I learned that all fields complete with respect to an archimedean valuation are either $\RR$ or $\CC.$ The proof reminds of the reasons why I don't like analysis very much, so some technical steps will be jumped over. Indeed, fix $K$ a field complete with respect to some archimedean valuation named $|\bullet|.$ To start, note that $K$ must have characteristic $0$ because otherwise
+\[\{|k|:k\in\ZZ\}\]
+is finite and therefore bounded, breaking $|\bullet|$ being archimedean. Taking quotients, we also get a copy of $\QQ$ in $K$ (explicitly, $m/n\mapsto (m\cdot1)/(n\cdot1)$), and because $K$ is complete under $|\bullet|,$ we also get all Cauchy sequences of $\QQ,$ which means that $K$ has a copy of $\RR.$
+
+We'd like to work in $\CC$ because $\CC$ has some nicer structure, so we look at either $K$ or $K(i)$ depending on if $T^2+1$ is irreducible in $K$ or not. There is some technicality in that we want to be sure that $K(i)$ is still complete with respect to an extension of $|\bullet|.$ We extend this by writing
+\[|a+bi|_{K(i)}=\sqrt{\left|a^2+b^2\right|_K}.\]
+This function detects $0$ because $|a+bi|=0$ would imply $a^2+b^2=0,$ for which $b\ne0$ would imply $(a/b)^2=-1,$ implying $T^2+1$ reducible. Brahmagupta's identity tells us that this function is multiplicative. The hard part, of course, is verifying the triangle inequality. I'm going to omit this because the argument isn't very much fun.
+
+The fun part of the argument is doing what we can when $\CC$ is inside of $K.$ We want to show $K\subseteq\CC$ to complete the proof. Well, suppose for the sake of contradiction that $\alpha\in K\setminus\CC.$ To detect contradiction, we focus on the function $z\mapsto|z-\alpha|.$ This function is continuous, for reasons we will gloss over. Further,
+\[|z-\alpha|\ge|z|-|\alpha|,\]
+so as $|z|\to\infty,$ we have that $|z-\alpha|\to\infty$ as well. It follows that the function has an achieved minimum. Namely, over any closed disk, the function surely achieves its minimum somewhere by continuity. Sending the size of the closed disk to infinity, the only way for there not to be an absolute minimum is for the function to periodically get smaller and smaller, which violates $|z-\alpha|\to\infty.$
+
+We're going to show that the set of points that the function achieves its minimum is open, which will readily finish the proof. Suppose that the function achieves its minimum at $a,$ and we will show that there is a neighborhood of points around $a$ which also minimize $|z-\alpha|.$ Fix $\beta=a-\alpha$ so that $\alpha\not\in\CC$ implies $|\beta|>0.$ Our neighborhood is going to have radius $|\beta|,$ so fix any $\varepsilon$ with $0<|\varepsilon|<|\beta|.$ For some $n\in\ZZ^+$ to be sent to infinity later, note
+\[\frac{\beta^n-\varepsilon^n}{\beta-\varepsilon}=\prod_{k=0}^{n-1}\left(\beta-\varepsilon\zeta_n^k\right).\]
+Surely $|\beta-\varepsilon\zeta_n^\bullet|\ge|\beta|$ because $\beta=a-\alpha$ minimizes $|z-\alpha|.$ But then we may rewrite the above as
+\[\frac{|\beta-\varepsilon|}{|\beta|}\le\frac{\left|\beta^n-\varepsilon^n\right|}{|\beta|^n}=\left|1-\left(\frac\varepsilon\beta\right)^n\right|.\]
+As $n\to\infty,$ we are forced into $|\beta-\varepsilon|\le|\beta|,$ so combining this with $|\beta-\varepsilon\zeta_n^\bullet|\ge|\beta|,$ we indeed see that $\beta+\varepsilon$ is also minimizing $|z-\alpha|.$
+
+However, the solution set to a continuous function equal to a value is closed, so the fact that it's shown to also be open (and nonempty) implies that it must be $\CC.$ (Visually, we can imagine extending the open neighborhood around our minimum by $a$ by successive $|\beta|$ increments to cover all of $\CC.$) In particular, the function
+\[z\mapsto|z-\alpha|_K\]
+is constant over all of $\CC.$ However, this violates the archimedean property, as we showed earlier that $|z|\to\infty$ must imply $|z-\alpha|\to\infty$ as well. This contradiction completes the proof.
+
+\subsubsection{December 8th}
+Today I learned the definition of generalized eigenvectors, to move towards Jordan normal form sometime in my far future. The idea is to patch the fact that sometimes we can't make a full eigenbasis. So, for example, the horizontal shear
+\[A=\begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+\end{bmatrix}\]
+has only a dimension-one eigenspace, spanned by $\langle1,0\rangle.$ Explicitly, its characteristic polynomial is $(\lambda-1)^2,$ so $1$ is the only eigenvalue. Its eigenspace is
+\[\ker(A-1I)=\ker\left(\begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+\end{bmatrix}\right),\]
+which evaluates to $\{\langle x,0\rangle:x\in\RR\},$ indeed spanned by $\langle1,0\rangle.$ While there are no more eigenvectors, we can get close to being an eigenvector by chaining, solving
+\[\begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+\end{bmatrix}v=\begin{bmatrix} 1 \\ 0 \end{bmatrix}.\]
+This gives $v=\langle x,1\rangle$ for any other $x.$ And further, our $\langle1,0\rangle$ and $\langle0,1\rangle$ (say) from our ``chain'' does indeed form a basis of $\RR^2.$ So while we don't have an eigenbasis, we do have a generalized eigenbasis.
+
+With this in mind, I should probably define what a generalized eigenvector is. We say that $v$ is a generalized eigenvector of rank $m$ if and only if $m$ is the smallest positive integer for which
+\[(A-\lambda I)^mv=0.\]
+Eigenvectors, then, are generalized eigenvectors of rank $1.$ In the above example, $\langle0,1\rangle$ is a generalized eigenvector of rank $2.$
+
+It will turn out that the dimension of the generalized eigenspace associated with an eigenvalue does indeed match the algebraic multiplicity of the eigenvalue, something which I do not currently know a proof of. (I expect chaining as above to be able to give a full basis.) Then it's my understanding that changing to a basis of these chains will give the Jordan normal form, but I have not learned the details of this argument.
+
+\subsubsection{December 9th}
+Today I learned a generalization of Hensel's lemma. Fix $K$ complete with respect to a nonarchimedean valuation $|\cdot|$ so that we have
+\[\mathcal O_K:=\{\alpha\in K:|\alpha|\le1\}.\]
+This is our ring of integers in the local field, and $\mf p:=\{\alpha\in K:|\alpha|<1\}$ is our unique maximal ideal.
+
+Now, let $f(x)\in\mathcal O_K[x]$ be a polynomial such that $\overline f(x)\in(\mathcal O_K/\mf p)[x]$ is nonzero; i.e., ``primitive.'' (Namely, scale the polynomial so that the biggest coefficient has absolute value $1.$) If $\overline f(x)=\overline g(x)\overline h(x)$ for polynomials $\overline g(x),\overline h(x)\in\mathcal(O_K/\mf p)[x]$ which are coprime. Then we claim can actually factor
+\[f(x)=g(x)h(x)\]
+for which $g\equiv\overline g$ and $h\equiv\overline h\pmod{\mf p}.$ Further, $\deg g=\deg\overline g.$
+
+We do this using the same induction featured in Hensel's lemma. In other words, we're going to lift our polynomials upwards. So start with ant $g_0,h_0\in\mathcal O_K[x]$ with $\overline{g_0}=\overline g$ and $\overline{h_0}=\overline h$ with $\deg g_0=\deg g.$ But further, $\overline g$ and $\overline h$ being coprime lets us take $a,b\in\mathcal O_K[x]$ such that $\overline a\overline g+\overline b\overline h=1.$
+
+Now surely $f-g_0h_0\in\mf p,$ and we can check the coefficient with the largest absolute value here to extract some $\pi\in\mf p$ such that
+\[f-g_0h_0\in(\pi).\]
+This follows from being a local ring---the ideals generated by each coefficient of this difference must be a subset, then, of the ideal generated by the largest coefficient. Applying this argument again to $ag_0+bh_0\equiv1\pmod{\mf p}$ and taking the maximum coefficient here (also comparing with $\pi$) then lets us assert simultaneously that
+\[ag_0+bh_0\equiv1\pmod\pi.\]
+Essentially, we are attempting to make our ideals principal.
+
+Now let's upgrade $g_0$ and $h_0$ to $g_1$ and $h_1$ to be closer to the desired factorization. We'll take $g_1\equiv g_0\pmod\pi$ and $h_1\equiv h_0\pmod\pi$ and $\deg g_1=\deg g_0,$ and the improvement that we will make is that
+\[f\equiv g_1h_1\pmod{\pi^2}.\]
+Then we will be able to rinse and repeat the argument. The argument will be able to port from $\pi$ to $\pi^2$ to an argument to $\pi^3$ and $\pi^4,$ onwards and upwards. The sequence of polynomials $(g_\bullet)$ and $(h_\bullet)$ will converge because they their difference will each be divisible by successively larger powers $\pi^\bullet,$ implying that the difference's coefficients all vanish ($|\pi|<1$); no new terms are created because the degree is kept constant. And further, $g_\bullet h_\bullet$ approaches $f$ for the same reason. So indeed doing this step will complete the proof.
+
+Let's take $g_1=g_0+p_1\pi$ and $h_1=h_0+q_1\pi$ for $p_1,q_1\in\mathcal O_K[x]$ to be fixed later. Observe that
+\[g_1h_1\equiv g_0+(g_0q_1+h_0p_1)\pi\pmod{\pi^2}.\]
+In particular, we get to not care about $p_1q_1\pi^2$---we are kind of just looking at the next term in our ``power series'' at $\pi.$ Anyways, this is equivalent to
+\[g_0q_1+h_0p_1\equiv\frac{f-g_0h_0}\pi\pmod\pi.\]
+To accomplish this, we can use our $a$ and $b.$ In particular, we may take $q_1=b\left(\frac{f-g_0h_0}\pi\right)$ and $p_1=a\left(\frac{f-g_0h_0}\pi\right).$ The degree of $g_1$ might not match now, but we can just reduce $p_1\pmod{g_1}$ to have degree smaller and adjust $q_1$ accordingly. In particular, write
+\[b\cdot\frac{f-g_0h_0}\pi=g_0q+p_1\]
+so that $p_1$ has degree smaller than $g_0.$ Now, $g\equiv g_0$ with matching degrees implies that the leading coefficient of $g_0$ has size $1$ and is therefore a unit, so Euclidean division works here; explicitly, $q(x)\in\mathcal O_K[x].$ From this it follows
+\[g_0\left(a\cdot\frac{f-g_0h_0}\pi+h_0q\right)+h_0p_1\equiv\frac{f-g_0h_0}\pi\pmod{\pi^2}.\]
+To finish, we check degrees: note $g_1=g_0+\pi p_1$ has the correct degree because $\deg g_0>\deg p_1.$ I guess there is some technicality in checking the degree of $h_1$ does not explode, but it doesn't. We don't deal with that here.
+
+\subsubsection{December 10th}
+Today I learned a proof of Niven's theorem, the statement that the only $\theta$ for which $\theta$ and $\sin(\theta)$ are both rational give $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\}.$ Namely, we have $\theta\in\left\{0,\pm\frac16\pi,\pm\frac12\pi,\pm\frac56\pi\right\}\pmod{2\pi}.$ Indeed, if $\theta=\frac ab\in\QQ,$ then $e^{i\theta}$ is a root of
+\[z^b-1=0,\]
+so $e^{i\theta}$ is an algebraic integer. From this it follows
+\[2\sin(\theta)=-i\left(e^{i\theta}-e^{-i\theta}\right)\]
+is an algebraic integer as well. But we also have $2\sin(\theta)\in\QQ,$ so $2\sin(\theta)$ is a rational integer. Bounding, we see $2\sin(\theta)\in[-2,2]\cap\ZZ,$ requiring that $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\},$ which is what we wanted.
+
+An identical proof works for $\theta$ and $\cos(\theta),$ for $2\cos(\theta)=e^{i\theta}+e^{-i\theta}$ would also be an algebraic integer. We get pretty much the same statement, now we have $\cos(\theta)\in\left\{0,\pm\frac12,\pm1\right\}$ which forces $\theta\in\left\{0,\pm\frac13\pi,\pm\frac12\pi,\pm\frac23\pi\right\}\pmod{2\pi}.$
+
+This proof is very slick, of similar slickness as the proof of the Fundamental theorem of algebra from Galois theory. Namely, it does exactly what it needs to do with its hypotheses in as few steps as possible---it's very obvious where our hypotheses come into play, and it's very obvious that this proof could not be shortened. What pleases me aesthetically is that the proof reads the $\left\{0,\pm\frac12,\pm1\right\}$ as a \textit{bounding} condition instead of something special about these angles in particular, which a priori is what I expected out of a proof of this statement.
+
+\subsubsection{December 11th}
+Today I learned a proof of the Jordan normal form, from \href{https://terrytao.wordpress.com/2007/10/12/the-jordan-normal-form-and-the-euclidean-algorithm/}{Terrence Tao}. We begin by classifying all nilpotent transformations. For this we define a ``shift'' transformation $T:V\to V$ as one that sends 
+\[(x_1,x_2\ldots,x_n)\stackrel T\longmapsto(0,x_1,\ldots,x_{n-1})\]
+for some basis of $x_1,\ldots,x_n$ of $V.$ We showed last month that all nilpotent transformations of rank $n$ are similar to
+\[S=\begin{bmatrix}
+    0 & 1 & 0 & \cdots & 0 \\
+    0 & 0 & 1 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & 1 \\
+    0 & 0 & 0 & \cdots & 0 \\
+\end{bmatrix},\]
+which says that all nilpotent matrices of rank $n$ are shift matrices.
+
+The claim is that all nilpotent transformations are direct sums of shift transformations; note that this is the Jordan normal form for nilpotent transformations because the only eigenvalue of a nilpotent transformation is $0.$ That is, we can decompose $V=V_1\oplus\cdots\oplus V_m$ such that the restriction of $T$ to each space $V_\bullet$ is a shift. Equivalently, we show we can build a basis of $V$ consisting of ``chains''
+\[x_\bullet,Tx_\bullet,T^2x_\bullet,\ldots,T^{m_\bullet-1}x_\bullet\]
+where $m_\bullet$ is the smallest positive integer satisfying $T^{m_\bullet}x=0.$ Then each chain will span some $V_\bullet,$ over which $T$ does act like a shift transformation, which is what we want. I guess there is some technicality in that we have to show that these vectors are linearly independent, but we gave the argument last month that minimality of $m_\bullet$ and $T$ being nilpotent forces linear independence.
+
+Certainly we can build a set of chains which span $V$; for example, take a basis, and build the chain of each element, and the added vectors will not disrupt spanning. The hard part is giving linear independence. We claim that if we have a set of chains spanning $V$ whose vectors are linearly dependent, then we can provide a smaller set of chains spanning $V.$ It will follow that taking the smallest set of chains spanning $V$ will suffice. Well suppose we have a set of $m$ chains
+\[\bigcup_{k=1}^m\left\{T^\ell x_k:0\le \ell<m_k\right\}\]
+which span $V$ and have a nontrivial relation named
+\[\sum_{k=1}^m\sum_{\ell=0}^{m_k-1}a_{k\ell}T^\ell x_k=0.\]
+We can force there to be at most element of each chain in the relation by multiplying by a sufficient power of $T.$ Explicitly, for each chain $k$ find the smallest $\ell$ for which $a_{k\ell}\ne0,$ and note that multiplying the relation by $T^{m_k-\ell-1}$ will cause all higher terms to vanish, leaving only a $T^{m_k-1}x_k$ term. Multiplying by the largest $T^{m_k-\ell-1}$ over all chains will leave the relation nontrivial while still forcing all terms to have the form $T^{m_k-1}x_k.$ So our relation looks like
+\[\sum_{k=1}^ma_kT^{m_k-1}x_k=0\]
+for some new nontrivial sequence $\{a_k\}.$ We'll say, without loss of generality, that $a_1\ne0$ and $m_1$ is the minimum of the $m_\bullet.$ This lets us rearrange to
+\[T^{m_1-1}\underbrace{\left(x_1+\sum_{k=2}^m\frac{a_k}{a_1}T^{m_k-m_1}x_k\right)}_y=0.\]
+Now we see that we may replace the $x_1$ chain with the $y$ chain. Span is unaffected because $y$ is a linear combination of the basis vectors which includes $x_1$ (so we can re-express $T^\bullet x_1$ in terms of $T^\bullet y$), but this chain is shorter---$y$'s chain has length no more than $m_1-1,$ where $x_1$'s chain had length $m_1.$ This is what we wanted.
+
+It remains to deal with general-case transformations. In order to abstract what we need to prove, note that a Jordan block is
+\[J_\lambda=\begin{bmatrix}
+    \lambda & 1 & 0 & \cdots & 0 & 0 \\
+    0 & \lambda & 1 & \cdots & 0 & 0 \\
+    0 & 0 & \lambda & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & \lambda & 1 \\
+    0 & 0 & 0 & \cdots & & \lambda \\
+\end{bmatrix}=S+\lambda I,\]
+a shift plus a constant. Jordan normal form is basically asking us to decompose our transformation $T:V\to V$ into a direct sum of these shift-plus-constant transformations. Indeed, we're trying to decompose $V=V_1\oplus\cdots\oplus V_k$ so that the restriction of $T$ to each $V_\bullet$ is a shift plus a constant.
+
+This part of the proof is typically done with minimal polynomials or something. We just note that there at least exists some (monic) polynomial $P$ for which $P(T)=0.$ For example, if we were to write $T$ as an $n\times n$ matrix, we can look at all matrices from $T^0,T^1,\ldots,T^{n^2}$ and find a nontrivial relation of these which vanishes---it amounts to $n^2+1$ coefficients and $n^2$ equations. As an overview of what's about to happen, if we factor $P(\lambda)$ into coprime factors as
+\[P(\lambda)=\prod_{k=1}^mQ_k(\lambda),\]
+then we'll have that the transformation $T$ on $V=\ker(P(T))$ will be the direct sum of $T$ on each $\ker(Q_k(T)),$ and the restriction of $T$ to each factor will be a shift plus a constant. At a high level, factorizations of polynomials will give us factorization into Jordan normal form.
+
+Now, suppose we factor $P=QR$ into coprime polynomials $Q$ and $R.$ Because polynomials over our ground field form a Euclidean domain, we're allowed to invoke B\'ezout's Lemma to get polynomials $A$ and $B$ such that
+\[AQ+BR=1.\]
+It will be enough to show that the transformation $T$ on $\ker(P(T))$ is the direct sum of the restriction of $T$ to $\ker(Q(T))$ and $\ker(P(T))$; fully factoring $P$ and then applying this lemma inductively will give what we want.
+\begin{itemize}
+    \item The restrictions make sense because $v\in\ker(S(T))$ will still have $Tv\in\ker(S(T))$ because $T(S(T)v)=S(T)Tv$.
+    \item Note $\ker(Q(T))\cap\ker(R(T))=\{0\}$ because $v$ in the intersection would satisfy $v=AQv+BRv=0.$
+    \item Note $\ker(Q(T))+\ker(R(T))=\ker(P(T))$ because we may write
+    \[v=R(T)B(T)v+Q(T)A(T)v.\]
+    For $v\in\ker(P(T)),$ we see this implies $R(T)B(T)v\in\ker(Q(T))$ because it evaluates to $B(t)Q(T)R(T)v=B(T)P(T)v=0$; similar shows $Q(T)A(T)v\in\ker(R(T)),$ so we're done.
+\end{itemize}
+The final two points tell us that $\ker(P(T))=\ker(Q(T))\oplus\ker(R(T)),$ and the first point lets us restrict $T$ to each.
+
+Continuing, when we're working in an algebraically closed field, we know we may factor $P(\lambda)$ into only linear factors, but as our lemma only applies as long as the factors are coprime, we have to let
+\[P(\lambda)=\prod_{k=1}^m(\lambda-\lambda_k)^{d_k}=:\prod_{k=1}^mQ_k(\lambda).\]
+Now, our lemma lets us say that $T$ is the direct sum of its restrictions to each $\ker(Q_k(T))=\ker\left((T-\lambda_kI)^{d_k}\right).$ However, over each of these spaces, we see that $T-\lambda_k$ is a nilpotent transformation and therefore a direct sum of shift transformations by our classification. It follows that $T$ is a direct sum of shifts plus a constant over $\ker(Q_k(T)),$ so $T$ is still a direct sum of shifts plus a constant over $V.$ This completes the proof.
+
+\subsubsection{December 12th}
+Today I learned the definition of a Newton polygon. Equip a field $K$ with a valuation $\nu.$ That is, $\nu:K\to\RR$ by $\nu(x)+\nu(y)\ge\min\{\nu(x),\nu(y)\}.$ Note we can generate this if we have a nonarchimedean valuation: if we have a nonarchimedean valuation $|\cdot|,$ then $\nu(x)=-\log|x|$ should work.
+
+Then for a polynomial $f(x)\in K[x]$ by $f(x)=\sum_ka_kx^k,$ we dot the points $(k,\nu(a_k)).$ For example, here is $f(x)=10+\frac12x+3x^2+\frac14x^3+4x^4$ with $\nu_2.$
+\begin{center}
+    \begin{asy}
+        unitsize(0.5cm);
+        dot((0,1)); dot((1,-1)); dot((2,0));
+        dot((3,-2)); dot((4,2));
+        draw((-1,0)--(5,0));
+        draw((0,-3)--(0,3));
+    \end{asy}
+\end{center}
+Then we define the Newton polygon of $f(x)$ as the convex hull of these points from the bottom. Say, draw the convex hull and then all vertical rays going upward from it. Alternatively, imagine rotating the vertical line $x=0$ counterclockwise around the convex hull until it has rotated a full $180^\circ.$ The area not drawn out by the rotating line is our polygon. Anyways, here's the same example.
+\begin{center}
+    \begin{asy}
+        unitsize(0.5cm);
+        fill((0,1)--(1,-1)--(3,-2)--(4,2)--(4,3)--(0,3)--cycle, rgb(0.9,0.9,1));
+        dot((0,1)); dot((1,-1)); dot((2,0));
+        dot((3,-2)); dot((4,2));
+        draw((-1,0)--(5,0));
+        draw((0,-3)--(0,3));
+    \end{asy}
+\end{center}
+The main theorem of Newton polygons says something for $(x_k,y_k)$ and $(x_\ell,y_\ell)$ of the lower convex hull, there are $x_\ell-x_k$ roots of valuation $\nu$ equal to the negative slope $-\frac{y_\ell-y_k}{x_\ell-x_k}.$ I don't know the proof for this.
+
+\subsubsection{December 13th}
+Today I learned about Laplace integration. Recall that the Laplace transform $\mathcal L\{f(t)\}$ is a function in $s$ defined by
+\[\mathcal L\{f(t)\}=\int_0^\infty f(t)e^{-st}\,dt.\]
+Now the idea is that we can integrate $F(s)$ to be
+\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\left(\int_0^\infty f(t)e^{-st}\,dt\right)ds=\int_0^\infty\left(\int_0^\infty e^{-st}\,ds\right)f(t)\,dt\]
+by waving our hands. The integral evaluates to $\frac1t,$ so we are left with
+\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\frac{f(t)}t\,dt.\]
+Of course, this is just a manifestation of the fact that $\mathcal L\{t\cdot f(t)\}=-\frac d{ds}\mathcal L\{f(t)\}.$
+
+As an example of doing this something interest, we can recall that $\mathcal L\{\sin(t)\}=\frac1{1+t^2}$ (say, write $\sin(t)=\frac1{2i}\left(e^{it}+e^{-it}\right)$), we find that
+\[\int_0^\infty\frac{\sin(t)}t\,dt=\int_0^\infty\frac1{1+t^2}\,dt=\arctan(t)\bigg|_0^\infty=\frac\pi2.\]
+Normally this integral is computed with the Residue theorem or some other technique, but it's quite painless with this theory, which is nice.
+
+\subsubsection{December 14th}
+Today I learned that, for $K$ the fraction field of $\mathcal O_K$ Dedekind, $\op{SL}_2(\mathcal O_K)$ acts transitively on $K\cup\{\infty\}$ as fractional linear transformations if and only if $K$ has class number 1, from \href{https://kconrad.math.uconn.edu/blurbs/gradnumthy/SL2classno.pdf}{Keith Conrad}. Amazingly, the main idea is that all ideals in Dedekind domains can be written with two generators.
+
+The main reduction is to note that having $\op{SL}_2(\mathcal O_K)$ act transitively is equivalent to every element of $K$ being of the form $\alpha/\beta$ for $(\alpha,\beta)=(1)$ and $\alpha,\beta\in\mathcal O_K.$ In other words, we can write elements of $K$ in ``reduced form.'' Equivalently, every element is in the orbit of $\infty$ if and only if we can write elements of $K$ in reduced form.
+
+In one direction, suppose we can pick up an arbitrary element of $\alpha\in K$ and write it as $a/b$ with $(a,b)=(1).$ To show all elements are in the orbit of $\infty,$ note that $\infty$ is certainly in its own orbit, and for other elements $\alpha=a/b,$ we note $(a,b)=(1)$ implies we can write
+\[ad-bc=1\]
+for some $c,d\in\mathcal O_K.$ But then
+\[\begin{bmatrix}
+    a & c \\
+    b & d
+\end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix}\]
+shows what we need. In particular, the matrix is in $\op{SL}_2(\mathcal O_K).$
+
+In the other direction, if all elements are in the orbit of $\infty,$ then for any $\alpha\in K,$ there exists a matrix in $\op{SL}_2(\mathcal O_K)$ such that
+\[\begin{bmatrix}
+    a & c \\
+    b & d
+\end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix},\]
+where $\alpha=a/b.$ Certainly $a,b\in\mathcal O_K$ by construction, and $ad-bc=1$ (by construction) again implies that $(a,b)=1.$ So we're done with the reduction.
+
+To finish, we have to show that being able to write elements of $K$ in reduced form is equivalent to having class number $1.$ Well, if we have class number $1,$ then $\mathcal O_K$ is a PID and therefore a UFD. So when we write elements $\alpha\in K$ as $a/b$ for any $a,b\in\mathcal O_K,$ we can prime factor $a$ and $b$ to make the numerator and denominator coprime. Alternatively, letting $(c)=(a)+(b)$ because $\mathcal O_K$ is a PID, the fraction we're looking for is $(a/c)/(b/c).$
+
+The other direction is harder. Again suppose that every fraction can be written in reduced form, and we'll show that $\mathcal O_K$ is a principal ideal domain. Pick up some ideal, and it's at least generated by $(a,b)$ for some $a,b\in\mathcal O_K.$ If $b=0,$ then $(a,b)=(a)$ and principal; the same holds for $a=0.$ So assume $ab\ne0.$ We attempt to extract a greatest common denominator of $a$ and $b$ using reducing fractions. Suppose that
+\[\frac ab=\frac cd\]
+where $(c,d)=(1).$ Experience with $\ZZ$ tells us that $b/d$ should be our greatest common denominator, so let's extract it. The above implies that $ad=bc,$ so $bc\in(d).$ In fact, $(c,d)=(1)$ lets us write $cx+dy=1,$ implying that
+\[b=bcx+bdy\in(d)\]
+as well, so we may finally let $g=b/d\in\mathcal O_K.$ Additionally, we see $a/c=b/d=g$ as well. To finish, we compute
+\[(a,b)=(g)(a/g,b/g)=(g)(c,d)=(g)(1)=(g),\]
+so $(a,b)$ was principal after all.
+
+\subsubsection{December 15th}
+Today I learned the proof to the more general statement that orbits of elements of the projective space $K\PP^1$ under $\op{SL}_n(\mathcal O_K)$ is equal to the class number of $K.$ This is a direct generalization of what I learned yesterday, but the approach is somewhat different. Here we show bijection, that orbits of points $[a:b]\in K\PP^1$ can be put in bijection with the ideal class of $(x,y).$
+
+One direction is easier. If $[a:b]$ and $[c:d]$ are in the same orbit under $\op{SL}_n(\mathcal O_K),$ then we show that $(a,b)$ and $(c,d)$ are in the same ideal class. Well, we are given a matrix already so that
+\[\begin{bmatrix}
+    x & y \\
+    z & w
+\end{bmatrix}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} kc \\ kd \end{bmatrix}\]
+for some nonzero constant $k\in K^\times.$ It follows that $ax+by=kc$ and $ca+dw=kd,$ implying that $(kc,kd)\subseteq(a,b).$ But inverting, we also have
+\[\begin{bmatrix}
+    x & y \\
+    z & w
+\end{bmatrix}^{-1}\begin{bmatrix} kc \\ kd \end{bmatrix}=\begin{bmatrix} a \\ b \end{bmatrix}\]
+for the same $k.$ This implies that $(a,b)\subseteq(kc,kd),$ so $(a,b)=(k)\cdot(c,d)$ implies that $(a,b)$ and $(c,d)$ are in the same ideal class.
+
+The other direction is harder. Suppose $(a,b)$ and $(c,d)$ are arbitrary fractional ideals in the same ideal class so that we want to show $[a:b]$ and $[c:d]$ are in the same orbit. Quickly, we know that $(a,b)=(k)\cdot(c,d)=(kc,kd)$ for some $k\in K^\times,$ so it suffices to show that $[a:b]$ and $ [c:d]=[kc:kd]$ are in the same orbit given $(a,b)=(kc,kd).$ Renaming variables, it suffices to show $[a:b]$ and $[c:d]$ are in the same orbit given $(a,b)=(c,d).$
+
+For this we have to find an element of $\op{SL}_2(\mathcal O_K)$ sending $[a:b]$ to $[c:d].$ The equality of ideals immediately gives some relations to work with, but the determinant condition is the hard part here. For this, we compose maps sending
+\[[a:b]\to[1:0]\to[c:d].\]
+This is somewhat motivated by using $\infty$ in the class number $1$ case. Now we do something clever. Looking at the inverse ideal $(a,b)^{-1}=(x,y),$ we have $(1)=(ax,ay,bx,by),$ implying a relation
+\[1=kax+\ell ay+mbx+nby=(kx+\ell y)a+(mx+ny)b=:b'a-a'b.\]
+Here $a',b'\in(a,b)^{-1},$ so we see
+\[\begin{bmatrix}
+    a & a' \\
+    b & b'
+\end{bmatrix}\begin{bmatrix}1 \\ 0\end{bmatrix} = \begin{bmatrix}a \\ b\end{bmatrix}\]
+has determinant $1$ and sends $[1:0]\to[a:b].$ Importantly, the first column is in $(a,b)$ and the second column is $(a,b)^{-1}.$ We can construct an analogous matrix for $[c:d],$ again with the first column in $(a,b)=(c,d)$ and the second column in $(a,b)^{-1}=(c,)^{-1}.$ Now, the matrix we're interested in is
+\[\begin{bmatrix}
+    c & c' \\
+    d & d'
+\end{bmatrix}\begin{bmatrix}
+    a & a' \\
+    b & b'
+\end{bmatrix}^{-1}=\begin{bmatrix}
+    c & c' \\
+    d & d'
+\end{bmatrix}\begin{bmatrix}
+    -a & b \\
+    a' & -b'
+\end{bmatrix}.\]
+This composite indeed sends $[a:b]\to[1:0]\to[c:d],$ and it will have determinant $1$ like we need. And its elements live in $\mathcal O_K$ because we end up multiplying the elements $a'$ and $b'$ only by $c$ and $d,$ and vice versa, implying that all elements of the resulting matrix end up in $(a,b)(a,b)^{-1}=(c,d)(c,d)^{-1}=(1)=\mathcal O_K.$ This completes the proof.
+
+At a high level, we're showing that a fractional linear transformation can transform any two representations of the same fractional ideal. The fact that elements of $\op{SL}_2(\mathcal O_K)$ are freely scaled implies that we need our fractional ideals to be freely scaled, which is where the class number is coming into play. What I still like about this is how central representing an ideal with two generators is. It's what makes thinking about any of this even possible, but the statement can technically avoid it.
+
+\subsubsection{December 16th}
+Today I learned that completely splitting (for unramified primes) in an abelian extension is determined by $p\pmod N$ for some modulus $N.$ Roughly speaking, this is because the Frobenius of $p$ in $\QQ(\zeta_N)/\QQ$ is determined by $p\pmod N,$ and the Frobenius determines splitting.
+
+Indeed, suppose that $K/\QQ$ is an abelian extension, and put everything inside of some $\QQ(\zeta_N)$ for some minimal $N$ by the Kronecker-Weber theorem. Let $H$ be the subgroup of $\op{Gal}(\QQ(\zeta_N)/\QQ)\cong(\ZZ/N\ZZ)^\times$ fixing $K.$ Now, unramified primes $p$ down in $\QQ$ split completely in $K$ if and only if
+\[f(\mf p/p)=1\]
+for each $\mf p$ of $K$ over $p.$ However, fixing a prime $\mf P$ of $\QQ(\zeta_N)$ over $p,$ we see we can ask for $f(\sigma\mf P\cap K/p)=1$ for each $\sigma\in\op{Gal}(\QQ(\zeta_N)/\QQ).$ This is nice because we are now parameterizing by the Galois group. Letting $\varphi$ be the Frobenius of $\mf P/p,$ theory about the Frobenius says that
+\[f(\sigma\mf P\cap K/p)=\#\left\{H\sigma\varphi^\bullet:\bullet\in\ZZ\right\}.\]
+So this is equal to $1$ for each $\sigma\mf P\cap K$ if and only if $H\sigma=H\sigma\varphi$ for each $\sigma.$ However, our extension is abelian, so we can just factor out the $\sigma$ so that $p$ splits completely if and only if $H=H\varphi$ if and only if $\varphi\in H.$
+
+So far we have not used the fact that our normal extension over $K/\QQ$ is cyclotomic. This comes into play because we can write $\varphi$ as the unique automorphism in $\op{Gal}(\QQ(\zeta_N)/\QQ)$ satisfying
+\[\varphi(\alpha)\equiv\alpha^p\pmod{\mf P}.\]
+However, the (unique) automorphism sending $\zeta_N\mapsto\zeta_N^p$ certainly satisfies the above equation, so we conclude $\varphi:\zeta_N\mapsto\zeta_N^p,$ and is defined by this property. What's nice is that this automorphism is not entirely dependent on $p,$ but rather $p\pmod N.$ Namely, we have the isomorphism
+\[\op{Gal}(\QQ(\zeta_N)/\QQ)\to(\ZZ/N\ZZ)^\times\]
+sending $\sigma:\zeta_N\mapsto\zeta_N^k$ to $k\in(\ZZ/N\ZZ)^\times.$ Mapping $H$ over to $(\ZZ/N\ZZ)^\times$ will give us some set of residues $S\subseteq(\ZZ/N\ZZ)^\times,$ and $\varphi\in H$ will be equivalent to $p\pmod N\in S$ because $\varphi:\zeta_N\mapsto\zeta_N^p.$ So $p$ splits completely in $K$ if and only if $p\pmod N\in S,$ which is what we wanted.
+
+This argument can be extended to any structure of splitting of unramified primes, not just splitting completely. Namely, the fact that we can determine $f(\mf p/p)$ for $\mf p$ of $K$ over $p$ from the Frobenius up in $\op{Gal}(\QQ(\zeta_N)/\QQ)$ implies that any structure of splitting of unramified primes will correspond to some set of Frobenius elements in $\op{Gal}(\QQ(\zeta_N)/\QQ).$ Then we can map these Frobenius elements into $(\ZZ/N\ZZ)^\times$ to get that $p$ matches this structure if and only if $p\pmod N$ is in that set of residues (equivalent to the Frobenius being one of the desired). I'm not writing this out because I don't want to rigorize ``structure of splitting.''
+
+I guess I should say that quadratic reciprocity comes out of this, which I'll sketch here. Take $K=\QQ(\sqrt{p^*})$ so that $K\subseteq\QQ(\zeta_p).$ Gaussian period theory can kind of tell us that $H$ corresponds to the squares$\pmod p.$ It follows that $q$ is a square$\pmod p$ if and only if $q$ splits completely in $\QQ(\sqrt{p^*})$ if and only if $p^*$ is a square$\pmod q.$
+
+As an aside, the converse of our original statement is also true. That is, if the fact that unramified primes $p$ splits completely is equivalent to $p\pmod N$ being in some fixed set of residues, then we can say that $K$ is an abelian extension. Indeed, work up in the normal closure $M$ of our extension $K/\QQ.$ We don't lose anything because completely splitting in $K$ is equivalent to completely splitting in $M,$ so the set of residues$\pmod N$ is still applicable.
+
+We show that $M\subseteq\QQ(\zeta_N).$ The way we relate this to prime-splitting is to note that this is equivalent to
+\[\op{Spl}(\QQ(\zeta_N)/\QQ)\subseteq\op{Spl}(M/\QQ)\]
+by Bauer's theorem. However, $\op{Spl}(\QQ(\zeta_N)/\QQ)=\{p:p\equiv1\pmod N\},$ so we need to show that all $1\pmod N$ primes split completely in $M.$ The key observation, then, is that prime-splitting in $M$ is determined by$\pmod N$ information, so we really just need to find a single $1\pmod N$ which splits completely in $M.$ But certainly some prime splits completely in the composite
+\[M\QQ(\zeta_N),\]
+so we see that there is a prime which splits completely in both $M$ and $\QQ(\zeta_N).$ (Let $M\QQ(\zeta_N)=\QQ(\alpha),$ and then the minimal polynomial of $\alpha$ covers infinitely many primes; Dedekind-Kummer finishes.) It follows this prime splits completely in $M$ and is $1\pmod N,$ so we are done here.
+
+\subsubsection{December 17th}
+Today I learned an application of the theory from yesterday. This was really a synthesis of old ideas. As an example, suppose we want a nice condition for a prime $p$ being a (nonzero) cube$\pmod7.$ This is a subgroup of $(\ZZ/7\ZZ)^\times,$ so Galois theory says that these $p$ will belong to the fixed field of some subfield of $\QQ(\zeta_7).$ Name this subfield $\QQ(\alpha),$ for some $\alpha$ with minimal polynomial $f(x).$ It happens that $f(x)=x^3-21x-7,$ which we will talk about later.
+
+Now for primes $p>7,$ it happens that Dedekind-Kummer applies and ramification stops happening, so $p$ splits completely in $\QQ(\alpha)$ if and only if
+\[x^3-21x-7\pmod p\]
+splits completely. Continuing, theory around the Frobenius (check yesterday if bored) says that splitting completely in $\QQ(\alpha)$ is equivalent to the Frobenius $\varphi\in\op{Gal}(\QQ(\zeta_7)/\QQ)$ in the subgroup fixing $\QQ(\alpha).$
+
+To finish, label the Galois group $\op{Gal}(\QQ(\zeta_7)/\QQ)\cong(\ZZ/7\ZZ)^\times$ by automorphisms $\sigma_\bullet:\zeta_7\mapsto\zeta_7^\bullet.$ We can compute that $\varphi=\sigma_p$ because $\varphi(\zeta_7)=\zeta_7^p$ by definition of the Frobenius. It follows that $\sigma_p$ fixes $\QQ(\alpha)$ if and only if
+\[\sigma_p\in\{\sigma_k:k\text{ is a cube}\pmod7\}.\]
+In total, for $p>7,$
+\[x^3-21x-7\pmod p\text{ splits completely}\iff p\text{ is a cube}\pmod7.\]
+I thought this was reasonably cute.
+
+I guess I should talk about how $\alpha$ and its $f(x)$ were generated. Well, we can notice that
+\[\sum_{k=1}^7\zeta_7^{k^3}\]
+will be fixed by any automorphism fixing the cubes; this makes our $\alpha.$ Note that this is just taking the trace, in disguise. It's possible to compute $f(x)$ by hand by setting a system of equations with $1,\alpha,\alpha^2,\alpha^3$ and looking for the linear relation, but I just used sage.
+
+This is easily generalized. Really, what we just did is show that for any subgroup of $S\subseteq(\ZZ/N\ZZ)^\times$ (cubes$\pmod7$), there exists a polynomial $f(x)$ such that for all sufficiently large primes $p,$
+\[f(x)\pmod p\text{ splits completely}\iff p\in S.\]
+Splitting completely can be replaced with having a single root, which is perhaps aesthetically nicer---we were dealing with abelian extensions, so our $\QQ(\alpha)$ is a Galois extension. This does generalize quadratic reciprocity, but it doesn't seem to give cubic reciprocity or friends. Namely, we don't really know what $f(x)$ looks like, though it's not hard to construct for an $S.$
+
+Unrelated to this, let's talk linear recurrences because I like them. Let's say $f(x)\in\ZZ[x]$ is some irreducible polynomial corresponding to a linear recurrence $\{a_n\}$ with
+\[\sum_{k=0}c_ka_{n+k}=0.\]
+Namely, $f(x)=\sum c_kx^k.$ Stuff about linear recurrences says that $f(x)$ can be written as
+\[a_n=\sum_{k=0}^nA_k\alpha_k^n\]
+where $\alpha_\bullet$ roots of $f(x).$ Let's examine this sequence$\pmod p$ for some prime $p.$ If each of the $\alpha_k$ live in $\FF_p,$ then $a_n$ will be periodic with period $p,$ and that condition is equivalent to $f(x)$ splitting into linear factors$\pmod p.$
+
+Now, for all but finitely many primes, $f(x)$ splits into linear factors if and only if $(p)$ splits completely in $\QQ(\alpha)$ for one of the roots $\alpha$ of $f(x).$ This will happen for a positive proportion of primes.; in fact, we know that the proportion is the reciprocal of the degree of the Galois closure of $\QQ(\alpha).$ It follows that a nice positive proportion of primes make the sequence have period $p.$
+
+Extra conditions on $f$ (e.g., defining a Galois or even abelian extension) can give us nicer properties of the periodicity. For example, it's hard to talk about how the factorization of $f(x)$ behaves when not entirely linear. But if Galois, then for all but finitely many primes all of these factors had better have the same degree, so we can talk more concretely about when we have periods of $p^2$ and upwards. Namely, the least common multiple of the largest factor is where the most problematic roots life, upper-bounding our period.
+
+\subsubsection{December 18th}
+Today I learned a proof for the fact that the area of a section of a parabola bounded by a line is $\frac43$ of the area of that section's midpoint triangle. Applying a suitable affine transformation, it suffices to prove this for the parabola $y=x^2.$ Here's the image of what we're talking about.
+\begin{center}
+    \begin{asy}
+        import graph;
+        unitsize(1.5cm);
+        real f(real x)
+        {
+            return x*x;
+        }
+        real a=-1.1, b=1.4;
+        real c=(a+b)/2;
+        // cycle here because asy is weird
+        fill(graph(f,a,b)--cycle, rgb(0.8,1,1));
+        fill((a,a*a)--(c,c*c)--(b,b*b)--cycle, rgb(1,0.9,0.9));
+        draw(graph(f,-1.5,1.5), linewidth(1));
+        dot("$\left(a,a^2\right)$",(a,a*a),WSW);
+        dot("$\left(b,b^2\right)$",(b,b*b),ESE);
+        dot("$\textstyle\left(\frac{a+b}2,\left(\frac{a+b}2\right)^2\right)$",(c,c*c),SSE);
+    \end{asy}
+\end{center}
+The assertion is that the red and blue areas is $\frac43$ times just the red area. The main idea of the proof is that will be able to subdivide the remaining blue areas into more midpoint triangles, indefinitely, eventually summing to the desired area.
+
+To start off, let's compute the area of the given midpoint triangle. Translating the midpoint to $0,$ we want the area of the triangle with vertices on $\left(\frac{a-b}2,\frac{3a^2-2ab-b^2}4\right),$ $(0,0),$ and $\left(\frac{b-a}2,\frac{-a^2-2ab+3b^2}4\right).$ Using determinants, this signed area will come out to be
+\[\frac12\left(\frac{a-b}2\cdot\frac{3a^2-2ab-b^2}4-\frac{b-a}2\cdot\frac{-a^2-2ab+3b^2}4\right)=\frac{a-b}{16}\cdot2\left(a-b\right)^2=\frac18(a-b)^3.\]
+This expression comes out quite nicely, aside from the fact we might have to throw absolute values around the entire thing. Further, if we substitute in $\frac{a+b}2$ into $a,$ then this signed area looks like
+\[\frac18\left(b-\frac{a+b}2\right)^3=\frac18\cdot\frac18(b-a)^3,\]
+which is one-eighth of the area we just had.
+
+Now we wave our hands. Fix $K=\frac18|a-b|^3$ be the area of our midpoint triangle. We continually subdivide the parabola into these midpoint triangles. Starting from $n=0,$ we claim inductively that on the $n$th subdivisions, we'll add $2^n$ triangles with area $\frac1{8^n}K.$ Of course this is true for $n=0,$ where we have one big midpoint triangle with area $K.$
+
+Then suppose on the $n$th subdivision, we have $2^n$ triangles each with area $\frac1{8^n}K.$ These triangles are all closest to the edges of the parabola, so on the next midpoint subdivision, we add on a triangle to each of the ``exposed'' sides. Here's an example, in purple.
+\begin{center}
+    \begin{asy}
+        import graph;
+        unitsize(1.5cm);
+        real f(real x)
+        {
+            return x*x;
+        }
+        real a=-1.1, b=1.4;
+        real c=(a+b)/2;
+        // cycle here because asy is weird
+        fill(graph(f,a,b)--cycle, rgb(0.8,1,1));
+        fill((a,a*a)--(c,c*c)--(b,b*b)--cycle, rgb(1,0.9,0.9));
+        real d=(a+c)/2;
+        fill((a,a*a)--(c,c*c)--(d,d*d)--cycle, rgb(0.9,0.7,0.9));
+        real e=(c+b)/2;
+        fill((b,b*b)--(c,c*c)--(e,e*e)--cycle, rgb(0.9,0.7,0.9));
+        draw(graph(f,-1.5,1.5), linewidth(1));
+    \end{asy}
+\end{center}
+Each of our triangles has $2$ exposed sides, so we add $2^{n+1}$ triangles. Further, these new triangles will have $\frac18$ the area of their parent, as stated earlier, which comes out to $\frac1{8^{n+1}}K.$
+
+To finish, we sum over all the triangles summed in subdivisions and call that the actual area of the parabola. So our area sums to
+\[\sum_{n=0}^\infty\left(2^n\cdot\frac1{8^n}K\right)=K\sum_{n=0}^\infty\frac1{4^n}=K\cdot\frac1{1-\frac14}=\frac43K,\]
+which is what we wanted. To make that final summation rigorous would be very obnoxious. I think we could show that all points covered in each subdivision is in the parabola, and conversely, all points of the parabola live in one of the subdivisions. I won't do this here. Anyways, as a bonus, we can plug in our formula for $K$ to get the area is exactly $\frac16(a-b)^3$ for $y=x^2.$
+
+\subsubsection{December 19th}
+Today I learned an explicit expression for $L(1,\chi)$ with Gauss sums, which I think leads towards the quadratic class number formula and a somewhat elementary proof of Dirichlet's theorem. I don't know the details of the applications as of now.
+
+Fix $\chi$ a nonprincipal character$\pmod m.$ For now let $s>1,$ to be taken to $1^+$ later. This lets us say
+\[L(s,\chi)=\sum_{n=1}^\infty\frac{\chi(n)}{n^s}\]
+converges absolutely, and therefore we may rearrange the terms as we want. The idea is that $\chi(n)$ is pretty poorly behaved, but it only has a finite amount of complexity because it's a character over $(\ZZ/m\ZZ)^\times.$ So we isolate residue classes and write
+\[L(s,\chi)=\sum_{t=1}^m\chi(t)\sum_{\substack{n=1\\n\equiv t}}^\infty\frac1{n^s}.\]
+We have to sift out $n\equiv t\pmod m$ now, which we do with a roots of unity filter. In particular, look at
+\[\sum_{k=0}^{m-1}\zeta_m^{tk}\zeta_m^{-nk}.\]
+If $t\equiv n,$ then all of these terms are $1,$ so we total to $m.$ If $t\not\equiv n,$ then this is a finite geometric series evaluating to $\frac{\zeta_m^{(t-n)m}-1}{\zeta_m^{t-n}-1}=0.$ So dividing this sum by $m$ will give our indicator, letting us write
+\[L(s,\chi)=\sum_{t=1}^m\chi(t)\sum_{n=1}^\infty\frac1{n^s}\sum_{k=0}^{m-1}\frac{\zeta_m^{tk}\zeta_m^{-nk}}m.\]
+This can be rearranged into something nicer by putting letters where they belong, like
+\[L(s,\chi)=\frac1m\sum_{k=0}^{m-1}\left(\sum_{t=1}^m\chi(t)\zeta_m^{tk}\right)\left(\sum_{n=1}^\infty\frac{\zeta_m^{-nk}}{n^s}\right).\]
+The sum over $t$ is $g_m(k,\chi),$ which is our Gauss sum. We will simplify it a bit more later. For now, we'd like to send $s\to1^+$ and then plug into the Taylor series of $-\log(1-z)$ to get rid of the infinite sum, but the $k=0$ will cause this to diverge. However, we're in luck, for $\chi$ nonprincipal implies
+\[g_m(0,\chi)=\sum_{t=1}^m\chi(t)\cdot1=0,\]
+making $k=0$ vanish. Indeed, for $\chi(T)\ne1,$ we could write $g_m(0,\chi)=\chi(T)g_m(0,\chi)$ because multiplication by $T$ is a bijection over $(\ZZ/m\ZZ)^\times,$ which gives the result. So we get to say
+\[L(s,\chi)=\frac1m\sum_{k=1}^{m-1}g_m(k,\chi)\left(\sum_{n=1}^\infty\frac{\zeta_m^{-nk}}{n^s}\right).\]
+Now we send $s\to1^+$ as promised, and the infinite sum will stabilize to $-\log\left(1-\zeta_m^{-k}\right).$ So we have
+\[L(1,\chi)=-\frac1m\sum_{k=1}^{m-1}g_m(k,\chi)\log\left(1-\zeta_m^{-k}\right),\]
+which is what we wanted.
+
+This can be simplified more, with a little more work. If we take $\chi$ primitive, then $g_m(k,\chi)$ will vanish for $(k,m)>1,$ which I don't show here. As for $(k,m)=1,$ we get to write
+\[g_m(k,\chi)=\sum_{\substack{t=1\\(t,m)=1}}^{m-1}\chi(t)\zeta_m^{tk}=\overline\chi(k)\sum_{\substack{tk=1\\(tk,m)=1}}^{m-1}\chi(tk)\zeta_m^{tk}=\overline\chi(k)g_m(1,\chi).\]
+This means that we can move the Gauss sum outside of our $L(1,\chi),$ giving
+\[L(1,\chi)=-\frac{g_m(1,\chi)}m\sum_{\substack{k=1\\(k,m)=1}}^{m-1}\overline\chi(k)\log\left(1-\zeta_m^{-k}\right).\]
+If sadistic, we can even make the log disappear, by noticing
+\[1-\zeta_m^{-k}=2i\zeta_m^{-k/2}\cdot\frac{\zeta_m^{k/2}-\zeta_m^{-k/2}}{2i}=2i\cdot\sin\left(\frac{k\pi}m\right)\zeta_m^{-k/2}.\]
+So the logarithm is $\log(2i)+\log\left(\sin\left(\frac{k\pi}m\right)\zeta_m^{-k/2}\right).$ The constant $\log(2i)$ will contribute a full sum $\log(2i)\sum\overline\chi(k),$ which vanishes. This gives us
+\[L(1,\chi)=-\frac{g_m(1,\chi)}m\sum_{\substack{k=1\\(k,m)=1}}^{m-1}\overline\chi(k)\left(\log\left(\sin\left(\frac{k\pi}m\right)\right)-\frac{k\pi i}m\right).\]
+From here we're supposed to divide this into cases where $\chi(-1)=1$ or $\chi(-1)=-1,$ but I can't be bothered. The above at least got rid of having to do compute logarithms of complex numbers, which is nice.
+
+\subsubsection{December 20th}
+Today I learned this finish of the proof of the class number formula. I think I'm going to read this in reverse because the hard part looks a bit unsatisfying without the finish. Notably, we are not doing number theory today. Fix $K$ a number field of degree $n,$ for concreteness. Anyways, the hard part is a statement about the distribution of ideals, roughly saying that it works as expected. Explicitly, we assume there exists a constant $\rho_K$ depending on $K$ such that
+\[\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\right\}=\rho_Kt+O\left(t^{1-1/n}\right).\]
+It will turn out that the $\rho_K$ is the interesting part. Read this as roughly saying that ideals really are the correct generalization of integers in $\ZZ$ in that they even have linear growth with respect to the norm.
+
+We are interested in the Dedekind zeta function $\zeta_K.$ The way the hypothesis will help us is by letting $\varepsilon_t=\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)=t\right\}-\rho_K$ so that
+\[\zeta_K(s)=\sum_I\frac1{\op{Norm}(I)^s}=\sum_{t=1}^\infty\frac{\rho_K+\varepsilon_t}{t^s}=\rho_K\zeta(s)+\underbrace{\sum_{t=1}^\infty\frac{\varepsilon_t}{t^s}}_{E(s)}.\]
+Roughly speaking, we see $\zeta_K(s)$ ``behaves'' like $\rho_K\zeta(s)$ plus some probably ugly $E(s).$ However, it will happen that $E(s)$ is defined for $\op{Re}(s)>1-\frac1n,$ which is enough structure. In particular, it means we can read the above equation as an analytic continuation of $\zeta_K(s)$ to $\op{Re}(s)>1-\frac1n.$ For example, $E(s)$ is defined at $1,$ so $\zeta_K(s)$ inherits from $\zeta(s)$ a pole at $s=1,$ with residue
+\[\lim_{s\to1}(s-1)\zeta_K(s)=\rho_K\left(\lim_{s\to1}(s-1)\zeta(s)\right)+\left(\lim_{s\to1}(s-1)E(s)\right)=\rho_K\cdot1+0=\rho_K.\]
+We used the fact that the residue at $s=1$ of $\zeta(s)$ is $1,$ which I will show later for completeness. Anyways, that's the end of the proof of the class number formula. I'll learn about $\rho_K$ later.
+
+Let's fill in some of those details. I've learned these facts about Dirichlet series before, so this is acting as review. We need to analyze $E(s).$ We show that $E(s)$ is defined for $\op{Re}(s)>1-\frac1n,$ which will be enough for $E(s)$ be defined at $s=1.$ So fix $\op{Re}(s)>1-\frac1n.$ All we know is that the summatory function 
+\[A(t)=\varepsilon_1+\cdots+\varepsilon_t=\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\right\}-\rho_Kt=O\left(t^{1-1/n}\right)\]
+by hypothesis. In fact, this is the only place we use the hypothesis. This bounding is enough for what we want. Setting up Abel summation, we write the Riemann-Stieltjes integral
+\[E(s)=\sum_{t=1}^\infty\frac{\varepsilon_t}{t^s}=\int_{1^-}^\infty\frac{dA(t)}{t^s}.\]
+Here, I am stealing the notation $1^-$ to mean any real number slightly less than $1.$ Integrating by parts,
+\[E(s)=\frac{A(t)}{t^s}\bigg|_{1^-}^\infty-\int_{1^-}^\infty A(t)\,d\left(t^{-s}\right).\]
+The main term vanishes---$A\left(1^-\right)=0,$ and $\op{Re}(s)>1-\frac1n$ implies $A(t)t^{-s}=O\left(t^{1-1/n-\op{Re}(s)}\right)$ vanishes. As for the integral, it is
+\[E(s)=s\int_{1^-}^\infty A(t)t^{-s-1}\,dt.\]
+This integral is defined for $\op{Re}(s)>1-\frac1n$ because the integrand has growth rate $O\left(t^{1-1/n}t^{-\op{Re}(s)-1}\right)=O\left(t^{1-\varepsilon}\right)$ for some $\varepsilon>0.$ I guess formally, we'd write, for some large $N$ being sent to infinity,
+\[\int_{1^-}^\infty A(t)t^{-s-1}\,dt=\int_{1^-}^NA(t)t^{-s-1}\,dt+\int_N^\infty A(t)t^{-s-1}\,dt,\]
+and we can bound the infinite integral as
+\[O\left(\int_N^\infty t^{1-1/n}t^{-\op{Re}(s)-1}\,dt\right)=O\left(t^{1-1/n-\op{Re}(s)}\bigg|_N^\infty\right)=o(1).\]
+It follows that $E(s)$ is defined for $\op{Re}(s)>1-\frac1n$ (with no pole at $s=1$), as desired.
+
+Very quickly, let's review $\zeta(s).$ We show that it has an analytic continuation to $\op{Re}(s)>0$ with a pole at $s=1$ of residue $1.$ Repeating our Abel summation, we see for $\op{Re}(s)>1$ that
+\[\zeta(s)=\sum_{t=1}^\infty\frac1{t^s}=\int_{1^-}^\infty\frac{d\floor t}{t^s}=\frac{\floor t}{t^s}\bigg|_{1^-}^\infty-\int_{1^-}^\infty\floor t\,d\left(t^{-s}\right).\]
+The main term vanishes for the same reasons as before; note $\floor t=o\left(t^{\op{Re}(s)}\right).$ So we see
+\[\zeta(s)=s\int_{1^-}^\infty\frac{\floor t}{t^{s+1}}\,dt.\]
+This will be our analytic continuation to $\op{Re}(s)>0$ with the desired pole at $s=1.$ The argument from before would tell us that it is defined for $\op{Re}(s)>1,$ which is unremarkable. So the trick is to split $\floor t=t-\{t\}$ to get control on the ``main'' $t$ term, giving
+\[\zeta(s)=s\int_{1^-}^\infty\frac1{t^s}\,dt+s\int_{1^-}^\infty\frac{\{t\}}{t^{s+1}}\,dt.\]
+We see the main term is $\frac s{s-1}$ after integrating. Further, because $\{t\}=O(1),$ we can let $A(t)=\{t\}$ as in the end of the argument around $E(s),$ implying the integral is defined for $\op{Re}(s)>0.$ So we have established
+\[\zeta(s)=\frac s{s-1}+s\int_{1^-}^\infty\frac{\{t\}}{t^{s+1}}\,dt\]
+is an analytic continuation of $\zeta(s)$ to $\op{Re}(s)>0,$ minus that denominator which explodes at $s=1.$ This pole will have residue
+\[\lim_{s\to1}(s-1)\zeta(s)=\left(\lim_{s\to1}s\right)+\left(\lim_{s\to1}(s-1)s\int_{1^-}^\infty\frac{\{t\}}{t^{s+1}}\,dt\right)=1+0=1.\]
+This is what we wanted, so we are done here.
+
+As an aside, we did evaluate $\rho_K$ for imaginary quadratic fields last month. Namely, we found
+\[\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\right\}=\frac{2\pi h_K}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t).\]
+In light of the above work, we can therefore say
+\[\lim_{s\to1}(s-1)\zeta_K(s)=\frac{2\pi h_K}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}.\]
+So it turns out I was closer to the class number formula in this case than I thought.
+
+\subsubsection{December 21st}
+Today I learned the core of the proof of the class number formula. As usual, $K$ is a number field of degree $n$ and signature $(r,s).$ Recall we are interested in showing there exists (and computing) a constant $\rho_K$ such that
+\[\#\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\}=\rho_Kt+O\left(t^{1-1/n}\right).\]
+We choose to compute ideals by ideal class instead, defining $\iota_C(t)$ for ideal class $C$ by
+\[\iota_C(t)=\#\{I\in C:\op{Norm}(I)\le t\}\]
+as we did a month ago. It will be enough to show that there exists some constant $\frac{\rho_K}{h_K}$ not dependent on $C$ such that $\iota_C(t)=\frac{\rho_K}{h_K}t+O\left(t^{1-1/n}\right).$ Roughly speaking, we're reducing the problem by saying that ideals should be distributed equally across ideal classes and counting by ideal class.
+
+Our goal now is to turn this question about counting ideals into a geometric question about counting points in the Minkowski space, similar to proving finiteness of the class number or Dirichlet's unit theorem. Geometry will probably be necessary, so the hope is that counting points is doable using some kind of argument like the Gauss circle problem and will give the result.
+
+Anyways, the advantage we gain by counting by ideal class is that it lets us transform the question into one about principal ideals, which is almost counting points. Namely, fix $\Lambda$ some (integral) ideal in $C^{-1}.$ (I'm using $\Lambda$ because we're going to want to think about $\Lambda$ as a lattice in $K_\RR.$) We recall that integral ideals $I\in C$ of norm $\op{Norm}(I)\le t$ are in bijection with nonzero principal ideals $(\alpha)\subseteq\Lambda$ of norm $\op{Norm}(\alpha)\le t\op{Norm}(\Lambda).$
+
+Namely, the bijection takes $I\mapsto I\Lambda,$ which is principal. It's injective by group law; it's surjective holds because $(\alpha)\Lambda^{-1}$ is integral provided $\Lambda\supseteq(\alpha).$ Anyways, we see
+\[\iota_C(t)=\#\{\text{nonzero }(\alpha)\subseteq\Lambda:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}.\]
+We'd like to count points, so we note that principal ideals $(\alpha)=(\alpha')$ are equal if and only if $\alpha/\alpha'\in\mathcal O_K^\times.$ So we count points ``modded'' out by $\mathcal O_K^\times.$ We write
+\[\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/\mathcal O_K^\times.\]
+This was a bit too ambitious---we will need more control on this mod to actually count this set. So we recall Dirichlet's unit theorem says $\mathcal O_K\cong\mu(K)\times U,$ where $U$ is a free group of rank $r+s-1.$ The torsion $\mu(K)$ is kind of annoying to deal with, but we note that it's evenly spaced, so we claim
+\[\iota_C(t)=\frac1{\#\mu(K)}\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]
+In particular, each $(\alpha)$ is now represented by each element in $\alpha\mu(K),$ which is $\mu(K)$ elements. For brevity, let $w_K:=\#\mu(K).$ So we have
+\[w_K\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]
+
+It turns out that this is not the right way to look at this set. This is written as elements of $\Lambda$ with small norm, but it will be more productive to visualize all elements of $K$ with sufficiently small norm as some sort of blob and then count lattice points of $\Lambda.$ (Think Gauss circle problem.) Abusing notation slightly, we want to write
+\[w_K\iota_C(t)=\#(\{\alpha\in K^\times/U:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda),\]
+where $K^\times/U$ is over coset representatives. (Note that different representatives have the same norm.) We understood $U$ best by looking at the Minkowski space $K_\RR,$ so that's where we turn. Note that nothing changes when we write
+\[w_K\iota_C(t)=\#(\{\alpha\in K_\RR^\times/U:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda).\]
+In particular, though $K_\RR^\times$ is bigger than $K^\times,$ we're intersecting with $\Lambda\subseteq K,$ so we don't introduce any problems. The issue with this expression is that we don't understand $K_\RR^\times/U$ very well. So we want to define some reasonably well-behaved set $S\subseteq K_\RR$ which consists of coset representatives of $K_\RR^\times/U.$
+
+Let's see how a nice $S$ could let us finish the argument. We then get to concretely say
+\[w_K\iota_C(t)=\#(\{\alpha\in S:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda).\]
+If $S$ is scale-invariant, then we can write
+\[w_K\iota_C(t)=\#\left((t\op{Norm}(\Lambda))^{1/n}\{\alpha\in S:\op{Norm}(\alpha)\le1\}\cap\Lambda\right).\]
+For brevity, fix $S_{\le1}:=\{\alpha\in S:\op{Norm}(\alpha)\le1\}.$ If the boundary of $S$ is $(n-1)$-Lipschitz 
+parametrizable (a condition we won't define now), it turns out that we even get to say
+\[\#\left(tS_{\le1}\cap\Lambda\right)=\left(\frac{\mu(S_{\le1})}{\op{vol}(K_\RR/\Lambda)}\right)t^n+O\left(t^{n-1}\right).\]
+Here $\mu$ is the measure on the Minkowski space. This statement is best read as a generalization of the Gauss circle problem: if we have a blob $tS_{\le1},$ we expect the number of lattice points of $\Lambda$ in there to be the number of the volume of the blob divided by the covolume of the lattice, with error corresponding to the boundary of the blob. Anyways, this tells us
+\[w_K\iota_C(t)=\frac{\mu(S_{\le1})}{\op{vol}(K_\RR/\Lambda)}(t\op{Norm}(\Lambda))+O\left(t^{1-1/n}\right).\]
+To finish, we recall $\op{vol}(K_\RR/\Lambda)=[\mathcal O_K:\Lambda]\op{vol}(K_\RR/\mathcal O_K)=\op{Norm}(\Lambda)\sqrt{|\op{disc}(\mathcal O_K)|}.$ So we get to rearrange this to
+\[\iota_C(t)=\left(\frac{\mu(S_{\le1})}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}\right)t+O\left(t^{1-1/n}\right).\]
+It follows that $\frac{\rho_K}{h_K}=\frac{\mu(S_{\le1})}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}$ would finish the proof. Note this does not depend on the ideal class $C.$ Plugging this into our work from yesterday, we find that
+\[\lim_{z\to1}(z-1)\zeta_K(z)=\rho_K=\frac{\mu(S_{\le1})h_K}{w_K\sqrt{|\disc(\mathcal O_K)|}}.\]
+We are slowly honing in on the class number formula. It might be fun at the end to explicitly track where all the terms of the class number formula came from.
+
+It remains to create a nice $S$ and then compute $\mu(S_{\le1}).$ To review, the end of the argument requires the following.
+\begin{itemize}
+    \item $S$ consists of representatives of $K_\RR^\times/U.$
+    \item $S$ is scale-invariant.
+    \item $\del S_{\le1}$ is $(n-1)$-Lipschitz parametrizable, and this implies the generalization of the Gauss circle problem.
+    \item $\mu(S_{\le1})$ can be computed.
+\end{itemize}
+In the imaginary quadratic case, this is especially simple because $U$ is trivial, so we can just set $S=K_\RR$ without worries. There is little to say about the first two properties, the third property is the actual Gauss circle problem, and $\mu(S_{\le1})=2\pi.$ The $2$ comes from the fact that the measure $\mu$ on $K_\RR$ double-counts complex embeddings.
+
+Currently, I know how to construct $S$ to satisfy the first two properties but don't know the details for the last two. The easiest starting place is to look at the trace $0$ hyperplane $\op{Log}(K_{\RR,1}^\times)$ spanned by $U.$ Then we can look at a fundamental domain $\op{Log}(K_{\RR,1}^\times)/U$ to at least span this trace $0$ hyperplane with $U$ and name it $F.$ Now, $\op{Log}^{-1}(F)$ is close but is missing a dimension because the hyperplane has dimension $n-1.$
+
+The easiest way to add a dimension is to just add a vector $v$ and then let $S=\op{Log}^{-1}(F\oplus\RR v),$ but we have to be careful to keep $S$ scale invariant. Being scale-invariant means that for $a\in\RR^\times$ and $x\in S,$ we need $ax\in S.$ Moving to $\op{Log}(K_\RR),$ we need $\op{Log}(x)\in\op{Log}(S)$ to imply $\op{Log}(x)+\op{Log}(a)\in\op{Log}(S).$ Thus, $\op{Log}(\RR^\times)\subseteq\op{Log}(S),$ which means
+\[(\underbrace{1,\ldots,1}_r,\underbrace{2,\ldots,2}_s)\in\op{Log}(S).\]
+So $S=\op{Log}^{-1}(F\oplus\RR\left(1,\ldots,1,2,\ldots,2\right))$ will be scale-invariant. Abusing notation, this is probably best read as $S=\RR\op{Log}^{-1}(F)$ to mean multiples of every element in $\op{Log}^{-1}(F).$
+
+Another way to do construct the same $S$ is to project $K_\RR$ onto $K_{\RR,1}$ to account for the needed dimension. A natural way to do this is by writing
+\[\pi:x\mapsto\frac x{\sqrt[n]{\op{Norm}(x)}}.\]
+This is a multiplicative homomorphism, surjective because $K_{\RR,1}$ is fixed. It follows $\pi(K_\RR)$ is indeed spanned by $U,$ so we can let $S=\pi^{-1}\left(\op{Log}^{-1}(F)\right).$ This is scale-invariant because the projection is scale-invariant. Again, this is really $S=\RR\op{Log}^{-1}(F)$ in disguise, seen because $\pi^{-1}(x)$ consists of all multiples of $x$ in $K_\RR.$
+
+I guess I should say something about $S$ consisting of representatives of $K_\RR^\times/U.$ That is, for each nonzero $x\in K_\RR^\times,$ we see $xU$ has a single representative in $S.$ To get a representation, write
+\[x=\sqrt[n]{\op{Norm}(x)}\cdot u\]
+for $u$ of norm $1.$ Taking logs, we know $\op{Log}\left(\sqrt[n]{\op{Norm}(x)}\right)\in\RR(1,\ldots,1,2,\ldots,2)$ by construction, and $\op{Log}(u)$ can be written as an element of $\op{Log}(U)$ plus an element of $F$ by definition of $F.$ Reversing the logs shows that $x$ is represented in $S.$
+
+This representation is unique. Suppose we've represented $xU$ by $rf\in xU$ for $r\in\RR$ and $f\in\op{Log}^{-1}(F).$ Taking norms, we see $\op{Norm}(x)=r^n,$ so we see $r=\sqrt[n]{\op{Norm}(x)}$ is in fact necessary. Further, we then have
+\[\frac xr=\frac x{\sqrt[n]{\op{Norm}(x)}}\]
+has norm $1$ now, so there's only one option for $fU$ by definition of the fundamental domain. So there is only one option for $r$ and $f$ to be.
+
+\subsubsection{December 22nd}
+Today I learned the details of the proof of the class number formula. We begin with a definition of $n$-Lipschitz parametrizable. A set $S$ is $n$-Lipschitz parametrizable if and only if it can be covered by some finite set of Lipschitz functions $f_\bullet:[0,1]^n\to S.$ Lipschitz means that there exists a global constant $\lambda$ such that
+\[|f(x)-f(y)|<\lambda|x-y|.\]
+The claim we want to show that is if we have a set $S\subseteq\RR^n$ with boundary $\del S$ that is $(n-1)$-Lipschitz parametrizable, then
+\[\#(tS\cap\Lambda)=\frac{\mu(S)}{\op{covol}(\Lambda)}t^n+O\left(t^{n-1}\right)\]
+for real values $t\in\RR.$ Read this as generalized Gauss circle problem.
+
+To get the easy reductions out of the way, note it's sufficient for $t\in\ZZ$ because
+\[\#(\floor tS\cap\Lambda)\le\#(tS\cap\Lambda)\le\#(\ceil tS\cap\Lambda),\]
+so if the result is true for $\floor t$ and $\ceil t,$ then our error term for the middle term is upper-bounded by $\ceil t^n-\floor t^n\le(t+1)^n-(t-1)^n=O\left(t^{n-1}\right).$ 
+
+Additionally, we may take $\Lambda=\ZZ^n.$ Indeed, the lattice $\Lambda$ is the image of a linear transformation $L$ under $\ZZ^n,$ and reversing this linear transformation will take $\Lambda\to\ZZ^n.$ Then $S$ gets sent to $L^{-1}(S),$ and the boundary of $S$ remains Lipschitz under the transformation. Note that scaling both back will not change the number of lattice points, and $\mu(S)$ will scale back with the covolume of the lattice, both by $\det(L).$ Technically this reduction isn't necessary, but it reduces headaches.
+
+So we want to show that
+\[\#\left(tS\cap\ZZ^n\right)=\mu(S)t^n+O\left(t^{n-1}\right).\]
+To count the number of lattice points, we bound as in the Gauss circle problem. Partition $\RR^n$ into half-open unit cubes by
+\[C(a_1,\ldots,a_n)=\prod_{k=1}^n[a_k,a_k+1)\]
+for $(a_1,\ldots,a_n)\in\ZZ^n.$ Then we define the following two bounding functions
+\begin{align*}
+    \iota^+(tS) &= \#\left\{a\in\ZZ^n:C(a)\cap tS\ne\emp\right\},\\
+    \iota^-(tS) &= \#\left\{a\in\ZZ^n:C(a)\subseteq tS\right\}.
+\end{align*}
+Note that $\iota^-(tS)\le\mu(tS),\#(tS\cap\ZZ^n)\le\iota^+(tS).$ Indeed, to bound $\mu(S),$ $\iota^-(tS)\le\mu(tS)$ holds because each cube is disjoint and has volume $1,$ so their union will have volume $\iota^-(tS)$ while inside $\mu(tS)$; similarly, $\mu(tS)\le\iota^+(tS)$ because every point in $\mu(tS)$ is in some cube and is therefore in some cube in $\iota^+(tS).$
+
+To bound $\#(tS\cap\ZZ^n),$ note $\iota^-(tS)\le\#(tS\cap\ZZ^n)$ because each cube in $\iota^-(tS)$ contributes at least one lattice point to $\#(tS\cap\ZZ^n)$; similarly, $\#(tS\cap\ZZ^n)\le\iota^+(tS)$ because every lattice point in $tS\cap\ZZ^n$ gets counted in some cube of $\iota^+(tS).$
+
+Anyways, this maens that
+\[\left|\mu(tS)-\#\left(tS\cap\ZZ^n\right)\right|\le\iota^+(tS)-\iota^-(tS),\]
+so it suffices to show that $\iota^+(tS)=\iota^-(tS)+O\left(t^{n-1}\right).$ Well, this quantity is
+\[\iota^+(tS)-\iota^-(tS)=\#\left\{a\in\ZZ^n:C(a)\cap tS\ne\emp,tS\right\}.\]
+Namely, we count cubes $C(a)$ which are only partially contained in $S.$ By connecting a point of $C(a)$ inside and outside of $S,$ we see that this is equivalent to counting cubes which intersect the boundary $\del(tS).$ So we need to show
+\[\#\left\{a\in\ZZ^n:C(a)\cap\del(tS)\ne\emp\right\}=O\left(t^{n-1}\right).\]
+So far this argument is written to mimic the Gauss circle problem. At this point, we would notice that the number of lattice points touching a circle of radius $r$ is bounded by the perimeter of a square of side length $2t$ surrounding the circle to finish. We will have to try a bit harder for the general case.
+
+We see the boundary, so it's time to use the fact that $\del S$ (and therefore $\del(tS)=t\del S$) is $(n-1)$-Lipschitz parametrizable. Suppose $f_1,\ldots,f_m$ cover $\del S.$ Then we're interested in bounding
+\[\#\left\{a\in\ZZ^n:C(a)\cap\bigcup_{k=1}^mtf_k\left([0,1]^{n-1}\right)\ne\emp\right\}\le\sum_{k=1}^m\#\left\{a\in\ZZ^n:C(a)\cap tf_k\left([0,1]^{n-1}\right)\ne\emp\right\}.\]
+Therefore it suffices to show that for any Lipschitz $f:[0,1]^{n-1}\to\RR^n,$ we have that
+\[\#\left\{a\in\ZZ^n:C(a)\cap tf\left([0,1]^{n-1}\right)\ne\emp\right\}=O\left(t^{n-1}\right).\]
+Extract the $\lambda$ belonging to $f$ due to being Lipschitz.
+
+The main trick now is to divide into $[0,1]^{n-1}$ a total of $t^{n-1}$ cubes in the obvious way; we need each subcube to have $O(1)$ lattice points. Each of these cubes has diameter $\sqrt{n-1}/t,$ so for any $x,y$ in the same cube, we see
+\[|tf(x)-tf(y)|\le t\lambda|x-y|\le\lambda\sqrt{n-1}.\]
+Importantly, this is independent of $t.$ So now we get to be more liberal with our bounds---the above tells us that image of one of these $t^{n-1}$ subcubes under $tf$ is contained in a ball centered around $tf(x)$ (for any $x$ in our subcube) of radius $\lambda\sqrt{n-1}.$ The number of lattice points in such a ball is certainly less than
+\[\left(2\lambda\sqrt{n-1}+2\right)^n\]
+by placing the ball into an $n$-cube of side length longer than the diameter of the ball. But this quantity is $O(1)$ with respect to $t,$ so we are done here.
+
+It remains to apply this to the class number formula. Namely, we need to show $\del S_{\le1}$ is $(n-1)$-Lipschitz parametrizable, and then we need to compute $\mu(S_{\le1}).$ I'm going to outline showing that the $S_{\le1}$ is $(n-1)$-Lipschitz parametrizable because I don't think it's a very human result. Essentially, we will need to parameterize $S_{\le1}$ by logarithms somehow, so we note the following isomorphism.
+\begin{align*}
+    K_\RR^\times=(\RR^\times)^r\times(\CC^\times)^s &\longrightarrow \RR^{r+s}\times\{\pm1\}^r\times[0,2\pi)^s \\
+    x &\longmapsto \op{Log}(x) \times (\sgn(x_1),\ldots,\sgn(x_r)) \times (\arg(z_1)\ldots,\arg(z_s)).
+\end{align*}
+Pushing $S_{\le1}$ through the isomorphism, we will have $\{\pm1\}^r$ different components, but we can parameterize these separately to cover $S_{\le1}.$ Additionally, we will require $s$ parameters for each $[0,2\pi),$ but this is still not a problem.
+
+Parameterizing the $\op{Log}$ factor is a bit more obnoxious. Luckily for us, $\op{Log}(S)=F\oplus(1,\ldots,1,2,\ldots,2).$ Then we can parameterize $F$ with its $r+s-1$  basis vectors (coming from $[0,1)$), and then we just have to account for the $(1,\ldots,2)$ vector. This vector encodes the norm, which lives in $(0,1],$ so we can just use the norm to parameterize this factor. Thus, we have expressed $S_{\le1}$ as the image of some function from
+\[f:[0,1)^{r+s-1}\times(0,1]\times\{\pm1\}^r\times[0,1)^s\to S_{\le1}.\]
+Note that the domain has dimension $n.$ The individual components of $f$ we expressed using linear transformations (for $[0,2\pi)$ and the norm) or exponentials (for $F$), all of which are locally Lipschitz and therefore continuous.
+
+It follows that the interior of the half-open $n$-cube that is the domain of $f$ gets mapped to the interior of $S_{\le1},$ so the boundary of our $(n-1)$-cube will have to get mapped to the boundary $\del S_{\le1}.$ (Extend $f$ to the endpoints of each interval as necessary.) Finally, noting that the boundary of an $n$-cube is certainly $(n-1)$-Lipschitz means that the image of $f$ under the boundary is also $(n-1)$-Lipschitz, which is what we wanted.
+
+This completes the first task---showing that $\del S_{\le1}$ is $(n-1)$-Lipschitz parametrizable. It remains to compute $\mu(S_{\le1}),$ which is a more interesting task. The actual reason I bothered doing as many details as I did to show $\del S_{\le1}$ is $(n-1)$-Lipschitz is that the given mappings are how we are going to compute $\mu(S_{\le1}).$ For starters, note the Minkowski measure maps to
+\begin{align*}
+    K_\RR^\times &\longrightarrow (\RR^\times)^r\times(\CC^\times)^s, \\
+    d\mu &\longmapsto (dx)^r(2dA)^s.
+\end{align*}
+The $2$ comes from the Minkowski measure double-counting complex embeddings. As suggested, we now transform to log space. Each $\RR^\times$ looks like
+\begin{align*}
+    \RR^\times &\longrightarrow \RR \times \{\pm1\}, \\
+    x & \longmapsto (\log|x|,\sgn(x)), \\
+    dx & \longmapsto e^\ell d\ell\cdot d\mu_{\pm1}.
+\end{align*}
+The $\CC^\times$ are a bit weirder to make the $2$ behave. We write
+\begin{align*}
+    \CC^\times &\longrightarrow \RR \times [0,2\pi), \\
+    z & \longmapsto (2\log|z|,\arg(z)), \\
+    2dA & \longmapsto e^\ell d\ell\cdot d\mu_{[0,2\pi)}.
+\end{align*}
+Yes, the $2$ did magically disappear---$z=e^{\ell/2}$ means $2dA=2e^{\ell/2}d\left(e^{\ell/2}\right)=e^\ell d\ell.$ It follows our measure $\mu$ of $K_\RR$ maps to
+\begin{align*}
+    K_\RR^\times &\longrightarrow \RR^{r+s}\times\{\pm1\}^r\times[0,2\pi)^s, \\
+    d\mu &\longmapsto e^{\sum(\ell_\bullet)}d\mu_{\RR^{r+s}}\cdot d\mu_{\{\pm1\}}^r\cdot d\mu_{[0,2\pi)}^s.
+\end{align*}
+Here $\sum(\ell_\bullet)$ refers to the sum of the coordinates. Now, we're interested in computing $\mu(S_{\le1}),$ so it would be nice if the logarithm of the norm appeared as one of the coordinates. So we write
+\begin{align*}
+    \RR^{r+s} &\longrightarrow \RR^{r+s-1}\times\RR, \\
+    (x_1,\ldots,x_n) &\longmapsto (x_1,\ldots,x_{n-1})\times(x_1+\cdots+x_{n-1}), \\
+    e^{\sum(\ell_\bullet)}d\mu_{\RR^{r+s}} &\longmapsto e^yd\mu_{\RR^{r+s-1}}\cdot dy.
+\end{align*}
+Our coordinate $y$ now tracks the logarithm of the norm. Note that $\op{Log}(S_{\le1})=F\oplus\RR(1,\ldots,2)$ under this coordinate change will have the first $r+s-1$ coordinates track a coordinate projected $F$ and $y$ track the component of $(1,\ldots,2)$ as the logarithm of the norm. So $\mu_{\RR^{r+s-1}}(\text{projected }F)=\op{Reg}_K$ by definition of the regulator, and $y$ ranges in $(-\infty,0]$ while in $S_{\le1}.$
+
+In total, we get to write, abusing notation a bit,
+\[\int_{S_{\le1}}d\mu=\int_{-\infty}^0e^y\,dy\cdot\int_Fd\mu_{\RR^{r+s-1}}\cdot\int d\mu_{\{\pm1\}}^r\cdot\int d\mu_{[0,2\pi)}^s=\op{Reg}_K\cdot2^r\cdot(2\pi)^s,\]
+which completes the proof of the class number formula. Putting it all together, we see
+\[\lim_{z\to1}(z-1)\zeta_K(s)=\rho_K=\frac{\mu(S_{\le1})h_K}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}=\frac{2^r(2\pi)^s\op{Reg}_Kh_K}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}},\]
+which is what we wanted. We quickly review where each component comes from.
+\begin{itemize}
+    \item The $\zeta_K(s)$ stuff is a mask to compute the growth rate of ideals with respect to the norm, which is linear with $\rho_K$ as constant of proportionality.
+    \item To compute $\rho_K,$ we split up by ideal class and find each ideal class has the same growth rate, which is where $h_K$ comes from. This lets us count principal ideals in a lattice instead of arbitrary ideals.
+    \item To count principal ideals in a lattice, we remove roots of unity by dividing them out (which is where $w_K$ comes from) and then count lattice points in some set of coset representative of $K_\RR/U.$
+    \item The size of the lattice, scaled appropriately, cancels out to $\sqrt{|\op{disc}(\mathcal O_K)|}.$
+    \item The regulator comes from the size of the coset representatives of $K_\RR/U$ when ported over to log space.
+\end{itemize}
+As I understand it, the $2^r$ and $(2\pi)^s$ are more or less details that just come out of the mathematics.
+
+\subsubsection{December 23rd}
+Today I learned the correct context for the zeta function of the ring of integers in a function field. Fix a global field $K$ with a ring of integers $\mathcal O_K.$ The zeta function of interest, then, is
+\[\zeta_{\mathcal O_K}(s)=\sum_{I\subseteq\mathcal O_K}\frac1{\op{Norm}(I)^s},\]
+where the sum ranges over nonzero ideal of $\mathcal O_K.$ Here we define $\op{Norm}(I)$ to be $\#\mathcal O_K/\mf p$ for primes and then extend multiplicatively to all ideals by unique prime factorization. This of course matches with how we defined ideal norms in number fields, and the zeta functions also match.
+
+However, the $\zeta$ function for function fields turns out to be a lot nicer. Let $K=\FF_q(t)$ so that $\mathcal O_K=\FF_q[t],$ and abbreviate $\zeta_q:=\zeta_{\mathcal O_K}.$ What makes $\zeta_q$ so nice is that $\mathcal O_K$ is always a principal ideal domain and has finitely many units, which of course is rarely true for number fields.
+
+We show $\mathcal O_K$ is a principal ideal domain for completeness and because it's the core of the argument. Fix any nonzero ideal $I\subseteq\mathcal O_K.$ It's nonzero, so it contains some nonzero polynomial, so it contains some nonzero polynomial of least degree, say $f(t).$ We claim $I=(f(t)).$ Certainly $(f(t))\subseteq I$ because $f(t)\in I.$ In the other direction, if $p(t)\in I,$ then apply Euclidean division (we're in a field) so that
+\[p(t)=q(t)f(t)+r(t).\]
+Here $r(t)=p(t)-q(t)f(t)\in I$ is either $0$ or is nonzero with strictly smaller degree than $f.$ The latter is impossible by the minimality of $f,$ so $r(t)=0,$ forcing $p(t)\in(f(t)),$ as desired.
+
+The above tells us that we can represent any nonzero ideal $I$ as $(f)$ for some polynomial in $\mathcal O_K\setminus\{0\}.$ To account for over-counting, we have to deal with units. Note we can make this more precise by forcing $f$ monic by just multiplying whatever $f$ we chose by the inverse of its leading coefficient. Then if $I$ is represented by $(f)$ and $(g),$ then they both have the same degree (by construction) are both monic (without loss of generality), so when we write
+\[f=ug\]
+for some polynomial $u\in\mathcal O_K^\times,$ we have to have $\deg u=0$ and $u=1$ to make the leading coefficients match. Therefore $f=g,$ so nonzero ideals are in fact uniquely represented by monic polynomials.
+
+Before touching $\zeta_q,$ we still have to talk about ideal norms. Suppose we have a prime factorization into irreducibles
+\[f=\prod_{k=1}^r\pi_k.\]
+All polynomials here are monic to account for leading coefficients. By equating generators,
+\[\op{Norm}((f))=\op{Norm}\left(\prod_{k=1}^r(\pi_k)\right)=\prod_{k=1}^r\op{Norm}((\pi_k)).\]
+As usual, $\pi$ being irreducible is equivalent to $(\pi)$ being prime (this is a principal ideal domain), so $\op{Norm}((\pi))=\#\mathcal O_K/(\pi).$ But this is
+\[\#\frac{\FF_q[t]}{(\pi(t))}\cong\#\FF_{q^{\deg\pi}}=q^{\deg\pi}\]
+by the construction of finite fields. So we see
+\[\op{Norm}((f))=\prod_{k=1}^rq^{\deg\pi_k}=q^{\deg\prod\pi_k}=q^{\deg f}.\]
+So norms are also well-behaved in function fields.
+
+Now we can destroy $\zeta_q.$ Taking hints from the class number formula, we sum ideals by their norm. (If $\zeta_q$ converges, then it absolutely converges.) We know all norms have the form $q^d.$ The number of ideals of norm $q^d$ is the number of monic polynomials of degree $d,$ which is also $q^d$ because there are $d$ remaining coefficients in $\FF_q$ to determine. It follows
+\[\zeta_q(s)=\sum_{I\subseteq\mathcal O_K}\frac1{\op{Norm}(I)^s}=\sum_{d=0}^\infty\frac{q^d}{q^{ds}}=\sum_{d=0}^\infty\left(q^{1-s}\right)^d=\frac1{1-q^{1-s}},\]
+where we have simplified using the geometric series formula. This converges provided that $\left|q^{1-s}\right|=q^{1-\op{Re}(s)}<1,$ which happens if and only if $\op{Re}(s)>1.$
+
+However, we now see the function $\frac1{1-q^{1-s}}$ actually provides an analytic continuation of $\zeta_q(s)$ to all of $\CC,$ defined everywhere except at the pole at $s=1.$ We could take the derivative to prove being meromorphic, but we don't bother. Blindly using L'H\^ospital's Rule lets us say the residue of this pole is
+\[\lim_{s\to1}\frac{s-1}{1-q^{1-s}}=\lim_{s\to1}\frac1{-(-s\log(q))q^{1-s}}=\frac1{\log q}.\]
+Notably, this does not align with what we said during the class number formula that the residue of this pole should be a constant $\rho$ such that
+\[\#\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\}=\rho t+o(t).\]
+As for why, I think the fact that the ideal norms are so sparsely distributed makes the error term in our estimations die. I'm not sure right now, but I think $\frac1{\log q}$ more or less gives an ``average'' value of $\rho$ as $t$ varies.
+
+We even have a Riemann hypothesis because this analytic continuation actually has no zeroes at all, so all of its zeroes in any critical strip lie vacuously on whatever critical line of interest.
+
+\subsubsection{December 24th}
+Today I learned the proof of the prime number theorem for function fields using $\zeta_q.$ (I'm used to doing this by counting field extensions.) We do have an Euler product
+\[\zeta_q(s)=\prod_\mf p\frac1{1-\op{Norm}(\mf p)^{-s}}=\prod_{(\pi)}\frac1{1-q^{-s\deg\pi}},\]
+proven in the same way that we prove the Euler product for Dedekind zeta functions. I won't do so here; if interested, the idea is to note that the Euler product with only finitely many factors (say, those of degree $\le d$) will have all elements of $\zeta_q$ of degree $\le d$ while not having all elements in $\zeta_q.$ Sending $d\to\infty$ recovers the equality by squeeze theorem.
+
+Anyways, let $\iota_d$ be the number of monic irreducibles of degree $d,$ and then
+\[\zeta_q(s)=\prod_{d=1}^\infty\left(\frac1{1-q^{-sd}}\right)^{\iota_d}.\]
+Recall the analytic continuation of $\zeta_q$ from yesterday, which lets us say
+\[\frac1{1-q^{1-s}}=\prod_{d=0}^\infty\left(\frac1{1-q^{-sd}}\right)^{\iota_d}\]
+for $\op{Re}(s)>1.$ Note there are no $0$s in this region for the left-hand side, for there are no $0$s anywhere for $\zeta_q$---recall the ``Riemann hypothesis'' from yesterday.
+
+The key step, then, is to happily take $\log$ to say
+\[-\log\left(1-q^{1-s}\right)=\sum_{d=1}^\infty-\iota_d\log\left(1-q^{-sd}\right)\]
+for $\op{Re}(s)>1.$ The series converges because the product did, but I suppose we could show this by another means; we don't bother. We would like to introduce a double summation to rearrange, so let's expand out $\log.$ Note that $\op{Re}(s)>1$ means $\left|q^{1-s}\right|<1$ and $\left|q^{-sd}\right|<1,$ so we may apply the Taylor series for $-\log(1-z).$ So we see
+\[\sum_{k=1}^\infty\frac{\left(q^{1-s}\right)^k}k=\sum_{d=1}^\infty\sum_{k=1}^\infty\frac{\iota_d\left(q^{-sd}\right)^k}k=\sum_{k=1}^\infty\sum_{d=1}^\infty\frac{\iota_d\left(q^{-sd}\right)^k}k.\]
+for $\op{Re}(s)>1.$ (All terms are positive, so rearrangement is permitted.) We would like to end this part of the proof by saying something nontrivial with the equality of Taylor coefficients. To make this clearer, we let $z=q^{1-s}$ and write the above as
+\[\sum_{k=1}^\infty\frac{z^k}k=\sum_{k=1}^\infty\sum_{d=1}^\infty\frac{\iota_dq^{-dk}z^{dk}}k.\]
+The way we make this collapse is to sum not over $k$ but over $dk=:n.$ Applying the variable change, we see
+\[\sum_{k=1}^\infty\frac{z^k}k=\sum_{n=1}^\infty\left(\sum_{d\mid n}d\iota_dq^{-n}\right)\frac{z^n}n.\]
+As promised, we now get to equate coefficients of the Taylor series (formally, take derivatives and then plug in $z=0$) to say
+\[\sum_{d\mid n}d\iota_d=q^n.\]
+
+We are almost done. M\"obius inversion implies
+\[n\iota_n=\sum_{d\mid n}q^d\mu(n/d),\]
+which provides an explicit formula for $\iota_n.$ We can roughly bound this as
+\[n\iota_n=q^n+O\left(\sum_{d=1}^{n/2}q^d\right)=q^n+O\left(\frac{q^{n/2+1}-1}{q-1}\right)=q^n+O\left(2q^{n/2}\right).\]
+The $2$ can vanish into the $O,$ but I have included it for clarity. It follows that $\iota_n=\frac{q^n}n+O\left(\frac{q^{n/2}}n\right).$ So the number of monic irreducibles of norm equal to $t$ is approximately
+\[\frac t{\log_qt}+O\left(\frac{\sqrt t}{\log_qt}\right),\]
+which is the prime number theorem with best possible error term.
+
+\subsubsection{December 25th}
+Today I learned the proof for the relationship between Ford circles and kissing fractions. The simplest way to talk about this is to actually give the radius of the circles. On the number line, we assign reduced fractions $\frac ab$ a circle of radius $\frac1{2b^2}$ above it. Then this is what happens.
+\begin{center}
+    \begin{asy}
+        unitsize(7cm);
+        draw((0,0)--(1,0));
+        int gcd(int a, int b) {
+           if (b == 0) return a;
+           return gcd(b, a % b);
+        }
+        for(int b = 1; b < 14; ++b)
+        {
+            for(int a = 0; a <= b; ++a)
+            {
+                if(gcd(a,b) == 1)
+                    draw(circle( (a/b, 0.5/(b*b)), 0.5/(b*b) ));
+            }
+        }
+    \end{asy}
+\end{center}
+Let's prove what we're seeing. Namely, no two circles overlap more than being tangent, and two circles are tangent if and only if they're fractions $\frac ab$ and $\frac cd$ are Farey neighbors. (That is, $ad-bc=\pm1.$) Well, overlapping can be tested by comparing the distance between centers to the sum of the radii. By construction, circles are centered at $\left(\frac ab,\frac1{2b^2}\right)$ with radius $\frac1{2b^2},$ so we are interested in showing
+\[\sqrt{\left(\frac ab-\frac cd\right)^2+\left(\frac1{2b^2}-\frac1{2d^2}\right)}\ge\frac1{2b^2}+\frac1{2d^2}\]
+with equality if and only if $ad-bc=\pm1.$ Clearing denominators somewhat, we are interested in showing
+\[\sqrt{(ad-bc)^2+\frac14\left(\left(\frac bd\right)^2-\left(\frac db\right)^2\right)}\ge\frac12\left(\left(\frac bd\right)^2+\left(\frac db\right)^2\right).\]
+Let $\left(\frac bd\right)^2=q$ for brevity. We may square and preserve the equivalence because everything involved is positive. So we want
+\[(ad-bc)^2+\frac14\left(q-q^{-1}\right)^2\ge\frac14\left(q+q^{-1}\right)^2.\]
+Expanding the $\left(q\pm q^{-1}\right)^2=q^2+q^{-2}\pm2$ will make the $q$ disappear. We're left with this being equivalent to
+\[(ad-bc)^2\ge1,\]
+which is what we wanted.
+
+As a quick aside, this implies that if $\frac ab$ and $\frac cd$ have tangent Ford circles, then $\frac{a+c}{b+d}$ has a circle tangent to both of those. Indeed, we have that
+\[a(b+d)-b(a+c)=(a+c)d-(b+d)c=ad-bc=\pm1.\]
+In light of the above work, this is sufficient.
+
+What caught my eye yesterday is that the circles give a very visual way to approach the Dirichlet approximation theorem. Namely, for irrational $\alpha,$ we want to show that there are infinitel many rationals $\frac ab$ such that
+\[\left|\alpha-\frac ab\right|<\frac1{2b^2}.\]
+This is stronger than the typical Dirichlet approximation theorem, but we can still do it. (This is the stronger continued fraction bound.) In terms of Ford circles, the radius of the circle for $\frac ab$ is exactly $\frac1{2b^2},$ so the conclusion is really saying that $\alpha$ lives below the ``shadow'' of the circle of $\frac ab.$
+\begin{center}
+    \begin{asy}
+        unitsize(4cm);
+        draw(circle((0,1/2),1/2));
+        draw((-2/3,0)--(2/3,0));
+        draw((-1/2,0)--(1/2,0),linewidth(2));
+        dot("$\alpha$", (0.3,0), S);
+    \end{asy}
+\end{center}
+With this in mind, we prove the result inductively. We show that our $\alpha$ is below an infinite sequence of increasingly smaller but tangent circles. Certainly $\alpha$ is under some circle. If $\{\alpha\}<\frac12,$ then $\floor\alpha/1$ is off by less than $\frac12$; else $\ceil\alpha/1$ works.
+
+Now once $\alpha$ is below one circle, it should be below one of the circles below its current circle.
+\begin{center}
+    \begin{asy}
+        unitsize(4cm);
+        draw(circle((0,1/2),1/2));
+        draw((-2/3,0)--(2/3,0));
+        for(int i = 2; i < 10; ++i)
+        {
+            draw( circle((1/i,1/(2*i*i)), 1/(2*i*i)) );
+            draw( circle((-1/i,1/(2*i*i)), 1/(2*i*i)) );
+        }
+        dot("$\alpha$", (0.3,0), S);
+    \end{asy}
+\end{center}
+Visually, we can see that the bottom circles cover the entire shadow of the bigger circle, which is our inductive step, for this implies that $\alpha$ lies in the shadow of another (smaller) circle.
+
+More formally, fix the big circle to be $\frac ab,$ reduced. Without loss of generality, $\alpha>\frac ab.$ By B\'ezout's lemma, there exists some $c_0$ and $d_0$ such that
+\[ad_0-bc_0=-1,\]
+so certainly some circle is tangent to $\frac ab.$ This is equivalent to $\frac{c_0}{d_0}-\frac ab=\frac1{bd_0},$ so in fact there is some circle tangent to $\frac ab$ to its right. Even further, $c=c_0+ak$ and $d=d_0+bk$ gives an infinite family with arbitrary small denominator. Letting $k$ be negative will give a smallest positive $D$ which will be strictly smaller than $b,$ corresponding to a larger circle than $\frac ab,$ and here
+\[\frac CD-\frac ab=\frac1{bD}>\frac1{2b^2}\]
+is outside of the shadow of $\frac ab.$ In particular, $\frac CD>\alpha.$
+
+Now suppose for the sake of contradiction that $\alpha$ is not covered. If there's a gap above $\alpha,$ then the let the bigger circle on one side of $\alpha$ be $\frac cd.$ Explicitly, $\frac cd$ is the fraction with largest denominator larger than $\alpha$ which is tangent to $\frac ab$; the $\frac CD$ forces at least one to exist. The killing blow is to look at the circle belonging to the mediant
+\[\frac{a+c}{b+d}.\]
+This fraction is larger than and tangent to $\frac ab$ but has larger denominator than $\frac cd,$ so it has to live on the other side of $\alpha.$ In particular, the vertical line above $\alpha$ divides the circles belonging to $\frac cd$ and $\frac{a+c}{b+d}.$ Note this isn't a vertical tangent because the circles have different $y$ coordinates (because they have different radii), so these circles can't intersect at all. However, we already established that $\frac{a+c}{b+d}$ is tangent to $\frac cd,$ so we have a contradiction.
+
+\subsubsection{December 26th}
+Today I learned the refinement to Dirichlet's approximation theorem, from Ford circles. Namely, we want to show that for irrational $\alpha,$ there exist infinitely many $a/b$ such that
+\[\left|\alpha-\frac ab\right|<\frac1{\sqrt 5b^2}.\]
+Very quickly, this is sharp, achieved at $\varphi,$ which we outline. We can show (inductively, say) that the continued fraction convergents are $\frac{F_{n+1}}{F_n},$ and the corresponding error is
+\[F_n^2\left|\varphi-\frac{F_{n+1}}{F_n}\right|=\frac1{\sqrt5}\left|1+(-1)^{n+1}\left(\frac{1-\sqrt5}2\right)^{2n}\right|\]
+using something like Binet's formula. As $n\to\infty,$ this approaches $\frac1{\sqrt5},$ and because continued fraction convergents are best possible, this $\frac1{\sqrt5}$ is best possible.
+
+Now for the Ford's circle. What I liked about the Ford circles is that we can very visually see the $\frac1{2b^2}$ error term, so we can also see the $\frac1{\sqrt 5b^2}$ by changing the radius accordingly. Here's what that looks like.
+\begin{center}
+    \begin{asy}
+        unitsize(7cm);
+        draw((0,0)--(1,0));
+        int gcd(int a, int b) {
+           if (b == 0) return a;
+           return gcd(b, a % b);
+        }
+        for(int b = 1; b < 14; ++b)
+        {
+            for(int a = 0; a <= b; ++a)
+            {
+                if(gcd(a,b) == 1)
+                {
+                    draw(circle( (a/b, 0.5/(b*b)), 0.5/(b*b) ));
+                    fill(circle( (a/b, 0.5/(b*b)), 1/(2.2360679*b*b) ), rgb(0.9,0.7,1));
+                }
+            }
+        }
+    \end{asy}
+\end{center}
+We want to show that every irrational $\alpha$ is under infinitely many of the purple circles. This doesn't look surprising, though somewhat frustrating to prove. From the Ford circles proof from yesterday, we know $\alpha$ is below an infinite decreasing sequence of tangent circles with the norm $\frac1{2b^2}.$ The difficulty is if $\alpha$ lives on the outer edges of our circles.
+\begin{center}
+    \begin{asy}
+        unitsize(3cm);
+        draw((-0.2,0)--(0.8,0));
+        draw(circle((0,1/2),1/2));
+        fill(circle((0,1/2),1/2.2360679), rgb(0.9,0.7,1));
+        real q = 0.7;
+        draw(circle((q,q*q/2), q*q/2));
+        fill(circle((q,q*q/2), q*q/2.2360679), rgb(0.9,0.7,1));
+        q = 0.47;
+        dot("$\alpha$", (q,0), S);
+        draw((q,0)--(q,0.8));
+    \end{asy}
+\end{center}
+The key observation is that in this situation, the next circle down is guaranteed to hit bullseye.
+\begin{center}
+    \begin{asy}
+        unitsize(3cm);
+        draw((-0.2,0)--(0.8,0));
+        draw(circle((0,1/2),1/2));
+        fill(circle((0,1/2),1/2.2360679), rgb(0.9,0.7,1));
+        real q = 0.7;
+        draw(circle((q,q*q/2), q*q/2));
+        fill(circle((q,q*q/2), q*q/2.2360679), rgb(0.9,0.7,1));
+        q = 0.4117;
+        draw(circle((q,q*q/2), q*q/2));
+        fill(circle((q,q*q/2), q*q/2.2360679), rgb(0.9,0.7,1));
+        q = 0.47;
+        dot("$\alpha$", (q,0), S);
+        draw((q,0)--(q,0.8));
+    \end{asy}
+\end{center}
+
+Let's formalize this; it's a bit subtler than it appears. Consider the decreasing sequence of Ford circles over $\alpha$ we constructed yesterday. Note that this is in fact unique. The continued fraction bound says that $|\alpha-a/b|<1/\left(2b^2\right)$ is $a/b$ a continued fraction convergent, so the Ford circles can be computed from convergents of $\alpha.$
+
+As suggested, we show that it is impossible for three consecutive Ford circles over $\alpha$ to satisfy
+\[\left|\alpha-\frac ab\right|\ge\frac1{\sqrt 5b^2}.\]
+In particular, we show that if $\frac ab$ and $\frac cd$ are tangent ($b<d$) and satisfy the above equality, then their mediant has
+\[\left|\alpha-\frac{a+c}{b+d}\right|<\frac1{\sqrt5(b+d)^2}.\]
+Again, this is motivated by the visual: if $\alpha$ is not shadowed by two consecutive purple circles, then the mediant's purple circle covers. We note that, in this case, $\frac{a+c}{b+d}$ satisfies the continued fraction bound, so it belonged on our sequence of Ford circles. Namely, we won't have to worry about deviating off of our Ford circle sequence. Anyways, this will be enough to finish the proof.
+
+To minimize headaches, we say without loss of generality $\frac ab<\alpha<\frac cd.$ We note a suitable affine transformation can send the circle at $\frac ab$ to the circle at $\frac01.$ This transformation sends $\frac cd$ to some rational $q\in(0,1)$ and $\alpha$ to some other irrational between $0$ and $q.$ Using the tangency argument from yesterday as an algebraic result, we note that $q=\frac{1}{1/q}$ will satisfy
+\[0\cdot\frac1q-1\cdot1=-1,\]
+so providing the circle above $q$ with radius $\frac1{2(1/q)^2}=q^2/2$ will maintain the tangency. This tangency defines the radius, so this must be the radius after the affine transformation. The mediant then gets sent to
+\[\frac{0+1}{1+1/q}=\frac q{q+1}\]
+using the same tangency argument fixing the mediant's circle. The Ford circle's radius is $1/\left(2(1+1/q)^2\right),$ which is $q^2/\left(2(1+q)^2\right).$
+
+Now we start closing the argument. We shrink all radii from a factor of $1/2$ to a factor of $1/\sqrt5,$ giving the following.
+\begin{itemize}
+    \item The circle above $0$ now covers the interval $(-1/\sqrt5,1/\sqrt5).$
+    \item The circle over $q$ covers the interval $\left(q-\frac{q^2}{\sqrt5},q+\frac{q^2}{\sqrt5}\right).$
+    \item The circle over $\frac q{q+1}$ covers the interval $\left(\frac q{q+1}-\frac{q^2}{\sqrt5(q+1)^2},\frac q{q+1}+\frac{q^2}{\sqrt5(q+1)^2}\right).$
+\end{itemize}
+Our goal is to show that $\alpha$ is not covered by the first two intervals, then it's covered by the third. On one hand, $q\in(0,1)$ always implies that
+\[\frac q{q+1}-\frac{q^2}{\sqrt5(q+1)^2}<\frac1{\sqrt5}.\tag{1}\]
+On the other hand, we will see $\frac1{\sqrt5}<q-\frac{q^{2}}{\sqrt{5}}$---true because $\alpha$ is between the intervals of $0$ and $q,$ and equality is impossible for rational $q$---implies
+\[\frac q{q+1}+\frac{q^2}{\sqrt5(q+1)^2}>q-\frac{q^2}{\sqrt5}.\tag{2}\]
+The union of (1) and (2) will tell us that the interval of the mediant covers the empty space between the intervals of $0$ and $q.$
+
+I guess I'll show the details here, half out of boredom and half out of punishment for myself. Clearing denominators shows (1) is equivalent to
+\[q(q+1)\sqrt5-q^2<(q+1)^2.\]
+This expands to
+\[q^{2}\left(\sqrt{5}-2\right)+q\left(\sqrt{5}-2\right)<1.\]
+The right-hand side is a quadratic with $+\infty$ end behavior, so it'll dip below $y=1$ axis for a single contiguous interval. The fact that the inequality holds for $q=0$ ($0<1$) and $q=1$ ($2\sqrt5-4<1$) implies that $(0,1)$ must be included in this dip below $y=1.$ The inequality follows.
+
+Clearing denominators and cancelling a $q$ in (2) turns it into
+\[(q+1)\sqrt5+q>(q+1)^2\sqrt5-q(q+1)^2.\]
+Noting $(q+1)^2-(q+1)=q(q+1)$ let us cancel an additional $q,$ making this
+\[1>(q+1)\sqrt5-(q+1)^2,\]
+or $q^2+(2-\sqrt5)q+(2-\sqrt5)>0.$ This is a quadratic with the correct end behavior and a root at $\frac{-1+\sqrt5}2.$ Because $2-\sqrt5<0,$ the other root is negative, so for our $q\in(0,1),$ our inequality will hold provided
+\[q>\frac{-1+\sqrt5}2.\]
+Note this is actually our ``equality'' case at $\varphi.$ Anyways, the hypothesis is that $q^2-q\sqrt5+1<0.$ This is a quadratic with roots at $\frac{\pm1+\sqrt5}2,$ so the hypothesis holds if and only if $q$ lives between $\frac{-1+\sqrt5}2$ and $\frac{1+\sqrt5}2.$ In particular, $q>\frac{-1+\sqrt5}2,$ so we're done.
+
+\subsubsection{December 27th}
+Today I learned a proof of Fermat's Christmas theorem, from continued fractions. I think this proof is intended to give the Minkowski argument without ever saying the word ``Minkowski,'' but I found it amusing that this argument exists at all.
+
+We are given some positive (rational) prime $p\equiv1\pmod4,$ and we want to express $p$ as the sum of two squares. Note Euler's criterion gives us an $i\in\FF_p$ such that $i^2\equiv-1\pmod p.$ The key is to look at the continued fraction convergents of $-\frac ip.$ Note that because $\floor{\sqrt p}<p,$ there exists a pair of consecutive convergents $\frac ab$ and $\frac{a'}{b'}$ with $b\le\floor{\sqrt p}<b'.$ This implies
+\[\left|\frac ip-\frac ab\right|\le\frac1{bb'}<\frac1{b\sqrt p}.\]
+However, we can write this error as
+\[\left|\frac ip-\frac ab\right|=\frac1{b\sqrt p}\cdot\frac{|ib-ap|}{\sqrt p}.\]
+The above inequality on the error term then tells us that $c:=|ib-ap|<\sqrt p.$ By construction $b\equiv ic,$ so $p\mid b^2+c^2.$ (We see $c\ne0$ because $p\nmid i,b$ implies $p\nmid ib$ and $p\nmid c.$) However, bounding says that we must have $0<b^2+c^2<2p,$ forcing $b^2+c^2=p,$ which is the construction we wanted.
+
+I find this proof somewhat mysterious. It feels like the Minkowski proof, where we make a lattice of points $(x,y)\in\ZZ^2$ satisfying $x\equiv iy\pmod p$ and then search for a nonzero lattice point sufficiently close to the origin. Namely, these proofs have the same finish. What we seem to be saying is that for $x=iy-kp$ can actually be found because $\frac ky$ is a good rational approximation for $\frac ip.$ Indeed,
+\[\left|\frac ip-\frac ky\right|=\frac x{py}.\]
+If we say without loss of generality that $0<x<y<\sqrt p,$ this error term is upper-bounded by $\frac1p$ while $y<\sqrt p,$ meaning that this rational approximation at least hits the Dirichlet approximation bound. I guess this suggests a continued fraction proof, though it does prove that one should exist---we need an error term of $2p$ from our $y$ to hit the continued fraction proof.
+
+\subsubsection{December 28th}
+Today I learned some $\lambda$ calculus for type theory. Essentially, we can define functions $A\to B$ (where $A,B:\mathcal U$ are types) by writing
+\[(\lambda x.\Phi):A\to B.\]
+Here $\Phi$ is just some expression maybe involving $x.$ The function is well-defined if and only if $(\lambda x.\Phi)(a)\equiv\Phi':B$ where $\Phi'$ is the expression $\Phi$ where each instance of $x$ is replaced by $a:A.$ Formally, we should write $\lambda(x:A).\Phi$ or similar, but this is redundant when we know that the codomain is $A$ anyways.
+
+The rule where we may write
+\[(\lambda x.\Phi)(a)\equiv\Phi'\]
+by replacing instances of $x$ in $\Phi$ with an $a$ to get $\Phi$ is called $\beta$-reduction. Another manipulation rule we have is that for a given function $f:A\to B,$ we may write
+\[f\equiv(\lambda x.f(x)).\]
+This is called $\eta$-expansion. Essentially, this says that two functions are equal if they are equal on all inputs, for the $\lambda$ expression is pretty much just an abstract list of all possible expressions. There is also $\alpha$-conversion, where we can say
+\[\lambda x.\Phi_x\equiv\lambda y.\Phi_y,\]
+where $\Phi_y$ is just $\Phi_x$ with all $x$s replaced with $y$s. In other words, the dummy variable may be exchanged.
+
+I feel obligated to talk about currying. The idea is that we can ``simulate'' multiple inputs to a function by making functions output other functions. Explicitly, we may think of a function
+\[f:A\to(B\to C)\]
+as taking in two inputs $a:A$ and $b:B$ and outputting $f(a)(b):C.$ As an aside on notation, our arrows are right-associative by convention, so we could (unambiguously) write the above as $f:A\to B\to C.$ We are sweeping under the rug having to think about the fact that $f(a):B\to C$ and just thinking about the composite after applying $b:B.$ Oftentimes we abbreviate this to $f(a,b).$
+
+\subsubsection{December 29th}
+Today I learned some examples of type-theoretic recursion and induction. On a high level, recursion (and induction) tell us how we can define (dependent) functions on a type. Often these are best thought of as rules/axioms the way that a group or ring has rules/axioms.
+
+I think the clearest way that this works is with products. We would like to say that we can define a function $f:A\times B\to C$ (for $A,B,C:\mathcal U$) based on (say) curried two-variable functions $A\to B\to C.$ (Ordered pairs are primitive objects.) The way we formalize this is by creating a machine which creates functions $A\times B\to C$ based on our curried functions. This machine is
+\[\op{rec}_{A\times B}:\prod_{C:\mathcal U}(A\to B\to C)\to(A\times B\to C).\]
+The way I'm thinking about this is as what we described---a function which takes our output type $C:\mathcal U$ (hidden in the $\prod$) and a curried function $g:A\to B\to C$ and outputting a function $A\times B\to C.$ Well, what does $\op{rec}$ do? We write
+\[\op{rec}_{A\times B}(C,g)((a,b)):\equiv g(a)(b).\]
+Because of how loose we're being with currying over functions with multiple inputs, we could also think about this like
+\[\op{rec}_{A\times B}(C,g,(a,b)):\equiv g(a)(b),\]
+but I find this less enlightening.
+
+It's a bit more complicated to do this with dependent functions, which is induction. Instead of taking a type $C$ as input, we have to take a family $C:A\times B\to\mathcal U.$ Then we may write
+\[\op{ind}_{A\times B}:\prod_{C:A\times B\to\mathcal U}\left(\prod_{a:A}\prod_{b:B}C((a,b))\right)\to\prod_{x:A\times B}C(x).\]
+Again, read this as taking a family $C:A\times B\to\mathcal U$ and a dependent function $g:\prod_{a:A}\prod_{b:B}C((a,b))$ and then outputting the natural dependent function in $\prod_{x:A\times B}C(x).$ (Danger: $\prod_{x:A}$ refers to a function with a variable in $A.$) Which function? Well, we have
+\[\op{ind}_{A\times B}(C,g)((a,b)):\equiv g(a)(b).\]
+Again, one might get more mileage thinking about this like $\op{ind}_{A\times B}(C,g,(a,b))\equiv g(a)(b).$
+
+The generalized example of these is with dependent pairs. Again, we'd like to say that we can define a function on the pair $\sum_{x:A}B$ (for family $B:A\to\mathcal U$) by some sufficiently curried function. This is done with the recursor, writing
+\[\op{rec}_{\sum_{x:A}B(x)}:\prod_{C:\mathcal U}\left(\prod_{x:A}(B(x)\to C)\right)\to\left(\sum_{x:A}B(x)\to C\right).\]
+This notation means that the recursor takes our output type $C:\mathcal U$ and a curried dependent function $g:\prod_{x:A}B(x)\to C$ and outputs a function on the dependent pair. (Danger: $\prod_{x:A}B(x)\to C$ is indeed curried! Its first input is $a:A.$) It does so in the natural way, by
+\[\op{rec}_{\sum_{x:A}B(x)}(C,g)((a,b)):\equiv g(a)(b).\]
+Similarly, we have the induction
+\[\op{ind}_{\sum_{x:A}B(x)}:\prod_{C:\sum_{x:A}B(x)\to\mathcal U}\left(\prod_{x:A}\prod_{y:B(x)}C((x,y))\right)\to\prod_{p:\sum_{x:A}B(x)}C(p).\]
+As usual, this is taking a family $C:\sum_{x:A}B(x)\to\mathcal U$ as input in addition to a dependent curried function $g:\prod_{x:A}\prod_{b:B}C((x,y))$ and then outputs a dependent function on the dependent pair. This is done in the natural way, by
+\[\op{ind}_{\sum_{x:A}B(x)}(C,g)((a,b)):\equiv g(a)(b).\]
+Don't mind the subscripts in subscripts.
+
+I guess I should say what this has to do with induction and recursion in $\NN.$ Well, recursion is usually the way we define functions on $\NN$ using the successor structure of $\NN.$ Abstractly, this is what we've been doing above with pairs---we're describing how to define functions on our type to use its structure. To be explicit, we define recursion as
+\[\op{rec}_\NN:\prod_{C:\mathcal U}C\to(\NN\to C\to C)\to(\NN\to C).\]
+Before actually defining what recursion, we say that it's a curried dependent function (as usual) taking out output type $C,$ a base case $c_0:C,$ and a successor function $c_s:\NN\to C\to C$; we output the desired function $\NN\to C.$ Now, $\op{rec}_\NN$ is defined as 
+\[\begin{cases}
+    \op{rec}_\NN(C,c_0,c_s)(0):\equiv c_0, \\
+    \op{rec}_\NN(C,c_0,c_s)(\op{succ}(n)):\equiv c_s(\op{rec}_\NN(C,c_0,c_s,n)).
+\end{cases}\]
+Induction is similar but for dependent functions, defined as
+\[\op{ind}_\NN:\prod_{C:\NN\to\mathcal U}C(0)\to\left(\prod_{n:\NN}C(n)\to C(\op{succ}(n))\right)\to\prod_{n:\NN}C(n).\]
+Again, we take a family $C:\NN\to\mathcal U,$ a base case $c_0:C(0),$ and a successor (curried!) dependent function $g:\prod_{n:\NN}C(n)\to C(\op{succ}(n)).$ We output the corresponding function in $\prod_{n:\NN}C(n).$ Explicitly, we have
+\[\begin{cases}
+    \op{ind}_\NN(C,c_0,c_s)(0):\equiv c_0. \\
+    \op{ind}_\NN(C,c_0,c_s)(\op{succ}(n)):\equiv c_s(\op{ind}_\NN(C,c_0,c_s)(n)).
+\end{cases}\]
+This is like the induction that we're used to because we'll have propositions as types later. Namely, if we think about the family $C$ as a property that we want to prove over all $n:\NN,$ then induction is saying that if we can exhibit a certificate $C(0)$ and show how to generate certificates $C(n+1)$ ``given'' $C(n),$ then there is a certificate $C(n)$ for each $n:\NN.$ This is the induction we're used to.
+
+\subsubsection{December 30th}
+Today I learned more formally about proving propositions as types. The idea is that we can ``prove'' a proposition by exhibiting an element which witnesses to a type which communicates the proposition. The idea is a bit abstract. Anyways, here is the table of translations.
+\[\begin{array}{c|c}
+    \text{Logic} & \text{Type theory} \\
+    \hline
+    0 & \text{False} \\
+    1 & \text{True} \\
+    A\land B & A\times B \\
+    A\lor B & A+B \\
+    A\to B & A\to B \\
+    A\leftrightarrow B & (A\to B)\times(B\to A) \\
+    \lnot A & A\to0 \\
+    \hline
+    \forall x:A,\,P(x) & \prod_{x:A}P(x) \\
+    \exists x:A,\,P(x) & \sum_{x:A}P(x)
+\end{array}\]
+Many of these make some intuitive sense. For example, in type theory, $A\land B$ should hold if and only if we can exhibit a witness of both $A$ and $B.$ So our witness for $A\land B$ should be the ordered pair of the witnesses, which would be anything in $A\times B.$ Similarly, a witness of $A\lor B$ is something in $A$ or $B,$ which witnesses exactly $A+B.$ The $\forall$ and $\exists$ statements are similar.
+
+Somewhat awkward (but nice) is the handling of $A\to B.$ Essentially, we're saying that $A$ implies $B$ if and only if exhibiting a witness of $A$ lets us exhibit a witness to $B.$ Well, that only happens (in type theory) if we can exhibit the exact function $A\to B$ taking witnesses of $A$ to $B.$
+
+Let's see a proof. Let's show
+\[((A+B)\to0)\to(A\to0)\times(B\to0).\]
+Logically, this reads, $\lnot(A+B)\to\lnot A\land\lnot B,$ which is one of de Morgan's Laws. To ``prove'' this statement, we just have to exhibit a function of the above type.
+
+We begin with a logical proof, and we'll translate it to type theory. We first show $\lnot A.$ Well suppose for the sake of contradiction $A.$ Then $A+B,$ which is a contradiction by hypothesis. We second show $\lnot B.$ Well suppose for the sake of contradiction $B.$ Then $A+B,$ which is a contradiction by hypothesis. So we know $\lnot A$ and $\lnot B,$ from which $\lnot A\land\lnot B$ follows.
+
+Now for type theory. The logical proof begins by showing $\lnot A,$ which we means we start by wanting a function $f_A:A\to0.$ Then we remark we are given $f:A+B\to0,$ from which $A\to0$ should follow. To write this out in type theory, we think categorically, and note
+\[A\stackrel{\op{inl}}\longrightarrow A+B\stackrel f\longrightarrow0\]
+will do the trick. That is, we can set $f_A=f\circ\op{inl}:A\to0,$ as desired.
+
+Next we do similar for $\lnot B.$ We need to inhabit $B\to0,$ but we already have $A+B\to0,$ so
+\[A\stackrel{\op{inr}}\longrightarrow A+B\stackrel f\longrightarrow0\]
+will do the trick. That is, we can set $f_B=f\circ\op{inr}:B\to0,$ as desired.
+
+The proof finishes by combining $\lnot A$ and $\lnot B$ to get $\lnot A\land\lnot B.$ In type theory, this means we need to combine our $f_A:A\to0$ and $f_B:B\to0$ to exhibit a witness in $A\times B\to0.$ For this, we can simply say
+\[(f_A,f_B):(A\to0)\times(B\to0)\]
+is such an ordered pair.
+
+The proof is now finished, but it is somewhat satisfying to see it put together. Namely, we claim that
+\[g\equiv\lambda f.\big(\lambda(a:A).f\circ\op{inl}(a),\lambda(b:B).f\circ\op{inr}(b)\big):((A+B)\to0)\to(A\to0)\times(B\to0).\]
+is our witness. It suffices to show that, given $f:((A+B)\to0),$ $g(f):(A\to0)\times(B\to0).$ For this, because ordered pairs are primitive, we just need to show that each component function has the correct type. Well,
+\[\lambda a.f\circ\op{inl}(a):A\to0\]
+because it takes $a:A$ to $\op{inl}(a):A+B$ to $f(\op{inl}(a)):0,$ as needed. Similar holds for the $B\to0$ component, so we're done here.
+
+\subsubsection{December 31st}
+Today I learned about equality types. This is along the lines of propositions as types, where if we want to ``prove'' $a=b,$ we have to inhabit $a=b$ somehow. As expected, our main tool for constructing functions is induction, which is called path induction in order to allude to the coming homotopy type theory. Path induction states that for a family
+\[C:\prod_{(a,b:A)}(a=_Ab)\to\UU,\]
+and witnesses
+\[c:\prod_{a:A}C(a,a,\refl_a),\]
+then we have a function
+\[f:\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\]
+satisfying $f(a,a,\refl_a)\equiv c(a).$ Here, $\refl_a$ refers to a ``reflexive'' proof of the equality $a=a.$ Stated succinctly, we can write
+\[\op{ind}_{=A}:\left(\prod_{(a,b:A)}(a=_Ab)\to\UU\right)\to\left(\prod_{a:A}C(a,a,\refl_a)\right)\to\left(\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\right)\]
+which satisfies $\op{ind}_{=A}(C,c)(a,a,\refl_a)\equiv c(a).$
+
+As usual, path induction lets us construct dependent functions from equality types from the ``canonical'' elements $\op{refl}_\bullet.$ This actually makes me somewhat uncomfortable, in that we're being told what to do with non-reflexive elements without being told, so we're getting a surprising amount of power. Homotopically, this is roughly defining a continuous functions over all paths after having only been told what to do with constant paths, which doesn't make much sense to me.
+
+I guess I should mention based path induction. Essentially, we fix $a:A,$ in that we now take a family
+\[C:\prod_{x:A}(a=_Ax)\to\UU\]
+with witness
+\[c:C(a,\refl_a),\]
+and we get a function
+\[f:\prod_{(x:A)}\prod_{(p:a=_Ax)}C(a,p).\]
+The two forms of induction are equivalent (we can derive each from the other), but this is not easy to see.

@@ -1,0 +1,844 @@
+\subsection{November}
+\subsubsection{November 1st}
+Today I learned the definition of the Krull topology. Basically, the idea is that we want to have some nicer control over infinite Galois extensions, and there's a notion of ``closeness'' provided between automorphisms, so this will induce a topology. More formally, fix a probably infinite extension $L/K.$ Then for an intermediate field $K'$ where $K'/K$ is finite, we define the neighborhood
+\[U_{\sigma,K'}=\{\tau\in\op{Gal}(L/K):\tau=\sigma\text{ on }K'\}.\]
+So two automorphisms are ``close'' if they agree on a ``small'' subfield $K'/K.$ We can also write
+\[U_{\sigma,K'}=\sigma\left\{\sigma^{-1}\tau\in\op{Gal}(L/K):\sigma^{-1}\tau\text{ fixes }K'/K\right\},\]
+so our open sets are actually cosets of $\op{Aut}(K'/K).$ Note $K'/K$ is not required to be Galois, so this might not even be a coset of a subgroup.
+
+I guess most pedestrian examples aren't super interesting. For example, any finite extension $L/K$ will just get the discrete topology. Indeed, for some $\sigma\in\op{Gal}(L/K),$ we get that
+\[U_{\sigma,L}=\{\tau:\tau=\sigma\text{ on }L\}=\{\sigma\},\]
+which is legal because $L/K$ is a finite extension. It follows that every singleton is open, giving us the discrete topology.
+
+With $\op{Gal}(\QQ(\zeta_{p^\infty})/\QQ),$ we see that our open sets are really
+\[U_{\sigma,\QQ(\zeta_{p^\bullet})}=\sigma\cdot\op{Gal}(\QQ(\zeta_{p^\bullet})/\QQ)=a_\sigma\ZZ_p^\times,\]
+where $a_\sigma$ is our element of $\ZZ_p^\times$ corresponding to the automorphism $\sigma.$ It follows that the topology over $\ZZ_p$ more or less caries over with the obvious caveat that we're living in $\ZZ_p^\times,$ provided that I didn't make a mistake somewhere. Basically, we're finding that $\ZZ_p^\times$ and $\op{Gal}(\QQ(\zeta_{p^\infty})/\QQ)$ are not just the same as groups, but it's nice to note that the natural isomorphism can also preserve the topology of $\ZZ_p.$
+
+\subsubsection{November 2nd}
+Today I learned about the regulator of a number field. Fix $K$ a number field with of integers $\mathcal O_K.$ The idea is to measure the size of the (non-torsion unit group). We know that $\op{Log}\mathcal O_K^\times$ is an abelian group with $r+s-1$ generators, so let them be $u_1,\ldots,u_{r+s-1}.$ In particular, $\op{Log}(u_\bullet)$ generates the unit (trace-$0$) hyperplane $H$ in the logarithmic Minkowski space $\RR^{r+s}.$ So one measurement of size could be
+\[\op{vol}(H/\op{Log}\mathcal O_K^\times).\]
+This definition turns out to be a bit obnoxious to work with, though we will return to this idea. Instead, it turns out to be easier to apply a coordinate projection $\pi$ to everything and then compute
+\[\op{Reg}_K=\op{vol}(\pi(H)/\pi(\op{Log}\mathcal O_K^\times)).\]
+It should not be clear why the regulator is not dependent on which coordinate projection we use; we will return to this, but for now we can use $\pi(x_1,\ldots,x_{r+s})=(x_1,\ldots,x_{r+s-1})$ for concreteness. The way to compute this is to use our generators $\op{Log}(u_\bullet)\in\RR^{r+s}.$ In essence, this covolume is equal to
+\[\op{Reg}_K=\left|\det\begin{bmatrix}
+    | & | &  & | \\
+    \pi\op{Log}(u_1) & \pi\op{Log}(u_2) & \cdots & \pi\op{Log}(u_{r+s-1}) \\
+    | & | &  & |
+\end{bmatrix}\right|.\]
+Note that this determinant makes sense because there are $r+s-1$ vectors with dimension $(r+s)-1.$ (This is the reason we used the coordinate projection.) For concreteness, it will be worth writing out more explicitly what this matrix is. Fix real embeddings $\rho_1,\ldots,\rho_r$ and complex embeddings $\sigma_1,\overline{\sigma_1},\ldots,\sigma_s,\overline{\sigma_s}$ so that
+\[\op{Reg}_K=\left|\det\begin{bmatrix}
+    \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\
+    \vdots & \ddots & \vdots \\
+    \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\
+    2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\
+    \vdots & \ddots & \vdots \\
+    2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}|
+\end{bmatrix}\right|.\]
+The $2$ is here because the Minkowski inner product double-counts complex embeddings. Expansion by minors gives this a more natural expression as
+\[\op{Reg}_K=\left|\det\begin{bmatrix}
+    0 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\
+    0 & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}| \\
+    1 & 2\log|\sigma_su_1| & \cdots & 2\log|\sigma_su_{r+s-1}| \\
+\end{bmatrix}\right|.\]
+In fact, we claim that we can replace the leftmost vector with any vectors whose coordinate sum is $1$; this will prove that the coordinate projection $\pi$ we chose at the beginning definition doesn't matter, for a different coordinate projection amounts to changing the position of the $1.$ Anyways, for $v_1+\cdots+v_{r+s-1}=1,$ we want to show
+\[\op{Reg}_K\stackrel?=\left|\det\begin{bmatrix}
+    v_1 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\
+    \vdots & \vdots & \ddots & \vdots \\
+    v_r & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\
+    v_{r+1} & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\
+    \vdots & \vdots & \ddots & \vdots \\
+    v_{r+s} & 2\log|\sigma_su_1| & \cdots & 2\log|\sigma_su_{r+s-1}| \\
+\end{bmatrix}\right|.\]
+We have to use the fact that the $u_\bullet$ are units, which roughly amounts to saying $\op{Log}(u_\bullet)$ has coordinate sum equal to $0.$ So we add all rows to the last row to simulate a coordinate sum, which doesn't change the determinant and means we want to show
+\[\op{Reg}_K\stackrel?=\left|\det\begin{bmatrix}
+    v_1 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\
+    \vdots & \vdots & \ddots & \vdots \\
+    v_r & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\
+    v_{r+1} & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\
+    \vdots & \vdots & \ddots & \vdots \\
+    v_{r+s-1} & 2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}| \\
+    1 & 0 & \cdots & 0 \\
+\end{bmatrix}\right|.\]
+Doing expansion by minors on the bottom row gives the original determinant for $\op{Reg}_K,$ with a possible sign. Signs don't matter because of the absolute value, so we see that the above equality holds.
+
+Let's return to the initial idea $\op{vol}(H/\op{Log}\mathcal O_K^\times).$ Our key will be $v=\frac1{r+s}(1,\ldots,1).$ This vector is orthogonal to $H$ (vectors in $H$ have coordinate sum $0$), so we see
+\[\left|\det\begin{bmatrix}
+    | & | &  & | \\
+    v & \op{Log}(u_1) & \cdots & \op{Log}(u_{r+s-1}) \\
+    | & | &  & |
+\end{bmatrix}\right|=\op{vol}(H/\op{Log}\mathcal O_K^\times)\cdot|v|\]
+by saying that volume ($\det$) is base ($\op{vol}(H/\op{Log}\mathcal O_K^\times)$) times height ($|v|$). However, $v$ has coordinate sum equal to $1,$ so the above work says that the right-hand side is actually regulator. Simplifying $|v|=1/\sqrt{r+s}$ as well tells us
+\[\op{Reg}_K=\frac{\op{vol}(H/\op{Log}\mathcal O_K^\times)}{\sqrt{r+s}}.\]
+So the regulator does measure what we wanted it to, up to a scale factor $1/\sqrt{r+s}.$
+
+\subsubsection{November 3rd}
+Today I learned an interesting example of a field extension, namely $\QQ(\zeta_p)/\QQ(\zeta_p+\zeta_p^{-1}).$ What's weird here is that we can very viscerally feel that real embeddings get more weight than complex ones here.
+
+The Galois group of $\QQ(\zeta_p)/\QQ$ is $(\zeta_p\mapsto\zeta_p^\bullet),$ so we see that all of the $p-1$ embeddings are complex; $\zeta_p^\bullet$ should always go to a non-real complex number. So our signature is $\left(0,\frac{p-1}2\right).$ By Dirichlet's unit theorem, we have that $\mathcal O_{\QQ(\zeta_p)}^\times$ has rank $\frac{p-1}2.$
+
+On the other hand, we can restrict all of these automorphisms to $\QQ(\zeta_p+\zeta_p^{-1})/\QQ.$ But now we see that each $(\zeta_p\mapsto\zeta_p^\bullet)$ restricts to
+\[\sum_{k=0}^{p-1}a_k\left(\zeta_p+\zeta_p^{-1}\right)^k\longmapsto\sum_{k=0}^{p-1}a_k\left(\zeta_p\bullet+\zeta_p^{-\bullet}\right)^k.\]
+However, $\zeta_p^\bullet+\zeta_p^{-\bullet}=2\cos\left(\frac{2\pi\bullet}p\right)\in\RR,$ so all of these are real embeddings. We know we had better have $\frac{p-1}2$ total embeddings because $\QQ(\zeta_p)/\QQ(\zeta_p+\zeta_p^{-1})$ is a quadratic extension (I'll avoid these details), so our signature is $\left(\frac{p-1}2,0\right).$ Again, Dirichlet's unit theorem says that $\mathcal O_{\QQ(\zeta_p+\zeta_p^{-1})}^\times$ has rank $\frac{p-1}2.$
+
+What's interesting now is that $\QQ(\zeta_p+\zeta_p^{-1})$ is significantly smaller than $\QQ(\zeta_p)$---it has half the degree. However, because $\QQ(\zeta_p)$ only has complex embeddings, and $\QQ(\zeta_p+\zeta_p^{-1})$ only has real embeddings, they still have the same rank of unit group. Namely,
+\[\mathcal O_{\QQ(\zeta_p)}^\times/\mathcal O_{\QQ(\zeta_p+\zeta_p^{-1})}^\times\]
+will actually be a finite group. This is somewhat remarkable.
+
+\subsubsection{November 4th}
+Today I learned the asymptotic formula for derangements. Fix a nonnegative integer $n.$ We are interested in counting the number permutations on $n$ letters which fix no elements. One way symbolically heavy but conceptually easy way to do this is with the principle of inclusion-exclusion on the complement.
+
+Explicitly, we'll count the number of permutations which fix at least one element. For this, we define $S_\bullet$ to be the set of permutations which fix the element $\bullet,$ implying we are interested in
+\[\left|\bigcup_{k=1}^nS_k\right|.\]
+Using the principle of inclusion-exclusion, this is
+\[\left|\bigcup_{k=1}^nS_k\right|=\sum_{m=1}^n(-1)^{m+1}\sum_{\substack{T\subseteq[1,n]\\|T|=m}}\left|\bigcap_{t\in T}S_t\right|.\]
+Now, these intersections are actually quite nice because the number of permutations fixing some given $m$ elements is the number of permutations of the remaining elements, which is $(n-m)!.$ Then the number of possible subsets comes out to $\binom nm,$ so this collapses into
+\[\left|\bigcup_{k=1}^nS_k\right|=\sum_{m=1}^n(-1)^{m+1}\cdot\binom nm(n-m)!=n!\sum_{m=1}^n\frac{(-1)^{m+1}}{m!}.\]
+
+To finish, we return the question of derangements. The above is the number of permutations which aren't derangements, so subtracting from $n!$ tells us we want
+\[n!-n!\sum_{m=1}^n\frac{(-1)^{m+1}}{m!}=\boxed{n!\sum_{m=0}^n\frac{(-1)^m}{m!}}.\]
+Of particular interest is that we see that the fraction of permutations which are derangements is
+\[\frac{n!}{n!}\sum_{m=0}^n\frac{(-1)^m}{m!}=\sum_{m=0}^n\frac{(-1)^m}{m!}.\]
+As $n\to\infty,$ this rapidly converges to $e^{-1}\approx0.368.$ So a positive and reasonably sized proportion of all permutations are derangements, which is nice.
+
+\subsubsection{November 5th}
+Today I learned the law of quadratic reciprocity in function fields. This is really the sort of thing I should have tried on my own in advance, but I run out of time. Let $q$ be an odd prime power. We define the Legendre-analog as expected, for irreducible $\pi\in\FF_q[x]$ and $\varphi\in\FF_q[x]/(\pi)\cong\FF_{q^{\deg\pi}}$ by
+\[\left(\frac\varphi\pi\right)=\begin{cases}
+    \phantom-1 & \varphi\text{ is a nonzero square}\pmod\pi, \\
+    \phantom-0 & \pi\mid\varphi, \\
+    -1 & \varphi\text{ is non-square}\pmod\pi.
+\end{cases}\]
+Because (for example) $\FF_{q^{\deg\pi}}$ is cyclic, we pick a generator and conclude that nonzero $\varphi$ are squares if and only if their multiplicative order divides $\left(q^{\deg\pi}-1\right)/2.$ Namely, we get ``Euler's Criterion'' by writing
+\[\left(\frac\varphi\pi\right)\equiv\varphi^{\left(q^{\deg\pi}-1\right)/2}\pmod\pi.\]
+Before dealing with the actual quadratic reciprocity law, we note that the elementary quadratic reciprocity requires us to choose a particular ``associate'' of the primes (namely, the positive one), and we have to do similar here. Our reciprocity law will involve monic irreducibles, but this means that we would like a way to deal with constants before factoring them out. Well, we can just say, for $c\in\FF_q,$
+\[\left(\frac c\pi\right)\equiv c^{\left(q^{\deg\pi}-1\right)/2}\pmod\pi\]
+from ``Euler's Criterion.'' Both sides are elements of $\FF_q,$ so we may restrict the modular arithmetic to
+\[\left(\frac c\pi\right)=c^{\left(q^{\deg\pi}-1\right)/2},\]
+where arithmetic is done in $\FF_q.$ This is a bit nicer.
+
+The proof of the quadratic reciprocity law is actually quite simple. For a monic irreducible $\pi,$ we have that its splitting field is $\FF_q[x]/(\pi)\cong\FF_{q^{\deg\pi}}.$ However, the neat trick we apply is that the automorphisms $\FF_{q^{\deg\pi}}/\FF_q$ must also permute the roots of $\pi,$ and we understand those automorphisms very well: they're generated from the Frobenius $\sigma:\alpha\mapsto\alpha^q.$ So we'd like to say, in $\FF_{q^{\deg\pi}},$ that for a root $\alpha$ of $\pi,$
+\[\pi(x)=\prod_{k=0}^{\deg\pi-1}\left(x-\sigma^k(\alpha)\right)=\prod_{k=0}^{\deg\pi-1}\left(x-\alpha^{q^k}\right).\]
+Recall $\pi$ is monic. Indeed, our automorphisms permute the roots, we get $\deg\pi$ total roots, and all these roots are distinct because $\sigma^k(\alpha)\equiv\sigma^\ell(\alpha)$ would imply $\sigma^{k-\ell}(\alpha)=1.$ Well, $\FF_q[\alpha]\cong\FF_q[x]/(\pi)$ by construction, so if $\sigma^{k-\ell}(\alpha)=1,$ then this projects everyone in $\FF_q[\alpha]$ to $\FF_q,$ so this isn't actually an automorphism, and $\deg\pi\mid k-\ell.$ So we indeed get $k=\ell.$
+
+We can stretch this trick to get to quadratic reciprocity very quickly. Fix monic irreducibles $\pi_1$ and $\pi_2,$ where $\alpha_1$ is a root of $\pi_1$ and $\alpha_2$ a root of $\pi_2.$ We work in the splitting field $\FF_q[\alpha_1,\alpha_2],$ partially for convenience. Euler's Criterion says that
+\[\left(\frac{\pi_1}{\pi_2}\right)\equiv\pi_1^{\left(q^{\deg\pi_2}-1\right)/2}\pmod{\pi_2}.\]
+But $\pi_1$ is a polynomial here, so we may plug in $\alpha_2$ to little detriment. Do realize that we cannot plug in $\alpha_1$ because $\alpha_1\pmod{\pi_2}$ does not necessarily make sense, but $\alpha_2\pmod{\pi_2}$ does. We get
+\[\left(\frac{\pi_1}{\pi_2}\right)\equiv\pi_1(\alpha_2)^{\left(q^{\deg\pi_2}-1\right)/2}\pmod{\pi_2},\]
+and this is in fact an equality in $\FF_q[x]/(\pi_2)$ and so expands to an equality in our splitting field. Our goal is to get as symmetric expression as possible. We start by using our splitting field to say
+\[\left(\frac{\pi_1}{\pi_2}\right)=\pi_1(\alpha_2)^{\left(q^{\deg\pi_2}-1\right)/2}=\prod_{k=0}^{\deg\pi_1-1}\left(\alpha_2-\alpha_1^{q^k}\right)^{\left(q^{\deg\pi_2}-1\right)/2}.\]
+To make symmetry appear, we write $q^{\deg\pi_2}-1=(q-1)\left(1+q+\cdots+q^{\deg\pi_2-1}\right).$ So we get
+\[\left(\frac{\pi_1}{\pi_2}\right)=\prod_{k=0}^{\deg\pi_1-1}~\prod_{\ell=0}^{\deg\pi_2-1}\left(\alpha_2-\alpha_1^{q^k}\right)^{q^\ell(q-1)/2}.\]
+The Frobenius automorphism lets us bring those powers of $q$ inside, which looks like
+\[\left(\frac{\pi_1}{\pi_2}\right)=\prod_{k=0}^{\deg\pi_1-1}~\prod_{\ell=0}^{\deg\pi_2-1}\left(\alpha_2^{q^\ell}-\alpha_1^{q^{k+\ell}}\right)^{(q-1)/2}.\]
+The orbit $\alpha_1^{q^\bullet}$ cycles with length $\deg\pi_1$ as established, so we may shift the $k+\ell$ back to indexing by $k.$ This tells us that
+\[\left(\frac{\pi_1}{\pi_2}\right)=\prod_{k=0}^{\deg\pi_1-1}~\prod_{\ell=0}^{\deg\pi_2-1}\left(\alpha_2^{q^\ell}-\alpha_1^{q^k}\right)^{(q-1)/2}.\]
+Now this is completely symmetrical. In particular, we could run the entire argument again to say that
+\[\left(\frac{\pi_2}{\pi_1}\right)=\prod_{\ell=0}^{\deg\pi_1-1}~\prod_{k=0}^{\deg\pi_2-1}\left(\alpha_1^{q^k}-\alpha_2^{q^\ell}\right)^{(q-1)/2},\]
+which is the same as our $\left(\frac{\pi_1}{\pi_2}\right),$ with an added $(\deg\pi_1)(\deg\pi_2)(q-1)/2$ signs. It follows
+\[\left(\frac{\pi_1}{\pi_2}\right)\left(\frac{\pi_2}{\pi_1}\right)=(-1)^{(\deg\pi_1)(\deg\pi_2)(q-1)/2},\]
+which is our law of quadratic reciprocity.
+
+\subsubsection{November 6th}
+Today I learned a proof of the Basel problem from Fourier analysis. As an example, we compute the Fourier series of the step function $s(x),$ which is $1$ if $\{x\}<\frac12$ and $-1$ otherwise. Our period is $[0,1),$ so our Fourier transform is
+\[\int_0^1s(x)e^{-2n\pi ix}\,dx=\int_0^{1/2}e^{-2n\pi ix}\,dx-\int_{1/2}^1e^{-2n\pi ix}\,dx=2\int_0^{1/2}e^{-2n\pi ix}\,dx.\]
+This evaluates to
+\[2\cdot\frac{e^{-2n\pi ix}}{-2n\pi i}\bigg|_0^{1/2}=\frac{1-(-1)^n}{n\pi i}.\]
+So our Fourier series is
+\[s(x)=\sum_{n=-\infty}^\infty\frac{1-(-1)^n}{n\pi i}e^{2n\pi ix}.\]
+Pairing off $n$ with $-n,$ we get $\frac{1-(-1)^n}{n\pi i}\left(e^{2n\pi ix}-e^{-2n\pi ix}\right)=2\cdot\frac{1-(-1)^n}{n\pi}\sin(2n\pi x).$ This vanishes for $n$ even, so we get to shift this to
+\[s(x)=\sum_{n=0}^\infty\frac4{(2n+1)\pi}\sin(2(2n+1)\pi x)=\frac4\pi\sum_{n=0}^\infty\frac{\sin(2(2n+1)\pi x)}{2n+1}.\]
+
+We are actually almost done because I don't care about rigor. Integrating from $0$ to $\frac12,$ the step function accumulates a full $\frac12.$ But on the other side,
+\[\int_0^{1/2}\sin(2n\pi x)\,dx=\frac{-\cos(2n\pi x)}{2n\pi}\bigg|_0^{1/2}=\frac1{n\pi}.\]
+So taking the integral on both sides of our Fourier series, we see
+\[\frac12=\frac4\pi\sum_{n=0}^\infty\frac1{(2n+1)^2\pi}.\]
+This rearranges to
+\[\sum_{n=0}^\infty\frac1{(2n+1)^2}=\frac{\pi^2}8,\]
+which solves the Basel problem. Explicitly, we can write
+\[\frac34\sum_{n=0}^\infty\frac1{n^2}=\sum_{n=0}^\infty\frac1{n^2}-\frac1{2^2}\sum_{n=0}^\infty\frac1{n^2}=\sum_{n=0}^\infty\frac1{(2n+1)^2}=\frac{\pi^2}8.\]
+This rearranges into $\sum_n\frac1{n^2}=\frac{\pi^2}6,$ as desired.
+
+\subsubsection{November 7th}
+Today I learned an explicit example where the naive approach of multiplying integral bases in a field composite does not necessarily yield an integral basis. Explicitly, take $K=\QQ(i)$ and $L=\QQ(\sqrt2)$ so that $KL=\QQ(\sqrt2,i)=\QQ(\zeta_8).$ Now, $\mathcal O_K=\ZZ[i]$ and $\mathcal O_L=\ZZ[\sqrt2],$ but $\mathcal O_{KL}=\ZZ[\zeta_8].$ So we see we have that
+\[\zeta_8=\frac{\sqrt2}2+\frac{\sqrt2}2i\not\in\ZZ[i,\sqrt2].\]
+This shows that $\mathcal O_{KL}\ne\mathcal O_K\mathcal O_L,$ though this is true if $\op{disc}(\mathcal O_K)$ and $\op{disc}(\mathcal O_L)$ are coprime. Here they are not; e.g., $2$ ramifies in both.
+
+In fact, $\zeta_8$ is not achievable no matter what integral basis for $\ZZ[i]$ and $\ZZ[\sqrt2]$ we choose. Simply put, there is no way to get the $\frac12$ no matter how we multiply elements of $\ZZ[i]$ and $\ZZ[\sqrt2].$
+
+\subsubsection{November 8th}
+Today I learned that it's possible to do calculus over ratios of prime numbers, from \href{https://mathoverflow.net/questions/311085/riemann-sum-formula-for-definite-integral-using-prime-numbers}{here}. The general theorem is that
+\[\lim_{n\to\infty}\frac1n\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=\int_0^1f(x)\,dx\]
+where $\{p_\bullet\}$ is the sequence of primes. Here we are assuming that $f$ is Riemann integrable already, or else it doesn't make much sense to conjecture this. Anyways, it suffices to suppose that $f$ is continuously differentiable; if not we can certainly approximate $f$ well enough by continuously differentiable functions.
+
+The way we translate the summation into an integral is to use Riemann-Stieltjes integration. Write
+\[\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=\int_0^1f(x)\,d\pi(p_nx).\]
+Integrating by parts, this is
+\[\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=nf(1)-\int_0^1f'(x)\pi(p_nx)\,dx.\]
+To finish getting rid of the prime stuff, we would like to substitute $\pi(x)\sim\frac x{\log x}$ from the prime number theorem, but we can't do that while the lower bound is $0.$ However, we may bound
+\[\left|\int_0^{1/\log n}f'(x)\pi(p_nx)\,dx\right|\le\left(\max_{x\in[0,1]}\left|f'(x)\right|\right)\pi\left(\frac{p_n}{\log n}\right).\]
+The maximum is a constant, so we may more or less ignore it. The prime-counting term can be estimated to $o(n),$ which is good enough because we're going to divide by $n$ later. Indeed, $\pi(n)\sim\frac n{\log n}$ implies $n\sim\frac{p_n}{\log p_n}.$ However, this means $\log n=\log p_n+\log\log p_n+o(1)=\log p_n+o(\log p_n),$ implying $p_n\sim n\log p_n=n\log n(1+o(1))\sim n\log n.$ Thus, $\frac{p_n}{\log n}\sim n,$ so $\pi\left(\frac{p_n}{\log n}\right)=o(n).$ I'm skimming some details because I don't care about them. It follows that this entire term is $o(n).$
+
+So we are left with
+\[\sum_{k=0}^nnf\left(\frac{p_k}{p_n}\right)=nf(1)-\int_{1/\log n}^1f'(x)\pi(p_nx)\,dx+o(n).\]
+The prime number theorem says that $\pi(p_nx)\sim\frac{p_nx}{\log(p_nx)}.$ However, now that $x\in[1/\log n,1],$ the denominator is between $\log(p_n/\log n)$ and $\log(p_n).$ With $n\sim\frac{p_n}{\log p_n}$ implying $\log p_n=\log n+o(\log n),$ we get that both of these are asymptotically $\log n.$ Explicitly, we see
+\[\pi(p_nx)\sim\frac{p_nx}{\log n}\sim nx\]
+after again plugging in $p_n\sim n\log n.$ This means that the integral is
+\[\int_{1/\log n}^1f'(x)(nx+o(nx))\,dx=n\int_{1/\log n}^1xf'(x)\,dx+o\left(n\int_{1/\log n}^1xf'(x)\,dx\right).\]
+The bounding term is (again) lazily $o(n)$ because the full integral is constant. To actually evaluate the integral, we begin by re-extending the lower bound to $0.$ The remainder added amount from $0$ to $\frac1{\log n}$ is $o\left(n\int_0^{1/\log n}x\right)=o(n),$ so we are left with
+\[n\int_0^1xf'(x)\,dx+o(n).\]
+To finish, we integrate by parts in reverse, which makes this
+\[nf(1)-\int_0^1f(x)\,dx+o(n).\]
+
+Putting all the pieces together, we get that
+\[\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=nf(1)-nf(1)+\int_0^1f(x)\,dx+o(n).\]
+Dividing by $n$ and taking $n\to\infty$ gives the result.
+
+It would be something of a crime to not do any applications of this result. We can asymptotically compute the arithmetic mean of the first $n$ primes. Namely, note that
+\[\lim_{n\to\infty}\frac{\displaystyle\frac1n\sum_{k=1}^np_k}{p_n}=\lim_{n\to\infty}\frac1n\sum_{k=1}^n\frac{p_k}{p_n}=\int_0^1x\,dx=\frac12.\]
+It follows that the arithmetic mean is asymptotically $\frac12p_n=\frac12n\log n.$ We can even do the geometric mean. Note that
+\[\lim_{n\to\infty}\frac1n\sum_{k=1}^n\log\left(\frac{p_k}{p_n}\right)=\int_0^1\log x\,dx=-1.\]
+This implies that
+\[\lim_{n\to\infty}\frac{\sqrt[n]{p_1\cdots p_n}}{p_n}=\lim_{n\to\infty}\prod_{k=1}^n\frac{p_k}{p_n}=\exp\left(\lim_{n\to\infty}\frac1n\sum_{k=1}^n\log\left(\frac{p_k}{p_n}\right)\right)=\frac1e.\]
+It follows that the geometric mean is asymptotically $\frac1ep_n\sim\frac1en\log n.$ As expected, (the asymptotics for) the geometric mean is smaller than the arithmetic mean.
+
+\subsubsection{November 9th}
+Today I learned that the outline for the proof that, in an extension of number fields $L/K,$ if for every unramified prime $\mf p$ we have that $f(\mf q/\mf p)$ is constant for all primes $\mf q$ over $\mf p,$ then $L/K$ is actually Galois. Of course, this is true for Galois extensions because the Galois group acts transitively on the primes over $\mf p.$
+
+At its core, this is a group-theoretic question. Let $M$ be the Galois closure of $L/K,$ and loop over primes $\mf P$ over $\mf q/\mf p.$ Letting $G=\op{Gal}(M/K)$ and $H$ the subgroup fixing $L$; our goal is to show that $H=\langle e\rangle,$ which would imply that $L=M,$ finishing. The main translation we have to do is to note that the factorization of $\mf p$ in $\mathcal O_L$ is determined entirely by group theory. Namely, there is a bijection between the factorization of $\mf p\mathcal O_L$ and double cosets $H\sigma D_\mf P.$ In particular, the $f(\mf q/\mf p)$ correspond to indices
+\[f(\mf q/\mf p)=[D_\mf P:D_\mf P\cap\sigma_\mf qH\sigma_\mf q^{-1}]\]
+for some $\sigma_\mf q.$ We do not prove this here. We're given that these indices are constant no matter our choice of $\mf q,$ or equivalently, the indices are equal no matter our choice of $\sigma_\mf q.$ So for our choice of $\mf P$ over $\mf p,$ we have that
+\[[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}]\]
+is constant over our choices of $\sigma.$ Continuing the translation, we can write this index as
+\[\frac{|D_\mf P|}{\left|D_\mf P\cap\sigma H\sigma^{-1}\right|}.\]
+Now, $|D_\mf P|=e(\mf P/\mf p)f(\mf P/\mf p)$ is constant over all choices $\mf P$ ($M/K$ is Galois), so in fact
+\[\left|D_\mf P\cap\sigma H\sigma^{-1}\right|\]
+is constant. Now, the fact that $\mf p$ is unramified implies that $D_\mf P\cong D_\mf P/E_\mf P$ is cyclic, so in fact there is exactly one subgroup of $D_\mf P$ with the required size. So we must have that
+\[D_\mf P\cap\sigma H\sigma^{-1}\]
+is constant over all choices of $\sigma.$
+
+The final piece of translation we need is a small application of the Chebotarev density theorem, merely to know that all elements occur as a Frobenius, so in particular, all cyclic subgroups for $D_\mf P$ are possible. With this in mind, we're going to show that
+\[H\subseteq\bigcap_{\sigma\in G}\sigma H\sigma^{-1}.\]
+We will later show that the right-hand side is $\langle e\rangle,$ which will finish. Indeed, fix some $\tau\in G$ and some $h\in H$ so that we want to know that $h\in\tau H\tau^{-1}.$ There exists a prime $\mf P$ for which the Frobenius at $\mf P$ is $h,$ so for this prime $\mf P,$ we know that
+\[D_\mf P\cap\sigma H\sigma^{-1}=\langle h\rangle\cap\sigma H\sigma^{-1}.\]
+is constant over all choices $\sigma.$ Well, checking $\sigma=e$ and $\sigma=\tau,$ we see that
+\[h\in\langle h\rangle\cap H=\langle h\rangle\cap eHe^{-1}=\langle h\rangle\cap\tau H\tau^{-1},\]
+which is what we wanted.
+
+So it suffices to show that $\cap_\sigma\sigma H\sigma^{-1}=\langle e\rangle.$ This is contingent on $M$ being the Galois closure. Fix some $\alpha_1\in L$ for which $L=K[\alpha_1],$ and we let $\alpha_1,\ldots,\alpha_n$ be its Galois conjugates. In particular, $M$ is the smallest field containing all of them; i.e., $M=K[\alpha_1,\ldots,\alpha_n],$ the composite field of the various $K[\alpha_\bullet].$ Now, fix any $\gamma\in\bigcap_{\sigma\in G}\sigma H\sigma^{-1}.$ We want to show that $\gamma$ is the identity. It suffices to show that $\gamma$ fixes $M,$ or equivalently, it suffices to show that $\gamma$ fixes each of the $K[\alpha_\bullet].$
+
+Indeed, $\gamma$ fixes $K[\alpha_1]$ because $\gamma\in H.$ But, further, there exists an automorphism $\sigma_\bullet$ sending $\alpha_1\mapsto\alpha_\bullet.$ (Explicitly, this makes an embedding $K[\alpha_1]\to\CC,$ which had better appear as an automorphism of $M.$) Well, $\gamma=\sigma_\bullet h\sigma_\bullet^{-1}\in\sigma_\bullet H\sigma_\bullet^{-1},$ so for any $\alpha\in K[\alpha_\bullet],$ we have
+\[\gamma\left(\sum_{k=0}^nc_k\alpha_\bullet^k\right)=\sigma_\bullet h\sigma_\bullet^{-1}\left(\sum_{k=0}^nc_k\alpha_\bullet^k\right)=\sigma_\bullet h\left(\sum_{k=0}^nc_k\alpha_1^k\right)=\sigma_\bullet\left(\sum_{k=0}^nc_k\alpha_1^k\right)=\sum_{k=0}^nc_k\alpha_\bullet^k.\]
+It follows that $\gamma$ fixes $K[\alpha_\bullet]$ for each conjugate $\alpha_\bullet,$ so we're done here.
+
+\subsubsection{November 10th}
+Today I learned some perspectives on those $\arctan$ facts that pop every once in a while. The motivating example is to note the following image.
+\begin{center}
+    \begin{asy}
+        size(3cm);
+        draw((0,0)--(2,0));
+        draw((0,1)--(2,1));
+        draw((0,2)--(2,2));
+        draw((0,3)--(2,3));
+        draw((0,0)--(0,3));
+        draw((1,0)--(1,3));
+        draw((2,0)--(2,3));
+        draw((0,0)--(2,1)--(1,3)--cycle, red);
+    \end{asy}
+\end{center}
+Considering the angles in the bottom-left right angle, we see that $\arctan\left(\frac13\right)+\arctan\left(\frac11\right)+\arctan\left(\frac12\right)=\frac\pi2.$ Of course, there are lots of ways to prove this statement; e.g., straight-up bashing out the trigonometry with the tangent-addition formula will do the trick. There's also a nice proof with complex numbers by noting $\arctan\left(\frac1n\right)$ is the argument of $n+i.$ So computing
+\[(3+i)(2+i)=5+5i\]
+shows that $\arctan\left(\frac13\right)+\arctan\left(\frac12\right)=\arctan\left(\frac11\right).$
+
+Anyways, the graphical solution also generalizes as a sort of an elementary version of the complex-numbers proof. Perhaps it's not as clean, but it accomplishes much the same tasks. For example, let's suppose we want to compute
+\[\arctan\left(\frac13\right)+\arctan\left(\frac14\right).\]
+For this, we use slopes, generalizing the motivating example. Note $\arctan\left(\frac13\right)$ is the angle of the line $y=\frac13x$ with the $x$ axis. To add angles, we need to place a line on top of this. Well, look at the following triangle.
+\begin{center}
+    \begin{asy}
+        size(4cm);
+        draw((-1,0)--(15,0));
+        draw((0,-1)--(0,13));
+        draw((0,0)--(15,5));
+        dot((0,0)); dot((3,1)); dot((6,2)); dot((9,3));
+        dot("$(12,4)$", (12,4), SSE);
+        draw((12,4)--(11,7)--(0,0));
+        dot("$(11,7)$", (11,7), N);
+    \end{asy}
+\end{center}
+The triangle here is right with adjacent side four times its opposite. It follows that this angle is $\arctan\left(\frac14\right),$ and in fact we have shown geometrically that
+\[\arctan\left(\frac13\right)+\arctan\left(\frac14\right)=\arctan\left(\frac{11}7\right).\]
+We could continue to add more angles. To demonstrate a bit further what we can do with this, suppose we want to add an angle to this get $\arctan\left(\frac11\right)=\frac\pi4.$ Well, supposing it is $\arctan\left(\frac1m\right)$ for some real $m,$ we need to stack this angle on top of the triangle given above.
+
+We start from the point $(11,7).$ Extending the base of the new right triangle to have side length $m$ times the length of $\langle11,7\rangle$ takes us to $(11m,7m),$ and then to complete the right triangle, we have to go up by $\langle-7,11\rangle,$ taking us to
+\[(11m-7,7m+11).\]
+Now, if these angles add to $\frac\pi4,$ then the above point needs to live on $y=x.$ It follows that $11m-7=7m+11,$ which implies $m=\frac92.$ Thus, we get that
+\[\arctan\left(\frac13\right)+\arctan\left(\frac14\right)+\arctan\left(\frac29\right)=\frac\pi4,\]
+which is reasonably cute.
+
+\subsubsection{November 11th}
+Today I learned the proof that splitting of $\mf p$ in a non-Galois extension $L/K$ is in bijection with cosets $H\sigma D_\mf P$ for some prime $\mf P$ over $\mf p$ in the Galois closure $M$ of $L/K,$ where $H$ is subgroup of $G=\op{Gal}(M/K)$ fixing $L,$ and $D_\mf P$ is the decomposition subgroup. This idea appears in Marcus, but I like the exposition as presented by Professor Kedlaya better.
+
+We claim that there is a natural bijection between primes over $\mf p$ in $\mathcal O_L$ and double cosets $H\sigma D_\mf P$ by mapping
+\[H\sigma D_\mf P\longmapsto L\cap\sigma\mf P.\]
+Quickly, note that we can represent all primes in $\mathcal O_L$ over $\mf p$ in the form $L\cap\sigma\mf P$ for some $\sigma$ because all of these primes is below some prime in $M$ over $\mf p,$ and all of the latter primes have the form $\sigma\mf P$ because the Galois group acts transitively here.
+
+It remains to show the bijection. That is, $H\sigma D_\mf p=H\tau D_\mf P$ if and only if $L\cap\sigma\mf P=L\cap\tau\mf P.$ In one direction, if $H\sigma D_\mf p=H\tau D_\mf P,$ then there exist $h\in H$ and $d\in D_\mf P$ such that $\sigma=h\tau d.$ It follows that
+\[L\cap\sigma\mf P=L\cap(h\tau d)\mf P=L\cap h\tau\mf P.\]
+To finish, we note that $L\cap h\tau\mf P=L\cap\tau\mf P$ because $\alpha\in L\cap \tau\mf P$ if and only if $\alpha\in L$ and $\alpha\in\tau\mf P,$ so $\alpha=h(\alpha)$ is in both $L$ and $h\tau\mf P$ for free. Namely, this prime is fixed by $H.$
+
+In the other direction, suppose that $L\cap\sigma\mf P=L\cap\tau\mf P.$ Taking a cue from Marcus, we remark that both $\tau\mf P$ and $\sigma\mf P$ are primes lying over $L\cap\sigma\mf P,$ so there exists an $h\in\op{Gal}(M/L)=H$ such that
+\[\tau\mf P=h\sigma\mf P.\]
+But then $\tau^{-1}h\sigma$ fixes $\mf P,$ so $\tau^{-1}h\sigma=d$ for some $d\in D_\mf P.$ From this it follows $\tau=h\sigma d^{-1},$ so $H\tau D_\mf P=H\sigma D_\mf P.$ This is what we wanted.
+
+As an addendum, let's show that $f(L\cap\sigma\mf P/\mf p)=[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}].$ We're going to reconstruct Marcus's proof. We claim that actually both of these are equal to the number of elements in
+\[\left\{H\sigma,H\sigma\varphi,H\sigma\varphi^2,\ldots,H\sigma\varphi^{f_\sigma-1}\right\}\]
+for Frobenius $\varphi$ at $\mf P.$ In other words, $H\sigma\varphi^{f_\sigma}$ goes back into this double coset. And in fact it must be $H\sigma,$ for if $H\sigma\varphi^\bullet=H\sigma\varphi^{f_\sigma},$ then $H\sigma=H\sigma\varphi^{f_\sigma-\bullet},$ violating the minimality of $f_\sigma.$
+
+Showing that $f_\sigma=[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}]$ is not as difficult. Notice that $H\sigma\varphi^{f_\sigma}=H\sigma$ is equivalent to $\varphi^{f_\sigma}\in\sigma^{-1} H\sigma.$ So $f_\sigma,$ which is the size of this double coset, is the smallest element in $\langle\varphi\rangle$ which is in $\sigma^{-1}H\sigma.$ Using a normal division algorithm argument, it follows that
+\[D_\mf P\cap\sigma^{-1}H\sigma=\langle\varphi^{f_\sigma}\rangle.\]
+In particular, the size of this is $|D_\mf P\cap\sigma^{-1}H\sigma|=|D_\mf P|/f_\sigma.$ Rearranging gets the result.
+
+It remains to show that $f_\sigma=f(\cap\sigma\mf P).$ We begin by showing $f(L\cap\sigma\mf P)\le f_\sigma.$ Note that $H\sigma=H\sigma\varphi^{f_\sigma}$ is equivalent to
+\[\left(\sigma\varphi\sigma^{-1}\right)^{f_\sigma}\in H.\]
+Now, $\sigma\varphi\sigma^{-1}$ is the Frobenius at $\sigma\mf P$ because, for any $\alpha,$
+\[\sigma\varphi\sigma^{-1}(\alpha+\sigma\mf P)=\sigma\varphi(\sigma^{-1}(\alpha)+\mf P)=\sigma\left(\sigma^{-1}\left(\alpha^{|\mathcal O_K/\mf p|}\right)+\mf P\right)=\alpha^{|\mathcal O_K/\mf p|}+\sigma\mf P.\]
+In particular, $L\cap\sigma\mf P\subseteq\mf P,$ so we may say
+\[\sigma^{-1}\varphi\sigma(\alpha)\equiv\alpha^{|\mathcal O_K/\mf p|}\pmod{L\cap\sigma\mf P}.\]
+Iterating $\sigma^{-1}\varphi\sigma$ a total of $f_\sigma$ times, we remark that $\left(\sigma^{-1}\varphi\sigma\right)^{f_\sigma}\in H$ and so will fix $\alpha.$ So we see
+\[\alpha^{|\mathcal O_K/\mf p|^{f_\sigma}}\equiv\left(\sigma^{-1}\varphi\sigma\right)^{f_\sigma}\equiv\alpha\pmod{L\cap\sigma\mf P}.\]
+In particular, if we let $\alpha$ generate the multiplicative group of $\mathcal O_L/L\cap\sigma\mf P,$ then $\alpha$ will have multiplicative order $|\mathcal O_K/\mf p|^{f(L\cap\sigma\mf P/\mf p)}-1.$ But the above says that the order is no more than $|\mathcal O_K/\mf p|^{f_\sigma}-1.$ It follows $f(L\cap\sigma\mf P/\mf p)\le f_\sigma$ like we need.
+
+To finish, we remark that
+\[\sum_{H\sigma D_\mf P}f(L\cap\sigma\mf P/\mf p)=[L:K]\]
+from the fundamental identity. But also
+\[\sum_{H\sigma D_\mf P}f_\sigma=\sum_{H\sigma D_\mf P}\left|\left\{H\sigma,H\sigma\varphi,\ldots,H\sigma\varphi^{f_\sigma-1}\right\}\right|=[G:H].\]
+So the fact $[L:K]=[G:H]$ gives us equal sums for both. So the inequality $f(L\cap\sigma\mf P/\mf p)\le f_\sigma$ must in fact be an equality, and we are done here.
+
+\subsubsection{November 12th}
+Today I learned the classification of nilpotent matrices with maximal index. Suppose $A$ is a nilpotent transformation of index $k$ sending, say, $F^n\to F^n.$ This means we can get a vector $v\in F^n$ such that $A^{k-1}v\ne0,$ but $A^k=0.$
+
+We claim that the vectors $v,Av,A^2v,\ldots,A^{k-1}v$ are linearly independent. Indeed, fix a linear relation
+\[\sum_{\ell=0}^{k-1}c_\ell A^\ell v=0.\]
+We can inductively show that the $c_\ell$ are all $0.$ Indeed, if everybody below some $c_L$ ($L<k$) is equal to $0,$ these terms don't do anything for the relation, so may multiply both sides by $A^{k-L-1},$ which gives
+\[c_LA^{k-1}v=c_LA^{k-1}v+\sum_{\ell=L+1}^{k-1}c_\ell A^{\ell-L-1}A^kv=0.\]
+We assumed $A^{k-1}v\ne0,$ so we must have $c_L=0,$ which is what we wanted.
+
+It follows that we can have no larger than index $n$ for $A,$ for this would make $v,Av,A^2v,\ldots,A^{k-1}v$ a full basis. I.e., $n$ is the maximal index. In fact, $n$ is achievable by
+\[N=\begin{bmatrix}
+    0 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 1 & 0 & \cdots & 0 & 0 \\
+    0 & 0 & 0 & 1 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & 0 & \cdots & 0 & 1 \\
+    0 & 0 & 0 & 0 & \cdots & 0 & 0
+\end{bmatrix}.\]
+Quickly, $N$ sends $e_n\to e_{n-1}\to\cdots\to e_3\to e_2\to e_1\to0.$ So after $n$ iterations, all basis vectors will be sent to $0,$ but after $n-1$ iterations, we will have $e_n\to e_1\ne0.$ In fact, this is readily seen to be the only linear transformation of index $n,$ up to a change of basis. Indeed, if we refix our basis
+\[(e_1,e_2,\ldots,e_n)=\left(A^{k-1}v,A^{k-2}v,\ldots,A^2v,Av,v\right),\]
+then $A$ is sending $e_n\to e_{n-1}\to\cdots\to e_3\to e_2\to e_1\to0$ again. In other words, $A$ looks like $N$ according to this basis, as claimed.
+
+It follows that all nilpotent matrices of maximal index (i.e., $n$), are $N$ up to a change of basis. If our change of basis matrix is $S,$ then we can classify these nilpotent matrices as having the form $S^{-1}NS$ for any invertible matrix $S.$ This classification is good enough for me, so we are done here.
+
+What I like about this proof is that asking for nilpotent matrices of rank $n$ is an entirely natural (for some definitions of natural) question, one that could be asked as soon as a student learns about matrix multiplication. But in fact, the proof here requires somewhat deep technology (change of basis) to get our classification, and further, this deep technology makes the proof immediate. It's quite cute.
+
+\subsubsection{November 13th}
+Today I learned that the inverse Galois problem holds for abelian groups, and it's actually fairly nice. Fix a finite abelian group $A.$ The restriction that we make is to try to find $A$ as an extension over $\QQ,$ and the rest of the proof is forced.
+
+From Kronecker-Weber, we know that every abelian extension is a subextension of a cyclotomic extension, so we look inside cyclotomic extensions. These all have Galois groups $(\ZZ/N\ZZ)^\times,$ so if our approach is possible, we had better be able to fit $A$ inside of such a group. However, the only way to access $(\ZZ/N\ZZ)^\times$ is via Chinese Remainder Theorem. With this in mind, we would like to express $A$ as a product of cyclic groups, so we invoke the classification of finite abelian groups to write
+\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\]
+for some sequence of integers $\{n_k\}.$ For example, the classification of finite abelian groups gives $n_k$ each a power of a prime.
+
+Now we proceed with the construction. We can actually show (classically) that there are infinitely many primes $1\pmod{n_k}$ for any of the $k,$ so we may fix $\{q_k\}$ a sequence of strictly increasing primes such that $q_k\equiv1\pmod{n_k}.$ This technically follows from Dirichlet's theorem, so we don't talk about this more here. Let $Q$ be the product of these primes, and now we see
+\[(\ZZ/Q\ZZ)^\times\cong\prod_{k=1}^N(\ZZ/q_k\ZZ)^\times\cong\prod_{k=1}^N\ZZ/(q_k-1)\ZZ.\]
+In particular, we $n_k\mid q_k-1$ implies that
+\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\cong\prod_{k=1}^n\frac{\ZZ/(q_k-1)\ZZ}{n_k\ZZ/(q_k-1)\ZZ}\cong(\ZZ/Q\ZZ)^\times\bigg/\prod_{k=1}^Nn_k\ZZ/(q_k-1)/\ZZ.\]
+The last isomorphism holds by looking at the kernel of $\ZZ/Q\ZZ$ onto the middle group. So we let $B$ be the subgroup giving $A\cong(\ZZ/Q\ZZ)^\times/B.$ Therefore we have fit $A$ inside of $(\ZZ/Q\ZZ)^\times.$
+
+The rest of the finish is Galois theory. We know $\op{Gal}(\QQ(\zeta_Q)/\QQ)\cong(\ZZ/Q\ZZ)^\times,$ and from the Galois correspondence, every subgroup of $(\ZZ/Q\ZZ)^\times$ appears as a fixed field. Let $K$ be the fixed field corresponding to $B.$ Then, because our extension is abelian, every subgroup and therefore every extension is normal, so we see
+\[\op{Gal}(K/\QQ)\cong\op{Gal}(\QQ(\zeta_Q)/\QQ)/B\cong(\ZZ/Q\ZZ)^\times/B\cong A.\]
+This is what we wanted, so we're done here.
+
+\subsubsection{November 14th}
+Today I learned a proof of the Fundamental Theorem of Algebra, using Galois theory as a translator. As setup, it suffices to show that $\CC$ has only the trivial extension, so fix some extension over $\CC,$ and without loss of generality extend it to a normal closure $M/\RR.$
+
+The action will take place in an intermediate field $L,$ defined as the fixed field of the Sylow $2$-subgroup of $G=\op{Gal}(M/\RR),$ which we name $G_2\subseteq G.$ We do this because then
+\[[L:\RR]=[G:G_2]\]
+is odd. This is helpful for us because it actually forces $L$ to collapse into $\RR,$ for  topological reasons. In particular, the Primitive Element Theorem lets us say $L=\RR[\alpha]$ for some $\alpha,$ and we know the minimal polynomial in $\RR[x]$ is irreducible and of odd degree (above). But then the Intermediate Value Theorem (our topological property) says that all polynomials of odd degree have a root in $\RR,$ so the minimal polynomial must be linear. In other words, $[L:\RR]=1.$
+
+Translating back into Galois theory, the fact $[L:\RR]=1$ implies $G=G_2,$ and in particular, $G$ is a $2$-group. We refocus on $\op{Gal}(M/\CC),$ a subgroup of $G$ and so another $2$-group. Now suppose for the sake of contradiction the extension $M/\CC$ is nontrivial. Then $\op{Gal}(M/\CC)$ would have to have a subgroup of index $2$ (\href{https://math.stackexchange.com/questions/1788345/p-groups-have-normal-subgroups-of-each-order?noredirect=1&lq=1}{$p$-groups have normal subgroups of all sizes}), so there must be a quadratic extension of $\CC$ to create this.
+
+We're in the home stretch now. Note that we have yet to use any property of $\CC$---the above argument merely required Galois theory and topological properties of $\RR.$ Well, all we need to say about $\CC$ is that is closed under square-roots (quadratic formula), so there are no quadratic extensions of $\CC,$ which is our contradiction. So we're done.
+
+What I like about this proof is that it's very obvious what makes $\CC$ special and makes this proof work. The remaining thread connecting these disparate properties of $\CC$ is Galois theory, and it is perhaps unsurprising that Galois theory is a powerful enough tool for job. I have annotated the presentation of the proof to make very clear where properties are used.
+
+As an aside, I think we can read this proof as having two parts: the (topological) action in $\RR$ takes care of all polynomials of odd degree by the Intermediate Value Theorem. This is somewhat classical, but it is phrased in terms of Galois theory to also deal with polynomials in $\CC[x].$ Then the quadratic extension stuff takes care of polynomials of even degree by noting that a polynomial of even degree not having roots would induce an intermediate quadratic extension, which is the final property of $\CC$ we needed. So the proof is more constructive than it looks at first.
+
+\subsubsection{November 15th}
+Today I learned about parameterizing rationals on conics. The motivating example it to generate Pythagorean triples $a^2+b^2=c^2$ in $\ZZ^2.$ There is the elementary solution to this by writing it as $b^2=(c-a)(c+a),$ but this finds dealing with $\gcd(a,b)=1$ a bit awkward. The natural way to deal with this is to work in $\QQ,$ where it's dealt with automatically.
+
+Ignoring the trivial $(0,0,0)$ solution, we see that it suffices to solve
+\[x^2+y^2-1=0\]
+for $x,y\in\QQ$ by dividing by $c.$ To parameterize solutions, we apply the following trick. Note that $(1,0)$ is a solution. Then for any other rational solution $(p,q)\ne(1,0),$ the slope between $(1,0)$ and $(p,q)$ is some nonzero rational. But conversely, it turns out that being on $x^2+y^2=1$ and having a rational slope with $(1,0)$ gives a rational point, so we may parameterize by these slopes. Indeed, we're solving
+\[\begin{cases}
+    0=x^2+y^2-1, \\
+    y=t(x-1).
+\end{cases}\]
+Plugging the second into the first gives $x^2+(t(x-1))^2-1=0,$ which is a quadratic in $x.$ It has at most two solutions, and it has at least one solution at $x=1$ (giving $y=0$), so Vieta's formulae guarantee that the other solution must also be rational. Actually working this out (which we omit here) gives
+\[(x,y)=\left(\frac{t^2-1}{t^2+1},-\frac{2t}{t^2+1}\right),\qquad t\in\QQ.\]
+Perhaps as expected, the final expression is not as interesting as we got there.
+
+So far I have presented stuff I've seen before. What's interesting is that this process works for general conics. Indeed, suppose we want to parameterize the solutions to $P(x,y)=0,$ where $P(x,y)\in\QQ[x,y]$ is of degree $2,$ and we have a starting solution $(x_0,y_0).$ One can check for solutions to $P(x_0,y)=0.$ Otherwise, look at rational slopes again. Of course any other rational point has a rational slope with $(x_0,y_0).$
+
+But on other hand, we can show any rational slope gives rational points. Indeed, fix a rational slope $t\in\QQ$ and look for the intersection
+\[\begin{cases}
+    0=P(x,y), \\
+    y=y_0+t(x-x_0).
+\end{cases}\]
+Observe that $(x_0,y_0)$ is already a solution to this. Substituting, it suffices to look at
+\[P(x,y_0+t(x-x_0))=0,\]
+which is a quadratic in $\QQ[x].$ With coefficients in $\QQ,$ the sum of the two solutions is a rational. But we already know that $x=x_0\in\QQ$ had better be a solution, so the other solution, which we could solve for based on the expansion of $P(x,y_0+t(x-x_0)),$ must be rational as well. So rational slopes $t$ parameterize out solution set.
+
+Let's see this in action for a non-circle example; we'll show more details this time. Take the hyperbola $P(x,y)=x^2-y^2-1=0$ and note the point $(x_0,y_0)=(1,0)$ is the only one with $x=x_0.$ Then we consider the quadratic
+\[P(x,t(x-1))=x^2-t^2(x-1)^2-1=0.\]
+This expands to
+\[\left(1-t^2\right)x^2+2t^2x-\left(1+t^2\right)=0.\]
+We note here that $t=\pm1$ do not give solutions; the solutions to these kinds of problems would be to work in the protective plane with $x^2-y^2=z^2,$ but we don't bother here. For other slopes, we note that Vieta says the product of the solutions is
+\[-\frac{1+t^2}{1-t^2}=\frac{t^2+1}{t^2-1},\]
+so this must be the solution for $x$ different from $1.$ Then
+\[y=t(x-1)=t\left(\frac{t^2+1}{t^2-1}-1\right)=\frac{2t}{t^2-1}.\]
+It follows our solutions are
+\[(x,y)=\left(\frac{t^2+1}{t^2-1},\frac{2t}{t^2-1}\right),\qquad t\in\QQ\setminus\{\pm1\}.\]
+This is at least reasonably nice, so we call it quits here.
+
+\subsubsection{November 16th}
+Today I learned about discrete valuation rings. These are local rings (exactly one maximal ideal) which are also principal ideal domains. The prototypical example is $\ZZ_p=\varprojlim\ZZ/p^\bullet\ZZ.$ Basically, every prime except $p$ is no longer prime (as it is invertible$\pmod p$), so an ideal can be identified by the largest power of $p$ dividing it. In particular, every ideal has the form $(p^\bullet)$ (and is therefore principal), and our unique maximal ideal is $(p).$
+
+A parallel example is the set of formal power series $k[[t]]$ for a field $k.$ Recalling that $\ZZ_p$ behaves a lot like formal power series in $\FF_p[[x]],$ intuition would suggest that this is a discrete valuation ring as well, and it is. Everything with nonzero constant term is a unit, which can be proven inductively. This is well-known, so we don't bother here. We classify all ideals $I$ in $k[[t]]$ to show that it is a principal ideal domain.
+
+Quickly, define $\deg p(t)$ for nonzero $p(t)\in k[[t]]$ as the degree of the leftmost nonzero element. (Note $p(t)\ne0$ means that there exists some $k$ giving $a_kt^k$ with $a_k\ne0,$ and therefore there must be a least $k.$ This is the ``degree.'') Now, for a nonzero ideal $I,$ there exists a nonzero polynomial $p(t)\in I,$ and it has some degree, so there exists a minimum degree achieved in $I.$ Notate this $\deg I.$ We claim that
+\[I=\left(t^{\deg I}\right).\]
+In one direction, there is some polynomial $p(t)\in I$ with $\deg p(t)=\deg I,$ so $p(t)=t^{\deg I}q(t)$ for some $q(t)$ with constant term. (Not having constant term would let us increment the degree.) It follows that $q(t)$ is a unit, so
+\[(p(t))=\left(t^{\deg I}\right)(q(t))=\left(t^{\deg I}\right)\subseteq I.\]
+In the other direction, for any other polynomial $p(t)\in I,$ we must have $\deg p(t)\ge\deg I.$ So we can write, for some other $q(t),$
+\[p(t)=t^{\deg p(t)}q(t)=t^{\deg I}\cdot t^{\deg p(t)-\deg I}q(t)\in\left(t^{\deg I}\right).\]
+It follows $I\subseteq t^{\deg I},$ which is what we wanted.
+
+Our classification of ideals implies that all nonzero ideals are indeed principal of the form $\left(t^\bullet\right).$ This also implies that $(t)$ is the only maximal ideal, for any nonzero ideal we see
+\[\left(t^\bullet\right)\subseteq(t).\]
+So $(t)$ is the only possibility for a maximal ideal, and indeed it is one, for if $I$ is a nonzero ideal between $(t)\subseteq I\subsetneq k[[t]]$ would require $I$ to have no units. But this means that no element of $I$ has a constant term, so every element is divisible by $t,$ implying $(t)\subseteq I,$ and $I=(t)$ follows.
+
+Thus we have shown $k[[t]]$ is a principal ideal domain with exactly one maximal ideal, which finishes.
+
+\subsubsection{November 17th}
+Today I learned the definition of the limit superior to prove the radius of convergence for a power series. In symbols, we have
+\[\limsup_{n\to\infty}a_n=\lim_{n\to\infty}\left(\sup_{m>n}a_m\right).\]
+This always exists, provided we allow $\pm\infty.$ If $a_\bullet\to\infty,$ then this comes out to $\infty.$ Otherwise, the sequence $\{a_\bullet\}$ has a maximum, so $\sup_{m>\bullet}a_m$ is monotonically decreasing. If the supremum sequence goes to $-\infty,$ then the limit is $-\infty.$ Else, the sequence is lower-bounded, so it has a limit because we just said it's monotonically decreasing.
+
+For the radius of convergence, fix a series $S=\sum_na_n.$ Then, with the root test, examine
+\[A=\limsup_{n\to\infty}\sqrt[n]{\left|a_n\right|}.\]
+Note that $L\ge0.$ We have the following cases for the root test; I give the arguments here because I had to reconstruct them today.
+\begin{itemize}
+    \item If $A>1$ (including $\infty$), then the sequence $\{a_n\}$ must have infinitely many terms with absolute value at least $1.$ Indeed, if there were only finitely many, then a bound $N$ would exist with $\sup_{m>n}\sqrt[m]{|a_m|}\le1$ for $n>N,$ implying $A\le1.$
+    
+    But if an infinite subsequence is bounded below by $1,$ then it diverges by the Divergence test.
+    
+    \item If $A<1,$ then there is a bound $N$ for which $n>N$ implies $\sup_{m>n}\sqrt[m]{|a_m|}<1-\varepsilon$ for some $\varepsilon>0.$ However, this requires $|a_n|<(1-\varepsilon)^n,$ so we get that
+    \[S=\sum_{n=0}^\infty a_n\le\sum_{n=0}^N|a_n|+\sum_{n=N+1}^\infty|a_n|<\sum_{n=0}^Na_n+\sum_{n=N+1}^\infty(1-\varepsilon)^n<\infty.\]
+    So the series converges, absolutely.
+\end{itemize}
+This is relevant to the radius of convergence because it tells us that $a(x)=\sum_na_nx^n$ will converge if $Ax<1,$ and diverge if $Ax>1.$ In other words, we get to explicitly compute the radius of convergence as $\frac1A,$ where $\frac1\infty=0$ and $\frac10=\infty.$
+
+As an aside, this lets us prove that the set of formal power series in $\RR[[x]]$ with positive radius of convergence is a ring. (This can be done with notions of absolute convergence, but whatever.) Of course, the $0$ function and the $1$ function have infinite radius of convergence, so they're safe. For the remaining checks, fix $a(x)=\sum_na_nx^n$ and $b(x)=\sum_na_nx^n$ power series with positive radius convergence. Note that this condition is equivalent to
+\[A=\limsup_{n\to\infty}\sqrt[n]{|a_n|}<\infty,\]
+and analogously $B<\infty$ for $b_n.$ We see that $-a(x)$ also has positive radius of convergence because $|-a_n|=|a_n|,$ so the limit for $-a(x)$ is the same as $a(x)$ and therefore finite.
+
+We construct $a(x)+b(x)$ by adding termwise. Without loss of generality, let's say $A\ge B.$ Then we're interested in
+\[\limsup_{n\to\infty}\sqrt[n]{|a_n|+|b_n|}\le\limsup_{n\to\infty}\sqrt[n]{2\max\{|a_n|,|b_n|\}}.\]
+The $\sqrt[n]2$ vanishes as $n\to\infty.$ To be formal with this, we could plug into the definition of $\limsup$ and then expand out the limit of the sequences, but it doesn't look fun. So we're interested in
+\[\limsup_{n\to\infty}\max\left\{\sqrt[n]{|a_n|},\sqrt[n]{|b_n|}\right\}.\]
+But this is just $A.$ Explicitly, $A\ge B$ implies that there is some bound $N$ for which $n>N$ implies $\sup_{m>n}\sqrt[m]{a_m}\ge\frac{A+B}2$ and $\sup_{m>n}\sqrt[m]{b_m}\le\frac{A+B}2.$ This means that the maximum always go to $|a_n|$ in the above when past $N,$ making the limit exactly $A.$ It follows that the series has positive radius of convergence again.
+
+We do $a(x)b(x)$ in a similar manner. We're interested in
+\[\limsup_{n\to\infty}\sqrt[n]{\left|\sum_{k=0}^na_kb_{n-k}\right|}.\]
+Bounding in the stupidest way possible, this is bounded above by
+\[\limsup_{n\to\infty}\sqrt[n]{(n+1)\cdot\max_{k\le n}|a_k|\cdot\max_{k\le n}|b_k|}\]
+Again, the $\sqrt[n]{n+1}$ vanishes, which we don't talk about rigorously. The part to worry about is
+\[\limsup_{n\to\infty}\sqrt[n]{\max_{k\le n}|a_k|\cdot\max_{k\le n}|b_k|}.\]
+Expanding the $\limsup$ and doing some rearranging, this collapses to
+\[\lim_{n\to\infty}\sup_{m>n}\max_{k\le m}\sqrt[m]{|a_m|}\cdot\sup_{m>n}\max_{k\le m}\sqrt[m]{|b_m|}=\lim_{n\to\infty}\sup_{m\ge0}\sqrt[m]{|a_m|}\cdot\sup_{m\ge0}\sqrt[m]{|b_m|}.\]
+Limit properties says that this limit is equal to the product of each individual one provided each factor exists, and they do---the fact $A,B<\infty$ implies that $\sqrt[n]{a_n}$ and $\sqrt[n]{b_n}$ are bounded above, and therefore they each have a supremum. This finishes.
+
+\subsubsection{November 18th}
+Today I learned the estimate for the number of ideals of bounded norm in imaginary quadratic fields. Fix an imaginary quadratic field $K=\QQ(\sqrt{-d})$ for $d>0.$ We count the number of ideals of bounded norm in an ideal class $C.$ Explicitly, we claim that the number of ideals $I$ with $\op{Norm}(I)\le t,$ denoted $\iota_C(t),$ is
+\[\iota_C(t)=\frac{2\pi}{|\mu(K)|\sqrt{|\disc(\mathcal O_K)|}}t+O(\sqrt t).\]
+Fix an ideal $J$ in the ideal class $C^{-1}.$ The main transformation is that we can count ideals $I\in C$ with $\op{Norm}(I)\le t$ by counting principal ideals $(\alpha)$ with $\op{Norm}((\alpha))\le t\op{Norm}(J).$ Indeed, for ideal $I\in C,$ we can associate it with $IJ=(\alpha),$ and unique prime factorization of ideals guarantees that this is injective. And this is surjective by taking $I=(\alpha)J^{-1},$ where $J\mid(\alpha)$ because $J\supseteq(\alpha).$ Note that this bijection does not use the fact that $K$ is imaginary quadratic; it'll work for any number field.
+
+So we now want to count the number of principal ideals $(\alpha)\subseteq J$ with norm bounded by $t\op{Norm}(J).$ However, $(\alpha)$ is uniquely determined by its generator $\alpha$ up to a unit, and our units are just $\mu(K)$ here. So instead computing $|\mu(K)|\iota_C(t),$ we are interested in the number of elements $\alpha\in J$ generating $(\alpha)$ of bounded norm. However,
+\[\op{Norm}((\alpha))=\op{Norm}(\alpha)=|\alpha|^2\]
+for nonzero $\alpha.$ It follows that we want the number of nonzero elements $\alpha\in J$ of bounded norm $|\alpha|<\sqrt{t\op{Norm}(J)}.$
+
+But this is just the Gauss Circle Problem! In particular, $\mathcal O_K$ is a lattice in $K$ and therefore a lattice in $\CC,$ and so $J$ is also a lattice. So we are computing the number of nonzero lattice points inside a circle of radius $\sqrt{t\op{Norm}(J)}.$ This is heuristically $\pi t\op{Norm}(J)/\op{vol}(\CC/J),$ which will immediately give the result. But Marcus includes the detailed estimates, so I'm going to as well because I didn't remember the details.
+
+Let $n(r)$ be the number of points in the lattice $J$ with norm less than $r.$ Bound this by $n_-(t)$ be the number of points in $J$ such that the translate of the parallelogram $\CC/J$ is entirely contained in the circle of radius $r,$ and $n_+(r)$ the number of points where the translate merely intersects the circle. It follows
+\[n_-(r)\le n(r)\le n_+(r).\]
+To bound this, let $d$ be the longest possible length in $\CC/J.$ Then a translate intersecting a circle of radius $r$ is fully covered in a circle of radius $r+d,$ so $n_+(r)\le n_-(r+d).$ This implies
+\[n_+(r-d)\le n(r)\le n_-(r+d).\]
+This nice because we can bound $n_+(r)\op{vol}(\CC/J)$ below by $\pi r^2$ because the translates ought fully cover the circle: missing some point of the circle would let us add another translate to cover it. Similarly, $n_-(r)\op{vol}(\CC/J)$ is bounded above $\pi r^2$ because each of the translates associated to points in $n_-$ is entirely contained in that circle. Thus,
+\[\pi(r-d)^2\le n(r)\op{vol}(\CC/J)\le\pi(r+d)^2.\]
+In particular,
+\[n(r)=\frac{\pi r^2}{\op{vol}(\CC/J)}+O(r)\]
+because $d$ is constant.
+
+To finish, we remember that
+\[|\mu(K)|\iota_C(t)=n\left(\sqrt{t\op{Norm}(J)}\right)-1\]
+is the number of nonzero lattice points of $J$ in a circle of radius $\sqrt{t\op{Norm}(J)}.$ Using our estimate, we see
+\[\iota_C(t)=\frac{\pi\op{Norm}(J)}{|\mu(K)|\op{vol}(\CC/J)}t+O(\sqrt t).\]
+It remains to get rid of $J$ from the estimate; choice of $J$ shouldn't change the number of ideals. However,
+\[\op{Norm}(J)=|\mathcal O_K/J|=\frac{\op{vol}(\CC/J)}{\op{vol}(\CC/\mathcal O_K)}=\frac{\op{vol}(\CC/J)}{\frac12\sqrt{|\op{disc}(\mathcal O_K)|}}.\]
+The $\frac12$ comes from the complex embedding doubling up in the Minkowski space. It follows that
+\[\iota_C(t)=\frac{2\pi}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t).\]
+Quickly, we remark that this implies that ideals distribute somewhat evenly over ideal classes $C$ because nothing on the right-hand side is dependent on $C.$ So, say, we could estimate the number of ideal classes by picking random ideals and seeing what proportion are principal. (This also kind of doubles as a zero-knowledge proof that a $\mathcal O_K$ is a principal ideal domain.) If it's $\frac1h,$ then $h$ would be the class number. This is not better than just using the Minkowski bound, but the result amuses me nonetheless.
+
+Summing over ideal classes $C,$ we have that
+\[\iota(t)=\frac{2\pi h}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t),\]
+where $h$ is the class number. So we have a somewhat analytic way to compute the class number. It's not as fancy as the class number formula, but it's something.
+
+\subsubsection{November 19th}
+Today I learned the group structure of the elements of norm $1$ in $\QQ(i),$ and some semblance of generalizations to number fields. What makes the mathematics possible (in the general case) is to not look at elements in $\QQ(i)$ but rather fractional ideals, and then we can use our very nice structure theorem for ideals under multiplication because of unique prime factorization.
+
+Before working in $\QQ(i),$ suppose we are in some more general extension of number fields $L/K$ with ring of integers $\mathcal O_K,$ and we are interested in fractional ideals with relative norm $\mathcal O_K.$ Well, fix one such ideal $I,$ and we have a prime factorization
+\[I=\prod_{\mf p\subseteq\mathcal O_K}\left(\prod_{\mf P/\mf p}\mf P^{\alpha_\mf P}\right),\]
+where we have arranged the primes of $\mathcal O_L$ according to their base prime in $\mathcal O_K.$ Taking norms, we see
+\[\op{Norm}(I)=\prod_{\mf p\subseteq\mathcal O_K}\left(\prod_{\mf P/\mf p}\op{Norm}_{L/K}(\mf P)^{\alpha_\mf P}\right)=\prod_{\mf p\subseteq\mathcal O_K}\left(\prod_{\mf P/\mf p}\mf p^{f(\mf P/\mf p)\alpha_\mf P}\right).\]
+This is an $\mathcal O_K$-fraction ideal because only finitely many of the $\alpha_\mf P$ are nonzero. For this to equal $\mathcal O_K,$ unique prime factorization of ideals in $\mathcal O_K$ tells us that each $\nu_\mf p$ factor in the above must be $0.$ Well, this is the same as saying
+\[\sum_{\mf P/\mf p}f(\mf P/\mf p)\alpha_\mf P=0\]
+for each prime $\mf p\subseteq\mathcal O_K.$ This doesn't necessarily give us great structure, but it has effectively turned the problem of finding fractional ideal with norm $\mathcal O_K$ into a combinatorics problem.
+
+As an example of when the combinatorics problem can be easy, if $L/K$ is Galois, then all of the $f(\mf P/\mf p)$ are equal. So we just need
+\[\sum_{\mf P/\mf p}\alpha_\mf P=0\]
+for each rational prime $p.$ For convenience, focus on some individual prime $\mf Q$ over $\mf p.$ Then we note that
+\[\alpha_\mf Q=\sum_{\substack{\mf P/\mf p\\\mf P\ne\mf Q}}-\alpha_\mf P.\]
+This lets us write the $\mf p$ part of our ideal $I$ as
+\[\prod_{\mf P/\mf p}\mf P^{\alpha_\mf P}=\prod_{\substack{\mf P/\mf p\\\mf P\ne\mf Q}}\left(\mf P\mf Q^{-1}\right)^{\alpha_\mf P}.\]
+In particular, the $\mf p$ part of $I$ is uniquely determined by all but one of the $\alpha_\mf P.$ So we may biject
+\[\left\{I:\op{Norm}_{L/K}(I)=\mathcal O_K\right\}\longleftrightarrow\left\{\{\alpha_\mf P\}_{\mf P/\mf p,\mf P\ne\mf Q}:\mf Q/\mf p\right\},\]
+where $\mf Q$ is a chosen prime over $\mf p.$ Of course, multiplying two ideals of norm $1$ corresponds to adding their $\alpha_\mf P$ sequences (check the prime factorization), and the fact that the norm must be preserved means the bijection still holds. In particular, the above is a homomorphism as well, so it is an isomorphism. Explicitly,
+\[\left\{I:\op{Norm}_{L/K}(I)=\mathcal O_K\right\}\cong\bigoplus_{\substack{\mf p\subseteq\mathcal O_K\\\text{fixed }\mf Q/\mf p}}\prod_{\substack{\mf P/p\\\mf P\ne\mf Q}}\left\langle\mf P\mf Q^{-1}\right\rangle\cong\bigoplus_{\mf p\subseteq\mathcal O_K}\ZZ^{r_\mf p-1},\]
+where $r_\mf p$ is the number of primes which $\mf p$ splits into in $\mathcal O_L.$ Here, each $\ZZ$ is generated by $\mf P\mf Q^{-1}$ as provided by the unique prime factorization of $I.$ This is a coproduct because only finitely many of the $\alpha_\mf P$ may be nonzero, so only finitely many of the $\alpha_\mf P$ sequences may be nonzero. And there are no nontrivial relations between the generators here by unique prime factorization of ideals---if we multiply out to get $\mathcal O_K,$ then all exponents had better be $0.$
+
+Only now do we return to looking at elements of norm $1$ in $K=\QQ(i).$ To transform this problem into one about ideals, we use the fact that $\mathcal O_K=\ZZ[i]$ is a principal ideal domain. In particular, as long as $\mathcal O_K$ is a principal ideal domain, there's an isomorphism between $K^\times/\mathcal O_K^\times$ and fractional ideals. We show this, we map $K^\times$ to fractional ideals by
+\[\alpha\mapsto(\alpha).\]
+Indeed, this is surjective, for a fractional ideal $I$ is $\frac1\alpha J$ for some integral ideal $J=(\beta),$ so $I=(\alpha/\beta).$ The kernel is the set of elements $u$ such that $(u)=\mathcal O_K,$ which requires $u\in\mathcal O_K$ but $u\mid1,$ which is the definition of $\mathcal O_K^\times.$
+
+Further, because $\op{Norm}((\alpha))=\op{Norm}(\alpha),$ this isomorphism preserves having norm $1.$ So we can identify elements of norm $1$ in $\QQ(i)$ by fractional ideals of norm $1,$ up to units. But $\QQ(i)/\QQ$ is Galois, so our fractional ideals of norm $1$ have structure
+\[\bigoplus_{\substack{p\equiv1\pmod4\\(p)=\mf p\overline{\mf p}}}\left\langle\mf p\overline{\mf p}^{-1}\right\rangle\cong\bigoplus_{p\equiv1\pmod4}\ZZ\]
+because only primes $p\equiv1\pmod4$ split into more than one prime in $\QQ(i).$ To make this more explicit, if $\mf p=(a+bi)$ and $\overline{\mf p}=(a-bi)$ are the primes over each $p\equiv1\pmod 4,$ then our $\ZZ$ is generated by
+\[\mf p\overline{\mf p}^{-1}=(a+bi)\left(\frac1{a-bi}\right)=\left(\frac{a^2-b^2}{a^2+b^2}+\frac{2ab}{a^2+b^2}i\right).\]
+So our fractional ideals of norm $1$ are isomorphic to
+\[\bigoplus_{\substack{p\equiv1\pmod4\\a^2+b^2=p}}\left\langle\frac{a^2-b^2}{a^2+b^2}+\frac{2ab}{a^2+b^2}i\right\rangle,\]
+where the isomorphism is just multiplication. Finally going back to elements, these ideals uniquely determine elements up to units, so we have to multiply an additional $\langle i\rangle$ to make up for it. So our structure is
+\[\langle i\rangle\oplus\bigoplus_{\substack{p\equiv1\pmod4\\a^2+b^2=p}}\left\langle\frac{a^2-b^2}{a^2+b^2}+\frac{2ab}{a^2+b^2}i\right\rangle\cong\ZZ/4\ZZ\oplus\bigoplus_{p\equiv1\pmod4}\ZZ,\]
+which is what we wanted. Similar arguments work for principal ideal domains coming from Galois extensions.
+
+\subsubsection{November 20th}
+Today I learned that the group $\QQ/\ZZ$ has every finite cyclic group as a unique subgroup, and in fact no subgroup of it suffices. For one, all finite cyclic groups appear as $\langle 1/n\rangle$ for size $n.$
+
+Uniqueness is a bit more obnoxious to show. Suppose $G\subseteq\QQ/\ZZ$ is a finite cyclic subgroup of order $n.$ We need to show $G=\langle1/n\rangle.$ Well, suppose $g\in G$ generates. Then $ng=0\pmod\ZZ,$ so
+\[ng=m\in\ZZ.\]
+It follows $g=\frac mn.$ Namely, $G=\langle g\rangle\subseteq\langle1/n\rangle.$ However, both of these sets have the same size while one is the subset of the other, so we must in fact have equality.
+
+We close, for now, by showing that no proper subgroup of $\QQ/\ZZ$ has this property. In particular, if a subgroup is proper, then it misses some element, say $\frac mn.$ But then we cannot have $\frac1n$ either, for this would imply $\frac mn$ is present. It follows that the proper subgroup is missing the subgroup $\langle1/n\rangle,$ and is therefore missing the only subgroup of order $n$ in $\QQ/\ZZ.$ It follows that the proper subgroup is missing some finite cyclic subgroups.
+
+Quickly, this is not quite the property I was looking for---namely, I was interested in an infinite group with only finite proper subgroups. In fact, the Pr\"uffer group $\ZZ[1/p]/\ZZ$ suffices. Indeed, define the degree of a subgroup $G$ of $\ZZ[1/p]/\ZZ$ as the largest power of $p$ in the denominator of any element of $\ZZ[1/p]/\ZZ.$ We have the following cases.
+\begin{itemize}
+    \item If the degree is in fact unbounded, then the subgroup $G$ is all of $\ZZ[1/p]/\ZZ,$ and this is not a proper subgroup; namely, we can achieve every element of the form $a/p^\bullet$ because we have unbounded denominators.
+    \item Else the degree is bounded, so well-order gives us a least integer $d$ such that if $a/p^k\in G$ with $p\nmid a,$ then $k\le d.$ We claim that the group is $\langle1/p^d\rangle,$ which is finite cyclic of order $p^d.$ Indeed, we are at least a subset of this because $p^d$ is an upper-bound on the denominator. But in the other direction, there is some $a$ for which $a/p^d\in G$ and $p\nmid a.$ However, this means
+    \[a^{-1}\pmod{p^d}\]
+    exists, so $aa^{-1}/p^k=1/p^k$ in $\ZZ[1/p]/\ZZ.$ This completes the proof.
+\end{itemize}
+Of course, I suppose the caveat to this proof is that we are only using prime-powers for our subgroup sizes, which is the advantage of $\QQ/\ZZ.$
+
+\subsubsection{November 21st}
+Today I learned a nice perspective on completely multiplicative functions on $\ZZ^+\to\ZZ^+,$ from HMMT Guts. Essentially, we're interested in functions satisfying $f(mn)=f(m)f(n),$ which is equivalent to saying that $f$ is a multiplicative homomorphism sending the monoid $\left(\ZZ^+,\times\right)$ to itself. However, this group is
+\[\left(\ZZ^+,\times\right)\cong\prod_p\NN\]
+by unique prime factorization. So our homomorphism is really defined by sending primes to other primes in some sane way.
+
+The HMMT problem also asserted that $f(101!)=101!,$ which puts a constraint on which primes we can send where. In particular, if we prime factor $101!=\prod_pp^{\alpha_p},$ then we see
+\[\prod_pf(p)^{\alpha_p}=\prod_pp^{\alpha_p}.\]
+So $f$ is allowed to send $p\to q$ provided that $\alpha_p=\alpha_q,$ in order to preserve this prime factorization. Of course, there are infinitely many possible $f$---note that there is no constraint on the primes $p>101$---but we can ask how where, say, $f(2020\cdot2021)=f(20)f(101)f(43)f(47)$ goes.
+
+Note $2$ and $5$ are fixed because $\nu_2(101!)$ and $\nu_5(101!)$ are both unique. Then $f(101)$ can be sent to any of the primes with $\nu_p(101!)=1,$ which is any of the primes above $50.$ Then $f(43)$ and $f(47)$ must be taken to a prime with $\nu_p(101!)=2,$ which are the primes from $37$ to $47.$ Tallying these up, we get $10\cdot4\cdot3=120$ total possibilities.
+
+\subsubsection{November 22nd}
+Today I learned the finish for the fact that the greedy algorithm for Egyptian fractions works. Suppose that we want to write a reduced, positive rational $p/q$ as sum of rationals of the form $1/n.$ Without loss of generality $p/q$; else we just have to subtract $1/1$ a whole bunch of times.
+
+Now, the greedy algorithm chooses the largest possible $1/n$ which will fit and then continues. Indeed, we want to use the integer $n$ such that
+\[\frac1n\le\frac pq<\frac1{n-1}.\]
+In other words, $n\ge q/p>n-1,$ so $n=\ceil{q/p}.$ So basically, the algorithm (formally) computes $\ceil{q/p}$ and then recursively continues with
+\[\frac pq-\frac1{\ceil{q/p}}.\]
+We'd like to show that this algorithm must terminate. For this, a monovariant or an invariant would be useful because terms in the above are in $\NN,$ so well-order would finish. Well, we claim that the numerator is strictly smaller in the new fraction when reduced; this will finish because there are only finitely many possible numerators to go through, so termination would be forced. Indeed, the new fraction is
+\[\frac{p\ceil{q/p}-q}{q\ceil{q/p}}.\]
+
+After reducing, the numerator is no more than $p\ceil{q/p}-q,$ so it remains to show that this is less than $p.$ (In fact, it might be equal, so the inequality $p\ceil{q/p}-q<p$ had better holds regardless.) Explicitly, we need
+\[p\ceil{\frac qp}-q<p.\]
+Dividing by $p,$ this reads
+\[\ceil{\frac qp}-\frac qp<1,\]
+which is true by the definition of ceiling. The ceiling is the smallest positive integer above $q/p,$ so if the left-hand side were at least $1,$ then we could select $\ceil{q/p}-1$ as a smaller integer above $q/p,$ contradicting.
+
+As an aside, we can also notice that the inequality is
+\[p\ceil{q/p}<q+p.\]
+The common number-theoretic way to deal with floors and ceilings is to note that $p\ceil{q/p}$ is the smallest multiple of $p$ above $q.$ Well, there's a multiple of $q$ somewhere in $[q,q+p)$ because this fully covers $\ZZ/p\ZZ,$ so the above inequality follows.
+
+\subsubsection{November 23rd}
+Today I learned the group structure for the rational points with prime-power denominator on the unit hyperbola $x^2-y^2=1.$ This argument, with sufficient modification, also carries over to the unit circle, but of course we had that the unit circle is better viewed in $\QQ(i),$ in the same way we could look at norm-$1$ elements of $x^2-2y^2=1$ by focusing on $\QQ(\sqrt2).$ In this regard, we are kind of watching prime-splitting in $\QQ/\QQ,$ but is misleading given what we found about norm-$1$ ideals in Galois extensions a few days ago.
+
+Our group law is defined by noting that this curve is parameterized by $(\sinh(t),\cosh(t)),$ so we can send two rational points $(a,b)$ and $(c,d)$ to $(ac+bd,ad+bc).$ Indeed,
+\[(ac+bd)^2-(ad+bc)^2=a^2c^2+b^2d^2-a^2d^2-b^2c^2=\left(a^2-b^2\right)\left(c^2-d^2\right)=1.\]
+Here the identity is $(1,0),$ and the inverse is $(a,-b).$ As an aside, there is some connection between the unit hyperbola and the unit circle. Essentially, if $x^2+y^2=1,$ then provided $x\ne0,$ this is $1+(y/x)=(1/x)^2,$ or
+\[\left(\frac1x\right)^2-\left(\frac yx\right)^2=1.\]
+So we have a mapping from $(x,y)$ on the unit circle minus $(0,\pm1)$ to $(1/x,y/x)$ on the unit hyperbola. This is bijective because the mapping is an involution. However, if we turn this bijection into an isomorphism, this does not preserve the standard group operation on the unit hyperbola.
+
+Note that this group law preserves a ground field, so it will count as a group law for the rational points; we would like the group structure. We'll show probably tomorrow that it is
+\[\langle(-1,0)\rangle\oplus\bigoplus_p\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle\cong\ZZ/2\ZZ\oplus\bigoplus_p\ZZ,\]
+but I'm still trying to work it out. Now, the group law also preserves sign of the first coordinate, so it suffices to look over points with positive $x$ coordinate, and then multiply by $(-1,0)$ to account for signs later. So it suffices to show that the group structure of the points on the unit hyperbola with positive $x$ coordinate is
+\[\bigoplus_p\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle\cong\bigoplus_p\ZZ.\]
+
+Quickly, we note that if we have a rational point $(a,b)$ with $an\in\ZZ,$ then
+\[(an)^2-(bn)^2=n^2,\]
+so $bn$ is a rational square root of an integer, so $bn\in\ZZ.$ By symmetry, we also see that $bn\in\ZZ$ implies $an\in\ZZ,$ so reducing $a$ and $b$ into a common fraction forces them to have the same denominator.
+
+Now, we claim that set of rational points with denominator a power of the prime $p$ is exactly
+\[G_p=\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle,\]
+even for $p=2.$ (The extra $2$ in the denominator doesn't matter for $p=2$ and cancels with the numerator for $p$ odd.) Note that inversion and multiplying with the group law does nothing to introduce to new primes to the denominator (it's only addition and multiplication), so surely everything in $G_p$ will have denominator $p.$ In fact, an induction can show that, for $k$ a nonnegative integer,
+\[\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^k=\left(\frac{p^{2\cdot1}+1}{2p^1},\frac{p^{2\cdot1}-1}{2p^1}\right)^k=\left(\frac{p^{2k}+1}{2p^k},\frac{p^{2k}-1}{2p^k}\right).\]
+
+It remains to show that every point $\left(\frac a{p^k},\frac b{p^k}\right)$ with denominator the prime-power $p^k$ is also in $G_p.$ Inverting if necessary, we assume that $b\ge0$ without loss of generality. Now, we have
+\[(a+b)(a-b)=a^2-b^2=p^{2k}.\]
+Because we require $\gcd(a,b)=1,$ we have $\gcd(a+b,a-b)\le2.$ We now have to do casework on parity of $p.$
+\begin{itemize}
+    \item If $p=2,$ then one of $a+b$ or $a-b$ must be even, but these have the same parity, so they must both be even. However, these are both powers of $2$ with greatest common denominator $2,$ so one of them must be $2.$ Because $a-b$ is the smaller one, $a-b=2$ and $a+b=2^{2k-1}.$ This forces $a=2^{2k-2}+1$ and $b=2^{2k-2}-1,$ making our point
+    \[\left(\frac{2^{2k-2}+1}{2^k},\frac{2^{2k-2}-1}{2^k}\right)=\left(\frac{2^2+1}{2\cdot2},\frac{2^2-1}{2\cdot2}\right)^{k-1}\in G_2.\]
+    
+    \item If $p$ is an odd prime, both $a+b$ and $a-b$ must be odd, so we are forced into $a+b=p^{2k}$ and $a-b=1.$ This forces $a=\left(p^{2k}+1\right)/2$ and $b=\left(p^{2k}-1\right)/2,$ making our point
+    \[\left(\frac{p^{2k}+1}{2p^k},\frac{p^{2k}-1}{2p^k}\right)=\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^k\in G_p.\]
+\end{itemize}
+Having sufficiently dealt with both cases, we are done with this lemma.
+
+\subsubsection{November 24th}
+Today I learned the group structure for rational points on the unit hyperbola. As with yesterday, we are interested in rational points on $x^2-y^2=1$ with group law
+\[(a,b)\times(c,d)=(ac+bd,ad+bc),\]
+which is intended to mimic the group law for $\CC.$ Again, the identity is $(1,0),$ and $(a,b)^{-1}=(a,-b).$ We claimed yesterday that the group structure is
+\[G=\langle(-1,0)\rangle\oplus\bigoplus_p\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle\cong\ZZ/2\ZZ\oplus\bigoplus_p\ZZ.\]
+The fact that we had a group law yesterday at all implies that this is indeed a subgroup of the rational points on the unit hyperbola.
+
+To show that this is a valid group representation, I guess we have to show that there are no nontrivial relations between the group elements, but this isn't hard. Essentially, if we are provided points $(a/m,b/m)$ and $(c/n,d/n)$ where each fraction is reduced with $\gcd(m,n)=1,$ then note that
+\[\left(\frac am,\frac bm\right)\times\left(\frac cn,\frac dn\right)=\left(\frac{ac+bd}{mn},\frac{ad+bc}{mn}\right).\]
+We claim that this product has denominator $mn.$ Indeed, if $p$ is a prime divisor of $ac+bd$ or $ad+bc,$ then we want to show that $p\nmid mn.$ Supposing that $p\mid m$ (without loss of generality) for contradiction,
+\[(ac+bd)^2-(ad+bc)^2=(mn)^2\]
+implies that $p$ dividing one of $ac+bd$ or $ad+bc$ makes it divide the other.
+
+We start by dealing with $p=2.$ Note $m$ even means $a$ and $b$ are both odd. But then $ac+bd$ even means $c$ and $d$ have the same parity, which gives $c^2-d^2=n^2$ even as well. However, $\gcd(m,n)=1$ contradicts both $m$ and $n$ even, finishing.
+
+Now we take care of $p$ odd. Summing, we see $p\mid(a+b)(c+d),$ and subtracting says $p\mid(a-b)(c-d).$ If $p$ divides both $a+b$ and $a-b,$ then $p$ odd implies that $p$ divides $a$ and $b$ and therefore $m,$ which contradicts $a/m$ being reduced. The same holds for $c+d$ and $c-d.$ But if $p$ divides $a\pm b$ and $c\mp d,$ then $p$ divides both $a^2-b^2=m^2$ and $c^2-d^2=n^2,$ contradicting $\gcd(m,n)=1.$ All roads lead to contradiction, so we're done with the intermediate claim.
+
+To finish showing there are no nontrivial relations in $G,$ now suppose
+\[(1,0)=(-1,0)^{a_{-1}}\times\prod_p\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^{a_p}=(-1,0)^{a_{-1}}\times\prod_p\left(\frac{p^{2a_p}+1}{2p^{a_p}},\frac{p^{2a_p}-1}{2p^{a_p}}\right),\]
+where all but finitely many of the $a_\bullet$ are zero. We want to show all of the factors here are the identity. Quickly, $(-1,0)^{a_{-1}}=(1,0)$ because the product over $p$ will only give elements with positive $x$ coordinate (preserved by the group law), so the fact $(1,0)$ has positive $x$ coordinate forces $(-1,0)^{a_{-1}}$ to also have positive $x$ coordinate---it must be $(1,0).$
+
+As for the remaining $a_p,$ we start by remarking that none of these points have finite order from work we did yesterday, shown when we computed the powers explicitly. But to finish, we see that
+\[\prod_p\left(\frac{p^{2a_p}+1}{2p^{a_p}},\frac{p^{2a_p}-1}{2p^{a_p}}\right)\]
+is a finite product of elements with coprime denominators (for odd $p,$ the numerators are even, so the $2$ cancels), so our intermediate claim kicks and says that the product of this thing will have denominator
+\[2^{a_2+\op{sgn}(a_2)}\prod_{p>2}p^{a_p},\]
+which will only be $1$ to give $(1,0)$ when each of the $a_p$ are zero. The exponent on $2$ is $a_2+\op{sgn}(a_2)$ because it is $0$ when $a_2=0$ but $a_2+1$ when $a_2>0.$
+
+It remains to show that every rational point on $x^2-y^2=1$ can be found in $G.$ We do this using strong induction on the denominator of the point. We remark that yesterday we classified all points with denominator a power of $2$ (adjusting for sign) as living in $\langle(-1,0)\rangle\oplus\left\langle\left(\frac{2^2+1}{2\cdot2},\frac{2^2-1}{2\cdot2}\right)\right\rangle,$ which is in $G,$ so we're safe here. Our explicit base case will be denominator $1,$ which is a power of $2.$
+
+Now suppose that all rational points on $x^2-y^2=1$ with denominator smaller than $n>1$ are in $G.$ To show that rational points with denominator $n$ are in the group, extract some arbitrary point $(a/n,b/n)$ which lives there. If $n$ is a power of $2,$ we're already done. Else we're going to remove a prime factor from the denominator, making this a point with smaller denominator, which will let us trigger the induction. Indeed, $n>1$ not a power of $2$ lets us extract some odd prime divisor $p\mid n.$ Then we see
+\[a^2-b^2=n^2=p^2(n/p)^2.\]
+It follows $a^2-b^2=(a+b)(a-b)\equiv0\pmod{p^2}.$ Additionally, $\gcd(a,b)=1$ because the greatest common divisor would have to divide $a^2-b^2=n^2$ as well, but $\gcd(a,n)=1.$ This gives $\gcd(a+b,a-b)\le2,$ but $p$ is odd, so $p^2\mid(a+b)(a-b)$ still forces
+\[a\equiv\pm b\pmod{p^2}.\]
+Because $G$ is closed under inversion, it suffices to show that one of $(a/n,\pm b/n)$ is in $G.$ So for sanity reasons, fix $a\equiv b\pmod{p^2}$ without loss of generality. Now, to remove a $p$ from the denominator, we multiply by the corresponding power of the generator of $G_p,$ $\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right),$ giving
+\[\left(\frac an,\frac bn\right)\times\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)=\left(\frac{(a+b)p^2+(a-b)}{2np},\frac{(a+b)p^2-(a-b)}{2np}\right).\]
+
+To finish this step, we imagine reducing the fractions on the right-hand side. The numerators are even ($\equiv2a$ and $2b$ respectively), and in fact, they are both divisible by $p^2$ because $p^2\mid a-b.$ So the reduced denominator is no more than $2np/\left(2p^2\right)=n/p.$ It follows that the reduced denominator is smaller than $n,$ so it lives in $G.$ Then, writing
+\[\left(\frac an,\frac bn\right)=\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^{-1}\times\left(\frac{(a+b)p^2+(a-b)}{2np},\frac{(a+b)p^2-(a-b)}{2np}\right)\]
+shows that $(a/n,b/n)$ is also in $G,$ which completes the inductive step.
+
+\subsubsection{November 25th}
+Today I learned the reflection formula for the gamma function. Quickly, recall that, provided $\op{Re}(s)>-1,$
+\[\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt.\]
+
+We begin by claiming that
+\[\Gamma(s)=\lim_{n\to\infty}\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]
+The main idea to prove this statement is to note that
+\[\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt=\lim_{n\to\infty}\int_0^\infty t^{s-1}\left(1-\frac tn\right)^n\,dt\]
+by definition of $\exp.$ However, we can be even more greedy with our limit by exchanging the upper bound of the integral to
+\[\Gamma(s)=\lim_{n\to\infty}\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt\]
+I guess there is some uniform convergence complications we need to exchange the limit and the integral, but I don't care enough. We can evaluate this integral for $n\in\ZZ$ (which is good enough to approach $\exp$) by using repeated integration by parts. Indeed,
+\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac{t^s}s\left(1-\frac tn\right)^n\bigg|_0^n-\int_0^n\frac{t^s}s\cdot n\left(1-\frac tn\right)^{n-1}\cdot-\frac1n\,dt.\]
+The main term vanishes, leaving us with
+\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac n{ns}\int_0^nt^s\left(1-\frac tn\right)^{n-1}\,dt.\]
+Repeating this to a total of $n$ times gives us
+\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac n{ns}\cdot\frac{n-1}{n(s+1)}\cdot\frac{n-2}{n(s+2)}\cdots\frac1{n(s+n-1)}\int_0^nt^{s+n-1}\,dt.\]
+The integral evaluates to $\frac1{s+n}n^{s+n},$ which removes the $n^n$ in the denominator and leaves us with
+\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac ns\cdot\frac{n-1}{s+1}\cdot\frac{n-2}{s+2}\cdots\frac1{s+n-1}\cdot\frac{n^s}{s+n}=\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]
+From this we get that
+\[\Gamma(s)=\lim_{n\to\infty}\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]
+As an aside, this provides an analytic continuation of $\Gamma$ to all complex numbers except nonpositive integers; some care has to be taken to make this rigorous, but I think it works out.
+
+We are now ready to show the reflection formula. The main idea is that the above formula has some symmetry that we can use. Explicitly, we see
+\[\Gamma(-s)=\lim_{n\to\infty}\frac{n^{-s}}{-s}\prod_{k=1}^n\frac k{-s+k}.\]
+Multiplying this by $\Gamma(s),$ now, does some lovely things, most notably cancelling the pesky $n^s$ term, giving
+\[\Gamma(s)\Gamma(-s)=\lim_{n\to\infty}\frac1{-s^2}\prod_{k=1}^n\frac{k^2}{(s+k)(-s+k)}.\]
+We may now remove the $-\frac1{s^2}$ term, no longer dependent on $n.$ The inner product comes out to be
+\[\prod_{k=1}^\infty\frac{k^2}{k^2-s^2}=\left(\prod_{k=1}^\infty\left(1-\frac{s^2}{k^2}\right)\right)^{-1}.\]
+Quickly, the product on the right-hand side has roots at all nonzero integers, so Euler would say the Weierstrass product makes it $\frac{\sin(\pi s)}{\pi s}.$ Plugging back in, we see
+\[\Gamma(s)\Gamma(-s)=-\frac1{s^2}\cdot\frac{\pi s}{\sin(\pi s)}.\]
+This rearranges to
+\[\Gamma(s)\Gamma(1-s)=\Gamma(s)\cdot-s\Gamma(-s)=\frac\pi{\sin(\pi s)},\]
+which is our reflection formula.
+
+Just for fun, we do a quick application of this: we compute $\left(\frac12\right)!.$ Plugging in $s=\frac12$ to the reflection formula implies
+\[\Gamma\left(\frac12\right)^2=\frac\pi{\sin\left(\frac\pi2\right)}=\pi.\]
+This implies $\Gamma\left(\frac12\right)=\pm\sqrt\pi.$ As for which sign it is, note that the integral representation of $\Gamma$ given at the beginning works at $s=\frac12,$ and the integral is always positive. It follows
+\[\left(\frac12\right)!=\Gamma\left(\frac32\right)=\frac12\Gamma\left(\frac12\right)=\frac{\sqrt\pi}2,\]
+which is what we wanted.
+
+\subsubsection{November 26th}
+Today I learned the definition of a cokernel, from Vakil. Essentially, the cokernel of a morphism $f:A\to B$ is the colimit of the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[r, "f"] \arrow[d] & B \\
+        0                     &  
+    \end{tikzcd}
+\end{center}
+In other words, the following diagram commutes and is initial with respect to doing so.
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[r, "f"] \arrow[d] & B \arrow[d, "\operatorname{coker}(f)"] \\
+        0 \arrow[r]                & \operatorname{Coker}(f)               
+    \end{tikzcd}
+\end{center}
+Explicitly, for any other object $X$ with a map $B\to X$ such that $A\to B\to X=A\to 0\to X,$ there is a unique map $\operatorname{Coker}(f)\to X$ making the diagram commute.
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[r, "f"] \arrow[d]                       & B \arrow[d, "\operatorname{coker}(f)"] \arrow[rdd, bend left, shift left] &   \\
+        0 \arrow[r] \arrow[rrd, bend right, shift right] & \operatorname{Coker}(f) \arrow[rd, "!" description, dashed]               &   \\
+                                                         &                                                                           & X
+    \end{tikzcd}
+\end{center}
+
+The intuitive picture here is that, while the kernel measures how large the initial group is with respect to a morphism $f,$ the cokernel roughly measures the size of the output. Our prototypical example, as usual, is in the category of abelian groups. We claim that $\op{coker}(f)$ is the natural embedding of $B$ into
+\[\op{Coker}(f)=B/f(A).\]
+Note this is a well-defined group because all subgroups are normal in the category of abelian groups. The fact that $A\to B\to\op{Coker}(f)=A\to0\to\op{Coker}(f)$ is apparent because we are just modding out by the image. Then for any other object $X$ with a morphism $g:B\to X$ such that $A\to B\to X=A\to0\to X,$ we see that because $f\circ g:A\to X$ must send all elements to the identity of $X,$ we see this is equivalent to
+\[g(f(A))=\langle0\rangle.\]
+It follows that the behavior of $g$ on $B$ can be uniquely identified with its behavior on cosets $B/f(A)$: for any such coset $b+f(A),$ we have $g(b+f(A))=g(b)+g(f(A))=g(b).$ So $g$ does factor through $B/f(A)$ by straightforward modding, and the action on $B/f(A)$ uniquely defines how $g$ behaves, so this factoring is unique. This is what we wanted.
+
+\subsubsection{November 27th}
+Today I learned the definition of homology groups from algebraic topology, from the Napkin. These, in essence, measure holes in a surface. We have to go a bit of a journey before reaching the definition, however. Using the formalization of algebraic topology from simplices inside of our topological space $X,$ we go ahead and define
+\[[v_0,\ldots,v_n]\]
+as the convex hull of these $n+1$ points. The order of the vertices does matter. Provided the points are non-coplanar (or similar), this defines an $n$-simplex. In order to be able to combine simplices, we define $C_n$ as formal linear combinations of these $n$-simplices. Explicitly,
+\[C_n=\left\{\sum_ka_k\sigma_k:\{a_k\}\subseteq\ZZ,\{\sigma_k\}\text{ simplices}\right\}.\]
+For example, $[v_0,v_1,v_2]$ is a triangle ($3$-simplex) in the plane. Its border is the linear combination of $2$-simplices $[v_0,v_1]-[v_0,v_2]+[v_1,v_2].$ More generally, we define the boundary operator $\del:C_n\to C_{n-1}$ by letting
+\[\del([v_0,\ldots,v_n])=\sum_{k=0}^n(-1)^k[v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_n],\]
+and then extending linearly so that
+\[\del\left(\sum_ka_k\sigma_k\right)=\sum_ka_k\cdot\del\sigma_k.\]
+One of the nice properties of the $\del$ operator is that $\del^2(C_\bullet)=0.$ It suffices to check
+\begin{align*}
+    \del^2([v_0,\ldots,v_n]) =& \sum_{k=0}^n(-1)^k\del([v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\
+    =& \sum_{k=0}^n(-1)^k\left(\sum_{\ell=0}^{k-1}(-1)^\ell\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m])\right. \\
+    &+ \left.\sum_{\ell=k+1}^n(-1)^{\ell-1}\del([v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_m])\right) \\
+    =& \sum_{\substack{k,\ell=0\\\ell<k}}^n(-1)^{k+\ell}\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\
+    &- \sum_{\substack{k,\ell=0\\\ell>k}}^n(-1)^{k+\ell}\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\
+    =&\, 0,
+\end{align*}
+where the last equality holds because both sums are equal after exchanging $k$ and $\ell.$ Extending this linearly finishes.
+
+We care that $\del^2$ is the $0$ mapping because it induces the complex
+\[\cdots\stackrel\del\longrightarrow C_3\stackrel\del\longrightarrow C_2\stackrel\del\longrightarrow C_1\stackrel\del\longrightarrow C_0\stackrel\del\longrightarrow 0.\]
+I.e., each image maps into the kernel. This is not an exact sequence because we don't necessarily surject onto the kernel. Explicitly, there might exist a sum of simplices that have boundary $0$ but are not themselves a boundary of a higher-dimensional object. I guess the canonical example is the annulus with a cycle around the hole.
+\begin{center}
+    \begin{asy}
+        size(4cm);
+        fill(circle((0,0), 5), rgb(220,220,255));
+        fill(circle((0,0), 1), white);
+        pair A=3*dir(0), B=3*dir(120), C=3*dir(240);
+        draw(A--B, EndArrow);
+        draw(B--C, EndArrow);
+        draw(C--A, EndArrow);
+        dot("$v_0$", A, A/3);
+        dot("$v_1$", B, B/3);
+        dot("$v_2$", C, C/3);
+    \end{asy}
+\end{center}
+By construction this is a cycle---that is, it has no boundary. Indeed, we can imagine filling this to be the border of a triangle, and then there is no border of the border of a triangle. However, it is not actually the boundary of a triangle. We can't make the triangle to fill in this simplex because of the hole in the middle. So we have detected the hole in a somewhat algebraic way.
+
+With this in mind, we define our homology group to measure these failings. That is, we let the $n$th homology group be
+\[H_n=\op{ker}\left(C_n\stackrel\del\to C_{n-1}\right)/\op{im}\left(C_{n+1}\stackrel\del\to C_n\right).\]
+This is well-defined because the $C_\bullet$ is abelian, so the images and kernels are all abelian and therefore normal subgroups of each other. In an abstract sense, this is really just a measurement of how much our complex failed to be an exact sequence, and this abstract context is I guess why I really care.
+
+\subsubsection{November 28th}
+Today I learned a proof that the only automorphism of $\RR$ is the identity. Let $\sigma$ be an automorphism so that we want to show $\sigma=\op{id}.$
+
+We start by getting the easy stuff out of the way. Because $\sigma$ is a bijection (automorphism), there exists some $k\in\RR$ such that $\sigma(k)=1.$ However,
+\[1=\sigma(k)=\sigma(k\cdot1)=\sigma(k)\sigma(1)=\sigma(1).\]
+So we see $\sigma(1)=1.$ We can show that all positive integers are fixed by induction. Quickly, $\sigma(1)=1$ is our base case, and if $\sigma(k)=k,$ then $\sigma(k+1)=\sigma(k)+\sigma(1)=k+1$ provides our inductive step. We can also note that
+\[\sigma(-1)^2=\sigma\left((-1)^2\right)=\sigma(1)=1\]
+implies $\sigma(-1)=\pm1.$ However, $1$ has already been taken by $\sigma(1),$ so $\sigma(-1)=-1.$ This implies that for any negative integer $-k,$ we have $\sigma(-k)=\sigma(-1)\sigma(k)=-k.$ Finally, $\sigma(0)=\sigma(1+(-1))=1+(-1)=0.$ It follows that all integers are fixed. Further, for any rational $\frac ab\in\QQ$ for $a,b\in\ZZ$ with $b\ne0,$ we have that
+\[b\sigma\left(\frac ab\right)=\sigma(b)\sigma\left(\frac ab\right)=\sigma(a)=a.\]
+Because $b\ne0,$ we may say $\sigma\left(\frac ab\right)=\frac ab.$ It follows that all of $\QQ$ is fixed by $\sigma.$
+
+So far we have been treating $\RR$ as an entirely algebraic quantity, which is why I called the above ``the easy stuff.'' However, an example pathology of doing so is that there are non-linear functions which satisfy $f(x+y)=f(x)+f(y)$ for all real $x,y.$ The reason we don't fall into this trap is that the graphs of all these functions are dense in $\RR^2.$ Why isn't the graph of $\sigma$ dense in $\RR^2$? Well, for any positive $r\in\RR^+,$ we see
+\[\sigma(r)=\sigma\left(\left(\sqrt r\right)^2\right)=\sigma\left(\sqrt r\right)^2\in\RR^+,\]
+so the fourth quadrant of the graph of $\sigma$ is guaranteed to be empty. This does tell us that $\sigma$ is linear automatically, but we would like to avoid this machinery. Regardless, we intuitively know that we're going to have to use some topology of $\RR$ to finish this.
+
+With this in mind, we show that $\sigma$ satisfies a weak form of continuity---strictly increasing. (Any strictly increasing function over $\RR$ can only have jump discontinuities and therefore has only countably many discontinuities.) We show that for any $r,s\in\RR,$ with $r<s$ implies
+\[\sigma(r)<\sigma(s).\]
+This inequality is equivalent to $\sigma(s)-\sigma(r)=\sigma(s-r)>0.$ However, $s-r>0$ by hypothesis, $\sigma(s-r)>0$ because $\sigma$ sends positives to positives from above.
+
+We are now ready to finish the proof. In particular, we roughly know that $\sigma$ is continuous, and we know that $\sigma$ is the identity on a dense set of $\RR$ (named $\QQ$), so we should be able to push this through. Suppose for the sake of contradiction that $\sigma(r)\ne r$ for some real $r\in\RR.$ Because $\QQ$ is dense in $\RR,$ we may fit some rational $q\in\QQ$ between $r$ and $\sigma(r).$ (Say, $q=\floor{\frac{r+\sigma(r)}2\ceil{\frac1{|r-\sigma(r)|}}+0.5}/\ceil{\frac1{|r-\sigma(r)|}}.$) We now have two cases.
+\begin{itemize}
+    \item If $\sigma(r)>r,$ then note $\sigma(r)>q>r$ implies $\sigma(r)>q=\sigma(q)>\sigma(r),$ a contradiction.
+    \item If $\sigma(r)<r,$ then note $\sigma(r)<q<r$ implies $\sigma(r)<q=\sigma(q)<\sigma(r),$ a contradiction.
+\end{itemize}
+Having reached contradiction in both cases, we must have $\sigma(r)=r$ for each $r\in\RR,$ so we are done here.
+
+As an aside, we can use this result to also classify all automorphisms of $\CC,$ with little pain. Fix $\sigma$ an automorphism of $\CC.$ We claim that either $\sigma$ is the identity or the conjugation map, both of which can be quickly checked to be automorphisms. Because $\RR\subseteq\CC,$ we can restrict $\sigma$ to be an automorphism of $\RR,$ but we know the automorphisms of $\RR,$ so $\sigma$ must be the identity over $\RR.$ To expand out to $\CC,$ we have to compute $\sigma(i).$ Note that
+\[\sigma(i)^2=\sigma\left(i^2\right)=\sigma(-1)=-1,\]
+so $\sigma(i)=\pm i.$ This gives us two cases.
+\begin{itemize}
+    \item If $\sigma(i)=i,$ then for any $a+bi\in\CC,$ we have $\sigma(a+bi)=\sigma(a)+\sigma(b)\sigma(i)=a+bi,$ so $\sigma$ is the identity.
+    \item If $\sigma(i)=-i,$ then for any $a+bi\in\CC,$ we have $\sigma(a+bi)=\sigma(a)+\sigma(b)\sigma(i)=a-bi,$ so $\sigma$ is conjugation.
+\end{itemize}
+It follows $\sigma$ is either the identity or the conjugation mapping, which is what we wanted.
+
+\subsubsection{November 29th}
+Today I learned the snake lemma as an example of diagram-chasing.\todo{finish this}
+
+\subsubsection{November 30th}
+Today I learned that for any polynomial $P(x_1,\ldots,x_n)\in\ZZ_p[x_1,\ldots,x_n]$ has a root in $(\ZZ_p)^n$ if and only if has roots in each $(\ZZ/p^\bullet\ZZ)^n.$ One direction of this easy. Indeed, if we have a root $(\alpha_1,\ldots,\alpha_n)\in(\ZZ_p)^n,$ then
+\[P(\alpha_1,\ldots,\alpha_n)=0\]
+in $\ZZ_p.$ Reducing all values$\pmod{p^\bullet}$ will give an equality there as well, so we get our solution in $(\ZZ/p^\bullet)^n$ by projecting $(\alpha_1,\ldots,\alpha_n).$
+
+The harder direction is that if we have solutions for $P$ in $(\ZZ/p^\bullet\ZZ)^n$ for each $p^\bullet,$ then we can piece together a solution in $(\ZZ_p)^n.$ For this, we construct a Cauchy sequence in Hensel style. This is done in inductive-style steps. We construct a sequence of solutions
+\[(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}),\]
+which holds in $(\ZZ/p^\bullet\ZZ)^n$ and satisfies $\alpha_{k,\bullet}\equiv\alpha_{k,\bullet+1}\pmod{p^\bullet}$; this of course makes a Cauchy sequence for each $\alpha_{k,\bullet}$ which converges to a solution $\alpha_k$ in $\ZZ_p.$ So this will be enough to give our solution in $(\ZZ_p)^n.$
+
+The trick is that we're going to construct our solution such that, when reducing all of the solutions $(\ZZ/p^\bullet\ZZ)^n$ to our particular $(\ZZ/p^\bullet\ZZ)^n,$ infinitely many fall on top of $(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}).$
+
+As our base case, we begin with
+\[(\alpha_{1,0},\ldots,\alpha_{n,0})=(0,\ldots,0),\]
+which is a solution to $P$ in $(\ZZ/p^0\ZZ)^n.$ Further note that reducing any of our solutions to $P$ of $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^0\ZZ)^n$ will project here, so infinitely many lie on top of $(0,\ldots,0).$
+
+Now suppose we have a solution $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell})$ satisfying the statement. Reducing all of our solutions of $P$ in each $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^\ell\ZZ)^n,$ we have infinitely many that lie on top of $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell}),$ by inductive hypothesis. Raising this into $(\ZZ/p^{\ell+1}\ZZ),$ note that there are only $p^n$ possible residues in $(\ZZ/p^{\ell+1}\ZZ)^n$ equivalent to $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell}).$ However, infinitely many fall into this group of residue classes, so one of the $p^n$ residue classes must appear infinitely often. Name this class of $(\ZZ/p^{\ell+1}\ZZ)^n$ as
+\[(\alpha_{1,\ell+1},\ldots,\alpha_{n,\ell+1}).\]
+By construction, we have $\alpha_{k,\ell}\equiv a_{k+1,\ell}\pmod{p^\ell}$ for each $k,$ and infinitely many solutions fell on top of this residue class, making this a solution in $(\ZZ/p^\ell\ZZ)^n$ as well. This completes the inductive step.
+
+This does complete the proof, with our Cauchy sequence in hand. What I find interesting about this proof is that it doesn't really use the fact that we're dealing with a polynomial anywhere in the proof. I guess implicitly used is that if
+\[P(\alpha_1,\ldots,\alpha_n)\equiv0\pmod{p^{\bullet+1}},\]
+then the equivalence holds in$\pmod{p^\bullet}$ as well, which is somewhat contingent on this being a polynomial. However, this is really it. Our polynomial can have as many variables as needed, it can be of any degree, it's coefficients can be anything from $\ZZ_p,$ and so on. It might even be possible to let these be power series, but this runs the risk of convergence problems.
+
+Professor Kedlaya made the remark that this lemma is a bit misleading, in that it suggests that we need infinite information (solutions for each $\ZZ/p^\bullet\ZZ$) to get a solution in $\ZZ_p.$ Of course, this is not the case, a la Hensel's Lemma and the various ways to strengthen it. The prototypical example is quadratic residues, where, for $p>2,$
+\[x^2\equiv c\pmod{p^\bullet}\]
+with $p\nmid c$ will have solutions if and only if $\left(\frac cp\right)=1.$ This is a finite check to get the infinite information that we need. The proof of this statement is exactly Hensel's Lemma, for the derivative of $x^2-c$ is $2x,$ the only roots of which are $0$ for $p=2.$ We have to push a little bit harder to get $p=2,$ I suppose, but it still only amounts to a finite check.

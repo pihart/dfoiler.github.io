@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>January 4th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned about type-theoretic homotopies between (dependent) functions. Fix a type $A$ with family $P:A\to\UU.$ Then for dependent functions $f,g:\prod_{(x:A)}P(x),$ we define the type of homotopies as\[f\sim g\equiv\prod_{x:A}(f(x)=g(x)).\]Essentially, we're saying that the two functions are "the same'' (homotopically equivalent) if they are pairwise "identical.'' Topologically, we can view this as saying that we have a path from each $f(x)$ to $g(x),$ so we can visualize the corresponding deformation/homotopy from $g$ to $g$ along each input.\begin{center}    \begin{asy}        import graph;        unitsize(1cm);        real x(real t)        {            return (sin(4*pi*t)-1)/13+(cos(7*t)-1)/11-1/3-1/10;        }        real x1(real t)        {            return x(t);        }        real x2(real t)        {            return 2+x(t+10.987);        }        real y(real t)        {            return 4*t;        }        draw(graph(x1,y,0,1));        draw(graph(x2,y,0,1));        real t1(real t)        {            return t;        }        real t2(real t)        {            return t*(1-sin(5)/5) + sin(5*t)/5;        }        int N=8;        pair p1, p2;        for(int i = 0; i  \lt = N; ++i)        {            p1 = ( x1(t1(i/N)) , y(t1(i/N)) );            p2 = ( x2(t2(i/N)) , y(t2(i/N)) );            draw(p1--p2, arrow=EndArrow, dashed);            if(i==2)            {                dot("$f(x)$",p1,W);                dot("$g(x)$",p2,E);            }        }    \end{asy}\end{center}In this way, we can imagine deforming (the graph of) each $f(x)$ and $g(x)$ along the given paths, which is our homotopy. In practice, the fact that this is a dependent function makes this visual not make as much sense---the $f(x)$ and $g(x)$ can live in vastly different universes.</p>
+<p>Anyways, homotopy behaves the way we want it to. For example, it forms an equivalence class of functions. Reflexive means that we can witness\[\prod_{f:\prod_{(x:A)}P(x)}(f\sim f)\equiv\prod_{\left(f:\prod_{(x:A)}P(x)\right)}\prod_{(x:A)}(f(x)=f(x)),\]for which $\lambda f.\lambda x.\refl_{f(x)}$ will work because $\refl_{f(x)}:f(x)=f(x).$ Symmetric means that we can witness\[\prod_{f,g:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim f)\equiv\prod_{\left(f,g:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=f(x)\right),\]for which $\lambda f.\lambda g.\lambda(H:f\sim g).\lambda(x:A).H(x)^{-1}$ will work because $H(x)^{-1}:g(x)=f(x).$ Transitivity means that we can witness\[\prod_{f,g,h:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim h)\to(f\sim h),\]which is\[\prod_{\left(f,g,h:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=h(x)\right)\to\left(\prod_{x:A}f(x)=h(x)\right),\]for which $\lambda f.\lambda g.\lambda h.\lambda(H_1:f\sim g).\lambda(H_2:g\sim h).\lambda(x:A).H_1(x)\cdot H_2(x)$ will work because $H_1(x)\cdot H_2(x):f(x)=h(x).$</p>
+<p></p>
+<p>
+</p>
+</body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>October 21st</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned the correct context for the statement last week that if $P(x)\in\ZZ[x]$ only has roots which have magnitude less than or equal to $1,$ then all of those roots are roots of unity. This is actually a reformulation of the statement the multiplicative-to-additive mapping $\log:K^\times\to\RR^{r+s}$ (taken over $\mathcal O_K^\times$) has kernel the roots of unity, which is quite nice. Indeed, suppose $\alpha\in\mathcal O_K^\times$ is in the kernel. Then, applying the mapping, we have that\[\log|\sigma(\alpha)|=0\]for each embedding $\alpha.$ Namely, all of the Galois conjugates of $\alpha$ each have $|\sigma(\alpha)|=1.$ It follows that the minimal (monic) polynomial of $\alpha,$ which we name $P(x)\in\ZZ[x],$ has all of its roots (the Galois conjugates of $\alpha$) with magnitude equal to $1.$</p>
+<p>It follows that the kernel of the $\log$ mapping can be identified with the roots of monic polynomials $P(x)\in\ZZ[x]$ all of whose roots have magnitude $1.$ But we've already studied these and found that they are contained in the set of roots of unity, so we're done here.</p>
+<p>I guess I haven't shown the reverse implication that all roots of unity are sent to the kernel, but this isn't hard. Embeddings must take roots of unity (with finite multiplicative order) to other roots of unity (in order to preserve order), so all embeddings will stay on the unit circle and therefore have magnitude $1.$ So all roots of unity certainly are in the kernel.</p>
+<p></p>
+<p>
+</p>
+</body>

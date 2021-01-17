@@ -1,0 +1,514 @@
+\subsection{January}
+
+\subsubsection{January 1st}
+Today I learned that the Ackermann function can be expressed using our generalized primitive recursion over $\NN.$ Typically the Ackermann function isn't primitive recursive because we only allow recursion over $\NN,$ and the Ackermann function is more or less designed to eventually overcome however much nesting we do. However, in type theory we may recurse over any type, not just $\NN,$ which is apparently significantly more power. The idea now is that we can do recursion over recursive functions (not just over $\NN$), which should give us enough power.
+
+Anyways, we are interested in defining $\op{ack}:\NN\to\NN\to\NN$ satisfying
+\begin{align*}
+    \op{ack}(0,n) &\equiv \op{succ}(n), \\
+    \op{ack}(\op{succ}(m),0) &\equiv \op{ack}(m,1), \\
+    \op{ack}(\op{succ}(m),\op{succ}(n)) &\equiv \op{ack}(m,\op{ack}(\op{succ}(m),n)).
+\end{align*}
+The last two equations can be read as
+\begin{align*}
+    \op{ack}(\op{succ}(m))(0) &\equiv\op{ack}(m)(1), \\
+    \op{ack}(\op{succ}(m))(\op{succ}(n)) &\equiv\op{ack}(m)\big(\op{ack}(\op{succ}(m))(n)\big).
+\end{align*}
+However, we can read this as just recursively defining $\op{ack}(\op{succ}(m))$ given $\op{ack}(m).$ Namely, we see we can write
+\[\op{ack}(\op{succ}(m))\equiv\op{rec}_\NN(\NN,\op{ack}(m)(1),\lambda x.\lambda n.\op{ack}(m)(n))\]
+from the definition of the recursor.
+
+Going further, we note that we can read the above as a step function for functions $\NN\to\NN$, for which
+\[\op{ack}(0)\equiv\op{succ}\]
+is the base case. We want our step function $\NN\to(\NN\to\NN)\to(\NN\to\NN)$ to take $m$ and the previous $\op{ack}(m)$ and output $\op{ack}(\op{succ}(m)),$ so we note
+\[\lambda y.\lambda f.\op{rec}_\NN(\NN,f(1),\lambda x.\lambda n.f(n))\]
+will work. We see this because applying $(m,\op{ack}(m))$ to the above does indeed give $\op{ack}(\op{succ}(m))$ from our work. Anywyas, this means we can recurse to write
+\[\boxed{\op{ack}\equiv\op{rec}_\NN\big(\NN\times\NN,\op{succ},\lambda y.\lambda f.\op{rec}_\NN(\NN,f(1),\lambda x.\lambda n.f(n))\big)}.\]
+This is what we wanted.
+
+This proof kind of weirds me out. I don't think that allowing generalized recursion over types makes us Turing-complete, for all the functions we make must be defined on all inputs, but we certainly have more power than I'm used to having. We have exhibited more power than $\texttt{LOOP},$ and I would be interested in seeing a computable function we can't make with fancy recursion. Of course, it's not even clear to me how we could formally show a function can't be defined with our recursion.
+
+\subsubsection{January 2nd}
+Today I learned some properties of equality. The one I found most remarkable is how type theory deals with the ``substitution'' property of equality. Roughly speaking, we want to show that for $x,y:A,$ given an expression $\Phi,$ we know $x=y$ implies $\Phi_x=\Phi_y,$ where $\Phi_\bullet$ replaces needed instances with $\bullet.$
+
+The way we can talk about expressions like $\Phi$ is with $\lambda$ calculus. Namely, our formalization will show that
+\[(x=_Ay)\to(f(x)=_Bf(y))\]
+for any function $f:A\to B.$ This means that for $f\equiv\lambda z.\Phi,$ judgemental equality lets us write
+\[(x=_Ay)\to(\Phi_x=_B\Phi_y).\]
+There is some technicality in that we might not want to assume that $\Phi_x$ and $\Phi_y$ are the same type, but this is good enough for me. Anyways, this reduction is basically saying that the substitution property of equality is (roughly) the same idea as being able to ``do the same thing to both sides of the equal sign.'' I find this somewhat cute.
+
+It remains to inhabit
+\[\prod_{x,y:A}\prod_{p:(x=_Ay)}f(x)=_Bf(y).\]
+For this we use path induction. Let our family be $C:\prod_{x,y:A}(x=y)\to\mathcal U$ by $C(x,y,p):\equiv f(x)=_Bf(t)$ so that we want to exhibit $\prod_{x,y:A}\prod_{p:(x=y)}C(x,y,p).$
+
+It remains to show the conditions of path induction on our family $C.$ The actual content of the prove lives in the case where $x\equiv y,$ but here $f(x)\equiv f(y),$ meaning $\op{refl}_{f(x)}:f(x)=f(y)$ can witness. Thus, we may set
+\[c(x):\equiv\op{refl}_{f(x)}:\prod_{x:A}C(x,x,\op{refl}_x).\]
+This finishes the proof by path induction.
+
+Path induction in general makes quick work of equality statements. In the above, what feels so weird is that it's not at all obvious how we would go about constructing a witness of $f(x)=_Bf(y)$ from $x=_Ay,$ but nonetheless we know that the witness exists. Namely, we've only shown the witness only for the most trivial case, in which they are judgementally equal.
+
+This nonconstructivity feels a bit off in type theory, but it is certainly very powerful. The proof may be obnoxious to write out, but we could just have well said the following: ``By path induction, it suffices to show that $(x=_Ay)\to f(x)=_Bf(y)$ in the case $x\equiv y$ and $\op{refl}_x$ is our input. But then $f(x)\equiv f(y),$ so we may take $\op{refl}_x\to\op{refl}_{f(x)},$ which finishes.''
+
+\subsubsection{January 3rd}
+Today I learned the details of the Eckmann-Hamilton theorem in type theory. The main ingredient is horizontal composition, defined with whiskering. Horizontal composition is defined over homotopies of homotopies, in the following setup.
+\begin{center}
+    \begin{tikzcd}
+        a \arrow[rr, "p", bend left, shift left] \arrow[rr, "q"', bend right, shift right] & \Downarrow\alpha & b \arrow[rr, "r", bend left, shift left] \arrow[rr, "s"', bend right, shift right] & \Downarrow\beta & c
+    \end{tikzcd}
+\end{center}
+Here, $a,b,c:A$ where $p,q:a=_Ab$ and $r,s:b=_Ac,$ with even $\alpha:p=_{a=b}q$ and $\beta:r=_{b=c}s.$ The idea is that we should be able to exhibit something like \[\alpha\star\beta:p\cdot r=_{a=c}q\cdot s\]
+by imagining moving $p\to q$ by $\alpha$ and $r\to s$ by $\beta.$ This is horizontal composition.
+
+To do this, we move the homotopies one at a time, which is called whiskering. Namely, we exhibit
+\[\alpha\cdot_{r}r:p\cdot r=q\cdot r,\qquad q\cdot_{\ell}\beta:q\cdot r=q\cdot s.\]
+Imagine $\alpha\cdot_rr$ as fixing the $r$ight whisker $r$ and dragging $p\to q$ by $\alpha$ and then $q\cdot_\ell\beta$ fixes the $\ell$eft whisker and then drags $r\to s$ by $\beta.$ This is doing what we wanted horizontal composition to do. Observe that composing will witness
+\[p\cdot r\stackrel{\alpha\cdot_rr}=q\cdot r\stackrel{q\cdot_\ell\beta}=q\cdot s,\]
+which is exactly what we wanted. So it remains to exhibit $\cdot_r$ and $\cdot_\ell.$ I'll do one of these formally; the other is similar.
+
+We define $\alpha\cdot_rr$ by induction on $r$: more precisely, with $b$ fixed (it's involved in $\alpha$'s information), we're going to let $r$ vary with $c,$ creating a path induction based at $b.$ That is, we think about constructing like
+\[(\alpha\cdot_r-):\prod_{c:A}\prod_{r:(b=c)}p\cdot r=q\cdot r.\]
+Our family for the based path induction will be
+\[C:\equiv\lambda(c:A).\lambda(r:b=c).p\cdot r=q\cdot r,\]
+so it remains to exhibit $c:C(b,\refl_b)\equiv p\cdot\refl_b=q\cdot\refl_b$ to construct our function. For this, we note that $p=p\cdot\refl_b$ is inhabited by some $\op{ru}_p,$ and similar for $q=q\cdot\refl_q$ inhabited by $\op{lu}_p.$ This implies we can write
+\[p\cdot\refl_b\stackrel{\op{ru}_p^{-1}}=p\stackrel\alpha=q\stackrel{\op{ru}_q}=q\cdot\refl_b,\]
+so $c:\equiv\op{ru}_p^{-1}\cdot\alpha\cdot\op{ru}_q:p\cdot\refl_b=q\cdot\refl_b.$ So path induction will define $\alpha\cdot_rr$ with base case $\alpha\cdot_r\refl_b\equiv\op{ru}_p^{-1}\cdot\alpha\cdot\op{ru}_q.$
+
+The case with $q\cdot_\ell\beta$ is pretty much the same, which I'll outline. Again, we want to let $q$ vary in our induction, but we can't move $b,$ so we do a based induction on $b$ where $a$ varies. Then the base case is where $a\equiv b$ and $q\equiv\refl_b,$ in which case we need to witness $\refl_b\cdot r=\refl_b\cdot s.$ But as before, we write
+\[\refl_b\cdot r\stackrel{\op{lu}_r^{-1}}=r\stackrel\beta=s\stackrel{\op{lu}_s}=s\cdot\refl_b,\]
+so $\op{lu}_r^{-1}\cdot\beta\cdot\op{lu}_s$ will witness.
+
+Note that $s$ does not matter in our construction of $\alpha\cdot_rr,$ so we just have well have $\alpha\cdot_rs:p\cdot s=q\cdot s$ by just plugging in $s$ to the same function $(\alpha\cdot_r-)$ we constructed. Similarly, we also have a $p\cdot_\ell\beta:p\cdot r=p\cdot s$ by plugging in $p$ to our $(-\cdot_\ell\beta).$ Composing again, we see
+\[p\cdot r\stackrel{p\cdot_\ell\beta}=p\cdot s\stackrel{\alpha\cdot_rs}=q\cdot s,\]
+so we could have defined $\alpha\star'\beta:p\cdot r=q\cdot s$ by $(p\cdot_\ell\beta)\cdot(\alpha\cdot_rs).$ In other words, the order of which whisker we drag down shouldn't matter.
+
+In order to sleep better at night, we had better have $\alpha\star\beta=\alpha\star'\beta.$ Showing this requires many layers of induction; I do it formally for practice. Expanding a bit, we want to witness
+\[f_1:\prod_{(a,b,c:A)}\prod_{(p,q:a=b)}\prod_{(\alpha:p=q)}\prod_{(r,s:b=c)}\prod_{(\beta:r=s)}(\alpha\cdot_rr)\cdot(q\cdot_\ell\beta)=(p\cdot_\ell\beta)\cdot(\alpha\cdot_rs).\]
+Obviously, we use path induction. With nowhere else to start, we start from the inside. That is, we read this as wanting to exhibit
+\[f_1(a,b,c,p,q,\alpha):\prod_{(r,s:b=c)}\prod_{(\beta:r=s)}(\alpha\cdot_rr)\cdot(q\cdot_\ell\beta)=(p\cdot_\ell\beta)\cdot(\alpha\cdot_rs).\]
+We work with the family
+\[C_1(a,b,c,p,q,\alpha)(r,s,\beta)\equiv(\alpha\cdot_rr)\cdot(q\cdot_\ell\beta)=(p\cdot_\ell\beta)\cdot(\alpha\cdot_rs)\]
+so that it suffices to provide $f_1$ only in the case $C_1(r,r,\refl_r).$ That is, it suffices to exhibit
+\[f_2:\prod_{(a,b,c:A)}\prod_{(p,q:a=b)}\prod_{(\alpha:p=q)}\prod_{(r:b=c)}(\alpha\cdot_rr)\cdot(q\cdot_\ell\refl_r)=(p\cdot_\ell\refl_r)\cdot(\alpha\cdot_rr).\]
+Continuing with the path induction, we read this as wanting to exhibit
+\[f_2(a,b,c):\prod_{(p,q:a=b)}\prod_{(\alpha:p=q)}\prod_{(r:b=c)}(\alpha\cdot_rr)\cdot(q\cdot_\ell\refl_r)=(p\cdot_\ell\refl_r)\cdot(\alpha\cdot_rr)\]
+to work with the family
+\[C_2(a,b,c)\equiv\prod_{(p,q:a=b)}\prod_{(\alpha:p=q)}\prod_{(r:b=c)}(\alpha\cdot_rr)\cdot(q\cdot_\ell\refl_r)=(p\cdot_\ell\refl_r)\cdot(\alpha\cdot_rr).\]
+By path induction, it now only suffices to provide $f_2$ in the case $C_2(p,p,\refl_p).$p That is, it suffices to exhibit
+\[f_3:\prod_{(a,b,c:A)}\prod_{(p:a=b)}\prod_{(r:b=c)}(\refl_p\cdot_rr)\cdot(p\cdot_\ell\refl_r)=(p\cdot_\ell\refl_r)\cdot(\refl_p\cdot_rr).\]
+Had we defined whiskering by induction on $\alpha$ and $\beta,$ we could finish here with some judgemental equalities. Alas, we have more induction to do. Swapping, we see it's sufficient to exhibit
+\[f_3':\prod_{(a,b:A)}\prod_{(p:a=b)}\prod_{(c:A)}\prod_{(r:b=c)}(\refl_p\cdot_rr)\cdot(p\cdot_\ell\refl_r)=(p\cdot_\ell\refl_r)\cdot(\refl_p\cdot_rr).\]
+For this, we use induction, our family being
+\[C_3(a,b,p)\equiv\prod_{(c:A)}\prod_{(r:b=c)}(\refl_p\cdot_rr)\cdot(p\cdot_\ell\refl_r)=(p\cdot_\ell\refl_r)\cdot(\refl_p\cdot_rr)\]
+so that path induction says it's enough to provide $f_3'$ in the case $C_3(a,a,\refl_a).$ That is, it suffices to exhibit
+\[f_4:\prod_{(a,c:A)}\prod_{(r:b=c)}(\refl_{\refl_a}\cdot_rr)\cdot(\refl_a\cdot_\ell\refl_r)=(\refl_a\cdot_\ell\refl_r)\cdot(\refl_{\refl_a}\cdot_rr)\]
+For this, we use induction, our family being
+\[C_4(a,c,r)\equiv(\refl_{\refl_a}\cdot_rr)\cdot(\refl_a\cdot_\ell\refl_r)=(\refl_a\cdot_\ell\refl_r)\cdot(\refl_{\refl_a}\cdot_rr)\]
+so that path induction says it's enough provide $f_r$ in the case $C_4(a,a,\refl_a).$ That is, ut suffices to exhibit
+\[f_5:\prod_{(a:A)}(\refl_{\refl_a}\cdot_r\refl_a)\cdot(\refl_a\cdot_\ell\refl_{\refl_a})=(\refl_a\cdot_\ell\refl_{\refl_a})\cdot(\refl_{\refl_a}\cdot_r\refl_a).\]
+
+Now for the content of the proof; we are almost done. We take $a\equiv b\equiv c$ and $p\equiv q\equiv r\equiv s\equiv\refl_a$ so that $\refl_a\cdot\refl_a\equiv\refl_a,$ implying
+\[\op{ru}^{-1}_{\refl_a}\equiv\op{ru}_{\refl_a}\equiv\op{lu}_{\refl_a}\equiv\op{lu}^{-1}_{\refl_a}\equiv\refl_{\refl_a}.\]
+In particular,
+\[\alpha\cdot_r\refl_a\equiv\op{ru}_{\refl_a}^{-1}\cdot\alpha\cdot\op{ru}_{\refl_a}\equiv\refl_{\refl_a}\cdot\alpha\cdot\refl_{\refl_a}\equiv\alpha,\]
+and
+\[\refl_a\cdot_\ell\beta\equiv\op{lu}_{\refl_a}^{-1}\cdot\beta\cdot\op{lu}_{\refl_a}\equiv\refl_{\refl_a}\cdot\beta\cdot\refl_{\refl_a}\equiv\beta.\]
+This means that $(\refl_{\refl_a}\cdot_r\refl_a)\cdot(\refl_a\cdot_\ell\refl_{\refl_a})\equiv(\refl_a\cdot_\ell\refl_{\refl_a})\cdot(\refl_{\refl_a}\cdot_r\refl_a)\equiv\refl_{\refl_a},$ so we may just do
+\[f_5\equiv\lambda a.\refl_{\refl_{\refl_a}}.\]
+And with that, our induction is complete.
+
+Anyways, the point of this is to say that in the event $a\equiv b\equiv c$ and $p\equiv q\equiv r\equiv s$ so that $\alpha,\beta\in\Omega^2(A,a),$ we still have
+\[\alpha\star\beta=\alpha\star'\beta.\]
+However, expanding these both out tells us
+\[\alpha\cdot\beta\equiv(\alpha\cdot_r\refl_a)\cdot(\refl_a\cdot_\ell\beta)\equiv\alpha\star\beta\]
+while
+\[\alpha\star'\beta\equiv(\refl_a\cdot_\ell\beta)\cdot(\alpha\cdot_r\refl_a)\equiv\beta\cdot\alpha.\]
+In particular, $\Omega^2(A,a)$ is abelian. This is nice, so we call it here.
+
+\subsubsection{January 4th}
+Today I learned about type-theoretic homotopies between (dependent) functions. Fix a type $A$ with family $P:A\to\UU.$ Then for dependent functions $f,g:\prod_{(x:A)}P(x),$ we define the type of homotopies as
+\[f\sim g\equiv\prod_{x:A}(f(x)=g(x)).\]
+Essentially, we're saying that the two functions are ``the same'' (homotopically equivalent) if they are pairwise ``identical.'' Topologically, we can view this as saying that we have a path from each $f(x)$ to $g(x),$ so we can visualize the corresponding deformation/homotopy from $g$ to $g$ along each input.
+\begin{center}
+    \begin{asy}
+        import graph;
+        unitsize(1cm);
+        real x(real t)
+        {
+            return (sin(4*pi*t)-1)/13+(cos(7*t)-1)/11-1/3-1/10;
+        }
+        real x1(real t)
+        {
+            return x(t);
+        }
+        real x2(real t)
+        {
+            return 2+x(t+10.987);
+        }
+        real y(real t)
+        {
+            return 4*t;
+        }
+        draw(graph(x1,y,0,1));
+        draw(graph(x2,y,0,1));
+        real t1(real t)
+        {
+            return t;
+        }
+        real t2(real t)
+        {
+            return t*(1-sin(5)/5) + sin(5*t)/5;
+        }
+        int N=8;
+        pair p1, p2;
+        for(int i = 0; i <= N; ++i)
+        {
+            p1 = ( x1(t1(i/N)) , y(t1(i/N)) );
+            p2 = ( x2(t2(i/N)) , y(t2(i/N)) );
+            draw(p1--p2, arrow=EndArrow, dashed);
+            if(i==2)
+            {
+                dot("$f(x)$",p1,W);
+                dot("$g(x)$",p2,E);
+            }
+        }
+    \end{asy}
+\end{center}
+In this way, we can imagine deforming (the graph of) each $f(x)$ and $g(x)$ along the given paths, which is our homotopy. In practice, the fact that this is a dependent function makes this visual not make as much sense---the $f(x)$ and $g(x)$ can live in vastly different universes.
+
+Anyways, homotopy behaves the way we want it to. For example, it forms an equivalence class of functions. Reflexive means that we can witness
+\[\prod_{f:\prod_{(x:A)}P(x)}(f\sim f)\equiv\prod_{\left(f:\prod_{(x:A)}P(x)\right)}\prod_{(x:A)}(f(x)=f(x)),\]
+for which $\lambda f.\lambda x.\refl_{f(x)}$ will work because $\refl_{f(x)}:f(x)=f(x).$ Symmetric means that we can witness
+\[\prod_{f,g:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim f)\equiv\prod_{\left(f,g:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=f(x)\right),\]
+for which $\lambda f.\lambda g.\lambda(H:f\sim g).\lambda(x:A).H(x)^{-1}$ will work because $H(x)^{-1}:g(x)=f(x).$ Transitivity means that we can witness
+\[\prod_{f,g,h:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim h)\to(f\sim h),\]
+which is
+\[\prod_{\left(f,g,h:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=h(x)\right)\to\left(\prod_{x:A}f(x)=h(x)\right),\]
+for which $\lambda f.\lambda g.\lambda h.\lambda(H_1:f\sim g).\lambda(H_2:g\sim h).\lambda(x:A).H_1(x)\cdot H_2(x)$ will work because $H_1(x)\cdot H_2(x):f(x)=h(x).$
+
+\subsubsection{January 5th}
+Today I learned about equivalence of types. Fix $A$ and $B$ types. For $f:A\to B,$ we say that $f$ has a ``quasi-inverse'' $g:B\to A$ if
+\[(f\circ g\sim\op{id}_A)\times(g\circ f\sim\op{id}_B).\]
+That is,
+\[\op{qinv}(f):\equiv\sum_{(g:B\to A)}(f\circ g\sim\op{id}_B)\times(g\circ f\sim\op{id}_A).\]
+In words, $f\circ g$ and $g\circ f$ are homotopically the identity, suggesting we have a homeomorphism from $A$ to $B,$ giving us an ``equivalence.''
+
+In reality, $\op{qinv}$ isn't well-behaved, so there's a different type $\op{isequiv}(f)$ which just witnesses $f$ being an equivalence of $A$ and $B.$ What's important is that $\op{isequiv}(f)$ is a bit better-behaved (all its elements are propositionally equal), but $\op{isequiv}(f)$ is inhabited if and only if $\op{qinv}(f)$ is inhabited. Then we define
+\[A\simeq B:\equiv\sum_{f:A\to B}\op{isequiv}(f).\]
+In accordance to constructive mathematics, we have $A$ is equivalent to $B$ if and only if we can construct the equivalence $f$ and the witness of its equivalence $\op{isequiv}(f).$
+
+Equivalence behaves how we'd like; e.g., it's an equivalence relation over types. Reflexivity $A\simeq A$ is witnessed by $\op{id}_A,$ which has quasi-inverse $\op{id}_A.$ Indeed,
+\[\op{id}_A\circ\op{id}_A\sim\op{id}_A\equiv\op{id}_A\sim\op{id}_A\equiv\prod_{x:A}(\op{id}_A(x)=\op{id}_A(x))\]
+is witnessed by $\lambda x.\op{refl}_x.$ So $(\op{id}_A,\lambda x.\refl_x,\lambda x.\refl_x):\op{qinv}(\op{id}_A),$ which implies $\op{isequiv}(\op{id}_A)$ is inhabited, so $A\simeq B$ is inhabited.
+
+Symmetry that $(A\simeq B)\to(B\simeq A)$ holds because a function is the quasi-inverse of any of its quasi inverses. Namely, $A\simeq B$ inhabited gives us $f:A\to B$ and $(f^{-1},\alpha,\beta):\op{qinv}(f).$ Well, by construction
+\[\begin{cases}
+    \beta:f^{-1}\circ f\sim\op{id}_A, \\
+    \alpha:f\circ f^{-1}\sim\op{id}_B.
+\end{cases}\]
+This means $(f,\beta,\alpha):\op{qinv}(f^{-1}).$ Thus, with $f^{-1}:B\to A$ having $\op{qinv}(f^{-1})$ inhabited means $\op{isequiv}(f^{-1})$ is inhabited, so $B\simeq A$ is inhabited, as desired.
+
+Transitivity that $(A\simeq B)\to(B\simeq C)\to(A\simeq C)$ holds because the composition of two functions with a quasi-inverse also has a quasi-inverse. Again, if we are told $A\simeq B$ and $B\simeq C$ are inhabited, then we can build $f:A\to B$ and $g:B\to C$ with $(f^{-1},\alpha_f,\beta_f):\op{qinv}(f)$ and $(g^{-1},\alpha_g,\beta_g):\op{qinv}(g).$ We want to show that $g\circ f:A\to C$ has a quasi-inverse, and we claim that $f^{-1}\circ g^{-1}:C\to A$ is our inverse function. To start, note for $c:C,$
+\begin{align*}
+    (g\circ f)\circ(f^{-1}\circ g^{-1})(c) &\equiv g\big((f\circ f^{-1})(g^{-1}(c))\big) \\
+    &= g\big(\op{id}_B\left(g^{-1}(c)\right)\big) \tag{by $\alpha_f\left(g^{-1}(c)\right)$} \\
+    &\equiv g(g^{-1}(c)) \\
+    &= \op{id}_C(c). \tag{by $\alpha_g(c)$}
+\end{align*}
+It follows $\alpha_{gf}\equiv\lambda c.\alpha_f\left(g^{-1}(c)\right)\cdot\alpha_g(c):(g\circ f)\circ(f^{-1}\circ g^{-1})\sim\op{id}_C.$ Similarly, for $a:A,$ we have
+\begin{align*}
+    (f^{-1}\circ g^{-1})\circ(g\circ f)(a) &\equiv f^{-1}\big((g^{-1}\circ g)(f(a))\big) \\
+    &= f^{-1}\big(\op{id}_B(f(a))\big) \tag{by $\beta_g(f(a))$} \\
+    &\equiv f^{-1}(f(a)) \\
+    &= \op{id}_A(a). \tag{by $\beta_f(a)$}
+\end{align*}
+It follows $\beta_{gf}\equiv\lambda a.\beta_g(f(a))\cdot\beta_f(a):(f^{-1}\circ g^{-1})\circ(g\circ f)\sim\op{id}_A.$ Bringing our witnesses together, we see
+\[\left(f^{-1}\circ g^{-1},\alpha_{fg},\beta_{fg}\right):\op{qinv}(g\circ f).\]
+With $\op{qinv}(g\circ f)$ inhabited, we see $\op{isequiv}(g\circ f)$ is inhabited, so $A\simeq C$ is inhabited, as desired.
+
+\subsubsection{January 6th}
+Today I learned that equality types of Cartesian products are well-behaved in type theory. Essentially, we have the equivalences
+\[\prod_{x,x':A\times B}(x=x')\simeq(\op{pr}_1x=\op{pr}_1x')\times(\op{pr}_2x=\op{pr}_2x').\]
+Note I may start repressing the parentheses around single-variable functions like $\op{pr}_1$ when little confusion is possible.
+
+In one direction, we can just run $\op{pr}_1$ and $\op{pr}_2$ to $x=y$ to generate functions
+\[\begin{cases}
+    \op{ap}_{\op{pr}_1}:(x=x')\to(\op{pr}_1x=\op{pr}_1x'), \\
+    \op{ap}_{\op{pr}_2}:(x=x')\to(\op{pr}_2x=\op{pr}_2x').
+\end{cases}\]
+Then induction for products will give 
+\[f(x,x')\equiv\lambda p.\big(\op{ap}_{\op{pr}_1}p,\,\op{ap}_{\op{pr}_2}p\big):(x=x')\to(\op{pr}_1x=\op{pr}_1x')\times(\op{pr}_2x=\op{pr}_2x')\]
+because ordered pairs are primitive.
+
+In the other direction, we note that we can use some induction to construct our function. We need to exhibit
+\[g:\prod_{x,x':A\times B}(\op{pr}_1x=\op{pr}_1x')\times(\op{pr}_2x=\op{pr}_2x')\to(x=x').\]
+By induction on the product, it suffices to exhibit a curried function in
+\[\prod_{x,x':A\times B}(\op{pr}_1x=\op{pr}_1x')\to(\op{pr}_2x=\op{pr}_2x')\to(x=x').\]
+Now inducting on the product $A\times B,$ we can let $x\equiv(a,b)$ and $x'\equiv(a',b'),$ meaning we have to exhibit
+\[\prod_{(a,a':A)}\prod_{(b,b':B)}(a=a')\to(b=b')\to((a,b)=(a',b')).\]
+Only at this point we can read this as (nested) path induction, after some swapping. Namely, we exhibit
+\[\prod_{(a,a':A)}\prod_{(p:a=a')}\prod_{(b,b':B)}\prod_{(q:b=b')}(a,b)=(a',b').\]
+By path induction (family $C(a,a',p)\equiv\prod_{(b,b':B)}\prod_{(q:b=b')}(a,b)=(a',b')$), it suffices to take $a\equiv a'$ and $p\equiv\refl_a.$ So it remains to exhibit
+\[\prod_{(a:A)}\prod_{(b,b':B)}\prod_{(q:b=b')}(a,b)=(a,b').\]
+By path induction (family $D(b,b',q)\equiv(a,b)=(a,b')$), it suffices to take $b\equiv b'$ and $q\equiv\refl_b.$ But then we see
+\[\lambda a.\lambda b.\refl_{(a,b)}:\prod_{(a:A)}\prod_{b:B}(a,b)=(a,b),\]
+which is what we wanted.
+
+So we have somewhat natural mappings in both directions. I guess it remains to show that $g(x,x'):\op{qinv}(f(x,x')),$ which will imply $\op{isequiv}(f(x,x'))$ is inhabited, verifying that $f(x,x')$ witnesses the equivalences
+\[(x=x')\simeq(\op{pr}_1x=\op{pr}_1x')\times(\op{pr}_2x=\op{pr}_2x').\]
+The proof that $g(x,x'):\op{qinv}(f(x,x'))$ is a couple of somewhat involved inductions. I won't do this in formality, for my own sanity.
+
+In one direction, we show $f(x,x')\circ g(x,x')\sim\op{id}_\square,$ which means we have $r:(\op{pr}_1x=\op{pr}_1x')\times(\op{pr}_1x=\op{pr}_1x')$ and need to show
+\[(f(x,x')\circ g(x,x'))(r)=r.\]
+By induction on $x,x':A\times B,$ we may assert $x\equiv(a,b)$ and $x'\equiv(a',b')$ so that $r:(a=a')\times(b=b').$ It's not clear to me why we can't start with an induction on $r,$ but an induction on $r$ now lets us assert $r\equiv(p,q)$ with $p:a=a'$ and $q:b=b'.$ Now we induct on $p$ and $q$ to let us say $p\equiv\refl_a$ and $q\equiv\refl_b.$ But then
+\[(f(x,x)\circ g(x,x))((\refl_a,\refl_b))\equiv f(x,x)(\refl_{(a,b)})\equiv(\refl_a,\refl_b),\]
+so reflexivity witnesses here.
+
+In the other direction, we show $g(x,x')\circ f(x,x')\sim\op{id}_\square,$ which means we have $r:x=x'$ and need to show
+\[(g(x,x')\circ f(x,x'))(r)=r.\]
+By induction on $r,$ we take $x\equiv x'$ and $r\equiv\refl_x.$ Then induction on $x:A\times B$ lets us say $x\equiv(a,b),$ which implies
+\[(g(x,x)\circ f(x,x))(\refl_x)\equiv g(x,x)((\refl_a,\refl_b))\equiv\refl_{(a,b)},\]
+so again reflexivity witnesses.
+
+\subsubsection{January 7th}
+Today I learned the proof of the Newton polygon theorem. I apologize, but I am too tired to make pictures today. Fix $K$ a field equipped with a (nonarchimedean) multiplicative valuation $\nu$; that is, $\nu(x+y)\ge\min\{\nu(x),\nu(y)\}.$ Additionally, we fix a polynomial $f(x)=a_0x^0+\cdots+a_nx^n\in K[x]$ with $a_0,a_n\ne0.$ (We can have $a_0=0,$ but it makes the argument more obnoxious, and $a_0=0$ tells us $f$ has a root at $0$ anyways.) Then we build the Newton polygon from the points
+\[(0,\nu(a_0)),\,(1,\nu(a_1)),\,\ldots,\,(n,\nu(a_n)).\]
+Namely, we take
+\[(s_0,\nu(a_{s_0})),\,(s_1,\nu(a_{s_1})),\,\ldots,\,(s_r,\nu(a_{s_r}))\]
+to be the points defining the lower convex hull of our points; note $s_0=0$ and $s_r=n.$ Then the claim is that exactly $s_{k+1}-s_k$ roots of $f$ in $\overline K$ have valuation
+\[-\frac{\nu(a_{s_{k+1}})-\nu(a_{s_k})}{a_{s_{k+1}}-a_{s_k}}.\]
+That is, the horizontal length of a segment of the Newton polygon gives the number of solutions with valuation equal to the signed slope of that segment. Total horizontal length is $n,$ so this will describe all of our roots, which is quite remarkable.
+
+Let's prove this. It's quite nice. For the moment forget about the Newton polygon; we're going to manually construct it from right to left. Note that we can take $a_n=1$ by dividing $f$ by $a_n.$ This merely shifts down our Newton polygon to hit $(n,0)$ but does not change any of our slopes. (Explicitly, each $\nu(a_\bullet)$ gets $\nu(a_n)$ subtracted, which doesn't affect the difference between the $\nu(a_\bullet)$s.) Now label our roots $\alpha_0,\,\ldots,\,\alpha_{n-1}\in\overline K$ so that
+\[\nu(\alpha_{s_k})=\nu(\alpha_{s_k+1})=\cdots=\nu(\alpha_{s_{k+1}-1})=m_k\]
+with $m_0<m_1<\cdots<m_{r-1}.$ Here we ``redefine'' $s_\bullet$ and $r$ from earlier, but they will turn out to be what we need them to be. Regardless $s_0=0$ and $s_r=n,$ as required.
+
+The key step is to think about the coefficients $a_\bullet$ as symmetric sums of the roots and then use the strong triangle inequality of our valuation. Explicitly, because $a_n=1,$ we get to say
+\[\nu(a_k)=\nu\Bigg((-1)^{n-k}\sum_{\substack{S\subseteq[0,n)\\\#S=n-k}}\prod_{\ell\in S}\alpha_\ell\Bigg)\ge\min_{\substack{S\subseteq[0,n)\\\#S=n-k}}\nu\left(\prod_{\ell\in S}\alpha_\ell\right),\]
+and because of the ultrametric triangle inequality, equality is achieved here if there is a subset $S$ which gives a product strictly smaller than all of the others. Anyways, this simplifies to
+\[\nu(a_k)\ge\min_{\substack{S\subseteq[0,n)\\\#S=n-k}}\sum_{\ell\in S}\nu(\alpha_\ell)=\sum_{\ell=0}^{n-k-1}\nu(\alpha_\ell)\]
+because we ordered the $\alpha_\bullet$ increasing with respect to $\nu.$ As mentioned earlier, equality here is achieved when $S$ is the definitive minimum, not just a minimum, which will only occur if we can't get substitute one of the $\nu(\alpha_\ell)$ with a different $\alpha_\bullet.$ Well, this only happens when we've used up an entire batch of $\alpha_\bullet$s with a particular $m_k,$ otherwise $\nu(\alpha_{n-k})=\nu(\alpha_{n-k+1}).$
+
+Explicitly, equality is achieved when $k$ is one of $(n-s_0)$ (giving $0$), $(n-s_1)$ (with only $m_1$), $(n-s_2)$ (with only $m_1$ and $m_2$), and so on. On the Newton polygon, these points look like
+\[\left(n-s_k,\sum_{\ell=0}^{s_k-1}\nu(\alpha_\ell)\right)=\left(n-s_k,\sum_{\ell=0}^{k-1}(s_{\ell+1}-s_\ell)m_\ell\right).\]
+We claim that these define the lower convex hull of our Newton polygon. To see that this finishes the theorem, note that the displacement between consecutive points is
+\[\left(n-s_k,\sum_{\ell=0}^{k-1}(s_{\ell+1}-s_\ell)m_\ell\right)-\left(n-s_{k+1},\sum_{\ell=0}^k(s_{\ell+1}-s_\ell)m_\ell\right)=(s_{k+1}-s_k,(s_{k+1}-s_k)(-m_k)),\]
+which has horizontal length $s_{k+1}-s_k$ equal to the number of roots with $\nu(\alpha_\bullet)$ equal to the signed slope $-(-m_k)=m_k.$ This is what we wanted.
+
+Quickly, it remains to show that these points are indeed the lower convex hull. Well, fix some $a_\bullet$ between $n-s_{k+1}$ and $n-s_k.$ We see
+\[\nu(a_\bullet)\ge\sum_{\ell=0}^{s_k-1}\nu(\alpha_\ell)+\sum_{\ell=s_k}^{n-\bullet-1}\nu(\alpha_\ell)=\nu(a_{n-s_k})+(n-s_k-\bullet)m_\ell.\]
+So the slope from $(n-s_k,\nu(a_{n-s_k}))$ to $(\bullet,\nu(a_\bullet))$ computes to
+\[\frac{\nu(a_{n-s_k})-\nu(a_\bullet)}{n-s_k-\bullet}\le-m_\ell.\]
+We recall that the equality is achieved for connecting $(n-s_k)$'s point to $(n-s_{k+1})$'s point; the inequality here indicates that $(\bullet,\nu(a_\bullet))$ is above this segment. (Observe that making $\nu(a_k)$ larger will make the discrepancy worse, implying $\nu(a_k)$ must be on the larger end.) Thus, these $(n-s_k,\nu(a_{n-s_k}))$ do form the lower convex hull.
+
+\subsubsection{January 8th}
+Today I learned the proof of the $abc$ conjecture for polynomials, and notably function fields. (I think---there might be a hole.) The $abc$ conjecture states that for given $\varepsilon>0,$ there are only finitely many triples of positive pairwise coprime positive integers $(a,b,c)$ satisfying $a+b=c$ and violating
+\[c<\op{rad}(abc)^{1+\varepsilon}.\]
+Here $\op{rad}$ is the product of the distinct prime factors. Anyways, we're saying that the above equality holds most of the time.
+
+Fix $K$ a perfect field. The $abc$ conjecture for function fields is called Mason's theorem and says that for pairwise coprime polynomials $a,b,c\in K[t]$ not all of which have vanishing derivative satisfying $a+b=c,$ we always have
+\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_K(abc))-1.\]
+That is, our corresponding inequality holds strictly and always. Again, $\op{rad}$ refers to the product of the distinct irreducible factors, but I am writing $\op{rad}_K$ because $\deg(\op{rad}_K(abc))$ is poorly behaved. We are actually going to show that
+\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_{\overline K}(abc))-1,\]
+where here $\deg(\op{rad}_{\overline K}(abc))$ is counting distinct irreducible factors in $\overline K,$ which just counts the number of distinct roots of $abc.$ However,
+\[\deg(\op{rad}_{\overline K}(p))=\deg(\op{rad}_K(p))\]
+for $p\in K[t]$ by unique prime factorization. Namely, multiplicativity of $\op{rad}$ and additivity of $\deg$ means that it suffices to take $p$ an irreducible in $K$ after decomposing $p$ into irreducible parts over $K.$ Then the statement is saying that the degree of the irreducible is the number of distinct roots in the algebraic closure, which holds because our field is perfect, where no double roots are permitted for irreducibles.
+
+Anyways, the theme is to pass into an algebraicly closed field, and once we remark that it suffices to show
+\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_{\overline K}(abc))-1,\]
+as above, we may just assert $a,b,c\in\overline K[t]$ and pretend that $K$ was algebraicly closed the entire time. (Aside from $\op{rad},$ the degrees aren't changing.) So without loss of generality, $K$ is algebraicly closed. Also, for symmetry, we replace the condition $a+b=c$ with $a+b+c=0,$ which changes no degrees and is therefore safe. So it suffices to show
+\[\deg(c)\le\deg(\op{rad}_{\overline K}(abc))-1\]
+by symmetry.
+
+The way we access $\op{rad}$ algebraically is through the formal derivative. To exhibit this, consider a nonzero $p\in K[t].$ Factoring in the algebraicly closed $K$ looks like
+\[p(t)=\prod_{k=1}^P(t-\alpha_k)^{\nu_k},\]
+which gives $\op{rad}(p)(t)=\prod_k(t-\alpha_k).$ Now, we know that we can detect double-roots with the formal derivative, but we can do better than this, for actually what we know is that the formal derivative decreases multiplicities by $1.$ Namely, we see, by the product rule,
+\[p'(t)=\sum_{\ell=1}^P\left(\frac d{dt}(t-\alpha_\ell)^{\nu_\ell}\right)\prod_{\substack{k=1\\k\ne\ell}}^P(t-\alpha_k)^{\nu_k}.\]
+However, we can factor out many of these factors like
+\[p'(t)=\left(\prod_{k=1}^P(t-\alpha_k)^{\nu_k-1}\right)\Bigg(\sum_{\ell=1}^Am_\ell\prod_{\substack{k=1\\k\ne\ell}}^P(t-\alpha_k)\Bigg).\]
+In particular, we see that if we add in $\op{rad}(p)$ into the mix, we will have $p\mid p'\op{rad}(p),$ and even $p\mid(p,p')\op{rad}(p).$ The precise result we're going to need is the resulting statement
+\[\deg(p)\le\deg((p,p'))+\deg(\op{rad}(p)).\tag{$*$}\label{eq:rad-der}\]
+Note the degrees make sense with $p\ne0.$
+
+Continuing, the main character in our story is the Wronskian. In our case, we will say $W(a,b)=ab'-ba'$ for $a,b\in K[t],$ but there is a more general theory here about detecting linear dependence of polynomials and their derivatives (which I do not currently understand). We start with some details. We claim that $a+b+c=0$ implies $W(a,b)=W(b,c)=W(c,a)=:W.$ By symmetry, it suffices to show $W(a,b)=W(b,c)$ (and then cycle the letters of the argument $(a,b,c)\mapsto(b,c,a)$), where this follows by writing
+\[W(b,c)=bc'-cb'=b(-a-b)'-(-a-b)b'=(-a'b-bb')+(ab'+bb')=ab'-ba'=W(a,b).\]
+As another detail, we claim $W\ne0,$ for $W=0$ will force $a'=b'=c'=0.$ Indeed, we can show $a'=0$ because $W=0$ implies $ab'=ba',$ so $a\mid a'$ because $\gcd(a,b)=1.$ From this, $a'=0$ would follow because $a'\ne0$ would force $\deg(a)>\deg(a'),$ which violates $a\mid a'.$
+
+Now for the magic. Because $a,b,c$ are pairwise coprime, we remark $\op{rad}_{\overline K}(abc)=\op{rad}_{\overline K}(a)\op{rad}_{\overline K}(b)\op{rad}_{\overline K}(c).$ So we want to show
+\[\deg(c)\le\deg(\op{rad}_{\overline K}(a))+\deg(\op{rad}_{\overline K}(b))+\deg(\op{rad}_{\overline K}(c))-1.\]
+In order to make \hyperref[eq:rad-der]{$(*)$} appear, we add $\deg((a,a'))$ and friends to both sides so that it suffices to show (the stronger)
+\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))+\deg(c)\le\deg(a)+\deg(b)+\deg(c)-1.\]
+Cancelling the $\deg(c),$ we need
+\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))\le\deg(a)+\deg(b)-1.\]
+Now, we do have to deal with the asymmetry of not having $\deg(c)$ on the right-hand side, which is where the Wronskian enters. Because $\deg(p')\le\deg(p)-1,$ we see 
+\[\deg(W)=\deg(ab'-ba')\le\max\{\deg(ab'),\deg(ba')\}=\deg(a)+\deg(b)-1.\]
+Thus, it suffices to show
+\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))\le\deg(W).\]
+This is now symmetric.
+
+We are almost done. Because $W\ne0,$ we may show what we need by showing
+\[(a,a')(b,b')(c,c')\mid W.\]
+However, of course $(a,a')\mid ab'-ba'=W.$ And with $a,b,c$ pairwise coprime, the above follows.
+
+\subsubsection{January 9th}
+Today I learned the proof of Fermat's last theorem for polynomials over a perfect field, as a corollary from yesterday's work; notably this holds for function fields. Fix $n$ a positive integer. Further, suppose $a,b,c\in K[t]$ for $K$ perfect and not all $a^n,b^n,c^n$ have vanishing derivative with $abc\ne0.$ Now given
+\[a^n+b^n=c^n,\]
+we want to show that $n<3.$ Without loss of generality, we take $a,b,c$ pairwise relatively prime, which follows from $\gcd(a,b,c)=1.$
+
+Plugging into Mason's theorem, we remark that $\op{rad}_{\overline K}(a^nb^nc^n)=\op{rad}(abc),$ so we can say
+\[n\max\{\deg(a),\deg(b),\deg(c)\}<\deg(\op{rad}(abc)).\]
+Now, $\op{rad}(abc)\mid abc,$ and $abc$ is nonzero, so we may also say
+\[\deg(\op{rad}(abc))\le\deg(abc)=\deg(a)+\deg(b)+\deg(c)\le3\max\{\deg(a),\deg(b),\deg(c)\}.\]
+Combining this with the estimate from Mason's theorem requires $n<3,$ as desired.
+
+As a side remark, what we proved does look like the normal Fermat's last theorem except for requiring not all of them to have vanishing derivative. On one hand, this is done to disallow constant polynomials, for which this would cover the real Fermat's last theorem.
+
+But even ignoring this meta-argument, there are real dangers to watch out for. If our characteristic is $p>0,$ then for any polynomials $a,b\in K[t],$ we have that
+\[a^p+b^p=(a+b)^p\]
+by the Frobenius automorphism. This is a solution to Fermat's last theorem with $n=p,$ but we notice that all of $a^p,b^p,(a+b)^p$ have vanishing derivative, so this is ruled out by the hypotheses. To be clear, there are not such problems in characteristic $0,$ where vanishing derivative really does mean constant.
+
+Also, there are infinitely many nontrivial solutions with $n=2,$ aside from characteristic $2$ where $n=2$ forces vanishing derivative. Recall the parameterization of Pythagorean triples by
+\[\left(m^2-n^2\right)^2+(2mn)^2=\left(m^2+n^2\right)^2.\]
+Because this is a purely algebraic fact, it'll hold for out polynomials in $K[t],$ so this infinite family will give lots of nontrivial solutions for $n=2,$ for any $m,n\in K[t].$ I think the usual proof that these give all primitive Pythagorean triples can also be ported over to here in $K[t],$ but I haven't worked through the details.
+
+\subsubsection{January 10th}
+Today I learned which elements of $\FF_q[[t]]^\times$ can be written as the sum of two squares for $q$ odd. The main idea is that Hensel-type lifting will imply that an element of $K[[t]]^\times$ is a square if and only if its constant term is square, for $K$ of characteristic not $2.$ (In characteristic $2,$ everything is a square, so this is uninteresting.) The forward direction is easy; if $a(t)\in K[[t]]^\times$ is a square, then
+\[a(t)\equiv b(t)^2\pmod t\]
+implies that $a(0)=b(0)^2,$ so our constant term is square.
+
+The reverse direction is essentially Hensel lifting, as promised. Fix $a(t)=\sum_kx_kt^k\in K[[t]]^\times$ with $x_0=y_0^2$ in $K$; note $x_0\ne0$ implies $y_0\ne0.$ We construct $b(t)\in K[[t]]^\times$ inductively. We show that for any $n,$ we may construct $b_n(t):=\sum_{k=0}^ny_kt^k$ so that $b_{n+1}\equiv b_n\pmod{t^{n+1}}$ and
+\[a(t)\equiv b_n^2\pmod{t^{n+1}}.\]
+Sending $n\to\infty$ gives the result; I suppose a more rigorous proof would need some topology on $K[[t]]$ like that exists in $\ZZ_p,$ but we don't bother. Anyways, our base case is $b_0(t)=y_0,$ for which the conclusion holds by construction of $y_0.$
+
+Now suppose we have $b_n$ so that we can construct $b_{n+1}\equiv b_n\pmod{t^{n+1}}$ satisfying the conclusion. Well, we write $b_{n+1}(t)=b_n(t)+y_{n+1}t^{n+1}$ for $y_{n+1}$ to be determined later, and the conclusion requires
+\[a(t)\equiv b_{n+1}^2=\left(b_n(t)+y_{n+1}t^{n+1}\right)^2\pmod{t^{n+2}}.\]
+Observe that $2n+2\ge n+2$ because $n\ge0,$ so this expands to
+\[a(t)\equiv b_n^2+2y_{n+1}t^{n+1}\left(\sum_{k=0}^ny_kt^k\right)\equiv b_n^2+\left(2b_0y_0t^{n+1}\right)y_{n+1}\pmod{t^{n+2}}.\]
+It follows
+\[y_{n+1}\equiv\frac{a(t)-b_n^2}{2b_0y_0t^{n+1}}\pmod t\]
+determines $y_{n+1}$ and completes the inductive step. This division is well-defined because all of $2,b_0,y_0\in K^\times$ are units, and $t^{n+1}$ divides the numerator by the inductive hypothesis.
+
+Anyways, it remains to talk about sums of two squares in $\FF_q[[t]]^\times$ for $q$ odd. This is somewhat anticlimactic and roughly amounts to showing that every element of $\FF_q^\times$ can be written as the sum of two squares and then using the above machinery. Indeed, if $a\in \FF_q[[t]]^\times$ has $a(0)=b_0^2+c_0^2,$ then not both $b_0=c_0=0,$ and so $a-b_0^2\in\FF_q[[t]]^\times$ with square constant term, so it is itself a square. It follows
+\[a=b_0^2+c^2,\]
+which finishes, albeit in a boring way.
+
+It remains to show that every element of $\FF_q$ can be written as the sum of two squares, which is pretty much combinatorics. Fix $x\in\FF_q,$ and observe that we want a square in
+\[\left\{x-y^2:y\in\FF_q\right\}.\]
+This set has $\frac{q+1}2$ total elements. Additionally, the squares in $\FF_q$ also have $\frac{q+1}2$ elements, for these sets to be disjoint, we would need at least $q+1$ elements between them. Of course, we only have $\#\FF_q=q$ elements to go around, so this is impossible.
+
+Extending the result from $K[[t]]^\times$ to all of $K[[t]]$ doesn't look hard. Namely, I think we just have to specify that the term of lowest degree is even. Certainly if our lowest degree is even, we can just divide it out, apply the above, and then factor it into the square root. And conversely, being a square lets us track the term of lowest degree, which gets directly squared and will therefore have even degree after the squaring.
+
+Extending this from $\FF_q[[t]]^\times$ to all of $\FF_q[[t]]$ looks a bit harrier. The problem is that cancellation might come in between our squares to create terms which are not trivially the sum of two squares, as we had above. I don't know how to resolve this issue.
+
+\subsubsection{January 11th}
+Today I learned about transporting functions. Fix $X:\UU$ and parameterize $A,B:X\to\UU$ so that we have a ``function'' type family $(A\to B)(x):\equiv A(x)\to B(x)$ by abusing notation. Then we can think about transporting $f:A(x_1)\to B(x_1)$ to some function in $A(x_2)\to B(x_2)$ along $p:x_1=x_2,$ which is classically denoted by
+\[\op{transport}^{A\to B}(p)(f):A(x_2)\to B(x_2).\]
+The point here is that there is a natural way to do this by taking $A(x_2)\to A(x_1)$ along $p^{-1},$ then taking $A(x_1)\to B(x_1)$ by $f,$ and then returning $B(x_1)\to B(x_2)$ along $p.$ Here's the commutative diagram.
+\begin{center}
+    \begin{tikzcd}
+        A(x_2) \arrow[r, dashed]             & B(x_2)                 \\
+        A(x_1) \arrow[r, "f"] \arrow[u, "p"] & B(x_1) \arrow[u, "p"']
+    \end{tikzcd}
+\end{center}
+In symbols, we can follow the diagram to generate
+\[\lambda a.\op{transport}^B(p)\left(f(\op{transport}^A(p^{-1})(a))\right):A(x_2)\to B(x_2).\]
+The hope is that this is equal to $\op{transport}^{A\to B}(p)(f).$
+
+Certainly these are equal pointwise. For fixed $a,$ we can show that
+\[C(x_1,x_2,p)(f)(a)\equiv\op{transport}^{A\to B}(p)(f)(a)=\op{transport}^B(p)\left(f(\op{transport}^A(p^{-1})(a))\right).\]
+is inhabited by path induction on $p.$ Indeed, path induction means that it suffices to inhabit $C(x,x,\refl_x),$ but in this case $\op{transport}^\bullet(\refl_x)\equiv\op{id}_\bullet$ by definition, so we need to inhabit
+\[f(a)=f(a),\]
+for which $\op{refl}_{f(a)}$ of course works.
+
+However, it is not clear how to go from pointwise equality to full function equality, and the short of is that we can't. We can exhibit
+\[(f=g)\to\prod_{a:A}f(a)=g(a)\]
+by path induction on $p:f=g,$ for then we only have to exhibit $f(a)=f(a),$ where $\op{refl}_{f(a)}$ of course works. (Here we are working with arbitrary dependent functions $f,g:\prod_{a:A}B(a),$ but it works in this context.) It is an axiom, the ``function extensionality axiom,'' that this mapping is an equivalence, and this provides us a quasi-inverse
+\[\op{funext}:\left(\prod_{a:A}f(a)=g(a)\right)\to(f=g).\]
+Returning to the problem at hand, it follows that we can show the full equality
+\[\op{transport}^{A\to B}(p)(f)=\lambda a.\op{transport}^B(p)\left(f(\op{transport}^A(p^{-1})(a))\right)\]
+by using $\op{funext}$ on our witnesses for each $a:A(x_1).$ So things are good.
+
+There is a corresponding equality for dependent functions in the more general case, but it is a bit annoying. I will write that it is
+\[\lambda a_2.\op{transport}^{\widehat B}\left(\op{pair}^=\left(p^{-1},\op{refl}_{p_*^{-1}(a_2)}\right)\right)\left(f\left(\op{transport}^A(p)(a_2)\right)\right)\]
+Here $\widehat B$ refers to the function type family taking $w:\sum_{(x:X)}A(x)$ to $B(\op{pr}_1w)(\op{pr}_2w).$ In particular, $B(x_\bullet)(a_\bullet)\equiv\widehat B((x_\bullet,a_\bullet)).$ The diagram is as follows; it's roughly the same. For brevity, we let $a_2$ be the input into the transported $f$ and $a_1:\equiv p^{-1}_*(a_2).$
+\begin{center}
+    \begin{tikzcd}
+        A(x_2) \arrow[r, dashed]                     & \widehat B((x_2,a_2))                                       \\
+        A(x_1) \arrow[r, "f"] \arrow[u, "p:x_1=x_2"] & \widehat B((x_1,a_1)) \arrow[u, "{p:(x_1,a_1)=(x_2,a_2)}"']
+    \end{tikzcd}
+\end{center}
+All the garbage with $\op{pair}^=$ is really just trying to witness that $(x_1,a_1)=(x_2,a_2),$ and it's not terribly difficult (remembering how $\op{pair}^=$ works for $\sum$-types) to see that this type-checks.
+
+\subsubsection{January 12th}
+Today I learned about the univalence axiom. The core here is to establish what it means for two types $A$ and $B$ to be equal, with respect to a universe $\UU,$ but we don't really have an easy way to introduce such equalities. To be clear, we can exhibit a function
+\[\op{idtoeqv}:(A=_\UU B)\to(A\simeq B).\]
+Indeed, the main idea is to view $\op{id}_\UU:\UU\to\UU$ as a family of types indexed by $\UU$; what this gives us is the ability to think about
+\[\op{transport}^{\op{id}_\UU}(p):A\to B\]
+given our $p.$ We claim that this is an equivalence.
+
+The easy way to see this as trying to exhibit a function
+\[\prod_{(A,B:\UU)}(A=_\UU B)\to(A\simeq B),\]
+for which path induction says that it suffices to take $A\equiv B$ and $p\equiv\refl_A$ so that our $\op{transport}^\bullet(p)\equiv\op{id}_\UU.$ But we know that $\op{id}_\UU$ is an equivalence with itself as a quasi-inverse, so we're done.
+
+That is a bit cheap, however. More generally, for a type family $P:X\to\UU,$ we have that $p:x=y$ witnesses
+\[\op{transport}^P(p):P(x)\to P(y),\]
+which we claim is an equivalence $P(x)\to P(y).$ Taking $P\equiv\op{id}_\UU$ recovers the case that we're interested in. To show that this is an equivalence, it suffices to note that
+\[\op{transport}^P(p^{-1}):P(y)\to P(x)\]
+is its quasi-inverse. Indeed, because $\op{transport}$ commutes with path concatenation (proven with path induction), we can say that
+\[\op{transport}^P(p^{-1})\circ\op{transport}^P(p)=\op{transport}^P(p\cdot p^{-1})\stackrel*=\op{transport}^P(\refl_x)=\op{id}_{P(x)}.\]
+I guess some care must taken on $\stackrel*=$ because $\op{transport}^P$ is a dependent function, but $p\cdot p^{-1}$ and $\op{refl}_x$ are both of type $x=x,$ so we may restrict $\op{transport}^P$ to a function $(x=x)\to P(x)\to P(x).$ Then $\stackrel*=$ follows by applying $\op{transport}^P$ to both sides of $p^{-1}\cdot p=\refl_x.$ Anyways, similar holds in the opposite direction.
+
+The point here is that
+\[\op{idtoeqv}(p)\equiv\op{transport}^{\op{id}}(p)\]
+suffices, where we are abusing $\op{transport}^{\op{id}}(p)$ to witness the entire equivalence in $A\simeq B.$ Now, the univalence axiom for a universe $\UU$ is the assertion that $\op{idtoeqv}$ is an equivalence for the universe $\UU$; in particular, we get a function
+\[\op{ua}:(A\simeq B)\to(A=_\UU B)\]
+which is the quasi-inverse of $\op{idtoeqv}.$ More or less, this is how we get to introduce equalities $A=B$---exhibit an equivalence $A\simeq B.$
+
+Quickly, observe that this is the same pattern as with function extensionality. We could build a function
+\[\op{happly}:(f=g)\to(f\sim g)\]
+pretty easily by path induction. However, it's not clear how to construct the quasi-inverse of this function, so we have an axiom establishing it. It will turn out that univalence implies function extensionality, but I don't know why.
+
+\subsubsection{January 13th}
+Today I learned the outline of how to use class field theory to classify primes of the form $x^2+ny^2,$ where $n\equiv1\pmod4$ and is squarefree. To introduce in the algebraic number theory, we write this as
+\[p=\left(x+y\sqrt{-n}\right)\left(x-y\sqrt{-n}\right),\]
+so really we're saying that $p$ splits completely in $K:=\QQ(\sqrt{-n})$ into principal ideals. Notably, our rink of integers is $\mathcal O_K=\ZZ[\sqrt{-n}],$ so principal really does mean $\left(x+y\sqrt{-n}\right).$ We remark that this is an equivalence because if $p$ splits completely into principal ideals in $K,$ then we can write $p=(\alpha)(\beta)=(\alpha\beta),$ so $p^2=\op{Norm}(\alpha)\cdot\op{Norm}(\beta).$ Not both $\alpha$ and $\beta$ may be units, so we must have (say) $p=\op{Norm}(\alpha),$ which finishes. So we get
+\[p=x^2+ny^2\iff p=\mf p\mf q,\,\text{ with }\mf p,\mf q\subseteq\mathcal O_K\text{ principal}.\]
+
+It remains to classify primes $p$ which split completely into $\mf p\mf q$ in $\mathcal O_K$ where $\mf p$ and $\mf q$ are principal. Now we bring in the class field theory. Let $L$ be the Hilbert class field of $K,$ which has a number of remarkable properties. For example,
+\[\mf p\text{ is principal}\iff\mf p\text{ splits completely in }L.\]
+This is called the Principal Ideal Theorem. So we need the factors of $p$ to split completely in $L.$ And noting the multiplicativity of $e(\bullet/p)$ and $f(\bullet/p),$ we see that the factors of $p$ split completely if and only if $p$ itself splits completely, for we know that $p$ should split completely as a hypothesis already. It follows
+\[p=x^2+ny^2\iff p\text{ splits completely in }L.\]
+
+We can provide some aesthetically nicer conditions on splitting completely in $L.$ If we fix $L=K[\alpha]$ with $f(x)$ the minimal polynomial of our $\alpha,$ then for all but finitely many primes, we can be reassured the splitting of $p$ depends on the factorization of $f\pmod p.$ The end goal is to be able to have our condition be
+\[p=x^2+ny^2\iff f(x)\equiv0\pmod p\text{ has a solution},\]
+but we can't say that yet because of ramification. Well, another remarkable property of $L$ is that it is an unramified extension of $K,$ so it is enough to check that $p$ is unramified in $K.$ (It should be unramified because it should split completely, but we must check this in order to apply Dedekind-Kummer.) Ramification can be checked by checking $p\nmid\disc\mathcal O_K=-4n.$ So for all but finitely many primes,
+\[p=x^2+ny^2\iff p\nmid4n\text{ and }f(x)\equiv0\pmod p\text{ has a solution}.\]
+In particular, $f(x)\equiv0$ having a solution means that $p$ has a factor of inertial degree $1$ in $L,$ but then all factors have inertial degree $1,$ so $p$ does split completely.
+
+\subsubsection{January 14th}
+Today I learned a somewhat reliable way to compute $L(1,\chi)$ for characters $\chi$ (that actually doesn't use the multiplicative structure of $\chi$). Let's say that $\chi$ has period $N,$ and then we may say
+\[L(1,\chi)=\sum_{n=1}^\infty\frac{\chi(n)}n.\]
+The main idea is to use the generating functions idea to think about $\frac1n$ as $\int_0^1x^{n-1}\,dx.$ We would like to use this property to turn the above sum into an integral of a rational function, so we first group terms by period, giving
+\[L(1,\chi)=\sum_{n=0}^\infty\left(\sum_{k=1}^N\frac{\chi(k)}{k+nN}\right)\]
+using periodicity. Note that this grouping does not actually reorder the the summation of terms, but we're not going to worry much about convergence issues anyways. Now we introduce this as an integral, rewriting things as
+\[L(1,\chi)=\sum_{n=0}^\infty\left(\sum_{k=1}^N\chi(k)\int_0^1x^{k+nN-1}\,dx\right)=\int_0^1\sum_{n=0}^\infty\left(\sum_{k=1}^N\chi(k)x^{k+nN-1}\right)\,dx.\]
+However, we remark that we can actually split up the sum as
+\[L(1,\chi)=\int_0^1\left(\sum_{n=0}^\infty x^{nN}\right)\left(\sum_{k=1}^N\chi(k)x^{k-1}\right)\,dx=\boxed{\int_0^1\frac1{1-x^N}\left(\sum_{k=1}^N\chi(k)x^{k-1}\right)\,dx},\]
+which is what we wanted. This integral can sometimes be computed directly, but it can certainly be approximated; the core difficulty is the $1-x^N$ in the denominator, which is difficult in general to do partial fractions on.
+
+Let's compute a sum with this. I'm not going to do examples of the analytic class number formula because the integral is actually quite hairy for nontrivial $N.$ So let's evaluate
+\[1+\frac13-\frac15-\frac17+\frac19+\frac1{11}-\frac1{13}-\cdots.\]
+This isn't a character, but it doesn't matter. Pushing this through the machinery, this becomes
+\[\int_0^1\frac{1+x^2-x^4-x^6}{1-x^8}\,dx=\int_0^1\frac{\left(1-x^4\right)\left(1+x^2\right)}{\left(1-x^4\right)\left(1+x^4\right)}\,dx=\int_0^1\frac{1+x^2}{1+x^4}\,dx.\]
+The standard way to integrate $\int\frac1{1+x^4}\,dx$ is by partial fractions because $1+x^4=\left(1+x^2\right)^2-\left(x\sqrt2\right)^2.$ In particular, we see
+\[\frac{1+x^2}{1+x^4}=\frac{1/2}{1-x\sqrt2+x^2}+\frac{1/2}{1+x\sqrt2+x^2}.\]
+Thus, it remains to integrate
+\[\frac12\int_0^1\frac1{1-x\sqrt2+x^2}\,dx+\frac12\int_0^1\frac1{1+x\sqrt2+x^2}\,dx.\]
+Completing the square in the denominator, we see $(x\sqrt2\pm1)^2=2x^2\pm2\sqrt2x+1,$ so the integral is
+\[\int_0^1\frac1{1+(x\sqrt2-1)^2}\,dx+\int_0^1\frac1{1+(x\sqrt2+1)^2}\,dx.\]
+This integral collapses to
+\[\frac{\arctan(\sqrt2-1)+\arctan(\sqrt2+1)-\arctan(1)-\arctan(-1)}{\sqrt2}.\]
+Of course, $\arctan$ is odd, so this is really
+\[\frac{\arctan(\sqrt2-1)+\arctan(\sqrt2+1)}{\sqrt2}.\]
+Using the normal tricks, we see $\arctan(\sqrt2\pm1)=\arg\left(1+(1\pm\sqrt2)i\right),$ so we want
+\[\frac{\arg\left(1+(1+\sqrt2)i\right)\left(1+(1-\sqrt2)i\right)}{\sqrt2}=\frac{\arg(2i)}{\sqrt2}.\]
+So our sum is $\boxed{\textstyle\frac{\pi}{2\sqrt2}}.$

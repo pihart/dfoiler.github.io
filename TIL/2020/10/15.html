@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>October 15th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned the proof for the existence of non-Euclidean principal ideal domains. The easiest example that could possibly work is $\QQ(\sqrt{-19})\cap\overline\ZZ,$ which is $\ZZ[\theta]$ for $\theta=\frac{1+\sqrt{-19}}2.$ It's a classical application of the Minkowski bound to show that $\ZZ[\theta]$ has trivial class group and therefore is a principal ideal domain. We show here that it is not a Euclidean domain.</p>
+<p>The approach is to use the fact that all Euclidean domains satisfy the "universal side divisor criterion,'' and then show that $\ZZ[\theta]$ does not. Namely, fix $R$ a Euclidean domain with norm $d:R\to\NN.$ Then for each $a,b\in R$ with $b\ne0,$ there exist $q$ and $r$ with $d(r) \lt d(b)$ satisfying\[a=bq+r.\]For the universal side divisor criterion, we say that we can give some $x$ not a nonzero non-unit which minimizes $d$ among other nonzero non-units. But then for any $a\in R,$ our division says\[a=xq+r\]forces $d(r) \lt d(x),$ so $r\in R^\times\cup\{0\}.$ In particular, $R/xR$ has representatives which are all units or zero, which is exactly the universal side divisor criterion. As an aside, whenever there is a Euclidean norm $d,$ it is always possible to define a multiplicative norm $d',$ so $x$ could be defined as an element achieving the smallest norm above $1.$ We don't need to say this in order to get $R/xR$ having representatives all units or zero, as above.</p>
+<p>Now we apply this to $\ZZ[\theta].$ In particular, we claim that no such $x$ exists, but before we do so, we take a little time to classify units. For this, note that $\op N(a+b\theta)$ evaluates to\[\op N\left(\left(a+\frac b2\right)+\left(\frac b2\right)\sqrt{-19}\right)=\left(a+\frac b2\right)^2+\frac{19b^2}2.\]An element is a unit if and only if the norm is $1.$ Now, if $b\ge1,$ then the norm is at least $\frac{19}2 \gt 1,$ so we must have $b=0.$ Then the norm is $a^2,$ for which $a=\pm 1$ are both necessary and sufficient. In particular, $\ZZ[\theta]^\times=\{\pm1\}.$</p>
+<p>To finish the proof, we claim that there is no $x$ for which $\ZZ[\theta]/x\ZZ[\theta]$ only has representatives from $\ZZ[\theta]^\times\cup\{0\}=\{-1,0,1\}.$ Before using this property of our $x\in\ZZ[\theta],$ note that the ring $\ZZ[\theta]/x\ZZ[\theta]$ sends $\theta$ to some coset, so\[\theta^2-\theta+5=0\]implies that $\ZZ[\theta]/x\ZZ[\theta]$ ought have a root of the polynomial $p(\theta)=\theta^2-\theta+5.$</p>
+<p>Now we assume for the sake of contradiction that $x$ is satisfies the universal side divisor criterion. In particular, $\ZZ[\theta]/x\ZZ[\theta]$ is fully represented by $\{-1,0,1\}.$ It surely has more than one element (else $x\ZZ[\theta]=\ZZ[\theta],$ forcing $x$ to be a unit), so it either has $2$ or $3$ elements; i.e., it is isomorphic to either $\FF_2$ or $\FF_3,$ telling us the structure of our ring for free. But $p(\theta)=\theta^2-\theta+5$ has no roots in both$\pmod2$ and$\pmod3,$ for it evaluates to $p(0)=5,$ $p(1)=5,$ and $p(2)=7.$ It follows $\theta$ can't have a coset in $\ZZ[\theta]/x\ZZ[\theta],$ which is our contradiction.</p>
+<p>What I find a bit amusing about this proof is that exactly what makes $\ZZ[\theta]$ a principal ideal domain is what makes it not a Euclidean domain: that the minimal polynomial \[p(\theta)=\theta^2-\theta+5\]produces quite a few primes in its image. On one hand, this makes the Dedekind-Kummer factorization algorithm for ideals quickly conclude all of our small primes are inert, giving trivial class group. But on the other hand, it forces $\ZZ[\theta]/x\ZZ[\theta]$ for any $x\in\ZZ[\theta]$ to have quite a few elements in order to accommodate for a root of $p(\theta).$</p>
+<p>As an aside, this proof doesn't carry over to, say, $\QQ(\sqrt{-11})\cap\overline\ZZ$ because our minimal polynomial is $x^2-x+3,$ which reduces$\pmod3.$ However, it does carry over to the other Heegner numbers at least $19,$ which is nice. In the other direction, this utterly fails in real quadratic fields because they have infinite unit groups, so our size arguments about $R/xR$ fail spectacularly.</p>
+<p>I guess as foreshadowed, we could say this is a relationship between our unit group $\ZZ[\theta]^\times$ and the structure of unique prime factorization. Namely, on a high level, we could say that the universal side divisor criterion was really just a tool to let us talk about Euclidean domains in terms of their unit group. It happens that we understand the unit group of $\ZZ[\theta]$ super well, which is what allowed us to more closely study Euclidean division.</p>
+<p></p>
+<p>
+</p>
+</body>

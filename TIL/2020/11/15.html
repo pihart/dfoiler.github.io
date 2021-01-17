@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>November 15th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned about parameterizing rationals on conics. The motivating example it to generate Pythagorean triples $a^2+b^2=c^2$ in $\ZZ^2.$ There is the elementary solution to this by writing it as $b^2=(c-a)(c+a),$ but this finds dealing with $\gcd(a,b)=1$ a bit awkward. The natural way to deal with this is to work in $\QQ,$ where it's dealt with automatically.</p>
+<p>Ignoring the trivial $(0,0,0)$ solution, we see that it suffices to solve\[x^2+y^2-1=0\]for $x,y\in\QQ$ by dividing by $c.$ To parameterize solutions, we apply the following trick. Note that $(1,0)$ is a solution. Then for any other rational solution $(p,q)\ne(1,0),$ the slope between $(1,0)$ and $(p,q)$ is some nonzero rational. But conversely, it turns out that being on $x^2+y^2=1$ and having a rational slope with $(1,0)$ gives a rational point, so we may parameterize by these slopes. Indeed, we're solving\[\begin{cases}    0=x^2+y^2-1, \\    y=t(x-1).\end{cases}\]Plugging the second into the first gives $x^2+(t(x-1))^2-1=0,$ which is a quadratic in $x.$ It has at most two solutions, and it has at least one solution at $x=1$ (giving $y=0$), so Vieta's formulae guarantee that the other solution must also be rational. Actually working this out (which we omit here) gives\[(x,y)=\left(\frac{t^2-1}{t^2+1},-\frac{2t}{t^2+1}\right),\qquad t\in\QQ.\]Perhaps as expected, the final expression is not as interesting as we got there.</p>
+<p>So far I have presented stuff I've seen before. What's interesting is that this process works for general conics. Indeed, suppose we want to parameterize the solutions to $P(x,y)=0,$ where $P(x,y)\in\QQ[x,y]$ is of degree $2,$ and we have a starting solution $(x_0,y_0).$ One can check for solutions to $P(x_0,y)=0.$ Otherwise, look at rational slopes again. Of course any other rational point has a rational slope with $(x_0,y_0).$</p>
+<p>But on other hand, we can show any rational slope gives rational points. Indeed, fix a rational slope $t\in\QQ$ and look for the intersection\[\begin{cases}    0=P(x,y), \\    y=y_0+t(x-x_0).\end{cases}\]Observe that $(x_0,y_0)$ is already a solution to this. Substituting, it suffices to look at\[P(x,y_0+t(x-x_0))=0,\]which is a quadratic in $\QQ[x].$ With coefficients in $\QQ,$ the sum of the two solutions is a rational. But we already know that $x=x_0\in\QQ$ had better be a solution, so the other solution, which we could solve for based on the expansion of $P(x,y_0+t(x-x_0)),$ must be rational as well. So rational slopes $t$ parameterize out solution set.</p>
+<p>Let's see this in action for a non-circle example; we'll show more details this time. Take the hyperbola $P(x,y)=x^2-y^2-1=0$ and note the point $(x_0,y_0)=(1,0)$ is the only one with $x=x_0.$ Then we consider the quadratic\[P(x,t(x-1))=x^2-t^2(x-1)^2-1=0.\]This expands to\[\left(1-t^2\right)x^2+2t^2x-\left(1+t^2\right)=0.\]We note here that $t=\pm1$ do not give solutions; the solutions to these kinds of problems would be to work in the protective plane with $x^2-y^2=z^2,$ but we don't bother here. For other slopes, we note that Vieta says the product of the solutions is\[-\frac{1+t^2}{1-t^2}=\frac{t^2+1}{t^2-1},\]so this must be the solution for $x$ different from $1.$ Then\[y=t(x-1)=t\left(\frac{t^2+1}{t^2-1}-1\right)=\frac{2t}{t^2-1}.\]It follows our solutions are\[(x,y)=\left(\frac{t^2+1}{t^2-1},\frac{2t}{t^2-1}\right),\qquad t\in\QQ\setminus\{\pm1\}.\]This is at least reasonably nice, so we call it quits here.</p>
+<p></p>
+<p>
+</p>
+</body>

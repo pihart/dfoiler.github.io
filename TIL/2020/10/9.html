@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Today I Learned</title>
+	<link rel="stylesheet" href="../../../main.css">
+	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [ ['$','$'] ],
+				processEscapes: true
+			}
+		});
+	</script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1>Today I Learned</h1>
+<h2>October 9th</h2>
+<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that every character $\chi:\QQ\to S^1$ can indeed by expressed as $\Psi_a$ for some adele $a\in\AA_\QQ.$ This is very classic local-global principle: we're going to decompose $\chi$ into a product of character-like things $\chi_\infty$ and $\chi_p$ for all of our places, and then we'll finish by showing our character-like things are actually characters. This will let us identify $\chi$ with some adele, finishing.</p>
+<p>For each $\psi_p,$ we have that $\psi_p(1a_p)=e^{2\pi i\{a_p\}_p}$ is a root of unity, so any non-root-of-unity contribution to $\chi$ must come from $\chi_\infty.$ In particular, let $\chi(1)=e^{-2\pi ia_\infty}$ so that $\chi_\infty(q)=e^{-2\pi ia_\infty q}$ satisfies $\chi(1)=\chi_\infty(1).$ Then for any $q=\frac mn,$ we have that\[\frac\chi{\chi_\infty}(q)^n=\frac\chi{\chi_\infty}(nq)=\frac\chi{\chi_\infty}(m)=\frac\chi{\chi_\infty}(1)^m=1,\]so indeed, $\frac\chi{\chi_\infty}$ has image only equal to roots of unity, dictated by the denominator. With that in mind, we define $\frac\chi{\chi_\infty}(q)=e^{2\pi i\theta}$ for $\theta\in\QQ$ so that $\chi_p(q)=e^{2\pi i\{\theta\}_p}.$ In particular, $-\theta+\sum_p\{\theta\}_p\in\ZZ$ implies that\[\frac\chi{\chi_\infty}(q)=e^{2\pi i\theta q}=\prod_pe^{2\pi i\{q\}_p}=\prod_p\chi_p(q).\]Namely,\[\chi(q)=\chi_\infty(q)\prod_p\chi_p(q).\]So we have decomposed $\chi$ into character-like $\chi_\bullet$s. This ends the global step.</p>
+<p>We defined $\chi_\infty(q)=e^{2\pi ia_\infty q}=\psi_\infty(a_\infty q),$ so we'll finish by showing that $\chi_p(q)=\psi_p(a_pq)$ for some $a_p\in\ZZ_p.$ This will tell us that each character $\chi$ is associated with some $\Psi_a$ for $a\in[0,1)\times\prod_p\ZZ_p\subsetneq\AA_\QQ,$ completing the proof of the surjection of $\Psi_\bullet.$ We begin by studying $\chi_p(1)$ in order to construct $a_p.$ For any $\bullet\in\NN,$ recall that\[\chi_p\left(1/p^\bullet\right)^{p^\bullet}=\chi_p(1)=1,\]so it follows $\chi_p\left(1/p^\bullet\right)=e^{2\pi ic_\bullet/p^\bullet}$ for some $c_\bullet\in\ZZ/p^\bullet\ZZ.$ We'd like to have $\{c_\bullet/p^\bullet\}_p=\{1a_p/p^\bullet\}_p,$ so we had better have $a_p\equiv c_\bullet\pmod{p^\bullet}.$ Because we're constructing an element of $\ZZ_p,$ this modular information is enough to construct $a_p$ as a Cauchy sequence, but we need to show that this is really a Cauchy sequence. Well, $\chi_p\left(1/p^{\bullet+1}\right)^p=\chi_p\left(1/p^\bullet\right),$ so $c_{\bullet+1}\equiv c_\bullet\pmod{p^\bullet}.$ Thus,\[a_p=\{c_1,c_2,\ldots\}\in\ZZ_p\]is indeed a Cauchy sequence in $\ZZ_p,$ which we'll say converges to $a_p.$ Now we have to extend this $a_p$ to work for all $q=\frac mn.$ To control the denominator, fix $n=p^\bullet n'$ with $(n',p)=1.$ This gives\[\chi_p(q)^{n'}=\chi_p\left(m/np^\bullet\right)^{n'}=\chi_p\left(1/p^\bullet\right)^m=e^{2\pi ia_pm/p^\bullet}.\]We would like this exponent to have a $\{a_pq\}_p$ in it, and indeed\[\frac{a_pm}{p^\bullet}\equiv m\left\{a_p/p^\bullet\right\}_p=\left\{a_pm/p^\bullet\right\}_p=\{a_pqn'\}_p\equiv n'\{a_pq\}_p\pmod\ZZ\]Here we have used $\{x\}_p+\{y\}_p=\{x+y\}_p$ repeatedly. So we see that $\chi_p(q)^{n'}=\left(e^{2\pi i\{a_pq\}_p}\right)^{n'}.$ But $\chi_p(q)$ is a $p$th root of unity, so the quotient is a $p$th root of unity as well as an $n'$th root of unity, forcing the quotient to be $1$ because $(n',p)=1.$ It follows $\chi_p(q)=e^{2\pi i\{a_pq\}_p},$ which is what we wanted.</p>
+<p></p>
+<p>
+</p>
+</body>
