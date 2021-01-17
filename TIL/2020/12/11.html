@@ -13,10 +13,9 @@
 		});
 	</script>
 	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head>
-<body>
-<h1>Today I Learned</h1>
-<h2>December 11th</h2>
+</head><body>
+<h1><a href="../../index.html">Today I Learned</a></h1>
+<h2><a href="./index.html">December</a> 11th</h2>
 <p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
@@ -51,7 +50,10 @@ $Today I learned a proof of the Jordan normal form, from \href{https://terrytao.
 <p>It remains to deal with general-case transformations. In order to abstract what we need to prove, note that a Jordan block is\[J_\lambda=\begin{bmatrix}    \lambda & 1 & 0 & \cdots & 0 & 0 \\    0 & \lambda & 1 & \cdots & 0 & 0 \\    0 & 0 & \lambda & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & \cdots & \lambda & 1 \\    0 & 0 & 0 & \cdots & & \lambda \\\end{bmatrix}=S+\lambda I,\]a shift plus a constant. Jordan normal form is basically asking us to decompose our transformation $T:V\to V$ into a direct sum of these shift-plus-constant transformations. Indeed, we're trying to decompose $V=V_1\oplus\cdots\oplus V_k$ so that the restriction of $T$ to each $V_\bullet$ is a shift plus a constant.</p>
 <p>This part of the proof is typically done with minimal polynomials or something. We just note that there at least exists some (monic) polynomial $P$ for which $P(T)=0.$ For example, if we were to write $T$ as an $n\times n$ matrix, we can look at all matrices from $T^0,T^1,\ldots,T^{n^2}$ and find a nontrivial relation of these which vanishes---it amounts to $n^2+1$ coefficients and $n^2$ equations. As an overview of what's about to happen, if we factor $P(\lambda)$ into coprime factors as\[P(\lambda)=\prod_{k=1}^mQ_k(\lambda),\]then we'll have that the transformation $T$ on $V=\ker(P(T))$ will be the direct sum of $T$ on each $\ker(Q_k(T)),$ and the restriction of $T$ to each factor will be a shift plus a constant. At a high level, factorizations of polynomials will give us factorization into Jordan normal form.</p>
 <p>Now, suppose we factor $P=QR$ into coprime polynomials $Q$ and $R.$ Because polynomials over our ground field form a Euclidean domain, we're allowed to invoke B\'ezout's Lemma to get polynomials $A$ and $B$ such that\[AQ+BR=1.\]It will be enough to show that the transformation $T$ on $\ker(P(T))$ is the direct sum of the restriction of $T$ to $\ker(Q(T))$ and $\ker(P(T))$; fully factoring $P$ and then applying this lemma inductively will give what we want.</p>
-<ul><li>     The restrictions make sense because $v\in\ker(S(T))$ will still have $Tv\in\ker(S(T))$ because $T(S(T)v)=S(T)Tv$.</li><li>     Note $\ker(Q(T))\cap\ker(R(T))=\{0\}$ because $v$ in the intersection would satisfy $v=AQv+BRv=0.$</li><li>     Note $\ker(Q(T))+\ker(R(T))=\ker(P(T))$ because we may write</li>    \[v=R(T)B(T)v+Q(T)A(T)v.\]    For $v\in\ker(P(T)),$ we see this implies $R(T)B(T)v\in\ker(Q(T))$ because it evaluates to $B(t)Q(T)R(T)v=B(T)P(T)v=0$; similar shows $Q(T)A(T)v\in\ker(R(T)),$ so we're done.</ul>
+<ul>
+<li>     The restrictions make sense because $v\in\ker(S(T))$ will still have $Tv\in\ker(S(T))$ because $T(S(T)v)=S(T)Tv$.</li>
+<li>     Note $\ker(Q(T))\cap\ker(R(T))=\{0\}$ because $v$ in the intersection would satisfy $v=AQv+BRv=0.$</li>
+<li>     Note $\ker(Q(T))+\ker(R(T))=\ker(P(T))$ because we may write</li>    \[v=R(T)B(T)v+Q(T)A(T)v.\]    For $v\in\ker(P(T)),$ we see this implies $R(T)B(T)v\in\ker(Q(T))$ because it evaluates to $B(t)Q(T)R(T)v=B(T)P(T)v=0$; similar shows $Q(T)A(T)v\in\ker(R(T)),$ so we're done.</ul>
 <p>The final two points tell us that $\ker(P(T))=\ker(Q(T))\oplus\ker(R(T)),$ and the first point lets us restrict $T$ to each.</p>
 <p>Continuing, when we're working in an algebraically closed field, we know we may factor $P(\lambda)$ into only linear factors, but as our lemma only applies as long as the factors are coprime, we have to let\[P(\lambda)=\prod_{k=1}^m(\lambda-\lambda_k)^{d_k}=:\prod_{k=1}^mQ_k(\lambda).\]Now, our lemma lets us say that $T$ is the direct sum of its restrictions to each $\ker(Q_k(T))=\ker\left((T-\lambda_kI)^{d_k}\right).$ However, over each of these spaces, we see that $T-\lambda_k$ is a nilpotent transformation and therefore a direct sum of shift transformations by our classification. It follows that $T$ is a direct sum of shifts plus a constant over $\ker(Q_k(T)),$ so $T$ is still a direct sum of shifts plus a constant over $V.$ This completes the proof.</p>
 <p></p>
