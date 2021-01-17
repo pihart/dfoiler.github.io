@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">December</a> 28th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">December</a> 28th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,9 +46,9 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned some $\lambda$ calculus for type theory. Essentially, we can define functions $A\to B$ (where $A,B:\mathcal U$ are types) by writing\[(\lambda x.\Phi):A\to B.\]Here $\Phi$ is just some expression maybe involving $x.$ The function is well-defined if and only if $(\lambda x.\Phi)(a)\equiv\Phi':B$ where $\Phi'$ is the expression $\Phi$ where each instance of $x$ is replaced by $a:A.$ Formally, we should write $\lambda(x:A).\Phi$ or similar, but this is redundant when we know that the codomain is $A$ anyways.</p>
-<p>The rule where we may write\[(\lambda x.\Phi)(a)\equiv\Phi'\]by replacing instances of $x$ in $\Phi$ with an $a$ to get $\Phi$ is called $\beta$-reduction. Another manipulation rule we have is that for a given function $f:A\to B,$ we may write\[f\equiv(\lambda x.f(x)).\]This is called $\eta$-expansion. Essentially, this says that two functions are equal if they are equal on all inputs, for the $\lambda$ expression is pretty much just an abstract list of all possible expressions. There is also $\alpha$-conversion, where we can say\[\lambda x.\Phi_x\equiv\lambda y.\Phi_y,\]where $\Phi_y$ is just $\Phi_x$ with all $x$s replaced with $y$s. In other words, the dummy variable may be exchanged.</p>
-<p>I feel obligated to talk about currying. The idea is that we can "simulate'' multiple inputs to a function by making functions output other functions. Explicitly, we may think of a function\[f:A\to(B\to C)\]as taking in two inputs $a:A$ and $b:B$ and outputting $f(a)(b):C.$ As an aside on notation, our arrows are right-associative by convention, so we could (unambiguously) write the above as $f:A\to B\to C.$ We are sweeping under the rug having to think about the fact that $f(a):B\to C$ and just thinking about the composite after applying $b:B.$ Oftentimes we abbreviate this to $f(a,b).$</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p>The rule where we may write\[(\lambda x.\Phi)(a)\equiv\Phi'\]by replacing instances of $x$ in $\Phi$ with an $a$ to get $\Phi$ is called $\beta$-reduction. Another manipulation rule we have is that for a given function $f:A\to B,$ we may write\[f\equiv(\lambda x.f(x)).\]This is called $\eta$-expansion. Essentially, this says that two functions are equal if they are equal on all inputs, for the $\lambda$ expression is pretty much just an abstract list of all possible expressions. There is also $\alpha$-conversion, where we can say\[\lambda x.\Phi_x\equiv\lambda y.\Phi_y,\]where $\Phi_y$ is just $\Phi_x$ with all $x$s replaced with $y$s. In other words, the dummy variable may be exchanged.</p>
+		<p>I feel obligated to talk about currying. The idea is that we can "simulate'' multiple inputs to a function by making functions output other functions. Explicitly, we may think of a function\[f:A\to(B\to C)\]as taking in two inputs $a:A$ and $b:B$ and outputting $f(a)(b):C.$ As an aside on notation, our arrows are right-associative by convention, so we could (unambiguously) write the above as $f:A\to B\to C.$ We are sweeping under the rug having to think about the fact that $f(a):B\to C$ and just thinking about the composite after applying $b:B.$ Oftentimes we abbreviate this to $f(a,b).$</p>
+		<p></p>
+		<p></p>
+	</body>
+</html>

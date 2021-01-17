@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">October</a> 25th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">October</a> 25th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,9 +46,9 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the definition of the categorical kernel. We begin with the definition of zero morphisms. It's zero morphisms plural because we define zero morphisms to be a set of morphisms in $\mathcal C$ that satisfy the property\[0\circ a=b\circ 0=0\]for any other morphisms $a$ and $b.$ Explicitly, every pair of objects $A,B\in\mathcal C$ is equipped with a zero morphism $0_{AB},$ and for any additional morphism $\varphi:B\to C,$ we have\[\varphi\circ 0_{AB}=0_{AC}.\]Similarly, for any additional morphism $\varphi:C\to A,$ we have\[0_{AB}\circ\varphi=0_{CB}.\]In other words, the following pair of diagrams always commute.\begin{center}    \begin{tikzcd}        A \arrow[r, "0_{AB}"] \arrow[rd, "0_{AC}"'] & B \arrow[d] &  & A \arrow[r] \arrow[rd, "0_{AC}"'] & B \arrow[d, "0_{BC}"] \\                                                    & C                      &  &                                              & C                        \end{tikzcd}\end{center}As an example, the category of groups has these very convenient morphisms $0:G\to G'$ by $g\mapsto e,$ which satisfy this condition. Indeed, composing any morphism before this still sends everything to the identity, and doing anything afterwards is doomed just to send the identity to the identity.</p>
-<p>To define the kernel, now, we start with a function $f:A\to B.$ Then the kernel is an object $K$ with a morphism $k:K\to A$ to be thought of an inclusion mapping. We also require that $K\to A\to B=0_{KB}$ is the zero morphism and that if there's a parallel mapping $k':K'\to A$ with $K'\to A\to B=0_{K'B},$ then $k'$ factors uniquely through $k.$ In diagrams, this commutes.\begin{center}    \begin{tikzcd}        A \arrow[rd, "f"]                     &   \\        K \arrow[u, "k"] \arrow[r, "0_{KB}"'] & B    \end{tikzcd}\end{center}And there is a unique $\varphi$ making this commute.\begin{center}`    \begin{tikzcd}                                                                                                                                   & A \arrow[rd, "f"]                     &   \\                                                                                                                                   & K \arrow[u, "k"] \arrow[r, "0_{KB}"'] & B \\        K' \arrow[ru, "\varphi", dashed] \arrow[ruu, "k'", bend left, shift left] \arrow[rru, "0_{K'B}"', bend right, shift right] &                                       &      \end{tikzcd}\end{center}As alluded to, $K$ is usually what we refer to as "the kernel'' because we would like it to be a subset of the input space; explicitly, we want $k$ to be an inclusion. For example, using our category of groups again, the typical kernel gets the job done. Indeed, $\ker(f)$ in groups is by definition the subgroup of $A$ which goes to the identity, and going to the identity is what our zero morphisms are.</p>
-<p>And if we have another group so that $K'\to A\to B$ also goes to the identity, then this must be a subgroup of our original kernel, letting us back-construct the inclusion mapping into $K.$ This completes our checks.</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p>To define the kernel, now, we start with a function $f:A\to B.$ Then the kernel is an object $K$ with a morphism $k:K\to A$ to be thought of an inclusion mapping. We also require that $K\to A\to B=0_{KB}$ is the zero morphism and that if there's a parallel mapping $k':K'\to A$ with $K'\to A\to B=0_{K'B},$ then $k'$ factors uniquely through $k.$ In diagrams, this commutes.\begin{center}    \begin{tikzcd}        A \arrow[rd, "f"]                     &   \\        K \arrow[u, "k"] \arrow[r, "0_{KB}"'] & B    \end{tikzcd}\end{center}And there is a unique $\varphi$ making this commute.\begin{center}`    \begin{tikzcd}                                                                                                                                   & A \arrow[rd, "f"]                     &   \\                                                                                                                                   & K \arrow[u, "k"] \arrow[r, "0_{KB}"'] & B \\        K' \arrow[ru, "\varphi", dashed] \arrow[ruu, "k'", bend left, shift left] \arrow[rru, "0_{K'B}"', bend right, shift right] &                                       &      \end{tikzcd}\end{center}As alluded to, $K$ is usually what we refer to as "the kernel'' because we would like it to be a subset of the input space; explicitly, we want $k$ to be an inclusion. For example, using our category of groups again, the typical kernel gets the job done. Indeed, $\ker(f)$ in groups is by definition the subgroup of $A$ which goes to the identity, and going to the identity is what our zero morphisms are.</p>
+		<p>And if we have another group so that $K'\to A\to B$ also goes to the identity, then this must be a subgroup of our original kernel, letting us back-construct the inclusion mapping into $K.$ This completes our checks.</p>
+		<p></p>
+		<p></p>
+	</body>
+</html>

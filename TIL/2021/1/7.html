@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">January</a> 7th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">January</a> 7th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,11 +46,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the proof of the Newton polygon theorem. I apologize, but I am too tired to make pictures today. Fix $K$ a field equipped with a (nonarchimedean) multiplicative valuation $\nu$; that is, $\nu(x+y)\ge\min\{\nu(x),\nu(y)\}.$ Additionally, we fix a polynomial $f(x)=a_0x^0+\cdots+a_nx^n\in K[x]$ with $a_0,a_n\ne0.$ (We can have $a_0=0,$ but it makes the argument more obnoxious, and $a_0=0$ tells us $f$ has a root at $0$ anyways.) Then we build the Newton polygon from the points\[(0,\nu(a_0)),\,(1,\nu(a_1)),\,\ldots,\,(n,\nu(a_n)).\]Namely, we take\[(s_0,\nu(a_{s_0})),\,(s_1,\nu(a_{s_1})),\,\ldots,\,(s_r,\nu(a_{s_r}))\]to be the points defining the lower convex hull of our points; note $s_0=0$ and $s_r=n.$ Then the claim is that exactly $s_{k+1}-s_k$ roots of $f$ in $\overline K$ have valuation\[-\frac{\nu(a_{s_{k+1}})-\nu(a_{s_k})}{a_{s_{k+1}}-a_{s_k}}.\]That is, the horizontal length of a segment of the Newton polygon gives the number of solutions with valuation equal to the signed slope of that segment. Total horizontal length is $n,$ so this will describe all of our roots, which is quite remarkable.</p>
-<p>Let's prove this. It's quite nice. For the moment forget about the Newton polygon; we're going to manually construct it from right to left. Note that we can take $a_n=1$ by dividing $f$ by $a_n.$ This merely shifts down our Newton polygon to hit $(n,0)$ but does not change any of our slopes. (Explicitly, each $\nu(a_\bullet)$ gets $\nu(a_n)$ subtracted, which doesn't affect the difference between the $\nu(a_\bullet)$s.) Now label our roots $\alpha_0,\,\ldots,\,\alpha_{n-1}\in\overline K$ so that\[\nu(\alpha_{s_k})=\nu(\alpha_{s_k+1})=\cdots=\nu(\alpha_{s_{k+1}-1})=m_k\]with $m_0 \lt m_1 \lt \cdots \lt m_{r-1}.$ Here we "redefine'' $s_\bullet$ and $r$ from earlier, but they will turn out to be what we need them to be. Regardless $s_0=0$ and $s_r=n,$ as required.</p>
-<p>The key step is to think about the coefficients $a_\bullet$ as symmetric sums of the roots and then use the strong triangle inequality of our valuation. Explicitly, because $a_n=1,$ we get to say\[\nu(a_k)=\nu\Bigg((-1)^{n-k}\sum_{\substack{S\subseteq[0,n)\\\#S=n-k}}\prod_{\ell\in S}\alpha_\ell\Bigg)\ge\min_{\substack{S\subseteq[0,n)\\\#S=n-k}}\nu\left(\prod_{\ell\in S}\alpha_\ell\right),\]and because of the ultrametric triangle inequality, equality is achieved here if there is a subset $S$ which gives a product strictly smaller than all of the others. Anyways, this simplifies to\[\nu(a_k)\ge\min_{\substack{S\subseteq[0,n)\\\#S=n-k}}\sum_{\ell\in S}\nu(\alpha_\ell)=\sum_{\ell=0}^{n-k-1}\nu(\alpha_\ell)\]because we ordered the $\alpha_\bullet$ increasing with respect to $\nu.$ As mentioned earlier, equality here is achieved when $S$ is the definitive minimum, not just a minimum, which will only occur if we can't get substitute one of the $\nu(\alpha_\ell)$ with a different $\alpha_\bullet.$ Well, this only happens when we've used up an entire batch of $\alpha_\bullet$s with a particular $m_k,$ otherwise $\nu(\alpha_{n-k})=\nu(\alpha_{n-k+1}).$</p>
-<p>Explicitly, equality is achieved when $k$ is one of $(n-s_0)$ (giving $0$), $(n-s_1)$ (with only $m_1$), $(n-s_2)$ (with only $m_1$ and $m_2$), and so on. On the Newton polygon, these points look like\[\left(n-s_k,\sum_{\ell=0}^{s_k-1}\nu(\alpha_\ell)\right)=\left(n-s_k,\sum_{\ell=0}^{k-1}(s_{\ell+1}-s_\ell)m_\ell\right).\]We claim that these define the lower convex hull of our Newton polygon. To see that this finishes the theorem, note that the displacement between consecutive points is\[\left(n-s_k,\sum_{\ell=0}^{k-1}(s_{\ell+1}-s_\ell)m_\ell\right)-\left(n-s_{k+1},\sum_{\ell=0}^k(s_{\ell+1}-s_\ell)m_\ell\right)=(s_{k+1}-s_k,(s_{k+1}-s_k)(-m_k)),\]which has horizontal length $s_{k+1}-s_k$ equal to the number of roots with $\nu(\alpha_\bullet)$ equal to the signed slope $-(-m_k)=m_k.$ This is what we wanted.</p>
-<p>Quickly, it remains to show that these points are indeed the lower convex hull. Well, fix some $a_\bullet$ between $n-s_{k+1}$ and $n-s_k.$ We see\[\nu(a_\bullet)\ge\sum_{\ell=0}^{s_k-1}\nu(\alpha_\ell)+\sum_{\ell=s_k}^{n-\bullet-1}\nu(\alpha_\ell)=\nu(a_{n-s_k})+(n-s_k-\bullet)m_\ell.\]So the slope from $(n-s_k,\nu(a_{n-s_k}))$ to $(\bullet,\nu(a_\bullet))$ computes to\[\frac{\nu(a_{n-s_k})-\nu(a_\bullet)}{n-s_k-\bullet}\le-m_\ell.\]We recall that the equality is achieved for connecting $(n-s_k)$'s point to $(n-s_{k+1})$'s point; the inequality here indicates that $(\bullet,\nu(a_\bullet))$ is above this segment. (Observe that making $\nu(a_k)$ larger will make the discrepancy worse, implying $\nu(a_k)$ must be on the larger end.) Thus, these $(n-s_k,\nu(a_{n-s_k}))$ do form the lower convex hull.</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p>Let's prove this. It's quite nice. For the moment forget about the Newton polygon; we're going to manually construct it from right to left. Note that we can take $a_n=1$ by dividing $f$ by $a_n.$ This merely shifts down our Newton polygon to hit $(n,0)$ but does not change any of our slopes. (Explicitly, each $\nu(a_\bullet)$ gets $\nu(a_n)$ subtracted, which doesn't affect the difference between the $\nu(a_\bullet)$s.) Now label our roots $\alpha_0,\,\ldots,\,\alpha_{n-1}\in\overline K$ so that\[\nu(\alpha_{s_k})=\nu(\alpha_{s_k+1})=\cdots=\nu(\alpha_{s_{k+1}-1})=m_k\]with $m_0\ltm_1\lt\cdots\ltm_{r-1}.$ Here we "redefine'' $s_\bullet$ and $r$ from earlier, but they will turn out to be what we need them to be. Regardless $s_0=0$ and $s_r=n,$ as required.</p>
+		<p>The key step is to think about the coefficients $a_\bullet$ as symmetric sums of the roots and then use the strong triangle inequality of our valuation. Explicitly, because $a_n=1,$ we get to say\[\nu(a_k)=\nu\Bigg((-1)^{n-k}\sum_{\substack{S\subseteq[0,n)\\\#S=n-k}}\prod_{\ell\in S}\alpha_\ell\Bigg)\ge\min_{\substack{S\subseteq[0,n)\\\#S=n-k}}\nu\left(\prod_{\ell\in S}\alpha_\ell\right),\]and because of the ultrametric triangle inequality, equality is achieved here if there is a subset $S$ which gives a product strictly smaller than all of the others. Anyways, this simplifies to\[\nu(a_k)\ge\min_{\substack{S\subseteq[0,n)\\\#S=n-k}}\sum_{\ell\in S}\nu(\alpha_\ell)=\sum_{\ell=0}^{n-k-1}\nu(\alpha_\ell)\]because we ordered the $\alpha_\bullet$ increasing with respect to $\nu.$ As mentioned earlier, equality here is achieved when $S$ is the definitive minimum, not just a minimum, which will only occur if we can't get substitute one of the $\nu(\alpha_\ell)$ with a different $\alpha_\bullet.$ Well, this only happens when we've used up an entire batch of $\alpha_\bullet$s with a particular $m_k,$ otherwise $\nu(\alpha_{n-k})=\nu(\alpha_{n-k+1}).$</p>
+		<p>Explicitly, equality is achieved when $k$ is one of $(n-s_0)$ (giving $0$), $(n-s_1)$ (with only $m_1$), $(n-s_2)$ (with only $m_1$ and $m_2$), and so on. On the Newton polygon, these points look like\[\left(n-s_k,\sum_{\ell=0}^{s_k-1}\nu(\alpha_\ell)\right)=\left(n-s_k,\sum_{\ell=0}^{k-1}(s_{\ell+1}-s_\ell)m_\ell\right).\]We claim that these define the lower convex hull of our Newton polygon. To see that this finishes the theorem, note that the displacement between consecutive points is\[\left(n-s_k,\sum_{\ell=0}^{k-1}(s_{\ell+1}-s_\ell)m_\ell\right)-\left(n-s_{k+1},\sum_{\ell=0}^k(s_{\ell+1}-s_\ell)m_\ell\right)=(s_{k+1}-s_k,(s_{k+1}-s_k)(-m_k)),\]which has horizontal length $s_{k+1}-s_k$ equal to the number of roots with $\nu(\alpha_\bullet)$ equal to the signed slope $-(-m_k)=m_k.$ This is what we wanted.</p>
+		<p>Quickly, it remains to show that these points are indeed the lower convex hull. Well, fix some $a_\bullet$ between $n-s_{k+1}$ and $n-s_k.$ We see\[\nu(a_\bullet)\ge\sum_{\ell=0}^{s_k-1}\nu(\alpha_\ell)+\sum_{\ell=s_k}^{n-\bullet-1}\nu(\alpha_\ell)=\nu(a_{n-s_k})+(n-s_k-\bullet)m_\ell.\]So the slope from $(n-s_k,\nu(a_{n-s_k}))$ to $(\bullet,\nu(a_\bullet))$ computes to\[\frac{\nu(a_{n-s_k})-\nu(a_\bullet)}{n-s_k-\bullet}\le-m_\ell.\]We recall that the equality is achieved for connecting $(n-s_k)$'s point to $(n-s_{k+1})$'s point; the inequality here indicates that $(\bullet,\nu(a_\bullet))$ is above this segment. (Observe that making $\nu(a_k)$ larger will make the discrepancy worse, implying $\nu(a_k)$ must be on the larger end.) Thus, these $(n-s_k,\nu(a_{n-s_k}))$ do form the lower convex hull.</p>
+		<p></p>
+		<p></p>
+	</body>
+</html>

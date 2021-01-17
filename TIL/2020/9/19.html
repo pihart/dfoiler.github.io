@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">September</a> 19th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">September</a> 19th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,7 +46,7 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the categorical definition of the direct sum/coproduct. Essentially, for sets $\{S_\alpha\},$ we define that prod $\prod_\alpha S_\alpha$ with projections $\pi_\alpha:\prod_\alpha S_\alpha\to S_\alpha$ so that any time we have maps $T\to S_\alpha,$ these maps factor uniquely through the $\pi_\alpha.$ In pictures, this diagram commutes.\begin{center}    \begin{tikzcd}        S_\alpha & \displaystyle\prod_\alpha S_\alpha \arrow[l, "\pi_\alpha"'] \\        & T \arrow[lu] \arrow[u, dashed]    \end{tikzcd}\end{center}Then for the direct sum, we just want to reverse the arrows. Namely, we want this diagram to commute.\begin{center}    \begin{tikzcd}        S_\alpha \arrow[rd] \arrow[r, "\iota_\alpha"] & \displaystyle\bigoplus_\alpha S_\alpha \arrow[d, dashed] \\        & T    \end{tikzcd}\end{center}Formally, we define $\bigoplus_\alpha S_\alpha$ with inclusions $\iota_\alpha:S_\alpha\to\bigoplus_\alpha S_\alpha$ so that any time we have maps $S_\alpha\to T,$ then these maps factor uniquely through $\iota_\alpha.$</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p></p>
+		<p></p>
+	</body>
+</html>

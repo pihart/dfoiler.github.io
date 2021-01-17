@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">September</a> 30th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">September</a> 30th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,10 +46,10 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned a somewhat easy precursor to the classification of finite abelian groups; it wasn't even as hard as it felt it would be in my head. The claim is that any finite abelian group can be decomposed into an isomorphic direct product of (abelian) groups of prime-power order. Namely, I haven't seen a proof that these groups of prime-power order can be decomposed into a direct product of cyclic groups.</p>
-<p>Anyways, fix $G$ a finite abelian group. Suppose $|G|=ab$ and $\gcd(a,b)=1.$ We show that $G=A\times B$ where $|A|=a$ and $|B|=b$; writing $|G|$ with its unique prime factorization and then inductively applying this lemma will give the result. (As an aside, we can read this as decomposing $G$ into the direct products of its Sylow $p$-subgroups.) For this, we explicitly construct\[A=\left\{x\in G:x^a=e\right\}\qquad\text{and}\qquad B=\left\{x\in G:x^b=e\right\}.\]We begin by showing that $G\cong A\times B$ and then will afterwards show that $|A|=a$ and $|B|=b$ with a size argument.</p>
-<p>Here we show $G\cong A\times B.$ We begin with $G=AB$ and then will show that $(x,y)\mapsto xy$ is an isomorphism. Showing $G=AB$ is surprisingly not that bad; fix $g\in G$ which we want to show is in $AB.$ Using $\gcd(a,b)=1,$ B\`ezout's gives us integers $r$ and $s$ such that $ar+bs=1,$ so we can write\[g=g^{ar+bs}=\left(g^b\right)^s\cdot\left(g^a\right)^r\]However, $g^{ab}=g^{|G|}=e$ by Lagrange's Theorem, so $g^b\in A$ and $g^a\in B.$ It follows that $g$ is a product of elements in $A$ and $B.$</p>
-<p>To finish showing that $G\cong A\times B,$ we have to show that $\varphi:(x,y)\mapsto xy$ is an isomorphism from $A\times B\to G.$ Unsurprisingly, let's use the homomorphism theorme. Certainly $\varphi$ is a homomorphism because $G$ is abelian, so we write\[\varphi((x_1,y_1))\varphi((x_2,y_2))=(x_1y_1)(x_2y_2)=(x_1x_2)(y_1y_2)=\varphi((x_1x_2,y_1y_2)).\]So to show that $\varphi$ is an isomorphism, we finish by showing that it has trivial kernel. Suppose $\varphi((x,y))=e$ so that we want to know $(x,y)=(e,e).$ We know that $xy=e.$ But this means that $x=y^{-1}$ is an element of both $A$ and $B.$ But $x\in A\cap B$ satisfies $x^a=x^b=e,$ which means that $x=x^{ar+bs}=e,$ so we must have had $x=y=e$ to begin with. This is what we wanted.</p>
-<p>We take a moment here to recognize that we have shown that for subgroups $A$ and $B$ of an abelian group, we have $A\times B\cong AB$ provided that $A\cap B=\{e\}.$ Explicitly, the isomorphism is $(x,y)\mapsto xy,$ which is a homomorphism because abelian and is a bijection because $A\cap B=\{e\},$ as above.</p>
-<p>So now we know that $G\cong A\times B.$ As promised, we use a size argument to show that $|A|=a$ and $|B|=b,$ which will complete the claim. Observe that $\gcd(|A|,b)=1$ because \[p\mid\gcd(|A|,b)\]would give by Cauchy's Theorem an element in $A$ of order dividing $b,$ requiring the element to live in $A\cap B=\{e\}.$ It follows $|A|\le|G|/b=a.$ The same reasoning tells us that $|B|\le b.$ But $|G|=|A|\cdot|B|\le ab=|G|$ forces equality in both cases, so we are done here.
-</p>
-</body>
+		<p>Anyways, fix $G$ a finite abelian group. Suppose $|G|=ab$ and $\gcd(a,b)=1.$ We show that $G=A\times B$ where $|A|=a$ and $|B|=b$; writing $|G|$ with its unique prime factorization and then inductively applying this lemma will give the result. (As an aside, we can read this as decomposing $G$ into the direct products of its Sylow $p$-subgroups.) For this, we explicitly construct\[A=\left\{x\in G:x^a=e\right\}\qquad\text{and}\qquad B=\left\{x\in G:x^b=e\right\}.\]We begin by showing that $G\cong A\times B$ and then will afterwards show that $|A|=a$ and $|B|=b$ with a size argument.</p>
+		<p>Here we show $G\cong A\times B.$ We begin with $G=AB$ and then will show that $(x,y)\mapsto xy$ is an isomorphism. Showing $G=AB$ is surprisingly not that bad; fix $g\in G$ which we want to show is in $AB.$ Using $\gcd(a,b)=1,$ B\`ezout's gives us integers $r$ and $s$ such that $ar+bs=1,$ so we can write\[g=g^{ar+bs}=\left(g^b\right)^s\cdot\left(g^a\right)^r\]However, $g^{ab}=g^{|G|}=e$ by Lagrange's Theorem, so $g^b\in A$ and $g^a\in B.$ It follows that $g$ is a product of elements in $A$ and $B.$</p>
+		<p>To finish showing that $G\cong A\times B,$ we have to show that $\varphi:(x,y)\mapsto xy$ is an isomorphism from $A\times B\to G.$ Unsurprisingly, let's use the homomorphism theorme. Certainly $\varphi$ is a homomorphism because $G$ is abelian, so we write\[\varphi((x_1,y_1))\varphi((x_2,y_2))=(x_1y_1)(x_2y_2)=(x_1x_2)(y_1y_2)=\varphi((x_1x_2,y_1y_2)).\]So to show that $\varphi$ is an isomorphism, we finish by showing that it has trivial kernel. Suppose $\varphi((x,y))=e$ so that we want to know $(x,y)=(e,e).$ We know that $xy=e.$ But this means that $x=y^{-1}$ is an element of both $A$ and $B.$ But $x\in A\cap B$ satisfies $x^a=x^b=e,$ which means that $x=x^{ar+bs}=e,$ so we must have had $x=y=e$ to begin with. This is what we wanted.</p>
+		<p>We take a moment here to recognize that we have shown that for subgroups $A$ and $B$ of an abelian group, we have $A\times B\cong AB$ provided that $A\cap B=\{e\}.$ Explicitly, the isomorphism is $(x,y)\mapsto xy,$ which is a homomorphism because abelian and is a bijection because $A\cap B=\{e\},$ as above.</p>
+		<p>So now we know that $G\cong A\times B.$ As promised, we use a size argument to show that $|A|=a$ and $|B|=b,$ which will complete the claim. Observe that $\gcd(|A|,b)=1$ because \[p\mid\gcd(|A|,b)\]would give by Cauchy's Theorem an element in $A$ of order dividing $b,$ requiring the element to live in $A\cap B=\{e\}.$ It follows $|A|\le|G|/b=a.$ The same reasoning tells us that $|B|\le b.$ But $|G|=|A|\cdot|B|\le ab=|G|$ forces equality in both cases, so we are done here.</p>
+	</body>
+</html>

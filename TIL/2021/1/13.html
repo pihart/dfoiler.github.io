@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">January</a> 13th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">January</a> 13th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,9 +46,9 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the outline of how to use class field theory to classify primes of the form $x^2+ny^2,$ where $n\equiv1\pmod4$ and is squarefree. To introduce in the algebraic number theory, we write this as\[p=\left(x+y\sqrt{-n}\right)\left(x-y\sqrt{-n}\right),\]so really we're saying that $p$ splits completely in $K:=\QQ(\sqrt{-n})$ into principal ideals. Notably, our rink of integers is $\mathcal O_K=\ZZ[\sqrt{-n}],$ so principal really does mean $\left(x+y\sqrt{-n}\right).$ We remark that this is an equivalence because if $p$ splits completely into principal ideals in $K,$ then we can write $p=(\alpha)(\beta)=(\alpha\beta),$ so $p^2=\op{Norm}(\alpha)\cdot\op{Norm}(\beta).$ Not both $\alpha$ and $\beta$ may be units, so we must have (say) $p=\op{Norm}(\alpha),$ which finishes. So we get\[p=x^2+ny^2\iff p=\mf p\mf q,\,\text{ with }\mf p,\mf q\subseteq\mathcal O_K\text{ principal}.\]</p>
-<p>It remains to classify primes $p$ which split completely into $\mf p\mf q$ in $\mathcal O_K$ where $\mf p$ and $\mf q$ are principal. Now we bring in the class field theory. Let $L$ be the Hilbert class field of $K,$ which has a number of remarkable properties. For example,\[\mf p\text{ is principal}\iff\mf p\text{ splits completely in }L.\]This is called the Principal Ideal Theorem. So we need the factors of $p$ to split completely in $L.$ And noting the multiplicativity of $e(\bullet/p)$ and $f(\bullet/p),$ we see that the factors of $p$ split completely if and only if $p$ itself splits completely, for we know that $p$ should split completely as a hypothesis already. It follows\[p=x^2+ny^2\iff p\text{ splits completely in }L.\]</p>
-<p>We can provide some aesthetically nicer conditions on splitting completely in $L.$ If we fix $L=K[\alpha]$ with $f(x)$ the minimal polynomial of our $\alpha,$ then for all but finitely many primes, we can be reassured the splitting of $p$ depends on the factorization of $f\pmod p.$ The end goal is to be able to have our condition be\[p=x^2+ny^2\iff f(x)\equiv0\pmod p\text{ has a solution},\]but we can't say that yet because of ramification. Well, another remarkable property of $L$ is that it is an unramified extension of $K,$ so it is enough to check that $p$ is unramified in $K.$ (It should be unramified because it should split completely, but we must check this in order to apply Dedekind-Kummer.) Ramification can be checked by checking $p\nmid\disc\mathcal O_K=-4n.$ So for all but finitely many primes,\[p=x^2+ny^2\iff p\nmid4n\text{ and }f(x)\equiv0\pmod p\text{ has a solution}.\]In particular, $f(x)\equiv0$ having a solution means that $p$ has a factor of inertial degree $1$ in $L,$ but then all factors have inertial degree $1,$ so $p$ does split completely.</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p>It remains to classify primes $p$ which split completely into $\mf p\mf q$ in $\mathcal O_K$ where $\mf p$ and $\mf q$ are principal. Now we bring in the class field theory. Let $L$ be the Hilbert class field of $K,$ which has a number of remarkable properties. For example,\[\mf p\text{ is principal}\iff\mf p\text{ splits completely in }L.\]This is called the Principal Ideal Theorem. So we need the factors of $p$ to split completely in $L.$ And noting the multiplicativity of $e(\bullet/p)$ and $f(\bullet/p),$ we see that the factors of $p$ split completely if and only if $p$ itself splits completely, for we know that $p$ should split completely as a hypothesis already. It follows\[p=x^2+ny^2\iff p\text{ splits completely in }L.\]</p>
+		<p>We can provide some aesthetically nicer conditions on splitting completely in $L.$ If we fix $L=K[\alpha]$ with $f(x)$ the minimal polynomial of our $\alpha,$ then for all but finitely many primes, we can be reassured the splitting of $p$ depends on the factorization of $f\pmod p.$ The end goal is to be able to have our condition be\[p=x^2+ny^2\iff f(x)\equiv0\pmod p\text{ has a solution},\]but we can't say that yet because of ramification. Well, another remarkable property of $L$ is that it is an unramified extension of $K,$ so it is enough to check that $p$ is unramified in $K.$ (It should be unramified because it should split completely, but we must check this in order to apply Dedekind-Kummer.) Ramification can be checked by checking $p\nmid\disc\mathcal O_K=-4n.$ So for all but finitely many primes,\[p=x^2+ny^2\iff p\nmid4n\text{ and }f(x)\equiv0\pmod p\text{ has a solution}.\]In particular, $f(x)\equiv0$ having a solution means that $p$ has a factor of inertial degree $1$ in $L,$ but then all factors have inertial degree $1,$ so $p$ does split completely.</p>
+		<p></p>
+		<p></p>
+	</body>
+</html>

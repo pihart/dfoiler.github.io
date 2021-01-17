@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">September</a> 25th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">September</a> 25th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,11 +46,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned a proof that the relative different perfectly encodes ramification information of an extension $L/K.$ The proof is quite long and annoying, so I guess I'll outline the main steps. Suppose $\mf q\subseteq\mathcal O_L$ is a prime over $\mf p\subseteq\mathcal O_K$ which is unramified but divides into $\diff(\mathcal O_L/\mathcal O_K).$ We'll derive a contradiction from this.</p>
-<p>Unsurprisingly, we begin by extending $L/K$ to a normal extension $M$ with $\mf u$ over $\mf q$; we'll set $E=E(\mf u/\mf p)$ and $D=D(\mf u/\mf p).$ In order to sneak out some more structure from the system, check out $M_E$: we know $\mf u_E$ is unramified over $\mf p,$ and in fact it is the largest subfield of $M$ satisfying this, so $L$ is below $M_E$ as well. Further, multiplicativity of $\diff$ in towers tells us that $\mf q\mid\diff(\mathcal O_L/\mathcal O_K)$ implies\[\mf u_E\mid\diff(\mathcal O_{M_E}/\mathcal O_K).\]This tells us that we might as well prove that there's a contradiction where $\mf u_E$ over $\mf p$ unramified while dividing its own different. So we reassign notation, fixing $\mf q=\mf u_E$ and $L=M_E.$</p>
-<p>To continue, we study the unramified condition a bit closer. Write $\mf p\mathcal O_L=\mf qI$ for comfort. Playing around with maximality tells us that $\mathcal O_M=\mathcal O_L+\mf u$ and $\mathcal O_L=I+\mf q$ (details omitted), which implies\[\mathcal O_M=I+\mf u.\]Intuitively, this is telling us that $I$ and $\mf u$ are relatively prime. To formalize this, we show that every other prime in $\mathcal O_M$ over $\mf p$ contains $I.$ Indeed, fixing $\mf u'\ne\mf u$ dividing $\mf p\mathcal O_M,$ we see that $\mf u'_E\ne\mf u_E=\mf q$ because $\mf u$ is totally ramified over $\mf u_E,$ so $\mf u'_E$ must instead divide into $I.$ (It's a prime dividing $\mf p\mathcal O_L=\mf qI.$) This is what we wanted.</p>
-<p>Now, accessing the different requires some thoughts on the trace. Because $\mf q\mid\diff(\mathcal O_L/\mathcal O_K),$ we see that $\mf q^{-1}\subseteq\mathcal O_L^*,$ from which\[\op T_K^L(\mf q^{-1}\mathcal O_L)\subseteq\mathcal O_K\]follows. The previous paragraph gave us information about $I,$ so we focus there. In particular, we know $I=\mf q^{-1}(\mf p\mathcal O_L),$ which roughly implies that\[\op T_K^L(I)\subseteq\mathcal O_L.\tag{$*$}\]This is kind of weird, though, because every prime of $\mathcal O_M$ over $\mf p$ is either $\mf u$ or contains $I.$ In particular, for $\sigma^{-1}\in\op{Gal}(M/K)\setminus D(\mf u/\mf p),$ we know $\sigma^{-1}(\mf u)\ne\mf u,$ so $I\subseteq\sigma^{-1}(\mf u)$ and\[\sigma(I)\subseteq\mf u.\]So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\not\in D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\sigma(I)\subseteq\mf u.\]Because $\mathcal O_M=I+\mf u,$ we can extend the above statement from $I$ to all of $\mathcal O_M.$</p>
-<p>To finish, the last trick is to look$\pmod{\mf u}.$ Namely, each $\sigma\in D\cap\op{Emb}(L/K)$ induces an automorphism $\overline\sigma$ of $\mathcal O_M/\mf u,$ so taking mods tells us that in fact\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\overline\sigma\equiv0\pmod{\mf u}.\]However, we can show that these $\overline\sigma$ are distinct automorphisms of $\mathcal O_M/\mf u$ and therefore must be linearly independent, which is our final contradiction.</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p>Unsurprisingly, we begin by extending $L/K$ to a normal extension $M$ with $\mf u$ over $\mf q$; we'll set $E=E(\mf u/\mf p)$ and $D=D(\mf u/\mf p).$ In order to sneak out some more structure from the system, check out $M_E$: we know $\mf u_E$ is unramified over $\mf p,$ and in fact it is the largest subfield of $M$ satisfying this, so $L$ is below $M_E$ as well. Further, multiplicativity of $\diff$ in towers tells us that $\mf q\mid\diff(\mathcal O_L/\mathcal O_K)$ implies\[\mf u_E\mid\diff(\mathcal O_{M_E}/\mathcal O_K).\]This tells us that we might as well prove that there's a contradiction where $\mf u_E$ over $\mf p$ unramified while dividing its own different. So we reassign notation, fixing $\mf q=\mf u_E$ and $L=M_E.$</p>
+		<p>To continue, we study the unramified condition a bit closer. Write $\mf p\mathcal O_L=\mf qI$ for comfort. Playing around with maximality tells us that $\mathcal O_M=\mathcal O_L+\mf u$ and $\mathcal O_L=I+\mf q$ (details omitted), which implies\[\mathcal O_M=I+\mf u.\]Intuitively, this is telling us that $I$ and $\mf u$ are relatively prime. To formalize this, we show that every other prime in $\mathcal O_M$ over $\mf p$ contains $I.$ Indeed, fixing $\mf u'\ne\mf u$ dividing $\mf p\mathcal O_M,$ we see that $\mf u'_E\ne\mf u_E=\mf q$ because $\mf u$ is totally ramified over $\mf u_E,$ so $\mf u'_E$ must instead divide into $I.$ (It's a prime dividing $\mf p\mathcal O_L=\mf qI.$) This is what we wanted.</p>
+		<p>Now, accessing the different requires some thoughts on the trace. Because $\mf q\mid\diff(\mathcal O_L/\mathcal O_K),$ we see that $\mf q^{-1}\subseteq\mathcal O_L^*,$ from which\[\op T_K^L(\mf q^{-1}\mathcal O_L)\subseteq\mathcal O_K\]follows. The previous paragraph gave us information about $I,$ so we focus there. In particular, we know $I=\mf q^{-1}(\mf p\mathcal O_L),$ which roughly implies that\[\op T_K^L(I)\subseteq\mathcal O_L.\tag{$*$}\]This is kind of weird, though, because every prime of $\mathcal O_M$ over $\mf p$ is either $\mf u$ or contains $I.$ In particular, for $\sigma^{-1}\in\op{Gal}(M/K)\setminus D(\mf u/\mf p),$ we know $\sigma^{-1}(\mf u)\ne\mf u,$ so $I\subseteq\sigma^{-1}(\mf u)$ and\[\sigma(I)\subseteq\mf u.\]So when we look at $\op T_K^L(I),$ most of the $\sigma(I)$ are in $\mf u$ already. Namely, choose $\op{Emb}(L/K)$ as distinct embeddings $L/K,$ and then $(*)$ is the sum of $\sigma(I)$ over $\sigma$ embedding $L/K.$ But the $\sigma\not\in D(\mf u/\mf p)$ already give $\sigma(I)\subseteq\mf u,$ so the sum of the remaining $\sigma\in D$ must be in $\mf u$ as well:\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\sigma(I)\subseteq\mf u.\]Because $\mathcal O_M=I+\mf u,$ we can extend the above statement from $I$ to all of $\mathcal O_M.$</p>
+		<p>To finish, the last trick is to look$\pmod{\mf u}.$ Namely, each $\sigma\in D\cap\op{Emb}(L/K)$ induces an automorphism $\overline\sigma$ of $\mathcal O_M/\mf u,$ so taking mods tells us that in fact\[\sum_{\sigma\in D\cap\op{Emb}(L/K)}\overline\sigma\equiv0\pmod{\mf u}.\]However, we can show that these $\overline\sigma$ are distinct automorphisms of $\mathcal O_M/\mf u$ and therefore must be linearly independent, which is our final contradiction.</p>
+		<p></p>
+		<p></p>
+	</body>
+</html>

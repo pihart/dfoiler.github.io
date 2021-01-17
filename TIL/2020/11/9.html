@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Today I Learned</title>
-	<link rel="stylesheet" href="../../../main.css">
-	<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-	<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [ ['$','$'] ],
-				processEscapes: true
-			}
-		});
-	</script>
-	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</head><body>
-<h1><a href="../../index.html">Today I Learned</a></h1>
-<h2><a href="./index.html">November</a> 9th</h2>
-<p>$\renewcommand{\AA}{\mathbb A}
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../main.css">
+		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1><a href="../../index.html">Today I Learned</a></h1>
+		<h2><a href="./index.html">November</a> 9th</h2>
+		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -45,11 +46,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned that the outline for the proof that, in an extension of number fields $L/K,$ if for every unramified prime $\mf p$ we have that $f(\mf q/\mf p)$ is constant for all primes $\mf q$ over $\mf p,$ then $L/K$ is actually Galois. Of course, this is true for Galois extensions because the Galois group acts transitively on the primes over $\mf p.$</p>
-<p>At its core, this is a group-theoretic question. Let $M$ be the Galois closure of $L/K,$ and loop over primes $\mf P$ over $\mf q/\mf p.$ Letting $G=\op{Gal}(M/K)$ and $H$ the subgroup fixing $L$; our goal is to show that $H=\langle e\rangle,$ which would imply that $L=M,$ finishing. The main translation we have to do is to note that the factorization of $\mf p$ in $\mathcal O_L$ is determined entirely by group theory. Namely, there is a bijection between the factorization of $\mf p\mathcal O_L$ and double cosets $H\sigma D_\mf P.$ In particular, the $f(\mf q/\mf p)$ correspond to indices\[f(\mf q/\mf p)=[D_\mf P:D_\mf P\cap\sigma_\mf qH\sigma_\mf q^{-1}]\]for some $\sigma_\mf q.$ We do not prove this here. We're given that these indices are constant no matter our choice of $\mf q,$ or equivalently, the indices are equal no matter our choice of $\sigma_\mf q.$ So for our choice of $\mf P$ over $\mf p,$ we have that\[[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}]\]is constant over our choices of $\sigma.$ Continuing the translation, we can write this index as\[\frac{|D_\mf P|}{\left|D_\mf P\cap\sigma H\sigma^{-1}\right|}.\]Now, $|D_\mf P|=e(\mf P/\mf p)f(\mf P/\mf p)$ is constant over all choices $\mf P$ ($M/K$ is Galois), so in fact\[\left|D_\mf P\cap\sigma H\sigma^{-1}\right|\]is constant. Now, the fact that $\mf p$ is unramified implies that $D_\mf P\cong D_\mf P/E_\mf P$ is cyclic, so in fact there is exactly one subgroup of $D_\mf P$ with the required size. So we must have that\[D_\mf P\cap\sigma H\sigma^{-1}\]is constant over all choices of $\sigma.$</p>
-<p>The final piece of translation we need is a small application of the Chebotarev density theorem, merely to know that all elements occur as a Frobenius, so in particular, all cyclic subgroups for $D_\mf P$ are possible. With this in mind, we're going to show that\[H\subseteq\bigcap_{\sigma\in G}\sigma H\sigma^{-1}.\]We will later show that the right-hand side is $\langle e\rangle,$ which will finish. Indeed, fix some $\tau\in G$ and some $h\in H$ so that we want to know that $h\in\tau H\tau^{-1}.$ There exists a prime $\mf P$ for which the Frobenius at $\mf P$ is $h,$ so for this prime $\mf P,$ we know that\[D_\mf P\cap\sigma H\sigma^{-1}=\langle h\rangle\cap\sigma H\sigma^{-1}.\]is constant over all choices $\sigma.$ Well, checking $\sigma=e$ and $\sigma=\tau,$ we see that\[h\in\langle h\rangle\cap H=\langle h\rangle\cap eHe^{-1}=\langle h\rangle\cap\tau H\tau^{-1},\]which is what we wanted.</p>
-<p>So it suffices to show that $\cap_\sigma\sigma H\sigma^{-1}=\langle e\rangle.$ This is contingent on $M$ being the Galois closure. Fix some $\alpha_1\in L$ for which $L=K[\alpha_1],$ and we let $\alpha_1,\ldots,\alpha_n$ be its Galois conjugates. In particular, $M$ is the smallest field containing all of them; i.e., $M=K[\alpha_1,\ldots,\alpha_n],$ the composite field of the various $K[\alpha_\bullet].$ Now, fix any $\gamma\in\bigcap_{\sigma\in G}\sigma H\sigma^{-1}.$ We want to show that $\gamma$ is the identity. It suffices to show that $\gamma$ fixes $M,$ or equivalently, it suffices to show that $\gamma$ fixes each of the $K[\alpha_\bullet].$</p>
-<p>Indeed, $\gamma$ fixes $K[\alpha_1]$ because $\gamma\in H.$ But, further, there exists an automorphism $\sigma_\bullet$ sending $\alpha_1\mapsto\alpha_\bullet.$ (Explicitly, this makes an embedding $K[\alpha_1]\to\CC,$ which had better appear as an automorphism of $M.$) Well, $\gamma=\sigma_\bullet h\sigma_\bullet^{-1}\in\sigma_\bullet H\sigma_\bullet^{-1},$ so for any $\alpha\in K[\alpha_\bullet],$ we have\[\gamma\left(\sum_{k=0}^nc_k\alpha_\bullet^k\right)=\sigma_\bullet h\sigma_\bullet^{-1}\left(\sum_{k=0}^nc_k\alpha_\bullet^k\right)=\sigma_\bullet h\left(\sum_{k=0}^nc_k\alpha_1^k\right)=\sigma_\bullet\left(\sum_{k=0}^nc_k\alpha_1^k\right)=\sum_{k=0}^nc_k\alpha_\bullet^k.\]It follows that $\gamma$ fixes $K[\alpha_\bullet]$ for each conjugate $\alpha_\bullet,$ so we're done here.</p>
-<p></p>
-<p>
-</p>
-</body>
+		<p>At its core, this is a group-theoretic question. Let $M$ be the Galois closure of $L/K,$ and loop over primes $\mf P$ over $\mf q/\mf p.$ Letting $G=\op{Gal}(M/K)$ and $H$ the subgroup fixing $L$; our goal is to show that $H=\langle e\rangle,$ which would imply that $L=M,$ finishing. The main translation we have to do is to note that the factorization of $\mf p$ in $\mathcal O_L$ is determined entirely by group theory. Namely, there is a bijection between the factorization of $\mf p\mathcal O_L$ and double cosets $H\sigma D_\mf P.$ In particular, the $f(\mf q/\mf p)$ correspond to indices\[f(\mf q/\mf p)=[D_\mf P:D_\mf P\cap\sigma_\mf qH\sigma_\mf q^{-1}]\]for some $\sigma_\mf q.$ We do not prove this here. We're given that these indices are constant no matter our choice of $\mf q,$ or equivalently, the indices are equal no matter our choice of $\sigma_\mf q.$ So for our choice of $\mf P$ over $\mf p,$ we have that\[[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}]\]is constant over our choices of $\sigma.$ Continuing the translation, we can write this index as\[\frac{|D_\mf P|}{\left|D_\mf P\cap\sigma H\sigma^{-1}\right|}.\]Now, $|D_\mf P|=e(\mf P/\mf p)f(\mf P/\mf p)$ is constant over all choices $\mf P$ ($M/K$ is Galois), so in fact\[\left|D_\mf P\cap\sigma H\sigma^{-1}\right|\]is constant. Now, the fact that $\mf p$ is unramified implies that $D_\mf P\cong D_\mf P/E_\mf P$ is cyclic, so in fact there is exactly one subgroup of $D_\mf P$ with the required size. So we must have that\[D_\mf P\cap\sigma H\sigma^{-1}\]is constant over all choices of $\sigma.$</p>
+		<p>The final piece of translation we need is a small application of the Chebotarev density theorem, merely to know that all elements occur as a Frobenius, so in particular, all cyclic subgroups for $D_\mf P$ are possible. With this in mind, we're going to show that\[H\subseteq\bigcap_{\sigma\in G}\sigma H\sigma^{-1}.\]We will later show that the right-hand side is $\langle e\rangle,$ which will finish. Indeed, fix some $\tau\in G$ and some $h\in H$ so that we want to know that $h\in\tau H\tau^{-1}.$ There exists a prime $\mf P$ for which the Frobenius at $\mf P$ is $h,$ so for this prime $\mf P,$ we know that\[D_\mf P\cap\sigma H\sigma^{-1}=\langle h\rangle\cap\sigma H\sigma^{-1}.\]is constant over all choices $\sigma.$ Well, checking $\sigma=e$ and $\sigma=\tau,$ we see that\[h\in\langle h\rangle\cap H=\langle h\rangle\cap eHe^{-1}=\langle h\rangle\cap\tau H\tau^{-1},\]which is what we wanted.</p>
+		<p>So it suffices to show that $\cap_\sigma\sigma H\sigma^{-1}=\langle e\rangle.$ This is contingent on $M$ being the Galois closure. Fix some $\alpha_1\in L$ for which $L=K[\alpha_1],$ and we let $\alpha_1,\ldots,\alpha_n$ be its Galois conjugates. In particular, $M$ is the smallest field containing all of them; i.e., $M=K[\alpha_1,\ldots,\alpha_n],$ the composite field of the various $K[\alpha_\bullet].$ Now, fix any $\gamma\in\bigcap_{\sigma\in G}\sigma H\sigma^{-1}.$ We want to show that $\gamma$ is the identity. It suffices to show that $\gamma$ fixes $M,$ or equivalently, it suffices to show that $\gamma$ fixes each of the $K[\alpha_\bullet].$</p>
+		<p>Indeed, $\gamma$ fixes $K[\alpha_1]$ because $\gamma\in H.$ But, further, there exists an automorphism $\sigma_\bullet$ sending $\alpha_1\mapsto\alpha_\bullet.$ (Explicitly, this makes an embedding $K[\alpha_1]\to\CC,$ which had better appear as an automorphism of $M.$) Well, $\gamma=\sigma_\bullet h\sigma_\bullet^{-1}\in\sigma_\bullet H\sigma_\bullet^{-1},$ so for any $\alpha\in K[\alpha_\bullet],$ we have\[\gamma\left(\sum_{k=0}^nc_k\alpha_\bullet^k\right)=\sigma_\bullet h\sigma_\bullet^{-1}\left(\sum_{k=0}^nc_k\alpha_\bullet^k\right)=\sigma_\bullet h\left(\sum_{k=0}^nc_k\alpha_1^k\right)=\sigma_\bullet\left(\sum_{k=0}^nc_k\alpha_1^k\right)=\sum_{k=0}^nc_k\alpha_\bullet^k.\]It follows that $\gamma$ fixes $K[\alpha_\bullet]$ for each conjugate $\alpha_\bullet,$ so we're done here.</p>
+		<p></p>
+		<p></p>
+	</body>
+</html>
