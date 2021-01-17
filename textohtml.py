@@ -15,16 +15,19 @@ def header(level):
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="'''+'../'*level+'''main.css">
 		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				tex2jax: {
+		<script>
+			MathJax = {
+				loader: {load: ['[tex]/textmacros']},
+				tex: {
 					inlineMath: [ ['$','$'] ],
-					processEscapes: true
+					processEscapes: true,
+					packages: {'[+]': ['textmacros']}
 				}
-			});
+			};
 		</script>
-		<!-- https://www.mathjax.org/cdn-shutting-down/ -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
 	</head>\n'''
 
 def start_html(level):
