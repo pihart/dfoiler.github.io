@@ -6,3 +6,9 @@ body
 	margin: 2em auto;
 	max-width: 800px;
 }
+
+a
+{
+	color: #003080;
+	text-decoration: none;
+}
