@@ -44,6 +44,20 @@ def process_tex(tex):
 	tex = tex.replace('<','{\\lt}')
 	tex = tex.replace('>','{\\gt}')
 	# We process \href manually
+	parts = tex.split('\\href')
+	tex = parts[0]
+	if len(parts) == 1:
+		return tex
+	# Skip the first part
+	for part in parts[1:]:
+		# Use should be \href{stuff}{stuff}
+		link = part[part.index('{')+1:part.index('}')]
+		tex += '<a href="'+link+'">'
+		part = part[part.index('}')+1:]
+		name = part[part.index('{')+1:part.index('}')]
+		tex += name + '</a>'
+		part = part[part.index('}')+1:]
+		tex += part
 	return tex
 
 def get_blurb(tex):
