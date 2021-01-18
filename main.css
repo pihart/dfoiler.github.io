@@ -2,7 +2,8 @@ body
 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18px;
-	color: #404040;
+	color: #303030;
+	background: #fafaff;
 	margin: 2em auto;
 	padding-right: 2em;
 	padding-left: 2em;
@@ -14,9 +15,21 @@ h1
 	text-align: center;
 }
 
+h3
+{
+	margin-left: 0pt;
+	margin-right: 0pt;
+	margin-top: 0pt;
+}
+
+p
+{
+	margin-bottom: 5pt;
+}
+
 a
 {
-	color: #404040;
+	color: #303030;
 	text-decoration: none;
 }
 
@@ -35,4 +48,15 @@ a:hover, a:active
 .title
 {
 	color: #003080;
+}
+
+.blurb
+{
+	background: #f7f7ff;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 15px;
+	border-radius: 9px;
 }

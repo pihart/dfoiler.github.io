@@ -21,8 +21,8 @@
 	</head>
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
-		<h2>November 3rd</h2>
 		<p><a href="index.html" class="link">(back up to November)</a></p>
+		<h2>November 3rd</h2>
 		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
@@ -54,7 +54,7 @@
 $Today I learned an interesting example of a field extension, namely $\QQ(\zeta_p)/\QQ(\zeta_p+\zeta_p^{-1}).$ What's weird here is that we can very viscerally feel that real embeddings get more weight than complex ones here.</p>
 		<p>The Galois group of $\QQ(\zeta_p)/\QQ$ is $(\zeta_p\mapsto\zeta_p^\bullet),$ so we see that all of the $p-1$ embeddings are complex; $\zeta_p^\bullet$ should always go to a non-real complex number. So our signature is $\left(0,\frac{p-1}2\right).$ By Dirichlet's unit theorem, we have that $\mathcal O_{\QQ(\zeta_p)}^\times$ has rank $\frac{p-1}2.$</p>
 		<p>On the other hand, we can restrict all of these automorphisms to $\QQ(\zeta_p+\zeta_p^{-1})/\QQ.$ But now we see that each $(\zeta_p\mapsto\zeta_p^\bullet)$ restricts to\[\sum_{k=0}^{p-1}a_k\left(\zeta_p+\zeta_p^{-1}\right)^k\longmapsto\sum_{k=0}^{p-1}a_k\left(\zeta_p\bullet+\zeta_p^{-\bullet}\right)^k.\]However, $\zeta_p^\bullet+\zeta_p^{-\bullet}=2\cos\left(\frac{2\pi\bullet}p\right)\in\RR,$ so all of these are real embeddings. We know we had better have $\frac{p-1}2$ total embeddings because $\QQ(\zeta_p)/\QQ(\zeta_p+\zeta_p^{-1})$ is a quadratic extension (I'll avoid these details), so our signature is $\left(\frac{p-1}2,0\right).$ Again, Dirichlet's unit theorem says that $\mathcal O_{\QQ(\zeta_p+\zeta_p^{-1})}^\times$ has rank $\frac{p-1}2.$</p>
-		<p>What's interesting now is that $\QQ(\zeta_p+\zeta_p^{-1})$ is significantly smaller than $\QQ(\zeta_p)$---it has half the degree. However, because $\QQ(\zeta_p)$ only has complex embeddings, and $\QQ(\zeta_p+\zeta_p^{-1})$ only has real embeddings, they still have the same rank of unit group. Namely,\[\mathcal O_{\QQ(\zeta_p)}^\times/\mathcal O_{\QQ(\zeta_p+\zeta_p^{-1})}^\times\]will actually be a finite group. This is somewhat remarkable.</p>
+		<p>What's interesting now is that $\QQ(\zeta_p+\zeta_p^{-1})$ is significantly smaller than $\QQ(\zeta_p)$&mdash;it has half the degree. However, because $\QQ(\zeta_p)$ only has complex embeddings, and $\QQ(\zeta_p+\zeta_p^{-1})$ only has real embeddings, they still have the same rank of unit group. Namely,\[\mathcal O_{\QQ(\zeta_p)}^\times/\mathcal O_{\QQ(\zeta_p+\zeta_p^{-1})}^\times\]will actually be a finite group. This is somewhat remarkable.</p>
 		<p></p>
 		<p></p>
 	</body>

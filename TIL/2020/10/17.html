@@ -21,8 +21,8 @@
 	</head>
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
-		<h2>October 17th</h2>
 		<p><a href="index.html" class="link">(back up to October)</a></p>
+		<h2>October 17th</h2>
 		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
@@ -51,7 +51,7 @@
 
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
-$Today I learned a little bit about Eisenstein's criterion, in hopes of finding a polynomial for which Eisenstein's criterion fails for any transformation. Namely, Keith Conrad shows <a href="https://kconrad.math.uconn.edu/blurbs/gradnumthy/totram.pdf">here</a> that if the minimal polynomial for $\alpha$ satisfies Eisenstein's criterion with $p$ ("is $p$-Eisenstein''), then $p$ totally ramifies in $\QQ(\alpha).$ The converse is also true---if $p$ totally ramifies in $K,$ then there exists an $\alpha$ with $K=\QQ(\alpha)$ such that the minimal polynomial for $\alpha$ is $p$-Eisenstein---but we don't show that here.</p>
+$Today I learned a little bit about Eisenstein's criterion, in hopes of finding a polynomial for which Eisenstein's criterion fails for any transformation. Namely, Keith Conrad shows <a href="https://kconrad.math.uconn.edu/blurbs/gradnumthy/totram.pdf">here</a> that if the minimal polynomial for $\alpha$ satisfies Eisenstein's criterion with $p$ ("is $p$-Eisenstein''), then $p$ totally ramifies in $\QQ(\alpha).$ The converse is also true&mdash;if $p$ totally ramifies in $K,$ then there exists an $\alpha$ with $K=\QQ(\alpha)$ such that the minimal polynomial for $\alpha$ is $p$-Eisenstein&mdash;but we don't show that here.</p>
 		<p>Indeed, fix a root $\alpha$ of a monic polynomial $f\in\ZZ[x]$ of degree $n$ which is $p$-Eisenstein and therefore irreducible. (If the polynomial wasn't monic, we could multiply it by the leading coefficient enough times until it was without changing the $p$-Eisenstein condition or the generated field $\QQ(\alpha).$) Explicitly, we know that with\[f(x)=\sum_{k=0}^na_kx^k,\]we have $a_n=1,$ each $a_k$ is divisible by $p$ for $k\in[0,n),$ and $p^2\nmid a_0.$</p>
 		<p>We're going to show that $p$ is totally ramified in $K=\QQ(\alpha).$ We suspect there is only one prime above $p,$ so let $\mf p$ be a prime above $p.$ We want to show $(p)=\mf p^n,$ but for now let $(p)=\mf p^eI$ for some $\mathcal O_K$-ideal $I.$ The hard part of this argument is showing $e\ge n.$</p>
 		<p>Now we return to talking about $f(x).$ The main idea is to reduce\[\alpha^n+\sum_{k=1}^na_k\alpha^k=f(\alpha)\equiv0\pmod{\mf p^\bullet}\]for some large power $\mf p^\bullet$; it turns out most of these terms are already divisible by a large power. Being $p$-Eisenstein tells us that $a_k\in(p)$ for $k\in[0,n),$ which gives $a_k\in\mf p^e$ for free. So, reducing gives that\[\alpha^n\equiv0\pmod{\mf p^e},\]and in particular $\alpha\in\mf p.$ But then we can push this to $a_k\alpha^k\in\mf p^{e+1}$ for $k\in[1,n),$ so we know\[\alpha^n+a_0\equiv0\pmod{\mf p^{e+1}}.\]</p>

@@ -39,8 +39,9 @@ def start_html(level):
 	return html
 
 def process_tex(tex):
-	# Fix quotation marks from TeX
+	# Fix TeX hacks for HTML
 	tex = tex.replace('``','"')
+	tex = tex.replace('---','&mdash;')
 	# Fix < and > signs for HTML
 	tex = tex.replace('<','{\\lt}')
 	tex = tex.replace('>','{\\gt}')
@@ -80,7 +81,7 @@ def to_html(tex):
 	# Now we work line-by-line
 	tex = tex.split('\n')
 	day_html = start_html(3)
-	month_html = ''
+	month_html = '\t\t<div class="blurb">\n'
 	# We work line-by-line
 	# I use many of my own TeX conventions for this
 	# I.e., this is not general purpose and will not work for your TeX
@@ -90,11 +91,11 @@ def to_html(tex):
 		if '\\subsubsection' in line:
 			h2 = line[len('\\subsubsection{'):-len('}')]
 			month, day = h2.split()
-			day_html += '\t\t<h2>'+h2+'</h2>\n'
 			day_html += '\t\t<p><a href="index.html" class="link">(back up to ' \
 				+ month+')</a></p>\n'
+			day_html += '\t\t<h2>'+h2+'</h2>\n'
 			day = day[:-len('th')]
-			month_html += '\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
+			month_html += '\t\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
 			# We attach the preamble here
 			day_html += '\t\t<p>'+pre
 		# Two consecutive new lines implies new paragraph
@@ -122,8 +123,9 @@ def to_html(tex):
 		else:
 			day_html += line
 	day_html += '</p>\n\t</body>\n</html>\n'
-	month_html += '\t\t<p>'+blurb+'\n' + \
-		'\t\t<a href="'+day+'.html" class="link">(continue reading...)</a></p>\n'
+	month_html += '\t\t\t<p>'+blurb+'\n'
+	month_html += '\t\t\t<a href="'+day+'.html" class="link">(continue reading...)</a></p>\n'
+	month_html += '\t\t</div>\n'
 	return day_html, month_html
 	# TODO: do something about images
 
@@ -156,9 +158,9 @@ for year in os.listdir('TeX'):
 			os.mkdir('TIL/'+year+'/'+month)
 		# Start the month file
 		month_html = start_html(3)
-		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
 		month_html += '\t\t<p><a href="../index.html" class="link">(back up to ' \
 			+ year+')</a></p>\n'
+		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
 		# Increment the year file
 		year_html += '\t\t<h3><a href="./'+month+'/index.html">'+ \
 			months[int(month)-1] +'</a></h3>\n'

@@ -21,8 +21,8 @@
 	</head>
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
-		<h2>October 20th</h2>
 		<p><a href="index.html" class="link">(back up to October)</a></p>
+		<h2>October 20th</h2>
 		<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
@@ -54,7 +54,7 @@
 $Today I learned a proof for a slightly weaker version of Cohn's irreducibility criterion from <a href="https://mast.queensu.ca/~murty/murty.pdf">Murty</a>. Quite surprisingly, there is pretty much no number theory involved; it's pretty much entirely bounding. Fix our polynomial $f(x)=a_nx^n+\cdots+a_0\in\ZZ[x].$ The bounding constant of interest is\[H=\max_k|a_k/a_n|.\]We're not going to state the exact statement until the end of the proof.</p>
 		<p>We begin by showing that all roots $\alpha$ of $f$ satisfy $|\alpha|\le H+1.$ Note that $|\alpha|{\lt}1$ makes this immediate. Otherwise, $f(\alpha)=0$ implies\[\alpha^n=-\frac1{a_n}\left(a_{n-1}\alpha^{n-1}+\cdots+a_0\right),\]so\[|\alpha|^n=\left|\sum_{k=0}^{n-1}\frac{a_k}{a_n}\alpha^k\right|\le\sum_{k=0}^{n-1}H|\alpha|^k=H\cdot\frac{|\alpha|^n-1}{|\alpha|-1}{\lt}H\cdot\frac{|\alpha|^n}{|\alpha|-1}.\]Rearranging gives the desired $|\alpha|{\lt}H+1.$</p>
 		<p>To finish, assume (not for the sake of contradiction) $f(x)$ is irreducible, factored by $f(x)=g(x)h(x)$ with $g(x),h(x)\in\ZZ[x].$ We're going to introduce the exact criterion's condition later. We see that we may write $g(x)=\gamma\prod_k(x-\alpha_k)$ with $\gamma\ge1.$ Note roots $\alpha_k$ are also roots of $f(x),$ so for $x\ge H+2,$ we may bound\[|g(x)|=|\gamma|\prod_{k=1}^{\deg g}|x-\alpha_k|\ge\prod_{k=1}^{\deg g}(|x|-|\alpha_k|){\gt}1.\]The same holds for $h(x).$</p>
-		<p>We structured the proof this way so far in order to emphasize the lack of number theory we've done so far---everything has been bounding. Only now do we bring in any number theory. If we fix an integer $n\ge H+2,$ we note that $f(n)=g(n)h(n)$ makes a nontrivial factorization for $f(n)$ because $g(n),h(n){\gt}1$ from the above work. It follows that $f(n)$ must be composite. So we can say that $f(x)$ is irreducible if there exists an $n\ge H+2$ such that $f(n)$ is prime, and that's all.</p>
+		<p>We structured the proof this way so far in order to emphasize the lack of number theory we've done so far&mdash;everything has been bounding. Only now do we bring in any number theory. If we fix an integer $n\ge H+2,$ we note that $f(n)=g(n)h(n)$ makes a nontrivial factorization for $f(n)$ because $g(n),h(n){\gt}1$ from the above work. It follows that $f(n)$ must be composite. So we can say that $f(x)$ is irreducible if there exists an $n\ge H+2$ such that $f(n)$ is prime, and that's all.</p>
 		<p>It is conjectured that irreducible polynomials produce "a lot'' of primes (say, see the Bateman-Horn conjecture), even for these large (actually pretty small) values of $x,$ so what I like about this irreducibility criterion is that it actually does a pretty good job of deciding irreducibility. Namely, compute $H+2$ and then try a whole bunch of consecutive values of $x$ while testing for primes. For example, the polynomial $x^2-14x^2+9$ from two days ago has $H+2=16,$ and $20^4-14\cdot20^2+9=154409,$ which is prime. So irreducibility follows.</p>
 		<p>Notably, this is still not sharp because of polynomials like $x^2+x+2$ being irreducible but always even. But I'm still content that Cohn's criterion works for most sane polynomials. According to the Bunyakovsky conjecture, the condition we need to add is that $\gcd(f(n))=1$ over all $n,$ which is quickly checked by computing the greatest common divisor of the first few values.</p>
 		<p></p>
