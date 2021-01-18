@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to December)</a></p>
-		<h2>December 5th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>December 5th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,22 +57,21 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned that, for any prime $p,$ every quadratic extension of $\QQ_p$ is contained in some cyclotomic field (not dependent on the quadratic extension). As some setup, note that for any quadratic extension $K/\QQ_p,$ we can give it a basis $\{1,\alpha\}$ for some $\alpha.$ In particular, $K=\QQ(\alpha).$ Then $\alpha^2$ will have to be a linear combination of $1$ and $\alpha,$ so we get to write\[\alpha^2+b\alpha+c=0\]for some $b,c\in\QQ_p.$ It follows that\[\alpha=\frac{-b\pm\sqrt{b^2-4c}}2.\]It follows that $K\subseteq\QQ_p(\sqrt{b^2-4c}),$ and we also see $\sqrt{b^2-4c}=\pm(2\alpha+b),$ so in fact $K=\QQ_p(\sqrt{b^2-4c}).$ It follows that all quadratic extensions take the form $\QQ_p(\sqrt m)$ for some $m\in\QQ_p.$ Therefore it suffices to show that there exists a cyclotomic extension $\QQ_p(\zeta_\bullet)$ for which every element of $\QQ_p$ is square; that is, for each $m\in\QQ_p,$ there exists a $\sqrt m\in\QQ_p(\zeta_\bullet).$</p>
-		<p>Very quickly, observe that it really suffices to get $\sqrt p$ and $\ZZ_p\setminus p\ZZ_p$ instead of needing all of $\QQ_p.$ Indeed, if $m=\frac ab$ where $a,b\in\ZZ_p,$ then we should be able to write\[\sqrt m=\frac{\sqrt a}{\sqrt b},\]so provided that all of $\ZZ_p$ is a square, then all of $\QQ_p$ is a square in $\QQ_p(\zeta_\bullet)$. Further, if we're trying to get $m=p^{2\alpha+\beta}m'\in\ZZ_p$ where $m'\in\ZZ_p\setminus p\ZZ_p,$ then we may write\[\sqrt m=p^\alpha\cdot\sqrt p\cdot\sqrt{m'}.\]So it suffices to get $\sqrt p$ and all of $\ZZ_p\setminus p\ZZ_p$ to be a square in $\QQ_p(\zeta_\bullet).$ Nothing so far has been remarkable; in particular, these arguments would also hold for quadratic extensions of $\QQ,$ for which the statement we're trying to prove is false.</p>
-		<p>We have to do $p=2$ separately, so we'll do it as an instructive example. We claim that $\QQ_2(\zeta_{24})$ contains all quadratic extensions of $\QQ_2.$ The key observation is that all elements $m\in\ZZ_2\setminus2\ZZ_2$ which are $m\equiv1\pmod8$ are already squares in $\QQ_2$ from Hensel-type arguments. We claim that $\sqrt2,\sqrt{-1},\sqrt3$ are all in $\QQ_2(\zeta_{24}),$ which we will prove shortly. This covers $\sqrt2,$ but to see why this is enough to cover $m\in\ZZ_2\setminus2\ZZ_2,$ we consider the following cases.		</p>
-		<ul>
-			<li>     If $m\equiv1\pmod8,$ then we're already done because $m$ is square in $\QQ_2.$ So $\sqrt m\in\QQ_2(\zeta_{24}).$</li>
-			<li>     If $m\equiv3\pmod8,$ then note that $\sqrt m=\sqrt{3m}/\sqrt3,$ which is in $\QQ_2(\zeta_{24})$ because $3m\equiv1\pmod8$ (enough by (a)) and $\sqrt3\in\QQ_2(\zeta_{24}).$</li>
-			<li>     If $m\equiv5\pmod8,$ then note that $\sqrt m=\sqrt{-3m}/\sqrt{-3},$ which is in $\QQ_2(\zeta_{24})$ because $-3m\equiv1\pmod8$ (enough by (a)) and $\sqrt{-3}=\sqrt{-1}\cdot\sqrt{-3}\in\QQ_2(\zeta_{24}).$</li>
-			<li>     If $m\equiv3\pmod8,$ then note that $\sqrt m=\sqrt{-m}/\sqrt{-1},$ which is in $\QQ_2(\zeta_{24})$ because $-m\equiv1\pmod8$ (enough by (a)) and $\sqrt{-1}\in\QQ_2(\zeta_{24}).$</li>
-		</ul>
-		<p>The above arguments can be stated succinctly as proving that\[\QQ_2^\times/(\QQ_2^\times)^2=\left\langle\sqrt2,\sqrt{-1},\sqrt3\right\rangle.\]It remains to show that $\sqrt2,\sqrt{-1},\sqrt3\in\QQ_2(\zeta_{24}).$ Well, we'll define $\zeta_{24}$ as a root of $\zeta_{24}^8-\zeta{24}^4+1=0.$ Then notice that\[\left(\zeta_{24}^3+\zeta_{24}^{-3}\right)=\zeta_{24}^6+\zeta_{24}^{-6}+2=\zeta_{24}^{-6}\left(\zeta_{24}^8-\zeta_{24}^4+1\right)+2=2\]because $\zeta_{24}^{12}=\zeta_{24}^8-\zeta_{24}^4.$ Continuing,\[\left(\zeta_{24}^6\right)^2=\zeta_{24}^6-\zeta_{24}^4=-1\]for the same reason. Finally,\[\left(\zeta_{24}^2+\zeta_{24}^{-2}\right)^2=\zeta_{24}^4+\zeta_{24}^{-4}+2=\zeta_{24}^{-4}\left(\zeta_{24}^8-\zeta_{24}^4+1\right)+3=3.\]This completes the proof that all quadratic extensions of $\QQ_2$ live in $\QQ_2(\zeta_{24}).$</p>
-		<p>This provides a model for odd primes. For odd primes, Gaussian period theory (say) tells us that\[\sqrt{(-1)^{(p-1)/2}p}\in\QQ(\zeta_p).\]So for $p\equiv3\pmod4,$ it suffices to get $\sqrt p$ by starting with $\QQ_p(\zeta_{4p})$; otherwise $p\equiv1\pmod4$ can start with $\QQ_p(\zeta_p).$ As for $m\in\ZZ_p\setminus p\ZZ_p,$ $x^2-m$ has a root $x$ in $\QQ_p$ if and only if $\left(\frac mp\right)=1.$ To get the rest of $\ZZ_p\setminus p\ZZ_p,$ suppose that we can get $\sqrt a$ in $\QQ_p(\zeta_\bullet)$ for some $a\in\ZZ$ with $\left(\frac ap\right)=-1$; we'll show how to do this shortly. Then for any $m\in\ZZ_p\setminus p\ZZ_p$ with $\left(\frac mp\right)=-1,$ we see\[\sqrt m=\frac{\sqrt{am}}{\sqrt a}.\]It follows that we can get $\sqrt m$ in $\QQ_p(\zeta_\bullet)$ because $\left(\frac{am}p\right)=1$ implies $\sqrt{am}\in\QQ_p,$ and we already have $\sqrt a\in\QQ_p(\zeta_\bullet).$ Now to get a $\sqrt a$ in some $\QQ_p(\zeta_\bullet),$ we divide this into two cases for clarity.		</p>
-		<ul>
-			<li>     If $p\equiv3\pmod4,$ then $\QQ_p(\zeta_{4p})$ works because $\zeta_4=\sqrt{-1},$ and $-1$ is a quadratic non-residue.</li>
-			<li>     If $p\equiv1\pmod4,$ we choose $a$ to be the smallest positive quadratic non-residue. We claim that $a$ is a prime. Indeed, if we can factor $a=bc,$ then taking Legendre symbols tells us that one of $b$ or $c$ must also be a non-residue, but minimality of $a$ would force $a=b$ or $a=c,$ implying that $a$ is prime. It follows $\sqrt a\in\QQ(\zeta_{4a}),$ so $\QQ_p(\zeta_{4ap})$ works.</li>
-		</ul>
-		<p>It follows that all quadratic extensions of $\QQ_p$ are contained in some fixed cyclotomic extension, constructed above.</p>
-		<p></p>
-		<p></p>
+			<p>Very quickly, observe that it really suffices to get $\sqrt p$ and $\ZZ_p\setminus p\ZZ_p$ instead of needing all of $\QQ_p.$ Indeed, if $m=\frac ab$ where $a,b\in\ZZ_p,$ then we should be able to write\[\sqrt m=\frac{\sqrt a}{\sqrt b},\]so provided that all of $\ZZ_p$ is a square, then all of $\QQ_p$ is a square in $\QQ_p(\zeta_\bullet)$. Further, if we're trying to get $m=p^{2\alpha+\beta}m'\in\ZZ_p$ where $m'\in\ZZ_p\setminus p\ZZ_p,$ then we may write\[\sqrt m=p^\alpha\cdot\sqrt p\cdot\sqrt{m'}.\]So it suffices to get $\sqrt p$ and all of $\ZZ_p\setminus p\ZZ_p$ to be a square in $\QQ_p(\zeta_\bullet).$ Nothing so far has been remarkable; in particular, these arguments would also hold for quadratic extensions of $\QQ,$ for which the statement we're trying to prove is false.</p>
+			<p>We have to do $p=2$ separately, so we'll do it as an instructive example. We claim that $\QQ_2(\zeta_{24})$ contains all quadratic extensions of $\QQ_2.$ The key observation is that all elements $m\in\ZZ_2\setminus2\ZZ_2$ which are $m\equiv1\pmod8$ are already squares in $\QQ_2$ from Hensel-type arguments. We claim that $\sqrt2,\sqrt{-1},\sqrt3$ are all in $\QQ_2(\zeta_{24}),$ which we will prove shortly. This covers $\sqrt2,$ but to see why this is enough to cover $m\in\ZZ_2\setminus2\ZZ_2,$ we consider the following cases.			</p>
+			<ul>
+				<li>     If $m\equiv1\pmod8,$ then we're already done because $m$ is square in $\QQ_2.$ So $\sqrt m\in\QQ_2(\zeta_{24}).$</li>
+				<li>     If $m\equiv3\pmod8,$ then note that $\sqrt m=\sqrt{3m}/\sqrt3,$ which is in $\QQ_2(\zeta_{24})$ because $3m\equiv1\pmod8$ (enough by (a)) and $\sqrt3\in\QQ_2(\zeta_{24}).$</li>
+				<li>     If $m\equiv5\pmod8,$ then note that $\sqrt m=\sqrt{-3m}/\sqrt{-3},$ which is in $\QQ_2(\zeta_{24})$ because $-3m\equiv1\pmod8$ (enough by (a)) and $\sqrt{-3}=\sqrt{-1}\cdot\sqrt{-3}\in\QQ_2(\zeta_{24}).$</li>
+				<li>     If $m\equiv3\pmod8,$ then note that $\sqrt m=\sqrt{-m}/\sqrt{-1},$ which is in $\QQ_2(\zeta_{24})$ because $-m\equiv1\pmod8$ (enough by (a)) and $\sqrt{-1}\in\QQ_2(\zeta_{24}).$</li>
+			</ul>
+			<p>The above arguments can be stated succinctly as proving that\[\QQ_2^\times/(\QQ_2^\times)^2=\left\langle\sqrt2,\sqrt{-1},\sqrt3\right\rangle.\]It remains to show that $\sqrt2,\sqrt{-1},\sqrt3\in\QQ_2(\zeta_{24}).$ Well, we'll define $\zeta_{24}$ as a root of $\zeta_{24}^8-\zeta{24}^4+1=0.$ Then notice that\[\left(\zeta_{24}^3+\zeta_{24}^{-3}\right)=\zeta_{24}^6+\zeta_{24}^{-6}+2=\zeta_{24}^{-6}\left(\zeta_{24}^8-\zeta_{24}^4+1\right)+2=2\]because $\zeta_{24}^{12}=\zeta_{24}^8-\zeta_{24}^4.$ Continuing,\[\left(\zeta_{24}^6\right)^2=\zeta_{24}^6-\zeta_{24}^4=-1\]for the same reason. Finally,\[\left(\zeta_{24}^2+\zeta_{24}^{-2}\right)^2=\zeta_{24}^4+\zeta_{24}^{-4}+2=\zeta_{24}^{-4}\left(\zeta_{24}^8-\zeta_{24}^4+1\right)+3=3.\]This completes the proof that all quadratic extensions of $\QQ_2$ live in $\QQ_2(\zeta_{24}).$</p>
+			<p>This provides a model for odd primes. For odd primes, Gaussian period theory (say) tells us that\[\sqrt{(-1)^{(p-1)/2}p}\in\QQ(\zeta_p).\]So for $p\equiv3\pmod4,$ it suffices to get $\sqrt p$ by starting with $\QQ_p(\zeta_{4p})$; otherwise $p\equiv1\pmod4$ can start with $\QQ_p(\zeta_p).$ As for $m\in\ZZ_p\setminus p\ZZ_p,$ $x^2-m$ has a root $x$ in $\QQ_p$ if and only if $\left(\frac mp\right)=1.$ To get the rest of $\ZZ_p\setminus p\ZZ_p,$ suppose that we can get $\sqrt a$ in $\QQ_p(\zeta_\bullet)$ for some $a\in\ZZ$ with $\left(\frac ap\right)=-1$; we'll show how to do this shortly. Then for any $m\in\ZZ_p\setminus p\ZZ_p$ with $\left(\frac mp\right)=-1,$ we see\[\sqrt m=\frac{\sqrt{am}}{\sqrt a}.\]It follows that we can get $\sqrt m$ in $\QQ_p(\zeta_\bullet)$ because $\left(\frac{am}p\right)=1$ implies $\sqrt{am}\in\QQ_p,$ and we already have $\sqrt a\in\QQ_p(\zeta_\bullet).$ Now to get a $\sqrt a$ in some $\QQ_p(\zeta_\bullet),$ we divide this into two cases for clarity.			</p>
+			<ul>
+				<li>     If $p\equiv3\pmod4,$ then $\QQ_p(\zeta_{4p})$ works because $\zeta_4=\sqrt{-1},$ and $-1$ is a quadratic non-residue.</li>
+				<li>     If $p\equiv1\pmod4,$ we choose $a$ to be the smallest positive quadratic non-residue. We claim that $a$ is a prime. Indeed, if we can factor $a=bc,$ then taking Legendre symbols tells us that one of $b$ or $c$ must also be a non-residue, but minimality of $a$ would force $a=b$ or $a=c,$ implying that $a$ is prime. It follows $\sqrt a\in\QQ(\zeta_{4a}),$ so $\QQ_p(\zeta_{4ap})$ works.</li>
+			</ul>
+			<p>It follows that all quadratic extensions of $\QQ_p$ are contained in some fixed cyclotomic extension, constructed above.</p>
+		</div>
 	</body>
 </html>

@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to September)</a></p>
-		<h2>September 12th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>September 12th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,8 +57,7 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned that $\FF_q$ is also a perfect field for prime-powers $q,$ continuing from the Conrad expository paper. Namely, we want to show that no irreducible polynomial $\pi(x)\in\FF_q[x]$ has repeated roots in the algebraic closure $\overline{\FF_q}.$ The outline is to show that $\pi(x)$ divides into a polynomial with no repeated roots, from which the result will follow. Note that\[\frac{\FF_q[x]}{(\pi(x))}\]is a finite field, of order $Q:=q^{\deg\pi}.$ In fact, this is the splitting field of $\pi(x),$ but we don't that strong of information to complete the proof completely. Note if $\pi(x)=x,$ then we're already done; else look at $x$ in the above finite field, which is a nonzero element with multiplicative order dividing $Q-1.$ It follows\[x^Q\equiv x\pmod{\pi(x)}.\]Thus, $\pi(x)\mid x^Q-x.$ However, $x^Q-x$ has no repeated roots in the algebraic closure: its derivative is $Qx^{Q-1}-1=-1$ has $\textit{no roots at all!}$ So it follows that $\pi(x)$ cannot have repeated roots for $x^Q-x$ to also have no repeated roots, which completes the proof.</p>
-		<p>As an aside, the paper has a pretty clean finish which avoids the derivative. Namely, suppose $\alpha$ is a root of $x^Q-x$ so that we want to know that $(x-\alpha)^2$ is not a root. Well, just write\[x^Q-x=x^Q-x-\left(\alpha^Q-\alpha\right)=(x-\alpha)^Q-(x-\alpha)=(x-\alpha)\left((x-\alpha)^{Q-1}-1\right).\]However, $\alpha$ is not a root of the other factor because it gives $\alpha-\alpha=0,$ so this evaluates to $-1.$ This is roughly isomorphic to taking the derivative (note that the end contradiction $-1\ne0$ is the same), but it's a bit more clever with the $\alpha^Q-\alpha$ trick.</p>
-		<p></p>
-		<p></p>
+			<p>As an aside, the paper has a pretty clean finish which avoids the derivative. Namely, suppose $\alpha$ is a root of $x^Q-x$ so that we want to know that $(x-\alpha)^2$ is not a root. Well, just write\[x^Q-x=x^Q-x-\left(\alpha^Q-\alpha\right)=(x-\alpha)^Q-(x-\alpha)=(x-\alpha)\left((x-\alpha)^{Q-1}-1\right).\]However, $\alpha$ is not a root of the other factor because it gives $\alpha-\alpha=0,$ so this evaluates to $-1.$ This is roughly isomorphic to taking the derivative (note that the end contradiction $-1\ne0$ is the same), but it's a bit more clever with the $\alpha^Q-\alpha$ trick.</p>
+		</div>
 	</body>
 </html>

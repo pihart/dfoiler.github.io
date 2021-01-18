@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to October)</a></p>
-		<h2>October 13th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>October 13th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,11 +57,10 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned that the connection between $\left(\frac\bullet p\right)$ and quadratic forms doesn't need quadratic reciprocity. For a nontrivial example, we use $K=\QQ(\sqrt{-7}).$ Let $\theta=\frac{1+\sqrt{-7}}2$ so that $\mathcal O_K=\ZZ[\theta].$ Note that our norm is\[\op N(a+b\theta)=\left|\left(a+\frac b2\right)+\left(\frac b2\right)\sqrt{-7}\right|^2=a^2+ab+2b^2.\]As an aside, $\theta$ has minimal polynomial $x^2-x+2,$ which looks similar.</p>
-		<p>We need to know that $\ZZ[\theta]$ is Euclidean, with that norm. For $a,b\in\ZZ[\theta]$ with $b\ne0,$ we need $q$ and $r$ with $a=bq+r$ with $\op N(r){\lt}\op N(b).$ As usual, we can just write\[\frac ab=q+\frac rb,\]where we want $\op N(r/b){\lt}1.$ and then let $q$ be $\frac ab$ rounded to the nearest element of $\ZZ[\theta].$ Then the components of $\frac rb$ are each less than or equal to $\frac12,$ so\[\op N(r/b)\le\left(\frac12\right)^2+\left(\frac12\right)\left(\frac12\right)+2\left(\frac12\right)^2=1,\]with equality if and only if the components of $r/b$ are both $\pm\frac12$ and the same sign. But being the midpoint of this parallelogram and rounding down to the far corner is not optimal. Simply, $\op N\left(\frac12+\frac12\theta\right)$ can be turned into $\op N\left(-\frac12+\frac12\theta\right){\lt}1$ by incrementing $q$ by $1,$ and we're outside of the equality case and safe. So $\ZZ[\theta]$ is Euclidean.</p>
-		<p>Euclidean matters because it tells us that $\ZZ[\theta]$ is a principal ideal domain. So $(p)$ splits in $\ZZ[\theta]$ if and only if $(p)=(\alpha)(\beta),$ which holds if and only if $p=\alpha\beta$ for some $\alpha,\beta\in\ZZ[\theta]$ not units. Taking norms, we have that $\op N(\alpha)\in\{1,p,p^2\}$ (the norm is positive), but $\op N(\alpha)=1$ implies $\alpha$ is a unit, and $\op N(\alpha)=p^2$ implies $\op N(\beta)=1$ so that $\beta$ is a unit. But then $\op N(\alpha)=p,$ so\[p=a^2+ab+2b^2\]for some $a+b\theta=\alpha\in\ZZ[\theta].$</p>
-		<p>On the other hand, we can examine prime-splitting without thinking about principal ideal domains. Note $p$ is prime in $\ZZ[\theta]$ if and only if $(p)$ is a prime ideal, or $(p)$ is a maximal ideal because $\ZZ[\theta]$ is Dedekind. So $p$ remains prime if and only if $\ZZ[\theta]/(p)$ is a field. Abusing notation and glossing over some details, we note that\[\frac{\ZZ[\theta]}{(p)}\cong\frac{\ZZ[x]/\left(x^2-x+2\right)}{(p)}\cong\frac{\ZZ[x]/(p)}{\left(x^2-x+2\right)}\cong\frac{\FF_p[x]}{\left(x^2-x+2\right)}.\]So $\ZZ[\theta]/(p)$ is a field if and only if $\FF_p[x]/\left(x^2-x+2\right)$ is a field as well, which we know to be true if and only if $x^2-x+2$ is irreducible$\pmod p$ from theory of finite fields. But this is a quadratic, so it's irreducible if and only if it has a root, and because its roots are $\frac{1\pm\sqrt{-7}}2,$ it has roots if and only if $p=2$ or $\left(\frac{-7}p\right)\ne-1.$ Because $\left(\frac{-7}2\right)=1,$ we may use $\left(\frac{-7}p\right)\ne1$ as our condition.</p>
-		<p>Combining these two results, we see $p$ factors nontrivially in $\ZZ[\theta]$ if and only if\[p=a^2+ab+2b^2\quad\iff\quad\left(\frac{-7}p\right)\ne-1.\]And we have not used any quadratic reciprocity to show this; we only need to know that $\mathcal O_{\QQ(\sqrt d)}$ is a principal ideal domain for this machinery to work. Quadratic reciprocity would tell us $p=a^2+ab+2b^2$ for some $a,b\in\ZZ$ if and only if $\left(\frac p7\right)\ne-1$ if and only if $p=7$ or $p\equiv1,2,4\pmod7.$</p>
-		<p></p>
-		<p></p>
+			<p>We need to know that $\ZZ[\theta]$ is Euclidean, with that norm. For $a,b\in\ZZ[\theta]$ with $b\ne0,$ we need $q$ and $r$ with $a=bq+r$ with $\op N(r){\lt}\op N(b).$ As usual, we can just write\[\frac ab=q+\frac rb,\]where we want $\op N(r/b){\lt}1.$ and then let $q$ be $\frac ab$ rounded to the nearest element of $\ZZ[\theta].$ Then the components of $\frac rb$ are each less than or equal to $\frac12,$ so\[\op N(r/b)\le\left(\frac12\right)^2+\left(\frac12\right)\left(\frac12\right)+2\left(\frac12\right)^2=1,\]with equality if and only if the components of $r/b$ are both $\pm\frac12$ and the same sign. But being the midpoint of this parallelogram and rounding down to the far corner is not optimal. Simply, $\op N\left(\frac12+\frac12\theta\right)$ can be turned into $\op N\left(-\frac12+\frac12\theta\right){\lt}1$ by incrementing $q$ by $1,$ and we're outside of the equality case and safe. So $\ZZ[\theta]$ is Euclidean.</p>
+			<p>Euclidean matters because it tells us that $\ZZ[\theta]$ is a principal ideal domain. So $(p)$ splits in $\ZZ[\theta]$ if and only if $(p)=(\alpha)(\beta),$ which holds if and only if $p=\alpha\beta$ for some $\alpha,\beta\in\ZZ[\theta]$ not units. Taking norms, we have that $\op N(\alpha)\in\{1,p,p^2\}$ (the norm is positive), but $\op N(\alpha)=1$ implies $\alpha$ is a unit, and $\op N(\alpha)=p^2$ implies $\op N(\beta)=1$ so that $\beta$ is a unit. But then $\op N(\alpha)=p,$ so\[p=a^2+ab+2b^2\]for some $a+b\theta=\alpha\in\ZZ[\theta].$</p>
+			<p>On the other hand, we can examine prime-splitting without thinking about principal ideal domains. Note $p$ is prime in $\ZZ[\theta]$ if and only if $(p)$ is a prime ideal, or $(p)$ is a maximal ideal because $\ZZ[\theta]$ is Dedekind. So $p$ remains prime if and only if $\ZZ[\theta]/(p)$ is a field. Abusing notation and glossing over some details, we note that\[\frac{\ZZ[\theta]}{(p)}\cong\frac{\ZZ[x]/\left(x^2-x+2\right)}{(p)}\cong\frac{\ZZ[x]/(p)}{\left(x^2-x+2\right)}\cong\frac{\FF_p[x]}{\left(x^2-x+2\right)}.\]So $\ZZ[\theta]/(p)$ is a field if and only if $\FF_p[x]/\left(x^2-x+2\right)$ is a field as well, which we know to be true if and only if $x^2-x+2$ is irreducible$\pmod p$ from theory of finite fields. But this is a quadratic, so it's irreducible if and only if it has a root, and because its roots are $\frac{1\pm\sqrt{-7}}2,$ it has roots if and only if $p=2$ or $\left(\frac{-7}p\right)\ne-1.$ Because $\left(\frac{-7}2\right)=1,$ we may use $\left(\frac{-7}p\right)\ne1$ as our condition.</p>
+			<p>Combining these two results, we see $p$ factors nontrivially in $\ZZ[\theta]$ if and only if\[p=a^2+ab+2b^2\quad\iff\quad\left(\frac{-7}p\right)\ne-1.\]And we have not used any quadratic reciprocity to show this; we only need to know that $\mathcal O_{\QQ(\sqrt d)}$ is a principal ideal domain for this machinery to work. Quadratic reciprocity would tell us $p=a^2+ab+2b^2$ for some $a,b\in\ZZ$ if and only if $\left(\frac p7\right)\ne-1$ if and only if $p=7$ or $p\equiv1,2,4\pmod7.$</p>
+		</div>
 	</body>
 </html>

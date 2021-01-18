@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to December)</a></p>
-		<h2>December 6th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>December 6th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -51,13 +56,12 @@
 
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
-$Today I learned the matrix form of the fast Fourier transform. Essentially, we fix the scaled discrete Fourier transform matrix to\[F_n=\begin{bmatrix}    1 & 1 & 1 & \cdots & 1 \\    1 & \zeta_n & \zeta_n^2 & \cdots & \zeta_n^{n-1} \\    1 & \zeta_n^2 & \zeta_n^4 & \cdots & \zeta_n^{n-2} \\    \vdots & \vdots & \vdots & \ddots & \vdots \\    1 & \zeta_n^{n-1} & \zeta_n^{n-2} & \cdots & \zeta_n\end{bmatrix}\]The main claim is that\[F_{2n}=\begin{bmatrix}    I & \phantom-D \\    I & -D\end{bmatrix}\begin{bmatrix}    F_n & 0 \\    0 & F_n\end{bmatrix}P,\]where $D$ is a diagonal matrix and $P$ is an easily computable permutation matrix. Explicitly, $D$ has $n$ entries of $\zeta_{2n}^\bullet$ along the diagonal, and\[P=\begin{bmatrix}    1 & 0 & 0 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 1 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 0 & 0 & 1 & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & 0 & 0 & \cdots & 1 & 0 \\    0 & 1 & 0 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 0 & 1 & 0 & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & 0 & 0 & \cdots & 0 & 1\end{bmatrix}.\]Essentially, this $P$ takes out all the evens and then all the odds, mapping \[\langle x_0,x_1,\ldots,x_{2n-1}\rangle\mapsto\langle x_0,x_2,\ldots,x_{2n-2},x_1,x_3,\ldots,x_{2n-2}\rangle.\]The main claim is probably easiest seen by just direct evaluation; fix a basis vector $e_k$ for any integer $k\in[0,2n).$ We do casework on parity.		</p>
-		<ul>
-			<li>     If $k=2\ell,$ then $Pe_k=e_\ell.$ Because $\ell{\lt}n,$ we further have that    \[\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell},0,\cdots,0\right\rangle\]    by only hitting the top-left $F_n.$ With the last half of this vector $0$s, we can write    \[\begin{bmatrix}        I & \phantom-D \\        I & -D    \end{bmatrix}\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell},1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell}\right\rangle\]    because we only hit the $I$ in this matrix. However, $\zeta_n^\ell=\zeta_{2n}^k,$ so this vector is indeed $\left\langle1,\zeta_{2n}^k,\cdots,\zeta_{2n}^{-k}\right\rangle$ as needed.    </li>
-			<li>     If $k=2\ell+1,$ then $Pe_k=e_{\ell+n}.$ Because $\ell+n\ge n,$ we now have that    \[\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle0,\cdots,0,1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell}\right\rangle\]    by only hitting the bottom-right $F_n.$ With the first half of this vector $0$s, we can write    \[\begin{bmatrix}        I & \phantom-D \\        I & -D    \end{bmatrix}\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle1,\zeta_{2n}\zeta_n^\ell,\zeta_{2n}^2\zeta_n^{2\ell},\cdots,\zeta_{2n}^{n-1}\zeta_n^{-\ell},-1,-\zeta_{2n}\zeta_n^\ell,-\zeta_{2n}^2\zeta_n^{2\ell},\cdots,-\zeta_{2n}^{n-1}\zeta_n^{-\ell}\right\rangle\]    because we hit both $D$ matrices. In the first half, the vector evaluates to $\left(\zeta_{2n}\zeta_n^\ell\right)^\bullet=\left(\zeta_{2n}^{1+2\ell}\right)^\bullet=\zeta_{2n}^{k\bullet},$ and the second half is $-\left(\zeta_{2n}\zeta_n^\ell\right)^\bullet=\zeta_{2n}^{n+(1+2\ell)\bullet}=\zeta_{2n}^{n+k\bullet}.$ So this vector is indeed $\left\langle1,\zeta_{2n}^k,\cdots,\zeta_{2n}^{-k}\right\rangle$ as needed.</li>
-		</ul>
-		<p>The main claim follows because both matrices on each side of the equation are equal on each basis vector $e_k.$</p>
-		<p></p>
-		<p></p>
+$Today I learned the matrix form of the fast Fourier transform. Essentially, we fix the scaled discrete Fourier transform matrix to\[F_n=\begin{bmatrix}    1 & 1 & 1 & \cdots & 1 \\    1 & \zeta_n & \zeta_n^2 & \cdots & \zeta_n^{n-1} \\    1 & \zeta_n^2 & \zeta_n^4 & \cdots & \zeta_n^{n-2} \\    \vdots & \vdots & \vdots & \ddots & \vdots \\    1 & \zeta_n^{n-1} & \zeta_n^{n-2} & \cdots & \zeta_n\end{bmatrix}\]The main claim is that\[F_{2n}=\begin{bmatrix}    I & \phantom-D \\    I & -D\end{bmatrix}\begin{bmatrix}    F_n & 0 \\    0 & F_n\end{bmatrix}P,\]where $D$ is a diagonal matrix and $P$ is an easily computable permutation matrix. Explicitly, $D$ has $n$ entries of $\zeta_{2n}^\bullet$ along the diagonal, and\[P=\begin{bmatrix}    1 & 0 & 0 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 1 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 0 & 0 & 1 & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & 0 & 0 & \cdots & 1 & 0 \\    0 & 1 & 0 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 0 & 1 & 0 & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & 0 & 0 & \cdots & 0 & 1\end{bmatrix}.\]Essentially, this $P$ takes out all the evens and then all the odds, mapping \[\langle x_0,x_1,\ldots,x_{2n-1}\rangle\mapsto\langle x_0,x_2,\ldots,x_{2n-2},x_1,x_3,\ldots,x_{2n-2}\rangle.\]The main claim is probably easiest seen by just direct evaluation; fix a basis vector $e_k$ for any integer $k\in[0,2n).$ We do casework on parity.			</p>
+			<ul>
+				<li>     If $k=2\ell,$ then $Pe_k=e_\ell.$ Because $\ell{\lt}n,$ we further have that    \[\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell},0,\cdots,0\right\rangle\]    by only hitting the top-left $F_n.$ With the last half of this vector $0$s, we can write    \[\begin{bmatrix}        I & \phantom-D \\        I & -D    \end{bmatrix}\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell},1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell}\right\rangle\]    because we only hit the $I$ in this matrix. However, $\zeta_n^\ell=\zeta_{2n}^k,$ so this vector is indeed $\left\langle1,\zeta_{2n}^k,\cdots,\zeta_{2n}^{-k}\right\rangle$ as needed.    </li>
+				<li>     If $k=2\ell+1,$ then $Pe_k=e_{\ell+n}.$ Because $\ell+n\ge n,$ we now have that    \[\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle0,\cdots,0,1,\zeta_n^\ell,\zeta_n^{2\ell},\cdots,\zeta_n^{-\ell}\right\rangle\]    by only hitting the bottom-right $F_n.$ With the first half of this vector $0$s, we can write    \[\begin{bmatrix}        I & \phantom-D \\        I & -D    \end{bmatrix}\begin{bmatrix}        F_n & 0 \\        0 & F_n    \end{bmatrix}Pe_k=\left\langle1,\zeta_{2n}\zeta_n^\ell,\zeta_{2n}^2\zeta_n^{2\ell},\cdots,\zeta_{2n}^{n-1}\zeta_n^{-\ell},-1,-\zeta_{2n}\zeta_n^\ell,-\zeta_{2n}^2\zeta_n^{2\ell},\cdots,-\zeta_{2n}^{n-1}\zeta_n^{-\ell}\right\rangle\]    because we hit both $D$ matrices. In the first half, the vector evaluates to $\left(\zeta_{2n}\zeta_n^\ell\right)^\bullet=\left(\zeta_{2n}^{1+2\ell}\right)^\bullet=\zeta_{2n}^{k\bullet},$ and the second half is $-\left(\zeta_{2n}\zeta_n^\ell\right)^\bullet=\zeta_{2n}^{n+(1+2\ell)\bullet}=\zeta_{2n}^{n+k\bullet}.$ So this vector is indeed $\left\langle1,\zeta_{2n}^k,\cdots,\zeta_{2n}^{-k}\right\rangle$ as needed.</li>
+			</ul>
+			<p>The main claim follows because both matrices on each side of the equation are equal on each basis vector $e_k.$</p>
+		</div>
 	</body>
 </html>

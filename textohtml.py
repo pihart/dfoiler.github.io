@@ -15,14 +15,18 @@ def header(level):
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="'''+'../'*level+'''main.css">
 		<link rel=icon href="'''+'../'*level+'''p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -80,8 +84,9 @@ def to_html(tex):
 	blurb = get_blurb(tex)
 	# Now we work line-by-line
 	tex = tex.split('\n')
+	while tex[-1] == '': tex = tex[:-1]
 	day_html = start_html(3)
-	month_html = '\t\t<div class="blurb">\n'
+	month_html = '\t\t<div class="entry">\n'
 	# We work line-by-line
 	# I use many of my own TeX conventions for this
 	# I.e., this is not general purpose and will not work for your TeX
@@ -93,36 +98,37 @@ def to_html(tex):
 			month, day = h2.split()
 			day_html += '\t\t<p><a href="index.html" class="link">(back up to ' \
 				+ month+')</a></p>\n'
-			day_html += '\t\t<h2>'+h2+'</h2>\n'
+			day_html += '\t\t<div class="entry">\n'
+			day_html += '\t\t\t<h2>'+h2+'</h2>\n'
 			day = day[:-len('th')]
 			month_html += '\t\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
 			# We attach the preamble here
-			day_html += '\t\t<p>'+pre
+			day_html += '\t\t\t<p>'+pre
 		# Two consecutive new lines implies new paragraph
 		elif line == '':
-			day_html += '</p>\n\t\t<p>'
+			day_html += '</p>\n\t\t\t<p>'
 		# Various list commands
 		# We start the first item
 		elif '\\begin{itemize}' in line:
-			day_html += '\t\t</p>\n\t\t<ul>\n\t\t\t<li>'
+			day_html += '\t\t\t</p>\n\t\t\t<ul>\n\t\t\t\t<li>'
 			first_item = True
 		elif '\\end{itemize}' in line:
-			day_html += '</li>\n\t\t</ul>\n\t\t<p>'
+			day_html += '</li>\n\t\t\t</ul>\n\t\t\t<p>'
 		elif '\\begin{enumerate}' in line:
-			day_html += '\t\t</p>\n\t\t<ol>\n\t\t\t<li>'
+			day_html += '\t\t\t</p>\n\t\t\t<ol>\n\t\t\t\t<li>'
 			first_item = True
 		elif '\\end{enumerate}' in line:
-			day_html += '</li>\n\t\t</ol>\n\t\t<p>'
+			day_html += '</li>\n\t\t\t</ol>\n\t\t\t<p>'
 		elif '\\item' in line:
 			line = line.replace('\\item','')
 			if not first_item:
-				day_html += '</li>\n\t\t\t<li>'
+				day_html += '</li>\n\t\t\t\t<li>'
 			first_item = False
 			day_html += line
 		# Catch-all
 		else:
 			day_html += line
-	day_html += '</p>\n\t</body>\n</html>\n'
+	day_html += '</p>\n\t\t</div>\n\t</body>\n</html>\n'
 	month_html += '\t\t\t<p>'+blurb+'\n'
 	month_html += '\t\t\t<a href="'+day+'.html" class="link">(continue reading...)</a></p>\n'
 	month_html += '\t\t</div>\n'
@@ -144,12 +150,12 @@ total_html += '\t\t<p>I\'m putting some stuff I learn here. Nothing to see.</p>\
 for year in os.listdir('TeX'):
 	# Start the year file
 	year_html = start_html(2)
-	year_html += '\t\t<h2><a href="./index.html">'+year+'</a></h2>\n'
+	year_html += '\t\t<h2><a href="index.html">'+year+'</a></h2>\n'
 	# Make year if not there
 	if year not in os.listdir('TIL'):
 		os.mkdir('TIL/'+year)
 	# Increment the total file
-	total_html += '\t\t<h2><a href="./'+year+'/index.html">'+year+'</a></h2>\n'
+	total_html += '\t\t<h2><a href="'+year+'/index.html">'+year+'</a></h2>\n'
 	year_months = sorted(os.listdir(PATH+'TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
 	for month in year_months:
 		# Make month if not there
@@ -162,7 +168,7 @@ for year in os.listdir('TeX'):
 			+ year+')</a></p>\n'
 		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
 		# Increment the year file
-		year_html += '\t\t<h3><a href="./'+month+'/index.html">'+ \
+		year_html += '\t\t<h3><a href="'+month+'/index.html">'+ \
 			months[int(month)-1] +'</a></h3>\n'
 		# Break up the months into days
 		alltex = open(PATH+'TeX/'+year+'/'+month+'.tex').read()

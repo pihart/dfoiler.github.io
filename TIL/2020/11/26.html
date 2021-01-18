@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to November)</a></p>
-		<h2>November 26th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>November 26th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,8 +57,7 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the definition of a cokernel, from Vakil. Essentially, the cokernel of a morphism $f:A\to B$ is the colimit of the following diagram.\begin{center}    \begin{tikzcd}        A \arrow[r, "f"] \arrow[d] & B \\        0                     &      \end{tikzcd}\end{center}In other words, the following diagram commutes and is initial with respect to doing so.\begin{center}    \begin{tikzcd}        A \arrow[r, "f"] \arrow[d] & B \arrow[d, "\operatorname{coker}(f)"] \\        0 \arrow[r]                & \operatorname{Coker}(f)                   \end{tikzcd}\end{center}Explicitly, for any other object $X$ with a map $B\to X$ such that $A\to B\to X=A\to 0\to X,$ there is a unique map $\operatorname{Coker}(f)\to X$ making the diagram commute.\begin{center}    \begin{tikzcd}        A \arrow[r, "f"] \arrow[d]                       & B \arrow[d, "\operatorname{coker}(f)"] \arrow[rdd, bend left, shift left] &   \\        0 \arrow[r] \arrow[rrd, bend right, shift right] & \operatorname{Coker}(f) \arrow[rd, "!" description, dashed]               &   \\                                                         &                                                                           & X    \end{tikzcd}\end{center}</p>
-		<p>The intuitive picture here is that, while the kernel measures how large the initial group is with respect to a morphism $f,$ the cokernel roughly measures the size of the output. Our prototypical example, as usual, is in the category of abelian groups. We claim that $\op{coker}(f)$ is the natural embedding of $B$ into\[\op{Coker}(f)=B/f(A).\]Note this is a well-defined group because all subgroups are normal in the category of abelian groups. The fact that $A\to B\to\op{Coker}(f)=A\to0\to\op{Coker}(f)$ is apparent because we are just modding out by the image. Then for any other object $X$ with a morphism $g:B\to X$ such that $A\to B\to X=A\to0\to X,$ we see that because $f\circ g:A\to X$ must send all elements to the identity of $X,$ we see this is equivalent to\[g(f(A))=\langle0\rangle.\]It follows that the behavior of $g$ on $B$ can be uniquely identified with its behavior on cosets $B/f(A)$: for any such coset $b+f(A),$ we have $g(b+f(A))=g(b)+g(f(A))=g(b).$ So $g$ does factor through $B/f(A)$ by straightforward modding, and the action on $B/f(A)$ uniquely defines how $g$ behaves, so this factoring is unique. This is what we wanted.</p>
-		<p></p>
-		<p></p>
+			<p>The intuitive picture here is that, while the kernel measures how large the initial group is with respect to a morphism $f,$ the cokernel roughly measures the size of the output. Our prototypical example, as usual, is in the category of abelian groups. We claim that $\op{coker}(f)$ is the natural embedding of $B$ into\[\op{Coker}(f)=B/f(A).\]Note this is a well-defined group because all subgroups are normal in the category of abelian groups. The fact that $A\to B\to\op{Coker}(f)=A\to0\to\op{Coker}(f)$ is apparent because we are just modding out by the image. Then for any other object $X$ with a morphism $g:B\to X$ such that $A\to B\to X=A\to0\to X,$ we see that because $f\circ g:A\to X$ must send all elements to the identity of $X,$ we see this is equivalent to\[g(f(A))=\langle0\rangle.\]It follows that the behavior of $g$ on $B$ can be uniquely identified with its behavior on cosets $B/f(A)$: for any such coset $b+f(A),$ we have $g(b+f(A))=g(b)+g(f(A))=g(b).$ So $g$ does factor through $B/f(A)$ by straightforward modding, and the action on $B/f(A)$ uniquely defines how $g$ behaves, so this factoring is unique. This is what we wanted.</p>
+		</div>
 	</body>
 </html>

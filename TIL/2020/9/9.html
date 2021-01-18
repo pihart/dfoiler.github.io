@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to September)</a></p>
-		<h2>September 9th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>September 9th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,7 +57,6 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the definition of the different. Consider the standard setup:\begin{center}    \begin{tikzcd}        L                            & \mathcal O_L                    \\        K \arrow[u, no head]         & \mathcal O_K \arrow[u, no head] \\        \mathbb Q \arrow[u, no head] & \mathbb Z \arrow[u, no head]       \end{tikzcd}\end{center}Then fix some additive subgroup $A\subseteq L.$ We define $A^{-1}$ the same way we define the inverse of fractional ideals, and we define $A^*$ by\[A^*=\{\alpha\in L:\op T_K^L(\alpha A)\subseteq\mathcal O_K\}.\]This is slightly weaker than asserting $\alpha A\subseteq\mathcal O_L$ (so $A^*\subseteq A^{-1}$) but I don't have an intuitive feel for this thing yet. Then the $\textit{different}$ is $\diff A=(A^*)^{-1}.$ Of note is that $A$ is not necessarily a fractional ideal.</p>
-		<p></p>
-		<p></p>
+		</div>
 	</body>
 </html>

@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to December)</a></p>
-		<h2>December 4th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>December 4th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,9 +57,8 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned that in all nonarchimedean fields $K$ with absolute value $|\bullet|,$ all triangles are isosceles. This was a lemma in a larger result which was kind of disgusting to state in the midst of a homework problem. Anyways, the statement that all triangles are isosceles is really saying that if $|x|\ne|y|,$ then\[|x+y|=\max\{|x|,|y|\}.\]That is, for a triangle with side lengths $x,$ $y,$ and $x+y$ (translate a triangle to one with vertices at the origin, $x,$ and $-y$) we have that two of the sides must always be the same. That is, if $|x|=|y|,$ then we're done; else, the side $|x+y|$ is equal to one of the other two.</p>
-		<p>Let's prove this quickly. Without loss of generality, $|x|{\gt}|y|$ so that we want to show $|x+y|=|x|.$ Because our absolute value is nonarchimedean, we already know that\[|x+y|\le\max\{|x|,|y|\}=|x|.\]But in the other direction, we may write\[|x|=|(x+y)+(-y)|\le\max\{|x+y|,|y|\}.\]The maximum looks ambiguous, but we know that $|x|{\gt}|y|,$ so the statement $|x|{\lt}|y|$ is impossible, so $|x+y|$ must instead be the maximum. It follows $|x|\le|x+y|,$ from which the equality $|x|=|x+y|$ follows.</p>
-		<p>This result generalizes the fact that all triangles are isosceles in $\QQ_p$ to any field equipped with a nonarchimedean absolute value. Explicitly, in $\QQ_p,$ the statement that $|x|_p\ne|y|_p$ implies\[|x+y|_p=\max\{|x|_p,|y|_p\}\]is really saying that $\nu_p(x+y)=\min\{\nu_p(x),\nu_p(y)\}$ when $\nu_p(x)\ne\nu_p(y).$ Here, we'll say $\nu_p(x){\lt}\nu_p(y)$ without loss of generality. Note if $x=0,$ then done. Writing $x=p^\alpha a$ and $y=p^\beta b$ with $\alpha=\nu_p(x){\gt}\beta=\nu_p(y),$ we have that\[p^\alpha a+p^\beta b=p^\alpha\left(a+p^{\beta-\alpha}b\right),\]and $p$ does not divide the second factor because $\beta-\alpha{\gt}0.$ So indeed, all triangles are isosceles in $\QQ_p,$ and we can attempt to push the proof a bit harder to generalize to the above, but it's not super conducive.</p>
-		<p></p>
-		<p></p>
+			<p>Let's prove this quickly. Without loss of generality, $|x|{\gt}|y|$ so that we want to show $|x+y|=|x|.$ Because our absolute value is nonarchimedean, we already know that\[|x+y|\le\max\{|x|,|y|\}=|x|.\]But in the other direction, we may write\[|x|=|(x+y)+(-y)|\le\max\{|x+y|,|y|\}.\]The maximum looks ambiguous, but we know that $|x|{\gt}|y|,$ so the statement $|x|{\lt}|y|$ is impossible, so $|x+y|$ must instead be the maximum. It follows $|x|\le|x+y|,$ from which the equality $|x|=|x+y|$ follows.</p>
+			<p>This result generalizes the fact that all triangles are isosceles in $\QQ_p$ to any field equipped with a nonarchimedean absolute value. Explicitly, in $\QQ_p,$ the statement that $|x|_p\ne|y|_p$ implies\[|x+y|_p=\max\{|x|_p,|y|_p\}\]is really saying that $\nu_p(x+y)=\min\{\nu_p(x),\nu_p(y)\}$ when $\nu_p(x)\ne\nu_p(y).$ Here, we'll say $\nu_p(x){\lt}\nu_p(y)$ without loss of generality. Note if $x=0,$ then done. Writing $x=p^\alpha a$ and $y=p^\beta b$ with $\alpha=\nu_p(x){\gt}\beta=\nu_p(y),$ we have that\[p^\alpha a+p^\beta b=p^\alpha\left(a+p^{\beta-\alpha}b\right),\]and $p$ does not divide the second factor because $\beta-\alpha{\gt}0.$ So indeed, all triangles are isosceles in $\QQ_p,$ and we can attempt to push the proof a bit harder to generalize to the above, but it's not super conducive.</p>
+		</div>
 	</body>
 </html>

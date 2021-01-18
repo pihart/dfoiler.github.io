@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to January)</a></p>
-		<h2>January 14th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>January 14th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,6 +57,7 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned a somewhat reliable way to compute $L(1,\chi)$ for characters $\chi$ (that actually doesn't use the multiplicative structure of $\chi$). Let's say that $\chi$ has period $N,$ and then we may say\[L(1,\chi)=\sum_{n=1}^\infty\frac{\chi(n)}n.\]The main idea is to use the generating functions idea to think about $\frac1n$ as $\int_0^1x^{n-1}\,dx.$ We would like to use this property to turn the above sum into an integral of a rational function, so we first group terms by period, giving\[L(1,\chi)=\sum_{n=0}^\infty\left(\sum_{k=1}^N\frac{\chi(k)}{k+nN}\right)\]using periodicity. Note that this grouping does not actually reorder the the summation of terms, but we're not going to worry much about convergence issues anyways. Now we introduce this as an integral, rewriting things as\[L(1,\chi)=\sum_{n=0}^\infty\left(\sum_{k=1}^N\chi(k)\int_0^1x^{k+nN-1}\,dx\right)=\int_0^1\sum_{n=0}^\infty\left(\sum_{k=1}^N\chi(k)x^{k+nN-1}\right)\,dx.\]However, we remark that we can actually split up the sum as\[L(1,\chi)=\int_0^1\left(\sum_{n=0}^\infty x^{nN}\right)\left(\sum_{k=1}^N\chi(k)x^{k-1}\right)\,dx=\boxed{\int_0^1\frac1{1-x^N}\left(\sum_{k=1}^N\chi(k)x^{k-1}\right)\,dx},\]which is what we wanted. This integral can sometimes be computed directly, but it can certainly be approximated; the core difficulty is the $1-x^N$ in the denominator, which is difficult in general to do partial fractions on.</p>
-		<p>Let's compute a sum with this. I'm not going to do examples of the analytic class number formula because the integral is actually quite hairy for nontrivial $N.$ So let's evaluate\[1+\frac13-\frac15-\frac17+\frac19+\frac1{11}-\frac1{13}-\cdots.\]This isn't a character, but it doesn't matter. Pushing this through the machinery, this becomes\[\int_0^1\frac{1+x^2-x^4-x^6}{1-x^8}\,dx=\int_0^1\frac{\left(1-x^4\right)\left(1+x^2\right)}{\left(1-x^4\right)\left(1+x^4\right)}\,dx=\int_0^1\frac{1+x^2}{1+x^4}\,dx.\]The standard way to integrate $\int\frac1{1+x^4}\,dx$ is by partial fractions because $1+x^4=\left(1+x^2\right)^2-\left(x\sqrt2\right)^2.$ In particular, we see\[\frac{1+x^2}{1+x^4}=\frac{1/2}{1-x\sqrt2+x^2}+\frac{1/2}{1+x\sqrt2+x^2}.\]Thus, it remains to integrate\[\frac12\int_0^1\frac1{1-x\sqrt2+x^2}\,dx+\frac12\int_0^1\frac1{1+x\sqrt2+x^2}\,dx.\]Completing the square in the denominator, we see $(x\sqrt2\pm1)^2=2x^2\pm2\sqrt2x+1,$ so the integral is\[\int_0^1\frac1{1+(x\sqrt2-1)^2}\,dx+\int_0^1\frac1{1+(x\sqrt2+1)^2}\,dx.\]This integral collapses to\[\frac{\arctan(\sqrt2-1)+\arctan(\sqrt2+1)-\arctan(1)-\arctan(-1)}{\sqrt2}.\]Of course, $\arctan$ is odd, so this is really\[\frac{\arctan(\sqrt2-1)+\arctan(\sqrt2+1)}{\sqrt2}.\]Using the normal tricks, we see $\arctan(\sqrt2\pm1)=\arg\left(1+(1\pm\sqrt2)i\right),$ so we want\[\frac{\arg\left(1+(1+\sqrt2)i\right)\left(1+(1-\sqrt2)i\right)}{\sqrt2}=\frac{\arg(2i)}{\sqrt2}.\]So our sum is $\boxed{\textstyle\frac{\pi}{2\sqrt2}}.$</p>
+			<p>Let's compute a sum with this. I'm not going to do examples of the analytic class number formula because the integral is actually quite hairy for nontrivial $N.$ So let's evaluate\[1+\frac13-\frac15-\frac17+\frac19+\frac1{11}-\frac1{13}-\cdots.\]This isn't a character, but it doesn't matter. Pushing this through the machinery, this becomes\[\int_0^1\frac{1+x^2-x^4-x^6}{1-x^8}\,dx=\int_0^1\frac{\left(1-x^4\right)\left(1+x^2\right)}{\left(1-x^4\right)\left(1+x^4\right)}\,dx=\int_0^1\frac{1+x^2}{1+x^4}\,dx.\]The standard way to integrate $\int\frac1{1+x^4}\,dx$ is by partial fractions because $1+x^4=\left(1+x^2\right)^2-\left(x\sqrt2\right)^2.$ In particular, we see\[\frac{1+x^2}{1+x^4}=\frac{1/2}{1-x\sqrt2+x^2}+\frac{1/2}{1+x\sqrt2+x^2}.\]Thus, it remains to integrate\[\frac12\int_0^1\frac1{1-x\sqrt2+x^2}\,dx+\frac12\int_0^1\frac1{1+x\sqrt2+x^2}\,dx.\]Completing the square in the denominator, we see $(x\sqrt2\pm1)^2=2x^2\pm2\sqrt2x+1,$ so the integral is\[\int_0^1\frac1{1+(x\sqrt2-1)^2}\,dx+\int_0^1\frac1{1+(x\sqrt2+1)^2}\,dx.\]This integral collapses to\[\frac{\arctan(\sqrt2-1)+\arctan(\sqrt2+1)-\arctan(1)-\arctan(-1)}{\sqrt2}.\]Of course, $\arctan$ is odd, so this is really\[\frac{\arctan(\sqrt2-1)+\arctan(\sqrt2+1)}{\sqrt2}.\]Using the normal tricks, we see $\arctan(\sqrt2\pm1)=\arg\left(1+(1\pm\sqrt2)i\right),$ so we want\[\frac{\arg\left(1+(1+\sqrt2)i\right)\left(1+(1-\sqrt2)i\right)}{\sqrt2}=\frac{\arg(2i)}{\sqrt2}.\]So our sum is $\boxed{\textstyle\frac{\pi}{2\sqrt2}}.$</p>
+		</div>
 	</body>
 </html>

@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to November)</a></p>
-		<h2>November 16th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>November 16th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,11 +57,10 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned about discrete valuation rings. These are local rings (exactly one maximal ideal) which are also principal ideal domains. The prototypical example is $\ZZ_p=\varprojlim\ZZ/p^\bullet\ZZ.$ Basically, every prime except $p$ is no longer prime (as it is invertible$\pmod p$), so an ideal can be identified by the largest power of $p$ dividing it. In particular, every ideal has the form $(p^\bullet)$ (and is therefore principal), and our unique maximal ideal is $(p).$</p>
-		<p>A parallel example is the set of formal power series $k[[t]]$ for a field $k.$ Recalling that $\ZZ_p$ behaves a lot like formal power series in $\FF_p[[x]],$ intuition would suggest that this is a discrete valuation ring as well, and it is. Everything with nonzero constant term is a unit, which can be proven inductively. This is well-known, so we don't bother here. We classify all ideals $I$ in $k[[t]]$ to show that it is a principal ideal domain.</p>
-		<p>Quickly, define $\deg p(t)$ for nonzero $p(t)\in k[[t]]$ as the degree of the leftmost nonzero element. (Note $p(t)\ne0$ means that there exists some $k$ giving $a_kt^k$ with $a_k\ne0,$ and therefore there must be a least $k.$ This is the "degree.'') Now, for a nonzero ideal $I,$ there exists a nonzero polynomial $p(t)\in I,$ and it has some degree, so there exists a minimum degree achieved in $I.$ Notate this $\deg I.$ We claim that\[I=\left(t^{\deg I}\right).\]In one direction, there is some polynomial $p(t)\in I$ with $\deg p(t)=\deg I,$ so $p(t)=t^{\deg I}q(t)$ for some $q(t)$ with constant term. (Not having constant term would let us increment the degree.) It follows that $q(t)$ is a unit, so\[(p(t))=\left(t^{\deg I}\right)(q(t))=\left(t^{\deg I}\right)\subseteq I.\]In the other direction, for any other polynomial $p(t)\in I,$ we must have $\deg p(t)\ge\deg I.$ So we can write, for some other $q(t),$\[p(t)=t^{\deg p(t)}q(t)=t^{\deg I}\cdot t^{\deg p(t)-\deg I}q(t)\in\left(t^{\deg I}\right).\]It follows $I\subseteq t^{\deg I},$ which is what we wanted.</p>
-		<p>Our classification of ideals implies that all nonzero ideals are indeed principal of the form $\left(t^\bullet\right).$ This also implies that $(t)$ is the only maximal ideal, for any nonzero ideal we see\[\left(t^\bullet\right)\subseteq(t).\]So $(t)$ is the only possibility for a maximal ideal, and indeed it is one, for if $I$ is a nonzero ideal between $(t)\subseteq I\subsetneq k[[t]]$ would require $I$ to have no units. But this means that no element of $I$ has a constant term, so every element is divisible by $t,$ implying $(t)\subseteq I,$ and $I=(t)$ follows.</p>
-		<p>Thus we have shown $k[[t]]$ is a principal ideal domain with exactly one maximal ideal, which finishes.</p>
-		<p></p>
-		<p></p>
+			<p>A parallel example is the set of formal power series $k[[t]]$ for a field $k.$ Recalling that $\ZZ_p$ behaves a lot like formal power series in $\FF_p[[x]],$ intuition would suggest that this is a discrete valuation ring as well, and it is. Everything with nonzero constant term is a unit, which can be proven inductively. This is well-known, so we don't bother here. We classify all ideals $I$ in $k[[t]]$ to show that it is a principal ideal domain.</p>
+			<p>Quickly, define $\deg p(t)$ for nonzero $p(t)\in k[[t]]$ as the degree of the leftmost nonzero element. (Note $p(t)\ne0$ means that there exists some $k$ giving $a_kt^k$ with $a_k\ne0,$ and therefore there must be a least $k.$ This is the "degree.'') Now, for a nonzero ideal $I,$ there exists a nonzero polynomial $p(t)\in I,$ and it has some degree, so there exists a minimum degree achieved in $I.$ Notate this $\deg I.$ We claim that\[I=\left(t^{\deg I}\right).\]In one direction, there is some polynomial $p(t)\in I$ with $\deg p(t)=\deg I,$ so $p(t)=t^{\deg I}q(t)$ for some $q(t)$ with constant term. (Not having constant term would let us increment the degree.) It follows that $q(t)$ is a unit, so\[(p(t))=\left(t^{\deg I}\right)(q(t))=\left(t^{\deg I}\right)\subseteq I.\]In the other direction, for any other polynomial $p(t)\in I,$ we must have $\deg p(t)\ge\deg I.$ So we can write, for some other $q(t),$\[p(t)=t^{\deg p(t)}q(t)=t^{\deg I}\cdot t^{\deg p(t)-\deg I}q(t)\in\left(t^{\deg I}\right).\]It follows $I\subseteq t^{\deg I},$ which is what we wanted.</p>
+			<p>Our classification of ideals implies that all nonzero ideals are indeed principal of the form $\left(t^\bullet\right).$ This also implies that $(t)$ is the only maximal ideal, for any nonzero ideal we see\[\left(t^\bullet\right)\subseteq(t).\]So $(t)$ is the only possibility for a maximal ideal, and indeed it is one, for if $I$ is a nonzero ideal between $(t)\subseteq I\subsetneq k[[t]]$ would require $I$ to have no units. But this means that no element of $I$ has a constant term, so every element is divisible by $t,$ implying $(t)\subseteq I,$ and $I=(t)$ follows.</p>
+			<p>Thus we have shown $k[[t]]$ is a principal ideal domain with exactly one maximal ideal, which finishes.</p>
+		</div>
 	</body>
 </html>

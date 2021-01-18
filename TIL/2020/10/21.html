@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to October)</a></p>
-		<h2>October 21st</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>October 21st</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,9 +57,8 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the correct context for the statement last week that if $P(x)\in\ZZ[x]$ only has roots which have magnitude less than or equal to $1,$ then all of those roots are roots of unity. This is actually a reformulation of the statement the multiplicative-to-additive mapping $\log:K^\times\to\RR^{r+s}$ (taken over $\mathcal O_K^\times$) has kernel the roots of unity, which is quite nice. Indeed, suppose $\alpha\in\mathcal O_K^\times$ is in the kernel. Then, applying the mapping, we have that\[\log|\sigma(\alpha)|=0\]for each embedding $\alpha.$ Namely, all of the Galois conjugates of $\alpha$ each have $|\sigma(\alpha)|=1.$ It follows that the minimal (monic) polynomial of $\alpha,$ which we name $P(x)\in\ZZ[x],$ has all of its roots (the Galois conjugates of $\alpha$) with magnitude equal to $1.$</p>
-		<p>It follows that the kernel of the $\log$ mapping can be identified with the roots of monic polynomials $P(x)\in\ZZ[x]$ all of whose roots have magnitude $1.$ But we've already studied these and found that they are contained in the set of roots of unity, so we're done here.</p>
-		<p>I guess I haven't shown the reverse implication that all roots of unity are sent to the kernel, but this isn't hard. Embeddings must take roots of unity (with finite multiplicative order) to other roots of unity (in order to preserve order), so all embeddings will stay on the unit circle and therefore have magnitude $1.$ So all roots of unity certainly are in the kernel.</p>
-		<p></p>
-		<p></p>
+			<p>It follows that the kernel of the $\log$ mapping can be identified with the roots of monic polynomials $P(x)\in\ZZ[x]$ all of whose roots have magnitude $1.$ But we've already studied these and found that they are contained in the set of roots of unity, so we're done here.</p>
+			<p>I guess I haven't shown the reverse implication that all roots of unity are sent to the kernel, but this isn't hard. Embeddings must take roots of unity (with finite multiplicative order) to other roots of unity (in order to preserve order), so all embeddings will stay on the unit circle and therefore have magnitude $1.$ So all roots of unity certainly are in the kernel.</p>
+		</div>
 	</body>
 </html>

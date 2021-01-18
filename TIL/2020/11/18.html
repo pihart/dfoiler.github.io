@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to November)</a></p>
-		<h2>November 18th</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>November 18th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,12 +57,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the estimate for the number of ideals of bounded norm in imaginary quadratic fields. Fix an imaginary quadratic field $K=\QQ(\sqrt{-d})$ for $d{\gt}0.$ We count the number of ideals of bounded norm in an ideal class $C.$ Explicitly, we claim that the number of ideals $I$ with $\op{Norm}(I)\le t,$ denoted $\iota_C(t),$ is\[\iota_C(t)=\frac{2\pi}{|\mu(K)|\sqrt{|\disc(\mathcal O_K)|}}t+O(\sqrt t).\]Fix an ideal $J$ in the ideal class $C^{-1}.$ The main transformation is that we can count ideals $I\in C$ with $\op{Norm}(I)\le t$ by counting principal ideals $(\alpha)$ with $\op{Norm}((\alpha))\le t\op{Norm}(J).$ Indeed, for ideal $I\in C,$ we can associate it with $IJ=(\alpha),$ and unique prime factorization of ideals guarantees that this is injective. And this is surjective by taking $I=(\alpha)J^{-1},$ where $J\mid(\alpha)$ because $J\supseteq(\alpha).$ Note that this bijection does not use the fact that $K$ is imaginary quadratic; it'll work for any number field.</p>
-		<p>So we now want to count the number of principal ideals $(\alpha)\subseteq J$ with norm bounded by $t\op{Norm}(J).$ However, $(\alpha)$ is uniquely determined by its generator $\alpha$ up to a unit, and our units are just $\mu(K)$ here. So instead computing $|\mu(K)|\iota_C(t),$ we are interested in the number of elements $\alpha\in J$ generating $(\alpha)$ of bounded norm. However,\[\op{Norm}((\alpha))=\op{Norm}(\alpha)=|\alpha|^2\]for nonzero $\alpha.$ It follows that we want the number of nonzero elements $\alpha\in J$ of bounded norm $|\alpha|{\lt}\sqrt{t\op{Norm}(J)}.$</p>
-		<p>But this is just the Gauss Circle Problem! In particular, $\mathcal O_K$ is a lattice in $K$ and therefore a lattice in $\CC,$ and so $J$ is also a lattice. So we are computing the number of nonzero lattice points inside a circle of radius $\sqrt{t\op{Norm}(J)}.$ This is heuristically $\pi t\op{Norm}(J)/\op{vol}(\CC/J),$ which will immediately give the result. But Marcus includes the detailed estimates, so I'm going to as well because I didn't remember the details.</p>
-		<p>Let $n(r)$ be the number of points in the lattice $J$ with norm less than $r.$ Bound this by $n_-(t)$ be the number of points in $J$ such that the translate of the parallelogram $\CC/J$ is entirely contained in the circle of radius $r,$ and $n_+(r)$ the number of points where the translate merely intersects the circle. It follows\[n_-(r)\le n(r)\le n_+(r).\]To bound this, let $d$ be the longest possible length in $\CC/J.$ Then a translate intersecting a circle of radius $r$ is fully covered in a circle of radius $r+d,$ so $n_+(r)\le n_-(r+d).$ This implies\[n_+(r-d)\le n(r)\le n_-(r+d).\]This nice because we can bound $n_+(r)\op{vol}(\CC/J)$ below by $\pi r^2$ because the translates ought fully cover the circle: missing some point of the circle would let us add another translate to cover it. Similarly, $n_-(r)\op{vol}(\CC/J)$ is bounded above $\pi r^2$ because each of the translates associated to points in $n_-$ is entirely contained in that circle. Thus,\[\pi(r-d)^2\le n(r)\op{vol}(\CC/J)\le\pi(r+d)^2.\]In particular,\[n(r)=\frac{\pi r^2}{\op{vol}(\CC/J)}+O(r)\]because $d$ is constant.</p>
-		<p>To finish, we remember that\[|\mu(K)|\iota_C(t)=n\left(\sqrt{t\op{Norm}(J)}\right)-1\]is the number of nonzero lattice points of $J$ in a circle of radius $\sqrt{t\op{Norm}(J)}.$ Using our estimate, we see\[\iota_C(t)=\frac{\pi\op{Norm}(J)}{|\mu(K)|\op{vol}(\CC/J)}t+O(\sqrt t).\]It remains to get rid of $J$ from the estimate; choice of $J$ shouldn't change the number of ideals. However,\[\op{Norm}(J)=|\mathcal O_K/J|=\frac{\op{vol}(\CC/J)}{\op{vol}(\CC/\mathcal O_K)}=\frac{\op{vol}(\CC/J)}{\frac12\sqrt{|\op{disc}(\mathcal O_K)|}}.\]The $\frac12$ comes from the complex embedding doubling up in the Minkowski space. It follows that\[\iota_C(t)=\frac{2\pi}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t).\]Quickly, we remark that this implies that ideals distribute somewhat evenly over ideal classes $C$ because nothing on the right-hand side is dependent on $C.$ So, say, we could estimate the number of ideal classes by picking random ideals and seeing what proportion are principal. (This also kind of doubles as a zero-knowledge proof that a $\mathcal O_K$ is a principal ideal domain.) If it's $\frac1h,$ then $h$ would be the class number. This is not better than just using the Minkowski bound, but the result amuses me nonetheless.</p>
-		<p>Summing over ideal classes $C,$ we have that\[\iota(t)=\frac{2\pi h}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t),\]where $h$ is the class number. So we have a somewhat analytic way to compute the class number. It's not as fancy as the class number formula, but it's something.</p>
-		<p></p>
-		<p></p>
+			<p>So we now want to count the number of principal ideals $(\alpha)\subseteq J$ with norm bounded by $t\op{Norm}(J).$ However, $(\alpha)$ is uniquely determined by its generator $\alpha$ up to a unit, and our units are just $\mu(K)$ here. So instead computing $|\mu(K)|\iota_C(t),$ we are interested in the number of elements $\alpha\in J$ generating $(\alpha)$ of bounded norm. However,\[\op{Norm}((\alpha))=\op{Norm}(\alpha)=|\alpha|^2\]for nonzero $\alpha.$ It follows that we want the number of nonzero elements $\alpha\in J$ of bounded norm $|\alpha|{\lt}\sqrt{t\op{Norm}(J)}.$</p>
+			<p>But this is just the Gauss Circle Problem! In particular, $\mathcal O_K$ is a lattice in $K$ and therefore a lattice in $\CC,$ and so $J$ is also a lattice. So we are computing the number of nonzero lattice points inside a circle of radius $\sqrt{t\op{Norm}(J)}.$ This is heuristically $\pi t\op{Norm}(J)/\op{vol}(\CC/J),$ which will immediately give the result. But Marcus includes the detailed estimates, so I'm going to as well because I didn't remember the details.</p>
+			<p>Let $n(r)$ be the number of points in the lattice $J$ with norm less than $r.$ Bound this by $n_-(t)$ be the number of points in $J$ such that the translate of the parallelogram $\CC/J$ is entirely contained in the circle of radius $r,$ and $n_+(r)$ the number of points where the translate merely intersects the circle. It follows\[n_-(r)\le n(r)\le n_+(r).\]To bound this, let $d$ be the longest possible length in $\CC/J.$ Then a translate intersecting a circle of radius $r$ is fully covered in a circle of radius $r+d,$ so $n_+(r)\le n_-(r+d).$ This implies\[n_+(r-d)\le n(r)\le n_-(r+d).\]This nice because we can bound $n_+(r)\op{vol}(\CC/J)$ below by $\pi r^2$ because the translates ought fully cover the circle: missing some point of the circle would let us add another translate to cover it. Similarly, $n_-(r)\op{vol}(\CC/J)$ is bounded above $\pi r^2$ because each of the translates associated to points in $n_-$ is entirely contained in that circle. Thus,\[\pi(r-d)^2\le n(r)\op{vol}(\CC/J)\le\pi(r+d)^2.\]In particular,\[n(r)=\frac{\pi r^2}{\op{vol}(\CC/J)}+O(r)\]because $d$ is constant.</p>
+			<p>To finish, we remember that\[|\mu(K)|\iota_C(t)=n\left(\sqrt{t\op{Norm}(J)}\right)-1\]is the number of nonzero lattice points of $J$ in a circle of radius $\sqrt{t\op{Norm}(J)}.$ Using our estimate, we see\[\iota_C(t)=\frac{\pi\op{Norm}(J)}{|\mu(K)|\op{vol}(\CC/J)}t+O(\sqrt t).\]It remains to get rid of $J$ from the estimate; choice of $J$ shouldn't change the number of ideals. However,\[\op{Norm}(J)=|\mathcal O_K/J|=\frac{\op{vol}(\CC/J)}{\op{vol}(\CC/\mathcal O_K)}=\frac{\op{vol}(\CC/J)}{\frac12\sqrt{|\op{disc}(\mathcal O_K)|}}.\]The $\frac12$ comes from the complex embedding doubling up in the Minkowski space. It follows that\[\iota_C(t)=\frac{2\pi}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t).\]Quickly, we remark that this implies that ideals distribute somewhat evenly over ideal classes $C$ because nothing on the right-hand side is dependent on $C.$ So, say, we could estimate the number of ideal classes by picking random ideals and seeing what proportion are principal. (This also kind of doubles as a zero-knowledge proof that a $\mathcal O_K$ is a principal ideal domain.) If it's $\frac1h,$ then $h$ would be the class number. This is not better than just using the Minkowski bound, but the result amuses me nonetheless.</p>
+			<p>Summing over ideal classes $C,$ we have that\[\iota(t)=\frac{2\pi h}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t),\]where $h$ is the class number. So we have a somewhat analytic way to compute the class number. It's not as fancy as the class number formula, but it's something.</p>
+		</div>
 	</body>
 </html>

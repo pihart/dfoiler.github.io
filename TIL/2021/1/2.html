@@ -4,14 +4,18 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../main.css">
 		<link rel=icon href="../../../p.ico">
-		<!-- https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering -->
+		<!-- http://docs.mathjax.org/en/latest/ -->
 		<script>
 			MathJax = {
-				loader: {load: ['[tex]/textmacros']},
+				loader: {
+					load: ['[tex]/textmacros']
+				},
 				tex: {
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
+					packages: {
+						'[+]': ['textmacros']
+					}
 				}
 			};
 		</script>
@@ -22,8 +26,9 @@
 	<body>
 		<h1><a href="../../index.html" class="title">Today I Learned</a></h1>
 		<p><a href="index.html" class="link">(back up to January)</a></p>
-		<h2>January 2nd</h2>
-		<p>$\renewcommand{\AA}{\mathbb A}
+		<div class="entry">
+			<h2>January 2nd</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -52,12 +57,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned some properties of equality. The one I found most remarkable is how type theory deals with the "substitution'' property of equality. Roughly speaking, we want to show that for $x,y:A,$ given an expression $\Phi,$ we know $x=y$ implies $\Phi_x=\Phi_y,$ where $\Phi_\bullet$ replaces needed instances with $\bullet.$</p>
-		<p>The way we can talk about expressions like $\Phi$ is with $\lambda$ calculus. Namely, our formalization will show that\[(x=_Ay)\to(f(x)=_Bf(y))\]for any function $f:A\to B.$ This means that for $f\equiv\lambda z.\Phi,$ judgemental equality lets us write\[(x=_Ay)\to(\Phi_x=_B\Phi_y).\]There is some technicality in that we might not want to assume that $\Phi_x$ and $\Phi_y$ are the same type, but this is good enough for me. Anyways, this reduction is basically saying that the substitution property of equality is (roughly) the same idea as being able to "do the same thing to both sides of the equal sign.'' I find this somewhat cute.</p>
-		<p>It remains to inhabit\[\prod_{x,y:A}\prod_{p:(x=_Ay)}f(x)=_Bf(y).\]For this we use path induction. Let our family be $C:\prod_{x,y:A}(x=y)\to\mathcal U$ by $C(x,y,p):\equiv f(x)=_Bf(t)$ so that we want to exhibit $\prod_{x,y:A}\prod_{p:(x=y)}C(x,y,p).$</p>
-		<p>It remains to show the conditions of path induction on our family $C.$ The actual content of the prove lives in the case where $x\equiv y,$ but here $f(x)\equiv f(y),$ meaning $\op{refl}_{f(x)}:f(x)=f(y)$ can witness. Thus, we may set\[c(x):\equiv\op{refl}_{f(x)}:\prod_{x:A}C(x,x,\op{refl}_x).\]This finishes the proof by path induction.</p>
-		<p>Path induction in general makes quick work of equality statements. In the above, what feels so weird is that it's not at all obvious how we would go about constructing a witness of $f(x)=_Bf(y)$ from $x=_Ay,$ but nonetheless we know that the witness exists. Namely, we've only shown the witness only for the most trivial case, in which they are judgementally equal.</p>
-		<p>This nonconstructivity feels a bit off in type theory, but it is certainly very powerful. The proof may be obnoxious to write out, but we could just have well said the following: "By path induction, it suffices to show that $(x=_Ay)\to f(x)=_Bf(y)$ in the case $x\equiv y$ and $\op{refl}_x$ is our input. But then $f(x)\equiv f(y),$ so we may take $\op{refl}_x\to\op{refl}_{f(x)},$ which finishes.''</p>
-		<p></p>
-		<p></p>
+			<p>The way we can talk about expressions like $\Phi$ is with $\lambda$ calculus. Namely, our formalization will show that\[(x=_Ay)\to(f(x)=_Bf(y))\]for any function $f:A\to B.$ This means that for $f\equiv\lambda z.\Phi,$ judgemental equality lets us write\[(x=_Ay)\to(\Phi_x=_B\Phi_y).\]There is some technicality in that we might not want to assume that $\Phi_x$ and $\Phi_y$ are the same type, but this is good enough for me. Anyways, this reduction is basically saying that the substitution property of equality is (roughly) the same idea as being able to "do the same thing to both sides of the equal sign.'' I find this somewhat cute.</p>
+			<p>It remains to inhabit\[\prod_{x,y:A}\prod_{p:(x=_Ay)}f(x)=_Bf(y).\]For this we use path induction. Let our family be $C:\prod_{x,y:A}(x=y)\to\mathcal U$ by $C(x,y,p):\equiv f(x)=_Bf(t)$ so that we want to exhibit $\prod_{x,y:A}\prod_{p:(x=y)}C(x,y,p).$</p>
+			<p>It remains to show the conditions of path induction on our family $C.$ The actual content of the prove lives in the case where $x\equiv y,$ but here $f(x)\equiv f(y),$ meaning $\op{refl}_{f(x)}:f(x)=f(y)$ can witness. Thus, we may set\[c(x):\equiv\op{refl}_{f(x)}:\prod_{x:A}C(x,x,\op{refl}_x).\]This finishes the proof by path induction.</p>
+			<p>Path induction in general makes quick work of equality statements. In the above, what feels so weird is that it's not at all obvious how we would go about constructing a witness of $f(x)=_Bf(y)$ from $x=_Ay,$ but nonetheless we know that the witness exists. Namely, we've only shown the witness only for the most trivial case, in which they are judgementally equal.</p>
+			<p>This nonconstructivity feels a bit off in type theory, but it is certainly very powerful. The proof may be obnoxious to write out, but we could just have well said the following: "By path induction, it suffices to show that $(x=_Ay)\to f(x)=_Bf(y)$ in the case $x\equiv y$ and $\op{refl}_x$ is our input. But then $f(x)\equiv f(y),$ so we may take $\op{refl}_x\to\op{refl}_{f(x)},$ which finishes.''</p>
+		</div>
 	</body>
 </html>
