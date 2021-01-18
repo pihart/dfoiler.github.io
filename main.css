@@ -16,12 +16,23 @@ h1
 
 a
 {
-	color: #003080;
+	color: #404040;
 	text-decoration: none;
+}
+
+a:hover, a:active
+{
+	color: #003080;
 }
 
 .link
 {
+	color: #676767;
 	font-size: 12pt;
 	font-style: italic;
+}
+
+.title
+{
+	color: #003080;
 }

@@ -34,7 +34,8 @@ def header(level):
 def start_html(level):
 	html = header(level)
 	html += '\t<body>\n'
-	html += '\t\t<h1><a href="'+ '../'*(level-1) +'index.html">Today I Learned</a></h1>\n'
+	html += '\t\t<h1><a href="'+ '../'*(level-1) + \
+		'index.html" class="title">Today I Learned</a></h1>\n'
 	return html
 
 def process_tex(tex):
@@ -90,7 +91,7 @@ def to_html(tex):
 			h2 = line[len('\\subsubsection{'):-len('}')]
 			month, day = h2.split()
 			day_html += '\t\t<h2>'+h2+'</h2>\n'
-			day_html += '\t\t<p class="link"><a href="index.html">(back up to ' \
+			day_html += '\t\t<p><a href="index.html" class="link">(back up to ' \
 				+ month+')</a></p>\n'
 			day = day[:-len('th')]
 			month_html += '\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
@@ -120,7 +121,7 @@ def to_html(tex):
 		# Catch-all
 		else:
 			day_html += line
-	day_html += '</p>\n\t</body>\n</html>'
+	day_html += '</p>\n\t</body>\n</html>\n'
 	month_html += '\t\t<p>'+blurb+'\n' + \
 		'\t\t<a href="'+day+'.html" class="link">(continue reading...)</a></p>\n'
 	return day_html, month_html
@@ -156,7 +157,7 @@ for year in os.listdir('TeX'):
 		# Start the month file
 		month_html = start_html(3)
 		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
-		month_html += '\t\t<p class="link"><a href="../index.html">(back up to ' \
+		month_html += '\t\t<p><a href="../index.html" class="link">(back up to ' \
 			+ year+')</a></p>\n'
 		# Increment the year file
 		year_html += '\t\t<h3><a href="./'+month+'/index.html">'+ \
@@ -175,17 +176,17 @@ for year in os.listdir('TeX'):
 			f.close()
 			# Add onto the month
 			month_html += month_html_day
-		month_html += '\t</body>\n</html>'
+		month_html += '\t</body>\n</html>\n'
 		# Make the month file
 		f = open('TIL/'+year+'/'+month+'/'+'index.html','w')
 		f.write(month_html)
 		f.close()
-	year_html += '\t</body>\n</html>'
+	year_html += '\t</body>\n</html>\n'
 	# Make the year file
 	f = open('TIL/'+year+'/index.html','w')
 	f.write(year_html)
 	f.close()
-total_html += '\t</body>\n</html>'
+total_html += '\t</body>\n</html>\n'
 # Make the total file
 f = open('TIL/index.html','w')
 f.write(total_html)
