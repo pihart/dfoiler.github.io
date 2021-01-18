@@ -88,12 +88,11 @@ def to_html(tex):
 		# A starting line
 		if '\\subsubsection' in line:
 			h2 = line[len('\\subsubsection{'):-len('}')]
-			h3 = h2.split()
-			month = h3[0]
-			day = h3[1]
-			day_html += '\t\t<h2><a href="./index.html">'+month+'</a> '+day+'</h2>\n'
+			month, day = h2.split()
+			day_html += '\t\t<h2>'+h2+'</h2>\n'
+			day_html += '\t\t<p class="link"><a href="index.html">(back up to ' \
+				+ month+')</a></p>\n'
 			day = day[:-len('th')]
-			print(h2)
 			month_html += '\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
 			# We attach the preamble here
 			day_html += '\t\t<p>'+pre
@@ -122,7 +121,8 @@ def to_html(tex):
 		else:
 			day_html += line
 	day_html += '</p>\n\t</body>\n</html>'
-	month_html += '\t\t<p>'+blurb+'</p>\n'
+	month_html += '\t\t<p>'+blurb+'\n' + \
+		'\t\t<a href="'+day+'.html" class="link">(continue reading...)</a></p>\n'
 	return day_html, month_html
 	# TODO: do something about images
 
@@ -155,8 +155,9 @@ for year in os.listdir('TeX'):
 			os.mkdir('TIL/'+year+'/'+month)
 		# Start the month file
 		month_html = start_html(3)
-		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + \
-			' <a href="../index.html">'+year+'</a></h2>\n'
+		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
+		month_html += '\t\t<p class="link"><a href="../index.html">(back up to ' \
+			+ year+')</a></p>\n'
 		# Increment the year file
 		year_html += '\t\t<h3><a href="./'+month+'/index.html">'+ \
 			months[int(month)-1] +'</a></h3>\n'

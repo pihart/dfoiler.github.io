@@ -2,15 +2,26 @@ body
 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18px;
-	color: #454545;
+	color: #404040;
 	margin: 2em auto;
 	padding-right: 2em;
 	padding-left: 2em;
 	max-width: 800px;
 }
 
+h1
+{
+	text-align: center;
+}
+
 a
 {
 	color: #003080;
 	text-decoration: none;
+}
+
+.link
+{
+	font-size: 12pt;
+	font-style: italic;
 }
