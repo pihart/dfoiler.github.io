@@ -145,11 +145,14 @@ months = ['January','February','March','April','May','April','June'
 
 # Start the total file
 total_html = start_html(1)
-total_html += '\t\t<p>I\'m putting some stuff I learn here. Nothing to see.</p>\n'
+total_html += '\t\t<p style="margin-bottom: 18pt;">' \
+	'I\'m putting some stuff I learn here. Nothing to see.</p>\n'
 # Iterate through the TeX files
 for year in os.listdir('TeX'):
 	# Start the year file
 	year_html = start_html(2)
+	year_html += '\t\t<p><a href="../index.html" class="link">(back up to main page)' \
+		'</a></p>\n'
 	year_html += '\t\t<h2><a href="index.html">'+year+'</a></h2>\n'
 	# Make year if not there
 	if year not in os.listdir('TIL'):
