@@ -512,3 +512,24 @@ Of course, $\arctan$ is odd, so this is really
 Using the normal tricks, we see $\arctan(\sqrt2\pm1)=\arg\left(1+(1\pm\sqrt2)i\right),$ so we want
 \[\frac{\arg\left(1+(1+\sqrt2)i\right)\left(1+(1-\sqrt2)i\right)}{\sqrt2}=\frac{\arg(2i)}{\sqrt2}.\]
 So our sum is $\boxed{\textstyle\frac{\pi}{2\sqrt2}}.$
+
+\subsubsection{January 15th}
+Today I learned another interpretation of the fact that the class number measures the failure of unique prime factorization of elements, from \href{https://math.stackexchange.com/questions/1673432/what-are-some-applications-of-chebotarev-density-theorem}{this post}. The typical statement is that $h_K=1$ is equivalent to unique prime factorization of elements, coming directly from unique prime factorization of ideals, but with $h_K>1,$ we hope that prime factorization breaks more. Anyways, I think the better mentality to have is that $h_K$ measures how much ideals fail to be principal, for which the class number formula asserting
+\[\iota_C(t)\sim\iota_{C'}(t)\]
+for any two ideal classes $C$ and $C'$ does the trick. Namely, ideals are evenly distributed over our ideal classes, so $\frac1{h_K}$ of our ideals are principal, and larger $h_K$ is equivalent to more ideals failing to be principal.
+
+However, failure of unique prime factorization is really about the failure of prime ideals to be principal, which is somewhat more sophisticated. We have from the above that ideals themselves distribute evenly among the ideal classes, but this (directly) has little to do with the primes' distribution. However, with the help with some class field theory, this can be done.
+
+For concreteness, fix $K/\QQ$ a number field with Hilbert class field $H.$ For primes $\mf p\subseteq\mathcal O_K,$ we have the equivalence
+\[\mf p\text{ principal}\iff\mf p\text{ splits completely in }H\]
+from the Principal ideal theorem. However, we know that $\frac1{[H:K]}=\frac1{\#\op{Gal}(H/K)}$ of the primes in $\mathcal O_K$ split completely in $H,$ a fact that can be seen in an elementary way (as we did a few months ago) or directly from Chebotarev: $\mf p$ splits completely if and only if
+\[\left(\frac{H/K}{\mf p}\right)=\op{id}_{\op{Gal}(H/K)}\]
+from theory around the Frobenius. This will occur with density $\frac1{\#\op{Gal}(H/K)}$ by Chebotarev. So it follows that $\frac1{\#\op{Gal}(H/K)}$ of primes in $\mathcal O_K$ are principal. To finish off, we remark that
+\[\#\op{Gal}(H/K)=h_K\]
+because the Galois group is in fact the class group. (As usual, I am citing a lot of class field theory without proof.) From this it follows that $\frac1{h_K}$ of all primes in $\mathcal O_K$ are principal, which is cute.
+
+As an aside, it doesn't feel immediately clear that the distribution of prime ideals across ideal classes should be substantially more difficult than the distribution of primes across ideal classes. However, we can compare the difficulty of showing that integers are evenly distributed across modular classes---which is trivial---with showing the primes are evenly distributed across modular classes---which is notoriously hard. What follows isn't new, but it's exposition.
+
+In both cases, the techniques used to show one statement are not easily applicable to the other, and amusingly, in both cases, enough machinery is still enough to make the statement on primes appear clear. I hope the above statement is clear, assuming enough class field theory---it's really ``just a computation.'' As for Dirichlet's theorem, we can remark that it's a trivial application of Chebotarev to $\QQ(\zeta_n),$ for
+\[p\equiv a\pmod n\iff\left(\frac{\QQ(\zeta_n)/\QQ}p\right)=\left(\sigma:\zeta_n\mapsto\zeta_n^a\right)\in\op{Gal}(\QQ(\zeta_n)/\QQ),\]
+the latter of which occurs with density $\frac1n$ from Chebotarev. This is, similarly, ``just a computation'' with enough machinery. Namely, we didn't even have to talk about $L$ functions, though they are hiding in the Chebotarev.
