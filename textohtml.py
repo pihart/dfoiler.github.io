@@ -85,7 +85,7 @@ def process_img(tex):
 		tex += parts[i][parts[i].index('\\end{center}')+len('\\end{center}'):]
 	# Clean
 	for filename in os.listdir():
-		if filename.split('.')[-1] in ['asy','tex','aux','dvi','log','ps']:
+		if filename.split('.')[-1] in ['asy','tex','aux','dvi','log','ps','pdf']:
 			os.remove(filename)
 	return tex
 

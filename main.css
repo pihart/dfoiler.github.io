@@ -45,10 +45,10 @@ a:hover, a:active
 
 img
 {
-	width: 70%;
+	width: 40%;
 	/* center manually because auto wasn't working */
-	margin-left: 15%;
-	margin-right: 15%;
+	margin-left: 30%;
+	margin-right: 30%;
 }
 
 .link
