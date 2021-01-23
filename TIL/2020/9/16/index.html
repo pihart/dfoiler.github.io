@@ -58,7 +58,7 @@
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the definition of localization of a ring. Namely, if we have a commutative ring $R$ and multiplicatively closed subset $S\subseteq R$ containing $1\in S,$ then we very roughly define\[S^{-1}R=\{r/s:r\in R\text{ and }s\in S\}\]to be the set of fractions of $R$ having elements of $S$ as denominators. There is a caveat that $r_1/s_1=r_2/s_2$ if and only if there exists some $s\in S$ satisfying $s(r_1s_2-r_2s_1)=0$; i.e., $r_1s_2-r_2s_1$ is a zero divisor instead of being actually $0.$ Otherwise, addition and multiplication work exactly as expected. For example, when $R$ is an integral domain, we can set $S=R\setminus\{0\},$ and the above is the field of fractions. With this intuition in mind, we note the mapping\[r\longmapsto r/1\]taking $R\to S^{-1}R.$</p>
 			<p>This motivates a categorical definition of localization: the above mapping $\varphi:R\to S^{-1}R$ is initial among all maps $R\to R'$ where $S$ is sent to units of $R'.$ In other words, for any mapping $f:R\to R'$ sending $S$ to units of $R',$ $f$ factors uniquely through $\varphi.$</p>
-			<p>( there used to be an image here )</p>
+			<img src="img1.png">
 			<p>Indeed, our explicit construction for $f=g\varphi$ is $g(r/s)=f(r)f(s)^{-1},$ which just a categorical way to think about quotients. By construction addition and multiplication are well-behaved, so this is valid mapping $S^{-1}R\to R'.$ To show that this is forced, suppose we have a $g$ with $f=g\varphi.$ Then we know for free that $f(r)=g\varphi(r)=f(r)=g(r/1).$ But because $g$ is a homomorphism, we see\[g(r/s)g(s/1)=g(rs/s1)=g(r/1).\]From this it follows $g(r/s)=f(r)f(s)^{-1}$ is forced, which is what we wanted.</p>
 		</div>
 	</body>

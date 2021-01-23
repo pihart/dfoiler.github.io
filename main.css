@@ -43,6 +43,14 @@ a:hover, a:active
 	color: #003080;
 }
 
+img
+{
+	width: 70%;
+	/* center manually because auto wasn't working */
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
 .link
 {
 	color: #676767;

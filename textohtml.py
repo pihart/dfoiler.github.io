@@ -7,6 +7,8 @@ os.chdir(PATH)
 
 # Extra stuff to make the HTML file
 pre = '$'+open('pre.tex').read()+'$'
+# standaline is for making tikz images
+standalone = open('standalone.sty').read()
 # This occurs at varying levels, so we make a function for it
 def header(level):
 	return '''<!DOCTYPE html>
@@ -43,20 +45,54 @@ def start_html(level):
 	return html
 
 def process_img(tex):
+	# Remember we are in the day's directory right now
+	# This makes latex and asy behave somewhat
+	# My images are always centered, so we split by centers
 	parts = tex.split('\\begin{center}')
 	tex = parts[0]
 	if len(parts) == 1:
 		return tex
-	for part in parts[1:]:
-		divide = part.index('\\end{center}')+len('\\end{center}')
-		img = part[:divide]
-		tex += '\n( there used to be an image here )\n'
-		tex += part[divide:]
+	for i in range(1,len(parts)):
+		# We don't want the center tags
+		img = parts[i][:parts[i].index('\\end{center}')]
+		# For convenience, we treat asy and tikz separately
+		filename = ''
+		if '\\begin{tikz' in img:
+			print('processing tikz: ' + str(i) + '/' + str(len(parts)-1))
+			filename = 'img'+str(i)
+			# Generate file
+			img = '\\documentclass[convert={density=500}]{standalone}\n' \
+				+standalone+'\\begin{document}'+img+'\n\end{document}'
+			f = open(filename+'.tex', 'w')
+			f.write(img)
+			f.close()
+			# Compile
+			os.system('latex -interaction nonstopmode \
+				shell-escape '+filename+'.tex > /dev/null 2>&1')
+		elif '\\begin{asy}' in img:
+			print('processing asy : ' + str(i) + '/' + str(len(parts)-1))
+			filename = 'img'+str(i)
+			# Generate file
+			img = 'settings.outformat = "png";\nsettings.render=5;\n'+img
+			img = img.replace('\\begin{asy}','')
+			img = img.replace('\\end{asy}','')
+			f = open(filename+'.asy', 'w')
+			f.write(img)
+			f.close()
+			# Compile
+			os.system('asy '+filename+'.asy')
+		# We put a marker here to denote the image
+		tex += '\00'+filename+'.png'
+		tex += parts[i][parts[i].index('\\end{center}')+len('\\end{center}'):]
+	# Clean
+	for filename in os.listdir():
+		if filename.split('.')[-1] in ['asy','tex','aux','dvi','log','ps']:
+			os.remove(filename)
 	return tex
 
 def process_tex(tex):
 	# We process images first, which is difficult
-	tex = process_img(tex);
+	tex = process_img(tex)
 	# Fix TeX hacks for HTML
 	tex = tex.replace('``','"')
 	tex = tex.replace('---','&mdash;')
@@ -92,6 +128,7 @@ def get_blurb(tex):
 	return blurb
 
 def to_html(tex):
+	# This is not general-purpose and will not work with your TeX
 	# Preprocess
 	tex = process_tex(tex)
 	# Extract the blurb
@@ -102,8 +139,6 @@ def to_html(tex):
 	day_html = start_html(4)
 	month_html = '\t\t<div class="entry">\n'
 	# We work line-by-line
-	# I use many of my own TeX conventions for this
-	# I.e., this is not general purpose and will not work for your TeX
 	first_item = False
 	for line in tex:
 		# A starting line
@@ -139,6 +174,10 @@ def to_html(tex):
 				day_html += '</li>\n\t\t\t\t<li>'
 			first_item = False
 			day_html += line
+		# Image marker
+		elif line[0] == '\00':
+			filename = line[1:]
+			day_html += '</p>\n\t\t\t<img src="'+filename+'">\n\t\t\t<p>'
 		# Catch-all
 		else:
 			day_html += line
@@ -193,12 +232,17 @@ for year in os.listdir('TeX'):
 		for tex in alltex.split('\\subsubsection')[1:]:
 			tex = '\\subsubsection'+tex
 			# Push through helper and make the file
-			day_html, month_html_day = to_html(tex)
-			# Extract day from the starting subsection line
 			day = tex[:tex.index('}')].split()[1][:-len('th')]
+			directory = 'TIL/'+year+'/'+month+'/'+day+'/'
 			if day not in os.listdir('TIL/'+year+'/'+month):
-				os.mkdir('TIL/'+year+'/'+month+'/'+day)
-			f = open('TIL/'+year+'/'+month+'/'+day+'/index.html','w')
+				os.mkdir(directory)
+			print('processing '+directory)
+			# We work in this directory for now
+			os.chdir(directory)
+			day_html, month_html_day = to_html(tex)
+			os.chdir(PATH)
+			# Extract day from the starting subsection line
+			f = open(directory+'index.html','w')
 			f.write(day_html)
 			f.close()
 			# Add onto the month
