@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to September)</a></p>
+		<div class="entry">
+			<h2>September 27th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned why the Solovay--Strassen (probable) primality test can give confidence of $\left(\frac12\right)^{\text{witnesses}}.$ The primality test for some integer $N$ is done by choosing a random value $a\in(\ZZ/N\ZZ)^\times$ and then comparing the values of\[a^{(N-1)/2}\equiv\left(\frac aN\right)\pmod N.\]Note on the right-hand side we are computing the Jacobi symbol, which can be done quickly using the Euclidean algorithm and quadratic reciprocity; the left-hand side can be done quickly using modular exponentiation via repeated squaring.</p>
+			<p>For this, assume there exists at least one witness $a\in(\ZZ/N\ZZ)^\times.$ We show that at least half of all elements of $(\ZZ/N\ZZ)^\times$ are witnesses. Indeed, suppose $b$ is a liar; that is, we know\[b^{(N-1)/2}\equiv\left(\frac bN\right)\pmod N.\]However, both $(\bullet)^{(N-1)/2}$ and $\left(\frac\bullet N\right)$ are completely multiplicative, so we see that\[(ab)^{(N-1)/2}=a^{(N-1)/2}\cdot b^{(N-1)/2}\equiv a^{(N-1)/2}\left(\frac bN\right)\not\equiv\left(\frac aN\right)\left(\frac bN\right)=\left(\frac{ab}N\right)\pmod N.\]It follows that $ab$ is also a witness. So for every liar, there exists a witness by multiplying by $a,$ and because multiplication by $a$ is a bijection (it's invertible because $a^{-1}$ exists), this means that at least half of all of $(\ZZ/N\ZZ)^\times$ is a witness.</p>
+			<p>I don't currently know why a single witness should exist, but it's claimed all over the place.</p>
+		</div>
+	</body>
+</html>

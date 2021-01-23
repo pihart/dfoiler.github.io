@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to November)</a></p>
+		<div class="entry">
+			<h2>November 8th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that it's possible to do calculus over ratios of prime numbers, from <a href="https://mathoverflow.net/questions/311085/riemann-sum-formula-for-definite-integral-using-prime-numbers">here</a>. The general theorem is that\[\lim_{n\to\infty}\frac1n\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=\int_0^1f(x)\,dx\]where $\{p_\bullet\}$ is the sequence of primes. Here we are assuming that $f$ is Riemann integrable already, or else it doesn't make much sense to conjecture this. Anyways, it suffices to suppose that $f$ is continuously differentiable; if not we can certainly approximate $f$ well enough by continuously differentiable functions.</p>
+			<p>The way we translate the summation into an integral is to use Riemann-Stieltjes integration. Write\[\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=\int_0^1f(x)\,d\pi(p_nx).\]Integrating by parts, this is\[\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=nf(1)-\int_0^1f'(x)\pi(p_nx)\,dx.\]To finish getting rid of the prime stuff, we would like to substitute $\pi(x)\sim\frac x{\log x}$ from the prime number theorem, but we can't do that while the lower bound is $0.$ However, we may bound\[\left|\int_0^{1/\log n}f'(x)\pi(p_nx)\,dx\right|\le\left(\max_{x\in[0,1]}\left|f'(x)\right|\right)\pi\left(\frac{p_n}{\log n}\right).\]The maximum is a constant, so we may more or less ignore it. The prime-counting term can be estimated to $o(n),$ which is good enough because we're going to divide by $n$ later. Indeed, $\pi(n)\sim\frac n{\log n}$ implies $n\sim\frac{p_n}{\log p_n}.$ However, this means $\log n=\log p_n+\log\log p_n+o(1)=\log p_n+o(\log p_n),$ implying $p_n\sim n\log p_n=n\log n(1+o(1))\sim n\log n.$ Thus, $\frac{p_n}{\log n}\sim n,$ so $\pi\left(\frac{p_n}{\log n}\right)=o(n).$ I'm skimming some details because I don't care about them. It follows that this entire term is $o(n).$</p>
+			<p>So we are left with\[\sum_{k=0}^nnf\left(\frac{p_k}{p_n}\right)=nf(1)-\int_{1/\log n}^1f'(x)\pi(p_nx)\,dx+o(n).\]The prime number theorem says that $\pi(p_nx)\sim\frac{p_nx}{\log(p_nx)}.$ However, now that $x\in[1/\log n,1],$ the denominator is between $\log(p_n/\log n)$ and $\log(p_n).$ With $n\sim\frac{p_n}{\log p_n}$ implying $\log p_n=\log n+o(\log n),$ we get that both of these are asymptotically $\log n.$ Explicitly, we see\[\pi(p_nx)\sim\frac{p_nx}{\log n}\sim nx\]after again plugging in $p_n\sim n\log n.$ This means that the integral is\[\int_{1/\log n}^1f'(x)(nx+o(nx))\,dx=n\int_{1/\log n}^1xf'(x)\,dx+o\left(n\int_{1/\log n}^1xf'(x)\,dx\right).\]The bounding term is (again) lazily $o(n)$ because the full integral is constant. To actually evaluate the integral, we begin by re-extending the lower bound to $0.$ The remainder added amount from $0$ to $\frac1{\log n}$ is $o\left(n\int_0^{1/\log n}x\right)=o(n),$ so we are left with\[n\int_0^1xf'(x)\,dx+o(n).\]To finish, we integrate by parts in reverse, which makes this\[nf(1)-\int_0^1f(x)\,dx+o(n).\]</p>
+			<p>Putting all the pieces together, we get that\[\sum_{k=1}^nf\left(\frac{p_k}{p_n}\right)=nf(1)-nf(1)+\int_0^1f(x)\,dx+o(n).\]Dividing by $n$ and taking $n\to\infty$ gives the result.</p>
+			<p>It would be something of a crime to not do any applications of this result. We can asymptotically compute the arithmetic mean of the first $n$ primes. Namely, note that\[\lim_{n\to\infty}\frac{\displaystyle\frac1n\sum_{k=1}^np_k}{p_n}=\lim_{n\to\infty}\frac1n\sum_{k=1}^n\frac{p_k}{p_n}=\int_0^1x\,dx=\frac12.\]It follows that the arithmetic mean is asymptotically $\frac12p_n=\frac12n\log n.$ We can even do the geometric mean. Note that\[\lim_{n\to\infty}\frac1n\sum_{k=1}^n\log\left(\frac{p_k}{p_n}\right)=\int_0^1\log x\,dx=-1.\]This implies that\[\lim_{n\to\infty}\frac{\sqrt[n]{p_1\cdots p_n}}{p_n}=\lim_{n\to\infty}\prod_{k=1}^n\frac{p_k}{p_n}=\exp\left(\lim_{n\to\infty}\frac1n\sum_{k=1}^n\log\left(\frac{p_k}{p_n}\right)\right)=\frac1e.\]It follows that the geometric mean is asymptotically $\frac1ep_n\sim\frac1en\log n.$ As expected, (the asymptotics for) the geometric mean is smaller than the arithmetic mean.</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to December)</a></p>
+		<div class="entry">
+			<h2>December 10th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned a proof of Niven's theorem, the statement that the only $\theta$ for which $\theta$ and $\sin(\theta)$ are both rational give $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\}.$ Namely, we have $\theta\in\left\{0,\pm\frac16\pi,\pm\frac12\pi,\pm\frac56\pi\right\}\pmod{2\pi}.$ Indeed, if $\theta=\frac ab\in\QQ,$ then $e^{i\theta}$ is a root of\[z^b-1=0,\]so $e^{i\theta}$ is an algebraic integer. From this it follows\[2\sin(\theta)=-i\left(e^{i\theta}-e^{-i\theta}\right)\]is an algebraic integer as well. But we also have $2\sin(\theta)\in\QQ,$ so $2\sin(\theta)$ is a rational integer. Bounding, we see $2\sin(\theta)\in[-2,2]\cap\ZZ,$ requiring that $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\},$ which is what we wanted.</p>
+			<p>An identical proof works for $\theta$ and $\cos(\theta),$ for $2\cos(\theta)=e^{i\theta}+e^{-i\theta}$ would also be an algebraic integer. We get pretty much the same statement, now we have $\cos(\theta)\in\left\{0,\pm\frac12,\pm1\right\}$ which forces $\theta\in\left\{0,\pm\frac13\pi,\pm\frac12\pi,\pm\frac23\pi\right\}\pmod{2\pi}.$</p>
+			<p>This proof is very slick, of similar slickness as the proof of the Fundamental theorem of algebra from Galois theory. Namely, it does exactly what it needs to do with its hypotheses in as few steps as possible&mdash;it's very obvious where our hypotheses come into play, and it's very obvious that this proof could not be shortened. What pleases me aesthetically is that the proof reads the $\left\{0,\pm\frac12,\pm1\right\}$ as a $\textit{bounding}$ condition instead of something special about these angles in particular, which a priori is what I expected out of a proof of this statement.</p>
+		</div>
+	</body>
+</html>

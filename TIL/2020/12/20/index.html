@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to December)</a></p>
+		<div class="entry">
+			<h2>December 20th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned this finish of the proof of the class number formula. I think I'm going to read this in reverse because the hard part looks a bit unsatisfying without the finish. Notably, we are not doing number theory today. Fix $K$ a number field of degree $n,$ for concreteness. Anyways, the hard part is a statement about the distribution of ideals, roughly saying that it works as expected. Explicitly, we assume there exists a constant $\rho_K$ depending on $K$ such that\[\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\right\}=\rho_Kt+O\left(t^{1-1/n}\right).\]It will turn out that the $\rho_K$ is the interesting part. Read this as roughly saying that ideals really are the correct generalization of integers in $\ZZ$ in that they even have linear growth with respect to the norm.</p>
+			<p>We are interested in the Dedekind zeta function $\zeta_K.$ The way the hypothesis will help us is by letting $\varepsilon_t=\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)=t\right\}-\rho_K$ so that\[\zeta_K(s)=\sum_I\frac1{\op{Norm}(I)^s}=\sum_{t=1}^\infty\frac{\rho_K+\varepsilon_t}{t^s}=\rho_K\zeta(s)+\underbrace{\sum_{t=1}^\infty\frac{\varepsilon_t}{t^s}}_{E(s)}.\]Roughly speaking, we see $\zeta_K(s)$ "behaves'' like $\rho_K\zeta(s)$ plus some probably ugly $E(s).$ However, it will happen that $E(s)$ is defined for $\op{Re}(s){\gt}1-\frac1n,$ which is enough structure. In particular, it means we can read the above equation as an analytic continuation of $\zeta_K(s)$ to $\op{Re}(s){\gt}1-\frac1n.$ For example, $E(s)$ is defined at $1,$ so $\zeta_K(s)$ inherits from $\zeta(s)$ a pole at $s=1,$ with residue\[\lim_{s\to1}(s-1)\zeta_K(s)=\rho_K\left(\lim_{s\to1}(s-1)\zeta(s)\right)+\left(\lim_{s\to1}(s-1)E(s)\right)=\rho_K\cdot1+0=\rho_K.\]We used the fact that the residue at $s=1$ of $\zeta(s)$ is $1,$ which I will show later for completeness. Anyways, that's the end of the proof of the class number formula. I'll learn about $\rho_K$ later.</p>
+			<p>Let's fill in some of those details. I've learned these facts about Dirichlet series before, so this is acting as review. We need to analyze $E(s).$ We show that $E(s)$ is defined for $\op{Re}(s){\gt}1-\frac1n,$ which will be enough for $E(s)$ be defined at $s=1.$ So fix $\op{Re}(s){\gt}1-\frac1n.$ All we know is that the summatory function \[A(t)=\varepsilon_1+\cdots+\varepsilon_t=\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\right\}-\rho_Kt=O\left(t^{1-1/n}\right)\]by hypothesis. In fact, this is the only place we use the hypothesis. This bounding is enough for what we want. Setting up Abel summation, we write the Riemann-Stieltjes integral\[E(s)=\sum_{t=1}^\infty\frac{\varepsilon_t}{t^s}=\int_{1^-}^\infty\frac{dA(t)}{t^s}.\]Here, I am stealing the notation $1^-$ to mean any real number slightly less than $1.$ Integrating by parts,\[E(s)=\frac{A(t)}{t^s}\bigg|_{1^-}^\infty-\int_{1^-}^\infty A(t)\,d\left(t^{-s}\right).\]The main term vanishes&mdash;$A\left(1^-\right)=0,$ and $\op{Re}(s){\gt}1-\frac1n$ implies $A(t)t^{-s}=O\left(t^{1-1/n-\op{Re}(s)}\right)$ vanishes. As for the integral, it is\[E(s)=s\int_{1^-}^\infty A(t)t^{-s-1}\,dt.\]This integral is defined for $\op{Re}(s){\gt}1-\frac1n$ because the integrand has growth rate $O\left(t^{1-1/n}t^{-\op{Re}(s)-1}\right)=O\left(t^{1-\varepsilon}\right)$ for some $\varepsilon{\gt}0.$ I guess formally, we'd write, for some large $N$ being sent to infinity,\[\int_{1^-}^\infty A(t)t^{-s-1}\,dt=\int_{1^-}^NA(t)t^{-s-1}\,dt+\int_N^\infty A(t)t^{-s-1}\,dt,\]and we can bound the infinite integral as\[O\left(\int_N^\infty t^{1-1/n}t^{-\op{Re}(s)-1}\,dt\right)=O\left(t^{1-1/n-\op{Re}(s)}\bigg|_N^\infty\right)=o(1).\]It follows that $E(s)$ is defined for $\op{Re}(s){\gt}1-\frac1n$ (with no pole at $s=1$), as desired.</p>
+			<p>Very quickly, let's review $\zeta(s).$ We show that it has an analytic continuation to $\op{Re}(s){\gt}0$ with a pole at $s=1$ of residue $1.$ Repeating our Abel summation, we see for $\op{Re}(s){\gt}1$ that\[\zeta(s)=\sum_{t=1}^\infty\frac1{t^s}=\int_{1^-}^\infty\frac{d\floor t}{t^s}=\frac{\floor t}{t^s}\bigg|_{1^-}^\infty-\int_{1^-}^\infty\floor t\,d\left(t^{-s}\right).\]The main term vanishes for the same reasons as before; note $\floor t=o\left(t^{\op{Re}(s)}\right).$ So we see\[\zeta(s)=s\int_{1^-}^\infty\frac{\floor t}{t^{s+1}}\,dt.\]This will be our analytic continuation to $\op{Re}(s){\gt}0$ with the desired pole at $s=1.$ The argument from before would tell us that it is defined for $\op{Re}(s){\gt}1,$ which is unremarkable. So the trick is to split $\floor t=t-\{t\}$ to get control on the "main'' $t$ term, giving\[\zeta(s)=s\int_{1^-}^\infty\frac1{t^s}\,dt+s\int_{1^-}^\infty\frac{\{t\}}{t^{s+1}}\,dt.\]We see the main term is $\frac s{s-1}$ after integrating. Further, because $\{t\}=O(1),$ we can let $A(t)=\{t\}$ as in the end of the argument around $E(s),$ implying the integral is defined for $\op{Re}(s){\gt}0.$ So we have established\[\zeta(s)=\frac s{s-1}+s\int_{1^-}^\infty\frac{\{t\}}{t^{s+1}}\,dt\]is an analytic continuation of $\zeta(s)$ to $\op{Re}(s){\gt}0,$ minus that denominator which explodes at $s=1.$ This pole will have residue\[\lim_{s\to1}(s-1)\zeta(s)=\left(\lim_{s\to1}s\right)+\left(\lim_{s\to1}(s-1)s\int_{1^-}^\infty\frac{\{t\}}{t^{s+1}}\,dt\right)=1+0=1.\]This is what we wanted, so we are done here.</p>
+			<p>As an aside, we did evaluate $\rho_K$ for imaginary quadratic fields last month. Namely, we found\[\#\left\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\right\}=\frac{2\pi h_K}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}t+O(\sqrt t).\]In light of the above work, we can therefore say\[\lim_{s\to1}(s-1)\zeta_K(s)=\frac{2\pi h_K}{|\mu(K)|\sqrt{|\op{disc}(\mathcal O_K)|}}.\]So it turns out I was closer to the class number formula in this case than I thought.</p>
+		</div>
+	</body>
+</html>

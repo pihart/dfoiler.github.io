@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to November)</a></p>
+		<div class="entry">
+			<h2>November 23rd</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned the group structure for the rational points with prime-power denominator on the unit hyperbola $x^2-y^2=1.$ This argument, with sufficient modification, also carries over to the unit circle, but of course we had that the unit circle is better viewed in $\QQ(i),$ in the same way we could look at norm-$1$ elements of $x^2-2y^2=1$ by focusing on $\QQ(\sqrt2).$ In this regard, we are kind of watching prime-splitting in $\QQ/\QQ,$ but is misleading given what we found about norm-$1$ ideals in Galois extensions a few days ago.</p>
+			<p>Our group law is defined by noting that this curve is parameterized by $(\sinh(t),\cosh(t)),$ so we can send two rational points $(a,b)$ and $(c,d)$ to $(ac+bd,ad+bc).$ Indeed,\[(ac+bd)^2-(ad+bc)^2=a^2c^2+b^2d^2-a^2d^2-b^2c^2=\left(a^2-b^2\right)\left(c^2-d^2\right)=1.\]Here the identity is $(1,0),$ and the inverse is $(a,-b).$ As an aside, there is some connection between the unit hyperbola and the unit circle. Essentially, if $x^2+y^2=1,$ then provided $x\ne0,$ this is $1+(y/x)=(1/x)^2,$ or\[\left(\frac1x\right)^2-\left(\frac yx\right)^2=1.\]So we have a mapping from $(x,y)$ on the unit circle minus $(0,\pm1)$ to $(1/x,y/x)$ on the unit hyperbola. This is bijective because the mapping is an involution. However, if we turn this bijection into an isomorphism, this does not preserve the standard group operation on the unit hyperbola.</p>
+			<p>Note that this group law preserves a ground field, so it will count as a group law for the rational points; we would like the group structure. We'll show probably tomorrow that it is\[\langle(-1,0)\rangle\oplus\bigoplus_p\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle\cong\ZZ/2\ZZ\oplus\bigoplus_p\ZZ,\]but I'm still trying to work it out. Now, the group law also preserves sign of the first coordinate, so it suffices to look over points with positive $x$ coordinate, and then multiply by $(-1,0)$ to account for signs later. So it suffices to show that the group structure of the points on the unit hyperbola with positive $x$ coordinate is\[\bigoplus_p\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle\cong\bigoplus_p\ZZ.\]</p>
+			<p>Quickly, we note that if we have a rational point $(a,b)$ with $an\in\ZZ,$ then\[(an)^2-(bn)^2=n^2,\]so $bn$ is a rational square root of an integer, so $bn\in\ZZ.$ By symmetry, we also see that $bn\in\ZZ$ implies $an\in\ZZ,$ so reducing $a$ and $b$ into a common fraction forces them to have the same denominator.</p>
+			<p>Now, we claim that set of rational points with denominator a power of the prime $p$ is exactly\[G_p=\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle,\]even for $p=2.$ (The extra $2$ in the denominator doesn't matter for $p=2$ and cancels with the numerator for $p$ odd.) Note that inversion and multiplying with the group law does nothing to introduce to new primes to the denominator (it's only addition and multiplication), so surely everything in $G_p$ will have denominator $p.$ In fact, an induction can show that, for $k$ a nonnegative integer,\[\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^k=\left(\frac{p^{2\cdot1}+1}{2p^1},\frac{p^{2\cdot1}-1}{2p^1}\right)^k=\left(\frac{p^{2k}+1}{2p^k},\frac{p^{2k}-1}{2p^k}\right).\]</p>
+			<p>It remains to show that every point $\left(\frac a{p^k},\frac b{p^k}\right)$ with denominator the prime-power $p^k$ is also in $G_p.$ Inverting if necessary, we assume that $b\ge0$ without loss of generality. Now, we have\[(a+b)(a-b)=a^2-b^2=p^{2k}.\]Because we require $\gcd(a,b)=1,$ we have $\gcd(a+b,a-b)\le2.$ We now have to do casework on parity of $p.$			</p>
+			<ul>
+				<li>     If $p=2,$ then one of $a+b$ or $a-b$ must be even, but these have the same parity, so they must both be even. However, these are both powers of $2$ with greatest common denominator $2,$ so one of them must be $2.$ Because $a-b$ is the smaller one, $a-b=2$ and $a+b=2^{2k-1}.$ This forces $a=2^{2k-2}+1$ and $b=2^{2k-2}-1,$ making our point    \[\left(\frac{2^{2k-2}+1}{2^k},\frac{2^{2k-2}-1}{2^k}\right)=\left(\frac{2^2+1}{2\cdot2},\frac{2^2-1}{2\cdot2}\right)^{k-1}\in G_2.\]    </li>
+				<li>     If $p$ is an odd prime, both $a+b$ and $a-b$ must be odd, so we are forced into $a+b=p^{2k}$ and $a-b=1.$ This forces $a=\left(p^{2k}+1\right)/2$ and $b=\left(p^{2k}-1\right)/2,$ making our point    \[\left(\frac{p^{2k}+1}{2p^k},\frac{p^{2k}-1}{2p^k}\right)=\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^k\in G_p.\]</li>
+			</ul>
+			<p>Having sufficiently dealt with both cases, we are done with this lemma.</p>
+		</div>
+	</body>
+</html>

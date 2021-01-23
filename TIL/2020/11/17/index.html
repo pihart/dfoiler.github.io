@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to November)</a></p>
+		<div class="entry">
+			<h2>November 17th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned the definition of the limit superior to prove the radius of convergence for a power series. In symbols, we have\[\limsup_{n\to\infty}a_n=\lim_{n\to\infty}\left(\sup_{m{\gt}n}a_m\right).\]This always exists, provided we allow $\pm\infty.$ If $a_\bullet\to\infty,$ then this comes out to $\infty.$ Otherwise, the sequence $\{a_\bullet\}$ has a maximum, so $\sup_{m{\gt}\bullet}a_m$ is monotonically decreasing. If the supremum sequence goes to $-\infty,$ then the limit is $-\infty.$ Else, the sequence is lower-bounded, so it has a limit because we just said it's monotonically decreasing.</p>
+			<p>For the radius of convergence, fix a series $S=\sum_na_n.$ Then, with the root test, examine\[A=\limsup_{n\to\infty}\sqrt[n]{\left|a_n\right|}.\]Note that $L\ge0.$ We have the following cases for the root test; I give the arguments here because I had to reconstruct them today.			</p>
+			<ul>
+				<li>     If $A{\gt}1$ (including $\infty$), then the sequence $\{a_n\}$ must have infinitely many terms with absolute value at least $1.$ Indeed, if there were only finitely many, then a bound $N$ would exist with $\sup_{m{\gt}n}\sqrt[m]{|a_m|}\le1$ for $n{\gt}N,$ implying $A\le1.$        But if an infinite subsequence is bounded below by $1,$ then it diverges by the Divergence test.    </li>
+				<li>     If $A{\lt}1,$ then there is a bound $N$ for which $n{\gt}N$ implies $\sup_{m{\gt}n}\sqrt[m]{|a_m|}{\lt}1-\varepsilon$ for some $\varepsilon{\gt}0.$ However, this requires $|a_n|{\lt}(1-\varepsilon)^n,$ so we get that    \[S=\sum_{n=0}^\infty a_n\le\sum_{n=0}^N|a_n|+\sum_{n=N+1}^\infty|a_n|{\lt}\sum_{n=0}^Na_n+\sum_{n=N+1}^\infty(1-\varepsilon)^n{\lt}\infty.\]    So the series converges, absolutely.</li>
+			</ul>
+			<p>This is relevant to the radius of convergence because it tells us that $a(x)=\sum_na_nx^n$ will converge if $Ax{\lt}1,$ and diverge if $Ax{\gt}1.$ In other words, we get to explicitly compute the radius of convergence as $\frac1A,$ where $\frac1\infty=0$ and $\frac10=\infty.$</p>
+			<p>As an aside, this lets us prove that the set of formal power series in $\RR[[x]]$ with positive radius of convergence is a ring. (This can be done with notions of absolute convergence, but whatever.) Of course, the $0$ function and the $1$ function have infinite radius of convergence, so they're safe. For the remaining checks, fix $a(x)=\sum_na_nx^n$ and $b(x)=\sum_na_nx^n$ power series with positive radius convergence. Note that this condition is equivalent to\[A=\limsup_{n\to\infty}\sqrt[n]{|a_n|}{\lt}\infty,\]and analogously $B{\lt}\infty$ for $b_n.$ We see that $-a(x)$ also has positive radius of convergence because $|-a_n|=|a_n|,$ so the limit for $-a(x)$ is the same as $a(x)$ and therefore finite.</p>
+			<p>We construct $a(x)+b(x)$ by adding termwise. Without loss of generality, let's say $A\ge B.$ Then we're interested in\[\limsup_{n\to\infty}\sqrt[n]{|a_n|+|b_n|}\le\limsup_{n\to\infty}\sqrt[n]{2\max\{|a_n|,|b_n|\}}.\]The $\sqrt[n]2$ vanishes as $n\to\infty.$ To be formal with this, we could plug into the definition of $\limsup$ and then expand out the limit of the sequences, but it doesn't look fun. So we're interested in\[\limsup_{n\to\infty}\max\left\{\sqrt[n]{|a_n|},\sqrt[n]{|b_n|}\right\}.\]But this is just $A.$ Explicitly, $A\ge B$ implies that there is some bound $N$ for which $n{\gt}N$ implies $\sup_{m{\gt}n}\sqrt[m]{a_m}\ge\frac{A+B}2$ and $\sup_{m{\gt}n}\sqrt[m]{b_m}\le\frac{A+B}2.$ This means that the maximum always go to $|a_n|$ in the above when past $N,$ making the limit exactly $A.$ It follows that the series has positive radius of convergence again.</p>
+			<p>We do $a(x)b(x)$ in a similar manner. We're interested in\[\limsup_{n\to\infty}\sqrt[n]{\left|\sum_{k=0}^na_kb_{n-k}\right|}.\]Bounding in the stupidest way possible, this is bounded above by\[\limsup_{n\to\infty}\sqrt[n]{(n+1)\cdot\max_{k\le n}|a_k|\cdot\max_{k\le n}|b_k|}\]Again, the $\sqrt[n]{n+1}$ vanishes, which we don't talk about rigorously. The part to worry about is\[\limsup_{n\to\infty}\sqrt[n]{\max_{k\le n}|a_k|\cdot\max_{k\le n}|b_k|}.\]Expanding the $\limsup$ and doing some rearranging, this collapses to\[\lim_{n\to\infty}\sup_{m{\gt}n}\max_{k\le m}\sqrt[m]{|a_m|}\cdot\sup_{m{\gt}n}\max_{k\le m}\sqrt[m]{|b_m|}=\lim_{n\to\infty}\sup_{m\ge0}\sqrt[m]{|a_m|}\cdot\sup_{m\ge0}\sqrt[m]{|b_m|}.\]Limit properties says that this limit is equal to the product of each individual one provided each factor exists, and they do&mdash;the fact $A,B{\lt}\infty$ implies that $\sqrt[n]{a_n}$ and $\sqrt[n]{b_n}$ are bounded above, and therefore they each have a supremum. This finishes.</p>
+		</div>
+	</body>
+</html>

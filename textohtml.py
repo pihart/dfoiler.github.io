@@ -38,11 +38,25 @@ def header(level):
 def start_html(level):
 	html = header(level)
 	html += '\t<body>\n'
-	html += '\t\t<h1><a href="'+ '../'*(level-1) + \
-		'index.html" class="title">Today I Learned</a></h1>\n'
+	html += '\t\t<h1><a href="./'+ '../'*(level-1) + \
+		'" class="title">Today I Learned</a></h1>\n'
 	return html
 
+def process_img(tex):
+	parts = tex.split('\\begin{center}')
+	tex = parts[0]
+	if len(parts) == 1:
+		return tex
+	for part in parts[1:]:
+		divide = part.index('\\end{center}')+len('\\end{center}')
+		img = part[:divide]
+		tex += '\n( there used to be an image here )\n'
+		tex += part[divide:]
+	return tex
+
 def process_tex(tex):
+	# We process images first, which is difficult
+	tex = process_img(tex);
 	# Fix TeX hacks for HTML
 	tex = tex.replace('``','"')
 	tex = tex.replace('---','&mdash;')
@@ -85,7 +99,7 @@ def to_html(tex):
 	# Now we work line-by-line
 	tex = tex.split('\n')
 	while tex[-1] == '': tex = tex[:-1]
-	day_html = start_html(3)
+	day_html = start_html(4)
 	month_html = '\t\t<div class="entry">\n'
 	# We work line-by-line
 	# I use many of my own TeX conventions for this
@@ -96,12 +110,12 @@ def to_html(tex):
 		if '\\subsubsection' in line:
 			h2 = line[len('\\subsubsection{'):-len('}')]
 			month, day = h2.split()
-			day_html += '\t\t<p><a href="index.html" class="link">(back up to ' \
+			day_html += '\t\t<p><a href="../" class="link">(back up to ' \
 				+ month+')</a></p>\n'
 			day_html += '\t\t<div class="entry">\n'
 			day_html += '\t\t\t<h2>'+h2+'</h2>\n'
 			day = day[:-len('th')]
-			month_html += '\t\t\t<h3><a href="'+day+'.html">'+h2+'</a></h3>\n'
+			month_html += '\t\t\t<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
 			# We attach the preamble here
 			day_html += '\t\t\t<p>'+pre
 		# Two consecutive new lines implies new paragraph
@@ -130,7 +144,7 @@ def to_html(tex):
 			day_html += line
 	day_html += '</p>\n\t\t</div>\n\t</body>\n</html>\n'
 	month_html += '\t\t\t<p>'+blurb+'\n'
-	month_html += '\t\t\t<a href="'+day+'.html" class="link">(continue reading...)</a></p>\n'
+	month_html += '\t\t\t<a href="'+day+'/" class="link">(continue reading...)</a></p>\n'
 	month_html += '\t\t</div>\n'
 	return day_html, month_html
 	# TODO: do something about images
@@ -151,14 +165,14 @@ total_html += '\t\t<p style="margin-bottom: 18pt;">' \
 for year in os.listdir('TeX'):
 	# Start the year file
 	year_html = start_html(2)
-	year_html += '\t\t<p><a href="../index.html" class="link">(back up to main page)' \
+	year_html += '\t\t<p><a href="../" class="link">(back up to main page)' \
 		'</a></p>\n'
-	year_html += '\t\t<h2><a href="index.html">'+year+'</a></h2>\n'
+	year_html += '\t\t<h2><a href="./">'+year+'</a></h2>\n'
 	# Make year if not there
 	if year not in os.listdir('TIL'):
 		os.mkdir('TIL/'+year)
 	# Increment the total file
-	total_html += '\t\t<h2><a href="'+year+'/index.html">'+year+'</a></h2>\n'
+	total_html += '\t\t<h2><a href="'+year+'/">'+year+'</a></h2>\n'
 	year_months = sorted(os.listdir(PATH+'TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
 	for month in year_months:
 		# Make month if not there
@@ -167,11 +181,11 @@ for year in os.listdir('TeX'):
 			os.mkdir('TIL/'+year+'/'+month)
 		# Start the month file
 		month_html = start_html(3)
-		month_html += '\t\t<p><a href="../index.html" class="link">(back up to ' \
+		month_html += '\t\t<p><a href="../" class="link">(back up to ' \
 			+ year+')</a></p>\n'
 		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
 		# Increment the year file
-		year_html += '\t\t<h3><a href="'+month+'/index.html">'+ \
+		year_html += '\t\t<h3><a href="'+month+'/">'+ \
 			months[int(month)-1] +'</a></h3>\n'
 		# Break up the months into days
 		alltex = open(PATH+'TeX/'+year+'/'+month+'.tex').read()
@@ -182,7 +196,9 @@ for year in os.listdir('TeX'):
 			day_html, month_html_day = to_html(tex)
 			# Extract day from the starting subsection line
 			day = tex[:tex.index('}')].split()[1][:-len('th')]
-			f = open('TIL/'+year+'/'+month+'/'+day+'.html','w')
+			if day not in os.listdir('TIL/'+year+'/'+month):
+				os.mkdir('TIL/'+year+'/'+month+'/'+day)
+			f = open('TIL/'+year+'/'+month+'/'+day+'/index.html','w')
 			f.write(day_html)
 			f.close()
 			# Add onto the month

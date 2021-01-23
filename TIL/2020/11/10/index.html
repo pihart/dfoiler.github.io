@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to November)</a></p>
+		<div class="entry">
+			<h2>November 10th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned some perspectives on those $\arctan$ facts that pop every once in a while. The motivating example is to note the following image.</p>
+			<p>( there used to be an image here )</p>
+			<p>Considering the angles in the bottom-left right angle, we see that $\arctan\left(\frac13\right)+\arctan\left(\frac11\right)+\arctan\left(\frac12\right)=\frac\pi2.$ Of course, there are lots of ways to prove this statement; e.g., straight-up bashing out the trigonometry with the tangent-addition formula will do the trick. There's also a nice proof with complex numbers by noting $\arctan\left(\frac1n\right)$ is the argument of $n+i.$ So computing\[(3+i)(2+i)=5+5i\]shows that $\arctan\left(\frac13\right)+\arctan\left(\frac12\right)=\arctan\left(\frac11\right).$</p>
+			<p>Anyways, the graphical solution also generalizes as a sort of an elementary version of the complex-numbers proof. Perhaps it's not as clean, but it accomplishes much the same tasks. For example, let's suppose we want to compute\[\arctan\left(\frac13\right)+\arctan\left(\frac14\right).\]For this, we use slopes, generalizing the motivating example. Note $\arctan\left(\frac13\right)$ is the angle of the line $y=\frac13x$ with the $x$ axis. To add angles, we need to place a line on top of this. Well, look at the following triangle.</p>
+			<p>( there used to be an image here )</p>
+			<p>The triangle here is right with adjacent side four times its opposite. It follows that this angle is $\arctan\left(\frac14\right),$ and in fact we have shown geometrically that\[\arctan\left(\frac13\right)+\arctan\left(\frac14\right)=\arctan\left(\frac{11}7\right).\]We could continue to add more angles. To demonstrate a bit further what we can do with this, suppose we want to add an angle to this get $\arctan\left(\frac11\right)=\frac\pi4.$ Well, supposing it is $\arctan\left(\frac1m\right)$ for some real $m,$ we need to stack this angle on top of the triangle given above.</p>
+			<p>We start from the point $(11,7).$ Extending the base of the new right triangle to have side length $m$ times the length of $\langle11,7\rangle$ takes us to $(11m,7m),$ and then to complete the right triangle, we have to go up by $\langle-7,11\rangle,$ taking us to\[(11m-7,7m+11).\]Now, if these angles add to $\frac\pi4,$ then the above point needs to live on $y=x.$ It follows that $11m-7=7m+11,$ which implies $m=\frac92.$ Thus, we get that\[\arctan\left(\frac13\right)+\arctan\left(\frac14\right)+\arctan\left(\frac29\right)=\frac\pi4,\]which is reasonably cute.</p>
+		</div>
+	</body>
+</html>

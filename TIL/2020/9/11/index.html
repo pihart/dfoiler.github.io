@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to September)</a></p>
+		<div class="entry">
+			<h2>September 11th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned some facts about the different ideal $\diff I,$ where $I$ is a fractional ideal of $\mathcal O_K.$ I think the most interesting is that\[\diff I=I\diff\mathcal O_K,\]Namely, this means we really only care about the global information $\diff\mathcal O_K,$ even though $I^*$ does not look super well-behaved. Without rigor, this is not hard to convince oneself of, for it is equivalent to\[I^*=I^{-1}\mathcal O_K^*\]after taking inverses of everything. (One has to show that $I^*$ and $\diff I$ are fractional ideals first, which is not easy.) Taking a moment for philosophy, we see that the reason we can talk intelligently about $\diff I$ in terms of the entire number ring is that "difficulty'' in the $I^*$ can be translated seamlessly upwards to $\mathcal O_K^*.$ Anyways, the above is equivalent to\[II^*=\mathcal O_K^*.\]Then this we can prove in steps, showing $II^*\subseteq\mathcal O_K^*$ and $I^{-1}\mathcal O_K^*\subseteq I^*,$ which completes the proof. Neither of these lemmas are particularly enlightening. As an aside, taking $I\mapsto I^*$ in the above tells us that $II^*=\mathcal O_K^*=I^*(I^*)^*,$ from which $I=(I^*)^*$ follows.</p>
+		</div>
+	</body>
+</html>

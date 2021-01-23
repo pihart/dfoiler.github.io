@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to January)</a></p>
+		<div class="entry">
+			<h2>January 1st</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that the Ackermann function can be expressed using our generalized primitive recursion over $\NN.$ Typically the Ackermann function isn't primitive recursive because we only allow recursion over $\NN,$ and the Ackermann function is more or less designed to eventually overcome however much nesting we do. However, in type theory we may recurse over any type, not just $\NN,$ which is apparently significantly more power. The idea now is that we can do recursion over recursive functions (not just over $\NN$), which should give us enough power.</p>
+			<p>Anyways, we are interested in defining $\op{ack}:\NN\to\NN\to\NN$ satisfying\begin{align*}    \op{ack}(0,n) &\equiv \op{succ}(n), \\    \op{ack}(\op{succ}(m),0) &\equiv \op{ack}(m,1), \\    \op{ack}(\op{succ}(m),\op{succ}(n)) &\equiv \op{ack}(m,\op{ack}(\op{succ}(m),n)).\end{align*}The last two equations can be read as\begin{align*}    \op{ack}(\op{succ}(m))(0) &\equiv\op{ack}(m)(1), \\    \op{ack}(\op{succ}(m))(\op{succ}(n)) &\equiv\op{ack}(m)\big(\op{ack}(\op{succ}(m))(n)\big).\end{align*}However, we can read this as just recursively defining $\op{ack}(\op{succ}(m))$ given $\op{ack}(m).$ Namely, we see we can write\[\op{ack}(\op{succ}(m))\equiv\op{rec}_\NN(\NN,\op{ack}(m)(1),\lambda x.\lambda n.\op{ack}(m)(n))\]from the definition of the recursor.</p>
+			<p>Going further, we note that we can read the above as a step function for functions $\NN\to\NN$, for which\[\op{ack}(0)\equiv\op{succ}\]is the base case. We want our step function $\NN\to(\NN\to\NN)\to(\NN\to\NN)$ to take $m$ and the previous $\op{ack}(m)$ and output $\op{ack}(\op{succ}(m)),$ so we note\[\lambda y.\lambda f.\op{rec}_\NN(\NN,f(1),\lambda x.\lambda n.f(n))\]will work. We see this because applying $(m,\op{ack}(m))$ to the above does indeed give $\op{ack}(\op{succ}(m))$ from our work. Anywyas, this means we can recurse to write\[\boxed{\op{ack}\equiv\op{rec}_\NN\big(\NN\times\NN,\op{succ},\lambda y.\lambda f.\op{rec}_\NN(\NN,f(1),\lambda x.\lambda n.f(n))\big)}.\]This is what we wanted.</p>
+			<p>This proof kind of weirds me out. I don't think that allowing generalized recursion over types makes us Turing-complete, for all the functions we make must be defined on all inputs, but we certainly have more power than I'm used to having. We have exhibited more power than $\texttt{LOOP},$ and I would be interested in seeing a computable function we can't make with fancy recursion. Of course, it's not even clear to me how we could formally show a function can't be defined with our recursion.</p>
+		</div>
+	</body>
+</html>

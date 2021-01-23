@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to December)</a></p>
+		<div class="entry">
+			<h2>December 16th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that completely splitting (for unramified primes) in an abelian extension is determined by $p\pmod N$ for some modulus $N.$ Roughly speaking, this is because the Frobenius of $p$ in $\QQ(\zeta_N)/\QQ$ is determined by $p\pmod N,$ and the Frobenius determines splitting.</p>
+			<p>Indeed, suppose that $K/\QQ$ is an abelian extension, and put everything inside of some $\QQ(\zeta_N)$ for some minimal $N$ by the Kronecker-Weber theorem. Let $H$ be the subgroup of $\op{Gal}(\QQ(\zeta_N)/\QQ)\cong(\ZZ/N\ZZ)^\times$ fixing $K.$ Now, unramified primes $p$ down in $\QQ$ split completely in $K$ if and only if\[f(\mf p/p)=1\]for each $\mf p$ of $K$ over $p.$ However, fixing a prime $\mf P$ of $\QQ(\zeta_N)$ over $p,$ we see we can ask for $f(\sigma\mf P\cap K/p)=1$ for each $\sigma\in\op{Gal}(\QQ(\zeta_N)/\QQ).$ This is nice because we are now parameterizing by the Galois group. Letting $\varphi$ be the Frobenius of $\mf P/p,$ theory about the Frobenius says that\[f(\sigma\mf P\cap K/p)=\#\left\{H\sigma\varphi^\bullet:\bullet\in\ZZ\right\}.\]So this is equal to $1$ for each $\sigma\mf P\cap K$ if and only if $H\sigma=H\sigma\varphi$ for each $\sigma.$ However, our extension is abelian, so we can just factor out the $\sigma$ so that $p$ splits completely if and only if $H=H\varphi$ if and only if $\varphi\in H.$</p>
+			<p>So far we have not used the fact that our normal extension over $K/\QQ$ is cyclotomic. This comes into play because we can write $\varphi$ as the unique automorphism in $\op{Gal}(\QQ(\zeta_N)/\QQ)$ satisfying\[\varphi(\alpha)\equiv\alpha^p\pmod{\mf P}.\]However, the (unique) automorphism sending $\zeta_N\mapsto\zeta_N^p$ certainly satisfies the above equation, so we conclude $\varphi:\zeta_N\mapsto\zeta_N^p,$ and is defined by this property. What's nice is that this automorphism is not entirely dependent on $p,$ but rather $p\pmod N.$ Namely, we have the isomorphism\[\op{Gal}(\QQ(\zeta_N)/\QQ)\to(\ZZ/N\ZZ)^\times\]sending $\sigma:\zeta_N\mapsto\zeta_N^k$ to $k\in(\ZZ/N\ZZ)^\times.$ Mapping $H$ over to $(\ZZ/N\ZZ)^\times$ will give us some set of residues $S\subseteq(\ZZ/N\ZZ)^\times,$ and $\varphi\in H$ will be equivalent to $p\pmod N\in S$ because $\varphi:\zeta_N\mapsto\zeta_N^p.$ So $p$ splits completely in $K$ if and only if $p\pmod N\in S,$ which is what we wanted.</p>
+			<p>This argument can be extended to any structure of splitting of unramified primes, not just splitting completely. Namely, the fact that we can determine $f(\mf p/p)$ for $\mf p$ of $K$ over $p$ from the Frobenius up in $\op{Gal}(\QQ(\zeta_N)/\QQ)$ implies that any structure of splitting of unramified primes will correspond to some set of Frobenius elements in $\op{Gal}(\QQ(\zeta_N)/\QQ).$ Then we can map these Frobenius elements into $(\ZZ/N\ZZ)^\times$ to get that $p$ matches this structure if and only if $p\pmod N$ is in that set of residues (equivalent to the Frobenius being one of the desired). I'm not writing this out because I don't want to rigorize "structure of splitting.''</p>
+			<p>I guess I should say that quadratic reciprocity comes out of this, which I'll sketch here. Take $K=\QQ(\sqrt{p^*})$ so that $K\subseteq\QQ(\zeta_p).$ Gaussian period theory can kind of tell us that $H$ corresponds to the squares$\pmod p.$ It follows that $q$ is a square$\pmod p$ if and only if $q$ splits completely in $\QQ(\sqrt{p^*})$ if and only if $p^*$ is a square$\pmod q.$</p>
+			<p>As an aside, the converse of our original statement is also true. That is, if the fact that unramified primes $p$ splits completely is equivalent to $p\pmod N$ being in some fixed set of residues, then we can say that $K$ is an abelian extension. Indeed, work up in the normal closure $M$ of our extension $K/\QQ.$ We don't lose anything because completely splitting in $K$ is equivalent to completely splitting in $M,$ so the set of residues$\pmod N$ is still applicable.</p>
+			<p>We show that $M\subseteq\QQ(\zeta_N).$ The way we relate this to prime-splitting is to note that this is equivalent to\[\op{Spl}(\QQ(\zeta_N)/\QQ)\subseteq\op{Spl}(M/\QQ)\]by Bauer's theorem. However, $\op{Spl}(\QQ(\zeta_N)/\QQ)=\{p:p\equiv1\pmod N\},$ so we need to show that all $1\pmod N$ primes split completely in $M.$ The key observation, then, is that prime-splitting in $M$ is determined by$\pmod N$ information, so we really just need to find a single $1\pmod N$ which splits completely in $M.$ But certainly some prime splits completely in the composite\[M\QQ(\zeta_N),\]so we see that there is a prime which splits completely in both $M$ and $\QQ(\zeta_N).$ (Let $M\QQ(\zeta_N)=\QQ(\alpha),$ and then the minimal polynomial of $\alpha$ covers infinitely many primes; Dedekind-Kummer finishes.) It follows this prime splits completely in $M$ and is $1\pmod N,$ so we are done here.</p>
+		</div>
+	</body>
+</html>

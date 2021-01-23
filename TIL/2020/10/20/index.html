@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to October)</a></p>
+		<div class="entry">
+			<h2>October 20th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned a proof for a slightly weaker version of Cohn's irreducibility criterion from <a href="https://mast.queensu.ca/~murty/murty.pdf">Murty</a>. Quite surprisingly, there is pretty much no number theory involved; it's pretty much entirely bounding. Fix our polynomial $f(x)=a_nx^n+\cdots+a_0\in\ZZ[x].$ The bounding constant of interest is\[H=\max_k|a_k/a_n|.\]We're not going to state the exact statement until the end of the proof.</p>
+			<p>We begin by showing that all roots $\alpha$ of $f$ satisfy $|\alpha|\le H+1.$ Note that $|\alpha|{\lt}1$ makes this immediate. Otherwise, $f(\alpha)=0$ implies\[\alpha^n=-\frac1{a_n}\left(a_{n-1}\alpha^{n-1}+\cdots+a_0\right),\]so\[|\alpha|^n=\left|\sum_{k=0}^{n-1}\frac{a_k}{a_n}\alpha^k\right|\le\sum_{k=0}^{n-1}H|\alpha|^k=H\cdot\frac{|\alpha|^n-1}{|\alpha|-1}{\lt}H\cdot\frac{|\alpha|^n}{|\alpha|-1}.\]Rearranging gives the desired $|\alpha|{\lt}H+1.$</p>
+			<p>To finish, assume (not for the sake of contradiction) $f(x)$ is irreducible, factored by $f(x)=g(x)h(x)$ with $g(x),h(x)\in\ZZ[x].$ We're going to introduce the exact criterion's condition later. We see that we may write $g(x)=\gamma\prod_k(x-\alpha_k)$ with $\gamma\ge1.$ Note roots $\alpha_k$ are also roots of $f(x),$ so for $x\ge H+2,$ we may bound\[|g(x)|=|\gamma|\prod_{k=1}^{\deg g}|x-\alpha_k|\ge\prod_{k=1}^{\deg g}(|x|-|\alpha_k|){\gt}1.\]The same holds for $h(x).$</p>
+			<p>We structured the proof this way so far in order to emphasize the lack of number theory we've done so far&mdash;everything has been bounding. Only now do we bring in any number theory. If we fix an integer $n\ge H+2,$ we note that $f(n)=g(n)h(n)$ makes a nontrivial factorization for $f(n)$ because $g(n),h(n){\gt}1$ from the above work. It follows that $f(n)$ must be composite. So we can say that $f(x)$ is irreducible if there exists an $n\ge H+2$ such that $f(n)$ is prime, and that's all.</p>
+			<p>It is conjectured that irreducible polynomials produce "a lot'' of primes (say, see the Bateman-Horn conjecture), even for these large (actually pretty small) values of $x,$ so what I like about this irreducibility criterion is that it actually does a pretty good job of deciding irreducibility. Namely, compute $H+2$ and then try a whole bunch of consecutive values of $x$ while testing for primes. For example, the polynomial $x^2-14x^2+9$ from two days ago has $H+2=16,$ and $20^4-14\cdot20^2+9=154409,$ which is prime. So irreducibility follows.</p>
+			<p>Notably, this is still not sharp because of polynomials like $x^2+x+2$ being irreducible but always even. But I'm still content that Cohn's criterion works for most sane polynomials. According to the Bunyakovsky conjecture, the condition we need to add is that $\gcd(f(n))=1$ over all $n,$ which is quickly checked by computing the greatest common divisor of the first few values.</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to December)</a></p>
+		<div class="entry">
+			<h2>December 30th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned more formally about proving propositions as types. The idea is that we can "prove'' a proposition by exhibiting an element which witnesses to a type which communicates the proposition. The idea is a bit abstract. Anyways, here is the table of translations.\[\begin{array}{c|c}    \text{Logic} & \text{Type theory} \\    \hline    0 & \text{False} \\    1 & \text{True} \\    A\land B & A\times B \\    A\lor B & A+B \\    A\to B & A\to B \\    A\leftrightarrow B & (A\to B)\times(B\to A) \\    \lnot A & A\to0 \\    \hline    \forall x:A,\,P(x) & \prod_{x:A}P(x) \\    \exists x:A,\,P(x) & \sum_{x:A}P(x)\end{array}\]Many of these make some intuitive sense. For example, in type theory, $A\land B$ should hold if and only if we can exhibit a witness of both $A$ and $B.$ So our witness for $A\land B$ should be the ordered pair of the witnesses, which would be anything in $A\times B.$ Similarly, a witness of $A\lor B$ is something in $A$ or $B,$ which witnesses exactly $A+B.$ The $\forall$ and $\exists$ statements are similar.</p>
+			<p>Somewhat awkward (but nice) is the handling of $A\to B.$ Essentially, we're saying that $A$ implies $B$ if and only if exhibiting a witness of $A$ lets us exhibit a witness to $B.$ Well, that only happens (in type theory) if we can exhibit the exact function $A\to B$ taking witnesses of $A$ to $B.$</p>
+			<p>Let's see a proof. Let's show\[((A+B)\to0)\to(A\to0)\times(B\to0).\]Logically, this reads, $\lnot(A+B)\to\lnot A\land\lnot B,$ which is one of de Morgan's Laws. To "prove'' this statement, we just have to exhibit a function of the above type.</p>
+			<p>We begin with a logical proof, and we'll translate it to type theory. We first show $\lnot A.$ Well suppose for the sake of contradiction $A.$ Then $A+B,$ which is a contradiction by hypothesis. We second show $\lnot B.$ Well suppose for the sake of contradiction $B.$ Then $A+B,$ which is a contradiction by hypothesis. So we know $\lnot A$ and $\lnot B,$ from which $\lnot A\land\lnot B$ follows.</p>
+			<p>Now for type theory. The logical proof begins by showing $\lnot A,$ which we means we start by wanting a function $f_A:A\to0.$ Then we remark we are given $f:A+B\to0,$ from which $A\to0$ should follow. To write this out in type theory, we think categorically, and note\[A\stackrel{\op{inl}}\longrightarrow A+B\stackrel f\longrightarrow0\]will do the trick. That is, we can set $f_A=f\circ\op{inl}:A\to0,$ as desired.</p>
+			<p>Next we do similar for $\lnot B.$ We need to inhabit $B\to0,$ but we already have $A+B\to0,$ so\[A\stackrel{\op{inr}}\longrightarrow A+B\stackrel f\longrightarrow0\]will do the trick. That is, we can set $f_B=f\circ\op{inr}:B\to0,$ as desired.</p>
+			<p>The proof finishes by combining $\lnot A$ and $\lnot B$ to get $\lnot A\land\lnot B.$ In type theory, this means we need to combine our $f_A:A\to0$ and $f_B:B\to0$ to exhibit a witness in $A\times B\to0.$ For this, we can simply say\[(f_A,f_B):(A\to0)\times(B\to0)\]is such an ordered pair.</p>
+			<p>The proof is now finished, but it is somewhat satisfying to see it put together. Namely, we claim that\[g\equiv\lambda f.\big(\lambda(a:A).f\circ\op{inl}(a),\lambda(b:B).f\circ\op{inr}(b)\big):((A+B)\to0)\to(A\to0)\times(B\to0).\]is our witness. It suffices to show that, given $f:((A+B)\to0),$ $g(f):(A\to0)\times(B\to0).$ For this, because ordered pairs are primitive, we just need to show that each component function has the correct type. Well,\[\lambda a.f\circ\op{inl}(a):A\to0\]because it takes $a:A$ to $\op{inl}(a):A+B$ to $f(\op{inl}(a)):0,$ as needed. Similar holds for the $B\to0$ component, so we're done here.</p>
+		</div>
+	</body>
+</html>

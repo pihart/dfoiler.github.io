@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to October)</a></p>
+		<div class="entry">
+			<h2>October 27th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned a proof (after having skimmed one a few days ago) that a Galois extension is completely determined by its completely split primes. For a Galois extension $K/\QQ$ (or $L/K$; the proof extends), let $\op{Spl}(K/\QQ)$ be the set of primes which split completely. </p>
+			<p>Now, the claim we show is that for two Galois extensions $K/\QQ$ and $L/\QQ,$ $K$ is a subfield of $L$ if and only if more primes completely split in $K$ than in $L,$ in the sense that $\op{Spl}(L/\QQ)\subseteq\op{Spl}(K/\QQ).$ Indeed, if $K$ is a subfield of $L,$ then a prime splitting completely in $L$ will split completely in $K$ for free because the ramification and inertial information are multiplicative in towers and so upper-bounded by $1.$</p>
+			<p>The converse is harder. The setup is to consider the field composite $LK,$ and the main idea is to use our connection between completely splitting primes and field invariants&mdash;namely, the Dirichlet density of completely split primes is the reciprocal of the degree. In symbols,\[\frac1{[LK:\QQ]}=\lim_{s\to1^+}\dfrac{\displaystyle\sum_{p\in\op{Spl}(LK/\QQ)}\frac1{p^s}}{\displaystyle\sum_p\frac1{p^s}}\]from our discussion yesterday. However, a prime splits completely in $LK$ if and only if it splits completely in both $L$ and $K$; we show the converse later, but the forward direction is discussed above. So the fact that the primes which split completely in $L$ also split completely in $K$ tells us that we only care about the primes which split completely in $L.$ Namely, $\op{Spl}(LK/\QQ)=\op{Spl}(L/\QQ),$ which implies\[\frac1{[LK:\QQ]}=\lim_{s\to1^+}\dfrac{\displaystyle\sum_{p\in\op{Spl}(LK/\QQ)}\frac1{p^s}}{\displaystyle\sum_p\frac1{p^s}}=\lim_{s\to1^+}\dfrac{\displaystyle\sum_{p\in\op{Spl}(L/\QQ)}\frac1{p^s}}{\displaystyle\sum_p\frac1{p^s}}=\frac1{[L:\QQ]}.\]To finish, we write\[[LK:L]=\frac{[LK:\QQ]}{[L:\QQ]}=1,\]so $L=LK,$ and $K$ is indeed a subfield of $L.$</p>
+			<p>To get the result we want, it follows that if $\op{Spl}(K/\QQ)=\op{Spl}(L/\QQ),$ then each is a subset of the other, so each of $K$ and $L$ are a subfield of the other, so $L=K.$ This is the statement that the set of completely split primes entirely determines the field extension, which is equivalent to the statement $K\mapsto\op{Spl}(K/\QQ)$ is an injective function, as shown.</p>
+			<p>I guess I should show that if a prime splits completely in $L$ and $K,$ then it also splits completely in the composite $LK.$ The trick is to take $M$ a normal extension containing $LK$ and then note that the decomposition field of a certain prime contains $L$ and $K$ (because the prime splits completely) and so contains $LK,$ implying that the prime splits completely. In particular, we are using the characterization that the decomposition field is the largest intermediate field such that the prime $\mf p/p$ has $e(\mf p/p)=f(\mf p/p)=1.$</p>
+		</div>
+	</body>
+</html>

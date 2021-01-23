@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to September)</a></p>
+		<div class="entry">
+			<h2>September 18th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned an example a proof by universal properties, by proving that localization commutes with arbitrary direct sums. We show this here, with many pretty commutative diagrams.</p>
+			<p>For our first proof, we start with the obvious mappings as follows.</p>
+			<p>( there used to be an image here )</p>
+			<p>The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.</p>
+			<p>( there used to be an image here )</p>
+			<p>We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+			<p>( there used to be an image here )</p>
+			<p>Indeed, re-expand out the diagram as before.</p>
+			<p>( there used to be an image here )</p>
+			<p>Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+			<p>( there used to be an image here )</p>
+			<p>So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+			<p>( there used to be an image here )</p>
+			<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+			<p>( there used to be an image here )</p>
+			<p></p>
+			<p>We now provide a second proof. Again we start with the obvious mappings.</p>
+			<p>( there used to be an image here )</p>
+			<p>Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.</p>
+			<p>( there used to be an image here )</p>
+			<p>We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.</p>
+			<p>( there used to be an image here )</p>
+			<p>However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.</p>
+			<p>( there used to be an image here )</p>
+			<p>But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.</p>
+			<p>( there used to be an image here )</p>
+			<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+			<p>( there used to be an image here )</p>
+			<p>The pretty pictures are pretty.</p>
+		</div>
+	</body>
+</html>

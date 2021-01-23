@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<!-- http://docs.mathjax.org/en/latest/ -->
+		<script>
+			MathJax = {
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex: {
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {
+						'[+]': ['textmacros']
+					}
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to October)</a></p>
+		<div class="entry">
+			<h2>October 31st</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned the definition of Pr\"ufer groups. I think the most natural construction is as\[\ZZ\left[\frac1p\right]/\ZZ=\left\{\left\{\frac a{p^n}\right\}:a,n\in\ZZ\right\}=\bigcup_{n=0}^\infty\left\{\sum_{k=0}^n\frac{a_k}{p^k}:a_k\subseteq[0,p)\cap\ZZ\right\}.\]This definition lets us also say that this is $\QQ_p/\ZZ_p$ immediately, which is perhaps a more natural definition. Take $\exp(2\pi i\bullet)$ of this thing, we can say that this group is also isomorphic to\[\left\{\zeta_{p^n}^k:k,n\in\ZZ\right\}.\]With respect to category theory, we note that we have the embeddings $\ZZ/p^n\ZZ\to\ZZ/p^{n+1}\ZZ,$ so we can define $\QQ_p/\ZZ_p$ as\[\varinjlim\ZZ/p^\bullet\ZZ.\]This is seen most obviously by viewing this as $\ZZ[1/p]/\ZZ.$</p>
+			<p>Wikipedia defines these things as the unique $p$-group for which each element has exactly $p$ $p$th roots. This is indeed true of the group because\[\frac a{p^n}=p\cdot\frac{a+kp^n}{p^{n+1}}\]for any $k,$ of which there are $p$ options. I don't know why this would uniquely define a group; it's not even obvious to me why this property implies that the group is abelian.</p>
+		</div>
+	</body>
+</html>
