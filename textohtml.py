@@ -66,9 +66,8 @@ def process_img(tex):
 			f = open(filename+'.tex', 'w')
 			f.write(img)
 			f.close()
-			# Compile
-			os.system('latex -interaction nonstopmode \
-				shell-escape '+filename+'.tex > /dev/null 2>&1')
+			# Compile; this hangs on error
+			os.system('latex -shell-escape '+filename+'.tex > /dev/null 2>&1')
 		elif '\\begin{asy}' in img:
 			print('processing asy : ' + str(i) + '/' + str(len(parts)-1))
 			filename = 'img'+str(i)
