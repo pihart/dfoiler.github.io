@@ -4,24 +4,38 @@
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
 		<link rel=icon href="../../../../p.ico">
-		<!-- http://docs.mathjax.org/en/latest/ -->
-		<script>
-			MathJax = {
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
 				loader: {
 					load: ['[tex]/textmacros']
 				},
-				tex: {
+				tex2jax: {
+					// https://tex.stackexchange.com/q/27633
 					inlineMath: [ ['$','$'] ],
 					processEscapes: true,
-					packages: {
-						'[+]': ['textmacros']
-					}
+					packages: {'[+]': ['textmacros']}
+				},
+				SVG: {
+					linebreaks: { automatic: true }
 				}
+			});
+			window.addEventListener('resize', MJrerender);
+			// https://stackoverflow.com/a/56106854
+			let t = -1;
+			let delay = 1000;
+			function MJrerender() {
+				if (t >= 0) {
+					// If we are still waiting, user is still resizing
+					// postpone the action further!
+					window.clearTimeout(t);
+				}
+				t = window.setTimeout(function() {
+					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
+					t = -1; // Reset the handle
+				}, delay);
 			};
 		</script>
-		<script type="text/javascript" id="MathJax-script" async
-			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
 		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
