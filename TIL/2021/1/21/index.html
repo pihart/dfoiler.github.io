@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex2jax: {
+					// https://tex.stackexchange.com/q/27633
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {'[+]': ['textmacros']}
+				},
+				SVG: {
+					linebreaks: { automatic: true }
+				}
+			});
+			window.addEventListener('resize', MJrerender);
+			// https://stackoverflow.com/a/56106854
+			let t = -1;
+			let delay = 1000;
+			function MJrerender() {
+				if (t >= 0) {
+					// If we are still waiting, user is still resizing
+					// postpone the action further!
+					window.clearTimeout(t);
+				}
+				t = window.setTimeout(function() {
+					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
+					t = -1; // Reset the handle
+				}, delay);
+			};
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to January)</a></p>
+		<div class="entry">
+			<h2>January 21st</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned an alternative proof of Wilson's theorem, from group actions. The main result is something called the $p$-group fixed point theorem, from <a href="https://qchu.wordpress.com/2013/07/09/the-p-group-fixed-point-theorem/">here</a>. Namely, if a finite $p$-group $G$ acts on a set $X$ then the set of fixed points $X^G$ satisfies\[|X|\equiv\left|X^G\right|\pmod p.\]This follows directly from the class equation. Quickly, for $x\in G,$ we can biject cosets in $G/\op{Stab}_x$ with elements in the orbit $Gx$ (explicitly, $g\op{Stab}_x\mapsto gx$), we see that\[|X|=\sum_{\text{orbits }Gx}|Gx|=\sum_{\text{orbits }Gx}[G:\op{Stab}_x]=\sum_{\text{orbits }Gx}\frac{|G|}{|\op{Stab}_x|}.\]Now, $|\op{Stab}_x|$ divides $|G|$ and is therefore a power of $p,$ so $|G|/|\op{Stab}_x|$ is as well. So this is divisible by $p$ unless it is equal to $1,$ in which case $|Gx|=1$ exactly describes $x\in X^G,$ so $1\cdot\left|X^G\right|$ exactly measures the perturbations$\pmod p.$</p>
+			<p>Anyways, let's kill Wilson's theorem with our new black magic. We need to talk about $(p-1)!\pmod p,$ so we would like to make a set $X$ with size $(p-1)!.$ We can get a $p!$ by taking permutations of $\FF_p,$ but to get down to $(p-1)!,$ we need to divide out that factor of $p.$ The way we do this is by identifying the permutations\[(a_1,\ldots,a_p)\sim(a_1+k,\ldots,a_p+k)\]for any $(a_1,\ldots,a_p)\in S_p$ and $k\in\FF_p.$ Here the notation $(a_1,\ldots,a_p)$ denotes the permutation $n\mapsto a_n.$ So we define\[X=S_p/\sim,\]where $\sim$ is defined as above. One way to look at this is as fixing the last element: there is exactly one $k$ which will take $a_p=0,$ for example. However, we would like to make a $p$-group act on this thing, so having $p$-tuples makes it natural to make $G:=\ZZ/p\ZZ$ act on $X$ by shifts, like\[[n]_p\cdot(a_1,\ldots,a_p)=(a_{1+n},\ldots,a_{p+n}),\]where indices are taken$\pmod p.$</p>
+			<p>It remains to compute the number of fixed points of this action. Well, a permutation will be fixed as long as\[(a_1,\ldots,a_p)\sim(a_{1+n},\ldots,a_{p+n})\]for each $n\in\ZZ/p\ZZ.$ In fact, because $\ZZ/p\ZZ$ is cyclic, it really suffices to check $n=1,$ so we need a constant $k$ such that\[(a_1,\ldots,a_p)=(a_2+k,\ldots,a_1+k,a_p+k).\]That is, we need $a_\bullet\equiv a_{\bullet+1}+k\pmod p.$ To count the number of such tuples, we note that all tuples are equivalent to one with $a_1=0$ (explicitly, $k=-a_1$), in which case these look like $(0,k,2k,\ldots,(p-1)k).$ Because these tuples need to contain distinct elements, there are only $p-1$ options for $k.$ (All of these work because multiplication by $k$ is a bijection.) Thus, we have $\left|X^G\right|=p-1$ fixed points, which implies\[(p-1)!\equiv(p-1)\equiv-1\pmod p.\]This is Wilson's theorem, so we are done here.</p>
+		</div>
+	</body>
+</html>

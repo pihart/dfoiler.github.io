@@ -533,3 +533,281 @@ As an aside, it doesn't feel immediately clear that the distribution of prime id
 In both cases, the techniques used to show one statement are not easily applicable to the other, and amusingly, in both cases, enough machinery is still enough to make the statement on primes appear clear. I hope the above statement is clear, assuming enough class field theory---it's really ``just a computation.'' As for Dirichlet's theorem, we can remark that it's a trivial application of Chebotarev to $\QQ(\zeta_n),$ for
 \[p\equiv a\pmod n\iff\left(\frac{\QQ(\zeta_n)/\QQ}p\right)=\left(\sigma:\zeta_n\mapsto\zeta_n^a\right)\in\op{Gal}(\QQ(\zeta_n)/\QQ),\]
 the latter of which occurs with density $\frac1n$ from Chebotarev. This is, similarly, ``just a computation'' with enough machinery. Namely, we didn't even have to talk about $L$ functions, though they are hiding in the Chebotarev.
+
+\subsubsection{January 16th}
+Today I learned the Poisson summation formula, from \href{https://kconrad.math.uconn.edu/blurbs/grouptheory/charthy.pdf}{Keith Conrad}. Assume $f:\RR\to\CC$ is a sufficiently nice function, which is my way of hand-waving out convergence issues. For example, we assume that $f$ has a Fourier transform denoted
+\[\hat f(y)=\int_\RR f(x)e^{-2\pi iy}\,dx.\]
+Then the statement of the Poisson summation formula is that
+\[\sum_{n\in\ZZ}f(n)=\sum_{n\in\ZZ}\hat f(n).\]
+The existence of the left-hand sum is guaranteed somewhat from the existence of the Fourier transform, but I'm not sure how to guarantee the right-hand side. Frankly, it doesn't matter too much to me.
+
+The main trick here is to make the left-hand summation periodic so that we can write it as a Fourier series. Explicitly, fix
+\[F(x)=\sum_{n\in\ZZ}f(x+n)\]
+so that $F(x)=F(x+1).$ It follows that we can write
+\[F(x)=\sum_{n\in\ZZ}c_ne^{2\pi inx},\]
+and our coefficients are
+\[c_n=\left\langle F(x),e^{2\pi inx}\right\rangle=\int_0^1F(x)e^{-2\pi inx}\,dx.\]
+Expanding out $F$ again, we see that
+\[c_n=\int_0^1\left(\sum_{n\in\ZZ}f(x+n)\right)e^{-2\pi inx}\,dx=\sum_{n\in\ZZ}\int_0^1f(x+n)e^{2\pi inx}\,dx.\]
+Sending $x+n\mapsto x$ collapses this down to
+\[c_n=\sum_{n\in\ZZ}\int_n^{n+1}f(x)e^{2\pi inx}\,dx=\int_\RR f(x)e^{2\pi inx}\,dx,\]
+which is just $c_n=\hat f(n).$ Bringing it all together, we have
+\[\sum_{n\in\ZZ}f(x+n)=F(x)=\sum_{n\in\ZZ}c_ne^{2\pi inx}=\sum_{n\in\ZZ}\hat f(n)e^{2\pi inx}.\]
+Taking $x=0$ in the above recovers the Poisson summation formula.
+
+I don't yet know any applications of the Poisson summation formula, but I suppose I'm moving towards the functional equation for $\zeta$ sometime in my future. Roughly speaking, it would appear that there might be cases in which the Fourier transform is easier to understand or easier to bound (which isn't at all obvious to me), and this is why this is useful.
+
+\subsubsection{January 17th}
+Today I learned a strengthening of Bauer's theorem, from \href{https://kconrad.math.uconn.edu/blurbs/gradnumthy/chebappn.pdf}{Keith Conrad}. For $K/\QQ$ a number field and extensions $L_1/K$ and $L_2/K$ with Galois closure $M/K,$ we have $\op{Spl}(L_1/K)=\op{Spl}(L_2/K)$ (up to a set of primes of density $0$) if and only if $L_2\subseteq L_1$ and
+\[\bigcup_\sigma\sigma\op{Gal}(L_1/K)\sigma^{-1}=\op{Gal}(M/L_2).\]
+\todo{finish this}
+
+\subsubsection{January 18th}
+Today I learned an alternative explanation for the decimal expansion of fractions like $\frac1{9801},$ from \href{https://math.stackexchange.com/a/102684/869257}{here}. I'm used to evaluating the arithmetico-geometric series $\sum nx^{n+1}$ directly, but in fact it is in general true that
+\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{n=1}^\infty nx^{n+1}.\]
+There are a variety of ways to see this, one of which is directly computing the right-hand side by setting $S=\sum_{n=1}^\infty nx^{n+1}$ and seeing
+\[\frac1xS-S=\sum_{n=1}^\infty x^n=\frac x{1-x}.\]
+This rearranges to $S=\left(\frac x{1-x}\right)^2,$ which is what we wanted after expanding the geometric series. However, presenting this as that single equation makes it much easier to say something like
+\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{a=1}^\infty\sum_{b=1}^\infty x^ax^b=\sum_{n=2}^\infty\left(\sum_{a+b=2}1\right)x^n.\]
+This quickly turns into our desired $S$ after shifting the index of the sum.
+
+Anyways, from this we see
+\[\sum_{n=1}^\infty\frac n{100^{n+1}}=\left(\sum_{n=1}^\infty\frac1{100}\right)^2=\frac1{99^2}.\]
+This is how $\frac1{9801}$ is expanded. As an aside, I guess I should explain why $98$ is skipped in the decimal expansion. Well, consider the following point in the sum:
+\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{98}{100^{99}}+\frac{99}{100^{100}}+\frac{100}{100^{101}}+\cdots.\]
+The $100$ is in fact too big for its position, so its $100$ gets shifted over to the previous $99,$ collapsing things into
+\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{99}{100^{99}}+\frac{00}{100^{100}}+\frac{00}{100^{101}}+\cdots.\]
+So in fact the $98$ is present, but it was turned into a $99$ by the carry, which shifted everything one over. In fact, all of the $100$s shift one over: the $100$ was turned into $00$ in the above, but the $101$ next to it makes the $00$ into $01.$ Then $101$ turns to $02,$ and so on. This pattern continues into the familiar decimal expansion
+\[\frac1{9801}=0.\overline{000102\cdots969799}.\]
+I think a formal proof would induct on the $100$s, but I don't feel like doing that now.
+
+\subsubsection{January 19th}
+Today I learn an application of the (truncated) Poisson summation formula to compute the quadratic Gauss sum. We begin by presenting the truncated Poisson summation formula. Fix $f:\RR\to\CC$ satisfying some boundedness conditions to give is a Fourier series. Dirichlet's theorem on representing functions by a Fourier series on $f:[0,1]\to\CC$ says that
+\[\frac{f(0^-)+f(1^+)}2=\sum_{n=-\infty}^\infty\int_0^1f(x)e^{-2\pi inx}\,dx.\]
+That is, our Fourier series represents the average of the limits approaching the point for a piecewise continuous function. I don't know the proof of this, but Fourier analysis is sad. Running the above with $f(x+k)$ for integers $k$ reveals
+\[\frac{f(k^-)+f(k+1^+)}2=\sum_{n=-\infty}^\infty\int_0^1f(x+k)e^{-2\pi ix}\,dx=\sum_{n=-\infty}^\infty\int_k^{k+1}f(x)e^{-2\pi inx}\,dx,\]
+so summing up to $m$ implies that
+\[\frac12f(0)+f(1)+\cdots+f(k-1)+\frac12f(m)=\sum_{n=-\infty}^\infty\int_0^mf(x)e^{-2\pi inx}\,dx.\]
+This is the truncated Poisson summation formula. We remark that adding the flipped sum with $m\mapsto-m$ and then sending $m\to\infty$ recovers the original Poisson summation formula.
+
+This is a different proof than the one we had before, but it has the advantage of dealing with finite sum. This is important because the quadratic Gauss sum is also finite. In particular, taking $f(k)=e^{2\pi ik^2/m}$ makes the summation read
+\[g_m=\sum_{k=0}^{m-1}e^{2\pi ik^2/m}=\frac12f(0)+f(1)+\cdots+f(m-1)+\frac12f(m).\]
+It follows that
+\[g_m=\sum_{n=-\infty}^\infty\int_0^me^{2\pi ix^2/m}e^{-2\pi inx}\,dx.\]
+From here, the proof is computation. Completing the square, this is
+\[g_m=\sum_{n=-\infty}^\infty e^{-2\pi imn^2/4}\int_0^me^{2\pi i(x-mn/2)^2/m}\,dx.\]
+In particular, we may shift the integral to
+\[g_m=\sum_{n=-\infty}^\infty e^{-2\pi imn^2/4}\int_{mn/2}^{m(n+2)/2}e^{2\pi ix^2/m}\,dx.\]
+We would like to use the sum to collapse the integral into an infinite one, but this requires some care due to the scale factor $e^{-2\pi imn^2/4}.$ Well, for $n$ even, $mn^2/4$ is an integer, so the scale factor is just $1.$ Thus,
+\[\sum_{\substack{n=-\infty\\n\text{ even}}}^\infty e^{-2\pi imn^2/4}\int_{mn/2}^{m(n+2)/2}e^{2\pi ix^2/m}\,dx=\int_{-\infty}^\infty e^{2\pi ix^2/m}\,dx.\]
+And for $n$ odd, $n^2\equiv1\pmod4,$ so the scale factor comes out to $i^{-m}.$ Thus,
+\[\sum_{\substack{n=-\infty\\n\text{ odd}}}^\infty e^{-2\pi imn^2/4}\int_{mn/2}^{m(n+2)/2}e^{2\pi ix^2/m}\,dx=i^{-m}\int_{-\infty}^\infty e^{2\pi ix^2/m}\,dx.\]
+It follows that
+\[g_m=\left(1+i^{-m}\right)\int_{-\infty}^\infty e^{2\pi ix^2/m}\,dx=\left(1+i^{-m}\right)\sqrt m\int_{-\infty}^\infty e^{2\pi ix^2}\,dx.\]
+This integral is not easy to evaluate, but it isn't dependent on $m,$ so we can evaluate it by taking $m=1.$ Here $g_m=1,$ so the integral is $\frac1{1+i^{-1}}=\frac{1+i}2.$ Thus,
+\[g_m=\frac{\left(1+i^{-m}\right)(1+i)}2\sqrt m.\]
+Because $i^m$ only depends on $m\pmod4,$ we might as well do the casework, which gives
+\[\boxed{g_m=\begin{cases}
+    (1+i)\sqrt m & m\equiv0\pmod4, \\
+    \sqrt m & m\equiv1\pmod4, \\
+    0 & m\equiv2\pmod4, \\
+    i\sqrt m & m\equiv3\pmod4.
+\end{cases}}\]
+This finishes the proof.
+
+I would be remiss if I didn't prove quadratic reciprocity from this. As usual, for $p$ an odd prime and $a$ not divisible by $p,$ define
+\[g_p(a)=\sum_{k=0}^{p-1}\left(\frac kp\right)e^{2\pi iak/p}.\]
+Adding in $\sum e^{2\pi ian/p}=0$ to this sum, we find that
+\[g_p(a)=\sum_{k=0}^{p-1}\left(1+\left(\frac kp\right)\right)e^{2\pi iak/p}=\sum_{k=0}^{p-1}e^{2\pi iak^2/p}\]
+because $1+\left(\frac kp\right)$ is $2$ for nonzero squares, $1$ for zero, and $0$ otherwise. (Just count the number of times an element $k^2\pmod p$ appears in both sums.) In particular, $g_p(1)=g_p,$ which we evaluated above. However,
+\[\left(\frac ap\right)g_p(a)=\sum_{k=0}^{p-1}\left(\frac{ak}p\right)e^{2\pi iak/p}=g_p(1).\]
+To finish, we evaluate $g_{pq}$ twice, which is the main character of this story. One way is as above. Alternatively, we can use the Chinese remainder theorem to give a bijection $\ZZ/p\ZZ\times\ZZ/q\ZZ\to\ZZ/(pq)\ZZ$ by $(x,y)\mapsto xq+yp.$ (I haven't seen this before, but it is bijective.) It follows
+\[g_{pq}=\sum_{x=0}^{p-1}\sum_{y=0}^{q-1}e^{2\pi i(xp+yq)^2/pq}.\]
+We can expand this out because the cross term $2xy\cdot pq$ will die to periodicity. This is
+\[g_{pq}=\left(\sum_{x=0}^{p-1}e^{2\pi ipx^2/q}\right)\left(\sum_{y=0}^{q-1}e^{2\pi iqy^2/p}\right)=g_q(p)g_p(q).\]
+It follows that
+\[\left(\frac pq\right)\left(\frac qp\right)=\frac{g_q(p)g_p(q)}{g_qg_p}=\frac{g_{pq}}{g_pg_q}.\]
+Plugging in our evaluation of $g_\bullet$ from above recovers quadratic reciprocity.
+
+\subsubsection{January 20th}
+Today I learned an extension of the information-theoretic proof of the infinitude of primes, from \href{https://qchu.wordpress.com/2009/09/02/some-remarks-on-the-infinitude-of-primes/}{here}. The proof, roughly speaking, is that there aren't ``enough'' integers with all primes in a fixed set of $k$ primes named $p_1,\ldots,p_k.$ Essentially, if we can express all positive integers $n$ as
+\[n=\prod_{\ell=1}^kp_\ell^{\nu_\ell},\]
+then we can represent integers $n$ using the $k$-tuple $(\nu_1,\ldots,\nu_k),$ which only needs
+\[\sum_{\ell=1}^k\log(\nu_\ell)<\log n\]
+bits to represent, which is impossible.
+
+To push this idea further, we fix a bound $n\le N$ and bound the number of integers $n$ with primes in $\{p_1,\ldots,p_k\}.$ In this case, fixing one such prime $p_\bullet,$ we see
+\[2^{\nu_\bullet}\le p_\bullet^{\nu_\bullet}\le n=\prod_{\ell=1}^kp_\ell^{\nu_\ell}\le N.\]
+It follows that $\nu_\bullet\le\log_2N$ for each $p_\bullet.$ Combining this for all $k$ primes, there are no more than $(\log_2N)^k$ total numbers which can be represented in this way. We remark that the inequality
+\[(\log_2N)^k<N\]
+for $N\to\infty$ is our proof of the infinitude of primes.
+
+However, this provides a strange contrapositive of our statement. If we have any infinite sequence of positive integers $a_1,a_2,\ldots$ such that, for a bound $N,$ there are more than $(\log_2N)^k$ terms of the sequence less than $N,$ then our sequence represents more than $k$ primes. Quite simply, there are too many integers to be represented by any fixed set of $k$ primes. For concreteness, let's say our sequence is increasing so that we can set $N=a_n,$ from which we see
+\[(\log_2a_n)^k<n\]
+is enough to give more than $k$ primes. Rearranging, this bound is saying that
+\[a_n<2^{\sqrt[k]n}\]
+gives more than $k$ primes.
+
+Adjusting for aesthetics, this implies that if an increasing sequence of positive integers $a_1,a_2,\ldots$ is $o\big(2^{\sqrt[k]n}\big)$ for any positive integer $k,$ then our sequence represents infinitely many primes. Because $2^{1/k}\to1^+$ as $k\to\infty,$ we might as well say that if our sequence of positive integers $a_1,a_2,\ldots$ is $o\left(\alpha^n\right)$ for any $\alpha>1,$ then our sequence represents infinitely many primes. Of course, the argument is a bit stronger than this, but this is aesthetically nice.
+
+So, for example, $a_n=P(n)$ for any polynomial $P$ will suffice. This suggests that polynomials represent infinitely many primes, not because of any intrinsic property of polynomials, but because they grow too slowly. They give too many integers to represent the relatively sparse set of positive integers with only a fixed set of prime factors. This is somewhat remarkable because I'm used to doing the Euclidean proof by
+\[a\equiv b\pmod p\implies P(a)\equiv P(b)\pmod p,\]
+but this structure is technically unnecessary.
+
+\subsubsection{January 21st}
+Today I learned an alternative proof of Wilson's theorem, from group actions. The main result is something called the $p$-group fixed point theorem, from \href{https://qchu.wordpress.com/2013/07/09/the-p-group-fixed-point-theorem/}{here}. Namely, if a finite $p$-group $G$ acts on a set $X$ then the set of fixed points $X^G$ satisfies
+\[|X|\equiv\left|X^G\right|\pmod p.\]
+This follows directly from the class equation. Quickly, for $x\in G,$ we can biject cosets in $G/\op{Stab}_x$ with elements in the orbit $Gx$ (explicitly, $g\op{Stab}_x\mapsto gx$), we see that
+\[|X|=\sum_{\text{orbits }Gx}|Gx|=\sum_{\text{orbits }Gx}[G:\op{Stab}_x]=\sum_{\text{orbits }Gx}\frac{|G|}{|\op{Stab}_x|}.\]
+Now, $|\op{Stab}_x|$ divides $|G|$ and is therefore a power of $p,$ so $|G|/|\op{Stab}_x|$ is as well. So this is divisible by $p$ unless it is equal to $1,$ in which case $|Gx|=1$ exactly describes $x\in X^G,$ so $1\cdot\left|X^G\right|$ exactly measures the perturbations$\pmod p.$
+
+Anyways, let's kill Wilson's theorem with our new black magic. We need to talk about $(p-1)!\pmod p,$ so we would like to make a set $X$ with size $(p-1)!.$ We can get a $p!$ by taking permutations of $\FF_p,$ but to get down to $(p-1)!,$ we need to divide out that factor of $p.$ The way we do this is by identifying the permutations
+\[(a_1,\ldots,a_p)\sim(a_1+k,\ldots,a_p+k)\]
+for any $(a_1,\ldots,a_p)\in S_p$ and $k\in\FF_p.$ Here the notation $(a_1,\ldots,a_p)$ denotes the permutation $n\mapsto a_n.$ So we define
+\[X=S_p/\sim,\]
+where $\sim$ is defined as above. One way to look at this is as fixing the last element: there is exactly one $k$ which will take $a_p=0,$ for example. However, we would like to make a $p$-group act on this thing, so having $p$-tuples makes it natural to make $G:=\ZZ/p\ZZ$ act on $X$ by shifts, like
+\[[n]_p\cdot(a_1,\ldots,a_p)=(a_{1+n},\ldots,a_{p+n}),\]
+where indices are taken$\pmod p.$
+
+It remains to compute the number of fixed points of this action. Well, a permutation will be fixed as long as
+\[(a_1,\ldots,a_p)\sim(a_{1+n},\ldots,a_{p+n})\]
+for each $n\in\ZZ/p\ZZ.$ In fact, because $\ZZ/p\ZZ$ is cyclic, it really suffices to check $n=1,$ so we need a constant $k$ such that
+\[(a_1,\ldots,a_p)=(a_2+k,\ldots,a_1+k,a_p+k).\]
+That is, we need $a_\bullet\equiv a_{\bullet+1}+k\pmod p.$ To count the number of such tuples, we note that all tuples are equivalent to one with $a_1=0$ (explicitly, $k=-a_1$), in which case these look like $(0,k,2k,\ldots,(p-1)k).$ Because these tuples need to contain distinct elements, there are only $p-1$ options for $k.$ (All of these work because multiplication by $k$ is a bijection.) Thus, we have $\left|X^G\right|=p-1$ fixed points, which implies
+\[(p-1)!\equiv(p-1)\equiv-1\pmod p.\]
+This is Wilson's theorem, so we are done here.
+
+\subsubsection{January 22nd}
+Today I learned some representation theory, from Artin 10.1.1: all representations of finite groups with dimension $1$ have image that is finite cyclic. Unpacking the definitions, we are provided a homomorphism $\rho$ taking
+\[\rho:G\to\op{GL}_1(\FF)\]
+for some finite group $G$ and field $\FF.$ We need to show that $\rho(G)$ is finite cyclic.
+
+The main step of the proof is to realize that $\op{GL}_1(\FF)\cong\FF^\times.$ For this we claim that
+\[(T:\FF\to\FF)\stackrel\varphi\longmapsto T(1)\]
+is an isomorphism. We run through the conditions.
+\begin{itemize}
+    \item Note $\varphi$ is well-defined because $T(1)\ne0,$ for this would imply $T(x)=xT(1)=0$ for any $x\in\FF,$ so $T$ would not be injective (or surjective).
+    \item We know $\varphi$ is homomorphic by direct computation: $(T\circ T')(1)=T(T'(1))=T'(1)\cdot T(1).$
+    \item Continuing, $\varphi$ is injective because $T(1)=T'(1)$ implies $T(x)=xT(1)=xT'(1)=T'(x)$ for any $x\in\FF,$ so $T=T'.$
+    \item We see $\varphi$ is surjective because, for any $c\in\FF,$ $x\mapsto cx$ is in $\op{GL}_1(\FF)$ (this can be checked manually). This automorphism satisfies $1\mapsto c.$
+\end{itemize}
+It follows that $\varphi$ is an isomorphism, so we're done here.
+
+From the above we see that we are really given a homomorphism $\rho:G\mapsto\FF^\times.$ Note that $\rho(G)$ is a finite subgroup of $\FF^\times,$ so we're really showing that finite subgroups of $\FF^\times$ are finite cyclic. With this transformed problem, we rename $\rho(G)$ to $G$ in order to be able to ignore $\rho.$ That is, $G\subseteq\FF^\times$ is a finite subgroup, and we want to show that $G$ is finite cyclic.
+
+There are a couple of ways to finish from here. The cheapest is that Artin always assumes that our base field is $\FF=\CC,$ in which case any finite subgroup of $\CC^\times$ is finite cyclic by roots-of-unity type arguments. For example, take $n=|G|,$ and we can say that
+\[G\subseteq\left\{x\in\FF^\times:x^n-1=0\right\}\]
+by Lagrange's theorem on groups. In fact, this is an equality because the right-hand side has at most $n$ elements by Lagrange's theorem on polynomials. But in $\CC^\times,$ we know that the right-hand side is
+\[\left\langle e^{2\pi i/n}\right\rangle.\]
+This can be checked by, say, noting that both sets have size $n$ and satisfy $x^n-1=0.$
+
+However, this can be done in significantly more generality, for what we want is true in any field. I might have seen this proof before, but I have since forgotten it. Anyways, we mimic the proof that finite fields have a multiplicative generator and borrow the finish from \href{https://math.stackexchange.com/a/335654/869257}{this post}. The main lemma we need is that for elements $g,h\in G,$ there exists an element whose multiplicative order which is the least common multiple of the orders of $g$ and $h.$
+
+This is somewhat obnoxious to show. We begin by claiming that if $a:=\ord(g)$ and $b:=\ord(h)$ are coprime, then $\ord(gh)=ab.$ Indeed, certainly $(gh)^{ab}=1.$ And in the other direction, if $(gh)^x=1,$ then
+\[1=(gh)^{ax}=h^{ax},\]
+so $b\mid ax,$ and $b\mid x.$ Similarly, $a\mid x,$ so $ab\mid x.$ It follows $ab$ really is our order. Now, to finish our lemma, we remove the condition that $a$ and $b$ are coprime. However, we remark that we can separate the primes in $a$ and $b$ with unique prime factorization by writing
+\[a_*=\prod_{\nu_p(a)\ge\nu_p(b)}p^{\nu_p(a)}\qquad\text{and}\qquad b_*=\prod_{\nu_p(b)>\nu_p(a)}p^{\nu_p(b)}.\]
+Namely, $a_*b_*=\lcm(a,b)$ while having $\gcd(a_*,b_*)=1$ because no prime factors are shared. So we only need to remark that $g^{a/a_*}$ will have order $a_*$ and $h^{b/b_*}$ will have order $b_*$ in order to assert an element of order $a_*b_*,$ which is what we wanted.
+
+To finish, we note that, because $G$ is finite, we may inductively say that there exists an element $g$ whose order $m$ is divisible by the order of all elements of $G.$ On one hand, $m\le|G|$ because $m$ is the order of some element of $G.$ On the other hand, every element of $G$ is the root of the polynomial
+\[x^m-1=0,\]
+so Lagrange's theorem on polynomials says that $|G|\le m.$ It follows that the order of $g$ is the full $m=|G|,$ so $G$ is finite cyclic. We remark here that this proof is really just the proof that every prime has a primitive root (via field theory), generalized.
+
+\subsubsection{January 23rd}
+Today I learned that a proof of Maschke’s Theorem: every representation of a finite group $\rho:G\to\op{GL}(V)$ can be decomposed into a direct sum of irreducible representations. (An irreducible representation is one that has no $G$-invariant subspaces.) The main claim is that $\rho$ preserves exists a positive-definite Hermitian form on $V$ preserved by $\rho(G)$; that is $\rho$ is always unitary for some form.
+
+This is somewhat clever. We remark that certainly some positive-definite Hermitian form $\{\bullet,\bullet\}$ on $V$ exists---for example, choose an arbitrary basis to write $V\cong\CC^n$ for dimension $n,$ and then use the induced Hermitian form from $\CC^n.$ For this, we ``average'' $\{\bullet,\bullet\}$ over $G,$ by writing
+\[\langle v,w\rangle=\frac1{|G|}\sum_{g\in G}\{\rho_gv,\rho_gw\}.\]
+We claim that this $\langle\bullet,\bullet\rangle$ is a positive-definite Hermitian form that is also $G$-invariant.
+\begin{itemize}
+    \item This is positive-definite because
+    \[\langle v,v\rangle=\frac1{|G|}\sum_{g\in G}\{\rho_gv,\rho_gv\}\ge0,\]
+    inherited from the positive-definite nature of $\{\bullet,\bullet\}.$ Additionally, equality holds if and only if $v=0$ because $\rho_gv=0$ is equivalent to $v=0.$ (In particular, $\rho_g\in\op{GL}(V)$ is invertible.)
+    \item This is bilinear because
+    \[\langle au+bv,w\rangle=\frac1{|G|}\sum_{g\in G}\{a\rho_gv+b\rho_gv,\rho_gw\}=a\langle u,w\rangle+b\langle v,w\rangle\]
+    after expanding out and distributing $\{\bullet,\bullet\}.$
+    \item This is Hermitian because
+    \[\langle w,v\rangle=\frac1{|G|}\sum_{g\in G}\{\rho_gw,\rho_gv\}=\overline{\langle v,w\rangle},\]
+    again by inheriting $\{\bullet,\bullet\}$ being Hermitian.
+    \item Finally, this is $G$-invariant because for any $h\in G,$ we have that $g\mapsto gh$ is a bijection over $G$ because of left-cancellation. Thus, we may write
+    \[\langle\rho_hv,\rho_hw\rangle=\frac1{|G|}\sum_{g\in G}\{\rho_{gh}v,\rho_{gh}w\}=\frac1{|G|}\sum_{g\in G}\{\rho_gv,\rho_gw\}=\langle v,w\rangle\]
+    by re-indexing the sum. We have used the fact that $\rho_\bullet$ is a homomorphism.
+\end{itemize}
+We remark that this means any finite subgroup of $\op{GL}(V)$---those that are the images of some representation---are made of unitary transformations, up to a change of basis.
+
+Now that we know our representation gives unitary transformations, it's not terribly difficult to give our decomposition; equip $V$ with a fixed form $\langle\bullet,\bullet\rangle$ to make $\rho$ unitary. Decomposition is done inductively: the claim is that if $\rho$ has a $G$-invariant subspace named $W,$ then $\rho$ is the direct sum of its restriction to $W$ and its restriction to the orthogonal complement $W^\perp$ of $W.$ In this way, we can continually subdivide $\rho$ into direct sums until no parts have a $G$-invariant subspace.
+
+Quickly, we recall that
+\[W^\perp=\{v\in V:\langle v,w\rangle=0\text{ for all }w\in W\}.\]
+It is true that $V=W\oplus W^\perp.$ For example, if we build an orthonormal basis $\{w_1,\ldots,w_m\}$ for $W$ (say, using Gram--Schmidt), then we can look at
+\[v-\sum_{k=1}^m\langle v,w_k\rangle w_k\in W^\perp.\]
+Indeed, for any basis vector $w_\ell,$ most of the dot products $\langle w_k,w_\ell\rangle$ are $0,$ unless $w_\ell=w_k,$ in which case $\langle v,w_\ell\rangle$ will properly cancel with it. A basis is probably unnecessary for this result, but whatever.
+
+We note also that the restriction of $\rho$ to $W^\perp$ makes sense. Indeed, for $v\in W^\perp$ and any $w\in W,$ we have that
+\[\langle\rho_\bullet v,w\rangle=\langle v,\rho_\bullet^{-1}w\rangle=0\]
+because $\rho_\bullet^{-1}w\in W.$ Thus, $W^\perp$ is also $G$-invariant, so we may restrict $\rho$ to $W^\perp.$
+
+Thus, because $V=W\oplus W^\perp,$ and $\rho$ restricts properly to each subspace, we may say that $\rho$ is the direct sum of its restrictions, say $\rho^\parallel$ to $W$ and $\rho^\perp$ to $W^\perp.$ To show how this works, we note that for any $v\in V,$ we can write $v=w^\parallel+w^\perp$ for $w^\parallel\in W$ and $w^\perp\in W^\perp,$ so
+\[\rho_\bullet v=\rho_\bullet w^\parallel+\rho_\bullet w^\perp=\rho^\parallel_\bullet w^\parallel+\rho^\perp_\bullet w^\perp,\]
+which is what we wanted. This completes the proof of Maschke’s Theorem.
+
+\subsubsection{January 24th}
+Today I learned the Ping-pong lemma: if a group $G$ generated by $a$ and $b$ acts on a set $X$ has subsets $X_1$ and $X_2$ which do not contain each other but $a^\bullet X_1\subseteq X_2$ and $b^\bullet X_2\subseteq X_1$ (for nonzero $\bullet$), then $G=\langle a,b\rangle$ is free. This is not terribly interesting. Essentially, we need to show that any nontrivial word $g\in G$ is not the identity with the given action; visually, we are watching $X_1$ or $X_2$ ``bounce'' back and forth with each power of $a$ or $b.$
+
+We can write any element $g\in G$ as $a^\bullet b^\bullet\cdots.$ Let's say that our element is
+\[g_k=a^{n_1}b^{n_2}\cdots b^{n_{k-1}}a^{n_k}\]
+for now; here $n_\bullet\ne0$ and $k$ is odd. In other words, $g$ alternates starting and ending with $a.$ We watch where this takes $X_1$ because that's all of the information we have now, so I guess we claim $g_kX_1$ by induction. If $k=1,$ this is the hypothesis. Otherwise, we note that
+\[g_{k+2}X_1=g_kb^{n_{k+1}}a^{n_{k+2}}X_1\subseteq g_kb^{n_{k+1}}X_2\subseteq g_kX_1,\]
+which is a subset of $X_2$ by the inductive hypothesis.
+
+Now, having established the group action, we can quickly conclude that all of the $g_k$ aren't the identity. Indeed, this would imply
+\[X_1=g_kX_1\subseteq X_2,\]
+which is false by hypothesis.
+
+The rest of the proof requires a trick that I had to look up. For any other element $g\in G,$ there aren't that many more forms for us to deal with, but they can all be reduced to the above by sufficient conjugation by $a.$ (Conjugation is the trick I missed.) For example, if $g$ looks like
+\[g=b^{n_1}a^{n_2}\cdots a^{n_{k-1}}b^{n_k}\]
+starting and ending with $b,$ then $aga^{-1}$ will start and end with $a$ and is therefore not the identity; it follows $g$ is also not the identity. Similarly, if $g$ looks like
+\[g=a^{n_1}b^{n_2}\cdots a^{n_{k-1}}b^{n_k}\]
+starting with $a$ and ending with $b,$ then $a^{n_1}ga^{-n_1}$ will start and end with $a$ and is therefore not the identity, so $g$ is again not the identity. Finally, if $g$ looks like
+\[g=b^{n_1}a^{n_2}\cdots b^{n_{k-1}}a^{n_k}\]
+starting with $b$ and ending with $a,$ then $g^{-1}$ starts with $a$ and ends with $b,$ so $g^{-1}$ and therefore $g$ are not the identity. This completes the proof that $G$ is freely generated by $a$ and $b.$
+
+As an example, we show that the subgroup of $\op{SL}_2(\ZZ)$ generated by
+\[A=\begin{bmatrix}1&2\\0&1\end{bmatrix},\qquad\text{and}\qquad B=\begin{bmatrix}1&0\\2&1\end{bmatrix}\]
+is free. For this, we let $A$ and $B$ act on the upper-half plane $\mathcal H$ of $\CC$ in the usual way, and we let
+\[X_1=\{z\in\mathcal H:|z|<1\},\qquad\text{and}\qquad X_2=\{z\in\mathcal H:|z|>1\}.\]
+These sets are disjoint and therefore do not contain each other. It remains to check that $A^nX_1\subseteq X_2$ and $B^n\subseteq X_1$ for nonzero $n.$ To start, we can inductively show that
+\[A^n=\begin{bmatrix}1&2n\\0&1\end{bmatrix},\qquad\text{and}\qquad B=\begin{bmatrix}1&0\\2n&1\end{bmatrix}.\]
+So for $z\in X_1,$ we see
+\[A^nz=\frac{z+2n}1=z+2n.\]
+Namely, $A$ shifts $z$ right by $2n,$ and because the unit disk has diameter $2,$ every element in $X_1$ is displaced outside into $X_2.$ On the other hand, for $z\in X_2,$ we see
+\[B^nz=\frac z{2nz+1}=\frac1{2n+1/z}.\]
+Because $z\in X_2$ has magnitude larger than $1,$ $1/z$ has magnitude smaller than $1$ and will live in the unit disk. So by the same shifting argument with $A,$ $2n+1/z$ is back in $X_2,$ but then $B^nz$ forces us into $X_1$ again. This is the last condition we had to check, so we are done here.
+
+\subsubsection{January 25th}
+Today I learned about the regular representation of a group, from Artin as usual. The big-picture is that we can turn any group action into a representation: if $G$ acts on a set $S,$ then we we can index a basis of $\CC^{|S|}$ by $S$ named $e_s$ and then define $\rho_\bullet:G\to\op{GL}_{|S|}(\CC)$ by
+\[\rho_ge_s=e_{gs}.\]
+In other words, we just create the permutation matrix associated with the group action. As an aside, we remark that the character $\chi(g):=\op{trace}(\rho_g)$ associated with this action is fairly well-behaved. Using the given matrix representation for $\rho_g,$ we can directly compute the trace by summing along the diagonal, for each nonzero entry along the diagonal is $1$ and signifies the basis vector $e_s$ being fixed. Thus, we're counting elements fixed by $g,$ which is
+\[\chi(g)=|\op{Stab}(g)|.\]
+For example, $\chi(e)=|S|,$ which matches $\dim\CC^{|S|}$ as it should. (Namely, $\chi(e)=\dim V$ for any $\rho:G\to\op{GL}(V)$ because, after choosing any basis, $\rho_e$ turns into $I\in\op{GL}_\bullet(\CC).$)
+
+Anyways, we talk about this construction in order to apply it to the action of $G$ on $G$ by left multiplication. Here, the character is especially simple. To compute $\chi(g),$ we remark that $h\mapsto gh$ has a fixed point $h=gh$ if and only if $g=e.$ Thus, we see
+\[\chi(g)=\begin{cases}
+    |G| & g=e, \\
+    0 & g\ne e.
+\end{cases}\]
+Let's move towards proving that $|G|=\sum d_\bullet^2$ for $d_\bullet$ the dimensions of the irreducible characters of $G.$ Fix $\chi_1,\ldots,\chi_r$ as our nonisomorphic irreducible characters, where $d_\bullet=\dim\chi_\bullet.$
+
+What we want to say is that the simple presentation of $\chi$ lets us write
+\[\langle\chi,\chi_\bullet\rangle=\frac1{|G|}\sum_{g\in G}\chi(g)\overline{\chi_\bullet(g)}.\]
+Because $\chi(g)\ne0$ only when $g=e,$ the sum collapses to $\chi(e)\chi_\bullet(e)=|G|d_\bullet,$ implying $\langle\chi,\chi_\bullet\rangle=d_\bullet.$ However, the $\chi_\bullet$ form an orthonormal basis of characters (coefficients in $\ZZ,$ I guess), which we show shortly from the orthogonality relations. Then, these dot product relations imply that
+\[\chi=d_1\chi_1+\cdots+d_r\chi_r.\]
+Plugging $e$ into this equation gives the desired result.
+
+We show that the $\chi_\bullet$ give an orthonormal basis of characters, where our coefficients are taken $\ZZ.$ We assume the orthogonality relations, which is honestly where most of the work is. For any representation $\rho,$ we showed a few days ago (Maschke’s Theorem) that we can write
+\[\rho=n_1\rho_1\oplus\cdots\oplus n_r\rho_r\]
+for distinct irreducible characters $\rho_\bullet$ and integers $n_\bullet.$ Taking traces, it follows that
+\[\chi=n_1\chi_1+\cdots+n_r\chi_r\]
+for $\chi_\bullet=\op{trace}(\rho_\bullet).$ Thus, all characters can be represented as a $\ZZ$-linear combination of the $\chi_\bullet,$ which is what we needed. We remark that this representation is in fact unique, for $\langle\chi,\chi_\bullet\rangle=n_1$ from the orthogonality relations. Thus, the coefficients in the above representation are forced equal to $\langle\chi,\chi_\bullet\rangle,$ giving our basis.
+
+As an aside, we remark that the $\chi_\bullet$ form a basis of the class functions, which are the set of functions $G\to\CC$ which are defined only over the conjugacy classes of $G.$ Fix $r$ the number of conjugacy classes. Viewing class functions as $r$-tuples of complex numbers implies that the space of class functions has dimension $r.$ But this is the number of irreducible characters (not shown here), and because the irreducible characters are orthonormal (also not shown here), this means that they must form a basis.
