@@ -213,10 +213,10 @@ months = ['January','February','March','April','May','April','June'
 total_html = start_html(1)
 # Add in the intro
 intro = process_tex(open('TeX/intro.tex').read())
-parts = intro.split('\n')
+parts = [part for part in intro.split('\n') if part]
 for part in parts[:-1]:
-	total_html += '\t\t<p>'+intro[0]+'</p>\n'
-total_html += '\t\t<p style="margin-bottom: 18pt;">'+intro[-1]+'</p>\n'
+	total_html += '\t\t<p>'+part+'</p>\n'
+total_html += '\t\t<p style="margin-bottom: 18pt;">'+parts[-1]+'</p>\n'
 # Iterate through the years subdirectories
 for year in next(os.walk('TeX'))[1]:
 	# Start the year file
