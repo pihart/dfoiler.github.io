@@ -714,7 +714,7 @@ To finish, we note that, because $G$ is finite, we may inductively say that ther
 so Lagrange's theorem on polynomials says that $|G|\le m.$ It follows that the order of $g$ is the full $m=|G|,$ so $G$ is finite cyclic. We remark here that this proof is really just the proof that every prime has a primitive root (via field theory), generalized.
 
 \subsubsection{January 23rd}
-Today I learned that a proof of Maschke’s Theorem: every representation of a finite group $\rho:G\to\op{GL}(V)$ can be decomposed into a direct sum of irreducible representations. (An irreducible representation is one that has no $G$-invariant subspaces.) The main claim is that $\rho$ preserves exists a positive-definite Hermitian form on $V$ preserved by $\rho(G)$; that is $\rho$ is always unitary for some form.
+Today I learned a proof of Maschke’s Theorem: every representation of a finite group $\rho:G\to\op{GL}(V)$ can be decomposed into a direct sum of irreducible representations. (An irreducible representation is one that has no $G$-invariant subspaces.) The main claim is that $\rho$ preserves exists a positive-definite Hermitian form on $V$ preserved by $\rho(G)$; that is $\rho$ is always unitary for some form.
 
 This is somewhat clever. We remark that certainly some positive-definite Hermitian form $\{\bullet,\bullet\}$ on $V$ exists---for example, choose an arbitrary basis to write $V\cong\CC^n$ for dimension $n,$ and then use the induced Hermitian form from $\CC^n.$ For this, we ``average'' $\{\bullet,\bullet\}$ over $G,$ by writing
 \[\langle v,w\rangle=\frac1{|G|}\sum_{g\in G}\{\rho_gv,\rho_gw\}.\]
@@ -811,3 +811,155 @@ for distinct irreducible characters $\rho_\bullet$ and integers $n_\bullet.$ Tak
 for $\chi_\bullet=\op{trace}(\rho_\bullet).$ Thus, all characters can be represented as a $\ZZ$-linear combination of the $\chi_\bullet,$ which is what we needed. We remark that this representation is in fact unique, for $\langle\chi,\chi_\bullet\rangle=n_1$ from the orthogonality relations. Thus, the coefficients in the above representation are forced equal to $\langle\chi,\chi_\bullet\rangle,$ giving our basis.
 
 As an aside, we remark that the $\chi_\bullet$ form a basis of the class functions, which are the set of functions $G\to\CC$ which are defined only over the conjugacy classes of $G.$ Fix $r$ the number of conjugacy classes. Viewing class functions as $r$-tuples of complex numbers implies that the space of class functions has dimension $r.$ But this is the number of irreducible characters (not shown here), and because the irreducible characters are orthonormal (also not shown here), this means that they must form a basis.
+
+\subsubsection{January 26th}
+Today I learned a (contrived) example of a function which is both epic and monic but neither injective or surjective. The main idea is that epic and monic only work for injectivity and surjectivity when we have enough functions to witness elements, so to break this, we limit our functions.
+
+Namely, we consider the following category with $2$ objects and $3$ morphisms.
+\begin{center}
+    \begin{tikzcd}
+        {\{1,2\}} \arrow["{\operatorname{id}_{\{1,2\}}}"', loop, distance=2em, in=305, out=235] \arrow[rr, "f\,:\,x\mapsto3"] &  & {\{3,4\}} \arrow["{\operatorname{id}_{\{3,4\}}}"', loop, distance=2em, in=305, out=235]
+    \end{tikzcd}
+\end{center}
+For convenience, we fix $X=\{1,2\}$ and $Y=\{3,4\}.$ We can verify manually that this is a category. We have $2$ objects and $3$ morphisms, two of which are the required identity mappings. Here is the function composition table; we use $-$ to signify that the domain does not match the codomain. (Left is left is input to $\circ$; top is right input.)
+\[\begin{array}{c|ccc}
+    \circ & \op{id}_X & \op{id}_Y & f \\\hline
+    \op{id}_X & \op{id}_X & - & -\\
+    \op{id}_Y & - & \op{id}_Y & f\\
+    f & f & - & -
+\end{array}\]
+This associates because they're functions on sets. Alternatively, this is by brute force: the identity vacuously associates with every function by erasing the identity, and any string of compositions we can make in this category has at most one non-identity function because there is only one non-identity function, and it cannot compose with itself. And finally, the identity behaves with $f$ as seen in the table.
+
+To show that $f$ is monic and epic, we again proceed by brute force. For monic, we are interested in maps $Z\to X$ for an object $Z$ in our category. However, $Z=Y$ doesn't matter because there are no maps in this direction, so we are forced into $Z=X,$ and our only morphism $X\to X$ is $\op{id}_X.$ So we merely have to check that
+\[f\circ\op{id}_X=f\circ\op{id}_X\implies\op{id}_X=\op{id}_X,\]
+which is true without having to look at $f.$
+
+Epic is similar. We are interested in maps $Y\to Z$ for an object $Z.$ However, $Z=X$ doesn't matter because there are no maps in this direction, so we are forced into $Z=Y,$ and our only morphism $Y\to Y$ is $\op{id}_Y.$ So we merely have to check that
+\[\op{id}_Y\circ f=\op{id}_Y\circ f\implies\op{id}_Y=\op{id}_Y,\]
+which is again true without having to look at $f.$
+
+It remains to show that $f$ is neither injective nor surjective. Well, $f$ is not surjective because no $x\in X$ gives $f(x)=d,$ and $f$ is not injective because $1\ne 2$ but $f(1)=3=f(2).$ This completes the proof.
+
+I guess there are two follow-up questions to this example. The most obvious is if there are non-contrived examples. I suspect there are, but I haven't spent very long looking; I know that Vakil has some examples. Alternatively, we can ask if there is a simpler/more contrived example.
+
+I don't think the category can get any simpler with $2$ objects, but it might be possible with just $1.$ The identity moprhism will be bijective, so we will need at least $2$ morphisms. The issue, now, is that the second morphism will be able to compose with itself, so some care is needed in checking, so maybe this is not as simple. For example, the following does not work.
+\begin{center}
+    \begin{tikzcd}
+        {\{1,2\}} \arrow["f=\lambda x.1"', loop, distance=2em, in=125, out=55] \arrow["\operatorname{id}"', loop, distance=2em, in=305, out=235]
+    \end{tikzcd}
+\end{center}
+Namely, $f^\bullet=f,$ breaking both monic and epic. In fact, no finite set will be able to work for our object because $\op{Mor}(S,S)$ is finite in \texttt{Set}, so $f^\bullet=f$ eventually.
+
+\subsubsection{January 27th}
+Today I learned another (more) contrived example of a function which is both monic and epic but neither injective nor surjective, but now with only $1$ object. The cost of using $1$ object is that we must have infinitely many morphisms: as discussed yesterday, we must have more than one morphism because the identity ``should'' be bijective, and adding a non-identity morphism $f$ adds $f^1,f^2,\ldots.$ If this (monoid structure) is finite, then $f^n=\op{id}$ for some $n,$ meaning that $f$ is not epic/monic.
+
+So we should have infinitely many morphisms, and as such we're going to need an infinite set as our object. The following works.
+\begin{center}
+    \begin{tikzcd}
+        \mathbb Z \arrow["f\,:\,n\mapsto n^2"', loop, distance=2em, in=125, out=55] \arrow["\operatorname{id}"', loop, distance=2em, in=305, out=235]
+    \end{tikzcd}
+\end{center}
+Of course, we also have the induced morphisms $f^2,f^3,\ldots$ not shown in the above diagram, but these make up all of our morphisms. Quickly, this is a category: because all maps are $\ZZ\to\ZZ,$ our morphisms have well-defined composition, and this composition is associative because it is function composition. And the identity map fixes everyone, so $g\circ\op{id}=\op{id}\circ g=g$ for any $g\in\op{Mor}(\ZZ,\ZZ).$
+
+We show now that $f$ is neither injective nor surjective. This is quick: $f(-1)=f(1)=1,$ so $f$ is not injective. And the image of $f$ is always nonnegative, so $f$ cannot be surjective.
+
+It remains to show that $f$ is both epic and monic. By setting $f^0:=\op{id},$ we note that all of our morphisms have the form $f^\bullet,$ so the epic and monic conditions look like
+\[\begin{cases}
+    f^n\circ f=f^m\circ f\implies f^n=f^m, \\
+    f\circ f^n=f\circ f^m\implies f^n=f^m.
+\end{cases}\]
+Both of these are saying $f^{n+1}=f^{m+1}$ implies $f^n=f^m.$ We remark that, for this, it's enough to say $f^n=f^m$ implies $n=m,$ for then
+\[f^{n+1}=f^{m+1}\implies n+1=m+1\implies n=m\implies f^n=f^m.\]
+
+To show that $f^n=f^m$ implies $n=m,$ we note that $f\left(2^k\right)=2^{2k},$ so $f^n(2)=2^{2^n}$ (by induction). So from $f^n=f^m,$ we have
+\[2^{2^n}=f^n(2)=f^m(2)=2^{2^m}.\]
+Taking logarithms, for example, we conclude $n=m.$ This completes the proof.
+
+We close with some remarks. Because our category only has the maps $f^\bullet,$ the epic and monic conditions degenerate quickly to just showing that our category is the free monoid on one letter. Typically, having this structure means that we're invertible (and therefore bijective), but our construction somewhat bypasses invertibility to just say that the functions are all distinct. The exact function $f(n)=n^2$ is merely chosen to be kind of fast while not injective to make the end of the proof work properly; $f(n)=\floor{n/2}$ over $\NN\to\NN$ also works.
+
+\subsubsection{January 28th}
+Today I learned that the genus of the $n^\text{th}$ hypercube graph $Q_n$ is $(n-4)2^{n-3}+1$ for $n\ge2$ from \href{https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/genus-of-the-ncube/C0E3405F0B3267A4792D0DB8CFC140D4}{here}. Quickly, the graph is $Q_n$ as
+\[K_2\times K_2\times\cdots\times K_2,\]
+where $\times$ is denoting the Cartesian product of graphs. We remark that assigning a bit to each of the $K_2$ lets us label the vertices of $Q_n$ with binary strings so that two vertices are adjacent if and only if they differ in exactly one bit. Here's $Q_3,$ the cube.
+\begin{center}
+    \begin{tikzcd}
+    \texttt{000} \arrow[ddd, no head] \arrow[rrr, no head] \arrow[rd, no head] &                                                    &                                  & \texttt{001} \arrow[ld, no head] \arrow[ddd, no head] \\
+                                                                               & \texttt{100} \arrow[r, no head] \arrow[d, no head] & \texttt{101} \arrow[d, no head]  &                                                       \\
+                                                                               & \texttt{110} \arrow[r, no head]                    & \texttt{111} \arrow[rd, no head] &                                                       \\
+    \texttt{010} \arrow[ru, no head] \arrow[rrr, no head]                      &                                                    &                                  & \texttt{011}                                         
+    \end{tikzcd}
+\end{center}
+
+We prove the genus bound by lower-bounding with the Euler characteristic and upper-bounding by actually embedding $Q_n$ in a surface of the required genus. We begin with the lower bound. The definition of $Q_n$ quickly implies $V=2^n,$ and the handshake lemma implies $2E=nV$ because (with the binary representation) each vertex is adjacent to $n$ others, so $E=n2^{n-1}.$ 
+
+Continuing, each face---in any representation---has degree at least $4,$ not $3$ because the graph is bipartite. Indeed, here's a coloring to show $Q_3$ is bipartite.
+\begin{center}
+    \begin{tikzcd}
+    \texttt{000} \arrow[ddd, no head] \arrow[rrr, no head] \arrow[rd, no head] &                                                    &                                  & \color{red}\texttt{001} \arrow[ld, no head] \arrow[ddd, no head] \\
+                                                                               & \color{red}\texttt{100} \arrow[r, no head] \arrow[d, no head] & \texttt{101} \arrow[d, no head]  &                                                       \\
+                                                                               & \texttt{110} \arrow[r, no head]                    & \color{red}\texttt{111} \arrow[rd, no head] &                                                       \\
+    \color{red}\texttt{010} \arrow[ru, no head] \arrow[rrr, no head]                      &                                                    &                                  & \texttt{011}                                         
+    \end{tikzcd}
+\end{center}
+In general, a vertex is colored red if and only if its bit sum is odd: because adjacent vertices differ in exactly one bit, this will always flip the parity of the bit sum. Anyways, it follows that the sum of the degree of the faces is at least $4F,$ so the handshake lemma implies $F\le2E/4=n2^{n-2}.$
+
+Plugging into the Euler characteristic formula, we see that
+\[2-2g=V-E+F\le2^n-n2^{n-1}+n2^{n-2}.\]
+The right-hand side is $(4-n)2^{n-2},$ and rearranging says $g\ge(n-4)2^{n-3}+1.$ In particular by this point we know that $Q_n$ is not planar for $n\ge4.$
+
+We now prove the upper-bound to finish the proof. Let $g_n=(n-4)2^{n-3}+1$ so that we want to embed each $Q_n$ into a surface of $g_n.$ We do this inductively; note that the square $Q_2$ embeds into the plane of genus $g_2=0,$ which is our base case. So suppose we can embed $Q_n$ so that we want to embed $Q_{n+1}.$ Well, $Q_{n+1}$ is just two copies of $Q_n$ with edges between copied vertices, so we should probably spend $2g_n$ bridges embedding the $Q_n.$ This leaves
+\[g_{n+1}-2g_n=(n-3)2^{n-2}+1-(n-4)2^{n-2}-2=n2^{n-2}-1\]
+bridges left over to place. We remark that we currently have the $Q_n$ on separate surfaces (effectively different components), which more or less gives us a bridge to spend for free: this bridge will just connect the components. So we have $2^{n-2}$ bridges to go around.
+
+Before continuing, we motivate this discussion with the following embedding $Q_4$ into a torus.
+\begin{center}
+    \begin{asy}
+        unitsize(1.3cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        // Q2
+        p0000=(0,0); p0001=(1,0); p0010=(0,1); p0011=(1,1);
+        p0100=(-0.5,-0.5); p0101=(1.5,-0.5); p0110=(-0.5,1.5); p0111=(1.5,1.5);
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q2'
+        pair v = (3,0);
+        p1000=v+(0,0); p1001=v+(1,0); p1010=v+(0,1); p1011=v+(1,1);
+        p1100=v+(-0.5,-0.5); p1101=v+(1.5,-0.5); p1110=v+(-0.5,1.5); p1111=v+(1.5,1.5);
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // outer handles
+        draw(p0111--p1110,dotted);
+        draw(p0101--p1100,dotted);
+        draw(p0110 -- p0110+(0.25,0.25) -- p1111+(-0.25,0.25) -- p1111, dotted);
+        draw(p0100 -- p0100+(0.25,-0.25) -- p1101+(-0.25,-0.25) -- p1101, dotted);
+        // bridge
+        pair a=p0001+(-0.125,0.2), b=p1000+(0.125,0.2);
+        pair c=p0011+(-0.125,-0.2), d=p1010+(0.125,-0.2);
+        fill(a--b--d--c--cycle, lightgray+opacity(0.3));
+        draw(a -- b, red);
+        draw(c -- d, red);
+        // (1-0.2-0.2)/5 = 0.12
+        draw(p0001 -- p0001+(-0.32,0.2+0.1) -- p1000+(0.32,0.2+0.1) -- p1000, dotted);
+        draw(p0011 -- p0011+(-0.32,-0.2-0.1) -- p1010+(0.32,-0.2-0.1) -- p1010, dotted);
+        draw(p0000 -- p0000+(0.32,0.2+0.2) -- p1001+(-0.32,0.2+0.2) -- p1001, dotted);
+        draw(p0010 -- p0010+(0.32,-0.2-0.2) -- p1011+(-0.32,-0.2-0.2) -- p1011, dotted);
+    \end{asy}
+\end{center}
+Here, the right $Q_3$ is ``mirrored'' with respect to the left one, and the connecting edges between them are dotted. The hole in our surface is the bridge connecting the two inner squares.
+
+We bring up this example to motivate the idea of placing bridges between faces in each copy of $Q_n$ in order to give the necessary edges a bridge. However, some care is required: we expect there to be a full $n2^{n-2}$ faces while we have only $2^{n-2}$ bridges, so we need to select the faces we puncture somewhat carefully. Namely, only $\frac1n$ of the faces are going to get a bridge. But this is fine! Each vertex has degree $n,$ so we expect to only need approximately $\frac1n$ of the faces to have a bridge to account for each vertex's needed edges.
+
+It remains to actually name these faces, for which a technical trick is required. We would like all of our faces to be quadrilaterals (as in the Euler characteristic lower bound), so we need to select $2^{n-2}$ quadrilaterals from our $2^n$ vertices. (No vertex should be chosen twice because the above analysis is sharp.) Well, one way to do this is to just hope that the vertices labeled
+\[\texttt{[bitstring]00},\quad\texttt{[bitstring]01},\quad\texttt{[bitstring]10},\quad\texttt{[bitstring]11}\]
+all lie on one face. Indeed, the bit string will have $n-2$ bits, so this does give $2^{n-2}$ faces, and each vertex is included in one of these faces exactly once. Call these quadrilaterals ``nibble quadrilaterals.''
+
+However, to make this proof work, we must alter our induction. We actually prove that it is possible to embed $Q_n$ into a surface of genus $g_n$ for which the nibble quadrilaterals are actually faces. Again, $Q_2$ is our base case. Our inductive step for $Q_{n+1}$ still begins by placing our two copies of $Q_n$ onto two surfaces, which leaves us with the $2^{n-2}$ bridges left to place from before.
+
+We have done the necessary work to finish the proof now. Call one copy of $Q_n$ the $\texttt{0}$ copy and the other copy the $\texttt{1}$ to denote the prefix. Now connect each nibble face in the $\texttt{0}$ copy to the corresponding nibble face in the $\texttt{1}$ face. Thus, each $\texttt{0}v\in Q_n$ lives on some nibble face, and the bridge allows an edge from $\texttt{0}v$ to $\texttt{1}v.$ (All edges can fit onto the bridge by flipping the $\texttt{1}$ copy as in the $Q_4$ embedding.) This completes the embedding of $Q_{n+1}.$

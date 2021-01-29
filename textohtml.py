@@ -92,8 +92,8 @@ def process_img(tex):
 			f = open(filename+'.asy', 'w')
 			f.write(img)
 			f.close()
-			# Compile
-			os.system('asy '+filename+'.asy')
+			# Compile; -nosafe because we trust the code
+			os.system('asy -nosafe '+filename+'.asy')
 		# We put a marker here to denote the image
 		tex += '\00'+filename+'.png'
 		tex += parts[i][parts[i].index('\\end{center}')+len('\\end{center}'):]
@@ -211,21 +211,25 @@ months = ['January','February','March','April','May','April','June'
 
 # Start the total file
 total_html = start_html(1)
-total_html += '\t\t<p style="margin-bottom: 18pt;">' \
-	'I\'m putting some stuff I learn here. Nothing to see.</p>\n'
-# Iterate through the TeX files
-for year in os.listdir('TeX'):
+# Add in the intro
+intro = process_tex(open('TeX/intro.tex').read())
+parts = intro.split('\n')
+for part in parts[:-1]:
+	total_html += '\t\t<p>'+intro[0]+'</p>\n'
+total_html += '\t\t<p style="margin-bottom: 18pt;">'+intro[-1]+'</p>\n'
+# Iterate through the years subdirectories
+for year in next(os.walk('TeX'))[1]:
 	# Start the year file
 	year_html = start_html(2)
 	year_html += '\t\t<p><a href="../" class="link">(back up to main page)' \
 		'</a></p>\n'
 	year_html += '\t\t<h2><a href="./">'+year+'</a></h2>\n'
 	# Make year if not there
-	if year not in os.listdir('TIL'):
+	if year not in next(os.walk('TeX'))[1]:
 		os.mkdir('TIL/'+year)
 	# Increment the total file
 	total_html += '\t\t<h2><a href="'+year+'/">'+year+'</a></h2>\n'
-	year_months = sorted(os.listdir(PATH+'TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
+	year_months = sorted(os.listdir('TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
 	for month in year_months:
 		# Make month if not there
 		month = month[:-len('.tex')]
