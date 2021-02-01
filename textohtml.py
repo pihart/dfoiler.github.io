@@ -92,8 +92,8 @@ def process_img(tex):
 			f = open(filename+'.asy', 'w')
 			f.write(img)
 			f.close()
-			# Compile; -nosafe because we trust the code
-			os.system('asy -nosafe '+filename+'.asy')
+			# Compile
+			os.system('asy '+filename+'.asy')
 		# We put a marker here to denote the image
 		tex += '\00'+filename+'.png'
 		tex += parts[i][parts[i].index('\\end{center}')+len('\\end{center}'):]

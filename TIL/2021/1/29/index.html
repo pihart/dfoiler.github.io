@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex2jax: {
+					// https://tex.stackexchange.com/q/27633
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {'[+]': ['textmacros']}
+				},
+				SVG: {
+					linebreaks: { automatic: true }
+				}
+			});
+			window.addEventListener('resize', MJrerender);
+			// https://stackoverflow.com/a/56106854
+			let t = -1;
+			let delay = 1000;
+			function MJrerender() {
+				if (t >= 0) {
+					// If we are still waiting, user is still resizing
+					// postpone the action further!
+					window.clearTimeout(t);
+				}
+				t = window.setTimeout(function() {
+					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
+					t = -1; // Reset the handle
+				}, delay);
+			};
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to January)</a></p>
+		<div class="entry">
+			<h2>January 29th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned a proof (of the basic fact) that every natural number occurs as the genus of some graph. This is motivated by the synthesis of two approaches: on one hand, we can note that the genus of a graph is really the genus of the surface which the graph is a skeleton. On the other hand, we note the following embedding of $Q_4$ (from yesterday) onto a torus.</p>
+			<img src="img1.png">
+			<p>This forms the skeleton of the torus, and it gives ideas on how to generalize this to more holes. Specifically, we consider the following sequence of graphs.</p>
+			<img src="img2.png">
+			<p>Call this sequence of graphs $T_0,T_1,T_2,\ldots.$ We claim that the genus of $T_n$ is $g_n=n.$</p>
+			<p>It should be somewhat clear from the diagrams given that the genus of $T_n$ is at least upper-bounded by $n,$ for we have provided an embedding. We will be more rigorous about this later (and do bridge-making, as with yesterday), but for now we will deal with upper-bounding the genus. This is done with the Euler characteristic. Consider the following "module.''</p>
+			<img src="img3.png">
+			<p>Here the red face signifies that we have subtracted off the leftmost vertices and edges of the normal $Q_4.$ Then $T_n$ (formally) is made of a $T_0$ attached with $n$ of the above modules to the left. Note that the subtracted vertices and edges are (exactly) made up by the $T_0$ on the left end followed by the right side of the modules thereafter. The awkward definition of the module ensures no double-counting.</p>
+			<p>So to count vertices and edges, we merely note that the module has $V=\#V(Q_4)-4=12$ and $E=\#E(Q_4)-4=28.$ Thus, for $T_n,$ we have\[V_n=\underbrace4_{T_0}+\underbrace{12n}_{\text{modules}},\qquad E_n=\underbrace4_{T_0}+\underbrace{28n}_{\text{modules}}\]To bound faces, we remark that $Q_4$ is bipartite, so our module is bipartite. Additionally, we can attach modules together in a way that respects the coloring by flipping the colors. For example, here is $T_2$ colored.</p>
+			<img src="img4.png">
+			<p>This pattern continues; we do not bother being too rigorous here. Anyways, this means that faces have degree at least $4,$ so $4F_n\le2E_n,$ and $F_n\le2+14n$ by handshake. We remark that all faces are quadrilaterals in our embedding, so we expect this estimate to be safe.</p>
+			<p>It follows from the Euler characteristic that\[2-2g_n=V_n-E_n+F_n\le(4+12n)-(4+28n)+(2+12n).\]This rearranges to $g_n\ge n,$ which establishes the needed lower bound.</p>
+			<p>To close, we provide another way to see the embedding, which is essentially a generalization of the $Q_4$ embedding by building bridges. In words, we can build a bridge between each of the inner faces of the modules, and with $n$ modules, this makes $n$ bridges, completing the embedding. Visually, we begin by lying a $T_n$ flat, as such.</p>
+			<img src="img5.png">
+			<p>Here we have repressed the edges from the top to the bottom because they are the problematic ones. In this representation, we will flip the bottom half to its bottom on top. This lets us connect the bottom of the top of $T_n$ with the top of the bottom, and vice versa, as follows.</p>
+			<img src="img6.png">
+			<p>Now we build a bridge between the corresponding inner faces of each module. This lets us connect the remaining vertices, as follows.</p>
+			<img src="img7.png">
+			<p>This completes the embedding, which requires a total of $n$ bridges. Thus, $g_n\le n$ as well, so we conclude $g_n=n,$ which is what we wanted.</p>
+		</div>
+	</body>
+</html>

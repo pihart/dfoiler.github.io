@@ -587,7 +587,7 @@ Today I learn an application of the (truncated) Poisson summation formula to com
 That is, our Fourier series represents the average of the limits approaching the point for a piecewise continuous function. I don't know the proof of this, but Fourier analysis is sad. Running the above with $f(x+k)$ for integers $k$ reveals
 \[\frac{f(k^-)+f(k+1^+)}2=\sum_{n=-\infty}^\infty\int_0^1f(x+k)e^{-2\pi ix}\,dx=\sum_{n=-\infty}^\infty\int_k^{k+1}f(x)e^{-2\pi inx}\,dx,\]
 so summing up to $m$ implies that
-\[\frac12f(0)+f(1)+\cdots+f(k-1)+\frac12f(m)=\sum_{n=-\infty}^\infty\int_0^mf(x)e^{-2\pi inx}\,dx.\]
+\[\frac12f(0)+f(1)+\cdots+f(m-1)+\frac12f(m)=\sum_{n=-\infty}^\infty\int_0^mf(x)e^{-2\pi inx}\,dx.\]
 This is the truncated Poisson summation formula. We remark that adding the flipped sum with $m\mapsto-m$ and then sending $m\to\infty$ recovers the original Poisson summation formula.
 
 This is a different proof than the one we had before, but it has the advantage of dealing with finite sum. This is important because the quadratic Gauss sum is also finite. In particular, taking $f(k)=e^{2\pi ik^2/m}$ makes the summation read
@@ -908,7 +908,7 @@ Plugging into the Euler characteristic formula, we see that
 The right-hand side is $(4-n)2^{n-2},$ and rearranging says $g\ge(n-4)2^{n-3}+1.$ In particular by this point we know that $Q_n$ is not planar for $n\ge4.$
 
 We now prove the upper-bound to finish the proof. Let $g_n=(n-4)2^{n-3}+1$ so that we want to embed each $Q_n$ into a surface of $g_n.$ We do this inductively; note that the square $Q_2$ embeds into the plane of genus $g_2=0,$ which is our base case. So suppose we can embed $Q_n$ so that we want to embed $Q_{n+1}.$ Well, $Q_{n+1}$ is just two copies of $Q_n$ with edges between copied vertices, so we should probably spend $2g_n$ bridges embedding the $Q_n.$ This leaves
-\[g_{n+1}-2g_n=(n-3)2^{n-2}+1-(n-4)2^{n-2}-2=n2^{n-2}-1\]
+\[g_{n+1}-2g_n=(n-3)2^{n-2}+1-(n-4)2^{n-2}-2=2^{n-2}-1\]
 bridges left over to place. We remark that we currently have the $Q_n$ on separate surfaces (effectively different components), which more or less gives us a bridge to spend for free: this bridge will just connect the components. So we have $2^{n-2}$ bridges to go around.
 
 Before continuing, we motivate this discussion with the following embedding $Q_4$ into a torus.
@@ -942,7 +942,7 @@ Before continuing, we motivate this discussion with the following embedding $Q_4
         // bridge
         pair a=p0001+(-0.125,0.2), b=p1000+(0.125,0.2);
         pair c=p0011+(-0.125,-0.2), d=p1010+(0.125,-0.2);
-        fill(a--b--d--c--cycle, lightgray+opacity(0.3));
+        fill(a--b--d--c--cycle, lightgray);
         draw(a -- b, red);
         draw(c -- d, red);
         // (1-0.2-0.2)/5 = 0.12
@@ -962,4 +962,583 @@ all lie on one face. Indeed, the bit string will have $n-2$ bits, so this does g
 
 However, to make this proof work, we must alter our induction. We actually prove that it is possible to embed $Q_n$ into a surface of genus $g_n$ for which the nibble quadrilaterals are actually faces. Again, $Q_2$ is our base case. Our inductive step for $Q_{n+1}$ still begins by placing our two copies of $Q_n$ onto two surfaces, which leaves us with the $2^{n-2}$ bridges left to place from before.
 
-We have done the necessary work to finish the proof now. Call one copy of $Q_n$ the $\texttt{0}$ copy and the other copy the $\texttt{1}$ to denote the prefix. Now connect each nibble face in the $\texttt{0}$ copy to the corresponding nibble face in the $\texttt{1}$ face. Thus, each $\texttt{0}v\in Q_n$ lives on some nibble face, and the bridge allows an edge from $\texttt{0}v$ to $\texttt{1}v.$ (All edges can fit onto the bridge by flipping the $\texttt{1}$ copy as in the $Q_4$ embedding.) This completes the embedding of $Q_{n+1}.$
+We have done the necessary work to finish the proof now. Call one copy of $Q_n$ the $\texttt{0}$ copy and the other copy the $\texttt{1}$ to denote the prefix. Now connect each of the $2^{n-2}$ nibble face in the $\texttt{0}$ copy to the corresponding nibble face in the $\texttt{1}$ face by one of our $2^{n-2}$ bridges. Thus, each $\texttt{0}v\in Q_n$ lives on some nibble face, and the bridge allows an edge from $\texttt{0}v$ to $\texttt{1}v.$ (All edges can fit onto the bridge by flipping the $\texttt{1}$ copy as in the $Q_4$ embedding.) This completes the embedding of $Q_{n+1}.$
+
+\subsubsection{January 29th}
+Today I learned a proof (of the basic fact) that every natural number occurs as the genus of some graph. This is motivated by the synthesis of two approaches: on one hand, we can note that the genus of a graph is really the genus of the surface which the graph is a skeleton. On the other hand, we note the following embedding of $Q_4$ (from yesterday) onto a torus.
+\begin{center}
+    \begin{asy}
+        unitsize(1.3cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        // Q2
+        pair hslant = (0.2,0);
+        real w = 1.5;
+        real h = 0.5;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-1.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // thick handles
+        draw(p0000--p1000, gray); draw(p0100--p1100, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray); draw(p0110--p1110, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray); draw(p0100--p1100, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray); draw(p0110--p1110, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+    \end{asy}
+\end{center}
+This forms the skeleton of the torus, and it gives ideas on how to generalize this to more holes. Specifically, we consider the following sequence of graphs.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        /* idiot graph */
+        // Q2
+        pair hslant = (0.2,0);
+        real w = 1.5;
+        real h = 0.5;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-1.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // thick handles
+        draw(p0100--p1100);
+        draw(p0110--p1110);
+        // Q3
+        draw(p0100--p0110);
+        // Q3'
+        draw(p1100--p1110);
+        
+        /* Q4 */
+        pair shift = (1,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // thick handles
+        draw(p0000--p1000, gray); draw(p0100--p1100, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray); draw(p0110--p1110, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray); draw(p0100--p1100, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray); draw(p0110--p1110, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        
+        /* double torus */
+        shift = (4,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // thick handles
+        draw(p0000--p1000, gray); draw(p0100--p1100, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray); draw(p0110--p1110, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray); draw(p0100--p1100, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray); draw(p0110--p1110, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        shift = (3,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // thick handles
+        draw(p0000--p1000, gray); draw(p0100--p1100, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray); draw(p0110--p1110, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray); draw(p0100--p1100, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray); draw(p0110--p1110, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        
+        /* far left dots */
+        label("$\cdots$", (11.5,-0.5));
+    \end{asy}
+\end{center}
+Call this sequence of graphs $T_0,T_1,T_2,\ldots.$ We claim that the genus of $T_n$ is $g_n=n.$
+
+It should be somewhat clear from the diagrams given that the genus of $T_n$ is at least upper-bounded by $n,$ for we have provided an embedding. We will be more rigorous about this later (and do bridge-making, as with yesterday), but for now we will deal with upper-bounding the genus. This is done with the Euler characteristic. Consider the following ``module.''
+\begin{center}
+    \begin{asy}
+        unitsize(1.3cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        // Q2
+        pair hslant = (0.2,0);
+        real w = 1.5;
+        real h = 0.5;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-1.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // thick handles
+        draw(p0000--p1000, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        fill(p1100--p1110--p0110--p0100--cycle, lightred);
+        //fill(p1101--p1111--p0111--p0101--cycle, lightred);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+    \end{asy}
+\end{center}
+Here the red face signifies that we have subtracted off the leftmost vertices and edges of the normal $Q_4.$ Then $T_n$ (formally) is made of a $T_0$ attached with $n$ of the above modules to the left. Note that the subtracted vertices and edges are (exactly) made up by the $T_0$ on the left end followed by the right side of the modules thereafter. The awkward definition of the module ensures no double-counting.
+
+So to count vertices and edges, we merely note that the module has $V=\#V(Q_4)-4=12$ and $E=\#E(Q_4)-4=28.$ Thus, for $T_n,$ we have
+\[V_n=\underbrace4_{T_0}+\underbrace{12n}_{\text{modules}},\qquad E_n=\underbrace4_{T_0}+\underbrace{28n}_{\text{modules}}\]
+To bound faces, we remark that $Q_4$ is bipartite, so our module is bipartite. Additionally, we can attach modules together in a way that respects the coloring by flipping the colors. For example, here is $T_2$ colored.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        pair shift;
+        /* double torus */
+        // Q2
+        pair hslant = (0.2,0);
+        real w = 1.5;
+        real h = 0.5;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-1.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // thick handles
+        draw(p0000--p1000, gray); draw(p0100--p1100, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray); draw(p0110--p1110, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray); draw(p0100--p1100, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray); draw(p0110--p1110, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // coloring
+        dot(p0000, blue); dot(p0001, red); dot(p0011, blue); dot(p0010, red);
+        dot(p0100, red); dot(p0101, blue); dot(p0111, red); dot(p0110, blue);
+        dot(p1000, red); dot(p1001, blue); dot(p1011, red); dot(p1010, blue);
+        dot(p1100, blue); dot(p1101, red); dot(p1111, blue); dot(p1110, red);
+        // again
+        shift = (3,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // thick handles
+        draw(p0000--p1000, gray); draw(p0100--p1100, gray);
+        draw(p0001--p1001, gray); draw(p0101--p1101, gray);
+        draw(p0010--p1010, gray); draw(p0110--p1110, gray);
+        draw(p0011--p1011, gray); draw(p0111--p1111, gray);
+        // cover
+        fill(p0100--p0101--p0001--p0000--cycle, white);
+        fill(p0100--p0110--p0010--p0000--cycle, white);
+        fill(p0101--p0111--p0011--p0001--cycle, white);
+        // dotted handles
+        draw(p0000--p1000, dotted+gray); draw(p0100--p1100, dotted+gray);
+        draw(p0001--p1001, dotted+gray); draw(p0101--p1101, dotted+gray);
+        draw(p0010--p1010, dotted+gray); draw(p0110--p1110, dotted+gray);
+        draw(p0011--p1011, dotted+gray); draw(p0111--p1111, dotted+gray);
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // coloring
+        dot(p0000, red); dot(p0001, blue); dot(p0011, red); dot(p0010, blue);
+        dot(p0100, blue); dot(p0101, red); dot(p0111, blue); dot(p0110, red);
+        dot(p1000, blue); dot(p1001, red); dot(p1011, blue); dot(p1010, red);
+        dot(p1100, red); dot(p1101, blue); dot(p1111, red); dot(p1110, blue);
+    \end{asy}
+\end{center}
+This pattern continues; we do not bother being too rigorous here. Anyways, this means that faces have degree at least $4,$ so $4F_n\le2E_n,$ and $F_n\le2+14n$ by handshake. We remark that all faces are quadrilaterals in our embedding, so we expect this estimate to be safe.
+
+It follows from the Euler characteristic that
+\[2-2g_n=V_n-E_n+F_n\le(4+12n)-(4+28n)+(2+12n).\]
+This rearranges to $g_n\ge n,$ which establishes the needed lower bound.
+
+To close, we provide another way to see the embedding, which is essentially a generalization of the $Q_4$ embedding by building bridges. In words, we can build a bridge between each of the inner faces of the modules, and with $n$ modules, this makes $n$ bridges, completing the embedding. Visually, we begin by lying a $T_n$ flat, as such.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        pair shift;
+        /* double torus */
+        // Q2
+        pair hslant = (0,0);
+        real w = 1;
+        real h = 1;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-2.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // again
+        shift = (2,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // labels
+        label("$\cdots$", (4.3,0.5));
+        label("$\cdots$", (4.3,0.5)+v);
+    \end{asy}
+\end{center}
+Here we have repressed the edges from the top to the bottom because they are the problematic ones. In this representation, we will flip the bottom half to its bottom on top. This lets us connect the bottom of the top of $T_n$ with the top of the bottom, and vice versa, as follows.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        pair shift;
+        /* double torus */
+        // Q2
+        pair hslant = (0,0);
+        real w = 1;
+        real h = 1;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-2.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // handles
+        draw(p0100--p1110, dotted); draw(p0101--p1111, dotted);
+        draw(p0110-- p0110+(-.25,-.25) -- p1100+(-.25,.25) --p1100, dotted);
+        draw(p0111-- p0111+(-.25,.25) -- p0110+(-.25,.25) -- p0110+(-.5,0) --
+            p1100+(-.5,0) -- p1100+(-.25,-.25) -- p1101+(-.25,-.25) -- p1101, dotted);
+        // again
+        shift = (2,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // handles
+        draw(p0101--p1111, dotted);
+        draw(p0111-- p0111+(-.5,.5) -- p0110+(-.5,.5)-shift -- p0110+(-.75,.25)-shift --
+            p1100+(-.75,-0.25)-shift -- p1100+(-.5,-.5)-shift -- p1101+(-.5,-.5) -- p1101,
+            dotted);
+        // labels
+        label("$\cdots$", (4.3,0.5));
+        label("$\cdots$", (4.3,0.5)+v);
+    \end{asy}
+\end{center}
+Now we build a bridge between the corresponding inner faces of each module. This lets us connect the remaining vertices, as follows.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        pair p0000, p0001, p0010, p0011;
+        pair p0100, p0101, p0110, p0111;
+        pair p1000, p1001, p1010, p1011;
+        pair p1100, p1101, p1110, p1111;
+        pair shift;
+        /* double torus */
+        // Q2
+        pair hslant = (0,0);
+        real w = 1;
+        real h = 1;
+        p0000=(0,0); p0001=(w,0); p0010=(0,h)+hslant; p0011=(w,h)+hslant;
+        p0100=(-w/2,-h/2)-hslant/2; p0101=(3*w/2,-h/2)-hslant/2;
+        p0110=(-w/2,3*h/2)+1.5*hslant; p0111=(3*w/2,3*h/2)+1.5*hslant;
+        // Q2'
+        pair v = (0,-2.5);
+        p1000=v+p0000; p1001=v+p0001; p1010=v+p0010; p1011=v+p0011;
+        p1100=v+p0100; p1101=v+p0101; p1110=v+p0110; p1111=v+p0111;
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // handles
+        draw(p0100--p1110, dotted); draw(p0101--p1111, dotted);
+        draw(p0110-- p0110+(-.25,-.25) -- p1100+(-.25,.25) --p1100, dotted);
+        draw(p0111-- p0111+(-.25,.25) -- p0110+(-.25,.25) -- p0110+(-.5,0) --
+            p1100+(-.5,0) -- p1100+(-.25,-.25) -- p1101+(-.25,-.25) -- p1101, dotted);
+        // bridge
+        pair a=p0000+(0.2,0.125), b=p1010+(0.2,-0.125);
+        pair c=p0001+(-0.2,0.125), d=p1011+(-0.2,-0.125);
+        fill(a--b--d--c--cycle, lightgray);
+        draw(a -- b, red);
+        draw(c -- d, red);
+        // (1-0.2-0.2)/5 = 0.12
+        draw(p0000 -- p0000+(0.2+0.1,.32) -- p1010+(0.2+0.1,-.32) -- p1010, dotted);
+        draw(p0001 -- p0001+(-0.2-0.1,.32) -- p1011+(-0.2-0.1,-.32) -- p1011, dotted);
+        draw(p0010 -- p0010+(0.2+0.2,-.32) -- p1000+(0.2+0.2,.32) -- p1000, dotted);
+        draw(p0011 -- p0011+(-0.2-0.2,-.32) -- p1001+(-0.2-0.2,.32) -- p1001, dotted);
+        // again
+        shift = (2,0);
+        p0000 += shift; p0001 += shift; p0010 += shift; p0011 += shift;
+        p0100 += shift; p0101 += shift; p0110 += shift; p0111 += shift;
+        p1000 += shift; p1001 += shift; p1010 += shift; p1011 += shift;
+        p1100 += shift; p1101 += shift; p1110 += shift; p1111 += shift;
+        // Q3
+        draw(p0000--p0001--p0011--p0010--cycle);
+        draw(p0100--p0101--p0111--p0110--cycle);
+        draw(p0000--p0100); draw(p0001--p0101);
+        draw(p0010--p0110); draw(p0011--p0111);
+        // Q3'
+        draw(p1000--p1001--p1011--p1010--cycle);
+        draw(p1100--p1101--p1111--p1110--cycle);
+        draw(p1000--p1100); draw(p1001--p1101);
+        draw(p1010--p1110); draw(p1011--p1111);
+        // handles
+        draw(p0101--p1111, dotted);
+        draw(p0111-- p0111+(-.5,.5) -- p0110+(-.5,.5)-shift -- p0110+(-.75,.25)-shift --
+            p1100+(-.75,-0.25)-shift -- p1100+(-.5,-.5)-shift -- p1101+(-.5,-.5) -- p1101,
+            dotted);
+        // bridge
+        pair a=p0000+(0.2,0.125), b=p1010+(0.2,-0.125);
+        pair c=p0001+(-0.2,0.125), d=p1011+(-0.2,-0.125);
+        fill(a--b--d--c--cycle, lightgray);
+        draw(a -- b, red);
+        draw(c -- d, red);
+        // (1-0.2-0.2)/5 = 0.12
+        draw(p0000 -- p0000+(0.2+0.1,.32) -- p1010+(0.2+0.1,-.32) -- p1010, dotted);
+        draw(p0001 -- p0001+(-0.2-0.1,.32) -- p1011+(-0.2-0.1,-.32) -- p1011, dotted);
+        draw(p0010 -- p0010+(0.2+0.2,-.32) -- p1000+(0.2+0.2,.32) -- p1000, dotted);
+        draw(p0011 -- p0011+(-0.2-0.2,-.32) -- p1001+(-0.2-0.2,.32) -- p1001, dotted);
+        // labels
+        label("$\cdots$", (4.3,0.5));
+        label("$\cdots$", (4.3,0.5)+v);
+    \end{asy}
+\end{center}
+This completes the embedding, which requires a total of $n$ bridges. Thus, $g_n\le n$ as well, so we conclude $g_n=n,$ which is what we wanted.
+
+\subsubsection{January 30th}
+Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if
+\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]
+converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute
+\[(a_\varphi)_n=\begin{cases}
+    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\
+    0 & \text{otherwise}.
+\end{cases}\]
+Now, we do the casework on $\varphi$ halts.
+\begin{itemize}
+    \item If $\varphi$ halts in $N$ steps, then the infinite sum is $0$ after $N,$ so the sum is finite and converges. Similarly, this would mean that there is a $0$ in the infinite product, so the infinite product would converge to $0.$
+    \item If $\varphi$ never halts, then the infinite sum sums $2$ for each $n,$ which of course diverges (say, by divergence test). And the infinite product is multiplying $2$ for each $n,$ which also diverges.
+\end{itemize}
+It follows that the infinite sum and product each converge if and only if $\varphi$ halts.
+
+I find this somewhat unsatisfying because $(a_\varphi)_n$ is quite a contrived sequence. In reality, I'd like to think about this as a symbolic algebra problem: in the same way that it is uncomputable to determine if a given algebraic expression is identically $0,$ I feel like it should be uncomputable to determine if sequence converge. At a high level, I expect $\sum$ and $\prod$ to be able to look ``globally'' at a given function, allowing a weak $\forall$ check, which should be enough.
+
+At the bare minimum, we should allow polynomials, which makes me feel like Hilbert's 10th will be involved. One basic difficulty is that the polynomials involved in Hilbert's 10th have lots of variables, but we are only summing over a single variable. This is not a huge problem, for good bijections $\NN\times\NN\to\NN$ exist, but it does require us to go outside of polynomials. For example,
+\[f_2(n)=\left(\left|\floor{\sqrt n}-\left(n-\floor{\sqrt n}^2\right)\right|,n-\floor{\sqrt n}^2\right)\]
+is a surjection $\NN\to\NN^2.$ (The idea here is that $\floor{\sqrt n}$ is a function slower than linear but still goes to infinity. Then we use it to dictate the coordinate sum for a contiguous set of inputs.) I don't like using $\sqrt\bullet$ because it is potentially undefined, but so it goes.
+
+So because we have a function $f_2:\NN\to\NN^2,$ we can iteratively apply this to the first outputted coordinate to give a function $f_k:\NN\to\NN^k$ for any $k\in\NN.$ Thus, Hilbert's 10th begins to be possible here: at this point, we can do products. Indeed, fix a polynomial $P(x_1,\ldots,x_k)\in\ZZ[x_1,\ldots,x_k],$ and set
+\[a_n=2|(P\circ f_k)(n)|.\]
+Now, the infinite product $\prod_{n=0}^\infty a_n$ will get sent to $0$ if $P$ is $0$ anywhere in $\NN^k.$ If $P$ isn't $0$ anywhere, then each $a_\bullet\ge2,$ so the product will again not converge. It follows that determining convergence of infinite products even with just polynomials, $\floor\bullet,$ and $\sqrt\bullet$ is uncomputable, but for rather stupid reasons.
+
+By this point, I think I've exhausted what easy arguments can give. For example, what made infinite products work is that products have a ``memory'' of previous elements of the sequence because $0$ ruins the party immediately. Infinite sums do not have this kind of luxury; we do remark that convergence of the infinite sum of
+\[b_n=\prod_{k=0}^n|(P\circ f_k)(n)|\]
+will be able detect if $P$ has a root because this forces a memory into the summation. However, I find this quite inelegant and unsatisfying.
+
+\subsubsection{January 31st}
+Today I learned an expression for Hermitian inner products in terms of the lengths they induce, from \href{http://estoyanov.net/files/MATAMATIKA/23982177-TheCauchy-Schwartz-Master-Class.pdf}{here}. These are, more or less, generalizations of the parallelogram law to work for Hermitian spaces.
+
+To start, we fix a root of unity $\omega$ with $\omega^n=1$ but $\omega^2\ne1.$ Then we claim that, for $x,y\in\CC^\bullet,$
+\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k.\]
+The feeling I get from this statement is that we are ``averaging'' the length over the various $\alpha^\bullet,$ in a way that looks analogous to the averaging process to define Hermitian inner products from group representations. I'm unsure if the relationship is more than aesthetic. Anyways, expanding out the length gives
+\[\left\lVert x+\alpha^ky\right\rVert=\left\langle x+\alpha^ky,x+\alpha^k y\right\rangle=\langle x,x\rangle+\left\langle\alpha^ky,\alpha^ky\right\rangle+\left\langle\alpha^ky,x\right\rangle+\left\langle x,\alpha^ky\right\rangle.\]
+Now, we dictate the fate of each of these terms as we sum over each $k.$
+\begin{itemize}
+    \item We note $\langle x,x\rangle$ is constant, so we have
+    \[\langle x,x\rangle\sum_{k=0}^{n-1}\alpha^k=0\]
+    because $\alpha\ne1$ is an $n$th root of unity.
+    \item Because our inner product is Hermitian, $\left\langle\alpha^ky,\alpha^ky\right\rangle=\alpha^k\overline\alpha^k\langle y,y\rangle$ is constant as well (note $|\alpha|=1$), so this term vanishes as well.
+    \item Again because our inner product is Hermitian, $\left\langle\alpha^ky,x\right\rangle=\alpha^k\langle y,x\rangle.$ Thus, we have
+    \[\langle y,x\rangle\sum_{k=0}^{n-1}\alpha^{2k}=0\]
+    because $\alpha^2\ne1$ is an $n$th root of unity. This is the only part of the proof which requires $\alpha^2\ne1.$
+    \item Finally, $\left\langle x,\alpha^ky\right\rangle=\overline\alpha^k\langle x,y\rangle,$ so we have
+    \[\langle x,y\rangle\sum_{k=0}^{n-1}\overline\alpha^k\alpha^k=n\langle x,y\rangle.\]
+\end{itemize}
+It follows that, after all of the dust has settled, we see
+\[\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k=\frac nn\langle x,y\rangle=\langle x,y\rangle,\]
+which is what we wanted.
+
+What amuses me most about this result is that we can read it as a Riemann sum, in the same way that the discrete Fourier transform is a Riemann sum of the continuous Fourier transform. Indeed, take $n>4$ and $\alpha=e^{2\pi i/n},$ which tells us
+\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\big\lVert x+e^{2\pi i(k/n)}y\big\rVert^2e^{2\pi i(k/n)}.\]
+Now, taking $n\to\infty$ and seeing this as a Riemann sum tells us
+\[\langle x,y\rangle=\int_0^1\big\lVert x+e^{2\pi i\theta}y\big\rVert^2e^{2\pi i\theta}\,d\theta.\]
+This is a bit prettier by taking $2\pi\theta\mapsto\theta,$ which gives
+\[\langle x,y\rangle=\frac1{2\pi}\int_0^{2\pi}\left\lVert x+e^{i\theta}y\right\rVert^2e^{i\theta}\,d\theta.\]
+This is cute, so we stop here.
+
+We remark that we have not shown that the Riemann sum here is well-defined, but the induced norm is continuous, which is good enough. We do not show this continuity here, but I will outline: a Cauchy sequence $x_\bullet\to x$ by definition satisfies $\lVert x-x_\bullet\rVert\to0.$ But the triangle inequality gives
+\[\left|\,\lVert x\rVert-\lVert x_\bullet\rVert\,\right|\le\lVert x-x_\bullet\rVert,\]
+so $\lVert x_\bullet\rVert\to\lVert x\rVert$ as well, which is what we wanted.
