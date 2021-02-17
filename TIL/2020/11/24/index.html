@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to November)</a></p>
-		<div class="entry">
-			<h2>November 24th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to November)</a></p>
+				<div class="entry">
+					<h2>November 24th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,14 +53,16 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the group structure for rational points on the unit hyperbola. As with yesterday, we are interested in rational points on $x^2-y^2=1$ with group law\[(a,b)\times(c,d)=(ac+bd,ad+bc),\]which is intended to mimic the group law for $\CC.$ Again, the identity is $(1,0),$ and $(a,b)^{-1}=(a,-b).$ We claimed yesterday that the group structure is\[G=\langle(-1,0)\rangle\oplus\bigoplus_p\left\langle\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)\right\rangle\cong\ZZ/2\ZZ\oplus\bigoplus_p\ZZ.\]The fact that we had a group law yesterday at all implies that this is indeed a subgroup of the rational points on the unit hyperbola.</p>
-			<p>To show that this is a valid group representation, I guess we have to show that there are no nontrivial relations between the group elements, but this isn't hard. Essentially, if we are provided points $(a/m,b/m)$ and $(c/n,d/n)$ where each fraction is reduced with $\gcd(m,n)=1,$ then note that\[\left(\frac am,\frac bm\right)\times\left(\frac cn,\frac dn\right)=\left(\frac{ac+bd}{mn},\frac{ad+bc}{mn}\right).\]We claim that this product has denominator $mn.$ Indeed, if $p$ is a prime divisor of $ac+bd$ or $ad+bc,$ then we want to show that $p\nmid mn.$ Supposing that $p\mid m$ (without loss of generality) for contradiction,\[(ac+bd)^2-(ad+bc)^2=(mn)^2\]implies that $p$ dividing one of $ac+bd$ or $ad+bc$ makes it divide the other.</p>
-			<p>We start by dealing with $p=2.$ Note $m$ even means $a$ and $b$ are both odd. But then $ac+bd$ even means $c$ and $d$ have the same parity, which gives $c^2-d^2=n^2$ even as well. However, $\gcd(m,n)=1$ contradicts both $m$ and $n$ even, finishing.</p>
-			<p>Now we take care of $p$ odd. Summing, we see $p\mid(a+b)(c+d),$ and subtracting says $p\mid(a-b)(c-d).$ If $p$ divides both $a+b$ and $a-b,$ then $p$ odd implies that $p$ divides $a$ and $b$ and therefore $m,$ which contradicts $a/m$ being reduced. The same holds for $c+d$ and $c-d.$ But if $p$ divides $a\pm b$ and $c\mp d,$ then $p$ divides both $a^2-b^2=m^2$ and $c^2-d^2=n^2,$ contradicting $\gcd(m,n)=1.$ All roads lead to contradiction, so we're done with the intermediate claim.</p>
-			<p>To finish showing there are no nontrivial relations in $G,$ now suppose\[(1,0)=(-1,0)^{a_{-1}}\times\prod_p\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^{a_p}=(-1,0)^{a_{-1}}\times\prod_p\left(\frac{p^{2a_p}+1}{2p^{a_p}},\frac{p^{2a_p}-1}{2p^{a_p}}\right),\]where all but finitely many of the $a_\bullet$ are zero. We want to show all of the factors here are the identity. Quickly, $(-1,0)^{a_{-1}}=(1,0)$ because the product over $p$ will only give elements with positive $x$ coordinate (preserved by the group law), so the fact $(1,0)$ has positive $x$ coordinate forces $(-1,0)^{a_{-1}}$ to also have positive $x$ coordinate&mdash;it must be $(1,0).$</p>
-			<p>As for the remaining $a_p,$ we start by remarking that none of these points have finite order from work we did yesterday, shown when we computed the powers explicitly. But to finish, we see that\[\prod_p\left(\frac{p^{2a_p}+1}{2p^{a_p}},\frac{p^{2a_p}-1}{2p^{a_p}}\right)\]is a finite product of elements with coprime denominators (for odd $p,$ the numerators are even, so the $2$ cancels), so our intermediate claim kicks and says that the product of this thing will have denominator\[2^{a_2+\op{sgn}(a_2)}\prod_{p{\gt}2}p^{a_p},\]which will only be $1$ to give $(1,0)$ when each of the $a_p$ are zero. The exponent on $2$ is $a_2+\op{sgn}(a_2)$ because it is $0$ when $a_2=0$ but $a_2+1$ when $a_2{\gt}0.$</p>
-			<p>It remains to show that every rational point on $x^2-y^2=1$ can be found in $G.$ We do this using strong induction on the denominator of the point. We remark that yesterday we classified all points with denominator a power of $2$ (adjusting for sign) as living in $\langle(-1,0)\rangle\oplus\left\langle\left(\frac{2^2+1}{2\cdot2},\frac{2^2-1}{2\cdot2}\right)\right\rangle,$ which is in $G,$ so we're safe here. Our explicit base case will be denominator $1,$ which is a power of $2.$</p>
-			<p>Now suppose that all rational points on $x^2-y^2=1$ with denominator smaller than $n{\gt}1$ are in $G.$ To show that rational points with denominator $n$ are in the group, extract some arbitrary point $(a/n,b/n)$ which lives there. If $n$ is a power of $2,$ we're already done. Else we're going to remove a prime factor from the denominator, making this a point with smaller denominator, which will let us trigger the induction. Indeed, $n{\gt}1$ not a power of $2$ lets us extract some odd prime divisor $p\mid n.$ Then we see\[a^2-b^2=n^2=p^2(n/p)^2.\]It follows $a^2-b^2=(a+b)(a-b)\equiv0\pmod{p^2}.$ Additionally, $\gcd(a,b)=1$ because the greatest common divisor would have to divide $a^2-b^2=n^2$ as well, but $\gcd(a,n)=1.$ This gives $\gcd(a+b,a-b)\le2,$ but $p$ is odd, so $p^2\mid(a+b)(a-b)$ still forces\[a\equiv\pm b\pmod{p^2}.\]Because $G$ is closed under inversion, it suffices to show that one of $(a/n,\pm b/n)$ is in $G.$ So for sanity reasons, fix $a\equiv b\pmod{p^2}$ without loss of generality. Now, to remove a $p$ from the denominator, we multiply by the corresponding power of the generator of $G_p,$ $\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right),$ giving\[\left(\frac an,\frac bn\right)\times\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)=\left(\frac{(a+b)p^2+(a-b)}{2np},\frac{(a+b)p^2-(a-b)}{2np}\right).\]</p>
-			<p>To finish this step, we imagine reducing the fractions on the right-hand side. The numerators are even ($\equiv2a$ and $2b$ respectively), and in fact, they are both divisible by $p^2$ because $p^2\mid a-b.$ So the reduced denominator is no more than $2np/\left(2p^2\right)=n/p.$ It follows that the reduced denominator is smaller than $n,$ so it lives in $G.$ Then, writing\[\left(\frac an,\frac bn\right)=\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^{-1}\times\left(\frac{(a+b)p^2+(a-b)}{2np},\frac{(a+b)p^2-(a-b)}{2np}\right)\]shows that $(a/n,b/n)$ is also in $G,$ which completes the inductive step.</p>
+					<p>To show that this is a valid group representation, I guess we have to show that there are no nontrivial relations between the group elements, but this isn't hard. Essentially, if we are provided points $(a/m,b/m)$ and $(c/n,d/n)$ where each fraction is reduced with $\gcd(m,n)=1,$ then note that\[\left(\frac am,\frac bm\right)\times\left(\frac cn,\frac dn\right)=\left(\frac{ac+bd}{mn},\frac{ad+bc}{mn}\right).\]We claim that this product has denominator $mn.$ Indeed, if $p$ is a prime divisor of $ac+bd$ or $ad+bc,$ then we want to show that $p\nmid mn.$ Supposing that $p\mid m$ (without loss of generality) for contradiction,\[(ac+bd)^2-(ad+bc)^2=(mn)^2\]implies that $p$ dividing one of $ac+bd$ or $ad+bc$ makes it divide the other.</p>
+					<p>We start by dealing with $p=2.$ Note $m$ even means $a$ and $b$ are both odd. But then $ac+bd$ even means $c$ and $d$ have the same parity, which gives $c^2-d^2=n^2$ even as well. However, $\gcd(m,n)=1$ contradicts both $m$ and $n$ even, finishing.</p>
+					<p>Now we take care of $p$ odd. Summing, we see $p\mid(a+b)(c+d),$ and subtracting says $p\mid(a-b)(c-d).$ If $p$ divides both $a+b$ and $a-b,$ then $p$ odd implies that $p$ divides $a$ and $b$ and therefore $m,$ which contradicts $a/m$ being reduced. The same holds for $c+d$ and $c-d.$ But if $p$ divides $a\pm b$ and $c\mp d,$ then $p$ divides both $a^2-b^2=m^2$ and $c^2-d^2=n^2,$ contradicting $\gcd(m,n)=1.$ All roads lead to contradiction, so we're done with the intermediate claim.</p>
+					<p>To finish showing there are no nontrivial relations in $G,$ now suppose\[(1,0)=(-1,0)^{a_{-1}}\times\prod_p\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^{a_p}=(-1,0)^{a_{-1}}\times\prod_p\left(\frac{p^{2a_p}+1}{2p^{a_p}},\frac{p^{2a_p}-1}{2p^{a_p}}\right),\]where all but finitely many of the $a_\bullet$ are zero. We want to show all of the factors here are the identity. Quickly, $(-1,0)^{a_{-1}}=(1,0)$ because the product over $p$ will only give elements with positive $x$ coordinate (preserved by the group law), so the fact $(1,0)$ has positive $x$ coordinate forces $(-1,0)^{a_{-1}}$ to also have positive $x$ coordinate&mdash;it must be $(1,0).$</p>
+					<p>As for the remaining $a_p,$ we start by remarking that none of these points have finite order from work we did yesterday, shown when we computed the powers explicitly. But to finish, we see that\[\prod_p\left(\frac{p^{2a_p}+1}{2p^{a_p}},\frac{p^{2a_p}-1}{2p^{a_p}}\right)\]is a finite product of elements with coprime denominators (for odd $p,$ the numerators are even, so the $2$ cancels), so our intermediate claim kicks and says that the product of this thing will have denominator\[2^{a_2+\op{sgn}(a_2)}\prod_{p{\gt}2}p^{a_p},\]which will only be $1$ to give $(1,0)$ when each of the $a_p$ are zero. The exponent on $2$ is $a_2+\op{sgn}(a_2)$ because it is $0$ when $a_2=0$ but $a_2+1$ when $a_2{\gt}0.$</p>
+					<p>It remains to show that every rational point on $x^2-y^2=1$ can be found in $G.$ We do this using strong induction on the denominator of the point. We remark that yesterday we classified all points with denominator a power of $2$ (adjusting for sign) as living in $\langle(-1,0)\rangle\oplus\left\langle\left(\frac{2^2+1}{2\cdot2},\frac{2^2-1}{2\cdot2}\right)\right\rangle,$ which is in $G,$ so we're safe here. Our explicit base case will be denominator $1,$ which is a power of $2.$</p>
+					<p>Now suppose that all rational points on $x^2-y^2=1$ with denominator smaller than $n{\gt}1$ are in $G.$ To show that rational points with denominator $n$ are in the group, extract some arbitrary point $(a/n,b/n)$ which lives there. If $n$ is a power of $2,$ we're already done. Else we're going to remove a prime factor from the denominator, making this a point with smaller denominator, which will let us trigger the induction. Indeed, $n{\gt}1$ not a power of $2$ lets us extract some odd prime divisor $p\mid n.$ Then we see\[a^2-b^2=n^2=p^2(n/p)^2.\]It follows $a^2-b^2=(a+b)(a-b)\equiv0\pmod{p^2}.$ Additionally, $\gcd(a,b)=1$ because the greatest common divisor would have to divide $a^2-b^2=n^2$ as well, but $\gcd(a,n)=1.$ This gives $\gcd(a+b,a-b)\le2,$ but $p$ is odd, so $p^2\mid(a+b)(a-b)$ still forces\[a\equiv\pm b\pmod{p^2}.\]Because $G$ is closed under inversion, it suffices to show that one of $(a/n,\pm b/n)$ is in $G.$ So for sanity reasons, fix $a\equiv b\pmod{p^2}$ without loss of generality. Now, to remove a $p$ from the denominator, we multiply by the corresponding power of the generator of $G_p,$ $\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right),$ giving\[\left(\frac an,\frac bn\right)\times\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)=\left(\frac{(a+b)p^2+(a-b)}{2np},\frac{(a+b)p^2-(a-b)}{2np}\right).\]</p>
+					<p>To finish this step, we imagine reducing the fractions on the right-hand side. The numerators are even ($\equiv2a$ and $2b$ respectively), and in fact, they are both divisible by $p^2$ because $p^2\mid a-b.$ So the reduced denominator is no more than $2np/\left(2p^2\right)=n/p.$ It follows that the reduced denominator is smaller than $n,$ so it lives in $G.$ Then, writing\[\left(\frac an,\frac bn\right)=\left(\frac{p^2+1}{2p},\frac{p^2-1}{2p}\right)^{-1}\times\left(\frac{(a+b)p^2+(a-b)}{2np},\frac{(a+b)p^2-(a-b)}{2np}\right)\]shows that $(a/n,b/n)$ is also in $G,$ which completes the inductive step.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

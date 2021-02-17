@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to November)</a></p>
-		<div class="entry">
-			<h2>November 14th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to November)</a></p>
+				<div class="entry">
+					<h2>November 14th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,11 +53,13 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned a proof of the Fundamental Theorem of Algebra, using Galois theory as a translator. As setup, it suffices to show that $\CC$ has only the trivial extension, so fix some extension over $\CC,$ and without loss of generality extend it to a normal closure $M/\RR.$</p>
-			<p>The action will take place in an intermediate field $L,$ defined as the fixed field of the Sylow $2$-subgroup of $G=\op{Gal}(M/\RR),$ which we name $G_2\subseteq G.$ We do this because then\[[L:\RR]=[G:G_2]\]is odd. This is helpful for us because it actually forces $L$ to collapse into $\RR,$ for  topological reasons. In particular, the Primitive Element Theorem lets us say $L=\RR[\alpha]$ for some $\alpha,$ and we know the minimal polynomial in $\RR[x]$ is irreducible and of odd degree (above). But then the Intermediate Value Theorem (our topological property) says that all polynomials of odd degree have a root in $\RR,$ so the minimal polynomial must be linear. In other words, $[L:\RR]=1.$</p>
-			<p>Translating back into Galois theory, the fact $[L:\RR]=1$ implies $G=G_2,$ and in particular, $G$ is a $2$-group. We refocus on $\op{Gal}(M/\CC),$ a subgroup of $G$ and so another $2$-group. Now suppose for the sake of contradiction the extension $M/\CC$ is nontrivial. Then $\op{Gal}(M/\CC)$ would have to have a subgroup of index $2$ (<a href="https://math.stackexchange.com/questions/1788345/p-groups-have-normal-subgroups-of-each-order?noredirect=1&lq=1">$p$-groups have normal subgroups of all sizes</a>), so there must be a quadratic extension of $\CC$ to create this.</p>
-			<p>We're in the home stretch now. Note that we have yet to use any property of $\CC$&mdash;the above argument merely required Galois theory and topological properties of $\RR.$ Well, all we need to say about $\CC$ is that is closed under square-roots (quadratic formula), so there are no quadratic extensions of $\CC,$ which is our contradiction. So we're done.</p>
-			<p>What I like about this proof is that it's very obvious what makes $\CC$ special and makes this proof work. The remaining thread connecting these disparate properties of $\CC$ is Galois theory, and it is perhaps unsurprising that Galois theory is a powerful enough tool for job. I have annotated the presentation of the proof to make very clear where properties are used.</p>
-			<p>As an aside, I think we can read this proof as having two parts: the (topological) action in $\RR$ takes care of all polynomials of odd degree by the Intermediate Value Theorem. This is somewhat classical, but it is phrased in terms of Galois theory to also deal with polynomials in $\CC[x].$ Then the quadratic extension stuff takes care of polynomials of even degree by noting that a polynomial of even degree not having roots would induce an intermediate quadratic extension, which is the final property of $\CC$ we needed. So the proof is more constructive than it looks at first.</p>
+					<p>The action will take place in an intermediate field $L,$ defined as the fixed field of the Sylow $2$-subgroup of $G=\op{Gal}(M/\RR),$ which we name $G_2\subseteq G.$ We do this because then\[[L:\RR]=[G:G_2]\]is odd. This is helpful for us because it actually forces $L$ to collapse into $\RR,$ for  topological reasons. In particular, the Primitive Element Theorem lets us say $L=\RR[\alpha]$ for some $\alpha,$ and we know the minimal polynomial in $\RR[x]$ is irreducible and of odd degree (above). But then the Intermediate Value Theorem (our topological property) says that all polynomials of odd degree have a root in $\RR,$ so the minimal polynomial must be linear. In other words, $[L:\RR]=1.$</p>
+					<p>Translating back into Galois theory, the fact $[L:\RR]=1$ implies $G=G_2,$ and in particular, $G$ is a $2$-group. We refocus on $\op{Gal}(M/\CC),$ a subgroup of $G$ and so another $2$-group. Now suppose for the sake of contradiction the extension $M/\CC$ is nontrivial. Then $\op{Gal}(M/\CC)$ would have to have a subgroup of index $2$ (<a href="https://math.stackexchange.com/questions/1788345/p-groups-have-normal-subgroups-of-each-order?noredirect=1&lq=1">$p$-groups have normal subgroups of all sizes</a>), so there must be a quadratic extension of $\CC$ to create this.</p>
+					<p>We're in the home stretch now. Note that we have yet to use any property of $\CC$&mdash;the above argument merely required Galois theory and topological properties of $\RR.$ Well, all we need to say about $\CC$ is that is closed under square-roots (quadratic formula), so there are no quadratic extensions of $\CC,$ which is our contradiction. So we're done.</p>
+					<p>What I like about this proof is that it's very obvious what makes $\CC$ special and makes this proof work. The remaining thread connecting these disparate properties of $\CC$ is Galois theory, and it is perhaps unsurprising that Galois theory is a powerful enough tool for job. I have annotated the presentation of the proof to make very clear where properties are used.</p>
+					<p>As an aside, I think we can read this proof as having two parts: the (topological) action in $\RR$ takes care of all polynomials of odd degree by the Intermediate Value Theorem. This is somewhat classical, but it is phrased in terms of Galois theory to also deal with polynomials in $\CC[x].$ Then the quadratic extension stuff takes care of polynomials of even degree by noting that a polynomial of even degree not having roots would induce an intermediate quadratic extension, which is the final property of $\CC$ we needed. So the proof is more constructive than it looks at first.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

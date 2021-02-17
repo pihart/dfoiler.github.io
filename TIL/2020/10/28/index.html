@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to October)</a></p>
-		<div class="entry">
-			<h2>October 28th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<div class="entry">
+					<h2>October 28th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,9 +53,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned an equivalent (Vakil's) definition of a kernel in a category with $0$ objects. Basically, if we have a $0$ object, then we can define our zero morphisms $0_{A0}$ and $0_{0A}$ as the only possible morphisms, for any object $A.$ But this kind of locks us into defining our zero morphism $0_{AB}$ by composing\[A\stackrel{0_{A0}}\longrightarrow 0\stackrel{0_{0B}}\longrightarrow B.\]Very quickly, for any morphism $C\to A,$ we do indeed have $0_{CB}$ after composing as $C\to A\to 0\to B,$ for $C\to A\to 0$ must be the unique mapping $C\to 0,$ so we had $C\to 0\to B$ all along. For the same reason, for any morphism $B\to C,$ the fact that we must have $0\to B\to C$ equal to $0\to C$ implies that the composite $A\to 0\to B\to C$ was $A\to 0\to C$ all along.</p>
-			<p>With this $0$ object in mind, we can define our kernel of a mapping $f:A\to B$ to be an object $K$ with a mapping $\iota:K\to A$ such that $\iota\circ f=0_{K0}$ and is universal with respect to this property. This is really the same diagram as we had last time, but having a $0$ object makes the definition must more natural. I'll repaste the diagram for completeness.</p>
-			<img src="img1.png">
-			<p></p>
+					<p>With this $0$ object in mind, we can define our kernel of a mapping $f:A\to B$ to be an object $K$ with a mapping $\iota:K\to A$ such that $\iota\circ f=0_{K0}$ and is universal with respect to this property. This is really the same diagram as we had last time, but having a $0$ object makes the definition must more natural. I'll repaste the diagram for completeness.</p>
+					<img src="img1.png">
+					<p></p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

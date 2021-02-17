@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to September)</a></p>
-		<div class="entry">
-			<h2>September 10th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to September)</a></p>
+				<div class="entry">
+					<h2>September 10th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,14 +53,16 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the definition of "uniformly continuous'' from one of Tom's riddles: show that any uniformly continuous function defined on a bounded domain is bounded.</p>
-			<p>Uniformly continuous means that for any $\varepsilon{\gt}0,$ there exists a $\delta{\gt}0$ such that $|x-y|{\lt}\varepsilon$ implies $|f(x)-f(y)|{\lt}\delta.$ (Note that this $\delta$ works uniformly for all $x.$) The visual image is that $f(x)$ doesn't grow "too fast'' globally: for any vertical error, we can find a suitably thin rectangle so that the rectangle centered along the curve never has the curve go through the tops of the rectangle. (Image on Wikipedia.) So this puzzle is intuitively clear.</p>
-			<p>Now to prove this, force $\varepsilon=1$ so that we get a $\delta$ such that $|x-y|\le\delta$ implies $|f(x)-f(y)|{\lt}1.$ The main lemma is that if we look over intervals $[k\delta,(k+1)\delta]$ for $k\in\ZZ,$ the image of $f$ here is bounded.			</p>
-			<ol>
-				<li>     If $f$ is defined nowhere in the interval, then this is vacuously true.</li>
-				<li>     Else, fix $x\in[k\delta,(k+1)\delta]$ so that $f(x)$ exists. Then for any $y\in[k\delta,(k+1)\delta]$ for which $f(y)$ exists, we know for free that    \[|x-y|\le(k+1)\delta-k\delta=\delta,\]    so we know $|f(x)-f(y)|{\lt}1.$ It follows that the image of $f$ is bounded in $[f(x)-1,f(x)+1].$</li>
-			</ol>
-			<p>This completes the proof of the lemma.</p>
-			<p>To finish the proof, note the fact that $f$ has a bounded domain means that we can say the domain of $f$ lives in $[-M\delta, M\delta]$ for some sufficiently large positive integer $M.$ But then the image of $f$ is\[\op{Im}(f)=f([-M\delta,M\delta])=\bigcup_{k=-M}^{M-1}f([k\delta,(k+1)\delta]),\]a finite union of $2M$ bounded sets. It follows that the total image of $f$ is bounded, so we're done.</p>
+					<p>Uniformly continuous means that for any $\varepsilon{\gt}0,$ there exists a $\delta{\gt}0$ such that $|x-y|{\lt}\varepsilon$ implies $|f(x)-f(y)|{\lt}\delta.$ (Note that this $\delta$ works uniformly for all $x.$) The visual image is that $f(x)$ doesn't grow "too fast'' globally: for any vertical error, we can find a suitably thin rectangle so that the rectangle centered along the curve never has the curve go through the tops of the rectangle. (Image on Wikipedia.) So this puzzle is intuitively clear.</p>
+					<p>Now to prove this, force $\varepsilon=1$ so that we get a $\delta$ such that $|x-y|\le\delta$ implies $|f(x)-f(y)|{\lt}1.$ The main lemma is that if we look over intervals $[k\delta,(k+1)\delta]$ for $k\in\ZZ,$ the image of $f$ here is bounded.					</p>
+					<ol>
+						<li>     If $f$ is defined nowhere in the interval, then this is vacuously true.</li>
+						<li>     Else, fix $x\in[k\delta,(k+1)\delta]$ so that $f(x)$ exists. Then for any $y\in[k\delta,(k+1)\delta]$ for which $f(y)$ exists, we know for free that    \[|x-y|\le(k+1)\delta-k\delta=\delta,\]    so we know $|f(x)-f(y)|{\lt}1.$ It follows that the image of $f$ is bounded in $[f(x)-1,f(x)+1].$</li>
+					</ol>
+					<p>This completes the proof of the lemma.</p>
+					<p>To finish the proof, note the fact that $f$ has a bounded domain means that we can say the domain of $f$ lives in $[-M\delta, M\delta]$ for some sufficiently large positive integer $M.$ But then the image of $f$ is\[\op{Im}(f)=f([-M\delta,M\delta])=\bigcup_{k=-M}^{M-1}f([k\delta,(k+1)\delta]),\]a finite union of $2M$ bounded sets. It follows that the total image of $f$ is bounded, so we're done.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

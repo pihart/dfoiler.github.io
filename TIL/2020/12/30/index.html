@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to December)</a></p>
-		<div class="entry">
-			<h2>December 30th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to December)</a></p>
+				<div class="entry">
+					<h2>December 30th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,13 +53,15 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned more formally about proving propositions as types. The idea is that we can "prove'' a proposition by exhibiting an element which witnesses to a type which communicates the proposition. The idea is a bit abstract. Anyways, here is the table of translations.\[\begin{array}{c|c}    \text{Logic} & \text{Type theory} \\    \hline    0 & \text{False} \\    1 & \text{True} \\    A\land B & A\times B \\    A\lor B & A+B \\    A\to B & A\to B \\    A\leftrightarrow B & (A\to B)\times(B\to A) \\    \lnot A & A\to0 \\    \hline    \forall x:A,\,P(x) & \prod_{x:A}P(x) \\    \exists x:A,\,P(x) & \sum_{x:A}P(x)\end{array}\]Many of these make some intuitive sense. For example, in type theory, $A\land B$ should hold if and only if we can exhibit a witness of both $A$ and $B.$ So our witness for $A\land B$ should be the ordered pair of the witnesses, which would be anything in $A\times B.$ Similarly, a witness of $A\lor B$ is something in $A$ or $B,$ which witnesses exactly $A+B.$ The $\forall$ and $\exists$ statements are similar.</p>
-			<p>Somewhat awkward (but nice) is the handling of $A\to B.$ Essentially, we're saying that $A$ implies $B$ if and only if exhibiting a witness of $A$ lets us exhibit a witness to $B.$ Well, that only happens (in type theory) if we can exhibit the exact function $A\to B$ taking witnesses of $A$ to $B.$</p>
-			<p>Let's see a proof. Let's show\[((A+B)\to0)\to(A\to0)\times(B\to0).\]Logically, this reads, $\lnot(A+B)\to\lnot A\land\lnot B,$ which is one of de Morgan's Laws. To "prove'' this statement, we just have to exhibit a function of the above type.</p>
-			<p>We begin with a logical proof, and we'll translate it to type theory. We first show $\lnot A.$ Well suppose for the sake of contradiction $A.$ Then $A+B,$ which is a contradiction by hypothesis. We second show $\lnot B.$ Well suppose for the sake of contradiction $B.$ Then $A+B,$ which is a contradiction by hypothesis. So we know $\lnot A$ and $\lnot B,$ from which $\lnot A\land\lnot B$ follows.</p>
-			<p>Now for type theory. The logical proof begins by showing $\lnot A,$ which we means we start by wanting a function $f_A:A\to0.$ Then we remark we are given $f:A+B\to0,$ from which $A\to0$ should follow. To write this out in type theory, we think categorically, and note\[A\stackrel{\op{inl}}\longrightarrow A+B\stackrel f\longrightarrow0\]will do the trick. That is, we can set $f_A=f\circ\op{inl}:A\to0,$ as desired.</p>
-			<p>Next we do similar for $\lnot B.$ We need to inhabit $B\to0,$ but we already have $A+B\to0,$ so\[A\stackrel{\op{inr}}\longrightarrow A+B\stackrel f\longrightarrow0\]will do the trick. That is, we can set $f_B=f\circ\op{inr}:B\to0,$ as desired.</p>
-			<p>The proof finishes by combining $\lnot A$ and $\lnot B$ to get $\lnot A\land\lnot B.$ In type theory, this means we need to combine our $f_A:A\to0$ and $f_B:B\to0$ to exhibit a witness in $A\times B\to0.$ For this, we can simply say\[(f_A,f_B):(A\to0)\times(B\to0)\]is such an ordered pair.</p>
-			<p>The proof is now finished, but it is somewhat satisfying to see it put together. Namely, we claim that\[g\equiv\lambda f.\big(\lambda(a:A).f\circ\op{inl}(a),\lambda(b:B).f\circ\op{inr}(b)\big):((A+B)\to0)\to(A\to0)\times(B\to0).\]is our witness. It suffices to show that, given $f:((A+B)\to0),$ $g(f):(A\to0)\times(B\to0).$ For this, because ordered pairs are primitive, we just need to show that each component function has the correct type. Well,\[\lambda a.f\circ\op{inl}(a):A\to0\]because it takes $a:A$ to $\op{inl}(a):A+B$ to $f(\op{inl}(a)):0,$ as needed. Similar holds for the $B\to0$ component, so we're done here.</p>
+					<p>Somewhat awkward (but nice) is the handling of $A\to B.$ Essentially, we're saying that $A$ implies $B$ if and only if exhibiting a witness of $A$ lets us exhibit a witness to $B.$ Well, that only happens (in type theory) if we can exhibit the exact function $A\to B$ taking witnesses of $A$ to $B.$</p>
+					<p>Let's see a proof. Let's show\[((A+B)\to0)\to(A\to0)\times(B\to0).\]Logically, this reads, $\lnot(A+B)\to\lnot A\land\lnot B,$ which is one of de Morgan's Laws. To "prove'' this statement, we just have to exhibit a function of the above type.</p>
+					<p>We begin with a logical proof, and we'll translate it to type theory. We first show $\lnot A.$ Well suppose for the sake of contradiction $A.$ Then $A+B,$ which is a contradiction by hypothesis. We second show $\lnot B.$ Well suppose for the sake of contradiction $B.$ Then $A+B,$ which is a contradiction by hypothesis. So we know $\lnot A$ and $\lnot B,$ from which $\lnot A\land\lnot B$ follows.</p>
+					<p>Now for type theory. The logical proof begins by showing $\lnot A,$ which we means we start by wanting a function $f_A:A\to0.$ Then we remark we are given $f:A+B\to0,$ from which $A\to0$ should follow. To write this out in type theory, we think categorically, and note\[A\stackrel{\op{inl}}\longrightarrow A+B\stackrel f\longrightarrow0\]will do the trick. That is, we can set $f_A=f\circ\op{inl}:A\to0,$ as desired.</p>
+					<p>Next we do similar for $\lnot B.$ We need to inhabit $B\to0,$ but we already have $A+B\to0,$ so\[A\stackrel{\op{inr}}\longrightarrow A+B\stackrel f\longrightarrow0\]will do the trick. That is, we can set $f_B=f\circ\op{inr}:B\to0,$ as desired.</p>
+					<p>The proof finishes by combining $\lnot A$ and $\lnot B$ to get $\lnot A\land\lnot B.$ In type theory, this means we need to combine our $f_A:A\to0$ and $f_B:B\to0$ to exhibit a witness in $A\times B\to0.$ For this, we can simply say\[(f_A,f_B):(A\to0)\times(B\to0)\]is such an ordered pair.</p>
+					<p>The proof is now finished, but it is somewhat satisfying to see it put together. Namely, we claim that\[g\equiv\lambda f.\big(\lambda(a:A).f\circ\op{inl}(a),\lambda(b:B).f\circ\op{inr}(b)\big):((A+B)\to0)\to(A\to0)\times(B\to0).\]is our witness. It suffices to show that, given $f:((A+B)\to0),$ $g(f):(A\to0)\times(B\to0).$ For this, because ordered pairs are primitive, we just need to show that each component function has the correct type. Well,\[\lambda a.f\circ\op{inl}(a):A\to0\]because it takes $a:A$ to $\op{inl}(a):A+B$ to $f(\op{inl}(a)):0,$ as needed. Similar holds for the $B\to0$ component, so we're done here.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

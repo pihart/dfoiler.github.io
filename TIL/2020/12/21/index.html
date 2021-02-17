@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to December)</a></p>
-		<div class="entry">
-			<h2>December 21st</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to December)</a></p>
+				<div class="entry">
+					<h2>December 21st</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,24 +53,26 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the core of the proof of the class number formula. As usual, $K$ is a number field of degree $n$ and signature $(r,s).$ Recall we are interested in showing there exists (and computing) a constant $\rho_K$ such that\[\#\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\}=\rho_Kt+O\left(t^{1-1/n}\right).\]We choose to compute ideals by ideal class instead, defining $\iota_C(t)$ for ideal class $C$ by\[\iota_C(t)=\#\{I\in C:\op{Norm}(I)\le t\}\]as we did a month ago. It will be enough to show that there exists some constant $\frac{\rho_K}{h_K}$ not dependent on $C$ such that $\iota_C(t)=\frac{\rho_K}{h_K}t+O\left(t^{1-1/n}\right).$ Roughly speaking, we're reducing the problem by saying that ideals should be distributed equally across ideal classes and counting by ideal class.</p>
-			<p>Our goal now is to turn this question about counting ideals into a geometric question about counting points in the Minkowski space, similar to proving finiteness of the class number or Dirichlet's unit theorem. Geometry will probably be necessary, so the hope is that counting points is doable using some kind of argument like the Gauss circle problem and will give the result.</p>
-			<p>Anyways, the advantage we gain by counting by ideal class is that it lets us transform the question into one about principal ideals, which is almost counting points. Namely, fix $\Lambda$ some (integral) ideal in $C^{-1}.$ (I'm using $\Lambda$ because we're going to want to think about $\Lambda$ as a lattice in $K_\RR.$) We recall that integral ideals $I\in C$ of norm $\op{Norm}(I)\le t$ are in bijection with nonzero principal ideals $(\alpha)\subseteq\Lambda$ of norm $\op{Norm}(\alpha)\le t\op{Norm}(\Lambda).$</p>
-			<p>Namely, the bijection takes $I\mapsto I\Lambda,$ which is principal. It's injective by group law; it's surjective holds because $(\alpha)\Lambda^{-1}$ is integral provided $\Lambda\supseteq(\alpha).$ Anyways, we see\[\iota_C(t)=\#\{\text{nonzero }(\alpha)\subseteq\Lambda:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}.\]We'd like to count points, so we note that principal ideals $(\alpha)=(\alpha')$ are equal if and only if $\alpha/\alpha'\in\mathcal O_K^\times.$ So we count points "modded'' out by $\mathcal O_K^\times.$ We write\[\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/\mathcal O_K^\times.\]This was a bit too ambitious&mdash;we will need more control on this mod to actually count this set. So we recall Dirichlet's unit theorem says $\mathcal O_K\cong\mu(K)\times U,$ where $U$ is a free group of rank $r+s-1.$ The torsion $\mu(K)$ is kind of annoying to deal with, but we note that it's evenly spaced, so we claim\[\iota_C(t)=\frac1{\#\mu(K)}\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]In particular, each $(\alpha)$ is now represented by each element in $\alpha\mu(K),$ which is $\mu(K)$ elements. For brevity, let $w_K:=\#\mu(K).$ So we have\[w_K\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]</p>
-			<p>It turns out that this is not the right way to look at this set. This is written as elements of $\Lambda$ with small norm, but it will be more productive to visualize all elements of $K$ with sufficiently small norm as some sort of blob and then count lattice points of $\Lambda.$ (Think Gauss circle problem.) Abusing notation slightly, we want to write\[w_K\iota_C(t)=\#(\{\alpha\in K^\times/U:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda),\]where $K^\times/U$ is over coset representatives. (Note that different representatives have the same norm.) We understood $U$ best by looking at the Minkowski space $K_\RR,$ so that's where we turn. Note that nothing changes when we write\[w_K\iota_C(t)=\#(\{\alpha\in K_\RR^\times/U:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda).\]In particular, though $K_\RR^\times$ is bigger than $K^\times,$ we're intersecting with $\Lambda\subseteq K,$ so we don't introduce any problems. The issue with this expression is that we don't understand $K_\RR^\times/U$ very well. So we want to define some reasonably well-behaved set $S\subseteq K_\RR$ which consists of coset representatives of $K_\RR^\times/U.$</p>
-			<p>Let's see how a nice $S$ could let us finish the argument. We then get to concretely say\[w_K\iota_C(t)=\#(\{\alpha\in S:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda).\]If $S$ is scale-invariant, then we can write\[w_K\iota_C(t)=\#\left((t\op{Norm}(\Lambda))^{1/n}\{\alpha\in S:\op{Norm}(\alpha)\le1\}\cap\Lambda\right).\]For brevity, fix $S_{\le1}:=\{\alpha\in S:\op{Norm}(\alpha)\le1\}.$ If the boundary of $S$ is $(n-1)$-Lipschitz parametrizable (a condition we won't define now), it turns out that we even get to say\[\#\left(tS_{\le1}\cap\Lambda\right)=\left(\frac{\mu(S_{\le1})}{\op{vol}(K_\RR/\Lambda)}\right)t^n+O\left(t^{n-1}\right).\]Here $\mu$ is the measure on the Minkowski space. This statement is best read as a generalization of the Gauss circle problem: if we have a blob $tS_{\le1},$ we expect the number of lattice points of $\Lambda$ in there to be the number of the volume of the blob divided by the covolume of the lattice, with error corresponding to the boundary of the blob. Anyways, this tells us\[w_K\iota_C(t)=\frac{\mu(S_{\le1})}{\op{vol}(K_\RR/\Lambda)}(t\op{Norm}(\Lambda))+O\left(t^{1-1/n}\right).\]To finish, we recall $\op{vol}(K_\RR/\Lambda)=[\mathcal O_K:\Lambda]\op{vol}(K_\RR/\mathcal O_K)=\op{Norm}(\Lambda)\sqrt{|\op{disc}(\mathcal O_K)|}.$ So we get to rearrange this to\[\iota_C(t)=\left(\frac{\mu(S_{\le1})}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}\right)t+O\left(t^{1-1/n}\right).\]It follows that $\frac{\rho_K}{h_K}=\frac{\mu(S_{\le1})}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}$ would finish the proof. Note this does not depend on the ideal class $C.$ Plugging this into our work from yesterday, we find that\[\lim_{z\to1}(z-1)\zeta_K(z)=\rho_K=\frac{\mu(S_{\le1})h_K}{w_K\sqrt{|\disc(\mathcal O_K)|}}.\]We are slowly honing in on the class number formula. It might be fun at the end to explicitly track where all the terms of the class number formula came from.</p>
-			<p>It remains to create a nice $S$ and then compute $\mu(S_{\le1}).$ To review, the end of the argument requires the following.			</p>
-			<ul>
-				<li>     $S$ consists of representatives of $K_\RR^\times/U.$</li>
-				<li>     $S$ is scale-invariant.</li>
-				<li>     $\del S_{\le1}$ is $(n-1)$-Lipschitz parametrizable, and this implies the generalization of the Gauss circle problem.</li>
-				<li>     $\mu(S_{\le1})$ can be computed.</li>
-			</ul>
-			<p>In the imaginary quadratic case, this is especially simple because $U$ is trivial, so we can just set $S=K_\RR$ without worries. There is little to say about the first two properties, the third property is the actual Gauss circle problem, and $\mu(S_{\le1})=2\pi.$ The $2$ comes from the fact that the measure $\mu$ on $K_\RR$ double-counts complex embeddings.</p>
-			<p>Currently, I know how to construct $S$ to satisfy the first two properties but don't know the details for the last two. The easiest starting place is to look at the trace $0$ hyperplane $\op{Log}(K_{\RR,1}^\times)$ spanned by $U.$ Then we can look at a fundamental domain $\op{Log}(K_{\RR,1}^\times)/U$ to at least span this trace $0$ hyperplane with $U$ and name it $F.$ Now, $\op{Log}^{-1}(F)$ is close but is missing a dimension because the hyperplane has dimension $n-1.$</p>
-			<p>The easiest way to add a dimension is to just add a vector $v$ and then let $S=\op{Log}^{-1}(F\oplus\RR v),$ but we have to be careful to keep $S$ scale invariant. Being scale-invariant means that for $a\in\RR^\times$ and $x\in S,$ we need $ax\in S.$ Moving to $\op{Log}(K_\RR),$ we need $\op{Log}(x)\in\op{Log}(S)$ to imply $\op{Log}(x)+\op{Log}(a)\in\op{Log}(S).$ Thus, $\op{Log}(\RR^\times)\subseteq\op{Log}(S),$ which means\[(\underbrace{1,\ldots,1}_r,\underbrace{2,\ldots,2}_s)\in\op{Log}(S).\]So $S=\op{Log}^{-1}(F\oplus\RR\left(1,\ldots,1,2,\ldots,2\right))$ will be scale-invariant. Abusing notation, this is probably best read as $S=\RR\op{Log}^{-1}(F)$ to mean multiples of every element in $\op{Log}^{-1}(F).$</p>
-			<p>Another way to do construct the same $S$ is to project $K_\RR$ onto $K_{\RR,1}$ to account for the needed dimension. A natural way to do this is by writing\[\pi:x\mapsto\frac x{\sqrt[n]{\op{Norm}(x)}}.\]This is a multiplicative homomorphism, surjective because $K_{\RR,1}$ is fixed. It follows $\pi(K_\RR)$ is indeed spanned by $U,$ so we can let $S=\pi^{-1}\left(\op{Log}^{-1}(F)\right).$ This is scale-invariant because the projection is scale-invariant. Again, this is really $S=\RR\op{Log}^{-1}(F)$ in disguise, seen because $\pi^{-1}(x)$ consists of all multiples of $x$ in $K_\RR.$</p>
-			<p>I guess I should say something about $S$ consisting of representatives of $K_\RR^\times/U.$ That is, for each nonzero $x\in K_\RR^\times,$ we see $xU$ has a single representative in $S.$ To get a representation, write\[x=\sqrt[n]{\op{Norm}(x)}\cdot u\]for $u$ of norm $1.$ Taking logs, we know $\op{Log}\left(\sqrt[n]{\op{Norm}(x)}\right)\in\RR(1,\ldots,1,2,\ldots,2)$ by construction, and $\op{Log}(u)$ can be written as an element of $\op{Log}(U)$ plus an element of $F$ by definition of $F.$ Reversing the logs shows that $x$ is represented in $S.$</p>
-			<p>This representation is unique. Suppose we've represented $xU$ by $rf\in xU$ for $r\in\RR$ and $f\in\op{Log}^{-1}(F).$ Taking norms, we see $\op{Norm}(x)=r^n,$ so we see $r=\sqrt[n]{\op{Norm}(x)}$ is in fact necessary. Further, we then have\[\frac xr=\frac x{\sqrt[n]{\op{Norm}(x)}}\]has norm $1$ now, so there's only one option for $fU$ by definition of the fundamental domain. So there is only one option for $r$ and $f$ to be.</p>
+					<p>Our goal now is to turn this question about counting ideals into a geometric question about counting points in the Minkowski space, similar to proving finiteness of the class number or Dirichlet's unit theorem. Geometry will probably be necessary, so the hope is that counting points is doable using some kind of argument like the Gauss circle problem and will give the result.</p>
+					<p>Anyways, the advantage we gain by counting by ideal class is that it lets us transform the question into one about principal ideals, which is almost counting points. Namely, fix $\Lambda$ some (integral) ideal in $C^{-1}.$ (I'm using $\Lambda$ because we're going to want to think about $\Lambda$ as a lattice in $K_\RR.$) We recall that integral ideals $I\in C$ of norm $\op{Norm}(I)\le t$ are in bijection with nonzero principal ideals $(\alpha)\subseteq\Lambda$ of norm $\op{Norm}(\alpha)\le t\op{Norm}(\Lambda).$</p>
+					<p>Namely, the bijection takes $I\mapsto I\Lambda,$ which is principal. It's injective by group law; it's surjective holds because $(\alpha)\Lambda^{-1}$ is integral provided $\Lambda\supseteq(\alpha).$ Anyways, we see\[\iota_C(t)=\#\{\text{nonzero }(\alpha)\subseteq\Lambda:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}.\]We'd like to count points, so we note that principal ideals $(\alpha)=(\alpha')$ are equal if and only if $\alpha/\alpha'\in\mathcal O_K^\times.$ So we count points "modded'' out by $\mathcal O_K^\times.$ We write\[\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/\mathcal O_K^\times.\]This was a bit too ambitious&mdash;we will need more control on this mod to actually count this set. So we recall Dirichlet's unit theorem says $\mathcal O_K\cong\mu(K)\times U,$ where $U$ is a free group of rank $r+s-1.$ The torsion $\mu(K)$ is kind of annoying to deal with, but we note that it's evenly spaced, so we claim\[\iota_C(t)=\frac1{\#\mu(K)}\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]In particular, each $(\alpha)$ is now represented by each element in $\alpha\mu(K),$ which is $\mu(K)$ elements. For brevity, let $w_K:=\#\mu(K).$ So we have\[w_K\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]</p>
+					<p>It turns out that this is not the right way to look at this set. This is written as elements of $\Lambda$ with small norm, but it will be more productive to visualize all elements of $K$ with sufficiently small norm as some sort of blob and then count lattice points of $\Lambda.$ (Think Gauss circle problem.) Abusing notation slightly, we want to write\[w_K\iota_C(t)=\#(\{\alpha\in K^\times/U:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda),\]where $K^\times/U$ is over coset representatives. (Note that different representatives have the same norm.) We understood $U$ best by looking at the Minkowski space $K_\RR,$ so that's where we turn. Note that nothing changes when we write\[w_K\iota_C(t)=\#(\{\alpha\in K_\RR^\times/U:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda).\]In particular, though $K_\RR^\times$ is bigger than $K^\times,$ we're intersecting with $\Lambda\subseteq K,$ so we don't introduce any problems. The issue with this expression is that we don't understand $K_\RR^\times/U$ very well. So we want to define some reasonably well-behaved set $S\subseteq K_\RR$ which consists of coset representatives of $K_\RR^\times/U.$</p>
+					<p>Let's see how a nice $S$ could let us finish the argument. We then get to concretely say\[w_K\iota_C(t)=\#(\{\alpha\in S:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}\cap\Lambda).\]If $S$ is scale-invariant, then we can write\[w_K\iota_C(t)=\#\left((t\op{Norm}(\Lambda))^{1/n}\{\alpha\in S:\op{Norm}(\alpha)\le1\}\cap\Lambda\right).\]For brevity, fix $S_{\le1}:=\{\alpha\in S:\op{Norm}(\alpha)\le1\}.$ If the boundary of $S$ is $(n-1)$-Lipschitz parametrizable (a condition we won't define now), it turns out that we even get to say\[\#\left(tS_{\le1}\cap\Lambda\right)=\left(\frac{\mu(S_{\le1})}{\op{vol}(K_\RR/\Lambda)}\right)t^n+O\left(t^{n-1}\right).\]Here $\mu$ is the measure on the Minkowski space. This statement is best read as a generalization of the Gauss circle problem: if we have a blob $tS_{\le1},$ we expect the number of lattice points of $\Lambda$ in there to be the number of the volume of the blob divided by the covolume of the lattice, with error corresponding to the boundary of the blob. Anyways, this tells us\[w_K\iota_C(t)=\frac{\mu(S_{\le1})}{\op{vol}(K_\RR/\Lambda)}(t\op{Norm}(\Lambda))+O\left(t^{1-1/n}\right).\]To finish, we recall $\op{vol}(K_\RR/\Lambda)=[\mathcal O_K:\Lambda]\op{vol}(K_\RR/\mathcal O_K)=\op{Norm}(\Lambda)\sqrt{|\op{disc}(\mathcal O_K)|}.$ So we get to rearrange this to\[\iota_C(t)=\left(\frac{\mu(S_{\le1})}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}\right)t+O\left(t^{1-1/n}\right).\]It follows that $\frac{\rho_K}{h_K}=\frac{\mu(S_{\le1})}{w_K\sqrt{|\op{disc}(\mathcal O_K)|}}$ would finish the proof. Note this does not depend on the ideal class $C.$ Plugging this into our work from yesterday, we find that\[\lim_{z\to1}(z-1)\zeta_K(z)=\rho_K=\frac{\mu(S_{\le1})h_K}{w_K\sqrt{|\disc(\mathcal O_K)|}}.\]We are slowly honing in on the class number formula. It might be fun at the end to explicitly track where all the terms of the class number formula came from.</p>
+					<p>It remains to create a nice $S$ and then compute $\mu(S_{\le1}).$ To review, the end of the argument requires the following.					</p>
+					<ul>
+						<li>     $S$ consists of representatives of $K_\RR^\times/U.$</li>
+						<li>     $S$ is scale-invariant.</li>
+						<li>     $\del S_{\le1}$ is $(n-1)$-Lipschitz parametrizable, and this implies the generalization of the Gauss circle problem.</li>
+						<li>     $\mu(S_{\le1})$ can be computed.</li>
+					</ul>
+					<p>In the imaginary quadratic case, this is especially simple because $U$ is trivial, so we can just set $S=K_\RR$ without worries. There is little to say about the first two properties, the third property is the actual Gauss circle problem, and $\mu(S_{\le1})=2\pi.$ The $2$ comes from the fact that the measure $\mu$ on $K_\RR$ double-counts complex embeddings.</p>
+					<p>Currently, I know how to construct $S$ to satisfy the first two properties but don't know the details for the last two. The easiest starting place is to look at the trace $0$ hyperplane $\op{Log}(K_{\RR,1}^\times)$ spanned by $U.$ Then we can look at a fundamental domain $\op{Log}(K_{\RR,1}^\times)/U$ to at least span this trace $0$ hyperplane with $U$ and name it $F.$ Now, $\op{Log}^{-1}(F)$ is close but is missing a dimension because the hyperplane has dimension $n-1.$</p>
+					<p>The easiest way to add a dimension is to just add a vector $v$ and then let $S=\op{Log}^{-1}(F\oplus\RR v),$ but we have to be careful to keep $S$ scale invariant. Being scale-invariant means that for $a\in\RR^\times$ and $x\in S,$ we need $ax\in S.$ Moving to $\op{Log}(K_\RR),$ we need $\op{Log}(x)\in\op{Log}(S)$ to imply $\op{Log}(x)+\op{Log}(a)\in\op{Log}(S).$ Thus, $\op{Log}(\RR^\times)\subseteq\op{Log}(S),$ which means\[(\underbrace{1,\ldots,1}_r,\underbrace{2,\ldots,2}_s)\in\op{Log}(S).\]So $S=\op{Log}^{-1}(F\oplus\RR\left(1,\ldots,1,2,\ldots,2\right))$ will be scale-invariant. Abusing notation, this is probably best read as $S=\RR\op{Log}^{-1}(F)$ to mean multiples of every element in $\op{Log}^{-1}(F).$</p>
+					<p>Another way to do construct the same $S$ is to project $K_\RR$ onto $K_{\RR,1}$ to account for the needed dimension. A natural way to do this is by writing\[\pi:x\mapsto\frac x{\sqrt[n]{\op{Norm}(x)}}.\]This is a multiplicative homomorphism, surjective because $K_{\RR,1}$ is fixed. It follows $\pi(K_\RR)$ is indeed spanned by $U,$ so we can let $S=\pi^{-1}\left(\op{Log}^{-1}(F)\right).$ This is scale-invariant because the projection is scale-invariant. Again, this is really $S=\RR\op{Log}^{-1}(F)$ in disguise, seen because $\pi^{-1}(x)$ consists of all multiples of $x$ in $K_\RR.$</p>
+					<p>I guess I should say something about $S$ consisting of representatives of $K_\RR^\times/U.$ That is, for each nonzero $x\in K_\RR^\times,$ we see $xU$ has a single representative in $S.$ To get a representation, write\[x=\sqrt[n]{\op{Norm}(x)}\cdot u\]for $u$ of norm $1.$ Taking logs, we know $\op{Log}\left(\sqrt[n]{\op{Norm}(x)}\right)\in\RR(1,\ldots,1,2,\ldots,2)$ by construction, and $\op{Log}(u)$ can be written as an element of $\op{Log}(U)$ plus an element of $F$ by definition of $F.$ Reversing the logs shows that $x$ is represented in $S.$</p>
+					<p>This representation is unique. Suppose we've represented $xU$ by $rf\in xU$ for $r\in\RR$ and $f\in\op{Log}^{-1}(F).$ Taking norms, we see $\op{Norm}(x)=r^n,$ so we see $r=\sqrt[n]{\op{Norm}(x)}$ is in fact necessary. Further, we then have\[\frac xr=\frac x{\sqrt[n]{\op{Norm}(x)}}\]has norm $1$ now, so there's only one option for $fU$ by definition of the fundamental domain. So there is only one option for $r$ and $f$ to be.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

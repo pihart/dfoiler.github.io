@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to October)</a></p>
-		<div class="entry">
-			<h2>October 6th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<div class="entry">
+					<h2>October 6th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,9 +53,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned a loose connection between Fourier analysis and theory of Dirichlet series and convolutions. The correct context to abstract both of these ideas is in abstract Fourier analysis. Namely, take $G$ a group; I think the correct hypotheses are locally compact abelian topological group, but I don't care that much. Write $\widehat G=\op{Hom}(G,\CC^\times)$ for its characters. Then we say the Fourier transform of a function $f:G\to G$ is another function $\mathcal F(f):\widehat G\to G$ by\[\mathcal F(f)(\chi)=\int_Gf(x)\overline{\chi(x)}\,d\mu(x)\]for some measure $\mu$ on our $G.$</p>
-			<p>This formula looks scary, but it's quite familiar. In the context of Fourier analysis over $\RR,$ our characters $\RR\to\CC^\times$ are $\exp$ and friends (you can make other choice-like characters, but preserving the topological properties of $\CC$ forces). However, we can quite easily enumerate these characters by $x\mapsto e^{2\pi isx}$ for some scale factor $s\in\CC.$ So we can actually express $\mathcal F(f)$ by\[\mathcal F(f)(s)=\int_\RR f(x)e^{-2\pi isx}\,dx.\]And viola, the Fourier transform appears. Abstract theory beind Fourier analysis (which I don't understand) can give us typical properties we like; e.g., applying the Fourier transform twice gives back the original function. While we're here, we remark that we have a Fourier function convolution by $\mathcal F(f*g)=\mathcal F(f)\mathcal F(g).$ This will be helpful momentarily.</p>
-			<p>The nice observation, now, is to apply this to $(\NN,\cdot)$ (it's not a group, but it still roughly works) in order to obtain theory of Dirichlet series and convolutions. What are our characters $\NN\to\CC^\times$? We're going to cheat a bit and require these to also be characters over $(\RR^+,\cdot),$ presumably so that continuity and other things work out. (I don't entirely understand why this is the correct thing to do.) In particular, we can write, for character $\chi,$\[\chi(n)=\chi(e)^{\log n}=n^{\log\chi(e)}.\]In particular, we can parameterize all of our characters by $s\in\CC$: it's the one taking $n\mapsto\chi(n)=n^s.$ Then our Fourier transform looks like\[\mathcal F(f)(s)=\int_\NN f(n)n^{-s}\,dn.\]An integral over $n$ is really an infinite sum. Namely, we see\[\mathcal F(f)(s)=\sum_{n=1}^\infty\frac{f(n)}{n^s}.\]And viola, the Dirichlet series for $f$ appears. Of note is that $\mathcal F(\op{id})=\zeta$ and $\mathcal F(\delta)=1,$ where $\delta$ is the $1$-indicator.</p>
-			<p>Relating this to convolutions, we still write $f*g$ as our function satisfying $\mathcal F(f*g)=\mathcal F(f)\cdot\mathcal F(g).$ For example, this tells us that $\delta$ is the identity of this operation. And more generally, taking products,\[\sum_{n=1}^\infty\frac{(f*g)(n)}{n^s}=\mathcal F(f*g)=\mathcal F(f)\mathcal F(g)=\left(\sum_{n=1}^\infty\frac{f(n)}{n^s}\right)\left(\sum_{n=1}^\infty\frac{g(n)}{n^s}\right).\]In particular, expanding tells us that\[\sum_{n=1}^\infty\frac{(f*g)(n)}{n^s}=\sum_{n=1}^\infty\left(\sum_{ab=n}f(a)g(b)\right)\frac1{n^s}.\]So this motivates defining $(f*g)(n)=\sum_{ab=n}f(a)g(b),$ the definition of the Dirichlet convolution! And then once we see $\mu*\op{id}=\delta,$ we get M\"obius inversion, as usual.</p>
+					<p>This formula looks scary, but it's quite familiar. In the context of Fourier analysis over $\RR,$ our characters $\RR\to\CC^\times$ are $\exp$ and friends (you can make other choice-like characters, but preserving the topological properties of $\CC$ forces). However, we can quite easily enumerate these characters by $x\mapsto e^{2\pi isx}$ for some scale factor $s\in\CC.$ So we can actually express $\mathcal F(f)$ by\[\mathcal F(f)(s)=\int_\RR f(x)e^{-2\pi isx}\,dx.\]And viola, the Fourier transform appears. Abstract theory beind Fourier analysis (which I don't understand) can give us typical properties we like; e.g., applying the Fourier transform twice gives back the original function. While we're here, we remark that we have a Fourier function convolution by $\mathcal F(f*g)=\mathcal F(f)\mathcal F(g).$ This will be helpful momentarily.</p>
+					<p>The nice observation, now, is to apply this to $(\NN,\cdot)$ (it's not a group, but it still roughly works) in order to obtain theory of Dirichlet series and convolutions. What are our characters $\NN\to\CC^\times$? We're going to cheat a bit and require these to also be characters over $(\RR^+,\cdot),$ presumably so that continuity and other things work out. (I don't entirely understand why this is the correct thing to do.) In particular, we can write, for character $\chi,$\[\chi(n)=\chi(e)^{\log n}=n^{\log\chi(e)}.\]In particular, we can parameterize all of our characters by $s\in\CC$: it's the one taking $n\mapsto\chi(n)=n^s.$ Then our Fourier transform looks like\[\mathcal F(f)(s)=\int_\NN f(n)n^{-s}\,dn.\]An integral over $n$ is really an infinite sum. Namely, we see\[\mathcal F(f)(s)=\sum_{n=1}^\infty\frac{f(n)}{n^s}.\]And viola, the Dirichlet series for $f$ appears. Of note is that $\mathcal F(\op{id})=\zeta$ and $\mathcal F(\delta)=1,$ where $\delta$ is the $1$-indicator.</p>
+					<p>Relating this to convolutions, we still write $f*g$ as our function satisfying $\mathcal F(f*g)=\mathcal F(f)\cdot\mathcal F(g).$ For example, this tells us that $\delta$ is the identity of this operation. And more generally, taking products,\[\sum_{n=1}^\infty\frac{(f*g)(n)}{n^s}=\mathcal F(f*g)=\mathcal F(f)\mathcal F(g)=\left(\sum_{n=1}^\infty\frac{f(n)}{n^s}\right)\left(\sum_{n=1}^\infty\frac{g(n)}{n^s}\right).\]In particular, expanding tells us that\[\sum_{n=1}^\infty\frac{(f*g)(n)}{n^s}=\sum_{n=1}^\infty\left(\sum_{ab=n}f(a)g(b)\right)\frac1{n^s}.\]So this motivates defining $(f*g)(n)=\sum_{ab=n}f(a)g(b),$ the definition of the Dirichlet convolution! And then once we see $\mu*\op{id}=\delta,$ we get M\"obius inversion, as usual.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

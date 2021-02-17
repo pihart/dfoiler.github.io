@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to October)</a></p>
-		<div class="entry">
-			<h2>October 29th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<div class="entry">
+					<h2>October 29th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,10 +53,12 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the spigot algorithm for hexadecimal digits of $\pi.$ We begin with the formula\[\pi=\sum_{k=0}^{\infty}\frac1{16^k}\left(\frac4{8k+1}-\frac2{8k+4}-\frac1{8k+5}-\frac1{8k+6}\right).\]This is a computational result found by computer and whose proof I've read but is quite unexciting. For those who care, check <a href="https://www.davidhbailey.com//dhbpapers/pi-quest.pdf">here</a>.</p>
-			<p>Now, let's say we want the $n$th hexadecimal digit after the hexadecimal point. This is equivalent to computing $\floor{16^n\pi}\pmod{16}.$ For this, we actually look at \[\floor{16\left\{16^{n-1}\pi\right\}},\]which is the same value, but we moved the modulo into the fractional part. This is nice because we can write\[\left\{16^{n-1}\sum_{k=0}^\infty\frac1{16^k(8k+\ell)}\right\}=\left\{\sum_{k=0}^{n-1}\frac{16^{n-1}\pmod{8k+\ell}}{8k+\ell}+\sum_{k=n}^\infty\frac1{16^{n-1-k}(8k+\ell)}\right\}\]because fractional parts allows us to ignore most of that $16^{n-1}.$ The spigot speed-up is to to note that we can actually opt to compute $16^{n-1}\pmod{8k+\ell}$ using modular exponentiation instead of computing $16^{n-1},$ implying that the entire process of computing this sum is merely $O(n\log n).$</p>
-			<p>The second sum is supposedly small, and we can compute digits until we're confident that it can't affect current digits. This can't really be theoretical guaranteed because there's always a change we hit some long string of $9$s and need to continually hit more digits from each of the sums, but this is quite unlikely assuming $\pi$ normal.</p>
-			<p>So we can quickly approximate\[\left\{\sum_{k=0}^\infty\frac{16^{n-1}}{16^k(8k+\ell)}\right\}.\]Noting that\[\left\{16^{n-1}\pi\right\}=\left\{\left\{\sum_{k=0}^\infty\frac{4\cdot16^{n-1}}{16^k(8k+1)}\right\}-\left\{\sum_{k=0}^\infty\frac{2\cdot16^{n-1}}{16^k(8k+4)}\right\}-\left\{\sum_{k=0}^\infty\frac{16^{n-1}}{16^k(8k+5)}\right\}-\left\{\sum_{k=0}^\infty\frac{16^{n-1}}{16^k(8k+6)}\right\}\right\}\]means that we can quickly approximate $\left\{16^{n-1}\pi\right\},$ which lets us quickly extract individual nibbles.</p>
-			<p>Honestly I'm pretty unimpressed by this algorithm, but it does qualify as "spigot'' in that we got to ignore the nibbles before $n$ in our computation. However, we still have a few sums to worry about, and while we can be pretty sure in practice that these sums will not give us unbounded run times, it still makes me uncomfortable. So it goes.</p>
+					<p>Now, let's say we want the $n$th hexadecimal digit after the hexadecimal point. This is equivalent to computing $\floor{16^n\pi}\pmod{16}.$ For this, we actually look at \[\floor{16\left\{16^{n-1}\pi\right\}},\]which is the same value, but we moved the modulo into the fractional part. This is nice because we can write\[\left\{16^{n-1}\sum_{k=0}^\infty\frac1{16^k(8k+\ell)}\right\}=\left\{\sum_{k=0}^{n-1}\frac{16^{n-1}\pmod{8k+\ell}}{8k+\ell}+\sum_{k=n}^\infty\frac1{16^{n-1-k}(8k+\ell)}\right\}\]because fractional parts allows us to ignore most of that $16^{n-1}.$ The spigot speed-up is to to note that we can actually opt to compute $16^{n-1}\pmod{8k+\ell}$ using modular exponentiation instead of computing $16^{n-1},$ implying that the entire process of computing this sum is merely $O(n\log n).$</p>
+					<p>The second sum is supposedly small, and we can compute digits until we're confident that it can't affect current digits. This can't really be theoretical guaranteed because there's always a change we hit some long string of $9$s and need to continually hit more digits from each of the sums, but this is quite unlikely assuming $\pi$ normal.</p>
+					<p>So we can quickly approximate\[\left\{\sum_{k=0}^\infty\frac{16^{n-1}}{16^k(8k+\ell)}\right\}.\]Noting that\[\left\{16^{n-1}\pi\right\}=\left\{\left\{\sum_{k=0}^\infty\frac{4\cdot16^{n-1}}{16^k(8k+1)}\right\}-\left\{\sum_{k=0}^\infty\frac{2\cdot16^{n-1}}{16^k(8k+4)}\right\}-\left\{\sum_{k=0}^\infty\frac{16^{n-1}}{16^k(8k+5)}\right\}-\left\{\sum_{k=0}^\infty\frac{16^{n-1}}{16^k(8k+6)}\right\}\right\}\]means that we can quickly approximate $\left\{16^{n-1}\pi\right\},$ which lets us quickly extract individual nibbles.</p>
+					<p>Honestly I'm pretty unimpressed by this algorithm, but it does qualify as "spigot'' in that we got to ignore the nibbles before $n$ in our computation. However, we still have a few sums to worry about, and while we can be pretty sure in practice that these sums will not give us unbounded run times, it still makes me uncomfortable. So it goes.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

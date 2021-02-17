@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to September)</a></p>
-		<div class="entry">
-			<h2>September 18th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to September)</a></p>
+				<div class="entry">
+					<h2>September 18th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,34 +53,36 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned an example a proof by universal properties, by proving that localization commutes with arbitrary direct sums. We show this here, with many pretty commutative diagrams.</p>
-			<p>For our first proof, we start with the obvious mappings as follows.</p>
-			<img src="img1.png">
-			<p>The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.</p>
-			<img src="img2.png">
-			<p>We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
-			<img src="img3.png">
-			<p>Indeed, re-expand out the diagram as before.</p>
-			<img src="img4.png">
-			<p>Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.</p>
-			<img src="img5.png">
-			<p>So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
-			<img src="img6.png">
-			<p>This is what we wanted. To review, the entire following diagram commutes.</p>
-			<img src="img7.png">
-			<p></p>
-			<p>We now provide a second proof. Again we start with the obvious mappings.</p>
-			<img src="img8.png">
-			<p>Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.</p>
-			<img src="img9.png">
-			<p>We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.</p>
-			<img src="img10.png">
-			<p>However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.</p>
-			<img src="img11.png">
-			<p>But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.</p>
-			<img src="img12.png">
-			<p>This is what we wanted. To review, the entire following diagram commutes.</p>
-			<img src="img13.png">
-			<p>The pretty pictures are pretty.</p>
+					<p>For our first proof, we start with the obvious mappings as follows.</p>
+					<img src="img1.png">
+					<p>The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.</p>
+					<img src="img2.png">
+					<p>We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<img src="img3.png">
+					<p>Indeed, re-expand out the diagram as before.</p>
+					<img src="img4.png">
+					<p>Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<img src="img5.png">
+					<p>So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<img src="img6.png">
+					<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+					<img src="img7.png">
+					<p></p>
+					<p>We now provide a second proof. Again we start with the obvious mappings.</p>
+					<img src="img8.png">
+					<p>Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.</p>
+					<img src="img9.png">
+					<p>We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.</p>
+					<img src="img10.png">
+					<p>However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.</p>
+					<img src="img11.png">
+					<p>But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.</p>
+					<img src="img12.png">
+					<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+					<img src="img13.png">
+					<p>The pretty pictures are pretty.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

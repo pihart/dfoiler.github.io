@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to October)</a></p>
-		<div class="entry">
-			<h2>October 26th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<div class="entry">
+					<h2>October 26th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,8 +53,10 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned an elementary proof that the set of primes which split completely in a Galois extension $K/\QQ$ of degree $n$ have density $1/n,$ only assuming some minor analytic facts about the Dedekind zeta function. Namely, this weaker statement does not require use of the Chebotarev Density Theorem. Basically, recall\[\zeta_K(s)=\sum_{I\subseteq\mathcal O_K}\frac1{\op N(I)^s}=\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}.\]Noting that $\zeta_K(s)$ has a simple pole of rank $1$ at $s=1,$ we may say that $(s-1)\zeta_K(s)$ approaches some positive real number as $s\to1^+.$ We use this to get the result. In particular, we get to write\[\lim_{s\to1^+}\frac{\log(\zeta_K(s))}{\log\left(\frac1{s-1}\right)}=1+\lim_{s\to1^+}\frac{\log((s-1)\zeta_K(s))}{\log\left(\frac1{s-1}\right)}=1.\]Because this holds for $K=K$ and for $K=\QQ,$ we can divide the limits corresponding to each to get\[\lim_{s\to1^+}\frac{\log(\zeta_K(s))}{\log(\zeta_\QQ(s))}=1.\]But, akin to Dirichlet's Theorem, we can also expand\[\log(\zeta_K(s))=\log\left(\prod_{\mf p}\frac1{1-\op N(\mf p)^{-s}}\right)=\sum_{\mf p}\sum_{k=1}^\infty\frac1{k\op N(\mf p)^{sk}}\]because $-\log(1-x)=\sum_kx^k/k.$ We're going to get our result because the only terms that we care about in the above sum come from the rational primes that split completely.</p>
-			<p>This is an absolutely convergent series (all the terms are positive), so we are a bit liberal with our rearranging. In particular, we order this by rational primes $p$ so that this is\[\log(\zeta_K(s))=\sum_p\sum_{\mf p/(p)}\sum_{k=1}^\infty\frac1{k\op N(\mf p)^{sk}}.\]Dealing safely with the outer sum to start, we note that $e(\mf p/p)$ and $f(\mf p/p)$ are constant. The number of primes is therefore $\frac n{e(\mf p/p)f(\mf p/p)},$ giving $\op N(\mf p)=p^{f(\mf p/p)}.$ It follows that\[\log(\zeta_K(s))=n\sum_p\frac1{e(\mf p/p)f(\mf p/p)}\sum_{k=1}^\infty\frac1{kp^{kf(\mf p/p)s}}.\]Now we reduce this sum. We remark that only finitely many primes $p$ have $e(\mf p/p){\gt}1,$ which will contribute a $-\log(1-p^{-f(\mf p/p)s})$ of inner sum, totalling only to $O(1)$ over all such (finitely many) primes. It follows\[\log(\zeta_K(s))=O(1)+n\sum_{e(\mf p/p)=1}\frac1{f(\mf p/p)}\sum_{k=1}^\infty\frac1{kp^{kf(\mf p/p)s}}.\]Further, note that we can also group all the $k{\gt}1$ terms into\[\sum_{e(\mf p/p)=1}\frac1{f(\mf p/p)}\sum_{k=2}^\infty\frac1{kp^{kf(\mf p/p)s}}{\lt}\sum_{n=2}^\infty\sum_{k=2}^\infty\frac1{n^k}=\sum_{n=2}^\infty\frac1{n(n-1)}{\lt}\sum_{n=1}^\infty\frac1{n^2}{\lt}\infty.\]So it follows\[\log(\zeta_K(s))=O(1)+n\sum_{e(\mf p/p)=1}\frac1{f(\mf p/p)p^{f(\mf p/p)s}}.\]But again, we can group all $p$ with $f(\mf p/p){\gt}1$ by\[\sum_{\substack{e(\mf p/p)=1\\f(\mf p/p)\ge2}}\frac1{f(\mf p/p)p^{f(\mf p/p)s}}{\lt}\sum_{n=2}^\infty\frac1{n^2}{\lt}\infty.\]So we finally get to reduce our sum to\[\log(\zeta_K(s))=O(1)+n\sum_{\substack{e(\mf p/p)=1\\f(\mf p/p)=1}}\frac1{p^s}.\]However, this is a sum over $p$ completely splitting, which is equivalent to $e(\mf p/p)=f(\mf p)=1.$</p>
-			<p>To finish, we plug this into our limit from before, which tells us\[1=\lim_{s\to1^+}\frac{\log(\zeta_K(s))}{\log(\zeta_\QQ(s))}=\lim_{s\to1^+}n\cdot\dfrac{\displaystyle\sum_{p\text{ splits completely}}\frac1{p^s}}{\displaystyle\sum_p\frac1{p^s}},\]which rearranges to what we wanted, in terms of Dirichlet density.</p>
+					<p>This is an absolutely convergent series (all the terms are positive), so we are a bit liberal with our rearranging. In particular, we order this by rational primes $p$ so that this is\[\log(\zeta_K(s))=\sum_p\sum_{\mf p/(p)}\sum_{k=1}^\infty\frac1{k\op N(\mf p)^{sk}}.\]Dealing safely with the outer sum to start, we note that $e(\mf p/p)$ and $f(\mf p/p)$ are constant. The number of primes is therefore $\frac n{e(\mf p/p)f(\mf p/p)},$ giving $\op N(\mf p)=p^{f(\mf p/p)}.$ It follows that\[\log(\zeta_K(s))=n\sum_p\frac1{e(\mf p/p)f(\mf p/p)}\sum_{k=1}^\infty\frac1{kp^{kf(\mf p/p)s}}.\]Now we reduce this sum. We remark that only finitely many primes $p$ have $e(\mf p/p){\gt}1,$ which will contribute a $-\log(1-p^{-f(\mf p/p)s})$ of inner sum, totalling only to $O(1)$ over all such (finitely many) primes. It follows\[\log(\zeta_K(s))=O(1)+n\sum_{e(\mf p/p)=1}\frac1{f(\mf p/p)}\sum_{k=1}^\infty\frac1{kp^{kf(\mf p/p)s}}.\]Further, note that we can also group all the $k{\gt}1$ terms into\[\sum_{e(\mf p/p)=1}\frac1{f(\mf p/p)}\sum_{k=2}^\infty\frac1{kp^{kf(\mf p/p)s}}{\lt}\sum_{n=2}^\infty\sum_{k=2}^\infty\frac1{n^k}=\sum_{n=2}^\infty\frac1{n(n-1)}{\lt}\sum_{n=1}^\infty\frac1{n^2}{\lt}\infty.\]So it follows\[\log(\zeta_K(s))=O(1)+n\sum_{e(\mf p/p)=1}\frac1{f(\mf p/p)p^{f(\mf p/p)s}}.\]But again, we can group all $p$ with $f(\mf p/p){\gt}1$ by\[\sum_{\substack{e(\mf p/p)=1\\f(\mf p/p)\ge2}}\frac1{f(\mf p/p)p^{f(\mf p/p)s}}{\lt}\sum_{n=2}^\infty\frac1{n^2}{\lt}\infty.\]So we finally get to reduce our sum to\[\log(\zeta_K(s))=O(1)+n\sum_{\substack{e(\mf p/p)=1\\f(\mf p/p)=1}}\frac1{p^s}.\]However, this is a sum over $p$ completely splitting, which is equivalent to $e(\mf p/p)=f(\mf p)=1.$</p>
+					<p>To finish, we plug this into our limit from before, which tells us\[1=\lim_{s\to1^+}\frac{\log(\zeta_K(s))}{\log(\zeta_\QQ(s))}=\lim_{s\to1^+}n\cdot\dfrac{\displaystyle\sum_{p\text{ splits completely}}\frac1{p^s}}{\displaystyle\sum_p\frac1{p^s}},\]which rearranges to what we wanted, in terms of Dirichlet density.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

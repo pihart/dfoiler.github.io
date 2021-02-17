@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to February)</a></p>
-		<div class="entry">
-			<h2>February 11th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to February)</a></p>
+				<div class="entry">
+					<h2>February 11th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,26 +53,28 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned (finally) the proof that $[0,1]$ is compact in the standard topology on $\RR.$ Of course, the proof generalizes to show that $\RR$ is locally compact, but we don't bother with this.</p>
-			<p>We begin by presenting the proof with no motivation. Suppose that $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of $[0,1].$ The trick is to consider\[S=\{\varepsilon\in(0,1]:[0,\varepsilon]\text{ can be covered with a finite subcover}\}.\]Very quickly, we remark that if $\varepsilon_0\in S,$ then each $\varepsilon{\lt}\varepsilon_0$ is also in $S.$ Indeed, if $[0,\varepsilon_0]$ can be finitely covered, then the same cover can be used to cover $[0,\varepsilon]\subseteq[0,\varepsilon_0].$</p>
-			<p>We would like to use the least upper-bound property on $S.$ Note that some open set $U_\bullet$ covers $0$ and so contains an interval like $[0,2\varepsilon)$ for some $\varepsilon{\gt}0.$ (Formally, dissolve $U_\bullet$ into intervals because by the basis of our topology; one such interval contains $0.$) This implies that $[0,\varepsilon]\subseteq U_\bullet$ can be finitely covered, so $\varepsilon\in S$ inhabits $S.$</p>
-			<p>Additionally, $S$ has an upper bound: by definition, $\varepsilon\in S$ implies $\varepsilon\le1.$ Thus, we may apply the least upper-bound property and let $\varepsilon_0$ be the least upper bound of $S.$ Note $\varepsilon_0\le1$ because $1$ is an upper bound of $S.$ Further, we remark that, for $\alpha\in(0,1],$ we see $\alpha\not\in S$ implies nothing above $\alpha$ is in $S,$ so $\alpha$ is an upper bound of $S,$ so $\varepsilon_0\le\alpha.$ Thus, $\alpha{\lt}\varepsilon_0$ implies $\alpha\in S.$</p>
-			<p>We now do casework on $\varepsilon_0.$			</p>
-			<ul>
-				<li>     If $\varepsilon_0=1,$ then we can finish quickly. As before, we can pick up $U_\bullet$ containing $1,$ and then extract an interval $(\alpha,1]$ inside of $U_\bullet,$ where $\alpha{\lt}1.$ In particular, $\alpha{\lt}\varepsilon_0,$ so $\alpha\in S.$ Thus we have a finite subcover    \[\{V_k\}_{k=1}^N\]    covering $[0,\alpha].$ To finish, we note    \[\{V_k\}_{k=1}^N\cup\{U_\bullet\}\]    which now finitely covers $[0,\alpha]\cup(\alpha,1]=[0,1]$ in full.</li>
-				<li>     If $\varepsilon_0{\lt}1,$ then we derive contradiction. To start, we pick up $U_\bullet$ containing $\varepsilon_0,$ and then extract an interval $(\alpha,\beta)$ inside of $U_\bullet$ which contains $\varepsilon_0.$ Now, again, $\alpha{\lt}\varepsilon_0,$ so $\alpha\in S,$ and we get a finite subcover    \[\{V_k\}_{k=1}^N\]    which covers $[0,\alpha].$ But then    \[\{V_k\}_{k=1}^N\cup\{U_\bullet\}\]    finitely covers $[0,\alpha]\cup(\alpha,\beta)=[0,\beta).$ In particular, we can cover $\left[0,\frac{\varepsilon_0+\beta}2\right]$ finitely, but $\frac{\varepsilon_0+\beta}2{\gt}\varepsilon_0,$ breaking our least upper bound.</li>
-			</ul>
-			<p>Having covered all cases, we conclude that we can always extract a finite subcover of $[0,1].$</p>
-			<p>We remark with some motivation because the given proof is quite magical. The argument is somewhat motivated by pieces I heard of it a year ago but mainly (I would like to think) by the following framing. Imagine we are given an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $[0,1],$ and we need to extract a finite subcover.</p>
-			<p>We can codify this situtaion as a game: I am allowed to query an "interval genie'' with a real number $r\in[0,1],$ and I will receive some $U_\bullet$ containing $r.$ Effectively, this is all of the power I have over my cover. The naive approach, now, to extract an efficient subcover, is the following.			</p>
-			<ol>
-				<li>     Query the genie with $0.$ I get back some $U_\bullet$ containing the interval $[0,\varepsilon_0).$</li>
-				<li>     Query the genie with $\varepsilon_0.$ I get back some (maybe other) $U_\bullet$ containing the interval $(-,\varepsilon_1)$ containing $\varepsilon_0.$</li>
-				<li>     Query the genie with $\varepsilon_1.$ Rinse and repeat.</li>
-			</ol>
-			<p>This, of course, doesn't work because the genie can do things like giving me\[\left[0,\frac14\right),\left(\frac18,\frac38\right),\left(\frac5{16},\frac7{16}\right),\cdots,\left(\frac{2^n-3}{2^{n+1}},\frac{2^n-1}{2^{n+1}}\right),\cdots.\]Here I keep querying numbers of the form $\left(2^n-1\right)/2^{n+1},$ off to infinity, never even going to cover $\frac12$ with my generated subcover.</p>
-			<p>The key observation is that, after I realize what the genie is doing to me, I can query the genie for $\frac12.$ This gives me some open interval containing $\frac12$ with a little space to the left, which means that I really only need finitely many of the genie's garbage intervals from before.</p>
-			<p>As I understand, the argument presented above is more or less a formalization of this trick. Notably, this trick alone is not enough to get a finite subcover, for the genie could do the same thing trapping me below $\frac34,$ and then below $\frac78,$ and so on. I would have to iterate the trick on top of itself, and maybe more times on top of that.</p>
-			<p>What we have to do is consider covering, in the abstract, various intervals\[[0,\varepsilon]\]for various values of $\varepsilon.$ Notably, the genie can always play tricks up to any particular value of $\varepsilon,$ but we can always overcome the genie at this single $\varepsilon.$ The way to formalize the idea that we can "always push farther'' up to $1$ is via the least upper-bound property, fixing $\varepsilon$ the farthest we can push, as done above.</p>
+					<p>We begin by presenting the proof with no motivation. Suppose that $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of $[0,1].$ The trick is to consider\[S=\{\varepsilon\in(0,1]:[0,\varepsilon]\text{ can be covered with a finite subcover}\}.\]Very quickly, we remark that if $\varepsilon_0\in S,$ then each $\varepsilon{\lt}\varepsilon_0$ is also in $S.$ Indeed, if $[0,\varepsilon_0]$ can be finitely covered, then the same cover can be used to cover $[0,\varepsilon]\subseteq[0,\varepsilon_0].$</p>
+					<p>We would like to use the least upper-bound property on $S.$ Note that some open set $U_\bullet$ covers $0$ and so contains an interval like $[0,2\varepsilon)$ for some $\varepsilon{\gt}0.$ (Formally, dissolve $U_\bullet$ into intervals because by the basis of our topology; one such interval contains $0.$) This implies that $[0,\varepsilon]\subseteq U_\bullet$ can be finitely covered, so $\varepsilon\in S$ inhabits $S.$</p>
+					<p>Additionally, $S$ has an upper bound: by definition, $\varepsilon\in S$ implies $\varepsilon\le1.$ Thus, we may apply the least upper-bound property and let $\varepsilon_0$ be the least upper bound of $S.$ Note $\varepsilon_0\le1$ because $1$ is an upper bound of $S.$ Further, we remark that, for $\alpha\in(0,1],$ we see $\alpha\not\in S$ implies nothing above $\alpha$ is in $S,$ so $\alpha$ is an upper bound of $S,$ so $\varepsilon_0\le\alpha.$ Thus, $\alpha{\lt}\varepsilon_0$ implies $\alpha\in S.$</p>
+					<p>We now do casework on $\varepsilon_0.$					</p>
+					<ul>
+						<li>     If $\varepsilon_0=1,$ then we can finish quickly. As before, we can pick up $U_\bullet$ containing $1,$ and then extract an interval $(\alpha,1]$ inside of $U_\bullet,$ where $\alpha{\lt}1.$ In particular, $\alpha{\lt}\varepsilon_0,$ so $\alpha\in S.$ Thus we have a finite subcover    \[\{V_k\}_{k=1}^N\]    covering $[0,\alpha].$ To finish, we note    \[\{V_k\}_{k=1}^N\cup\{U_\bullet\}\]    which now finitely covers $[0,\alpha]\cup(\alpha,1]=[0,1]$ in full.</li>
+						<li>     If $\varepsilon_0{\lt}1,$ then we derive contradiction. To start, we pick up $U_\bullet$ containing $\varepsilon_0,$ and then extract an interval $(\alpha,\beta)$ inside of $U_\bullet$ which contains $\varepsilon_0.$ Now, again, $\alpha{\lt}\varepsilon_0,$ so $\alpha\in S,$ and we get a finite subcover    \[\{V_k\}_{k=1}^N\]    which covers $[0,\alpha].$ But then    \[\{V_k\}_{k=1}^N\cup\{U_\bullet\}\]    finitely covers $[0,\alpha]\cup(\alpha,\beta)=[0,\beta).$ In particular, we can cover $\left[0,\frac{\varepsilon_0+\beta}2\right]$ finitely, but $\frac{\varepsilon_0+\beta}2{\gt}\varepsilon_0,$ breaking our least upper bound.</li>
+					</ul>
+					<p>Having covered all cases, we conclude that we can always extract a finite subcover of $[0,1].$</p>
+					<p>We remark with some motivation because the given proof is quite magical. The argument is somewhat motivated by pieces I heard of it a year ago but mainly (I would like to think) by the following framing. Imagine we are given an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $[0,1],$ and we need to extract a finite subcover.</p>
+					<p>We can codify this situtaion as a game: I am allowed to query an "interval genie'' with a real number $r\in[0,1],$ and I will receive some $U_\bullet$ containing $r.$ Effectively, this is all of the power I have over my cover. The naive approach, now, to extract an efficient subcover, is the following.					</p>
+					<ol>
+						<li>     Query the genie with $0.$ I get back some $U_\bullet$ containing the interval $[0,\varepsilon_0).$</li>
+						<li>     Query the genie with $\varepsilon_0.$ I get back some (maybe other) $U_\bullet$ containing the interval $(-,\varepsilon_1)$ containing $\varepsilon_0.$</li>
+						<li>     Query the genie with $\varepsilon_1.$ Rinse and repeat.</li>
+					</ol>
+					<p>This, of course, doesn't work because the genie can do things like giving me\[\left[0,\frac14\right),\left(\frac18,\frac38\right),\left(\frac5{16},\frac7{16}\right),\cdots,\left(\frac{2^n-3}{2^{n+1}},\frac{2^n-1}{2^{n+1}}\right),\cdots.\]Here I keep querying numbers of the form $\left(2^n-1\right)/2^{n+1},$ off to infinity, never even going to cover $\frac12$ with my generated subcover.</p>
+					<p>The key observation is that, after I realize what the genie is doing to me, I can query the genie for $\frac12.$ This gives me some open interval containing $\frac12$ with a little space to the left, which means that I really only need finitely many of the genie's garbage intervals from before.</p>
+					<p>As I understand, the argument presented above is more or less a formalization of this trick. Notably, this trick alone is not enough to get a finite subcover, for the genie could do the same thing trapping me below $\frac34,$ and then below $\frac78,$ and so on. I would have to iterate the trick on top of itself, and maybe more times on top of that.</p>
+					<p>What we have to do is consider covering, in the abstract, various intervals\[[0,\varepsilon]\]for various values of $\varepsilon.$ Notably, the genie can always play tricks up to any particular value of $\varepsilon,$ but we can always overcome the genie at this single $\varepsilon.$ The way to formalize the idea that we can "always push farther'' up to $1$ is via the least upper-bound property, fixing $\varepsilon$ the farthest we can push, as done above.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

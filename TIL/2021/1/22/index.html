@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to January)</a></p>
-		<div class="entry">
-			<h2>January 22nd</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to January)</a></p>
+				<div class="entry">
+					<h2>January 22nd</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,19 +53,21 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned some representation theory, from Artin 10.1.1: all representations of finite groups with dimension $1$ have image that is finite cyclic. Unpacking the definitions, we are provided a homomorphism $\rho$ taking\[\rho:G\to\op{GL}_1(\FF)\]for some finite group $G$ and field $\FF.$ We need to show that $\rho(G)$ is finite cyclic.</p>
-			<p>The main step of the proof is to realize that $\op{GL}_1(\FF)\cong\FF^\times.$ For this we claim that\[(T:\FF\to\FF)\stackrel\varphi\longmapsto T(1)\]is an isomorphism. We run through the conditions.			</p>
-			<ul>
-				<li>     Note $\varphi$ is well-defined because $T(1)\ne0,$ for this would imply $T(x)=xT(1)=0$ for any $x\in\FF,$ so $T$ would not be injective (or surjective).</li>
-				<li>     We know $\varphi$ is homomorphic by direct computation: $(T\circ T')(1)=T(T'(1))=T'(1)\cdot T(1).$</li>
-				<li>     Continuing, $\varphi$ is injective because $T(1)=T'(1)$ implies $T(x)=xT(1)=xT'(1)=T'(x)$ for any $x\in\FF,$ so $T=T'.$</li>
-				<li>     We see $\varphi$ is surjective because, for any $c\in\FF,$ $x\mapsto cx$ is in $\op{GL}_1(\FF)$ (this can be checked manually). This automorphism satisfies $1\mapsto c.$</li>
-			</ul>
-			<p>It follows that $\varphi$ is an isomorphism, so we're done here.</p>
-			<p>From the above we see that we are really given a homomorphism $\rho:G\mapsto\FF^\times.$ Note that $\rho(G)$ is a finite subgroup of $\FF^\times,$ so we're really showing that finite subgroups of $\FF^\times$ are finite cyclic. With this transformed problem, we rename $\rho(G)$ to $G$ in order to be able to ignore $\rho.$ That is, $G\subseteq\FF^\times$ is a finite subgroup, and we want to show that $G$ is finite cyclic.</p>
-			<p>There are a couple of ways to finish from here. The cheapest is that Artin always assumes that our base field is $\FF=\CC,$ in which case any finite subgroup of $\CC^\times$ is finite cyclic by roots-of-unity type arguments. For example, take $n=|G|,$ and we can say that\[G\subseteq\left\{x\in\FF^\times:x^n-1=0\right\}\]by Lagrange's theorem on groups. In fact, this is an equality because the right-hand side has at most $n$ elements by Lagrange's theorem on polynomials. But in $\CC^\times,$ we know that the right-hand side is\[\left\langle e^{2\pi i/n}\right\rangle.\]This can be checked by, say, noting that both sets have size $n$ and satisfy $x^n-1=0.$</p>
-			<p>However, this can be done in significantly more generality, for what we want is true in any field. I might have seen this proof before, but I have since forgotten it. Anyways, we mimic the proof that finite fields have a multiplicative generator and borrow the finish from <a href="https://math.stackexchange.com/a/335654/869257">this post</a>. The main lemma we need is that for elements $g,h\in G,$ there exists an element whose multiplicative order which is the least common multiple of the orders of $g$ and $h.$</p>
-			<p>This is somewhat obnoxious to show. We begin by claiming that if $a:=\ord(g)$ and $b:=\ord(h)$ are coprime, then $\ord(gh)=ab.$ Indeed, certainly $(gh)^{ab}=1.$ And in the other direction, if $(gh)^x=1,$ then\[1=(gh)^{ax}=h^{ax},\]so $b\mid ax,$ and $b\mid x.$ Similarly, $a\mid x,$ so $ab\mid x.$ It follows $ab$ really is our order. Now, to finish our lemma, we remove the condition that $a$ and $b$ are coprime. However, we remark that we can separate the primes in $a$ and $b$ with unique prime factorization by writing\[a_*=\prod_{\nu_p(a)\ge\nu_p(b)}p^{\nu_p(a)}\qquad\text{and}\qquad b_*=\prod_{\nu_p(b){\gt}\nu_p(a)}p^{\nu_p(b)}.\]Namely, $a_*b_*=\lcm(a,b)$ while having $\gcd(a_*,b_*)=1$ because no prime factors are shared. So we only need to remark that $g^{a/a_*}$ will have order $a_*$ and $h^{b/b_*}$ will have order $b_*$ in order to assert an element of order $a_*b_*,$ which is what we wanted.</p>
-			<p>To finish, we note that, because $G$ is finite, we may inductively say that there exists an element $g$ whose order $m$ is divisible by the order of all elements of $G.$ On one hand, $m\le|G|$ because $m$ is the order of some element of $G.$ On the other hand, every element of $G$ is the root of the polynomial\[x^m-1=0,\]so Lagrange's theorem on polynomials says that $|G|\le m.$ It follows that the order of $g$ is the full $m=|G|,$ so $G$ is finite cyclic. We remark here that this proof is really just the proof that every prime has a primitive root (via field theory), generalized.</p>
+					<p>The main step of the proof is to realize that $\op{GL}_1(\FF)\cong\FF^\times.$ For this we claim that\[(T:\FF\to\FF)\stackrel\varphi\longmapsto T(1)\]is an isomorphism. We run through the conditions.					</p>
+					<ul>
+						<li>     Note $\varphi$ is well-defined because $T(1)\ne0,$ for this would imply $T(x)=xT(1)=0$ for any $x\in\FF,$ so $T$ would not be injective (or surjective).</li>
+						<li>     We know $\varphi$ is homomorphic by direct computation: $(T\circ T')(1)=T(T'(1))=T'(1)\cdot T(1).$</li>
+						<li>     Continuing, $\varphi$ is injective because $T(1)=T'(1)$ implies $T(x)=xT(1)=xT'(1)=T'(x)$ for any $x\in\FF,$ so $T=T'.$</li>
+						<li>     We see $\varphi$ is surjective because, for any $c\in\FF,$ $x\mapsto cx$ is in $\op{GL}_1(\FF)$ (this can be checked manually). This automorphism satisfies $1\mapsto c.$</li>
+					</ul>
+					<p>It follows that $\varphi$ is an isomorphism, so we're done here.</p>
+					<p>From the above we see that we are really given a homomorphism $\rho:G\mapsto\FF^\times.$ Note that $\rho(G)$ is a finite subgroup of $\FF^\times,$ so we're really showing that finite subgroups of $\FF^\times$ are finite cyclic. With this transformed problem, we rename $\rho(G)$ to $G$ in order to be able to ignore $\rho.$ That is, $G\subseteq\FF^\times$ is a finite subgroup, and we want to show that $G$ is finite cyclic.</p>
+					<p>There are a couple of ways to finish from here. The cheapest is that Artin always assumes that our base field is $\FF=\CC,$ in which case any finite subgroup of $\CC^\times$ is finite cyclic by roots-of-unity type arguments. For example, take $n=|G|,$ and we can say that\[G\subseteq\left\{x\in\FF^\times:x^n-1=0\right\}\]by Lagrange's theorem on groups. In fact, this is an equality because the right-hand side has at most $n$ elements by Lagrange's theorem on polynomials. But in $\CC^\times,$ we know that the right-hand side is\[\left\langle e^{2\pi i/n}\right\rangle.\]This can be checked by, say, noting that both sets have size $n$ and satisfy $x^n-1=0.$</p>
+					<p>However, this can be done in significantly more generality, for what we want is true in any field. I might have seen this proof before, but I have since forgotten it. Anyways, we mimic the proof that finite fields have a multiplicative generator and borrow the finish from <a href="https://math.stackexchange.com/a/335654/869257">this post</a>. The main lemma we need is that for elements $g,h\in G,$ there exists an element whose multiplicative order which is the least common multiple of the orders of $g$ and $h.$</p>
+					<p>This is somewhat obnoxious to show. We begin by claiming that if $a:=\ord(g)$ and $b:=\ord(h)$ are coprime, then $\ord(gh)=ab.$ Indeed, certainly $(gh)^{ab}=1.$ And in the other direction, if $(gh)^x=1,$ then\[1=(gh)^{ax}=h^{ax},\]so $b\mid ax,$ and $b\mid x.$ Similarly, $a\mid x,$ so $ab\mid x.$ It follows $ab$ really is our order. Now, to finish our lemma, we remove the condition that $a$ and $b$ are coprime. However, we remark that we can separate the primes in $a$ and $b$ with unique prime factorization by writing\[a_*=\prod_{\nu_p(a)\ge\nu_p(b)}p^{\nu_p(a)}\qquad\text{and}\qquad b_*=\prod_{\nu_p(b){\gt}\nu_p(a)}p^{\nu_p(b)}.\]Namely, $a_*b_*=\lcm(a,b)$ while having $\gcd(a_*,b_*)=1$ because no prime factors are shared. So we only need to remark that $g^{a/a_*}$ will have order $a_*$ and $h^{b/b_*}$ will have order $b_*$ in order to assert an element of order $a_*b_*,$ which is what we wanted.</p>
+					<p>To finish, we note that, because $G$ is finite, we may inductively say that there exists an element $g$ whose order $m$ is divisible by the order of all elements of $G.$ On one hand, $m\le|G|$ because $m$ is the order of some element of $G.$ On the other hand, every element of $G$ is the root of the polynomial\[x^m-1=0,\]so Lagrange's theorem on polynomials says that $|G|\le m.$ It follows that the order of $g$ is the full $m=|G|,$ so $G$ is finite cyclic. We remark here that this proof is really just the proof that every prime has a primitive root (via field theory), generalized.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

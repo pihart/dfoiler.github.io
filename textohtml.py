@@ -16,46 +16,49 @@ def header(level):
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="'''+'../'*level+'''main.css">
+		<link rel="stylesheet" href="'''+'../'*level+'''sidebar.css">
 		<link rel=icon href="'''+'../'*level+'''p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="'''+'../'*level+'''mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>\n'''
 
+# Dirty hack to get the month
+months = ['January','February','March','April','May','April','June'
+	'July','August','September','October','November','December']
+
+def gen_sidebar():
+	r = '\t\t\t<div class="sidebar">\n'
+	for year in next(os.walk('TeX'))[1]:
+		year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
+		for month in year_months:
+			directory = year + '/'+str(month)
+			title = months[month-1] + ' ' + year
+			r += '\t\t\t\t<a href={0}'+directory+'/>'+title+'</a>\n'
+	r += '\t\t\t</div>\n'
+	return r
+
+sidebar_template = gen_sidebar()
+def sidebar(level):
+	return sidebar_template.format('../'*(level-1))
+
+indent = lambda n : (4+n)*'\t'
 def start_html(level):
 	html = header(level)
 	html += '\t<body>\n'
-	html += '\t\t<h1><a href="./'+ '../'*(level-1) + \
+	html += '\t\t<h1 class="title"><a href="./'+ '../'*(level-1) + \
 		'" class="title">Today I Learned</a></h1>\n'
+	html += '\t\t<div class="container">\n'
+	html += sidebar(level)
+	html += '\t\t\t<div class="content">\n'
+	return html
+
+def end_html(level):
+	html = '\t\t\t</div>\n'
+	html += '\t\t</div>\n'
+	html += '\t<script src="'+'../'*level+'sidebar.js"></script>'
+	html += '\t</body>\n'
+	html += '</html>\n'
 	return html
 
 def process_img(tex):
@@ -151,7 +154,7 @@ def to_html(tex):
 	tex = tex.split('\n')
 	while tex[-1] == '': tex = tex[:-1]
 	day_html = start_html(4)
-	month_html = '\t\t<div class="entry">\n'
+	month_html = indent(0)+'<div class="entry">\n'
 	# We work line-by-line
 	first_item = False
 	for line in tex:
@@ -159,55 +162,51 @@ def to_html(tex):
 		if '\\subsubsection' in line:
 			h2 = line[len('\\subsubsection{'):-len('}')]
 			month, day = h2.split()
-			day_html += '\t\t<p><a href="../" class="link">(back up to ' \
-				+ month+')</a></p>\n'
-			day_html += '\t\t<div class="entry">\n'
-			day_html += '\t\t\t<h2>'+h2+'</h2>\n'
+			day_html += indent(0)+'<p class="back"><a href="../" class="link">' \
+				'(back up to '+month+')</a></p>\n'
+			day_html += indent(0)+'<div class="entry">\n'
+			day_html += indent(1)+'<h2>'+h2+'</h2>\n'
 			day = day[:-len('th')]
-			month_html += '\t\t\t<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
+			month_html += indent(1)+'<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
 			# We attach the preamble here
-			day_html += '\t\t\t<p>'+pre
+			day_html += indent(1)+'<p>'+pre
 		# Two consecutive new lines implies new paragraph
 		elif line == '':
-			day_html += '</p>\n\t\t\t<p>'
+			day_html += '</p>\n'+indent(1)+'<p>'
 		# Various list commands
 		# We start the first item
 		elif '\\begin{itemize}' in line:
-			day_html += '\t\t\t</p>\n\t\t\t<ul>\n\t\t\t\t<li>'
+			day_html += indent(1)+'</p>\n'+indent(1)+'<ul>\n'+indent(2)+'<li>'
 			first_item = True
 		elif '\\end{itemize}' in line:
-			day_html += '</li>\n\t\t\t</ul>\n\t\t\t<p>'
+			day_html += '</li>\n'+indent(1)+'</ul>\n'+indent(1)+'<p>'
 		elif '\\begin{enumerate}' in line:
-			day_html += '\t\t\t</p>\n\t\t\t<ol>\n\t\t\t\t<li>'
+			day_html += indent(1)+'</p>\n'+indent(1)+'<ol>\n'+indent(2)+'<li>'
 			first_item = True
 		elif '\\end{enumerate}' in line:
-			day_html += '</li>\n\t\t\t</ol>\n\t\t\t<p>'
+			day_html += '</li>\n'+indent(1)+'</ol>\n'+indent(1)+'<p>'
 		elif '\\item' in line:
 			line = line.replace('\\item','')
 			if not first_item:
-				day_html += '</li>\n\t\t\t\t<li>'
+				day_html += '</li>\n'+indent(2)+'<li>'
 			first_item = False
 			day_html += line
 		# Image marker
 		elif line[0] == '\00':
 			filename = line[1:]
-			day_html += '</p>\n\t\t\t<img src="'+filename+'">\n\t\t\t<p>'
+			day_html += '</p>\n'+indent(1)+'<img src="'+filename+'">\n'+indent(1)+'<p>'
 		# Catch-all
 		else:
 			day_html += line
-	day_html += '</p>\n\t\t</div>\n\t</body>\n</html>\n'
-	month_html += '\t\t\t<p>'+blurb+'\n'
-	month_html += '\t\t\t<a href="'+day+'/" class="link">(continue reading...)</a></p>\n'
-	month_html += '\t\t</div>\n'
+	day_html += '</p>\n'+indent(0)+'</div>\n' + end_html(4)
+	month_html += indent(1)+'<p>'+blurb+'\n'
+	month_html += indent(1)+'<a href="'+day+'/" class="link">(continue reading...)</a></p>\n'
+	month_html += indent(0)+'</div>\n'
 	return day_html, month_html
 
 # Make TIL folder if not present
 if 'TIL' not in os.listdir():
 	os.mkdir('TIL')
-
-# Dirty hack to get the month
-months = ['January','February','March','April','May','April','June'
-	'July','August','September','October','November','December']
 
 # Start the total file
 total_html = start_html(1)
@@ -215,20 +214,20 @@ total_html = start_html(1)
 intro = process_tex(open('TeX/intro.tex').read())
 parts = [part for part in intro.split('\n') if part]
 for part in parts[:-1]:
-	total_html += '\t\t<p>'+part+'</p>\n'
-total_html += '\t\t<p style="margin-bottom: 18pt;">'+parts[-1]+'</p>\n'
+	total_html += indent(0)+'<p>'+part+'</p>\n'
+total_html += indent(0)+'<p style="margin-bottom: 18pt;">'+parts[-1]+'</p>\n'
 # Iterate through the years subdirectories
 for year in next(os.walk('TeX'))[1]:
 	# Start the year file
 	year_html = start_html(2)
-	year_html += '\t\t<p><a href="../" class="link">(back up to main page)' \
-		'</a></p>\n'
-	year_html += '\t\t<h2><a href="./">'+year+'</a></h2>\n'
+	year_html += indent(0)+'<p class="back"><a href="../" class="link">' \
+		'(back up to main page) </a></p>\n'
+	year_html += indent(0)+'<h2><a href="./">'+year+'</a></h2>\n'
 	# Make year if not there
 	if year not in next(os.walk('TeX'))[1]:
 		os.mkdir('TIL/'+year)
 	# Increment the total file
-	total_html += '\t\t<h2><a href="'+year+'/">'+year+'</a></h2>\n'
+	total_html += indent(0)+'<h2><a href="'+year+'/">'+year+'</a></h2>\n'
 	year_months = sorted(os.listdir('TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
 	for month in year_months:
 		# Make month if not there
@@ -237,11 +236,11 @@ for year in next(os.walk('TeX'))[1]:
 			os.mkdir('TIL/'+year+'/'+month)
 		# Start the month file
 		month_html = start_html(3)
-		month_html += '\t\t<p><a href="../" class="link">(back up to ' \
-			+ year+')</a></p>\n'
-		month_html += '\t\t<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
+		month_html += indent(0)+'<p class="back"><a href="../" class="link">' \
+			'(back up to '+year+')</a></p>\n'
+		month_html += indent(0)+'<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
 		# Increment the year file
-		year_html += '\t\t<h3><a href="'+month+'/">'+ \
+		year_html += indent(0)+'<h3><a href="'+month+'/">'+ \
 			months[int(month)-1] +'</a></h3>\n'
 		# Break up the months into days
 		alltex = open(PATH+'TeX/'+year+'/'+month+'.tex').read()
@@ -264,17 +263,17 @@ for year in next(os.walk('TeX'))[1]:
 			f.close()
 			# Add onto the month
 			month_html += month_html_day
-		month_html += '\t</body>\n</html>\n'
+		month_html += end_html(3)
 		# Make the month file
 		f = open('TIL/'+year+'/'+month+'/'+'index.html','w')
 		f.write(month_html)
 		f.close()
-	year_html += '\t</body>\n</html>\n'
+	year_html += end_html(2)
 	# Make the year file
 	f = open('TIL/'+year+'/index.html','w')
 	f.write(year_html)
 	f.close()
-total_html += '\t</body>\n</html>\n'
+total_html += end_html(1)
 # Make the total file
 f = open('TIL/index.html','w')
 f.write(total_html)

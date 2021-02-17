@@ -1,0 +1,57 @@
+.container
+{
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1em;
+	padding-right: 1em;
+	max-width: 950px;
+}
+
+.sidebar
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 9px;
+	padding-bottom: 5px;
+	padding-right: 11px;
+	padding-left: 11px;
+	border-radius: 9px;
+	width: 138px;
+	background-color: #f7f9ff;
+	position: absolute;
+}
+
+.sidebar a
+{
+	color: #404040;
+	font-size: 18px;
+	padding: 1px;
+	margin-bottom: 2px;
+	display: block;
+	text-decoration: none;
+	font-style: italic;
+}
+
+.sidebar a:hover
+{
+	color: #003080;
+}
+
+.content
+{
+	margin-left: 175px;
+}
+
+@media screen and (max-width: 800px)
+{
+	.sidebar
+	{
+		display: none;
+	}
+	.content
+	{
+		margin-left: 0px;
+	}
+}

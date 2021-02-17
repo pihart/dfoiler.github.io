@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to February)</a></p>
-		<div class="entry">
-			<h2>February 9th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to February)</a></p>
+				<div class="entry">
+					<h2>February 9th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,22 +53,24 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the baby-step giant-step algorithm to solve the discrete log problem in general finite cyclic groups. As implied, our setup is to fix a finite cyclic group $G=\langle g\rangle$ of order $N$ and element $h\in G$ so that we want $x\in\ZZ$ satisfying $h=g^x.$ We note that the way we represent elements of $G$ is unimportant, as it should be in this algorithm.</p>
-			<p>Brute force would be trying all $N$ different values of $x$ until hitting the correct one. This requires $O(1)$ space but a terrible $O(N)$ run-time. The baby-step giant-step algorithm trades some of the $O(1)$ space for a better run-time, akin to the Dirichlet hyperbola method. The key observation is that\[\frac x{\sqrt N}\le\sqrt N.\]More explicitly, this implies that any $x$ can be written as\[x=a\lceil\sqrt N\rceil+b\]where $0\le a,b{\lt}\lceil\sqrt N\rceil.$ So if we can check $\lceil\sqrt N\rceil$ values of $x$ simultaneously, our run-time will drop to $O(\sqrt N).$</p>
-			<p>The way that this is done is by storing $\lceil\sqrt N\rceil$ values of $x$ in a lookup table. Here are the steps.			</p>
-			<ol>
-				<li>     Store $g^0,g^1,\ldots,g^{\lceil\sqrt N\rceil-1}$ in a lookup table.</li>
-				<li>     Precompute $g^{\lceil\sqrt N\rceil}$ into $g_*.$</li>
-				<li>     Move $h$ into a local $h_*.$</li>
-				<li>     Loop the following over $0\le a{\lt}\lceil\sqrt N\rceil.$			</p>
-			<ol>
-				<li>         If $h_*$ is in the lookup table, return $a\lceil\sqrt N\rceil+b.$</li>
-				<li>         Else move $h_*g_*$ into $h_*.$ Now $h_*=hg_*^{-a-1},$ and we're ready to loop.</li>
-			</ol>
-			<p></li>
-			</ol>
-			<p>We note that this is gauranteed to terminate because $x=a\lceil\sqrt N\rceil+b$ for some $0\le a,b{\lt}\lceil\sqrt N\rceil$ as above, so we'll find our output eventually.</p>
-			<p>As for quick run-time analysis, we note that creation of the lookup table and the loop are our limiting $O(\sqrt N)$ operations. There is some worry that the loop operation isn't $O(1),$ but we note that this can be done by hashing: we can hash $h_*$ in and then check the hashed entry in a table in $O(1)$ time without having to check each element of the lookup table manually. This also means that the creation of the lookup table requires hashing, but this is still an $O(\sqrt N)$ operation in total.</p>
-			<p>We close by remarking that no part of the proof required $G$ to have exactly $N$ elements. We merely needed $|G|\le N$ to make the bounding work out when sieving for $x.$ I find this somewhat remarkable and "best possible'' in terms of what we get to know about the group. That is, if we want a discrete log algorithm of a group, knowing exactly how many elements are in the group feels unnecessary. But to upper-bound run-time of the algorithm, we probably need an upper-bound on the group size.</p>
+					<p>Brute force would be trying all $N$ different values of $x$ until hitting the correct one. This requires $O(1)$ space but a terrible $O(N)$ run-time. The baby-step giant-step algorithm trades some of the $O(1)$ space for a better run-time, akin to the Dirichlet hyperbola method. The key observation is that\[\frac x{\sqrt N}\le\sqrt N.\]More explicitly, this implies that any $x$ can be written as\[x=a\lceil\sqrt N\rceil+b\]where $0\le a,b{\lt}\lceil\sqrt N\rceil.$ So if we can check $\lceil\sqrt N\rceil$ values of $x$ simultaneously, our run-time will drop to $O(\sqrt N).$</p>
+					<p>The way that this is done is by storing $\lceil\sqrt N\rceil$ values of $x$ in a lookup table. Here are the steps.					</p>
+					<ol>
+						<li>     Store $g^0,g^1,\ldots,g^{\lceil\sqrt N\rceil-1}$ in a lookup table.</li>
+						<li>     Precompute $g^{\lceil\sqrt N\rceil}$ into $g_*.$</li>
+						<li>     Move $h$ into a local $h_*.$</li>
+						<li>     Loop the following over $0\le a{\lt}\lceil\sqrt N\rceil.$					</p>
+					<ol>
+						<li>         If $h_*$ is in the lookup table, return $a\lceil\sqrt N\rceil+b.$</li>
+						<li>         Else move $h_*g_*$ into $h_*.$ Now $h_*=hg_*^{-a-1},$ and we're ready to loop.</li>
+					</ol>
+					<p></li>
+					</ol>
+					<p>We note that this is gauranteed to terminate because $x=a\lceil\sqrt N\rceil+b$ for some $0\le a,b{\lt}\lceil\sqrt N\rceil$ as above, so we'll find our output eventually.</p>
+					<p>As for quick run-time analysis, we note that creation of the lookup table and the loop are our limiting $O(\sqrt N)$ operations. There is some worry that the loop operation isn't $O(1),$ but we note that this can be done by hashing: we can hash $h_*$ in and then check the hashed entry in a table in $O(1)$ time without having to check each element of the lookup table manually. This also means that the creation of the lookup table requires hashing, but this is still an $O(\sqrt N)$ operation in total.</p>
+					<p>We close by remarking that no part of the proof required $G$ to have exactly $N$ elements. We merely needed $|G|\le N$ to make the bounding work out when sieving for $x.$ I find this somewhat remarkable and "best possible'' in terms of what we get to know about the group. That is, if we want a discrete log algorithm of a group, knowing exactly how many elements are in the group feels unnecessary. But to upper-bound run-time of the algorithm, we probably need an upper-bound on the group size.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

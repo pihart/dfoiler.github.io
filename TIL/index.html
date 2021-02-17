@@ -3,45 +3,29 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../main.css">
+		<link rel="stylesheet" href="../sidebar.css">
 		<link rel=icon href="../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./" class="title">Today I Learned</a></h1>
-		<p>This document contains some things that I learned. To be clear, sometimes I'll have skimmed a text in advance so that I already know the statement. So when I say "learn,'' I'll mean something roughly isomorphic to "learned a proof of.''</p>
-		<p style="margin-bottom: 18pt;">A remark on style: my writing here is not good mathematical writing, per se. The goal in the presentation is not clarity but motivation, so I will often give arguments which appear more awkward than the standard argument in order to talk about why we are doing what we're doing. I find this personally helpful, given that this is my mathematical diary, but your mileage may vary.</p>
-		<h2><a href="2020/">2020</a></h2>
-		<h2><a href="2021/">2021</a></h2>
-	</body>
+		<h1 class="title"><a href="./" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=2020/9/>September 2020</a>
+				<a href=2020/10/>October 2020</a>
+				<a href=2020/11/>November 2020</a>
+				<a href=2020/12/>December 2020</a>
+				<a href=2021/1/>January 2021</a>
+				<a href=2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p>This document contains some things that I learned. To be clear, sometimes I'll have skimmed a text in advance so that I already know the statement. So when I say "learn,'' I'll mean something roughly isomorphic to "learned a proof of.''</p>
+				<p style="margin-bottom: 18pt;">A remark on style: my writing here is not good mathematical writing, per se. The goal in the presentation is not clarity but motivation, so I will often give arguments which appear more awkward than the standard argument in order to talk about why we are doing what we're doing. I find this personally helpful, given that this is my mathematical diary, but your mileage may vary.</p>
+				<h2><a href="2020/">2020</a></h2>
+				<h2><a href="2021/">2021</a></h2>
+			</div>
+		</div>
+	<script src="../sidebar.js"></script>	</body>
 </html>

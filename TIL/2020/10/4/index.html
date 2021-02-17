@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to October)</a></p>
-		<div class="entry">
-			<h2>October 4th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<div class="entry">
+					<h2>October 4th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,10 +53,12 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned an interesting application of M\"obius inversion. The question extends the classic light bulb problem: in an infinite sequence of numbered light bulbs ($1$-indexed), person $n$ flips the switches corresponding to all light bulbs divisible by $n$ for $n\in\ZZ^+.$ We want to know which light bulbs are on after everyone is done. Well, these are exactly the ones for which\[\sum_{d\mid n}1=d(n)=\prod_{p\mid n}(\nu_p(n)-1)\]is odd. But this requires each individual $\nu_p(n)-1$ to be odd, or each $\nu_p(n)$ to be even, so light bulb $n$ is on if and only if $n$ is square.</p>
-			<p>There is some interesting structure when we stop using every single person. Of course, given a set of people, we can determine which light bulbs are on at the end by computing the parity of $\#\{d\mid n:d\text{ is used}\}.$ Adding in some notation, we can assign bits to each person in $\{p_k\}$ so that $1$ means the person is used and $0$ means not. Then the sum we want the parity of\[\#\{d\mid n:p_d=1\}=\#\{p_d:d\mid n\}=\sum_{d\mid n}p_d=(1*p)(n),\]which is a bit nicer. A slightly more interesting question is that, given a pattern of light bulbs to be on, can we reverse it to get a sequence of people turning those light bulbs on?</p>
-			<p>This is not terribly hard; naturally, we can do it by an induction. Suppose we have a sequence of bits $\{b_k\}$ that we want our light bulbs to match, and we want to assign bits $\{p_k\}$ to our sequence of people. We claim that the first $n$ people-bits make the first $n$ light bulbs match up with $\{b_k\},$ in fact uniquely, which provides an affirmative answer to the question. We do this by induction. When $n=0,$ there is nothing to prove.</p>
-			<p>Then assume we can do this uniquely with $n=N$ bulbs; we show $n=N+1.$ We start off the sequence $\{p_k\}_{k=1}^N$ generating the first $N$ bulbs. Then we claim $p_{N+1}$ is determined uniquely. Indeed, compare the parity of $b_{N+1}$ and\[\sum_{\substack{d\mid N+1\\d{\lt}N+1}}p_d.\]If they match, then $b_{N+1}$ must be off. This will not affect any previous bits $b_k,$ so we indeed cover all bulbs up to $N+1.$ Else if the parities don't match, then $b_{N+1}$ must be odd to correct. Again, we cover all bulbs to $N+1$ and are forced in our choice. This finishes.</p>
-			<p>What's weird is that the above inductive process gives me the feeling of a finite Fourier transform. In particular, it feels as if we should be able to read off $p_k$ with some summation not requiring the above inductive argument. Relabel our sequences $b(n)$ and $p(n)$ so that we want\[b(n)\equiv\sum_{d\mid n}p(d)\pmod2.\]I guess this is equivalent to\[(-1)^{b(n)}=\prod_{d\mid n}(-1)^{p(d)}.\]Then M\"obius inversion tells us this is equivalent (!) to\[(-1)^{p(n)}=\prod_{d\mid n}(-1)^{\mu(d)b(d)},\]which is what we wanted. As an aside, I'm used to proving the product form of M\"obius inversion by logarithms, but it should still work in the above by just choosing a branch, probably. In any case, we can always just do the old proof of plugging one equation into the other to show the implications.</p>
+					<p>There is some interesting structure when we stop using every single person. Of course, given a set of people, we can determine which light bulbs are on at the end by computing the parity of $\#\{d\mid n:d\text{ is used}\}.$ Adding in some notation, we can assign bits to each person in $\{p_k\}$ so that $1$ means the person is used and $0$ means not. Then the sum we want the parity of\[\#\{d\mid n:p_d=1\}=\#\{p_d:d\mid n\}=\sum_{d\mid n}p_d=(1*p)(n),\]which is a bit nicer. A slightly more interesting question is that, given a pattern of light bulbs to be on, can we reverse it to get a sequence of people turning those light bulbs on?</p>
+					<p>This is not terribly hard; naturally, we can do it by an induction. Suppose we have a sequence of bits $\{b_k\}$ that we want our light bulbs to match, and we want to assign bits $\{p_k\}$ to our sequence of people. We claim that the first $n$ people-bits make the first $n$ light bulbs match up with $\{b_k\},$ in fact uniquely, which provides an affirmative answer to the question. We do this by induction. When $n=0,$ there is nothing to prove.</p>
+					<p>Then assume we can do this uniquely with $n=N$ bulbs; we show $n=N+1.$ We start off the sequence $\{p_k\}_{k=1}^N$ generating the first $N$ bulbs. Then we claim $p_{N+1}$ is determined uniquely. Indeed, compare the parity of $b_{N+1}$ and\[\sum_{\substack{d\mid N+1\\d{\lt}N+1}}p_d.\]If they match, then $b_{N+1}$ must be off. This will not affect any previous bits $b_k,$ so we indeed cover all bulbs up to $N+1.$ Else if the parities don't match, then $b_{N+1}$ must be odd to correct. Again, we cover all bulbs to $N+1$ and are forced in our choice. This finishes.</p>
+					<p>What's weird is that the above inductive process gives me the feeling of a finite Fourier transform. In particular, it feels as if we should be able to read off $p_k$ with some summation not requiring the above inductive argument. Relabel our sequences $b(n)$ and $p(n)$ so that we want\[b(n)\equiv\sum_{d\mid n}p(d)\pmod2.\]I guess this is equivalent to\[(-1)^{b(n)}=\prod_{d\mid n}(-1)^{p(d)}.\]Then M\"obius inversion tells us this is equivalent (!) to\[(-1)^{p(n)}=\prod_{d\mid n}(-1)^{\mu(d)b(d)},\]which is what we wanted. As an aside, I'm used to proving the product form of M\"obius inversion by logarithms, but it should still work in the above by just choosing a branch, probably. In any case, we can always just do the old proof of plugging one equation into the other to show the implications.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

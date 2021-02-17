@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to February)</a></p>
-		<div class="entry">
-			<h2>February 12th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to February)</a></p>
+				<div class="entry">
+					<h2>February 12th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,9 +53,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the definition of support in topology. In terms of set theory, the support of a function $f:X\to\RR$ (or $f:X\to\CC$) is the set\[\op{supp}(f):=\{x\in X:f(x)\ne0\}.\]In general, we expect this to be "large'' because the set of $0$s of a function are frequently "small.'' However, this set is somewhat poorly-behaved in the general case, so we define the support topologically as\[\op{supp}(f):=\op{Cl}(\{x\in X:f(x)\ne0\}),\]the closure of the zero set. We remark that if $f$ is continuous, then $\{x\in X:f(x)\ne0\}=f^{-1}(\RR\setminus\{0\})$ is an open set.</p>
-			<p>Note that I think we expect $\op{supp}(f)$ to usually be isolated points anyways, so this is doesn't usually make much of a difference. But of course, if we do something like\[f(x)=\max\{x,0\},\]then $\{x\in\RR:f(x)\ne0\}=(0,\infty).$ We would like this set to be closed, so we have defined the support to be $\overline{(0,\infty)}=[0,\infty)$ to fix this.</p>
-			<p>Of note are the implications of being in or out of the support because these are somewhat confusing. The idea to remember is that $\op{supp}(f)$ is potentially a bit bigger than the nonzero set of a function (as it is defined). For example, we do have\[f(x)\ne0\implies x\in\op{supp}(f),\]but the converse does not hold: some $x$ with $f(x)=0$ could sneak in because of the closure. Explicitly, see $f(x)=\max\{x,0\}$ from before. Taking contrapositives, we also have\[x\not\in\op{supp}(f)\implies f(x)=0,\]but again the converse does not hold for the same reason. Here, we're saying that $X\setminus\op{supp}(f)$ is a restricted version of $f(x)=0.$</p>
-			<p>I will also mention the definition of compact support, which is actually why I had to look up the definition of support. A function has "compact support'' merely if its support (topologically) is also compact. Our $f(x)$ from before does not work because $[0,\infty)$ is too big to be compact, but\[f(x)=\max\left\{1-x^2,0\right\}\]has support $\overline{(-1,1)}=[-1,1]$ and therefore has compact support. In general, I'm thinking about compact support as meaning some strongish form of very small&mdash;the nonzero set must be bounded for compact support.</p>
+					<p>Note that I think we expect $\op{supp}(f)$ to usually be isolated points anyways, so this is doesn't usually make much of a difference. But of course, if we do something like\[f(x)=\max\{x,0\},\]then $\{x\in\RR:f(x)\ne0\}=(0,\infty).$ We would like this set to be closed, so we have defined the support to be $\overline{(0,\infty)}=[0,\infty)$ to fix this.</p>
+					<p>Of note are the implications of being in or out of the support because these are somewhat confusing. The idea to remember is that $\op{supp}(f)$ is potentially a bit bigger than the nonzero set of a function (as it is defined). For example, we do have\[f(x)\ne0\implies x\in\op{supp}(f),\]but the converse does not hold: some $x$ with $f(x)=0$ could sneak in because of the closure. Explicitly, see $f(x)=\max\{x,0\}$ from before. Taking contrapositives, we also have\[x\not\in\op{supp}(f)\implies f(x)=0,\]but again the converse does not hold for the same reason. Here, we're saying that $X\setminus\op{supp}(f)$ is a restricted version of $f(x)=0.$</p>
+					<p>I will also mention the definition of compact support, which is actually why I had to look up the definition of support. A function has "compact support'' merely if its support (topologically) is also compact. Our $f(x)$ from before does not work because $[0,\infty)$ is too big to be compact, but\[f(x)=\max\left\{1-x^2,0\right\}\]has support $\overline{(-1,1)}=[-1,1]$ and therefore has compact support. In general, I'm thinking about compact support as meaning some strongish form of very small&mdash;the nonzero set must be bounded for compact support.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>

@@ -3,46 +3,28 @@
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="../../../../main.css">
+		<link rel="stylesheet" href="../../../../sidebar.css">
 		<link rel=icon href="../../../../p.ico">
-		<script type="text/x-mathjax-config">
-			MathJax.Hub.Config({
-				loader: {
-					load: ['[tex]/textmacros']
-				},
-				tex2jax: {
-					// https://tex.stackexchange.com/q/27633
-					inlineMath: [ ['$','$'] ],
-					processEscapes: true,
-					packages: {'[+]': ['textmacros']}
-				},
-				SVG: {
-					linebreaks: { automatic: true }
-				}
-			});
-			window.addEventListener('resize', MJrerender);
-			// https://stackoverflow.com/a/56106854
-			let t = -1;
-			let delay = 1000;
-			function MJrerender() {
-				if (t >= 0) {
-					// If we are still waiting, user is still resizing
-					// postpone the action further!
-					window.clearTimeout(t);
-				}
-				t = window.setTimeout(function() {
-					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
-					t = -1; // Reset the handle
-				}, delay);
-			};
-		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="../../../../mathjax-config.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>
 	<body>
-		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
-		<p><a href="../" class="link">(back up to November)</a></p>
-		<div class="entry">
-			<h2>November 25th</h2>
-			<p>$\renewcommand{\AA}{\mathbb A}
+		<h1 class="title"><a href="./../../../" class="title">Today I Learned</a></h1>
+		<div class="container">
+			<div class="sidebar">
+				<a href=../../../2020/9/>September 2020</a>
+				<a href=../../../2020/10/>October 2020</a>
+				<a href=../../../2020/11/>November 2020</a>
+				<a href=../../../2020/12/>December 2020</a>
+				<a href=../../../2021/1/>January 2021</a>
+				<a href=../../../2021/2/>February 2021</a>
+			</div>
+			<div class="content">
+				<p class="back"><a href="../" class="link">(back up to November)</a></p>
+				<div class="entry">
+					<h2>November 25th</h2>
+					<p>$\renewcommand{\AA}{\mathbb A}
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
@@ -71,9 +53,11 @@
 \newcommand{\refl}{\op{refl}}
 \newcommand{\UU}{\mathcal{U}}
 $Today I learned the reflection formula for the gamma function. Quickly, recall that, provided $\op{Re}(s){\gt}-1,$\[\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt.\]</p>
-			<p>We begin by claiming that\[\Gamma(s)=\lim_{n\to\infty}\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]The main idea to prove this statement is to note that\[\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt=\lim_{n\to\infty}\int_0^\infty t^{s-1}\left(1-\frac tn\right)^n\,dt\]by definition of $\exp.$ However, we can be even more greedy with our limit by exchanging the upper bound of the integral to\[\Gamma(s)=\lim_{n\to\infty}\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt\]I guess there is some uniform convergence complications we need to exchange the limit and the integral, but I don't care enough. We can evaluate this integral for $n\in\ZZ$ (which is good enough to approach $\exp$) by using repeated integration by parts. Indeed,\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac{t^s}s\left(1-\frac tn\right)^n\bigg|_0^n-\int_0^n\frac{t^s}s\cdot n\left(1-\frac tn\right)^{n-1}\cdot-\frac1n\,dt.\]The main term vanishes, leaving us with\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac n{ns}\int_0^nt^s\left(1-\frac tn\right)^{n-1}\,dt.\]Repeating this to a total of $n$ times gives us\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac n{ns}\cdot\frac{n-1}{n(s+1)}\cdot\frac{n-2}{n(s+2)}\cdots\frac1{n(s+n-1)}\int_0^nt^{s+n-1}\,dt.\]The integral evaluates to $\frac1{s+n}n^{s+n},$ which removes the $n^n$ in the denominator and leaves us with\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac ns\cdot\frac{n-1}{s+1}\cdot\frac{n-2}{s+2}\cdots\frac1{s+n-1}\cdot\frac{n^s}{s+n}=\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]From this we get that\[\Gamma(s)=\lim_{n\to\infty}\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]As an aside, this provides an analytic continuation of $\Gamma$ to all complex numbers except nonpositive integers; some care has to be taken to make this rigorous, but I think it works out.</p>
-			<p>We are now ready to show the reflection formula. The main idea is that the above formula has some symmetry that we can use. Explicitly, we see\[\Gamma(-s)=\lim_{n\to\infty}\frac{n^{-s}}{-s}\prod_{k=1}^n\frac k{-s+k}.\]Multiplying this by $\Gamma(s),$ now, does some lovely things, most notably cancelling the pesky $n^s$ term, giving\[\Gamma(s)\Gamma(-s)=\lim_{n\to\infty}\frac1{-s^2}\prod_{k=1}^n\frac{k^2}{(s+k)(-s+k)}.\]We may now remove the $-\frac1{s^2}$ term, no longer dependent on $n.$ The inner product comes out to be\[\prod_{k=1}^\infty\frac{k^2}{k^2-s^2}=\left(\prod_{k=1}^\infty\left(1-\frac{s^2}{k^2}\right)\right)^{-1}.\]Quickly, the product on the right-hand side has roots at all nonzero integers, so Euler would say the Weierstrass product makes it $\frac{\sin(\pi s)}{\pi s}.$ Plugging back in, we see\[\Gamma(s)\Gamma(-s)=-\frac1{s^2}\cdot\frac{\pi s}{\sin(\pi s)}.\]This rearranges to\[\Gamma(s)\Gamma(1-s)=\Gamma(s)\cdot-s\Gamma(-s)=\frac\pi{\sin(\pi s)},\]which is our reflection formula.</p>
-			<p>Just for fun, we do a quick application of this: we compute $\left(\frac12\right)!.$ Plugging in $s=\frac12$ to the reflection formula implies\[\Gamma\left(\frac12\right)^2=\frac\pi{\sin\left(\frac\pi2\right)}=\pi.\]This implies $\Gamma\left(\frac12\right)=\pm\sqrt\pi.$ As for which sign it is, note that the integral representation of $\Gamma$ given at the beginning works at $s=\frac12,$ and the integral is always positive. It follows\[\left(\frac12\right)!=\Gamma\left(\frac32\right)=\frac12\Gamma\left(\frac12\right)=\frac{\sqrt\pi}2,\]which is what we wanted.</p>
+					<p>We begin by claiming that\[\Gamma(s)=\lim_{n\to\infty}\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]The main idea to prove this statement is to note that\[\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt=\lim_{n\to\infty}\int_0^\infty t^{s-1}\left(1-\frac tn\right)^n\,dt\]by definition of $\exp.$ However, we can be even more greedy with our limit by exchanging the upper bound of the integral to\[\Gamma(s)=\lim_{n\to\infty}\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt\]I guess there is some uniform convergence complications we need to exchange the limit and the integral, but I don't care enough. We can evaluate this integral for $n\in\ZZ$ (which is good enough to approach $\exp$) by using repeated integration by parts. Indeed,\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac{t^s}s\left(1-\frac tn\right)^n\bigg|_0^n-\int_0^n\frac{t^s}s\cdot n\left(1-\frac tn\right)^{n-1}\cdot-\frac1n\,dt.\]The main term vanishes, leaving us with\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac n{ns}\int_0^nt^s\left(1-\frac tn\right)^{n-1}\,dt.\]Repeating this to a total of $n$ times gives us\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac n{ns}\cdot\frac{n-1}{n(s+1)}\cdot\frac{n-2}{n(s+2)}\cdots\frac1{n(s+n-1)}\int_0^nt^{s+n-1}\,dt.\]The integral evaluates to $\frac1{s+n}n^{s+n},$ which removes the $n^n$ in the denominator and leaves us with\[\int_0^nt^{s-1}\left(1-\frac tn\right)^n\,dt=\frac ns\cdot\frac{n-1}{s+1}\cdot\frac{n-2}{s+2}\cdots\frac1{s+n-1}\cdot\frac{n^s}{s+n}=\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]From this we get that\[\Gamma(s)=\lim_{n\to\infty}\frac{n^s}s\prod_{k=1}^n\frac k{s+k}.\]As an aside, this provides an analytic continuation of $\Gamma$ to all complex numbers except nonpositive integers; some care has to be taken to make this rigorous, but I think it works out.</p>
+					<p>We are now ready to show the reflection formula. The main idea is that the above formula has some symmetry that we can use. Explicitly, we see\[\Gamma(-s)=\lim_{n\to\infty}\frac{n^{-s}}{-s}\prod_{k=1}^n\frac k{-s+k}.\]Multiplying this by $\Gamma(s),$ now, does some lovely things, most notably cancelling the pesky $n^s$ term, giving\[\Gamma(s)\Gamma(-s)=\lim_{n\to\infty}\frac1{-s^2}\prod_{k=1}^n\frac{k^2}{(s+k)(-s+k)}.\]We may now remove the $-\frac1{s^2}$ term, no longer dependent on $n.$ The inner product comes out to be\[\prod_{k=1}^\infty\frac{k^2}{k^2-s^2}=\left(\prod_{k=1}^\infty\left(1-\frac{s^2}{k^2}\right)\right)^{-1}.\]Quickly, the product on the right-hand side has roots at all nonzero integers, so Euler would say the Weierstrass product makes it $\frac{\sin(\pi s)}{\pi s}.$ Plugging back in, we see\[\Gamma(s)\Gamma(-s)=-\frac1{s^2}\cdot\frac{\pi s}{\sin(\pi s)}.\]This rearranges to\[\Gamma(s)\Gamma(1-s)=\Gamma(s)\cdot-s\Gamma(-s)=\frac\pi{\sin(\pi s)},\]which is our reflection formula.</p>
+					<p>Just for fun, we do a quick application of this: we compute $\left(\frac12\right)!.$ Plugging in $s=\frac12$ to the reflection formula implies\[\Gamma\left(\frac12\right)^2=\frac\pi{\sin\left(\frac\pi2\right)}=\pi.\]This implies $\Gamma\left(\frac12\right)=\pm\sqrt\pi.$ As for which sign it is, note that the integral representation of $\Gamma$ given at the beginning works at $s=\frac12,$ and the integral is always positive. It follows\[\left(\frac12\right)!=\Gamma\left(\frac32\right)=\frac12\Gamma\left(\frac12\right)=\frac{\sqrt\pi}2,\]which is what we wanted.</p>
+				</div>
+			</div>
 		</div>
-	</body>
+	<script src="../../../../sidebar.js"></script>	</body>
 </html>
