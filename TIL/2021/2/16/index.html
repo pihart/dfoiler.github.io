@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex2jax: {
+					// https://tex.stackexchange.com/q/27633
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {'[+]': ['textmacros']}
+				},
+				SVG: {
+					linebreaks: { automatic: true }
+				}
+			});
+			window.addEventListener('resize', MJrerender);
+			// https://stackoverflow.com/a/56106854
+			let t = -1;
+			let delay = 1000;
+			function MJrerender() {
+				if (t >= 0) {
+					// If we are still waiting, user is still resizing
+					// postpone the action further!
+					window.clearTimeout(t);
+				}
+				t = window.setTimeout(function() {
+					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
+					t = -1; // Reset the handle
+				}, delay);
+			};
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to February)</a></p>
+		<div class="entry">
+			<h2>February 16th</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that the ray class groups are finite assuming that the normal class group is finite, from <a href="https://math.stackexchange.com/questions/74206/ray-class-group">here</a>. This is the first finiteness proof from an exact sequence I've seen, so it looks quite clever, though I am sure there is some more general group cohomology at play. Anyways, fix a number field $K$ and a modulus $\mf m.$ Then we claim that\[1\longrightarrow P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m\longrightarrow1\]is an exact sequence with the second and fourth terms finite. Here, $P_K^\mf m$ refers to the principal ideals in $I_K^\mf m$ while $P_K^{\mf m,1}$ are those with generators $\equiv1\pmod{\mf m}.$</p>
+			<p>Very quickly, we show how to finish the proof if we have the exact sequence and that the second and fourth terms are finite. We have that $I_K^\mf m/P_K^{\mf m,1}$ surjects onto $I_K^\mf m/P_K^\mf m,$ so the homomorphism theorem implies\[\left|I_K^\mf m/P_K^{\mf m,1}\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|\ker(I_K^\mf m/P_K^{\mf m,1}\to I_K^\mf m/P_K^\mf m)\right|.\]However, the exact sequence tells us that $P_K^\mf m/P_K^{\mf m,1}$ bijects with this kernel, implying\[\left|I_K^\mf m/P_K^{\mf m,1}\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|P_K^{\mf m}/P_K^{\mf m,1}\right|.\]So the finiteness of the ray class group follows.</p>
+			<p>Now we show the exact sequence. We begin with the right-hand mapping, which is\[I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m.\]Right now we need to show that this is surjective, but we're merely expanding the kernel, so it is indeed surjective: just track $\mf aP_K^\mf m\in I_K^\mf m/P_K^\mf m$ back up to $\mf aP_K^{\mf m,1}.$ Additionally, we take all principals in $P_K^\mf m$ to the identity, which is our kernel.</p>
+			<p>It remains to show that\[P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\]injects into the kernel $P_K^\mf m$ of the next map. Well this map merely takes $(\alpha)\in P_K^\mf m$ to $(\alpha)\in I_K^\mf m,$ which is injective, and then we mod out by $P_K^{\mf m,1}.$ So indeed $P_K^\mf m\to I_K^\mf m/P_K^{\mf m,1}$ injects onto the kernel $P_K^\mf m$ exactly, and the kernel of this map is only $P_K^{\mf m,1}.$ Thus, we do have an exact sequence.</p>
+			<p>Now we have to study $P_K^\mf m/P_K^{\mf m,1}$ and $I_K^\mf m/P_K^\mf m$ a bit. We note that $I_K^\mf m/P_K^\mf m$ is actually $\op{Cl}_K.$ Indeed, we can consider the mapping\[I_K^\mf m\longrightarrow I_K/P_K,\]which takes a fractional ideal $\mf a\in I_K^\mf m$ to its ideal class. This mapping is surjective because, for example, theory from the class number formula showed that there are infinitely many primes in all ideal classes. So choosing any of these representative primes outside of $\mf m$ will do the trick. Of course, the kernel is the principals in $I_K^\mf m,$ which is $P_K^\mf m.$ From this it follows\[I_K^\mf m/P_K^\mf m\cong I_K/P_K=\op{Cl}_K.\]We note that this somewhat motivates why we define $I_K^\mf m/P_K^{\mf m,1}$ to be the ray class group instead of $I_K^\mf m/P_K^\mf m.$ Anyways, we see $I_K^\mf m/P_K^\mf m$ is finite.</p>
+			<p>It remains to understand $P_K^\mf m/P_K^{\mf m,1}.$ In order to access $1\pmod{\mf m},$ we would like to take $(\alpha)\in P_K^\mf m$ to $\alpha\in K^\times,$ but this direction is somewhat annoying because we have to track $P_K^{\mf m,1}$ later. So instead we map\[\alpha\in(K^\mf m)^\times\longmapsto(\alpha)\in P_K^\mf m,\]where $K^\mf m$ is the set of elements of $K$ coprime to $\mf m.$ Note that this mapping is surjective. From here we can mod out by $P_K^{\mf m,1}$ safely to give a mapping\[(K^\mf m)^\times\longrightarrow P_K^\mf m/P_K^{\mf m,1}.\]The kernel of this mapping is made of elements $\alpha\in K^\mf m$ that give $(\alpha)\in P_K^{\mf m,1}.$ Some care is required here because we can exchange out the generator of $(\alpha)$ by units, and its possible this changes the status of $\alpha\pmod{\mf m}.$ Surely we can say our kernel is\[\left\{\alpha\in(K^\mf m)^\times:\alpha\mathcal O_K^\times\cap K^{\mf m,1}\ne\emp\right\},\]where $K^{\mf m,1}$ is the set of elements of $K$ which are $1\pmod{\mf m}.$ While we're here, we simplify this a bit. We can say the kernel is $(K^\mf m)^\times\cap\mathcal O_K^\times K^{\mf m,1}$&mdash;the set of elements in $K^\mf m$ for which we can divide out (or multiply) by a unit to get into $K^{\mf m,1}.$ Further, $u\alpha\in\mathcal O_K^\times K^{\mf m,1}$ is in $K^\mf m$ if and only if\[u\alpha\text{ is coprime to }\mf m.\]Now, $\alpha\equiv1\pmod{\mf m},$ so $u\alpha$ is coprime to $\mf m$ if and only if $u$ is, so the only permitted units are $K^\mf m\cap\mathcal O_K^\times,$ and restricting units here is sufficient. So our kernel is $(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}.$ It follows\[\frac{P_K^\mf m}{P_K^{\mf m,1}}\cong\frac{(K^\mf m)^\times}{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}}.\]It's not clear that this is finite, but that kernel turns out to be quite large. For example, it contains the subgroup $K^{\mf m,1}=(K^{\mf m,1})^\times,$ so because our groups are abelian (implying all subgroups are normal), we see\[\frac{P_K^\mf m}{P_K^{\mf m,1}}\cong\frac{(K^\mf m)^\times/(K^{\mf m,1})^\times}{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}/(K^{\mf m,1})^\times}.\]In order to show finiteness, it suffices to show that the numerator here is finite. We'll return to the denominator later.</p>
+			<p>The benefit of $(K^\mf m)^\times/(K^{\mf m,1})^\times$ over $P_K^\mf m/P_K^{\mf m,1}$ is that we now get to deal with actual elements, and$\pmod{\mf m}$ behaves how we want it to. In order to tease out$\pmod{\mf m},$ we homomorphically map\[(K^\mf m)^\times\longrightarrow\prod_{\substack{\mf p\mid\mf m\\\mf p\text{ real}}}\{\pm1\}\times\prod_{\substack{\mf p\mid\mf m\\\mf p{\lt}\infty}}\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times.\]That is, we take $\alpha\in(K^\mf m)^\times$ to a tuple $(\alpha_\mf p)_{\mf p\mid\mf m}.$ For real primes $\mf p,$ we have $\alpha_\mf p$ equal to the sign of $\sigma_\mf p(\alpha),$ and for finite primes $\mf p,$ we know $\alpha$ is coprime to $\mf p$ by hypothesis, so it goes somewhere in $\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times.$ The kernel consists of those $\alpha\in(K^\mf m)^\times$ which give $\sigma_\mf p(\alpha/1){\gt}0$ for real primes and $\alpha\equiv1\pmod{\mf p^{\nu_\mf p(\mf m)}},$ which by the Chinese remainder theorem is equivalent to\[1\pmod{\mf m}.\]Thus, we see\[(K^\mf m)^\times/(K^{\mf m,1})^\times\cong\prod_{\substack{\mf p\mid\mf m\\\mf p\text{ real}}}\{\pm1\}\times\prod_{\substack{\mf p\mid\mf m\\\mf p{\lt}\infty}}\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times\]and is therefore finite. This completes the proof.</p>
+			<p>We actually have the tools to compute exactly what the size of the ray class group is. We recall that\[\left|\op{Cl}^\mf m_K\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|P_K^{\mf m}/P_K^{\mf m,1}\right|\]from (much) earlier. We now know $I_K^\mf m/P_K^\mf m\cong\op{Cl}_K,$ so its size is understood. The best we know about the final term is\[\frac{P_K^\mf m}{P_K^{\mf m,1}}\cong\frac{(K^\mf m)^\times/(K^{\mf m,1})^\times}{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}/(K^{\mf m,1})^\times}.\]We deal with the numerator and denominator separately.</p>
+			<p>We already know that the numerator is\[(K^\mf m)^\times/(K^{\mf m,1})^\times\cong\prod_{\substack{\mf p\mid\mf m\\\mf p\text{ real}}}\{\pm1\}\times\prod_{\substack{\mf p\mid\mf m\\\mf p{\lt}\infty}}\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times,\]which is ripe to compute size directly. The $\{\pm1\}$ terms add a $2^{r_0},$ where $r_0$ is the number of real places. Then for finite primes $\mf p$ with $\nu:=\nu_\mf p(\mf m){\gt}0,$ we take a detour: fix some $\pi\in\mf p\setminus\mf p^2,$ and we claim that we can biject elements $\alpha\in\mathcal O_K/\mf p^\nu$ with sequences $(a_0,\ldots,a_{\nu-1})\in(\mathcal O_K/\mf p)^\nu$ by\[\alpha\equiv\sum_{k=0}^{\nu-1}a_k\pi^k\pmod{\mf p^\nu}.\]To apply the claim to the problem, we note $(\mathcal O_K/\mf p^\nu)^\times$ forces $a_0\in(\mathcal O_K/\mf p)^\times,$ but the rest of the coordinates have free reign over $\mathcal O_K/\mf p,$ implying that we have\[(\op N(\mf p)-1)\op N(\mf p)^{\nu-1}\]total choices at $\mf p.$ Combining, we see we have\[(K^\mf m)^\times/(K^{\mf m,1})^\times=2^{r_0}\cdot\prod_{\substack{\mf p\mid\mf m\\\mf p{\lt}\infty}}\op N(\mf p)^{\nu_\mf p(\mf m)}\left(1-\frac1{\op N(\mf p)}\right).\]Aesthetically, we can think of this like $\varphi(\mf m).$</p>
+			<p>To show the claim, we can induct on $\nu.$ There is nothing to prove when $\nu=1,$ and to get $\alpha\in\mathcal O_K/\mf p^{\nu+1}$ into such a sequence, we take $(a_0,\ldots,a_{\nu-1})$ by reducing $\alpha\pmod{\mf p^\nu}.$ Then\[\alpha-\sum_{k=0}^{\nu-1}a_k\pi^k=:A\in\mf p^\nu.\]We need to find a unique residue $a_\nu\in\mathcal O_K/\mf p$ such that $A\equiv a_\nu\pi^\nu\pmod{\mf p^{\nu+1}}.$ Well, our options live in $\pi^\nu\mathcal O_K,$ so we need to show that $\pi^\nu\mathcal O_K+\mf p^{\nu+1}$ represents all $\mf p^\nu.$ But $+$ yields the greatest common divisor, so in fact\[\pi^\nu\mathcal O_K+\mf p^{\nu+1}=\mf p^\nu.\]Uniqueness of our $a_\nu\pmod{\mf p}$ follows from the fact $a_\nu\pi^\nu\equiv a'_\nu\pi^\nu\pmod{\mf p^{\nu+1}}$ implies $\mf p^{\nu+1}\mid(a_\nu-a_\nu')(\pi)^\nu,$ so $a_\nu-a_\nu'\in\mf p.$</p>
+			<p>It remains to compute the size of the denominator $(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}/(K^{\mf m,1})^\times.$ It is a general fact of groups that, for $H$ normal, $GH/H\cong G/(G\cap H),$ for we have a homomorphism $gh\in GH$ to the coset $g(G\cap H).$ This is well-defined because $g_1h_1=g_2h_2$ implies\[g_2^{-1}g_1=h_2h_1^{-1}\in G\cap H,\]so indeed $g_1(G\cap H)=g_2(G\cap H).$ Now, the homomorphism is surjective because in fact $G\to G/(G\cap H)$ is surjective, and its kernel consists of elements $gh$ with $g\in G\cap H.$ So the kernel contains $H$ (for $e\in G$), but $gh\in H$ always as well, implying the kernel is exactly $H.$</p>
+			<p>Applying this to the denominator, we see that\[\frac{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}}{(K^{\mf m,1})^\times}\cong\frac{(K^\mf m\cap\mathcal O_K^\times)}{(K^{\mf m,1}\cap\mathcal O_K^\times)}.\]This is good enough for our purposes, and at least it looks pretty.</p>
+			<p>Putting everything together, we see\[\left|\op{Cl}_K^\mf m\right|=\left|\op{Cl}_K\right|\cdot2^{r_0}\cdot\prod_{\substack{\mf p\mid\mf m\\\mf p{\lt}\infty}}\op N(\mf p)^{\nu_\mf p(\mf m)}\left(1-\frac1{\op N(\mf p)}\right)\cdot\frac1{[K^\mf m\cap\mathcal O_K^\times:K^{\mf m,1}\cap\mathcal O_K^\times]}.\]This is at least a formula, so we call it quits.</p>
+		</div>
+	</body>
+</html>

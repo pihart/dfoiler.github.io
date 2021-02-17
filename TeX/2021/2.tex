@@ -1,0 +1,655 @@
+\subsection{February}
+
+\subsubsection{February 1st}
+Today I learned the definition of a natural transformation. These, are more or less, maps---or homotopies---between functors. Actually, because I know some homotopy type theory, I'll present these as homotopies. Fix categories $\mathcal C$ and $\mathcal D$ with two functors $F,G:\mathcal C\to\mathcal D.$ Formally, a natural transformation $\eta$ is, type-theoretically, the data
+\[\eta_\bullet:\prod_{X:\mathcal C}F(X)\to G(X)\]
+which commutes with $F$ and $G$ nicely. In other words, $\eta$ is made up morphisms $\eta_X:F(x)\to G(X),$ and we require the following diagram to commute.
+\begin{center}
+    \begin{tikzcd}
+        X \arrow[d, "f"'] & F(X) \arrow[d, "F(f)"'] \arrow[r, "\eta_X"] & G(X) \arrow[d, "G(f)"] \\
+        Y                 & F(Y) \arrow[r, "\eta_Y"']                   & G(Y)                  
+    \end{tikzcd}
+\end{center}
+As an example, in the category of vector spaces over $k,$ we have a natural transformation from $\op{id}$ to the endofunctor $V\mapsto V^{\vee\vee}$ the double-dual of $V.$ Proving this is not terribly enlightening: the required $\eta_V$ takes $v\in V$ to $(T:V\to k)\mapsto Tv\in V^{\vee\vee},$ and this works. In fact, if we restrict our view to finite-dimensional vector spaces, this natural transformation is made up of isomorphisms, and we call $\eta$ a natural isomorphism.
+
+Let's make the analogy to homotopy type theory explicit. Viewing a morphism between objects in a type $A:\UU$ as a ``path'' between them, functions between types become functors for free. To be explicit, this amounts to the statement
+\[\prod_{(x,y:A)}(x=_Ay)\to(f(x)=_Bf(y)),\]
+where $f:A\to B.$ Now our natural transformation $\eta$ goes between two functor/functions $f,g:A\to B,$ in our analogy that $\to$ is $=$ for objects, we see
+\[\eta_\bullet:\prod_{x:A}f(x)=_Bg(x)\]
+in terms of homotopy type theory. That is, $\eta$ is just a witness for the $f\sim g,$ so natural transformations are really just homotopies in this analogy.
+
+\subsubsection{February 2nd}
+Today I learned about the principal congruence modular subgroup of level $N.$ Succinctly, this is the kernel of the homomorphism $\varphi_N:\op{SL}_2(\ZZ)\to\op{SL}_2(\ZZ/N\ZZ)$ by reducing$\pmod N.$ (Taking remainders commutes with matrix multiplication because matrix multiplication merely requires ring operations.) In terms of symbols, this is
+\[\Gamma(N):=\left\{M\in\op{SL}_2(\ZZ) : M\equiv\begin{bmatrix}1 & 0\\0 & 1\end{bmatrix}\pmod N\right\}.\]
+We remark that, immediately, $\op{SL}_2(\ZZ)/\Gamma(N)\subseteq\op{SL}_2(\ZZ/N\ZZ)$ is a finite subgroup, so $\Gamma(N)$ has finite index in $\op{SL}_2(\ZZ).$
+
+In fact, we claim that $|\op{SL}_2(\ZZ)/\Gamma(N)|=|\op{SL}_2(\ZZ/N\ZZ)|$ exactly, which we show by claiming that
+\[\frac{\op{SL}_2(\ZZ)}{\Gamma(N)}\cong\op{SL}_2(\ZZ/N\ZZ).\]
+Because we've defined $\Gamma(N)$ as the kernel of $\varphi_N,$ it suffices to show that $\varphi_N$ has full image. That is, for each $M_N\in\op{SL}_2(\ZZ/N\ZZ),$ there exists an $M\in\op{SL}_2(\ZZ)$ such that $M\equiv M_N\pmod N.$ Well, fix
+\[M_N\equiv\begin{bmatrix} a & b \\ c & d \end{bmatrix} \pmod N\]
+for some integers $a,b,c,d.$ All we know for now is that $ad-bc\equiv1\pmod N,$ and we need to lift this to $a',b',c',d'$ with $a'd'-b'c'=1.$ Quickly, we remark that if any of the $a,b,c,d$ are currently $0,$ we may add $N$ to them. So without loss of generality, none of these are $0.$
+
+To start, we claim that we can lift $a,b,c,d$ so that $\gcd(a,b)=1.$ Notice that
+\[\gcd(a,b)\mid ad-bc\equiv1\pmod N,\]
+so $\gcd(a,b)$ divides an integer coprime to $N.$ That is, $\gcd(a,b,N)=1,$ and this is enough to guarantee a $k$ such that $\gcd(a+kN,b)=1,$ which is what we need to lift. Indeed, we construct $k$ by the Chinese remainder theorem. Iterate over primes $p\mid b$ (because $b\ne0,$ there are finitely many such primes).
+\begin{itemize}
+    \item If $p\nmid a,$ then fix $k\equiv0\pmod p.$ This implies $a+kN\equiv a\pmod p,$ so $p\nmid a+kN.$
+    \item If $p\mid a,$ then we must have $p\nmid N$ to maintain $\gcd(a,b,N)=1,$ so we may set
+    \[k\equiv N^{-1}(1-a)\pmod p.\]
+    This implies $a+kN\equiv1\pmod p,$ so $p\nmid a+kN.$
+\end{itemize}
+After constructing the $k$ by iterating over the above, we see that $p\mid b$ implies $p\nmid a+kN.$ Thus, $\gcd(a,b)=1,$ as required.
+
+Now that we have $\gcd(a,b)=1,$ it is possible to construct $x$ and $y$ so that $ax-by=1.$ We need to show that there exist $c'$ and $d'$ with $ad'-bc'=1$ such that $c'\equiv c$ and $d'\equiv d\pmod N.$ Well, currently, we have that
+\[ad-bc=1+kN\equiv1\pmod N\]
+for some integer $k.$ But then
+\[a\underbrace{(d-kNx)}_{d'}-b\underbrace{(c-kNy)}_{c'}=(ad-bc)-kN=1\]
+constructs out $c'$ and $d'$ quite explicitly. This completes the proof.
+
+\subsubsection{February 3rd}
+Today I learned that $\lnot\lnot$ has the required operators to be a monad. To be explicit, $\lnot\lnot$ is an endofunctor in the category of types (using the propostion-as-types correspondence), taking $A:\UU$ to $\lnot\lnot A\equiv((A\to0)\to0):\UU.$
+
+We begin by exhibiting $\eta_A$ ($\texttt{return}$ in Haskell), which is a map $A\to((A\to0)\to0).$ This will become something of a theme in these constructions, so we state it explicitly: the key observation is that we can view this as a the curried function
+\[A\to(A\to0)\to0.\]
+Now the construction of $\eta$ is easier: we take an element $a:A$ and a function $n_A:A\to0,$ and then we output $n_A(a):0.$ Written out, this is
+\[\eta_A\equiv\lambda(a:A).\lambda(n_A:A\to0).f(a).\]
+Technically $\eta$ also takes $A$ as an input, but we ignore this.
+
+We continue by showing $\mu_A$ ($\texttt{join}$ in Haskell), which is a map from $(((A\to0)\to0)\to0)\to0$ to $(A\to0)\to0.$ There are a lot of arrows here, and we remark that we can actually exhibit
+\[(((A\to0)\to0)\to0)\to(A\to0)\]
+and then plug in $A\to0$ for $A$ to get $\mu_A.$ As expected, the correct way to think about this is as a curried function
+\[(((A\to0)\to0)\to0)\to A\to0.\]
+So now we have a function $f:((A\to0)\to0)\to0$ and an element $a:A,$ and we need to exhibit $0.$ Well, from our $a:A$ we know that we can exhibit $(A\to0)\to0$ because we have $\eta_A(a)$! From here $f$ sends $\eta_A(a)$ to $0.$ Written out, we have
+\[\mu_A\equiv\lambda(f:\lnot\lnot\lnot\lnot A).\lambda(a^*:\lnot A).f(\eta_{\lnot A}(a^*)).\]
+I have replaced the clearer $\to0$ notation for $\lnot$ for brevity.
+
+This gives the needed natural transformations to be a monad, but we haven't shown the coherence laws; maybe I'll do them later, but they don't look like fun. We do remark that we do have Haskell's $\texttt{fmap}$ function, taking $A\to B$ and $\lnot\lnot A$ to output $\lnot\lnot B.$ Fully written out, we are exhibiting
+\[(A\to B)\to((A\to0)\to0)\to((B\to0)\to0).\]
+As usual, we interpet this as a curried function like
+\[(A\to B)\to((A\to0)\to0)\to(B\to0)\to0.\]
+That is, we get inputs $f:A\to B$ and $n_{A\to0}:(A\to0)\to0$ along with a $n_B:B\to0$ so that we now need to exhibit $0.$ The finishing trick, now, is to use the same idea as the functor of points: $n_B\circ f$ takes $A\to B\to 0,$ so $n_{A\to0}$ will send $n_B\circ f$ to $0.$ Fully written out,
+\[\texttt{fmap}_{A\to B}\equiv\lambda(f:A\to B).\lambda(n_{A\to0}:\lnot\lnot A).\lambda(n_B:\lnot B).n_{A\to0}(n_B\circ f).\]
+We remark that having a $\texttt{join}$ and an $\texttt{fmap}$ allows us to construct $\texttt{bind}:\lnot\lnot A\to(A\to\lnot\lnot B)\to\lnot\lnot B$ by
+\[\lambda(a^*:\lnot\lnot A).\lambda(f:A\to\lnot\lnot B).\texttt{join}_B\left(\texttt{fmap}_{A\to\lnot\lnot B}(f)(a^*)\right).\]
+Quickly, $\texttt{fmap}_{A\to\lnot\lnot B}(f)$ has type $\lnot\lnot A\to\lnot\lnot\lnot\lnot B,$ so we may input $a^*$ to get out an element of $\lnot\lnot\lnot\lnot B,$ from which $\texttt{join}_B$ finishes. This construction of $\texttt{bind}$ works in the general case.
+
+What I like about the $A\mapsto\lnot\lnot A$ example is that it is kind of giving me the feeling that the type $Ma$ is somehow ``above'' the type $a,$ for general monads. Namely, if we can talk about $a,$ then we can certainly talk about $Ma,$ but the reverse does not seem to hold, and in the case of $\lnot\lnot,$ it is actually impossible in constructivist logic to be able to fully recover properties of $A$ from properties of $\lnot\lnot A.$ Somehow $Ma$ is a bit more ethereal than $a.$
+
+\subsubsection{February 4th}
+Today I learned a little more about decidability of symbolic algebra series convergence. Specifically, I know that if we permit sums over multiple variables, then series convergence is undecidable. To be clear, for the time being we are allowing $\QQ[x_1,\ldots],\pi,i,|\bullet|,\exp,$ as well as addition, multiplication, and composition of these functions.
+
+This is the easier than it appears, and in fact we claim that we can do this with only $\QQ$ and $|\bullet|.$ The key observation is that we can build a $0$-indicator over $\ZZ.$ As a lemma, we note that
+\[\frac12(x+y+|x-y|)=\begin{cases}x & x>y, \\ y & y>x,\end{cases}=\max\{x,y\}.\]
+It follows that we can construct $\max$ using only $|\bullet|.$ We remark that, at a high level, $|\bullet|$ is necessary because $\max$ is a non-smooth function, and $|\bullet|$ should be sufficient because $\max$ is piecewise differentiable. Now fix some $\varepsilon>0,$ and we claim that
+\[\iota_0(q):=\max\left(0,-\frac1\varepsilon|q|+1\right)=\begin{cases}
+    1 & q=0, \\
+    0 & |q|\ge\varepsilon.
+\end{cases}\]
+Note that we have not claimed behavior for $q\in(-\varepsilon,\varepsilon)\setminus\{0\},$ but if we fix $\varepsilon<1,$ then this interval will contain no integers. So $\iota_0$ can still work as a $0$-indicator. Anyways, at $q=0,$ the above reads $\iota_0(0)=\max(0,1)=1.$ And if $|q|\ge\varepsilon,$ then
+\[-\frac1\varepsilon|q|+1<0,\]
+so $\iota_0(q)=0.$
+
+Now we show that it is undecidable to determine if a series in multiple variables converges. In fact, we claim that an oracle which can determine if multivariate series converge can determine if a Diophantine equation in $\NN$ has roots, which we know to be undecidable from Hilbert's 10th. Fix some Diophantine equation $p(x_1,\ldots,x_n)=0$ for $p\in\ZZ[x_1,\ldots,x_n].$
+
+We begin by lifting $p$ to a Diophantine with either $0$ or infinitely many solutions. Indeed, we quickly consider the polynomial
+\[\hat p(x_1,\ldots,x_{n+1}):=\left(x_{n+1}^2+1\right)p(x_1,\ldots,x_n).\]
+In particular, if $p$ has a natural root named $(y_1,\ldots,y_n),$ then $\hat p$ has infinitely many solutions by $(y_1,\ldots,y_n,y_{n+1})$ for any $y_{n+1}\in\NN.$ However, if $p$ has no solutions, then $\hat p$ can't have any solutions, for $\hat p=0$ requires either $x_{n+1}^2+1=0,$ which is impossible, or $p(x_1,\ldots,x_n)=0.$
+
+From here, the killing blow is to look at
+\[\sum_{a_1,\ldots,a_{n+1}=0}^\infty\iota_0\left(\hat p(a_1,\ldots,a_{n+1})\right).\]
+We claim that this sum diverges if and only if $p$ has a natural root. We divide this into cases.
+\begin{itemize}
+    \item If $p$ has no natural roots, then $\hat p$ has no natural roots, so we must always have $\hat p(a_1,\ldots,a_{n+1})\in\ZZ\setminus\{0\}.$ Thus $\iota_0$ always returns $0,$ and the series converges.
+    \item If $p$ has a natural root, then $\hat p$ has infinitely many natural roots, so $\iota_0$ will return $1$ infinitely many times. Thus, the series diverges.
+\end{itemize}
+The claim follows, so being able to detect series convergence is enough to detect solutions to Diophantine equations, and we are done here.
+
+I find it quite remarkable that this is doable with merely polynomials and $|\bullet|.$ I have been told that single-variable series convergence is undecidable with the usual suspects ($\QQ[x_1,\ldots],\pi,i,|\bullet|,\exp$), which must mean that decreasing the number of variables is a difficult task; I have not done this yet. If I put in $\floor\bullet$ and $\sqrt\bullet,$ then we recall that
+\[f_2(n)=\left(\left|\floor{\sqrt n}-\left(n-\floor{\sqrt n}^2\right)\right|,n-\floor{\sqrt n}^2\right)\]
+from a few days ago can surject $\NN\to\NN^2.$ It doesn't matter that $f_2$ isn't injective: if we have no roots, then we're only repeating $0$; and if we have roots, then the worst we can do is repeat $1,$ but we're already diverging anyways. My main qualm with $f_2$ is that $\sqrt\bullet$ isn't defined over all $\RR,$ so the set of functions we get are poorly defined. Also, $\floor\bullet$ introduces discontinuous functions, which is undesirable.
+
+It might be possible to map $\NN\to\RR^\bullet$ in a way that is very close to $\NN^\bullet.$ In particular, we can build $\min(x,y)=-\max(-x,-y)$ and then, for $\varepsilon\in(0,1),$
+\[\min\left(\frac1\varepsilon\max(-|q|+1,0),1\right)=\begin{cases}
+    1 & |q|\le1-\varepsilon, \\
+    0 & |q|\ge1.
+\end{cases}\]
+Thus, if we can get $\NN\to\RR^\bullet$ to be close enough to $\NN^\bullet$ so that $p(a_1,\ldots,a_n)=0$ implies we get some $p(x_1,\ldots,x_n)\le1-\varepsilon,$ then we can sum over the above indicator and still count the number of solutions to $p.$ This would finish, but of course the main difficulty is still that map $\NN\to\RR^\bullet.$
+
+\subsubsection{February 5th}
+Today I learned a concrete example of a monad, courtesy of Alexander Burton. As usual in functional programming, we are looking at functions as functors in the category of types. 
+
+Fixing a monoid $(M,+),$ we define $T:A\mapsto A\times M$ to be our monad. To be explicit, this is endofunctor taking
+\[\begin{cases}
+    T(A)=A\times M & A\text{ object}, \\
+    T(f)=f\times\op{id} & f:A\to B.
+\end{cases}\]
+We note quickly that we tend to think of $T(f)$ as $\texttt{fmap}$ in Haskell, for it takes $(A\to B)\to(T(A)\to T(B)).$ Fixing $0\in M$ as our identity element, we remark that this definition permits
+\[\eta_A(a)=(a,0)\]
+for $a\in A.$ Very quickly, we see $\eta_A:A\to T(A)$ ($\texttt{pure}$) is a natural transformation from $\op{id}$ to $T(\op{id})$ by chasing elements, as shown in the following commutative diagram. Here, $f:A\to B$ takes $f(a)=b.$
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[d, "f"'] & a \arrow[r, "\eta_A", maps to] \arrow[d, "\operatorname{id}(f)"', maps to] & {(a,0)} \arrow[d, "T(f)", maps to] \\
+        B                 & b \arrow[r, "\eta_B"', maps to]                                            & {(b,0)}                           
+    \end{tikzcd}
+\end{center}
+This works because $T(f)$ was defined cleanly. The final piece of data is a natural transformation $\mu_A:T^2(A)\to T(A)$ ($\texttt{join}$), which we define by
+\[\mu_A((a,m),n)=(a,m+n).\]
+This is actually a natural transformation, again by chasing elements in the following commutative diagram. Here, $f:A\to B$ takes $f(a)=b.$
+\begin{center}
+    \begin{tikzcd}
+        A \arrow[d, "f"'] & {((a,m),n)} \arrow[r, "\mu_A", maps to] \arrow[d, "T^2(f)"', maps to] & {(a,m+n)} \arrow[d, "T(f)", maps to] \\
+        B                 & {((b,m),n)} \arrow[r, "\eta_B"', maps to]                             & {(b,m+n)}                           
+    \end{tikzcd}
+\end{center}
+Again, $T(f)$ being clean makes this natural.
+
+It remains to show the coherence laws. The goal of this example is to explain why $\mu\circ T\mu=\mu\circ\mu T$ corresponds to associativity and $\mu\circ T\eta=\mu\circ\eta T=\op{id}$ corresponds to identity. It is somewhat magical to see morphisms able to communicate this.
+
+We begin with associativity. We need to show that the following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        T^3(A) \arrow[d, "T(\mu_A)"'] \arrow[r, "\mu_{T(A)}"] & T^2(A) \arrow[d, "\mu_A"] \\
+        T^2(A) \arrow[r, "\mu_A"']                            & T(A)                        
+    \end{tikzcd}
+\end{center}
+As usual, this is done by chasing elements. We expand out $T$ and the rest of the morphisms they map to in the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        {(((a,m),n),k)} \arrow[d, "T(\mu_A)"', maps to] \arrow[r, "\mu_{T(A)}", maps to] & {((a,m),n+k)} \arrow[d, "\mu_A", maps to] \\
+        {((a,m+n),k)} \arrow[r, "\mu_A"']                                                & {(a,m+n+k)}                              
+    \end{tikzcd}
+\end{center}
+Here, the bottom arrow gives $(a,(m+n)+k),$ and the left arrow gives $(a,m+(n+k)),$ and these are equal exactly when $+$ associates. So this coherence law holds exactly because our monoid is associative.
+
+Now we do identity. We need to show that the following diagram commutes.
+\begin{center}
+    \begin{tikzcd}
+        T(A) \arrow[d, "T(\eta_A)"'] \arrow[r, "\eta_{T(A)}"] \arrow[rd, "\operatorname{id}"] & T^2(A) \arrow[d, "\mu_A"] \\
+        T^2(A) \arrow[r, "\mu_A"']                                                            & T(A)                     
+    \end{tikzcd}
+\end{center}
+Of course, we show this by chasing element, as seen in the following diagram.
+\begin{center}
+    \begin{tikzcd}
+        {(a,m)} \arrow[d, "T(\eta_A)"', maps to] \arrow[r, "\eta_{T(A)}", maps to] \arrow[rd, "\operatorname{id}", maps to] & {((a,m),0)} \arrow[d, "\mu_A", maps to] \\
+        {((a,0),m)} \arrow[r, "\mu_A"', maps to]                                                                            & {(a,m)}                                
+    \end{tikzcd}
+\end{center}
+Here, the bottom arrow gives $(a,0+m),$ the right arrow gives $(a,m+0),$ and the diagonal arrow gives $(a,m).$ However, these are all equal exactly because our monoid as $0$ as identity. So we get out coherence law due to identity. This completes the proof that we have a monad.
+
+
+\subsubsection{February 6th}
+Today I learned how to recover the modulus of a linear congruential pseudorandom number generator, from \href{https://security.stackexchange.com/a/4306}{here}. Very quickly, a linear congruential generator is a sequence of pseudorandom modular classes $a_0,a_1,a_2,\ldots$ defined by a seed $a_0$ and the recurrence relation
+\[a_{n+1}\equiv Aa_n+B\pmod N\]
+for some constants $A,B,N.$ The question is how we should back-construct $A,B,N$ if given some (hopefully small) number of terms of $a_\bullet$; this would let us predict the rest of the pseudorandom sequence and is therefore bad. We note that if we know $N,$ we see
+\[\begin{cases}
+    a_1\equiv Aa_0+B\pmod N, \\
+    a_2\equiv Aa_1+B\pmod N
+\end{cases}\]
+is a system of linear congruences. Assuming that the sequence is kind, we can use this to solve for $A$ and $B$ by just solving with row reduction in the normal way. Thus, we can recover $A$ and $B$ given $N$ in roughly $3$ terms. Explicitly, subtracting and then solving gives
+\[A\equiv\frac{a_2-a_1}{a_1-a_0},\qquad B\equiv a_1-Aa_0\pmod N.\]
+We remark that ``the sequence is kind'' means that $\gcd(u_1-u_0,N)=1$ so that we can actually do division here. However, this is a non-problem, for $\gcd(u_1-u_0,N)$ will get propagated through the entire sequence, so we can just divide it from all terms, and then do the modular division safely. Note if $u_1-u_0\equiv0,$ then the sequence is constant.
+
+It remains to solve for the modulus $N$ from our sequence. The outline is that our linear recurrence lets us generate modular classes, so we might be able to turn this into a way to generate numbers $0\pmod N,$ in which case we should be able to take $\gcd$ to get $N.$ To begin, we get rid of the constant term by defining
+\[b_n:=a_{n+1}-a_n.\]
+With $n+1$ consecutive terms of $a_\bullet,$ we can solve for $n$ terms of $b_\bullet,$ so we will need more terms, but so it goes. Anyways, the nice thing is that
+\[b_{n+1}\equiv(a_{n+2}-a_{n+1})\equiv A(a_{n+1}-a_n)\equiv Ab_n.\]
+To turn this into a sequence $0\pmod N,$ we define
+\[c_n:=b_{n+2}b_n-b_{n+1}^2\equiv A^2b_n-A^2b_n\equiv0\pmod N.\]
+We need yet another term of $a_\bullet$ for the $c_\bullet$ sequence, but so it goes. Anyways, this generates a lot of numbers which are $0\pmod N.$ At a high level, we expect
+\[\gcd(c_0,c_1,\ldots)=N\gcd\left(\frac{c_0}N,\frac{c_1}N,\ldots\right)=N\]
+because there's no reason that $c_\bullet/N$ should have any common factors. For example, even if we were just to look at $\gcd(c_n/N,c_{n+1}/N),$ we expect this to be $1$ with probability $6/\pi^2$ for each $n.$ So after $10$ terms, the probability is less than $1\%.$ Thus, about $12$ terms of $a_\bullet$ is probably sufficient to get $N.$
+
+I don't think a proof of this heuristic would be easy. The sequence $c_\bullet$ only looks pseudorandom because $a_\bullet$ looks random, which is difficult to pin down. Further, getting some proven bound on the number of terms of $a_\bullet$ or $c_\bullet$ feels unhelpful: I get the feeling that what can be proven will be significantly worse than the heuristic (and probably practical use) suggests.
+
+\subsubsection{February 7th}
+Today I learned that random play in two-pile Nim give each player a $\frac12$ probability of winning if one pile has at least $2$ stones. Formally speaking, ``random play'' means that a player on her turn lists all possible moves and then makes a random move. This is different from picking a legal pile randomly and then taking a random number of stones, but I don't think the result changes.
+
+We prove this by brute-force tabulation. Let $p(m,n)$ be the probability that player $1$ if the two piles have $m$ and $n$ stones. By convention, we set $p(0,0)=0$ because player $1$ is the first player to be unable to make a move. From here, we note that we have the recurrence
+\[p(m,n)=1-\frac1{m+n}\left(\sum_{k=1}^mp(m-k,n)+\sum_{\ell=1}^np(m,n-\ell)\right)\]
+for $m,n,m+n\ge0.$ To prove this, we note that player $1$ must make a move, which consists of either taking $k\le m$ stones from the first pile or $\ell\le n$ stones from the second pile. Each of these moves occur with probability $\frac1{m+n},$ and afterwards, player $1$ is effectively playing as player $2$ in the $p(m-k,n)$ or $p(m,n-\ell)$ game, so we subtract the probabilities from $1.$
+
+Quickly, we simplify our recurrence to
+\[p(m,n)=1-\frac1{m+n}\left(\sum_{k=0}^{m-1}p(k,n)+\sum_{\ell=0}^{n-1}p(m,\ell)\right)\]
+by flipping the sums. As some motivation, we remark that we could use the recurrence relation to build a table of the various values of $p(m,n).$ New values are computed by one minus the average of all terms above or to the left. Here is the start of the table.
+\[\begin{array}{r|c|c|c|c}
+           & 0      & 1       & 2     & \cdots \\\hline
+    0      & 0      & 1      & 1/2    & \cdots \\\hline
+    1      & 1      & 0      & 1/2    & \cdots \\\hline
+    2      & 1/2    & 1/2    & 1/2    & \cdots \\\hline
+    \vdots & \vdots & \vdots & \vdots & \ddots
+\end{array}\]
+However, the fast way to finish the proof is to claim directly that $p(m,n)$ is
+\[p(m,n)=\begin{cases}
+    0 & (m,n)\in\{(0,0),(1,1)\}, \\
+    1 & (m,n)\in\{(0,1),(1,0)\}, \\
+    1/2 & \text{else}.
+\end{cases}\]
+Note that this is the main claim. To prove, we see this matches our initial condition $p(0,0)=0,$ so it suffices to show that we satisfy the recurrence relation. We quickly check that $p(0,1)=p(1,0)=1-0$ and that $p(1,1)=1-\frac12(1+1)=0.$ It follows that, for $m\ge2,$ we see
+\[\sum_{k=0}^{m-1}p(k,n)=p(0,n)+p(1,n)+\sum_{k=2}^{m-1}p(k,m)=1+\frac{m-2}2=\frac m2.\]
+Here the trick is that $p(0,n)+p(1,n)$ is one of $1+0,\,0+1,\,\frac12+\frac12,$ all of which are equal to $1.$ Similarly, for $n\ge2,$ we see
+\[\sum_{\ell=0}^{n-1}p(m,\ell)=p(m,0)+p(m,1)+\sum_{\ell=2}^{n-1}p(m,\ell)=1+\frac{n-2}2=\frac n2.\]
+Again, the trick is that $p(0,m)+p(1,m)$ always evaluates to $1.$ It follows that
+\[1-\frac1{m+n}\left(\sum_{k=0}^{m-1}p(k,n)+\sum_{\ell=0}^{m-1}p(m,\ell)\right)=1-\frac1{m+n}\cdot\frac{m+n}2=\frac12,\]
+which completes the proof.
+
+Quickly, we talk about the alternate method of ``random play'' mentioned at the beginning: a player picks a random pile and then picks up a random number of stones. Let the probability of player $1$ winning in this game with $m$ and $n$ stones be $q(m,n).$ We still have $q(0,0)=0,$ and a similar computation as before gives the recurrence relation
+\[q(m,n)=1-\frac12\left(\frac1m\sum_{k=0}^{m-1}q(k,n)+\frac1n\sum_{\ell=0}^{n-1}q(m,\ell)\right)\]
+for $m,n>0,$ and
+\[q(m,0)=1-\frac1m\sum_{k=0}^{m-1}q(k,0),\qquad q(0,n)=1-\frac1n\sum_{\ell=0}^{n-1}q(0,\ell).\]
+With these in hand, it's not difficult to actually show $q=p$ always. Indeed, our recurrence relations matches $p$ for the $m=0$ and $n=0$ cases, so we match there. We can also check that $q(1,1)=1-\frac12(1+1)=0$ still. Then for $m,n>0,$ the internal sums will match what we evaluates for $p$ in the above proof, so we see
+\[1-\frac12\left(\frac1m\cdot\frac m2+\frac1n\cdot\frac n2\right)=\frac12.\]
+This finishes the proof that $p$ satisfies the recurrence relation of $q,$ so they are equal.
+
+\subsubsection{February 8th}
+Today I learned some deeper type-theoretic significance to currying. Quickly, currying is, very roughly, induction for dependent pair types. That is, for $A:\UU$ and $B:A\to\UU$ with $C:\prod_{(a:A)}B(a)\to\UU,$ we define
+\[\op{curry}:\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\to\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\]
+by
+\[\op{curry}(f):\equiv\lambda(a:A).\lambda(b:B(a)).f((a,b)).\]
+We also have the sibling function
+\[\op{uncurry}:\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\to\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\]
+defined by
+\[\op{uncurry}(f):\equiv\lambda\left((a,b):\textstyle\sum_{(a:A)}B(a)\right).f(a)(b).\]
+We don't check that these type-check here. We remark that this $\lambda$-calculus on dependent pairs is really just doing an induction by defining how the pair behaves on a particular element. Indeed, $\op{uncurry}$ is the induction principle.
+
+The significance here is that $\op{curry}$ and $\op{uncurry}$ actually turn out to be quasi-inverses. So it happens that we have an equivalence (Tewari called it ``isomorphism'')
+\[\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\simeq\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right).\]
+In lieu of the univalence axiom, we remark that we in fact have currying witness the equality
+\[\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\simeq\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right).\]
+This association of pairs and functions is somewhat remarkable. At least in terms of the functions they define, they give exactly the same things, even though functions and pairs feel like profoundly different objects.
+
+Anyways, let's show this. In one direction, we need to witness $\op{curry}\circ\op{uncurry}\sim\op{id}.$ That is, given $f:\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b),$ we need to witness
+\[\op{curry}(\op{uncurry}(f))=f.\]
+Plugging in, the left-hand side is
+\[\lambda a.\lambda b.\op{uncurry}(f)((a,b)).\]
+Continuing, we see it is
+\[\lambda a.\lambda b.f(a)(b).\]
+However, this is equal to $f$ just by $\refl_f.$ Indeed, repeated $\beta$-reduction says
+\[f\equiv\lambda a.f(a)\equiv\lambda a.\lambda b.f(a)(b).\]
+Remarkably, no function extensionality is required, although it does make for a quick proof of this as well. Namely, we merely have to plug in $a$ and $b$ into the expression and check that it works.
+
+For the sake of completeness, I show the other direction even though it is pretty much the same. We need to witness $\op{uncurry}\circ\op{curry}\sim\op{id}.$ That is, given $f:\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b),$ we need to witness
+\[\op{uncurry}(\op{curry}(f))=f.\]
+Plugging in, the left-hand side is
+\[\lambda(a,b).\op{curry}(f)(a)(b).\]
+Continuing, we see it is
+\[\lambda(a,b).f((a,b)).\]
+And again, this is equal to $f$ by just $\refl_f.$ Indeed, a single $\beta$-reduction says
+\[f\equiv\lambda(a,b).f((a,b)).\]
+Note that we have omitted the types of each element here, but they are present in the original definitions of $\op{curry}$ and $\op{uncurry}.$ We remark once again that no function extensionality was required.
+
+\subsubsection{February 9th}
+Today I learned the baby-step giant-step algorithm to solve the discrete log problem in general finite cyclic groups. As implied, our setup is to fix a finite cyclic group $G=\langle g\rangle$ of order $N$ and element $h\in G$ so that we want $x\in\ZZ$ satisfying $h=g^x.$ We note that the way we represent elements of $G$ is unimportant, as it should be in this algorithm.
+
+Brute force would be trying all $N$ different values of $x$ until hitting the correct one. This requires $O(1)$ space but a terrible $O(N)$ run-time. The baby-step giant-step algorithm trades some of the $O(1)$ space for a better run-time, akin to the Dirichlet hyperbola method. The key observation is that
+\[\frac x{\sqrt N}\le\sqrt N.\]
+More explicitly, this implies that any $x$ can be written as
+\[x=a\lceil\sqrt N\rceil+b\]
+where $0\le a,b<\lceil\sqrt N\rceil.$ So if we can check $\lceil\sqrt N\rceil$ values of $x$ simultaneously, our run-time will drop to $O(\sqrt N).$
+
+The way that this is done is by storing $\lceil\sqrt N\rceil$ values of $x$ in a lookup table. Here are the steps.
+\begin{enumerate}
+    \item Store $g^0,g^1,\ldots,g^{\lceil\sqrt N\rceil-1}$ in a lookup table.
+    \item Precompute $g^{\lceil\sqrt N\rceil}$ into $g_*.$
+    \item Move $h$ into a local $h_*.$
+    \item Loop the following over $0\le a<\lceil\sqrt N\rceil.$
+    \begin{enumerate}
+        \item If $h_*$ is in the lookup table, return $a\lceil\sqrt N\rceil+b.$
+        \item Else move $h_*g_*$ into $h_*.$ Now $h_*=hg_*^{-a-1},$ and we're ready to loop.
+    \end{enumerate}
+\end{enumerate}
+We note that this is gauranteed to terminate because $x=a\lceil\sqrt N\rceil+b$ for some $0\le a,b<\lceil\sqrt N\rceil$ as above, so we'll find our output eventually.
+
+As for quick run-time analysis, we note that creation of the lookup table and the loop are our limiting $O(\sqrt N)$ operations. There is some worry that the loop operation isn't $O(1),$ but we note that this can be done by hashing: we can hash $h_*$ in and then check the hashed entry in a table in $O(1)$ time without having to check each element of the lookup table manually. This also means that the creation of the lookup table requires hashing, but this is still an $O(\sqrt N)$ operation in total.
+
+We close by remarking that no part of the proof required $G$ to have exactly $N$ elements. We merely needed $|G|\le N$ to make the bounding work out when sieving for $x.$ I find this somewhat remarkable and ``best possible'' in terms of what we get to know about the group. That is, if we want a discrete log algorithm of a group, knowing exactly how many elements are in the group feels unnecessary. But to upper-bound run-time of the algorithm, we probably need an upper-bound on the group size.
+
+\subsubsection{February 10th}
+Today I learned that the Eisenstein series are modular forms, from \href{https://www.math.arizona.edu/~swc/}{here}. These are the series, parameterized by $k\ge3,$
+\[G_k(z)=\sum_{\substack{(m,n)\in\ZZ^2\\(m,n)\ne(0,0)}}\frac1{(mz+n)^k}.\]
+We get the main computation out of the way first. Because $\op{SL}_2(\ZZ)$ is generated by $90^\circ$ rotations and horizontal shears, it suffices to note that
+\[G_k\left(\begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}z\right)=G_k\left(\frac{-1}z\right)=\sum_{\substack{(m,n)\in\ZZ^2\\(m,n)\ne(0,0)}}\frac1{\left(-\frac mz+n\right)^k}=\frac{G_k(z)}{z^k},\]
+and
+\[G_k\left(\begin{bmatrix}1 & 1 \\ 0 & 1\end{bmatrix}z\right)=G_k(z+1)=\sum_{\substack{(m,n)\in\ZZ^2\\(m,n)\ne(0,0)}}\frac1{(mz+m+n)^k}=G_k(z).\]
+In particular, satisfying the modularity condition is closed under multiplication and inversion, so it is enough to satisfy the modularity condition for the above matrices.
+
+We now show the uninteresting parts of this proof. We need $G_k$ to be holomorphic and holomorphic at $\infty$ to be a proper modular form. To show that $G_k$ is holomorphic, we need to know that it converges everywhere, and then I think manually checking the limit definition or something. Anyways, we begin by showing, for $k\ge3,$
+\[S_k=\sum_{\substack{(m,n)\in\ZZ^2\\(m,n)\ne(0,0)}}\frac1{(|m|+|n|)^k}\]
+converges, which looks of roughly the same growth rate as $G_k.$ All terms are positive, so we may rearrange terms into showing the convergence of
+\[S_k=4\Bigg(\underbrace{\sum_{n=1}^\infty\frac1{n^k}}_{m=0}+\sum_{m,n=1}^\infty\frac1{(m+n)^k}\Bigg)\]
+by taking the upper-right quadrant of $\ZZ^2.$ The first sum here is $\zeta(k)$ and therefore converges. To deal with the double sum, we need to bound what it looks like for a single $m,$ which is
+\[\sum_{n=1}^\infty\frac1{(m+n)^k}\le\frac1{(m+1)^k}+\int_1^\infty\frac1{(m+t)^k}\,dt=\frac1{(m+1)^k}+\frac1{(k-1)(m+1)^{k-1}}.\]
+This is bounded by $2/m^{k-1},$ so we see
+\[\sum_{m,n=1}^\infty\frac1{(m+n)^k}\le2\sum_{m=1}^\infty\frac1{m^{k-1}}=2\zeta(k-1).\]
+Note $k>2$ tells us that the sum is upper-bounded, and because it only has positive terms, the sum must converge.
+
+Now we show that $G_k$ converges; as should be expected, we show it absolutely converges. That is, we focus on
+\[|G|_k(z)=\sum_{\substack{(m,n)\in\ZZ^2\\(m,n)\ne(0,0)}}\frac1{|mz+n|^k}.\]
+This feels like it should have similar growth rate as $S_k.$ We codify this by exhibiting a constant $C$ for which
+\[|mz+n|\le C(|m|+|n|),\]
+which will show $|G|_k(z)$ converges by comparison. For $m=0,$ any $C\ge1$ will suffice. Else, rearranging, we see we are interested in upper-bounding
+\[\frac{|mz+n|}{|m|+|n|}=\frac{|z+|n/m||}{1+|n/m|}=:f(|n/m|).\]
+The function $f:\RR_{\ge0}\to\RR$ is certainly defined over all real inputs as well as continuous, so it suffices to check its behavior as $|n/m|\to\infty.$ Letting $z=a+bi,$ this is
+\[\lim_{x\to\infty}\frac{|z+x|}{1+x}=\lim_{x\to\infty}\frac{|z/x+1|}{1/x+1}=1<\infty.\]
+So because $f(x)$ is continuous on the closed interval $[0,\infty)$ and bounded as $x\to\infty,$ we see $f$ must be bounded, giving us our $C.$ This finishes the proof of $G_k$ being holomorphic.
+
+It remains to show that $G_k$ is holomorphic at $\infty.$ For this, we merely have to show that
+\[\lim_{\op{Im}z\to\infty}G_k(z)<\infty.\]
+Well, it (as usual) suffices to show this for $|G|_k,$ where the statement reads
+\[\lim_{\op{Im}z\to\infty}\sum_{\substack{(m,n)\in\ZZ^2\\(m,n)\ne(0,0)}}\frac1{|mz+n|^k}<\infty.\]
+The $m=0$ terms gives us $2\zeta(k)<\infty$; else, when $m>1,$ all of our terms vanish. Thus, $G_k$ is indeed holomorphic at $\infty,$ which completes the proof that $G_k$ is a modular form.
+
+In other news, happy birthday to Sara Modur and Alan Baade!
+
+\subsubsection{February 11th}
+Today I learned (finally) the proof that $[0,1]$ is compact in the standard topology on $\RR.$ Of course, the proof generalizes to show that $\RR$ is locally compact, but we don't bother with this.
+
+We begin by presenting the proof with no motivation. Suppose that $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of $[0,1].$ The trick is to consider
+\[S=\{\varepsilon\in(0,1]:[0,\varepsilon]\text{ can be covered with a finite subcover}\}.\]
+Very quickly, we remark that if $\varepsilon_0\in S,$ then each $\varepsilon<\varepsilon_0$ is also in $S.$ Indeed, if $[0,\varepsilon_0]$ can be finitely covered, then the same cover can be used to cover $[0,\varepsilon]\subseteq[0,\varepsilon_0].$
+
+We would like to use the least upper-bound property on $S.$ Note that some open set $U_\bullet$ covers $0$ and so contains an interval like $[0,2\varepsilon)$ for some $\varepsilon>0.$ (Formally, dissolve $U_\bullet$ into intervals because by the basis of our topology; one such interval contains $0.$) This implies that $[0,\varepsilon]\subseteq U_\bullet$ can be finitely covered, so $\varepsilon\in S$ inhabits $S.$
+
+Additionally, $S$ has an upper bound: by definition, $\varepsilon\in S$ implies $\varepsilon\le1.$ Thus, we may apply the least upper-bound property and let $\varepsilon_0$ be the least upper bound of $S.$ Note $\varepsilon_0\le1$ because $1$ is an upper bound of $S.$ Further, we remark that, for $\alpha\in(0,1],$ we see $\alpha\not\in S$ implies nothing above $\alpha$ is in $S,$ so $\alpha$ is an upper bound of $S,$ so $\varepsilon_0\le\alpha.$ Thus, $\alpha<\varepsilon_0$ implies $\alpha\in S.$
+
+We now do casework on $\varepsilon_0.$
+\begin{itemize}
+    \item If $\varepsilon_0=1,$ then we can finish quickly. As before, we can pick up $U_\bullet$ containing $1,$ and then extract an interval $(\alpha,1]$ inside of $U_\bullet,$ where $\alpha<1.$ In particular, $\alpha<\varepsilon_0,$ so $\alpha\in S.$ Thus we have a finite subcover
+    \[\{V_k\}_{k=1}^N\]
+    covering $[0,\alpha].$ To finish, we note
+    \[\{V_k\}_{k=1}^N\cup\{U_\bullet\}\]
+    which now finitely covers $[0,\alpha]\cup(\alpha,1]=[0,1]$ in full.
+    \item If $\varepsilon_0<1,$ then we derive contradiction. To start, we pick up $U_\bullet$ containing $\varepsilon_0,$ and then extract an interval $(\alpha,\beta)$ inside of $U_\bullet$ which contains $\varepsilon_0.$ Now, again, $\alpha<\varepsilon_0,$ so $\alpha\in S,$ and we get a finite subcover
+    \[\{V_k\}_{k=1}^N\]
+    which covers $[0,\alpha].$ But then
+    \[\{V_k\}_{k=1}^N\cup\{U_\bullet\}\]
+    finitely covers $[0,\alpha]\cup(\alpha,\beta)=[0,\beta).$ In particular, we can cover $\left[0,\frac{\varepsilon_0+\beta}2\right]$ finitely, but $\frac{\varepsilon_0+\beta}2>\varepsilon_0,$ breaking our least upper bound.
+\end{itemize}
+Having covered all cases, we conclude that we can always extract a finite subcover of $[0,1].$
+
+We remark with some motivation because the given proof is quite magical. The argument is somewhat motivated by pieces I heard of it a year ago but mainly (I would like to think) by the following framing. Imagine we are given an open cover $\{U_\alpha\}_{\alpha\in\lambda}$ of $[0,1],$ and we need to extract a finite subcover.
+
+We can codify this situtaion as a game: I am allowed to query an ``interval genie'' with a real number $r\in[0,1],$ and I will receive some $U_\bullet$ containing $r.$ Effectively, this is all of the power I have over my cover. The naive approach, now, to extract an efficient subcover, is the following.
+\begin{enumerate}
+    \item Query the genie with $0.$ I get back some $U_\bullet$ containing the interval $[0,\varepsilon_0).$
+    \item Query the genie with $\varepsilon_0.$ I get back some (maybe other) $U_\bullet$ containing the interval $(-,\varepsilon_1)$ containing $\varepsilon_0.$
+    \item Query the genie with $\varepsilon_1.$ Rinse and repeat.
+\end{enumerate}
+This, of course, doesn't work because the genie can do things like giving me
+\[\left[0,\frac14\right),\left(\frac18,\frac38\right),\left(\frac5{16},\frac7{16}\right),\cdots,\left(\frac{2^n-3}{2^{n+1}},\frac{2^n-1}{2^{n+1}}\right),\cdots.\]
+Here I keep querying numbers of the form $\left(2^n-1\right)/2^{n+1},$ off to infinity, never even going to cover $\frac12$ with my generated subcover.
+
+The key observation is that, after I realize what the genie is doing to me, I can query the genie for $\frac12.$ This gives me some open interval containing $\frac12$ with a little space to the left, which means that I really only need finitely many of the genie's garbage intervals from before.
+
+As I understand, the argument presented above is more or less a formalization of this trick. Notably, this trick alone is not enough to get a finite subcover, for the genie could do the same thing trapping me below $\frac34,$ and then below $\frac78,$ and so on. I would have to iterate the trick on top of itself, and maybe more times on top of that.
+
+What we have to do is consider covering, in the abstract, various intervals
+\[[0,\varepsilon]\]
+for various values of $\varepsilon.$ Notably, the genie can always play tricks up to any particular value of $\varepsilon,$ but we can always overcome the genie at this single $\varepsilon.$ The way to formalize the idea that we can ``always push farther'' up to $1$ is via the least upper-bound property, fixing $\varepsilon$ the farthest we can push, as done above.
+
+\subsubsection{February 12th}
+Today I learned the definition of support in topology. In terms of set theory, the support of a function $f:X\to\RR$ (or $f:X\to\CC$) is the set
+\[\op{supp}(f):=\{x\in X:f(x)\ne0\}.\]
+In general, we expect this to be ``large'' because the set of $0$s of a function are frequently ``small.'' However, this set is somewhat poorly-behaved in the general case, so we define the support topologically as
+\[\op{supp}(f):=\op{Cl}(\{x\in X:f(x)\ne0\}),\]
+the closure of the zero set. We remark that if $f$ is continuous, then $\{x\in X:f(x)\ne0\}=f^{-1}(\RR\setminus\{0\})$ is an open set.
+
+Note that I think we expect $\op{supp}(f)$ to usually be isolated points anyways, so this is doesn't usually make much of a difference. But of course, if we do something like
+\[f(x)=\max\{x,0\},\]
+then $\{x\in\RR:f(x)\ne0\}=(0,\infty).$ We would like this set to be closed, so we have defined the support to be $\overline{(0,\infty)}=[0,\infty)$ to fix this.
+
+Of note are the implications of being in or out of the support because these are somewhat confusing. The idea to remember is that $\op{supp}(f)$ is potentially a bit bigger than the nonzero set of a function (as it is defined). For example, we do have
+\[f(x)\ne0\implies x\in\op{supp}(f),\]
+but the converse does not hold: some $x$ with $f(x)=0$ could sneak in because of the closure. Explicitly, see $f(x)=\max\{x,0\}$ from before. Taking contrapositives, we also have
+\[x\not\in\op{supp}(f)\implies f(x)=0,\]
+but again the converse does not hold for the same reason. Here, we're saying that $X\setminus\op{supp}(f)$ is a restricted version of $f(x)=0.$
+
+I will also mention the definition of compact support, which is actually why I had to look up the definition of support. A function has ``compact support'' merely if its support (topologically) is also compact. Our $f(x)$ from before does not work because $[0,\infty)$ is too big to be compact, but
+\[f(x)=\max\left\{1-x^2,0\right\}\]
+has support $\overline{(-1,1)}=[-1,1]$ and therefore has compact support. In general, I'm thinking about compact support as meaning some strongish form of very small---the nonzero set must be bounded for compact support.
+
+\subsubsection{February 13th}
+Today I learned basic results in topological group theory. What's interesting here is that topology on its own has the potential to be quite disgusting, but adding in a little group theory makes the condition significantly nicer. I think the high-level reason why is that topological grops put all elements on a more equal footing because we require, for any element $g,$
+\[U\text{ open}\iff gU\text{ open}\iff Ug\text{ open}.\]
+This condition is called homogeneity. In particular, knowing all (open) neighborhoods around $g$ is equivalent to knowing the (open) neighborhoods around $e$ and then multiplying by $g.$
+
+As an example of this in effect, we show that $T_1$ (points are closed) implies $T_2$ (Hausdorff). As a preliminary, we remark that if we an open neighborhood $U$ of $e,$ then $U\cap U^{-1}$ is a symmetric open neighborhood containing $U$ of $e.$ Additionally, the group operation defines a map
+\[U\times U\to G.\]
+This has image containing $(e,e),$ so the image has nontrivial intersection with $U.$ Tracking the pre-image of $U$ will give an open neighborhood $V\subseteq U$ of $e$ with $VV\subseteq U.$ Combining, we can also assume that $V$ is symmetric. In essence, this lemma lets us multiply and invert elements ``locally'' in a group with comfort.
+
+Ok, now take $G$ a topological group which is $T_1.$ That is, for every pair of points $g,h\in G,$ there exists an open neighborhood of $g$ excluding $h.$ We show that $G$ is $T_2,$ which means for every pair $g,h\in G,$ there exist disjoint open neighborhoods of $g$ and $h.$
+
+Using the intuition from before, we focus on the identity case where, say $h=e.$ Using the $T_1$ condition, we fix a neighborhood $U$ around $h=e$ excluding $g.$ We would like to use $gU$ for our neighborhood around $g,$ but $U$ and $gU$ might not be disjoint. However, any intersection
+\[u_2=gu_1\in U\cap gU\]
+forces $g=u_2u_1^{-1}$ to almost live inside of $U.$ So to fix this, we use the lemma to take a smaller open neighborhood $V\subseteq U$ of $e$ to be symmetric with $VV\subseteq U.$ Then we use $V$ and $gV$ as our neighborhoods, giving $u_1^{-1}\in V,$ and $g=u_2u_1^{-1}\in VV\subseteq U.$ This is our contradiction, proving $T_2.$
+
+For clarity, let's do the general case with $h\ne e$ more directly. By $T_1,$ fix an open neighborhood $U$ around $e$ excluding $h^{-1}g,$ and the lemma gives us a smaller open neighborhood $V\subseteq U$ of $e$ which is symmetric and satisfies $VV\subseteq U.$ Now we claim
+\[gV\quad\text{and}\quad hV\]
+are the required neighborhoods for $T_2.$ Indeed, if $gV\cap hV$ is non-empty, then $h^{-1}gV\cap V$ is non-empty, so
+\[\{h^{-1}g\}\cap VV^{-1}\]
+is also non-empty. However, $V^{-1}=V,$ so $VV^{-1}\subseteq VV\subseteq U,$ and $h^{-1}g\not\in U,$ so this is a contradiction. Thus, $gV\cap hV=\emp,$ and we are done here.
+
+\subsubsection{February 14th}
+Today I learned some basic facts about Artin $L$-functions. We define these by an Euler product, but it turns out that unramified primes are a bit annoying to deal with, so I will adopt the notation
+\[\prod_\mf pf(\mf p)\simeq\prod_\mf pg(\mf p)\]
+to mean that the two Euler products agree on all but finitely many terms.
+
+Fix $L/K$ a finite Galois extension of number fields. (I think this works for arbitrary global fields, but I don't want to think about that.) For an unramified prime $\mf p$ of $K$ under a prime $\mf P$ of $L,$ we have a Frobenius element $\op{Frob}_\mf P\in\op{Gal}(L/K),$ but in fact $\op{Frob}_\mf P$ is determined up to conjugacy by $\mf p.$ So, abusing notation, we write $\op{Frob}_\mf p$ to mean the entire conjugacy class.
+
+Now, what Artin $L$-functions bring in is representation theory: for a representation $\rho:\op{Gal}(L/K)\to\op{GL}(V),$ we note that $\rho(\op{Frob}_\mf p)$ is determined up to change of basis (conjugacy), so
+\[\op{charpoly}(\rho(\op{Frob}_\mf p))=\det(I-t\rho(\op{Frob}_\mf p))\]
+is completely determined by $\op{Frob}_\mf p.$ Note that this is a bit of a nonstandard definition of the characteristic polynomial, but it functions. Now, we define the Artin $L$-function by plugging in $\op N(\mf p)^{-s}$ into the characteristic polynomial, writing
+\[L(\rho,s)=\prod_{\mf p\text{ unramified}}\frac1{\det\left(I-\op N(\mf p)^{-s}\rho(\op{Frob}_\mf p)\right)}.\]
+Note that only finitely many primes are unramified, so this is a pretty good definition of the Artin $L$-function. I have been told there are things one can do to deal with ramification, but I don't know this yet.
+
+We do the trivial example for concreteness. If we fix our extension to be $K/\QQ$ and use the trivial representation $\rho_{\text{trivial}}:g\mapsto I,$ then we get
+\[L(\rho,s)=\prod_{(p)\text{ unramified}}\frac1{\det(I-p^{-s}I)}=\prod_{(p)\text{ unramified}}\frac1{1-p^{-s}}.\]
+This is $\zeta(s)$ (up to finitely many Euler factors), so our Artin $L$-functions do give the typical $\zeta$ function.
+
+The main theorem we're going to show is that Artin $L$-functions include Dedekind $\zeta$-functions. Namely, if we fix our extension $K/\QQ,$
+\[L(\rho_{\text{reg}},s)\simeq\zeta_K(s),\]
+where $\zeta_K$ is the Dedekind $\zeta$ function. Notably, the regular representation actually matters. Expanding out the Euler products, we need to show that
+\[\prod_{(p)\text{ unramified}}\frac1{\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)}\stackrel?\simeq\prod_{\mf p\subseteq K}\frac1{1-\op N(\mf p)^{-s}}.\]
+For ease, fix $n=[L:K]$ with $e_p$ and $f_p$ the inertial and ramification information of $(p).$ Collecting the Euler factors on the right-hand side above a particular rational $(p),$ we want to show
+\[\prod_{(p)\text{ unramified}}\frac1{\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)}\stackrel?\simeq\prod_{(p)}\left(\frac1{1-p^{-f_ps}}\right)^{n/(e_pf_p)}.\]
+In light of the $\simeq,$ it suffices to ignore ramification and show that
+\[\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)\stackrel?=\left(1-p^{-f_ps}\right)^{n/f_p}.\]
+The $p^{-s}$ is somewhat arbitrary, so we might as well show $\det\left(I-t\rho_{\text{reg}}(\op{Frob}_p)\right)=\left(1-t^{f_p}\right)^{n/f_p}.$
+
+By this point, the number theory is actually gone. For $g\in G=\op{Gal}(K/\QQ)$ with $|G|=n,$ we claim that
+\[\det(I-t\rho_{\text{reg}}(g))\stackrel?=\left(1-t^f\right)^{n/f},\]
+where $f$ is the order of $g.$ (Note $f_p$ is the order of $\op{Frob}_p.$) In order to make the characteristic polynomial more familiar, we send $t\mapsto\frac1\lambda$ and multiply by $\lambda^n$ so that we want
+\[\det(\lambda I-\rho_{\text{reg}}(g))\stackrel?=\left(\lambda^f-1\right)^{n/f}.\]
+Showing this is the matter of pick the right basis for $\rho_{\text{reg}}(g),$ for there is general theory about how to compute characteristic polynomials of permutation matrices. We organize $G$ by cosets $G/\langle g\rangle$: naming our cosets $h_1\langle g\rangle,h_2\langle g\rangle,\ldots,h_{n/f}\langle g\rangle,$ we order our basis for $\rho_{\text{reg}}(g)$ as
+\[e_{h_1},e_{h_1g},\ldots,e_{h_1g^{f-1}},\quad e_{h_2},\ldots,e_{h_2g^{f-1}},\quad\ldots\quad e_{h_{n/f}},\ldots,e_{h_{n/f}g^{f-1}}.\]
+This has the advantage that, for any of these coset-blocks of $f$ vectors, the definition of the regular representation tells us that
+\[\rho_{\text{reg}}(g):e_{h_\bullet}\mapsto e_{h_\bullet g}\mapsto\cdots\mapsto e_{h_\bullet g^{f-1}}\mapsto e_{h_\bullet}.\]
+Thus, under this basis, $\rho_{\text{reg}}(g)$ looks like
+\[\begin{bmatrix}
+    C_f \\ & \ddots \\ & & C_f
+\end{bmatrix},\]
+where $C_f$ is the $f\times f$ matrix
+\[C_f=\begin{bmatrix}
+    0 & 0 & \cdots & 0 & 1 \\
+    1 & 0 & \cdots & 0 & 0 \\
+    0 & 1 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & \cdots & 1 & 0
+\end{bmatrix}.\]
+We can now compute the characteristic polynomial with few tears. Because of the blocky form of $\rho_{\text{reg}}(g),$ we already have $\det(\lambda I-\rho_{\text{reg}}(g))=\det(\lambda I-C_f)^{n/f}.$ So we want to show
+\[\det(\lambda I-C_f)\stackrel?=\lambda^f-1.\]
+We could show this by computing eigenvalues of $C_f$ or just noting it is
+\[\det\begin{bmatrix}
+    \lambda & 0 & \cdots & 0 & -1 \\
+    -1 & \lambda & \cdots & 0 & 0 \\
+    0 & -1 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & \cdots & -1 & \lambda
+\end{bmatrix},\]
+which is
+\[\lambda\det\begin{bmatrix}
+    \lambda & \cdots & 0 & 0 \\
+    -1 & \cdots & 0 & 0 \\
+    \vdots & \ddots & \vdots & \vdots \\
+    0 & \cdots & -1 & \lambda
+\end{bmatrix}-(-1)^f(-1)\det\begin{bmatrix}
+    -1 & \lambda & \cdots & 0 \\
+    0 & -1 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots\\
+    0 & 0 & \cdots & -1
+\end{bmatrix}\]
+after doing expansion along the top row. The left-hand matrix is lower-triangle with $\lambda$ along the diagonal, so that term is $\lambda^f.$ The right-hand matrix is upper-triangle with $-1$ along the diagonal, so that term is $(-1)^f(-1)(-1)^{f-1}=1.$ In total, we see
+\[\det(\lambda I-C_f)=\lambda^f-1,\]
+which is what we wanted. We remark that this method can find the characteristic polynomial of a general permutation matrix.
+
+We give a small application to close. Very quickly, we note that $L(\rho_1\oplus\rho_2,s)=L(\rho_1,s)L(\rho_2,s)$ because, after expanding Euler products, it suffices to show that
+\[\det(I-p^{-s}(\rho_1\oplus\rho_2)(\op{Frob}_\mf p))=\det(I-p^{-s}\rho_1(\op{Frob}_\mf p))\det(I-p^{-s}\rho_2(\op{Frob}_\mf p)).\]
+This is true by, for example, expanding out what $\oplus$ does in a basis to see that the characteristic polynomial does indeed multiply. Anyways, because
+\[\rho_{\text{reg}}=\bigoplus_{\rho\text{ irred}}\rho^{\dim\rho}\]
+by properties of the regular representation (which we showed last month), we conclude
+\[\zeta_K(s)\simeq L(\rho_{\text{reg}},s)=\prod_{\rho\text{ irred}}L(\rho,s).\]
+This is called Artin decomposition and is quite nice. For example, this tells us that $\zeta_\QQ\simeq L(\rho_{\text{trivial}},s)$ ``divides'' into $\zeta_K(s)$ in some natural way.
+
+\subsubsection{February 15th}
+Today I learned the statement of Artin reciprocity, which we use with some auxiliary results to derive Hilbert class fields and Kronecker-Weber, from \href{https://usamo.wordpress.com/2016/05/03/artin-reciprocity/}{here}. I'm kind of waiting to see what this has to with $L(\rho,s),$ but I suspect that it is somewhat beyond me. We require a sequence of definitions to get set up. A modulus $\mf m$ is defined as a formal product of places (real or infinite). We will restrict the formal product by having only finitely many nonzero powers and $\nu_\mf p(\mf m)=0$ if $\mf p$ is a complex infinite place and $\nu_\mf p(\mf m)\le1$ if $\mf p$ is a finite place. However,
+\[\mf m=(2)(3)^3(5)^{123}(17)(101)\infty\]
+is a perfectly valid modulus of $\QQ.$
+
+Fixing a modulus $\mf m$ and number field $K,$ we define the generalized fractional ideal group by
+\[I_K^{\mf m}=\{\mf a\in I_K:\mf a\text{ and }\mf m\text{ are relatively prime}\}.\]
+Because of unique prime factorization of the fractional ideals $I_K,$ this is really just a restriction on the prime factorization of $\mf a.$ We do remark that a real infinite place $\sigma:K\to\RR$ gives $\alpha\equiv\beta\pmod\sigma$ if and only if $\sigma(\alpha/\beta)>0.$ Note that this is motivated by wanting $\alpha/\beta\equiv1.$
+
+From this we also define generalized principal ideals by
+\[P_K^{\mf m,1}=\{(\alpha):\alpha\equiv1\pmod{\mf m}\}.\]
+Note $P_K(\mf m)\subseteq I_K(\mf m)$ and that $P_K(1)$ with $I_K(1)$ recover the $P_K$ and $I_K$ we are used to. This let us define a generalized class group by
+\[\op{Cl}_K^{\mf m}=I_K^{\mf m}/P_K^{\mf m,1}.\]
+These are called ray class groups. Note $\op{Cl}_K^1$ is the normal class group.
+
+We are close to stating the Artin reciprocity law. Fix $L/K$ and abelian extension of number fields. Recalling the Frobenius map $\mf p\mapsto\op{Frob}_\mf p\in\op{Gal}(L/K)$ is well-defined, we can extend this multiplicatively to a mapping
+\[I_K^{\mf m}\to\op{Gal}(L/K),\]
+where our modulus $\mf m$ is divisible by all ramified places. It turns out that this mapping is surjective, so there exists a subgroup $H(L/K,\mf m)\subseteq I_K^{\mf m}$ for which
+\[I_K^{\mf m}/H(L/K,\mf m)\cong\op{Gal}(L/K).\]
+The subgroup $H(L/K,\mf m)$ is a congruence subgroup.
+
+Now, the Artin reciprocity law asserts the existence of a modulus $\mf f$ (the conductor) divisible by exactly the ramified places for which
+\[\mf f\mid\mf m\iff P_K^{\mf m,1}\subseteq H(L/K,\mf m)\subseteq I_K^{\mf m}.\]
+What's nice here is that we get a sequence of surjective maps
+\[I_K^{\mf f}\longrightarrow\frac{I_K^{\mf f}}{P_K^{\mf f,1}}\cong\op{Cl}_K^{\mf f}\longrightarrow\frac{I_K^{\mf f}}{H(L/K,\mf f)}\cong\op{Gal}(L/K).\]
+So if we track an individual unramified prime $\mf p$ through the maps, we can determine $\op{Frob}_\mf p$ by first checking where $\mf p$ lands in $\op{Cl}_K^{\mf f}.$ In other words, aside from computation of the conductor $\mf f$ (which we can read as getting rid of ramification), we're saying that $\op{Frob}_\mf p$ is dependent entirely on information intrinsic to $K$ not involving $L$---there was no $L$ involved in our definition of $\op{Cl}_K^{\mf f}.$ This is miraculous.
+
+In particular, $\op{Cl}_K^{\mf f}$ is a finite group where we have modded out by ``$1\pmod{\mf f},$'' so we can think about this like ``$\mf p\pmod{\mf f}.$'' So, for example, quadratic reciprocity cares about how $q$ splits in $\QQ(\sqrt{p^*}),$ which is associated to $\op{Frob}_\mf q.$ Well, we can check $\op{Frob}_\mf q$ by checking entirely where $(q)$ lands in $\op{Cl}_{\QQ(\sqrt{p^*})}^{\mf f},$ which turns into quadratic reciprocity.
+
+It is a theorem (Takagi existence) that, in fact, every subgroup $H$ with
+\[P_K^{\mf m,1}\subseteq H\subseteq I_K^{\mf m}\]
+corresponds to $H(L/K,\mf m)$ for a unique abelian extension $L/K.$ So, for example, taking $\mf m=1$ and $H=P_K^{1,1}$ gives us an extension $M$ for which $H(M/K,1)=P_K^{1,1}.$ (Note that this means all primes are unramified by definition of $H(-,\mf m).$) Thus,
+\[\op{Cl}_K=\frac{I_K^1}{P_K^{1,1}}=\frac{I_K^1}{H(M/K,1)}\cong\op{Gal}(M/K).\]
+This remarkable field $M$ is called the Hilbert class field. Here we showed that its class Galois group is $\op{Cl}_K.$
+
+Further, if $L$ is any other totally unramified abelian extension, then we can still look at the corresponding $H(M/K,1),$ which satisfies
+\[H(L/K,1)=P_K^{1,1}\subseteq H(M/K,1)\subseteq I_K^1.\]
+It turns out that $H(L/K,1)\subseteq H(M/K,1)$ actually implies $M\subseteq L$ (that is, congruence subgroups are inclusion-reversing), so $L$ is in fact that maximal totally unramified extension.
+
+As a final nice property of Hilbert class fields, fix a prime $\mf p$ of $K.$ Now, $\mf p$ is principal if and only if $\mf p\in P_K^{1,1}=H(M/K,1).$ But this implies
+\[\mf p\in H(M/K,1)\longmapsto\op{id}\in\frac{I_K^1}{H(M/K,1)}\cong\op{Gal}(M/K).\]
+That is, $\mf p$ is principal if and only if $\op{Frob}_\mf p$ is the identity in $\op{Gal}(M/K),$ equivalent to $\op{Frob}_\mf p$ having order $1,$ equivalent to $f(\bullet/\mf p)=1.$ Because $\mf p$ is already unramified for free, this means $\mf p$ is principal if and only if $\mf p$ splits completely in $M.$ Cute.
+
+We also remark that the Kronecker-Weber theorem falls out of this machinery. Here we are interested in abelian field extensions of $\QQ,$ which Artin reciprocity tells us we should be able to understand using information entirely intrinsic to $\QQ.$ This is good news because we understand $\QQ$ pretty well.
+
+Anyways, we are trying to show that for any $K/\QQ,$ there exists an $m$ such that $K\subseteq\QQ(\zeta_m).$ Because of the inclusion reversal, this is equivalent to
+\[H(\QQ(\zeta_m)/\QQ,\mf m)\subseteq H(K/\QQ,\mf m)\]
+for some suitable modulus $\mf m.$ In order to use Artin reciprocity, we would like $\mf m$ to be divisible by the conductor of $K.$ Letting this conductor be $\mf f,$ we remark that we will also need $\infty\mid\mf m$ for $\QQ(\zeta_m)/\QQ,$ so we take $\mf f\mid m\infty=:\mf m,$ where $m\in\ZZ$ is divisible by exactly all the ramified primes in $K.$ We claim this $m$ works for $\QQ(\zeta_m).$
+
+Indeed, the remarkable property of $\QQ(\zeta_m)$ is that we claim
+\[H(\QQ(\zeta_m)/\QQ,m\infty)=P_\QQ^{\mf m,1}.\]
+This makes $\QQ(\zeta_m)$ a ``ray class field'' of $\mf m.$ Anyways, this is the kernel of the map
+\[I_\QQ^\mf m\longrightarrow\op{Gal}(\QQ(\zeta_m/\QQ)\cong(\ZZ/m\ZZ)^\times.\]
+This map by definition takes $p\ZZ$ (coprime to $m$) to $\zeta_m\mapsto\zeta_m^p$ (this maps to the Frobenius property), which is taken to $[p]_m.$ Extending multiplicatively, we're taking
+\[\frac ab\ZZ\mapsto\left[\frac ab\right]_m.\]
+Note that this makes sense because $I_\QQ^\mf m$ requires $\gcd(a,m)=\gcd(b,m)=1.$ So being in the kernel merely asserts that $\frac ab\ZZ$ has $\frac ab\equiv1\pmod m.$ That is, our kernel is
+\[P_\QQ^{\mf m,1}=\left\{\frac ab\ZZ:\frac ab\equiv1\pmod m\text{ and }\frac ab>0\right\}.\]
+Here the condition $\frac ab>0$ is inherited from $I_K^\mf m.$ This completes the claim.
+
+However, we are now done by Artin reciprocity, for we know
+\[H(\QQ(\zeta_m)/\QQ,\mf m)=P_\QQ^\mf m\subseteq H(K/\QQ,\mf m),\]
+which is exactly what we wanted.
+
+\subsubsection{February 16th}
+Today I learned that the ray class groups are finite assuming that the normal class group is finite, from \href{https://math.stackexchange.com/questions/74206/ray-class-group}{here}. This is the first finiteness proof from an exact sequence I've seen, so it looks quite clever, though I am sure there is some more general group cohomology at play. Anyways, fix a number field $K$ and a modulus $\mf m.$ Then we claim that
+\[1\longrightarrow P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m\longrightarrow1\]
+is an exact sequence with the second and fourth terms finite. Here, $P_K^\mf m$ refers to the principal ideals in $I_K^\mf m$ while $P_K^{\mf m,1}$ are those with generators $\equiv1\pmod{\mf m}.$
+
+Very quickly, we show how to finish the proof if we have the exact sequence and that the second and fourth terms are finite. We have that $I_K^\mf m/P_K^{\mf m,1}$ surjects onto $I_K^\mf m/P_K^\mf m,$ so the homomorphism theorem implies
+\[\left|I_K^\mf m/P_K^{\mf m,1}\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|\ker(I_K^\mf m/P_K^{\mf m,1}\to I_K^\mf m/P_K^\mf m)\right|.\]
+However, the exact sequence tells us that $P_K^\mf m/P_K^{\mf m,1}$ bijects with this kernel, implying
+\[\left|I_K^\mf m/P_K^{\mf m,1}\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|P_K^{\mf m}/P_K^{\mf m,1}\right|.\]
+So the finiteness of the ray class group follows.
+
+Now we show the exact sequence. We begin with the right-hand mapping, which is
+\[I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m.\]
+Right now we need to show that this is surjective, but we're merely expanding the kernel, so it is indeed surjective: just track $\mf aP_K^\mf m\in I_K^\mf m/P_K^\mf m$ back up to $\mf aP_K^{\mf m,1}.$ Additionally, we take all principals in $P_K^\mf m$ to the identity, which is our kernel.
+
+It remains to show that
+\[P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\]
+injects into the kernel $P_K^\mf m$ of the next map. Well this map merely takes $(\alpha)\in P_K^\mf m$ to $(\alpha)\in I_K^\mf m,$ which is injective, and then we mod out by $P_K^{\mf m,1}.$ So indeed $P_K^\mf m\to I_K^\mf m/P_K^{\mf m,1}$ injects onto the kernel $P_K^\mf m$ exactly, and the kernel of this map is only $P_K^{\mf m,1}.$ Thus, we do have an exact sequence.
+
+Now we have to study $P_K^\mf m/P_K^{\mf m,1}$ and $I_K^\mf m/P_K^\mf m$ a bit. We note that $I_K^\mf m/P_K^\mf m$ is actually $\op{Cl}_K.$ Indeed, we can consider the mapping
+\[I_K^\mf m\longrightarrow I_K/P_K,\]
+which takes a fractional ideal $\mf a\in I_K^\mf m$ to its ideal class. This mapping is surjective because, for example, theory from the class number formula showed that there are infinitely many primes in all ideal classes. So choosing any of these representative primes outside of $\mf m$ will do the trick. Of course, the kernel is the principals in $I_K^\mf m,$ which is $P_K^\mf m.$ From this it follows
+\[I_K^\mf m/P_K^\mf m\cong I_K/P_K=\op{Cl}_K.\]
+We note that this somewhat motivates why we define $I_K^\mf m/P_K^{\mf m,1}$ to be the ray class group instead of $I_K^\mf m/P_K^\mf m.$ Anyways, we see $I_K^\mf m/P_K^\mf m$ is finite.
+
+It remains to understand $P_K^\mf m/P_K^{\mf m,1}.$ In order to access $1\pmod{\mf m},$ we would like to take $(\alpha)\in P_K^\mf m$ to $\alpha\in K^\times,$ but this direction is somewhat annoying because we have to track $P_K^{\mf m,1}$ later. So instead we map
+\[\alpha\in(K^\mf m)^\times\longmapsto(\alpha)\in P_K^\mf m,\]
+where $K^\mf m$ is the set of elements of $K$ coprime to $\mf m.$ Note that this mapping is surjective. From here we can mod out by $P_K^{\mf m,1}$ safely to give a mapping
+\[(K^\mf m)^\times\longrightarrow P_K^\mf m/P_K^{\mf m,1}.\]
+The kernel of this mapping is made of elements $\alpha\in K^\mf m$ that give $(\alpha)\in P_K^{\mf m,1}.$ Some care is required here because we can exchange out the generator of $(\alpha)$ by units, and its possible this changes the status of $\alpha\pmod{\mf m}.$ Surely we can say our kernel is
+\[\left\{\alpha\in(K^\mf m)^\times:\alpha\mathcal O_K^\times\cap K^{\mf m,1}\ne\emp\right\},\]
+where $K^{\mf m,1}$ is the set of elements of $K$ which are $1\pmod{\mf m}.$ While we're here, we simplify this a bit. We can say the kernel is $(K^\mf m)^\times\cap\mathcal O_K^\times K^{\mf m,1}$---the set of elements in $K^\mf m$ for which we can divide out (or multiply) by a unit to get into $K^{\mf m,1}.$ Further, $u\alpha\in\mathcal O_K^\times K^{\mf m,1}$ is in $K^\mf m$ if and only if
+\[u\alpha\text{ is coprime to }\mf m.\]
+Now, $\alpha\equiv1\pmod{\mf m},$ so $u\alpha$ is coprime to $\mf m$ if and only if $u$ is, so the only permitted units are $K^\mf m\cap\mathcal O_K^\times,$ and restricting units here is sufficient. So our kernel is $(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}.$ It follows
+\[\frac{P_K^\mf m}{P_K^{\mf m,1}}\cong\frac{(K^\mf m)^\times}{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}}.\]
+It's not clear that this is finite, but that kernel turns out to be quite large. For example, it contains the subgroup $K^{\mf m,1}=(K^{\mf m,1})^\times,$ so because our groups are abelian (implying all subgroups are normal), we see
+\[\frac{P_K^\mf m}{P_K^{\mf m,1}}\cong\frac{(K^\mf m)^\times/(K^{\mf m,1})^\times}{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}/(K^{\mf m,1})^\times}.\]
+In order to show finiteness, it suffices to show that the numerator here is finite. We'll return to the denominator later.
+
+The benefit of $(K^\mf m)^\times/(K^{\mf m,1})^\times$ over $P_K^\mf m/P_K^{\mf m,1}$ is that we now get to deal with actual elements, and$\pmod{\mf m}$ behaves how we want it to. In order to tease out$\pmod{\mf m},$ we homomorphically map
+\[(K^\mf m)^\times\longrightarrow\prod_{\substack{\mf p\mid\mf m\\\mf p\text{ real}}}\{\pm1\}\times\prod_{\substack{\mf p\mid\mf m\\\mf p<\infty}}\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times.\]
+That is, we take $\alpha\in(K^\mf m)^\times$ to a tuple $(\alpha_\mf p)_{\mf p\mid\mf m}.$ For real primes $\mf p,$ we have $\alpha_\mf p$ equal to the sign of $\sigma_\mf p(\alpha),$ and for finite primes $\mf p,$ we know $\alpha$ is coprime to $\mf p$ by hypothesis, so it goes somewhere in $\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times.$ The kernel consists of those $\alpha\in(K^\mf m)^\times$ which give $\sigma_\mf p(\alpha/1)>0$ for real primes and $\alpha\equiv1\pmod{\mf p^{\nu_\mf p(\mf m)}},$ which by the Chinese remainder theorem is equivalent to
+\[1\pmod{\mf m}.\]
+Thus, we see
+\[(K^\mf m)^\times/(K^{\mf m,1})^\times\cong\prod_{\substack{\mf p\mid\mf m\\\mf p\text{ real}}}\{\pm1\}\times\prod_{\substack{\mf p\mid\mf m\\\mf p<\infty}}\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times\]
+and is therefore finite. This completes the proof.
+
+We actually have the tools to compute exactly what the size of the ray class group is. We recall that
+\[\left|\op{Cl}^\mf m_K\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|P_K^{\mf m}/P_K^{\mf m,1}\right|\]
+from (much) earlier. We now know $I_K^\mf m/P_K^\mf m\cong\op{Cl}_K,$ so its size is understood. The best we know about the final term is
+\[\frac{P_K^\mf m}{P_K^{\mf m,1}}\cong\frac{(K^\mf m)^\times/(K^{\mf m,1})^\times}{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}/(K^{\mf m,1})^\times}.\]
+We deal with the numerator and denominator separately.
+
+We already know that the numerator is
+\[(K^\mf m)^\times/(K^{\mf m,1})^\times\cong\prod_{\substack{\mf p\mid\mf m\\\mf p\text{ real}}}\{\pm1\}\times\prod_{\substack{\mf p\mid\mf m\\\mf p<\infty}}\left(\mathcal O_K/\mf p^{\nu_\mf p(\mf m)}\right)^\times,\]
+which is ripe to compute size directly. The $\{\pm1\}$ terms add a $2^{r_0},$ where $r_0$ is the number of real places. Then for finite primes $\mf p$ with $\nu:=\nu_\mf p(\mf m)>0,$ we take a detour: fix some $\pi\in\mf p\setminus\mf p^2,$ and we claim that we can biject elements $\alpha\in\mathcal O_K/\mf p^\nu$ with sequences $(a_0,\ldots,a_{\nu-1})\in(\mathcal O_K/\mf p)^\nu$ by
+\[\alpha\equiv\sum_{k=0}^{\nu-1}a_k\pi^k\pmod{\mf p^\nu}.\]
+To apply the claim to the problem, we note $(\mathcal O_K/\mf p^\nu)^\times$ forces $a_0\in(\mathcal O_K/\mf p)^\times,$ but the rest of the coordinates have free reign over $\mathcal O_K/\mf p,$ implying that we have
+\[(\op N(\mf p)-1)\op N(\mf p)^{\nu-1}\]
+total choices at $\mf p.$ Combining, we see we have
+\[(K^\mf m)^\times/(K^{\mf m,1})^\times=2^{r_0}\cdot\prod_{\substack{\mf p\mid\mf m\\\mf p<\infty}}\op N(\mf p)^{\nu_\mf p(\mf m)}\left(1-\frac1{\op N(\mf p)}\right).\]
+Aesthetically, we can think of this like $\varphi(\mf m).$
+
+To show the claim, we can induct on $\nu.$ There is nothing to prove when $\nu=1,$ and to get $\alpha\in\mathcal O_K/\mf p^{\nu+1}$ into such a sequence, we take $(a_0,\ldots,a_{\nu-1})$ by reducing $\alpha\pmod{\mf p^\nu}.$ Then
+\[\alpha-\sum_{k=0}^{\nu-1}a_k\pi^k=:A\in\mf p^\nu.\]
+We need to find a unique residue $a_\nu\in\mathcal O_K/\mf p$ such that $A\equiv a_\nu\pi^\nu\pmod{\mf p^{\nu+1}}.$ Well, our options live in $\pi^\nu\mathcal O_K,$ so we need to show that $\pi^\nu\mathcal O_K+\mf p^{\nu+1}$ represents all $\mf p^\nu.$ But $+$ yields the greatest common divisor, so in fact
+\[\pi^\nu\mathcal O_K+\mf p^{\nu+1}=\mf p^\nu.\]
+Uniqueness of our $a_\nu\pmod{\mf p}$ follows from the fact $a_\nu\pi^\nu\equiv a'_\nu\pi^\nu\pmod{\mf p^{\nu+1}}$ implies $\mf p^{\nu+1}\mid(a_\nu-a_\nu')(\pi)^\nu,$ so $a_\nu-a_\nu'\in\mf p.$
+
+It remains to compute the size of the denominator $(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}/(K^{\mf m,1})^\times.$ It is a general fact of groups that, for $H$ normal, $GH/H\cong G/(G\cap H),$ for we have a homomorphism $gh\in GH$ to the coset $g(G\cap H).$ This is well-defined because $g_1h_1=g_2h_2$ implies
+\[g_2^{-1}g_1=h_2h_1^{-1}\in G\cap H,\]
+so indeed $g_1(G\cap H)=g_2(G\cap H).$ Now, the homomorphism is surjective because in fact $G\to G/(G\cap H)$ is surjective, and its kernel consists of elements $gh$ with $g\in G\cap H.$ So the kernel contains $H$ (for $e\in G$), but $gh\in H$ always as well, implying the kernel is exactly $H.$
+
+Applying this to the denominator, we see that
+\[\frac{(K^\mf m\cap\mathcal O_K^\times)K^{\mf m,1}}{(K^{\mf m,1})^\times}\cong\frac{(K^\mf m\cap\mathcal O_K^\times)}{(K^{\mf m,1}\cap\mathcal O_K^\times)}.\]
+This is good enough for our purposes, and at least it looks pretty.
+
+Putting everything together, we see
+\[\left|\op{Cl}_K^\mf m\right|=\left|\op{Cl}_K\right|\cdot2^{r_0}\cdot\prod_{\substack{\mf p\mid\mf m\\\mf p<\infty}}\op N(\mf p)^{\nu_\mf p(\mf m)}\left(1-\frac1{\op N(\mf p)}\right)\cdot\frac1{[K^\mf m\cap\mathcal O_K^\times:K^{\mf m,1}\cap\mathcal O_K^\times]}.\]
+This is at least a formula, so we call it quits.

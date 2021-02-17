@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Today I Learned</title>
+		<link rel="stylesheet" href="../../../../main.css">
+		<link rel=icon href="../../../../p.ico">
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				loader: {
+					load: ['[tex]/textmacros']
+				},
+				tex2jax: {
+					// https://tex.stackexchange.com/q/27633
+					inlineMath: [ ['$','$'] ],
+					processEscapes: true,
+					packages: {'[+]': ['textmacros']}
+				},
+				SVG: {
+					linebreaks: { automatic: true }
+				}
+			});
+			window.addEventListener('resize', MJrerender);
+			// https://stackoverflow.com/a/56106854
+			let t = -1;
+			let delay = 1000;
+			function MJrerender() {
+				if (t >= 0) {
+					// If we are still waiting, user is still resizing
+					// postpone the action further!
+					window.clearTimeout(t);
+				}
+				t = window.setTimeout(function() {
+					MathJax.Hub.Queue(["Rerender",MathJax.Hub]);
+					t = -1; // Reset the handle
+				}, delay);
+			};
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+	</head>
+	<body>
+		<h1><a href="./../../../" class="title">Today I Learned</a></h1>
+		<p><a href="../" class="link">(back up to February)</a></p>
+		<div class="entry">
+			<h2>February 3rd</h2>
+			<p>$\renewcommand{\AA}{\mathbb A}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\e}{\varepsilon}
+\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
+
+\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
+\newcommand{\diff}{\operatorname{diff }}
+\newcommand{\disc}{\operatorname{disc }}
+\newcommand{\ord}{\text{ord}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\del}{\partial}
+\newcommand{\emp}{\varnothing}
+\newcommand{\divides}{\,|\,}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcommand{\refl}{\op{refl}}
+\newcommand{\UU}{\mathcal{U}}
+$Today I learned that $\lnot\lnot$ has the required operators to be a monad. To be explicit, $\lnot\lnot$ is an endofunctor in the category of types (using the propostion-as-types correspondence), taking $A:\UU$ to $\lnot\lnot A\equiv((A\to0)\to0):\UU.$</p>
+			<p>We begin by exhibiting $\eta_A$ ($\texttt{return}$ in Haskell), which is a map $A\to((A\to0)\to0).$ This will become something of a theme in these constructions, so we state it explicitly: the key observation is that we can view this as a the curried function\[A\to(A\to0)\to0.\]Now the construction of $\eta$ is easier: we take an element $a:A$ and a function $n_A:A\to0,$ and then we output $n_A(a):0.$ Written out, this is\[\eta_A\equiv\lambda(a:A).\lambda(n_A:A\to0).f(a).\]Technically $\eta$ also takes $A$ as an input, but we ignore this.</p>
+			<p>We continue by showing $\mu_A$ ($\texttt{join}$ in Haskell), which is a map from $(((A\to0)\to0)\to0)\to0$ to $(A\to0)\to0.$ There are a lot of arrows here, and we remark that we can actually exhibit\[(((A\to0)\to0)\to0)\to(A\to0)\]and then plug in $A\to0$ for $A$ to get $\mu_A.$ As expected, the correct way to think about this is as a curried function\[(((A\to0)\to0)\to0)\to A\to0.\]So now we have a function $f:((A\to0)\to0)\to0$ and an element $a:A,$ and we need to exhibit $0.$ Well, from our $a:A$ we know that we can exhibit $(A\to0)\to0$ because we have $\eta_A(a)$! From here $f$ sends $\eta_A(a)$ to $0.$ Written out, we have\[\mu_A\equiv\lambda(f:\lnot\lnot\lnot\lnot A).\lambda(a^*:\lnot A).f(\eta_{\lnot A}(a^*)).\]I have replaced the clearer $\to0$ notation for $\lnot$ for brevity.</p>
+			<p>This gives the needed natural transformations to be a monad, but we haven't shown the coherence laws; maybe I'll do them later, but they don't look like fun. We do remark that we do have Haskell's $\texttt{fmap}$ function, taking $A\to B$ and $\lnot\lnot A$ to output $\lnot\lnot B.$ Fully written out, we are exhibiting\[(A\to B)\to((A\to0)\to0)\to((B\to0)\to0).\]As usual, we interpet this as a curried function like\[(A\to B)\to((A\to0)\to0)\to(B\to0)\to0.\]That is, we get inputs $f:A\to B$ and $n_{A\to0}:(A\to0)\to0$ along with a $n_B:B\to0$ so that we now need to exhibit $0.$ The finishing trick, now, is to use the same idea as the functor of points: $n_B\circ f$ takes $A\to B\to 0,$ so $n_{A\to0}$ will send $n_B\circ f$ to $0.$ Fully written out,\[\texttt{fmap}_{A\to B}\equiv\lambda(f:A\to B).\lambda(n_{A\to0}:\lnot\lnot A).\lambda(n_B:\lnot B).n_{A\to0}(n_B\circ f).\]We remark that having a $\texttt{join}$ and an $\texttt{fmap}$ allows us to construct $\texttt{bind}:\lnot\lnot A\to(A\to\lnot\lnot B)\to\lnot\lnot B$ by\[\lambda(a^*:\lnot\lnot A).\lambda(f:A\to\lnot\lnot B).\texttt{join}_B\left(\texttt{fmap}_{A\to\lnot\lnot B}(f)(a^*)\right).\]Quickly, $\texttt{fmap}_{A\to\lnot\lnot B}(f)$ has type $\lnot\lnot A\to\lnot\lnot\lnot\lnot B,$ so we may input $a^*$ to get out an element of $\lnot\lnot\lnot\lnot B,$ from which $\texttt{join}_B$ finishes. This construction of $\texttt{bind}$ works in the general case.</p>
+			<p>What I like about the $A\mapsto\lnot\lnot A$ example is that it is kind of giving me the feeling that the type $Ma$ is somehow "above'' the type $a,$ for general monads. Namely, if we can talk about $a,$ then we can certainly talk about $Ma,$ but the reverse does not seem to hold, and in the case of $\lnot\lnot,$ it is actually impossible in constructivist logic to be able to fully recover properties of $A$ from properties of $\lnot\lnot A.$ Somehow $Ma$ is a bit more ethereal than $a.$</p>
+		</div>
+	</body>
+</html>
