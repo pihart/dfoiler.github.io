@@ -1,7 +1,6 @@
 .container
 {
 	margin-top: 0px;
-	margin-right: 0px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 1em;
@@ -76,7 +75,7 @@ li span
 
 .content
 {
-	padding-top: 14px;
+	padding-top: 15px;
 	margin-right: 177px;
 	margin-bottom: 15px;
 }
