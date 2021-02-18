@@ -31,10 +31,14 @@ def gen_sidebar():
 	r = '\t\t\t<div class="sidebar">\n'
 	for year in next(os.walk('TeX'))[1]:
 		year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
+		r += '\t\t\t\t<button type="button" class="yearmenu">'+year+'</button>\n'
+		r += '\t\t\t\t<ul class="monthmenu">\n'
 		for month in year_months:
 			directory = year + '/'+str(month)
 			title = months[month-1] + ' ' + year
-			r += '\t\t\t\t<a href={0}'+directory+'/>'+title+'</a>\n'
+			r += '\t\t\t\t\t<li><span><a href={0}' \
+				+directory+'/>'+title+'</a></span></li>\n'
+		r += '\t\t\t\t</ul>\n'
 	r += '\t\t\t</div>\n'
 	return r
 

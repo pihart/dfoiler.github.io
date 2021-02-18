@@ -13,7 +13,7 @@
 {
 	margin-top: 0px;
 	margin-bottom: 0px;
-	padding-top: 9px;
+	padding-top: 6px;
 	padding-bottom: 5px;
 	padding-right: 11px;
 	padding-left: 11px;
@@ -23,11 +23,37 @@
 	position: absolute;
 }
 
+.yearmenu
+{
+	border: none;
+	background: none;
+	color: #404040;
+	font-size: 18px;
+	font-style: italic;
+	padding: 0px;
+	margin-top: 3px;
+	display: block;
+	cursor: pointer;
+}
+
+.yearmenu:hover
+{
+	color: #003080;
+}
+
+.monthmenu
+{
+	display: none;
+	padding-left: 20px;
+	margin-top: 0px;
+	margin-bottom: 8px;
+}
+
 .sidebar a
 {
 	color: #404040;
-	font-size: 18px;
-	padding: 1px;
+	font-size: 15px;
+	padding: 0px;
 	margin-bottom: 2px;
 	display: block;
 	text-decoration: none;
@@ -37,6 +63,12 @@
 .sidebar a:hover
 {
 	color: #003080;
+}
+
+li span
+{
+	position: relative;
+	left: -3px;
 }
 
 .content
