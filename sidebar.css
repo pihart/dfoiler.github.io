@@ -26,9 +26,8 @@
 {
 	border: none;
 	background: none;
-	color: #404040;
+	color: #303030;
 	font-size: 18px;
-	font-style: italic;
 	padding: 0px;
 	margin-top: 3px;
 	display: block;
@@ -50,13 +49,12 @@
 
 .sidebar a
 {
-	color: #404040;
+	color: #303030;
 	font-size: 15px;
 	padding: 0px;
 	margin-bottom: 2px;
 	display: block;
 	text-decoration: none;
-	font-style: italic;
 }
 
 .sidebar a:hover
@@ -80,6 +78,7 @@ li span
 {
 	padding-top: 14px;
 	margin-right: 177px;
+	margin-bottom: 15px;
 }
 
 @media screen and (max-width: 800px)

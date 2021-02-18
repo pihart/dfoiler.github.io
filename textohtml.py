@@ -29,6 +29,8 @@ months = ['January','February','March','April','May','April','June'
 
 def gen_sidebar():
 	r = '\t\t\t<div class="sidebar">\n'
+	r += '\t\t\t\t<p style="text-align: center; font-weight: bold; '\
+		'margin-top: 5px;">Archive</p>\n'
 	for year in next(os.walk('TeX'))[1]:
 		year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
 		r += '\t\t\t\t<button type="button" class="yearmenu">'+year+'</button>\n'

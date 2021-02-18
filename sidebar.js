@@ -2,7 +2,8 @@ window.addEventListener('resize', sidebarHeight);
 
 function sidebarHeight()
 {
-	var height = $('.content').height();
+	// +15 accounts for the margin-bottom of an entry
+	var height = $('.content').height() + 15;
 	$('.sidebar').height(height);
 }
 
