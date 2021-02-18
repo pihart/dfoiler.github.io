@@ -1,22 +1,22 @@
 .container
 {
-	margin-top: 0px;
+	margin-top: 0;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 1em;
 	padding-right: 1em;
-	max-width: 950px;
+	max-width: 712.5pt;
 }
 
 .sidebar
 {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	padding-top: 6px;
-	padding-bottom: 5px;
-	padding-right: 11px;
-	padding-left: 11px;
-	width: 138px;
+	margin-top: 0pt;
+	margin-bottom: 0pt;
+	padding-top: 4.5pt;
+	padding-bottom: 3.75pt;
+	padding-right: 8.25pt;
+	padding-left: 8.25pt;
+	width: 103.5pt;
 	background-color: #f7f9ff;
 	float: right;
 }
@@ -26,9 +26,9 @@
 	border: none;
 	background: none;
 	color: #303030;
-	font-size: 18px;
-	padding: 0px;
-	margin-top: 3px;
+	font-size: 13pt;
+	padding: 0;
+	margin-top: 2.25pt;
 	display: block;
 	cursor: pointer;
 }
@@ -41,17 +41,17 @@
 .monthmenu
 {
 	display: none;
-	padding-left: 20px;
-	margin-top: 0px;
-	margin-bottom: 8px;
+	padding-left: 15pt;
+	margin-top: 0;
+	margin-bottom: 6pt;
 }
 
 .sidebar a
 {
 	color: #303030;
-	font-size: 15px;
-	padding: 0px;
-	margin-bottom: 2px;
+	font-size: 11pt;
+	padding: 0;
+	margin-bottom: 1.5pt;
 	display: block;
 	text-decoration: none;
 }
@@ -64,23 +64,23 @@
 li span
 {
 	position: relative;
-	left: -3px;
+	left: -2.25pt;
 }
 
 .back
 {
 	display: none;
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .content
 {
-	padding-top: 15px;
-	margin-right: 177px;
-	margin-bottom: 15px;
+	padding-top: 11.75pt;
+	margin-right: 132.75pt;
+	margin-bottom: 111.75pt;
 }
 
-@media screen and (max-width: 800px)
+@media screen and (max-width: 600pt)
 {
 	.sidebar
 	{
@@ -92,6 +92,6 @@ li span
 	}
 	.content
 	{
-		margin-right: 0px;
+		margin-right: 0pt;
 	}
 }

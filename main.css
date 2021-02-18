@@ -1,16 +1,16 @@
 body
 {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 18px;
+	font-size: 13pt;
 	color: #303030;
 	background: #fcfdff;
 	height: 100%;
-	margin: 0px;
+	margin: 0;
 }
 
 h1
 {
-	margin: 0px;
+	margin: 0;
 	text-align: center;
 }
 
@@ -70,10 +70,10 @@ img
 .entry
 {
 	background: #f7f9ff;
-	padding-top: 10px;
-	padding-bottom: 5px;
-	padding-right: 11px;
-	padding-left: 11px;
-	border-radius: 9px;
-	margin-bottom: 15px;
+	padding-top: 7.5pt;
+	padding-bottom: 3.75pt;
+	padding-right: 8.25pt;
+	padding-left: 8.25pt;
+	border-radius: 6.75pt;
+	margin-bottom: 11.25pt;
 }
