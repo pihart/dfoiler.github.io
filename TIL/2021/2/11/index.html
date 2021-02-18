@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 11th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned (finally) the proof that $[0,1]$ is compact in the standard topology on $\RR.$ Of course, the proof generalizes to show that $\RR$ is locally compact, but we don't bother with this.</p>
+					<p>Today I learned (finally) the proof that $[0,1]$ is compact in the standard topology on $\RR.$ Of course, the proof generalizes to show that $\RR$ is locally compact, but we don't bother with this.</p>
 					<p>We begin by presenting the proof with no motivation. Suppose that $\{U_\alpha\}_{\alpha\in\lambda}$ is an open cover of $[0,1].$ The trick is to consider\[S=\{\varepsilon\in(0,1]:[0,\varepsilon]\text{ can be covered with a finite subcover}\}.\]Very quickly, we remark that if $\varepsilon_0\in S,$ then each $\varepsilon{\lt}\varepsilon_0$ is also in $S.$ Indeed, if $[0,\varepsilon_0]$ can be finitely covered, then the same cover can be used to cover $[0,\varepsilon]\subseteq[0,\varepsilon_0].$</p>
 					<p>We would like to use the least upper-bound property on $S.$ Note that some open set $U_\bullet$ covers $0$ and so contains an interval like $[0,2\varepsilon)$ for some $\varepsilon{\gt}0.$ (Formally, dissolve $U_\bullet$ into intervals because by the basis of our topology; one such interval contains $0.$) This implies that $[0,\varepsilon]\subseteq U_\bullet$ can be finitely covered, so $\varepsilon\in S$ inhabits $S.$</p>
 					<p>Additionally, $S$ has an upper bound: by definition, $\varepsilon\in S$ implies $\varepsilon\le1.$ Thus, we may apply the least upper-bound property and let $\varepsilon_0$ be the least upper bound of $S.$ Note $\varepsilon_0\le1$ because $1$ is an upper bound of $S.$ Further, we remark that, for $\alpha\in(0,1],$ we see $\alpha\not\in S$ implies nothing above $\alpha$ is in $S,$ so $\alpha$ is an upper bound of $S,$ so $\varepsilon_0\le\alpha.$ Thus, $\alpha{\lt}\varepsilon_0$ implies $\alpha\in S.$</p>
@@ -83,5 +55,6 @@ $Today I learned (finally) the proof that $[0,1]$ is compact in the standard top
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

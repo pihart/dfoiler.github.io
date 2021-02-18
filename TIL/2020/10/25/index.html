@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to October)</a></p>
 				<div class="entry">
 					<h2>October 25th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the definition of the categorical kernel. We begin with the definition of zero morphisms. It's zero morphisms plural because we define zero morphisms to be a set of morphisms in $\mathcal C$ that satisfy the property\[0\circ a=b\circ 0=0\]for any other morphisms $a$ and $b.$ Explicitly, every pair of objects $A,B\in\mathcal C$ is equipped with a zero morphism $0_{AB},$ and for any additional morphism $\varphi:B\to C,$ we have\[\varphi\circ 0_{AB}=0_{AC}.\]Similarly, for any additional morphism $\varphi:C\to A,$ we have\[0_{AB}\circ\varphi=0_{CB}.\]In other words, the following pair of diagrams always commute.</p>
+					<p>Today I learned the definition of the categorical kernel. We begin with the definition of zero morphisms. It's zero morphisms plural because we define zero morphisms to be a set of morphisms in $\mathcal C$ that satisfy the property\[0\circ a=b\circ 0=0\]for any other morphisms $a$ and $b.$ Explicitly, every pair of objects $A,B\in\mathcal C$ is equipped with a zero morphism $0_{AB},$ and for any additional morphism $\varphi:B\to C,$ we have\[\varphi\circ 0_{AB}=0_{AC}.\]Similarly, for any additional morphism $\varphi:C\to A,$ we have\[0_{AB}\circ\varphi=0_{CB}.\]In other words, the following pair of diagrams always commute.</p>
 					<img src="img1.png">
 					<p>As an example, the category of groups has these very convenient morphisms $0:G\to G'$ by $g\mapsto e,$ which satisfy this condition. Indeed, composing any morphism before this still sends everything to the identity, and doing anything afterwards is doomed just to send the identity to the identity.</p>
 					<p>To define the kernel, now, we start with a function $f:A\to B.$ Then the kernel is an object $K$ with a morphism $k:K\to A$ to be thought of an inclusion mapping. We also require that $K\to A\to B=0_{KB}$ is the zero morphism and that if there's a parallel mapping $k':K'\to A$ with $K'\to A\to B=0_{K'B},$ then $k'$ factors uniquely through $k.$ In diagrams, this commutes.</p>
@@ -71,5 +43,6 @@ $Today I learned the definition of the categorical kernel. We begin with the def
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

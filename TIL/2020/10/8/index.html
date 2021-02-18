@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to October)</a></p>
 				<div class="entry">
 					<h2>October 8th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a nice argument that if all roots of a polynomial $P(x)\in\ZZ[x]$ have magnitude no more than $1,$ then they are all either $0$ or roots of unity. Factor $P(x)$ over $\CC$ as\[P(x)=\prod_{k=1}^n(x-\alpha_k).\]Note that all of the $\alpha_\bullet$ are algebraic integers. The main pllayer in this proof is the sequence of polynomials\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right).\]Essentially, it is necessary and sufficient to show that, eventually, these polynomials cycle their roots&mdash;if they're all roots of unity or $0,$ then taking the least common multiple of all the periods will give us an $M$ so that $P_{M+1}(x)=P(x),$ for example.</p>
+					<p>Today I learned a nice argument that if all roots of a polynomial $P(x)\in\ZZ[x]$ have magnitude no more than $1,$ then they are all either $0$ or roots of unity. Factor $P(x)$ over $\CC$ as\[P(x)=\prod_{k=1}^n(x-\alpha_k).\]Note that all of the $\alpha_\bullet$ are algebraic integers. The main pllayer in this proof is the sequence of polynomials\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right).\]Essentially, it is necessary and sufficient to show that, eventually, these polynomials cycle their roots&mdash;if they're all roots of unity or $0,$ then taking the least common multiple of all the periods will give us an $M$ so that $P_{M+1}(x)=P(x),$ for example.</p>
 					<p>For this, we show there are only finitely many options for the $P_m(x),$ which we can do by showing that the coefficients live in $\ZZ[x]$ and bounded. For $\ZZ[x],$ note that $\ZZ=\overline\ZZ\cap\QQ,$ so it suffices to show that $P_m$'s coefficients live in both $\overline\ZZ$ and $\QQ.$ The former isn't difficult: observe that a full expansion of\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right)\]will give coefficients that are all finite sums of finite products of the $\alpha_\bullet^m.$ But $\overline\ZZ$ is a ring, and we know each $\alpha_\bullet\in\overline\ZZ,$ so these coefficients must be in $\overline\ZZ$ as well.</p>
 					<p>To show that the coefficients are in $\QQ,$ we think about $P_m(x)$ in the splitting field $K/\QQ$ of $P(x).$ This extension is Galois, so we can show that for each $\sigma\in\op{Gal}(K/\QQ)$ fixes the coefficients of $P_m(x).$ Because this is the splitting field of $P(x),$ $\sigma$ must permute the roots $\{\alpha_\bullet\}$ of $P(x)$ (as a multiset), so $\sigma$ also permutes the roots $\{\alpha_\bullet^m\}$ of $P_m(x).$ In particular, $\sigma(P_m(x))=P_m(x),$ which is what we wanted.</p>
 					<p>So far we know that $P_m(x)\in\ZZ[x].$ To show bounded coefficients, we again look at\[P_m(x)=\prod_{k=1}^n\left(x-\alpha_k^m\right)\]and imagine a full expansion. For the coefficient of $x^d,$ there are $\binom nd$ ways to choose $x$s, and this gives $\binom nd$ terms summing to the coefficient of $x^d.$ But each term is a product of $\alpha_\bullet^m$s, which all have magnitude no more than $1,$ so each of the $\binom nd$ has magnitude no more than $1.$ So we get to bound each coefficient, using the triangle inequality by\[\binom nd\cdot|1|=\binom nd.\]Importantly, this bound is independent of $m.$</p>
@@ -67,5 +39,6 @@ $Today I learned a nice argument that if all roots of a polynomial $P(x)\in\ZZ[x
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

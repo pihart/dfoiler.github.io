@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to November)</a></p>
 				<div class="entry">
 					<h2>November 28th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a proof that the only automorphism of $\RR$ is the identity. Let $\sigma$ be an automorphism so that we want to show $\sigma=\op{id}.$</p>
+					<p>Today I learned a proof that the only automorphism of $\RR$ is the identity. Let $\sigma$ be an automorphism so that we want to show $\sigma=\op{id}.$</p>
 					<p>We start by getting the easy stuff out of the way. Because $\sigma$ is a bijection (automorphism), there exists some $k\in\RR$ such that $\sigma(k)=1.$ However,\[1=\sigma(k)=\sigma(k\cdot1)=\sigma(k)\sigma(1)=\sigma(1).\]So we see $\sigma(1)=1.$ We can show that all positive integers are fixed by induction. Quickly, $\sigma(1)=1$ is our base case, and if $\sigma(k)=k,$ then $\sigma(k+1)=\sigma(k)+\sigma(1)=k+1$ provides our inductive step. We can also note that\[\sigma(-1)^2=\sigma\left((-1)^2\right)=\sigma(1)=1\]implies $\sigma(-1)=\pm1.$ However, $1$ has already been taken by $\sigma(1),$ so $\sigma(-1)=-1.$ This implies that for any negative integer $-k,$ we have $\sigma(-k)=\sigma(-1)\sigma(k)=-k.$ Finally, $\sigma(0)=\sigma(1+(-1))=1+(-1)=0.$ It follows that all integers are fixed. Further, for any rational $\frac ab\in\QQ$ for $a,b\in\ZZ$ with $b\ne0,$ we have that\[b\sigma\left(\frac ab\right)=\sigma(b)\sigma\left(\frac ab\right)=\sigma(a)=a.\]Because $b\ne0,$ we may say $\sigma\left(\frac ab\right)=\frac ab.$ It follows that all of $\QQ$ is fixed by $\sigma.$</p>
 					<p>So far we have been treating $\RR$ as an entirely algebraic quantity, which is why I called the above "the easy stuff.'' However, an example pathology of doing so is that there are non-linear functions which satisfy $f(x+y)=f(x)+f(y)$ for all real $x,y.$ The reason we don't fall into this trap is that the graphs of all these functions are dense in $\RR^2.$ Why isn't the graph of $\sigma$ dense in $\RR^2$? Well, for any positive $r\in\RR^+,$ we see\[\sigma(r)=\sigma\left(\left(\sqrt r\right)^2\right)=\sigma\left(\sqrt r\right)^2\in\RR^+,\]so the fourth quadrant of the graph of $\sigma$ is guaranteed to be empty. This does tell us that $\sigma$ is linear automatically, but we would like to avoid this machinery. Regardless, we intuitively know that we're going to have to use some topology of $\RR$ to finish this.</p>
 					<p>With this in mind, we show that $\sigma$ satisfies a weak form of continuity&mdash;strictly increasing. (Any strictly increasing function over $\RR$ can only have jump discontinuities and therefore has only countably many discontinuities.) We show that for any $r,s\in\RR,$ with $r{\lt}s$ implies\[\sigma(r){\lt}\sigma(s).\]This inequality is equivalent to $\sigma(s)-\sigma(r)=\sigma(s-r){\gt}0.$ However, $s-r{\gt}0$ by hypothesis, $\sigma(s-r){\gt}0$ because $\sigma$ sends positives to positives from above.</p>
@@ -78,5 +50,6 @@ $Today I learned a proof that the only automorphism of $\RR$ is the identity. Le
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

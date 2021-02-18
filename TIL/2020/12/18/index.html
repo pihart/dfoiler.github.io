@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 18th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a proof for the fact that the area of a section of a parabola bounded by a line is $\frac43$ of the area of that section's midpoint triangle. Applying a suitable affine transformation, it suffices to prove this for the parabola $y=x^2.$ Here's the image of what we're talking about.</p>
+					<p>Today I learned a proof for the fact that the area of a section of a parabola bounded by a line is $\frac43$ of the area of that section's midpoint triangle. Applying a suitable affine transformation, it suffices to prove this for the parabola $y=x^2.$ Here's the image of what we're talking about.</p>
 					<img src="img1.png">
 					<p>The assertion is that the red and blue areas is $\frac43$ times just the red area. The main idea of the proof is that will be able to subdivide the remaining blue areas into more midpoint triangles, indefinitely, eventually summing to the desired area.</p>
 					<p>To start off, let's compute the area of the given midpoint triangle. Translating the midpoint to $0,$ we want the area of the triangle with vertices on $\left(\frac{a-b}2,\frac{3a^2-2ab-b^2}4\right),$ $(0,0),$ and $\left(\frac{b-a}2,\frac{-a^2-2ab+3b^2}4\right).$ Using determinants, this signed area will come out to be\[\frac12\left(\frac{a-b}2\cdot\frac{3a^2-2ab-b^2}4-\frac{b-a}2\cdot\frac{-a^2-2ab+3b^2}4\right)=\frac{a-b}{16}\cdot2\left(a-b\right)^2=\frac18(a-b)^3.\]This expression comes out quite nicely, aside from the fact we might have to throw absolute values around the entire thing. Further, if we substitute in $\frac{a+b}2$ into $a,$ then this signed area looks like\[\frac18\left(b-\frac{a+b}2\right)^3=\frac18\cdot\frac18(b-a)^3,\]which is one-eighth of the area we just had.</p>
@@ -71,5 +43,6 @@ $Today I learned a proof for the fact that the area of a section of a parabola b
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

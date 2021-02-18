@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 2nd</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned about the principal congruence modular subgroup of level $N.$ Succinctly, this is the kernel of the homomorphism $\varphi_N:\op{SL}_2(\ZZ)\to\op{SL}_2(\ZZ/N\ZZ)$ by reducing$\pmod N.$ (Taking remainders commutes with matrix multiplication because matrix multiplication merely requires ring operations.) In terms of symbols, this is\[\Gamma(N):=\left\{M\in\op{SL}_2(\ZZ) : M\equiv\begin{bmatrix}1 & 0\\0 & 1\end{bmatrix}\pmod N\right\}.\]We remark that, immediately, $\op{SL}_2(\ZZ)/\Gamma(N)\subseteq\op{SL}_2(\ZZ/N\ZZ)$ is a finite subgroup, so $\Gamma(N)$ has finite index in $\op{SL}_2(\ZZ).$</p>
+					<p>Today I learned about the principal congruence modular subgroup of level $N.$ Succinctly, this is the kernel of the homomorphism $\varphi_N:\op{SL}_2(\ZZ)\to\op{SL}_2(\ZZ/N\ZZ)$ by reducing$\pmod N.$ (Taking remainders commutes with matrix multiplication because matrix multiplication merely requires ring operations.) In terms of symbols, this is\[\Gamma(N):=\left\{M\in\op{SL}_2(\ZZ) : M\equiv\begin{bmatrix}1 & 0\\0 & 1\end{bmatrix}\pmod N\right\}.\]We remark that, immediately, $\op{SL}_2(\ZZ)/\Gamma(N)\subseteq\op{SL}_2(\ZZ/N\ZZ)$ is a finite subgroup, so $\Gamma(N)$ has finite index in $\op{SL}_2(\ZZ).$</p>
 					<p>In fact, we claim that $|\op{SL}_2(\ZZ)/\Gamma(N)|=|\op{SL}_2(\ZZ/N\ZZ)|$ exactly, which we show by claiming that\[\frac{\op{SL}_2(\ZZ)}{\Gamma(N)}\cong\op{SL}_2(\ZZ/N\ZZ).\]Because we've defined $\Gamma(N)$ as the kernel of $\varphi_N,$ it suffices to show that $\varphi_N$ has full image. That is, for each $M_N\in\op{SL}_2(\ZZ/N\ZZ),$ there exists an $M\in\op{SL}_2(\ZZ)$ such that $M\equiv M_N\pmod N.$ Well, fix\[M_N\equiv\begin{bmatrix} a & b \\ c & d \end{bmatrix} \pmod N\]for some integers $a,b,c,d.$ All we know for now is that $ad-bc\equiv1\pmod N,$ and we need to lift this to $a',b',c',d'$ with $a'd'-b'c'=1.$ Quickly, we remark that if any of the $a,b,c,d$ are currently $0,$ we may add $N$ to them. So without loss of generality, none of these are $0.$</p>
 					<p>To start, we claim that we can lift $a,b,c,d$ so that $\gcd(a,b)=1.$ Notice that\[\gcd(a,b)\mid ad-bc\equiv1\pmod N,\]so $\gcd(a,b)$ divides an integer coprime to $N.$ That is, $\gcd(a,b,N)=1,$ and this is enough to guarantee a $k$ such that $\gcd(a+kN,b)=1,$ which is what we need to lift. Indeed, we construct $k$ by the Chinese remainder theorem. Iterate over primes $p\mid b$ (because $b\ne0,$ there are finitely many such primes).					</p>
 					<ul>
@@ -71,5 +43,6 @@ $Today I learned about the principal congruence modular subgroup of level $N.$ S
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

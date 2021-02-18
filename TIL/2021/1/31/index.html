@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 31st</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned an expression for Hermitian inner products in terms of the lengths they induce, from <a href="http://estoyanov.net/files/MATAMATIKA/23982177-TheCauchy-Schwartz-Master-Class.pdf">here</a>. These are, more or less, generalizations of the parallelogram law to work for Hermitian spaces.</p>
+					<p>Today I learned an expression for Hermitian inner products in terms of the lengths they induce, from <a href="http://estoyanov.net/files/MATAMATIKA/23982177-TheCauchy-Schwartz-Master-Class.pdf">here</a>. These are, more or less, generalizations of the parallelogram law to work for Hermitian spaces.</p>
 					<p>To start, we fix a root of unity $\omega$ with $\omega^n=1$ but $\omega^2\ne1.$ Then we claim that, for $x,y\in\CC^\bullet,$\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k.\]The feeling I get from this statement is that we are "averaging'' the length over the various $\alpha^\bullet,$ in a way that looks analogous to the averaging process to define Hermitian inner products from group representations. I'm unsure if the relationship is more than aesthetic. Anyways, expanding out the length gives\[\left\lVert x+\alpha^ky\right\rVert=\left\langle x+\alpha^ky,x+\alpha^k y\right\rangle=\langle x,x\rangle+\left\langle\alpha^ky,\alpha^ky\right\rangle+\left\langle\alpha^ky,x\right\rangle+\left\langle x,\alpha^ky\right\rangle.\]Now, we dictate the fate of each of these terms as we sum over each $k.$					</p>
 					<ul>
 						<li>     We note $\langle x,x\rangle$ is constant, so we have    \[\langle x,x\rangle\sum_{k=0}^{n-1}\alpha^k=0\]    because $\alpha\ne1$ is an $n$th root of unity.</li>
@@ -73,5 +45,6 @@ $Today I learned an expression for Hermitian inner products in terms of the leng
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

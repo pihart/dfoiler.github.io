@@ -51,6 +51,7 @@ img
 	margin-right: 30%;
 }
 
+/* mostly the links going up the tree */
 .link
 {
 	color: #676767;
@@ -58,6 +59,7 @@ img
 	font-style: italic;
 }
 
+/* title at the top of the screen */
 .title
 {
 	background: #ecf3ff;
@@ -67,6 +69,7 @@ img
 	color: #003080;
 }
 
+/* blurb for a day or content in a day */
 .entry
 {
 	background: #f7f9ff;

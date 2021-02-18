@@ -5,9 +5,7 @@ PATH = os.path.abspath(__file__)
 PATH = PATH[:-PATH[::-1].index('/')]
 os.chdir(PATH)
 
-# Extra stuff to make the HTML file
-pre = '$'+open('pre.tex').read()+'$'
-# standaline is for making tikz images
+# standalone is for making tikz images
 standalone = open('standalone.sty').read()
 # This occurs at varying levels, so we make a function for it
 def header(level):
@@ -33,7 +31,7 @@ def gen_sidebar():
 		'margin-top: 5px;">Archive</p>\n'
 	for year in next(os.walk('TeX'))[1]:
 		year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
-		r += '\t\t\t\t<button type="button" class="yearmenu">'+year+'</button>\n'
+		r += '\t\t\t\t<p class="yearmenu">'+year+'</p>\n'
 		r += '\t\t\t\t<ul class="monthmenu">\n'
 		for month in year_months:
 			directory = year + '/'+str(month)
@@ -62,7 +60,7 @@ def start_html(level):
 def end_html(level):
 	html = '\t\t\t</div>\n'
 	html += '\t\t</div>\n'
-	html += '\t<script src="'+'../'*level+'sidebar.js"></script>'
+	html += '\t\t<script src="'+'../'*level+'sidebar.js"></script>\n'
 	html += '\t</body>\n'
 	html += '</html>\n'
 	return html
@@ -174,8 +172,8 @@ def to_html(tex):
 			day_html += indent(1)+'<h2>'+h2+'</h2>\n'
 			day = day[:-len('th')]
 			month_html += indent(1)+'<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
-			# We attach the preamble here
-			day_html += indent(1)+'<p>'+pre
+			# Go ahead and start the first paragraph
+			day_html += indent(1)+'<p>'
 		# Two consecutive new lines implies new paragraph
 		elif line == '':
 			day_html += '</p>\n'+indent(1)+'<p>'
@@ -244,7 +242,7 @@ for year in next(os.walk('TeX'))[1]:
 		month_html = start_html(3)
 		month_html += indent(0)+'<p class="back"><a href="../" class="link">' \
 			'(back up to '+year+')</a></p>\n'
-		month_html += indent(0)+'<h2>'+pre+ months[int(month)-1] + ' '+year+'</h2>\n'
+		month_html += indent(0)+'<h2>' + months[int(month)-1] + ' '+year+'</h2>\n'
 		# Increment the year file
 		year_html += indent(0)+'<h3><a href="'+month+'/">'+ \
 			months[int(month)-1] +'</a></h3>\n'

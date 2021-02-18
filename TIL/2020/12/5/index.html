@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 5th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned that, for any prime $p,$ every quadratic extension of $\QQ_p$ is contained in some cyclotomic field (not dependent on the quadratic extension). As some setup, note that for any quadratic extension $K/\QQ_p,$ we can give it a basis $\{1,\alpha\}$ for some $\alpha.$ In particular, $K=\QQ(\alpha).$ Then $\alpha^2$ will have to be a linear combination of $1$ and $\alpha,$ so we get to write\[\alpha^2+b\alpha+c=0\]for some $b,c\in\QQ_p.$ It follows that\[\alpha=\frac{-b\pm\sqrt{b^2-4c}}2.\]It follows that $K\subseteq\QQ_p(\sqrt{b^2-4c}),$ and we also see $\sqrt{b^2-4c}=\pm(2\alpha+b),$ so in fact $K=\QQ_p(\sqrt{b^2-4c}).$ It follows that all quadratic extensions take the form $\QQ_p(\sqrt m)$ for some $m\in\QQ_p.$ Therefore it suffices to show that there exists a cyclotomic extension $\QQ_p(\zeta_\bullet)$ for which every element of $\QQ_p$ is square; that is, for each $m\in\QQ_p,$ there exists a $\sqrt m\in\QQ_p(\zeta_\bullet).$</p>
+					<p>Today I learned that, for any prime $p,$ every quadratic extension of $\QQ_p$ is contained in some cyclotomic field (not dependent on the quadratic extension). As some setup, note that for any quadratic extension $K/\QQ_p,$ we can give it a basis $\{1,\alpha\}$ for some $\alpha.$ In particular, $K=\QQ(\alpha).$ Then $\alpha^2$ will have to be a linear combination of $1$ and $\alpha,$ so we get to write\[\alpha^2+b\alpha+c=0\]for some $b,c\in\QQ_p.$ It follows that\[\alpha=\frac{-b\pm\sqrt{b^2-4c}}2.\]It follows that $K\subseteq\QQ_p(\sqrt{b^2-4c}),$ and we also see $\sqrt{b^2-4c}=\pm(2\alpha+b),$ so in fact $K=\QQ_p(\sqrt{b^2-4c}).$ It follows that all quadratic extensions take the form $\QQ_p(\sqrt m)$ for some $m\in\QQ_p.$ Therefore it suffices to show that there exists a cyclotomic extension $\QQ_p(\zeta_\bullet)$ for which every element of $\QQ_p$ is square; that is, for each $m\in\QQ_p,$ there exists a $\sqrt m\in\QQ_p(\zeta_\bullet).$</p>
 					<p>Very quickly, observe that it really suffices to get $\sqrt p$ and $\ZZ_p\setminus p\ZZ_p$ instead of needing all of $\QQ_p.$ Indeed, if $m=\frac ab$ where $a,b\in\ZZ_p,$ then we should be able to write\[\sqrt m=\frac{\sqrt a}{\sqrt b},\]so provided that all of $\ZZ_p$ is a square, then all of $\QQ_p$ is a square in $\QQ_p(\zeta_\bullet)$. Further, if we're trying to get $m=p^{2\alpha+\beta}m'\in\ZZ_p$ where $m'\in\ZZ_p\setminus p\ZZ_p,$ then we may write\[\sqrt m=p^\alpha\cdot\sqrt p\cdot\sqrt{m'}.\]So it suffices to get $\sqrt p$ and all of $\ZZ_p\setminus p\ZZ_p$ to be a square in $\QQ_p(\zeta_\bullet).$ Nothing so far has been remarkable; in particular, these arguments would also hold for quadratic extensions of $\QQ,$ for which the statement we're trying to prove is false.</p>
 					<p>We have to do $p=2$ separately, so we'll do it as an instructive example. We claim that $\QQ_2(\zeta_{24})$ contains all quadratic extensions of $\QQ_2.$ The key observation is that all elements $m\in\ZZ_2\setminus2\ZZ_2$ which are $m\equiv1\pmod8$ are already squares in $\QQ_2$ from Hensel-type arguments. We claim that $\sqrt2,\sqrt{-1},\sqrt3$ are all in $\QQ_2(\zeta_{24}),$ which we will prove shortly. This covers $\sqrt2,$ but to see why this is enough to cover $m\in\ZZ_2\setminus2\ZZ_2,$ we consider the following cases.					</p>
 					<ul>
@@ -78,5 +50,6 @@ $Today I learned that, for any prime $p,$ every quadratic extension of $\QQ_p$ i
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

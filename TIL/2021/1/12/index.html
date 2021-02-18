@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 12th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned about the univalence axiom. The core here is to establish what it means for two types $A$ and $B$ to be equal, with respect to a universe $\UU,$ but we don't really have an easy way to introduce such equalities. To be clear, we can exhibit a function\[\op{idtoeqv}:(A=_\UU B)\to(A\simeq B).\]Indeed, the main idea is to view $\op{id}_\UU:\UU\to\UU$ as a family of types indexed by $\UU$; what this gives us is the ability to think about\[\op{transport}^{\op{id}_\UU}(p):A\to B\]given our $p.$ We claim that this is an equivalence.</p>
+					<p>Today I learned about the univalence axiom. The core here is to establish what it means for two types $A$ and $B$ to be equal, with respect to a universe $\UU,$ but we don't really have an easy way to introduce such equalities. To be clear, we can exhibit a function\[\op{idtoeqv}:(A=_\UU B)\to(A\simeq B).\]Indeed, the main idea is to view $\op{id}_\UU:\UU\to\UU$ as a family of types indexed by $\UU$; what this gives us is the ability to think about\[\op{transport}^{\op{id}_\UU}(p):A\to B\]given our $p.$ We claim that this is an equivalence.</p>
 					<p>The easy way to see this as trying to exhibit a function\[\prod_{(A,B:\UU)}(A=_\UU B)\to(A\simeq B),\]for which path induction says that it suffices to take $A\equiv B$ and $p\equiv\refl_A$ so that our $\op{transport}^\bullet(p)\equiv\op{id}_\UU.$ But we know that $\op{id}_\UU$ is an equivalence with itself as a quasi-inverse, so we're done.</p>
 					<p>That is a bit cheap, however. More generally, for a type family $P:X\to\UU,$ we have that $p:x=y$ witnesses\[\op{transport}^P(p):P(x)\to P(y),\]which we claim is an equivalence $P(x)\to P(y).$ Taking $P\equiv\op{id}_\UU$ recovers the case that we're interested in. To show that this is an equivalence, it suffices to note that\[\op{transport}^P(p^{-1}):P(y)\to P(x)\]is its quasi-inverse. Indeed, because $\op{transport}$ commutes with path concatenation (proven with path induction), we can say that\[\op{transport}^P(p^{-1})\circ\op{transport}^P(p)=\op{transport}^P(p\cdot p^{-1})\stackrel*=\op{transport}^P(\refl_x)=\op{id}_{P(x)}.\]I guess some care must taken on $\stackrel*=$ because $\op{transport}^P$ is a dependent function, but $p\cdot p^{-1}$ and $\op{refl}_x$ are both of type $x=x,$ so we may restrict $\op{transport}^P$ to a function $(x=x)\to P(x)\to P(x).$ Then $\stackrel*=$ follows by applying $\op{transport}^P$ to both sides of $p^{-1}\cdot p=\refl_x.$ Anyways, similar holds in the opposite direction.</p>
 					<p>The point here is that\[\op{idtoeqv}(p)\equiv\op{transport}^{\op{id}}(p)\]suffices, where we are abusing $\op{transport}^{\op{id}}(p)$ to witness the entire equivalence in $A\simeq B.$ Now, the univalence axiom for a universe $\UU$ is the assertion that $\op{idtoeqv}$ is an equivalence for the universe $\UU$; in particular, we get a function\[\op{ua}:(A\simeq B)\to(A=_\UU B)\]which is the quasi-inverse of $\op{idtoeqv}.$ More or less, this is how we get to introduce equalities $A=B$&mdash;exhibit an equivalence $A\simeq B.$</p>
@@ -67,5 +39,6 @@ $Today I learned about the univalence axiom. The core here is to establish what 
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

@@ -31,38 +31,11 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 18th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned an alternative explanation for the decimal expansion of fractions like $\frac1{9801},$ from <a href="https://math.stackexchange.com/a/102684/869257">here</a>. I'm used to evaluating the arithmetico-geometric series $\sum nx^{n+1}$ directly, but in fact it is in general true that\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{n=1}^\infty nx^{n+1}.\]There are a variety of ways to see this, one of which is directly computing the right-hand side by setting $S=\sum_{n=1}^\infty nx^{n+1}$ and seeing\[\frac1xS-S=\sum_{n=1}^\infty x^n=\frac x{1-x}.\]This rearranges to $S=\left(\frac x{1-x}\right)^2,$ which is what we wanted after expanding the geometric series. However, presenting this as that single equation makes it much easier to say something like\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{a=1}^\infty\sum_{b=1}^\infty x^ax^b=\sum_{n=2}^\infty\left(\sum_{a+b=2}1\right)x^n.\]This quickly turns into our desired $S$ after shifting the index of the sum.</p>
+					<p>Today I learned an alternative explanation for the decimal expansion of fractions like $\frac1{9801},$ from <a href="https://math.stackexchange.com/a/102684/869257">here</a>. I'm used to evaluating the arithmetico-geometric series $\sum nx^{n+1}$ directly, but in fact it is in general true that\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{n=1}^\infty nx^{n+1}.\]There are a variety of ways to see this, one of which is directly computing the right-hand side by setting $S=\sum_{n=1}^\infty nx^{n+1}$ and seeing\[\frac1xS-S=\sum_{n=1}^\infty x^n=\frac x{1-x}.\]This rearranges to $S=\left(\frac x{1-x}\right)^2,$ which is what we wanted after expanding the geometric series. However, presenting this as that single equation makes it much easier to say something like\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{a=1}^\infty\sum_{b=1}^\infty x^ax^b=\sum_{n=2}^\infty\left(\sum_{a+b=2}1\right)x^n.\]This quickly turns into our desired $S$ after shifting the index of the sum.</p>
 					<p>Anyways, from this we see\[\sum_{n=1}^\infty\frac n{100^{n+1}}=\left(\sum_{n=1}^\infty\frac1{100}\right)^2=\frac1{99^2}.\]This is how $\frac1{9801}$ is expanded. As an aside, I guess I should explain why $98$ is skipped in the decimal expansion. Well, consider the following point in the sum:\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{98}{100^{99}}+\frac{99}{100^{100}}+\frac{100}{100^{101}}+\cdots.\]The $100$ is in fact too big for its position, so its $100$ gets shifted over to the previous $99,$ collapsing things into\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{99}{100^{99}}+\frac{00}{100^{100}}+\frac{00}{100^{101}}+\cdots.\]So in fact the $98$ is present, but it was turned into a $99$ by the carry, which shifted everything one over. In fact, all of the $100$s shift one over: the $100$ was turned into $00$ in the above, but the $101$ next to it makes the $00$ into $01.$ Then $101$ turns to $02,$ and so on. This pattern continues into the familiar decimal expansion\[\frac1{9801}=0.\overline{000102\cdots969799}.\]I think a formal proof would induct on the $100$s, but I don't feel like doing that now.</p>
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

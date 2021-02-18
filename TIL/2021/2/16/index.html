@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 16th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned that the ray class groups are finite assuming that the normal class group is finite, from <a href="https://math.stackexchange.com/questions/74206/ray-class-group">here</a>. This is the first finiteness proof from an exact sequence I've seen, so it looks quite clever, though I am sure there is some more general group cohomology at play. Anyways, fix a number field $K$ and a modulus $\mf m.$ Then we claim that\[1\longrightarrow P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m\longrightarrow1\]is an exact sequence with the second and fourth terms finite. Here, $P_K^\mf m$ refers to the principal ideals in $I_K^\mf m$ while $P_K^{\mf m,1}$ are those with generators $\equiv1\pmod{\mf m}.$</p>
+					<p>Today I learned that the ray class groups are finite assuming that the normal class group is finite, from <a href="https://math.stackexchange.com/questions/74206/ray-class-group">here</a>. This is the first finiteness proof from an exact sequence I've seen, so it looks quite clever, though I am sure there is some more general group cohomology at play. Anyways, fix a number field $K$ and a modulus $\mf m.$ Then we claim that\[1\longrightarrow P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m\longrightarrow1\]is an exact sequence with the second and fourth terms finite. Here, $P_K^\mf m$ refers to the principal ideals in $I_K^\mf m$ while $P_K^{\mf m,1}$ are those with generators $\equiv1\pmod{\mf m}.$</p>
 					<p>Very quickly, we show how to finish the proof if we have the exact sequence and that the second and fourth terms are finite. We have that $I_K^\mf m/P_K^{\mf m,1}$ surjects onto $I_K^\mf m/P_K^\mf m,$ so the homomorphism theorem implies\[\left|I_K^\mf m/P_K^{\mf m,1}\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|\ker(I_K^\mf m/P_K^{\mf m,1}\to I_K^\mf m/P_K^\mf m)\right|.\]However, the exact sequence tells us that $P_K^\mf m/P_K^{\mf m,1}$ bijects with this kernel, implying\[\left|I_K^\mf m/P_K^{\mf m,1}\right|=\left|I_K^\mf m/P_K^\mf m\right|\cdot\left|P_K^{\mf m}/P_K^{\mf m,1}\right|.\]So the finiteness of the ray class group follows.</p>
 					<p>Now we show the exact sequence. We begin with the right-hand mapping, which is\[I_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^\mf m.\]Right now we need to show that this is surjective, but we're merely expanding the kernel, so it is indeed surjective: just track $\mf aP_K^\mf m\in I_K^\mf m/P_K^\mf m$ back up to $\mf aP_K^{\mf m,1}.$ Additionally, we take all principals in $P_K^\mf m$ to the identity, which is our kernel.</p>
 					<p>It remains to show that\[P_K^\mf m/P_K^{\mf m,1}\longrightarrow I_K^\mf m/P_K^{\mf m,1}\]injects into the kernel $P_K^\mf m$ of the next map. Well this map merely takes $(\alpha)\in P_K^\mf m$ to $(\alpha)\in I_K^\mf m,$ which is injective, and then we mod out by $P_K^{\mf m,1}.$ So indeed $P_K^\mf m\to I_K^\mf m/P_K^{\mf m,1}$ injects onto the kernel $P_K^\mf m$ exactly, and the kernel of this map is only $P_K^{\mf m,1}.$ Thus, we do have an exact sequence.</p>
@@ -75,5 +47,6 @@ $Today I learned that the ray class groups are finite assuming that the normal c
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

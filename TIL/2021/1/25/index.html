@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 25th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned about the regular representation of a group, from Artin as usual. The big-picture is that we can turn any group action into a representation: if $G$ acts on a set $S,$ then we we can index a basis of $\CC^{|S|}$ by $S$ named $e_s$ and then define $\rho_\bullet:G\to\op{GL}_{|S|}(\CC)$ by\[\rho_ge_s=e_{gs}.\]In other words, we just create the permutation matrix associated with the group action. As an aside, we remark that the character $\chi(g):=\op{trace}(\rho_g)$ associated with this action is fairly well-behaved. Using the given matrix representation for $\rho_g,$ we can directly compute the trace by summing along the diagonal, for each nonzero entry along the diagonal is $1$ and signifies the basis vector $e_s$ being fixed. Thus, we're counting elements fixed by $g,$ which is\[\chi(g)=|\op{Stab}(g)|.\]For example, $\chi(e)=|S|,$ which matches $\dim\CC^{|S|}$ as it should. (Namely, $\chi(e)=\dim V$ for any $\rho:G\to\op{GL}(V)$ because, after choosing any basis, $\rho_e$ turns into $I\in\op{GL}_\bullet(\CC).$)</p>
+					<p>Today I learned about the regular representation of a group, from Artin as usual. The big-picture is that we can turn any group action into a representation: if $G$ acts on a set $S,$ then we we can index a basis of $\CC^{|S|}$ by $S$ named $e_s$ and then define $\rho_\bullet:G\to\op{GL}_{|S|}(\CC)$ by\[\rho_ge_s=e_{gs}.\]In other words, we just create the permutation matrix associated with the group action. As an aside, we remark that the character $\chi(g):=\op{trace}(\rho_g)$ associated with this action is fairly well-behaved. Using the given matrix representation for $\rho_g,$ we can directly compute the trace by summing along the diagonal, for each nonzero entry along the diagonal is $1$ and signifies the basis vector $e_s$ being fixed. Thus, we're counting elements fixed by $g,$ which is\[\chi(g)=|\op{Stab}(g)|.\]For example, $\chi(e)=|S|,$ which matches $\dim\CC^{|S|}$ as it should. (Namely, $\chi(e)=\dim V$ for any $\rho:G\to\op{GL}(V)$ because, after choosing any basis, $\rho_e$ turns into $I\in\op{GL}_\bullet(\CC).$)</p>
 					<p>Anyways, we talk about this construction in order to apply it to the action of $G$ on $G$ by left multiplication. Here, the character is especially simple. To compute $\chi(g),$ we remark that $h\mapsto gh$ has a fixed point $h=gh$ if and only if $g=e.$ Thus, we see\[\chi(g)=\begin{cases}    |G| & g=e, \\    0 & g\ne e.\end{cases}\]Let's move towards proving that $|G|=\sum d_\bullet^2$ for $d_\bullet$ the dimensions of the irreducible characters of $G.$ Fix $\chi_1,\ldots,\chi_r$ as our nonisomorphic irreducible characters, where $d_\bullet=\dim\chi_\bullet.$</p>
 					<p>What we want to say is that the simple presentation of $\chi$ lets us write\[\langle\chi,\chi_\bullet\rangle=\frac1{|G|}\sum_{g\in G}\chi(g)\overline{\chi_\bullet(g)}.\]Because $\chi(g)\ne0$ only when $g=e,$ the sum collapses to $\chi(e)\chi_\bullet(e)=|G|d_\bullet,$ implying $\langle\chi,\chi_\bullet\rangle=d_\bullet.$ However, the $\chi_\bullet$ form an orthonormal basis of characters (coefficients in $\ZZ,$ I guess), which we show shortly from the orthogonality relations. Then, these dot product relations imply that\[\chi=d_1\chi_1+\cdots+d_r\chi_r.\]Plugging $e$ into this equation gives the desired result.</p>
 					<p>We show that the $\chi_\bullet$ give an orthonormal basis of characters, where our coefficients are taken $\ZZ.$ We assume the orthogonality relations, which is honestly where most of the work is. For any representation $\rho,$ we showed a few days ago (Maschke’s Theorem) that we can write\[\rho=n_1\rho_1\oplus\cdots\oplus n_r\rho_r\]for distinct irreducible characters $\rho_\bullet$ and integers $n_\bullet.$ Taking traces, it follows that\[\chi=n_1\chi_1+\cdots+n_r\chi_r\]for $\chi_\bullet=\op{trace}(\rho_\bullet).$ Thus, all characters can be represented as a $\ZZ$-linear combination of the $\chi_\bullet,$ which is what we needed. We remark that this representation is in fact unique, for $\langle\chi,\chi_\bullet\rangle=n_1$ from the orthogonality relations. Thus, the coefficients in the above representation are forced equal to $\langle\chi,\chi_\bullet\rangle,$ giving our basis.</p>
@@ -67,5 +39,6 @@ $Today I learned about the regular representation of a group, from Artin as usua
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 26th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the refinement to Dirichlet's approximation theorem, from Ford circles. Namely, we want to show that for irrational $\alpha,$ there exist infinitely many $a/b$ such that\[\left|\alpha-\frac ab\right|{\lt}\frac1{\sqrt 5b^2}.\]Very quickly, this is sharp, achieved at $\varphi,$ which we outline. We can show (inductively, say) that the continued fraction convergents are $\frac{F_{n+1}}{F_n},$ and the corresponding error is\[F_n^2\left|\varphi-\frac{F_{n+1}}{F_n}\right|=\frac1{\sqrt5}\left|1+(-1)^{n+1}\left(\frac{1-\sqrt5}2\right)^{2n}\right|\]using something like Binet's formula. As $n\to\infty,$ this approaches $\frac1{\sqrt5},$ and because continued fraction convergents are best possible, this $\frac1{\sqrt5}$ is best possible.</p>
+					<p>Today I learned the refinement to Dirichlet's approximation theorem, from Ford circles. Namely, we want to show that for irrational $\alpha,$ there exist infinitely many $a/b$ such that\[\left|\alpha-\frac ab\right|{\lt}\frac1{\sqrt 5b^2}.\]Very quickly, this is sharp, achieved at $\varphi,$ which we outline. We can show (inductively, say) that the continued fraction convergents are $\frac{F_{n+1}}{F_n},$ and the corresponding error is\[F_n^2\left|\varphi-\frac{F_{n+1}}{F_n}\right|=\frac1{\sqrt5}\left|1+(-1)^{n+1}\left(\frac{1-\sqrt5}2\right)^{2n}\right|\]using something like Binet's formula. As $n\to\infty,$ this approaches $\frac1{\sqrt5},$ and because continued fraction convergents are best possible, this $\frac1{\sqrt5}$ is best possible.</p>
 					<p>Now for the Ford's circle. What I liked about the Ford circles is that we can very visually see the $\frac1{2b^2}$ error term, so we can also see the $\frac1{\sqrt 5b^2}$ by changing the radius accordingly. Here's what that looks like.</p>
 					<img src="img1.png">
 					<p>We want to show that every irrational $\alpha$ is under infinitely many of the purple circles. This doesn't look surprising, though somewhat frustrating to prove. From the Ford circles proof from yesterday, we know $\alpha$ is below an infinite decreasing sequence of tangent circles with the norm $\frac1{2b^2}.$ The difficulty is if $\alpha$ lives on the outer edges of our circles.</p>
@@ -82,5 +54,6 @@ $Today I learned the refinement to Dirichlet's approximation theorem, from Ford 
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

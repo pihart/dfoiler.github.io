@@ -31,40 +31,13 @@
 				<p class="back"><a href="../" class="link">(back up to October)</a></p>
 				<div class="entry">
 					<h2>October 7th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned about adeles $\AA_\QQ$ in order to construct the characters over $(\QQ,+).$ The definition, exactly, is\[\AA_\QQ=\{(a_\infty,a_2,a_3,a_5,\ldots)\}\subseteq\RR\times\prod_p\QQ_p\]such that all but finitely many of the $a_p\in\QQ_p$ are in $\ZZ_p.$ (The product is over finite primes.) The condition for all but finitely many of the $a_p\in\QQ_p$ in $\ZZ_p$ is not quite direct product (which allows free reign) and not quite coproduct (which forces all but finitely to be $0$). The reasoning for this restricted product, as far as I can tell, is to make the embedding\[q\in\QQ\longmapsto(q,q,\ldots)\in\AA_\QQ\]actually behave. Because $r\in\QQ,$ we can't force all of the $a_p$ to be in $\ZZ_p,$ but surely we can't have infinitely many primes in the denominator of $r,$ so only finitely of the $a_p$ should be permitted to live in $\QQ_p\setminus\ZZ_p.$</p>
+					<p>Today I learned about adeles $\AA_\QQ$ in order to construct the characters over $(\QQ,+).$ The definition, exactly, is\[\AA_\QQ=\{(a_\infty,a_2,a_3,a_5,\ldots)\}\subseteq\RR\times\prod_p\QQ_p\]such that all but finitely many of the $a_p\in\QQ_p$ are in $\ZZ_p.$ (The product is over finite primes.) The condition for all but finitely many of the $a_p\in\QQ_p$ in $\ZZ_p$ is not quite direct product (which allows free reign) and not quite coproduct (which forces all but finitely to be $0$). The reasoning for this restricted product, as far as I can tell, is to make the embedding\[q\in\QQ\longmapsto(q,q,\ldots)\in\AA_\QQ\]actually behave. Because $r\in\QQ,$ we can't force all of the $a_p$ to be in $\ZZ_p,$ but surely we can't have infinitely many primes in the denominator of $r,$ so only finitely of the $a_p$ should be permitted to live in $\QQ_p\setminus\ZZ_p.$</p>
 					<p>What $\AA_\QQ$ is "really'' doing here is that it supercharges our local-global intuition. It's often helpful to solve a problem over our local fields $\RR$ or $\QQ_p$ (say, a Diophantine or something else where analysis is nice) and then see how that information can be translated up to $\QQ.$ But it might not be clear which local fields exactly we want to use, or we might have to use some specific subset. Well, $\AA_\QQ$ lets us use all of these at the same time.</p>
 					<p>In context of the characters we had two days ago, we note that we can write something like\[\frac{\AA_\QQ}{\RR\times\prod_p\ZZ_p}\cong\{0\}\times\bigoplus_p\QQ_p/\ZZ_p\cong\QQ/\ZZ,\]where that's a $\bigoplus$ because $a_p\in\ZZ_p$ gets thrown to $0.$ We generated our characters as over $\QQ_p\ZZ_p,$ so we can see that, at the very least, $\AA_\QQ$ will do a nice job of smooshing characters in each individual $\QQ_p/\ZZ_p$ into characters over $\QQ.$ In reality, we define the characters over $\QQ$ pretty much as we would expect, writing  $a\in\AA_\QQ$ gives\[\Psi_a(q)=\psi_\infty(a_\infty a)\prod_p\psi_p(a_pq),\]where $\psi_\infty(q)=e^{-2\pi iq}$ and $\psi_p(q)=e^{2\pi i\{q\}_p}$ from last time. To show that $\Psi_\bullet$ makes sense, we note that the condition that all but finitely many $a_p$ are in $\ZZ_p$ implies that all but finitely of the $qa_p$ are in $\ZZ_p.$ But this means $\psi_p(a_pq)=1$ for all but finitely many $p,$ so $\Psi_\bullet$ is actually a finite product, so $\Psi_\bullet$ does make sense.</p>
 					<p>Some nice facts about $\Psi_\bullet$ include that it's actually a homomorphism $\AA_\QQ\to\widehat\QQ,$ which can be seen by expanding $\Psi_a\Psi_b=\Psi_{a+b}.$ Further, for a rational adele $(r,r,\ldots)\in\QQ^\infty\cap\AA_\QQ,$ we have $\Psi_r=\op{id}.$ Indeed, after plugging in the definition of the various $\psi_\bullet,$ we need to show\[r-\sum_p\{r\}_p\in\ZZ.\]To show this, we show that it is in $\ZZ_p$ for every $p,$ forcing the denominator to have no primes. Indeed, we can read this sum as $r-r_p-(\text{stuff with denominators not divisible by }p),$ which is indeed in $\ZZ_p.$</p>
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

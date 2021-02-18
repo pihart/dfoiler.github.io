@@ -1,3 +1,4 @@
+/* goes around all content below the title */
 .container
 {
 	margin-top: 0;
@@ -8,6 +9,7 @@
 	max-width: 712.5pt;
 }
 
+/* goes around all of the archive */
 .sidebar
 {
 	margin-top: 0pt;
@@ -21,6 +23,7 @@
 	float: right;
 }
 
+/* one of the year entries in the archive */
 .yearmenu
 {
 	border: none;
@@ -34,11 +37,13 @@
 	cursor: pointer;
 }
 
+/* we want it to look like a link */
 .yearmenu:hover
 {
 	color: #003080;
 }
 
+/* one of the month entries in the archive */
 .monthmenu
 {
 	display: none;
@@ -47,6 +52,7 @@
 	margin-bottom: 6pt;
 }
 
+/* links (month entries) in the archive */
 .sidebar a
 {
 	color: #303030;
@@ -62,18 +68,21 @@
 	color: #003080;
 }
 
+/* the month lists in the archive are pushed */
 li span
 {
 	position: relative;
 	left: -2.25pt;
 }
 
+/* messages going up the tree for small screens */
 .back
 {
 	display: none;
 	margin-top: 0;
 }
 
+/* content apart from the sidebar */
 .content
 {
 	padding-top: 11.75pt;
@@ -81,12 +90,15 @@ li span
 	margin-bottom: 11.75pt;
 }
 
+/* small screens */
 @media screen and (max-width: 600pt)
 {
+	/* get rid of the sidebar */
 	.sidebar
 	{
 		display: none;
 	}
+	/* add in the crude navigation */
 	.back
 	{
 		display: block;

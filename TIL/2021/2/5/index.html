@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 5th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a concrete example of a monad, courtesy of Alexander Burton. As usual in functional programming, we are looking at functions as functors in the category of types. </p>
+					<p>Today I learned a concrete example of a monad, courtesy of Alexander Burton. As usual in functional programming, we are looking at functions as functors in the category of types. </p>
 					<p>Fixing a monoid $(M,+),$ we define $T:A\mapsto A\times M$ to be our monad. To be explicit, this is endofunctor taking\[\begin{cases}    T(A)=A\times M & A\text{ object}, \\    T(f)=f\times\op{id} & f:A\to B.\end{cases}\]We note quickly that we tend to think of $T(f)$ as $\texttt{fmap}$ in Haskell, for it takes $(A\to B)\to(T(A)\to T(B)).$ Fixing $0\in M$ as our identity element, we remark that this definition permits\[\eta_A(a)=(a,0)\]for $a\in A.$ Very quickly, we see $\eta_A:A\to T(A)$ ($\texttt{pure}$) is a natural transformation from $\op{id}$ to $T(\op{id})$ by chasing elements, as shown in the following commutative diagram. Here, $f:A\to B$ takes $f(a)=b.$</p>
 					<img src="img1.png">
 					<p>This works because $T(f)$ was defined cleanly. The final piece of data is a natural transformation $\mu_A:T^2(A)\to T(A)$ ($\texttt{join}$), which we define by\[\mu_A((a,m),n)=(a,m+n).\]This is actually a natural transformation, again by chasing elements in the following commutative diagram. Here, $f:A\to B$ takes $f(a)=b.$</p>
@@ -79,5 +51,6 @@ $Today I learned a concrete example of a monad, courtesy of Alexander Burton. As
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

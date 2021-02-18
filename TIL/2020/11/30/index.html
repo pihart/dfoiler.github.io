@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to November)</a></p>
 				<div class="entry">
 					<h2>November 30th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned that for any polynomial $P(x_1,\ldots,x_n)\in\ZZ_p[x_1,\ldots,x_n]$ has a root in $(\ZZ_p)^n$ if and only if has roots in each $(\ZZ/p^\bullet\ZZ)^n.$ One direction of this easy. Indeed, if we have a root $(\alpha_1,\ldots,\alpha_n)\in(\ZZ_p)^n,$ then\[P(\alpha_1,\ldots,\alpha_n)=0\]in $\ZZ_p.$ Reducing all values$\pmod{p^\bullet}$ will give an equality there as well, so we get our solution in $(\ZZ/p^\bullet)^n$ by projecting $(\alpha_1,\ldots,\alpha_n).$</p>
+					<p>Today I learned that for any polynomial $P(x_1,\ldots,x_n)\in\ZZ_p[x_1,\ldots,x_n]$ has a root in $(\ZZ_p)^n$ if and only if has roots in each $(\ZZ/p^\bullet\ZZ)^n.$ One direction of this easy. Indeed, if we have a root $(\alpha_1,\ldots,\alpha_n)\in(\ZZ_p)^n,$ then\[P(\alpha_1,\ldots,\alpha_n)=0\]in $\ZZ_p.$ Reducing all values$\pmod{p^\bullet}$ will give an equality there as well, so we get our solution in $(\ZZ/p^\bullet)^n$ by projecting $(\alpha_1,\ldots,\alpha_n).$</p>
 					<p>The harder direction is that if we have solutions for $P$ in $(\ZZ/p^\bullet\ZZ)^n$ for each $p^\bullet,$ then we can piece together a solution in $(\ZZ_p)^n.$ For this, we construct a Cauchy sequence in Hensel style. This is done in inductive-style steps. We construct a sequence of solutions\[(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}),\]which holds in $(\ZZ/p^\bullet\ZZ)^n$ and satisfies $\alpha_{k,\bullet}\equiv\alpha_{k,\bullet+1}\pmod{p^\bullet}$; this of course makes a Cauchy sequence for each $\alpha_{k,\bullet}$ which converges to a solution $\alpha_k$ in $\ZZ_p.$ So this will be enough to give our solution in $(\ZZ_p)^n.$</p>
 					<p>The trick is that we're going to construct our solution such that, when reducing all of the solutions $(\ZZ/p^\bullet\ZZ)^n$ to our particular $(\ZZ/p^\bullet\ZZ)^n,$ infinitely many fall on top of $(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}).$</p>
 					<p>As our base case, we begin with\[(\alpha_{1,0},\ldots,\alpha_{n,0})=(0,\ldots,0),\]which is a solution to $P$ in $(\ZZ/p^0\ZZ)^n.$ Further note that reducing any of our solutions to $P$ of $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^0\ZZ)^n$ will project here, so infinitely many lie on top of $(0,\ldots,0).$</p>
@@ -69,5 +41,6 @@ $Today I learned that for any polynomial $P(x_1,\ldots,x_n)\in\ZZ_p[x_1,\ldots,x
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 30th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute\[(a_\varphi)_n=\begin{cases}    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\    0 & \text{otherwise}.\end{cases}\]Now, we do the casework on $\varphi$ halts.					</p>
+					<p>Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute\[(a_\varphi)_n=\begin{cases}    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\    0 & \text{otherwise}.\end{cases}\]Now, we do the casework on $\varphi$ halts.					</p>
 					<ul>
 						<li>     If $\varphi$ halts in $N$ steps, then the infinite sum is $0$ after $N,$ so the sum is finite and converges. Similarly, this would mean that there is a $0$ in the infinite product, so the infinite product would converge to $0.$</li>
 						<li>     If $\varphi$ never halts, then the infinite sum sums $2$ for each $n,$ which of course diverges (say, by divergence test). And the infinite product is multiplying $2$ for each $n,$ which also diverges.</li>
@@ -72,5 +44,6 @@ $Today I learned some stuff about the computability of convergence. To start, we
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

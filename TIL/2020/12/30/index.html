@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 30th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned more formally about proving propositions as types. The idea is that we can "prove'' a proposition by exhibiting an element which witnesses to a type which communicates the proposition. The idea is a bit abstract. Anyways, here is the table of translations.\[\begin{array}{c|c}    \text{Logic} & \text{Type theory} \\    \hline    0 & \text{False} \\    1 & \text{True} \\    A\land B & A\times B \\    A\lor B & A+B \\    A\to B & A\to B \\    A\leftrightarrow B & (A\to B)\times(B\to A) \\    \lnot A & A\to0 \\    \hline    \forall x:A,\,P(x) & \prod_{x:A}P(x) \\    \exists x:A,\,P(x) & \sum_{x:A}P(x)\end{array}\]Many of these make some intuitive sense. For example, in type theory, $A\land B$ should hold if and only if we can exhibit a witness of both $A$ and $B.$ So our witness for $A\land B$ should be the ordered pair of the witnesses, which would be anything in $A\times B.$ Similarly, a witness of $A\lor B$ is something in $A$ or $B,$ which witnesses exactly $A+B.$ The $\forall$ and $\exists$ statements are similar.</p>
+					<p>Today I learned more formally about proving propositions as types. The idea is that we can "prove'' a proposition by exhibiting an element which witnesses to a type which communicates the proposition. The idea is a bit abstract. Anyways, here is the table of translations.\[\begin{array}{c|c}    \text{Logic} & \text{Type theory} \\    \hline    0 & \text{False} \\    1 & \text{True} \\    A\land B & A\times B \\    A\lor B & A+B \\    A\to B & A\to B \\    A\leftrightarrow B & (A\to B)\times(B\to A) \\    \lnot A & A\to0 \\    \hline    \forall x:A,\,P(x) & \prod_{x:A}P(x) \\    \exists x:A,\,P(x) & \sum_{x:A}P(x)\end{array}\]Many of these make some intuitive sense. For example, in type theory, $A\land B$ should hold if and only if we can exhibit a witness of both $A$ and $B.$ So our witness for $A\land B$ should be the ordered pair of the witnesses, which would be anything in $A\times B.$ Similarly, a witness of $A\lor B$ is something in $A$ or $B,$ which witnesses exactly $A+B.$ The $\forall$ and $\exists$ statements are similar.</p>
 					<p>Somewhat awkward (but nice) is the handling of $A\to B.$ Essentially, we're saying that $A$ implies $B$ if and only if exhibiting a witness of $A$ lets us exhibit a witness to $B.$ Well, that only happens (in type theory) if we can exhibit the exact function $A\to B$ taking witnesses of $A$ to $B.$</p>
 					<p>Let's see a proof. Let's show\[((A+B)\to0)\to(A\to0)\times(B\to0).\]Logically, this reads, $\lnot(A+B)\to\lnot A\land\lnot B,$ which is one of de Morgan's Laws. To "prove'' this statement, we just have to exhibit a function of the above type.</p>
 					<p>We begin with a logical proof, and we'll translate it to type theory. We first show $\lnot A.$ Well suppose for the sake of contradiction $A.$ Then $A+B,$ which is a contradiction by hypothesis. We second show $\lnot B.$ Well suppose for the sake of contradiction $B.$ Then $A+B,$ which is a contradiction by hypothesis. So we know $\lnot A$ and $\lnot B,$ from which $\lnot A\land\lnot B$ follows.</p>
@@ -70,5 +42,6 @@ $Today I learned more formally about proving propositions as types. The idea is 
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

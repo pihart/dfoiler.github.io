@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to September)</a></p>
 				<div class="entry">
 					<h2>September 29th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a construction giving a construction for a witness to the Solovay&ndash;Strassen primality test, from <a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/solovaystrassen.pdf">Keith Conrad</a>. It's roughly what I expected, but the construction gets kind of involved in places. Take $n$ an odd composite. We have two cases.					</p>
+					<p>Today I learned a construction giving a construction for a witness to the Solovay&ndash;Strassen primality test, from <a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/solovaystrassen.pdf">Keith Conrad</a>. It's roughly what I expected, but the construction gets kind of involved in places. Take $n$ an odd composite. We have two cases.					</p>
 					<ol>
 						<li>     $n$ is squarefree; write $n=p_1\cdots p_r,$ taking $r{\gt}1.$ Because $p_1{\gt}2,$ we may conjure some $b$ for which $\left(\frac b{p_1}\right)=-1.$ Then, from the Chinese Remainder Theorem, we find $a$ satisfying    \[\begin{cases}        a\equiv b\pmod{p_1} \\        a\equiv1\pmod{p_k} & k{\gt}1.    \end{cases}\]    We claim that $a$ is a witness. Indeed, it follows that    \[\left(\frac an\right)=\prod_{k=1}^r\left(\frac a{p_k}\right)=-1\cdot\prod_{k=2}^r1=-1.\]    On the other hand, $a\equiv1\pmod{p_2},$ so    \[\left(\frac an\right)\equiv-1\not\equiv1\equiv a^{(n-1)/2}\pmod{p_2},\]    from which it follows that $\left(\frac an\right)\not\equiv a^{(n-1)/2}\pmod n.$    </li>
 						<li>     $n$ is the divisible by the square of a prime; write $n=p^km$ with $k=\nu_p(n){\gt}1.$ We'll show that $a$ cannot even be a Carmichael number, which will be good enough. This time we set $a$ so that    \[\begin{cases}        a \equiv 1+p\pmod{p^2} \\         a \equiv 1\pmod m.    \end{cases}\]    Certainly $\gcd(a,n)=1,$ so to witness $n$ is not a Carmichael number, we need $a^{n-1}\not\equiv1\pmod n.$ Indeed, note that    \[a^{n-1}\equiv(1+p)^{n-1}\equiv 1+(n-1)p\pmod{p^2}\]    from the binomial theorem. But $p\mid n$ implies that $1+(n-1)p\not\equiv1\pmod{p^2},$ so $a^{n-1}\not\equiv1\pmod{p^2}.$ It follows $a^{n-1}\not\equiv1\pmod n$ as well, which means that $a$ is a witness for $n.$</li>
@@ -68,5 +40,6 @@ $Today I learned a construction giving a construction for a witness to the Solov
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

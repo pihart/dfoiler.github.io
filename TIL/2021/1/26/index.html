@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 26th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a (contrived) example of a function which is both epic and monic but neither injective or surjective. The main idea is that epic and monic only work for injectivity and surjectivity when we have enough functions to witness elements, so to break this, we limit our functions.</p>
+					<p>Today I learned a (contrived) example of a function which is both epic and monic but neither injective or surjective. The main idea is that epic and monic only work for injectivity and surjectivity when we have enough functions to witness elements, so to break this, we limit our functions.</p>
 					<p>Namely, we consider the following category with $2$ objects and $3$ morphisms.</p>
 					<img src="img1.png">
 					<p>For convenience, we fix $X=\{1,2\}$ and $Y=\{3,4\}.$ We can verify manually that this is a category. We have $2$ objects and $3$ morphisms, two of which are the required identity mappings. Here is the function composition table; we use $-$ to signify that the domain does not match the codomain. (Left is left is input to $\circ$; top is right input.)\[\begin{array}{c|ccc}    \circ & \op{id}_X & \op{id}_Y & f \\\hline    \op{id}_X & \op{id}_X & - & -\\    \op{id}_Y & - & \op{id}_Y & f\\    f & f & - & -\end{array}\]This associates because they're functions on sets. Alternatively, this is by brute force: the identity vacuously associates with every function by erasing the identity, and any string of compositions we can make in this category has at most one non-identity function because there is only one non-identity function, and it cannot compose with itself. And finally, the identity behaves with $f$ as seen in the table.</p>
@@ -73,5 +45,6 @@ $Today I learned a (contrived) example of a function which is both epic and moni
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

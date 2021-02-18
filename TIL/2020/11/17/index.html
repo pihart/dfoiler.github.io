@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to November)</a></p>
 				<div class="entry">
 					<h2>November 17th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the definition of the limit superior to prove the radius of convergence for a power series. In symbols, we have\[\limsup_{n\to\infty}a_n=\lim_{n\to\infty}\left(\sup_{m{\gt}n}a_m\right).\]This always exists, provided we allow $\pm\infty.$ If $a_\bullet\to\infty,$ then this comes out to $\infty.$ Otherwise, the sequence $\{a_\bullet\}$ has a maximum, so $\sup_{m{\gt}\bullet}a_m$ is monotonically decreasing. If the supremum sequence goes to $-\infty,$ then the limit is $-\infty.$ Else, the sequence is lower-bounded, so it has a limit because we just said it's monotonically decreasing.</p>
+					<p>Today I learned the definition of the limit superior to prove the radius of convergence for a power series. In symbols, we have\[\limsup_{n\to\infty}a_n=\lim_{n\to\infty}\left(\sup_{m{\gt}n}a_m\right).\]This always exists, provided we allow $\pm\infty.$ If $a_\bullet\to\infty,$ then this comes out to $\infty.$ Otherwise, the sequence $\{a_\bullet\}$ has a maximum, so $\sup_{m{\gt}\bullet}a_m$ is monotonically decreasing. If the supremum sequence goes to $-\infty,$ then the limit is $-\infty.$ Else, the sequence is lower-bounded, so it has a limit because we just said it's monotonically decreasing.</p>
 					<p>For the radius of convergence, fix a series $S=\sum_na_n.$ Then, with the root test, examine\[A=\limsup_{n\to\infty}\sqrt[n]{\left|a_n\right|}.\]Note that $L\ge0.$ We have the following cases for the root test; I give the arguments here because I had to reconstruct them today.					</p>
 					<ul>
 						<li>     If $A{\gt}1$ (including $\infty$), then the sequence $\{a_n\}$ must have infinitely many terms with absolute value at least $1.$ Indeed, if there were only finitely many, then a bound $N$ would exist with $\sup_{m{\gt}n}\sqrt[m]{|a_m|}\le1$ for $n{\gt}N,$ implying $A\le1.$        But if an infinite subsequence is bounded below by $1,$ then it diverges by the Divergence test.    </li>
@@ -72,5 +44,6 @@ $Today I learned the definition of the limit superior to prove the radius of con
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 21st</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the core of the proof of the class number formula. As usual, $K$ is a number field of degree $n$ and signature $(r,s).$ Recall we are interested in showing there exists (and computing) a constant $\rho_K$ such that\[\#\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\}=\rho_Kt+O\left(t^{1-1/n}\right).\]We choose to compute ideals by ideal class instead, defining $\iota_C(t)$ for ideal class $C$ by\[\iota_C(t)=\#\{I\in C:\op{Norm}(I)\le t\}\]as we did a month ago. It will be enough to show that there exists some constant $\frac{\rho_K}{h_K}$ not dependent on $C$ such that $\iota_C(t)=\frac{\rho_K}{h_K}t+O\left(t^{1-1/n}\right).$ Roughly speaking, we're reducing the problem by saying that ideals should be distributed equally across ideal classes and counting by ideal class.</p>
+					<p>Today I learned the core of the proof of the class number formula. As usual, $K$ is a number field of degree $n$ and signature $(r,s).$ Recall we are interested in showing there exists (and computing) a constant $\rho_K$ such that\[\#\{I\subseteq\mathcal O_K:\op{Norm}(I)\le t\}=\rho_Kt+O\left(t^{1-1/n}\right).\]We choose to compute ideals by ideal class instead, defining $\iota_C(t)$ for ideal class $C$ by\[\iota_C(t)=\#\{I\in C:\op{Norm}(I)\le t\}\]as we did a month ago. It will be enough to show that there exists some constant $\frac{\rho_K}{h_K}$ not dependent on $C$ such that $\iota_C(t)=\frac{\rho_K}{h_K}t+O\left(t^{1-1/n}\right).$ Roughly speaking, we're reducing the problem by saying that ideals should be distributed equally across ideal classes and counting by ideal class.</p>
 					<p>Our goal now is to turn this question about counting ideals into a geometric question about counting points in the Minkowski space, similar to proving finiteness of the class number or Dirichlet's unit theorem. Geometry will probably be necessary, so the hope is that counting points is doable using some kind of argument like the Gauss circle problem and will give the result.</p>
 					<p>Anyways, the advantage we gain by counting by ideal class is that it lets us transform the question into one about principal ideals, which is almost counting points. Namely, fix $\Lambda$ some (integral) ideal in $C^{-1}.$ (I'm using $\Lambda$ because we're going to want to think about $\Lambda$ as a lattice in $K_\RR.$) We recall that integral ideals $I\in C$ of norm $\op{Norm}(I)\le t$ are in bijection with nonzero principal ideals $(\alpha)\subseteq\Lambda$ of norm $\op{Norm}(\alpha)\le t\op{Norm}(\Lambda).$</p>
 					<p>Namely, the bijection takes $I\mapsto I\Lambda,$ which is principal. It's injective by group law; it's surjective holds because $(\alpha)\Lambda^{-1}$ is integral provided $\Lambda\supseteq(\alpha).$ Anyways, we see\[\iota_C(t)=\#\{\text{nonzero }(\alpha)\subseteq\Lambda:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}.\]We'd like to count points, so we note that principal ideals $(\alpha)=(\alpha')$ are equal if and only if $\alpha/\alpha'\in\mathcal O_K^\times.$ So we count points "modded'' out by $\mathcal O_K^\times.$ We write\[\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/\mathcal O_K^\times.\]This was a bit too ambitious&mdash;we will need more control on this mod to actually count this set. So we recall Dirichlet's unit theorem says $\mathcal O_K\cong\mu(K)\times U,$ where $U$ is a free group of rank $r+s-1.$ The torsion $\mu(K)$ is kind of annoying to deal with, but we note that it's evenly spaced, so we claim\[\iota_C(t)=\frac1{\#\mu(K)}\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]In particular, each $(\alpha)$ is now represented by each element in $\alpha\mu(K),$ which is $\mu(K)$ elements. For brevity, let $w_K:=\#\mu(K).$ So we have\[w_K\iota_C(t)=\#\{\alpha\in\Lambda\setminus\{0\}:\op{Norm}(\alpha)\le t\op{Norm}(\Lambda)\}/U.\]</p>
@@ -81,5 +53,6 @@ $Today I learned the core of the proof of the class number formula. As usual, $K
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

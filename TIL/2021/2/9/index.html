@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 9th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the baby-step giant-step algorithm to solve the discrete log problem in general finite cyclic groups. As implied, our setup is to fix a finite cyclic group $G=\langle g\rangle$ of order $N$ and element $h\in G$ so that we want $x\in\ZZ$ satisfying $h=g^x.$ We note that the way we represent elements of $G$ is unimportant, as it should be in this algorithm.</p>
+					<p>Today I learned the baby-step giant-step algorithm to solve the discrete log problem in general finite cyclic groups. As implied, our setup is to fix a finite cyclic group $G=\langle g\rangle$ of order $N$ and element $h\in G$ so that we want $x\in\ZZ$ satisfying $h=g^x.$ We note that the way we represent elements of $G$ is unimportant, as it should be in this algorithm.</p>
 					<p>Brute force would be trying all $N$ different values of $x$ until hitting the correct one. This requires $O(1)$ space but a terrible $O(N)$ run-time. The baby-step giant-step algorithm trades some of the $O(1)$ space for a better run-time, akin to the Dirichlet hyperbola method. The key observation is that\[\frac x{\sqrt N}\le\sqrt N.\]More explicitly, this implies that any $x$ can be written as\[x=a\lceil\sqrt N\rceil+b\]where $0\le a,b{\lt}\lceil\sqrt N\rceil.$ So if we can check $\lceil\sqrt N\rceil$ values of $x$ simultaneously, our run-time will drop to $O(\sqrt N).$</p>
 					<p>The way that this is done is by storing $\lceil\sqrt N\rceil$ values of $x$ in a lookup table. Here are the steps.					</p>
 					<ol>
@@ -79,5 +51,6 @@ $Today I learned the baby-step giant-step algorithm to solve the discrete log pr
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

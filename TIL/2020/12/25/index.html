@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 25th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the proof for the relationship between Ford circles and kissing fractions. The simplest way to talk about this is to actually give the radius of the circles. On the number line, we assign reduced fractions $\frac ab$ a circle of radius $\frac1{2b^2}$ above it. Then this is what happens.</p>
+					<p>Today I learned the proof for the relationship between Ford circles and kissing fractions. The simplest way to talk about this is to actually give the radius of the circles. On the number line, we assign reduced fractions $\frac ab$ a circle of radius $\frac1{2b^2}$ above it. Then this is what happens.</p>
 					<img src="img1.png">
 					<p>Let's prove what we're seeing. Namely, no two circles overlap more than being tangent, and two circles are tangent if and only if they're fractions $\frac ab$ and $\frac cd$ are Farey neighbors. (That is, $ad-bc=\pm1.$) Well, overlapping can be tested by comparing the distance between centers to the sum of the radii. By construction, circles are centered at $\left(\frac ab,\frac1{2b^2}\right)$ with radius $\frac1{2b^2},$ so we are interested in showing\[\sqrt{\left(\frac ab-\frac cd\right)^2+\left(\frac1{2b^2}-\frac1{2d^2}\right)}\ge\frac1{2b^2}+\frac1{2d^2}\]with equality if and only if $ad-bc=\pm1.$ Clearing denominators somewhat, we are interested in showing\[\sqrt{(ad-bc)^2+\frac14\left(\left(\frac bd\right)^2-\left(\frac db\right)^2\right)}\ge\frac12\left(\left(\frac bd\right)^2+\left(\frac db\right)^2\right).\]Let $\left(\frac bd\right)^2=q$ for brevity. We may square and preserve the equivalence because everything involved is positive. So we want\[(ad-bc)^2+\frac14\left(q-q^{-1}\right)^2\ge\frac14\left(q+q^{-1}\right)^2.\]Expanding the $\left(q\pm q^{-1}\right)^2=q^2+q^{-2}\pm2$ will make the $q$ disappear. We're left with this being equivalent to\[(ad-bc)^2\ge1,\]which is what we wanted.</p>
 					<p>As a quick aside, this implies that if $\frac ab$ and $\frac cd$ have tangent Ford circles, then $\frac{a+c}{b+d}$ has a circle tangent to both of those. Indeed, we have that\[a(b+d)-b(a+c)=(a+c)d-(b+d)c=ad-bc=\pm1.\]In light of the above work, this is sufficient.</p>
@@ -74,5 +46,6 @@ $Today I learned the proof for the relationship between Ford circles and kissing
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

@@ -31,40 +31,13 @@
 				<p class="back"><a href="../" class="link">(back up to September)</a></p>
 				<div class="entry">
 					<h2>September 28th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the definition of ramification groups. Let $L/K$ be a normal extesion of number fields. I think it's natural to introduce these as generalizations of the inertia subgroup, noting that we can generalize\[E(\mf q/\mf p)=\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q}~~\forall\alpha\}\]to\[V_m=\left\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q^{m+1}}\right\}.\]In particular, $V_{-1}=\op{Gal}(L/K)$ and $V_0=E.$ Composing automorphisms shows that these are indeed subgroups; in particular, $\op{id}$ is in every $V_m$ because it's the identity, and we also have $\op{id}(\alpha)=\alpha\equiv\alpha\pmod{\mf q^\bullet}$ always.</p>
+					<p>Today I learned the definition of ramification groups. Let $L/K$ be a normal extesion of number fields. I think it's natural to introduce these as generalizations of the inertia subgroup, noting that we can generalize\[E(\mf q/\mf p)=\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q}~~\forall\alpha\}\]to\[V_m=\left\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q^{m+1}}\right\}.\]In particular, $V_{-1}=\op{Gal}(L/K)$ and $V_0=E.$ Composing automorphisms shows that these are indeed subgroups; in particular, $\op{id}$ is in every $V_m$ because it's the identity, and we also have $\op{id}(\alpha)=\alpha\equiv\alpha\pmod{\mf q^\bullet}$ always.</p>
 					<p>What follow are some basic properties. For example, we can quickly show that the $V_m$ are normal subgroups of $D(\mf q/\mf p)$ because for $\sigma\in D(\mf q/\mf p),$ we see\[\sigma V_m\sigma^{-1}\left(\alpha+\mf q^{m+1}\right)=\sigma V_m\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\sigma\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\alpha+\mf q^{m+1}.\]This implies $\sigma V_m\sigma^{-1}\subseteq V_m,$ which is what we wanted.</p>
 					<p>Because $\mf q^{m+1}\subsetneq\mf q^m,$ we see that $\sigma(\alpha)\equiv\alpha\pmod{q^{m+1}}$ implies $\sigma(\alpha)\equiv\alpha\pmod{\mf q^m},$ so the $V_m$ are a (not strictly) decreasing sequence of subgroups. And in fact, we claim that there is an $M$ for which $V_m=\{\op{id}\}$ for any integer $m\ge M.$ In fact, we can construct that $M$ explicitly: fix $L=K[\alpha]$ where $\alpha\in\mathcal O_L.$ (Certainly an $\alpha$ exists; multiplying it by a sufficient constant will make its polynomial monic.) Then we claim/I think\[M=\max\left\{\nu_\mf q\left((\sigma(\alpha)-\alpha)\mathcal O_L\right):\sigma\in\op{Gal}(L/K)\setminus\{\op{id}\}\right\}\]works and is in fact sharp. Quickly, note that $M$ is well-defined because for $\alpha\ne\op{id},$ we have $\sigma(\alpha)\ne\alpha.$ Indeed, $\sigma(\alpha)=\alpha$ forces all polynomials and ratios of polynomials of $\alpha$ to be fixed by $\sigma,$ which is all of $L.$</p>
 					<p>Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\not\in V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if\[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if\[\sigma(\alpha)-\alpha\not\in\mf q^{m+1}\]because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\not\in V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.</p>
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

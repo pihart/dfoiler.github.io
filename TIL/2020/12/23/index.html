@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 23rd</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the correct context for the zeta function of the ring of integers in a function field. Fix a global field $K$ with a ring of integers $\mathcal O_K.$ The zeta function of interest, then, is\[\zeta_{\mathcal O_K}(s)=\sum_{I\subseteq\mathcal O_K}\frac1{\op{Norm}(I)^s},\]where the sum ranges over nonzero ideal of $\mathcal O_K.$ Here we define $\op{Norm}(I)$ to be $\#\mathcal O_K/\mf p$ for primes and then extend multiplicatively to all ideals by unique prime factorization. This of course matches with how we defined ideal norms in number fields, and the zeta functions also match.</p>
+					<p>Today I learned the correct context for the zeta function of the ring of integers in a function field. Fix a global field $K$ with a ring of integers $\mathcal O_K.$ The zeta function of interest, then, is\[\zeta_{\mathcal O_K}(s)=\sum_{I\subseteq\mathcal O_K}\frac1{\op{Norm}(I)^s},\]where the sum ranges over nonzero ideal of $\mathcal O_K.$ Here we define $\op{Norm}(I)$ to be $\#\mathcal O_K/\mf p$ for primes and then extend multiplicatively to all ideals by unique prime factorization. This of course matches with how we defined ideal norms in number fields, and the zeta functions also match.</p>
 					<p>However, the $\zeta$ function for function fields turns out to be a lot nicer. Let $K=\FF_q(t)$ so that $\mathcal O_K=\FF_q[t],$ and abbreviate $\zeta_q:=\zeta_{\mathcal O_K}.$ What makes $\zeta_q$ so nice is that $\mathcal O_K$ is always a principal ideal domain and has finitely many units, which of course is rarely true for number fields.</p>
 					<p>We show $\mathcal O_K$ is a principal ideal domain for completeness and because it's the core of the argument. Fix any nonzero ideal $I\subseteq\mathcal O_K.$ It's nonzero, so it contains some nonzero polynomial, so it contains some nonzero polynomial of least degree, say $f(t).$ We claim $I=(f(t)).$ Certainly $(f(t))\subseteq I$ because $f(t)\in I.$ In the other direction, if $p(t)\in I,$ then apply Euclidean division (we're in a field) so that\[p(t)=q(t)f(t)+r(t).\]Here $r(t)=p(t)-q(t)f(t)\in I$ is either $0$ or is nonzero with strictly smaller degree than $f.$ The latter is impossible by the minimality of $f,$ so $r(t)=0,$ forcing $p(t)\in(f(t)),$ as desired.</p>
 					<p>The above tells us that we can represent any nonzero ideal $I$ as $(f)$ for some polynomial in $\mathcal O_K\setminus\{0\}.$ To account for over-counting, we have to deal with units. Note we can make this more precise by forcing $f$ monic by just multiplying whatever $f$ we chose by the inverse of its leading coefficient. Then if $I$ is represented by $(f)$ and $(g),$ then they both have the same degree (by construction) are both monic (without loss of generality), so when we write\[f=ug\]for some polynomial $u\in\mathcal O_K^\times,$ we have to have $\deg u=0$ and $u=1$ to make the leading coefficients match. Therefore $f=g,$ so nonzero ideals are in fact uniquely represented by monic polynomials.</p>
@@ -70,5 +42,6 @@ $Today I learned the correct context for the zeta function of the ring of intege
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

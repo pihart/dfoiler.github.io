@@ -31,39 +31,12 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 16th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the Poisson summation formula, from <a href="https://kconrad.math.uconn.edu/blurbs/grouptheory/charthy.pdf">Keith Conrad</a>. Assume $f:\RR\to\CC$ is a sufficiently nice function, which is my way of hand-waving out convergence issues. For example, we assume that $f$ has a Fourier transform denoted\[\hat f(y)=\int_\RR f(x)e^{-2\pi iy}\,dx.\]Then the statement of the Poisson summation formula is that\[\sum_{n\in\ZZ}f(n)=\sum_{n\in\ZZ}\hat f(n).\]The existence of the left-hand sum is guaranteed somewhat from the existence of the Fourier transform, but I'm not sure how to guarantee the right-hand side. Frankly, it doesn't matter too much to me.</p>
+					<p>Today I learned the Poisson summation formula, from <a href="https://kconrad.math.uconn.edu/blurbs/grouptheory/charthy.pdf">Keith Conrad</a>. Assume $f:\RR\to\CC$ is a sufficiently nice function, which is my way of hand-waving out convergence issues. For example, we assume that $f$ has a Fourier transform denoted\[\hat f(y)=\int_\RR f(x)e^{-2\pi iy}\,dx.\]Then the statement of the Poisson summation formula is that\[\sum_{n\in\ZZ}f(n)=\sum_{n\in\ZZ}\hat f(n).\]The existence of the left-hand sum is guaranteed somewhat from the existence of the Fourier transform, but I'm not sure how to guarantee the right-hand side. Frankly, it doesn't matter too much to me.</p>
 					<p>The main trick here is to make the left-hand summation periodic so that we can write it as a Fourier series. Explicitly, fix\[F(x)=\sum_{n\in\ZZ}f(x+n)\]so that $F(x)=F(x+1).$ It follows that we can write\[F(x)=\sum_{n\in\ZZ}c_ne^{2\pi inx},\]and our coefficients are\[c_n=\left\langle F(x),e^{2\pi inx}\right\rangle=\int_0^1F(x)e^{-2\pi inx}\,dx.\]Expanding out $F$ again, we see that\[c_n=\int_0^1\left(\sum_{n\in\ZZ}f(x+n)\right)e^{-2\pi inx}\,dx=\sum_{n\in\ZZ}\int_0^1f(x+n)e^{2\pi inx}\,dx.\]Sending $x+n\mapsto x$ collapses this down to\[c_n=\sum_{n\in\ZZ}\int_n^{n+1}f(x)e^{2\pi inx}\,dx=\int_\RR f(x)e^{2\pi inx}\,dx,\]which is just $c_n=\hat f(n).$ Bringing it all together, we have\[\sum_{n\in\ZZ}f(x+n)=F(x)=\sum_{n\in\ZZ}c_ne^{2\pi inx}=\sum_{n\in\ZZ}\hat f(n)e^{2\pi inx}.\]Taking $x=0$ in the above recovers the Poisson summation formula.</p>
 					<p>I don't yet know any applications of the Poisson summation formula, but I suppose I'm moving towards the functional equation for $\zeta$ sometime in my future. Roughly speaking, it would appear that there might be cases in which the Fourier transform is easier to understand or easier to bound (which isn't at all obvious to me), and this is why this is useful.</p>
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

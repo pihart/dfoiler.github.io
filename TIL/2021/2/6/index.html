@@ -31,39 +31,12 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 6th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned how to recover the modulus of a linear congruential pseudorandom number generator, from <a href="https://security.stackexchange.com/a/4306">here</a>. Very quickly, a linear congruential generator is a sequence of pseudorandom modular classes $a_0,a_1,a_2,\ldots$ defined by a seed $a_0$ and the recurrence relation\[a_{n+1}\equiv Aa_n+B\pmod N\]for some constants $A,B,N.$ The question is how we should back-construct $A,B,N$ if given some (hopefully small) number of terms of $a_\bullet$; this would let us predict the rest of the pseudorandom sequence and is therefore bad. We note that if we know $N,$ we see\[\begin{cases}    a_1\equiv Aa_0+B\pmod N, \\    a_2\equiv Aa_1+B\pmod N\end{cases}\]is a system of linear congruences. Assuming that the sequence is kind, we can use this to solve for $A$ and $B$ by just solving with row reduction in the normal way. Thus, we can recover $A$ and $B$ given $N$ in roughly $3$ terms. Explicitly, subtracting and then solving gives\[A\equiv\frac{a_2-a_1}{a_1-a_0},\qquad B\equiv a_1-Aa_0\pmod N.\]We remark that "the sequence is kind'' means that $\gcd(u_1-u_0,N)=1$ so that we can actually do division here. However, this is a non-problem, for $\gcd(u_1-u_0,N)$ will get propagated through the entire sequence, so we can just divide it from all terms, and then do the modular division safely. Note if $u_1-u_0\equiv0,$ then the sequence is constant.</p>
+					<p>Today I learned how to recover the modulus of a linear congruential pseudorandom number generator, from <a href="https://security.stackexchange.com/a/4306">here</a>. Very quickly, a linear congruential generator is a sequence of pseudorandom modular classes $a_0,a_1,a_2,\ldots$ defined by a seed $a_0$ and the recurrence relation\[a_{n+1}\equiv Aa_n+B\pmod N\]for some constants $A,B,N.$ The question is how we should back-construct $A,B,N$ if given some (hopefully small) number of terms of $a_\bullet$; this would let us predict the rest of the pseudorandom sequence and is therefore bad. We note that if we know $N,$ we see\[\begin{cases}    a_1\equiv Aa_0+B\pmod N, \\    a_2\equiv Aa_1+B\pmod N\end{cases}\]is a system of linear congruences. Assuming that the sequence is kind, we can use this to solve for $A$ and $B$ by just solving with row reduction in the normal way. Thus, we can recover $A$ and $B$ given $N$ in roughly $3$ terms. Explicitly, subtracting and then solving gives\[A\equiv\frac{a_2-a_1}{a_1-a_0},\qquad B\equiv a_1-Aa_0\pmod N.\]We remark that "the sequence is kind'' means that $\gcd(u_1-u_0,N)=1$ so that we can actually do division here. However, this is a non-problem, for $\gcd(u_1-u_0,N)$ will get propagated through the entire sequence, so we can just divide it from all terms, and then do the modular division safely. Note if $u_1-u_0\equiv0,$ then the sequence is constant.</p>
 					<p>It remains to solve for the modulus $N$ from our sequence. The outline is that our linear recurrence lets us generate modular classes, so we might be able to turn this into a way to generate numbers $0\pmod N,$ in which case we should be able to take $\gcd$ to get $N.$ To begin, we get rid of the constant term by defining\[b_n:=a_{n+1}-a_n.\]With $n+1$ consecutive terms of $a_\bullet,$ we can solve for $n$ terms of $b_\bullet,$ so we will need more terms, but so it goes. Anyways, the nice thing is that\[b_{n+1}\equiv(a_{n+2}-a_{n+1})\equiv A(a_{n+1}-a_n)\equiv Ab_n.\]To turn this into a sequence $0\pmod N,$ we define\[c_n:=b_{n+2}b_n-b_{n+1}^2\equiv A^2b_n-A^2b_n\equiv0\pmod N.\]We need yet another term of $a_\bullet$ for the $c_\bullet$ sequence, but so it goes. Anyways, this generates a lot of numbers which are $0\pmod N.$ At a high level, we expect\[\gcd(c_0,c_1,\ldots)=N\gcd\left(\frac{c_0}N,\frac{c_1}N,\ldots\right)=N\]because there's no reason that $c_\bullet/N$ should have any common factors. For example, even if we were just to look at $\gcd(c_n/N,c_{n+1}/N),$ we expect this to be $1$ with probability $6/\pi^2$ for each $n.$ So after $10$ terms, the probability is less than $1\%.$ Thus, about $12$ terms of $a_\bullet$ is probably sufficient to get $N.$</p>
 					<p>I don't think a proof of this heuristic would be easy. The sequence $c_\bullet$ only looks pseudorandom because $a_\bullet$ looks random, which is difficult to pin down. Further, getting some proven bound on the number of terms of $a_\bullet$ or $c_\bullet$ feels unhelpful: I get the feeling that what can be proven will be significantly worse than the heuristic (and probably practical use) suggests.</p>
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

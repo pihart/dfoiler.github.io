@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 29th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned some examples of type-theoretic recursion and induction. On a high level, recursion (and induction) tell us how we can define (dependent) functions on a type. Often these are best thought of as rules/axioms the way that a group or ring has rules/axioms.</p>
+					<p>Today I learned some examples of type-theoretic recursion and induction. On a high level, recursion (and induction) tell us how we can define (dependent) functions on a type. Often these are best thought of as rules/axioms the way that a group or ring has rules/axioms.</p>
 					<p>I think the clearest way that this works is with products. We would like to say that we can define a function $f:A\times B\to C$ (for $A,B,C:\mathcal U$) based on (say) curried two-variable functions $A\to B\to C.$ (Ordered pairs are primitive objects.) The way we formalize this is by creating a machine which creates functions $A\times B\to C$ based on our curried functions. This machine is\[\op{rec}_{A\times B}:\prod_{C:\mathcal U}(A\to B\to C)\to(A\times B\to C).\]The way I'm thinking about this is as what we described&mdash;a function which takes our output type $C:\mathcal U$ (hidden in the $\prod$) and a curried function $g:A\to B\to C$ and outputting a function $A\times B\to C.$ Well, what does $\op{rec}$ do? We write\[\op{rec}_{A\times B}(C,g)((a,b)):\equiv g(a)(b).\]Because of how loose we're being with currying over functions with multiple inputs, we could also think about this like\[\op{rec}_{A\times B}(C,g,(a,b)):\equiv g(a)(b),\]but I find this less enlightening.</p>
 					<p>It's a bit more complicated to do this with dependent functions, which is induction. Instead of taking a type $C$ as input, we have to take a family $C:A\times B\to\mathcal U.$ Then we may write\[\op{ind}_{A\times B}:\prod_{C:A\times B\to\mathcal U}\left(\prod_{a:A}\prod_{b:B}C((a,b))\right)\to\prod_{x:A\times B}C(x).\]Again, read this as taking a family $C:A\times B\to\mathcal U$ and a dependent function $g:\prod_{a:A}\prod_{b:B}C((a,b))$ and then outputting the natural dependent function in $\prod_{x:A\times B}C(x).$ (Danger: $\prod_{x:A}$ refers to a function with a variable in $A.$) Which function? Well, we have\[\op{ind}_{A\times B}(C,g)((a,b)):\equiv g(a)(b).\]Again, one might get more mileage thinking about this like $\op{ind}_{A\times B}(C,g,(a,b))\equiv g(a)(b).$</p>
 					<p>The generalized example of these is with dependent pairs. Again, we'd like to say that we can define a function on the pair $\sum_{x:A}B$ (for family $B:A\to\mathcal U$) by some sufficiently curried function. This is done with the recursor, writing\[\op{rec}_{\sum_{x:A}B(x)}:\prod_{C:\mathcal U}\left(\prod_{x:A}(B(x)\to C)\right)\to\left(\sum_{x:A}B(x)\to C\right).\]This notation means that the recursor takes our output type $C:\mathcal U$ and a curried dependent function $g:\prod_{x:A}B(x)\to C$ and outputs a function on the dependent pair. (Danger: $\prod_{x:A}B(x)\to C$ is indeed curried! Its first input is $a:A.$) It does so in the natural way, by\[\op{rec}_{\sum_{x:A}B(x)}(C,g)((a,b)):\equiv g(a)(b).\]Similarly, we have the induction\[\op{ind}_{\sum_{x:A}B(x)}:\prod_{C:\sum_{x:A}B(x)\to\mathcal U}\left(\prod_{x:A}\prod_{y:B(x)}C((x,y))\right)\to\prod_{p:\sum_{x:A}B(x)}C(p).\]As usual, this is taking a family $C:\sum_{x:A}B(x)\to\mathcal U$ as input in addition to a dependent curried function $g:\prod_{x:A}\prod_{b:B}C((x,y))$ and then outputs a dependent function on the dependent pair. This is done in the natural way, by\[\op{ind}_{\sum_{x:A}B(x)}(C,g)((a,b)):\equiv g(a)(b).\]Don't mind the subscripts in subscripts.</p>
@@ -67,5 +39,6 @@ $Today I learned some examples of type-theoretic recursion and induction. On a h
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

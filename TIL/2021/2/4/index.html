@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 4th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a little more about decidability of symbolic algebra series convergence. Specifically, I know that if we permit sums over multiple variables, then series convergence is undecidable. To be clear, for the time being we are allowing $\QQ[x_1,\ldots],\pi,i,|\bullet|,\exp,$ as well as addition, multiplication, and composition of these functions.</p>
+					<p>Today I learned a little more about decidability of symbolic algebra series convergence. Specifically, I know that if we permit sums over multiple variables, then series convergence is undecidable. To be clear, for the time being we are allowing $\QQ[x_1,\ldots],\pi,i,|\bullet|,\exp,$ as well as addition, multiplication, and composition of these functions.</p>
 					<p>This is the easier than it appears, and in fact we claim that we can do this with only $\QQ$ and $|\bullet|.$ The key observation is that we can build a $0$-indicator over $\ZZ.$ As a lemma, we note that\[\frac12(x+y+|x-y|)=\begin{cases}x & x{\gt}y, \\ y & y{\gt}x,\end{cases}=\max\{x,y\}.\]It follows that we can construct $\max$ using only $|\bullet|.$ We remark that, at a high level, $|\bullet|$ is necessary because $\max$ is a non-smooth function, and $|\bullet|$ should be sufficient because $\max$ is piecewise differentiable. Now fix some $\varepsilon{\gt}0,$ and we claim that\[\iota_0(q):=\max\left(0,-\frac1\varepsilon|q|+1\right)=\begin{cases}    1 & q=0, \\    0 & |q|\ge\varepsilon.\end{cases}\]Note that we have not claimed behavior for $q\in(-\varepsilon,\varepsilon)\setminus\{0\},$ but if we fix $\varepsilon{\lt}1,$ then this interval will contain no integers. So $\iota_0$ can still work as a $0$-indicator. Anyways, at $q=0,$ the above reads $\iota_0(0)=\max(0,1)=1.$ And if $|q|\ge\varepsilon,$ then\[-\frac1\varepsilon|q|+1{\lt}0,\]so $\iota_0(q)=0.$</p>
 					<p>Now we show that it is undecidable to determine if a series in multiple variables converges. In fact, we claim that an oracle which can determine if multivariate series converge can determine if a Diophantine equation in $\NN$ has roots, which we know to be undecidable from Hilbert's 10th. Fix some Diophantine equation $p(x_1,\ldots,x_n)=0$ for $p\in\ZZ[x_1,\ldots,x_n].$</p>
 					<p>We begin by lifting $p$ to a Diophantine with either $0$ or infinitely many solutions. Indeed, we quickly consider the polynomial\[\hat p(x_1,\ldots,x_{n+1}):=\left(x_{n+1}^2+1\right)p(x_1,\ldots,x_n).\]In particular, if $p$ has a natural root named $(y_1,\ldots,y_n),$ then $\hat p$ has infinitely many solutions by $(y_1,\ldots,y_n,y_{n+1})$ for any $y_{n+1}\in\NN.$ However, if $p$ has no solutions, then $\hat p$ can't have any solutions, for $\hat p=0$ requires either $x_{n+1}^2+1=0,$ which is impossible, or $p(x_1,\ldots,x_n)=0.$</p>
@@ -74,5 +46,6 @@ $Today I learned a little more about decidability of symbolic algebra series con
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

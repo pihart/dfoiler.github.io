@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 20th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned an extension of the information-theoretic proof of the infinitude of primes, from <a href="https://qchu.wordpress.com/2009/09/02/some-remarks-on-the-infinitude-of-primes/">here</a>. The proof, roughly speaking, is that there aren't "enough'' integers with all primes in a fixed set of $k$ primes named $p_1,\ldots,p_k.$ Essentially, if we can express all positive integers $n$ as\[n=\prod_{\ell=1}^kp_\ell^{\nu_\ell},\]then we can represent integers $n$ using the $k$-tuple $(\nu_1,\ldots,\nu_k),$ which only needs\[\sum_{\ell=1}^k\log(\nu_\ell){\lt}\log n\]bits to represent, which is impossible.</p>
+					<p>Today I learned an extension of the information-theoretic proof of the infinitude of primes, from <a href="https://qchu.wordpress.com/2009/09/02/some-remarks-on-the-infinitude-of-primes/">here</a>. The proof, roughly speaking, is that there aren't "enough'' integers with all primes in a fixed set of $k$ primes named $p_1,\ldots,p_k.$ Essentially, if we can express all positive integers $n$ as\[n=\prod_{\ell=1}^kp_\ell^{\nu_\ell},\]then we can represent integers $n$ using the $k$-tuple $(\nu_1,\ldots,\nu_k),$ which only needs\[\sum_{\ell=1}^k\log(\nu_\ell){\lt}\log n\]bits to represent, which is impossible.</p>
 					<p>To push this idea further, we fix a bound $n\le N$ and bound the number of integers $n$ with primes in $\{p_1,\ldots,p_k\}.$ In this case, fixing one such prime $p_\bullet,$ we see\[2^{\nu_\bullet}\le p_\bullet^{\nu_\bullet}\le n=\prod_{\ell=1}^kp_\ell^{\nu_\ell}\le N.\]It follows that $\nu_\bullet\le\log_2N$ for each $p_\bullet.$ Combining this for all $k$ primes, there are no more than $(\log_2N)^k$ total numbers which can be represented in this way. We remark that the inequality\[(\log_2N)^k{\lt}N\]for $N\to\infty$ is our proof of the infinitude of primes.</p>
 					<p>However, this provides a strange contrapositive of our statement. If we have any infinite sequence of positive integers $a_1,a_2,\ldots$ such that, for a bound $N,$ there are more than $(\log_2N)^k$ terms of the sequence less than $N,$ then our sequence represents more than $k$ primes. Quite simply, there are too many integers to be represented by any fixed set of $k$ primes. For concreteness, let's say our sequence is increasing so that we can set $N=a_n,$ from which we see\[(\log_2a_n)^k{\lt}n\]is enough to give more than $k$ primes. Rearranging, this bound is saying that\[a_n{\lt}2^{\sqrt[k]n}\]gives more than $k$ primes.</p>
 					<p>Adjusting for aesthetics, this implies that if an increasing sequence of positive integers $a_1,a_2,\ldots$ is $o\big(2^{\sqrt[k]n}\big)$ for any positive integer $k,$ then our sequence represents infinitely many primes. Because $2^{1/k}\to1^+$ as $k\to\infty,$ we might as well say that if our sequence of positive integers $a_1,a_2,\ldots$ is $o\left(\alpha^n\right)$ for any $\alpha{\gt}1,$ then our sequence represents infinitely many primes. Of course, the argument is a bit stronger than this, but this is aesthetically nice.</p>
@@ -67,5 +39,6 @@ $Today I learned an extension of the information-theoretic proof of the infinitu
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

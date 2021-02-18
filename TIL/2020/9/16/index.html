@@ -31,40 +31,13 @@
 				<p class="back"><a href="../" class="link">(back up to September)</a></p>
 				<div class="entry">
 					<h2>September 16th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned the definition of localization of a ring. Namely, if we have a commutative ring $R$ and multiplicatively closed subset $S\subseteq R$ containing $1\in S,$ then we very roughly define\[S^{-1}R=\{r/s:r\in R\text{ and }s\in S\}\]to be the set of fractions of $R$ having elements of $S$ as denominators. There is a caveat that $r_1/s_1=r_2/s_2$ if and only if there exists some $s\in S$ satisfying $s(r_1s_2-r_2s_1)=0$; i.e., $r_1s_2-r_2s_1$ is a zero divisor instead of being actually $0.$ Otherwise, addition and multiplication work exactly as expected. For example, when $R$ is an integral domain, we can set $S=R\setminus\{0\},$ and the above is the field of fractions. With this intuition in mind, we note the mapping\[r\longmapsto r/1\]taking $R\to S^{-1}R.$</p>
+					<p>Today I learned the definition of localization of a ring. Namely, if we have a commutative ring $R$ and multiplicatively closed subset $S\subseteq R$ containing $1\in S,$ then we very roughly define\[S^{-1}R=\{r/s:r\in R\text{ and }s\in S\}\]to be the set of fractions of $R$ having elements of $S$ as denominators. There is a caveat that $r_1/s_1=r_2/s_2$ if and only if there exists some $s\in S$ satisfying $s(r_1s_2-r_2s_1)=0$; i.e., $r_1s_2-r_2s_1$ is a zero divisor instead of being actually $0.$ Otherwise, addition and multiplication work exactly as expected. For example, when $R$ is an integral domain, we can set $S=R\setminus\{0\},$ and the above is the field of fractions. With this intuition in mind, we note the mapping\[r\longmapsto r/1\]taking $R\to S^{-1}R.$</p>
 					<p>This motivates a categorical definition of localization: the above mapping $\varphi:R\to S^{-1}R$ is initial among all maps $R\to R'$ where $S$ is sent to units of $R'.$ In other words, for any mapping $f:R\to R'$ sending $S$ to units of $R',$ $f$ factors uniquely through $\varphi.$</p>
 					<img src="img1.png">
 					<p>Indeed, our explicit construction for $f=g\varphi$ is $g(r/s)=f(r)f(s)^{-1},$ which just a categorical way to think about quotients. By construction addition and multiplication are well-behaved, so this is valid mapping $S^{-1}R\to R'.$ To show that this is forced, suppose we have a $g$ with $f=g\varphi.$ Then we know for free that $f(r)=g\varphi(r)=f(r)=g(r/1).$ But because $g$ is a homomorphism, we see\[g(r/s)g(s/1)=g(rs/s1)=g(r/1).\]From this it follows $g(r/s)=f(r)f(s)^{-1}$ is forced, which is what we wanted.</p>
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>

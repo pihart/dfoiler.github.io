@@ -31,35 +31,7 @@
 				<p class="back"><a href="../" class="link">(back up to November)</a></p>
 				<div class="entry">
 					<h2>November 14th</h2>
-					<p>$\renewcommand{\AA}{\mathbb A}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\FF}{\mathbb F}
-\newcommand{\PP}{\mathbb P}
-\newcommand{\e}{\varepsilon}
-\newcommand{\ball}[2]{(#1-#2,\,#1+#2)}
-
-\newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
-\newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
-\newcommand{\diff}{\operatorname{diff }}
-\newcommand{\disc}{\operatorname{disc }}
-\newcommand{\ord}{\text{ord}}
-\newcommand{\lcm}{\text{lcm}}
-\newcommand{\del}{\partial}
-\newcommand{\emp}{\varnothing}
-\newcommand{\divides}{\,|\,}
-\newcommand{\op}[1]{\operatorname{#1}}
-\newcommand{\mf}[1]{\mathfrak{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\sgn}{\operatorname{sgn}}
-
-\newcommand{\refl}{\op{refl}}
-\newcommand{\UU}{\mathcal{U}}
-$Today I learned a proof of the Fundamental Theorem of Algebra, using Galois theory as a translator. As setup, it suffices to show that $\CC$ has only the trivial extension, so fix some extension over $\CC,$ and without loss of generality extend it to a normal closure $M/\RR.$</p>
+					<p>Today I learned a proof of the Fundamental Theorem of Algebra, using Galois theory as a translator. As setup, it suffices to show that $\CC$ has only the trivial extension, so fix some extension over $\CC,$ and without loss of generality extend it to a normal closure $M/\RR.$</p>
 					<p>The action will take place in an intermediate field $L,$ defined as the fixed field of the Sylow $2$-subgroup of $G=\op{Gal}(M/\RR),$ which we name $G_2\subseteq G.$ We do this because then\[[L:\RR]=[G:G_2]\]is odd. This is helpful for us because it actually forces $L$ to collapse into $\RR,$ for  topological reasons. In particular, the Primitive Element Theorem lets us say $L=\RR[\alpha]$ for some $\alpha,$ and we know the minimal polynomial in $\RR[x]$ is irreducible and of odd degree (above). But then the Intermediate Value Theorem (our topological property) says that all polynomials of odd degree have a root in $\RR,$ so the minimal polynomial must be linear. In other words, $[L:\RR]=1.$</p>
 					<p>Translating back into Galois theory, the fact $[L:\RR]=1$ implies $G=G_2,$ and in particular, $G$ is a $2$-group. We refocus on $\op{Gal}(M/\CC),$ a subgroup of $G$ and so another $2$-group. Now suppose for the sake of contradiction the extension $M/\CC$ is nontrivial. Then $\op{Gal}(M/\CC)$ would have to have a subgroup of index $2$ (<a href="https://math.stackexchange.com/questions/1788345/p-groups-have-normal-subgroups-of-each-order?noredirect=1&lq=1">$p$-groups have normal subgroups of all sizes</a>), so there must be a quadratic extension of $\CC$ to create this.</p>
 					<p>We're in the home stretch now. Note that we have yet to use any property of $\CC$&mdash;the above argument merely required Galois theory and topological properties of $\RR.$ Well, all we need to say about $\CC$ is that is closed under square-roots (quadratic formula), so there are no quadratic extensions of $\CC,$ which is our contradiction. So we're done.</p>
@@ -68,5 +40,6 @@ $Today I learned a proof of the Fundamental Theorem of Algebra, using Galois the
 				</div>
 			</div>
 		</div>
-	<script src="../../../../sidebar.js"></script>	</body>
+		<script src="../../../../sidebar.js"></script>
+	</body>
 </html>
