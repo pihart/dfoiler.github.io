@@ -12,6 +12,11 @@ function sidebarHeight()
 
 sidebarHeight();
 
+window.MathJax.Hub.Queue(function ()
+{
+	sidebarHeight();
+});
+
 // the clickable menus
 var submenus = document.getElementsByClassName('yearmenu');
 for(var i = 0; i < submenus.length; ++i)

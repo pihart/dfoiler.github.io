@@ -1,4 +1,4 @@
-window.MathJax.Hub.Config({
+window.MathJax = {
 	loader: {
 		load: ['[tex]/textmacros']
 	},
@@ -41,13 +41,8 @@ window.MathJax.Hub.Config({
 	},
 	SVG: {
 		linebreaks: { automatic: true }
-	}
-});
-
-window.MathJax.Hub.Queue(function ()
-{
-	sidebarHeight();
-});
+	},
+};
 
 window.addEventListener('resize', MJrerender);
 // https://stackoverflow.com/a/56106854

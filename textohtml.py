@@ -17,7 +17,7 @@ def header(level):
 		<link rel="stylesheet" href="'''+'../'*level+'''sidebar.css">
 		<link rel=icon href="'''+'../'*level+'''p.ico">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="'''+'../'*level+'''mathjax-config.js" defer></script>
+		<script src="'''+'../'*level+'''mathjax-config.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>\n'''
 
