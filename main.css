@@ -17,6 +17,7 @@ h1
 h2
 {
 	margin-top: 0pt;
+	margin-bottom: 10pt;
 }
 
 h3
@@ -24,6 +25,7 @@ h3
 	margin-left: 0pt;
 	margin-right: 0pt;
 	margin-top: 0pt;
+	margin-bottom: 6pt;
 }
 
 p
@@ -80,4 +82,9 @@ img
 	padding-left: 8.25pt;
 	border-radius: 6.75pt;
 	margin-bottom: 1em;
+}
+
+.entry h2
+{
+	margin-bottom: 6pt;
 }

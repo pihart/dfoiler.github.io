@@ -218,9 +218,15 @@ total_html = start_html(1)
 # Add in the intro
 intro = process_tex(open('TeX/intro.tex').read())
 parts = [part for part in intro.split('\n') if part]
-for part in parts[:-1]:
+for part in parts:
 	total_html += indent(0)+'<p>'+part+'</p>\n'
-total_html += indent(0)+'<p style="margin-bottom: 18pt;">'+parts[-1]+'</p>\n'
+# A bit of padding
+total_html += indent(0)+'<div style="height: 6pt;"></div>\n'
+total_html += end_html(1)
+# Make the total file
+f = open('TIL/index.html','w')
+f.write(total_html)
+f.close()
 # Iterate through the years subdirectories
 for year in next(os.walk('TeX'))[1]:
 	# Start the year file
@@ -232,7 +238,6 @@ for year in next(os.walk('TeX'))[1]:
 	if year not in next(os.walk('TeX'))[1]:
 		os.mkdir('TIL/'+year)
 	# Increment the total file
-	total_html += indent(0)+'<h2><a href="'+year+'/">'+year+'</a></h2>\n'
 	year_months = sorted(os.listdir('TeX/'+year), key=lambda m:int(m[:-len('.tex')]))
 	for month in year_months:
 		# Make month if not there
@@ -273,13 +278,10 @@ for year in next(os.walk('TeX'))[1]:
 		f = open('TIL/'+year+'/'+month+'/'+'index.html','w')
 		f.write(month_html)
 		f.close()
+	# Some padding
+	year_html += indent(0)+'<div style="height: 6pt;"></div>\n'
 	year_html += end_html(2)
 	# Make the year file
 	f = open('TIL/'+year+'/index.html','w')
 	f.write(year_html)
 	f.close()
-total_html += end_html(1)
-# Make the total file
-f = open('TIL/index.html','w')
-f.write(total_html)
-f.close()

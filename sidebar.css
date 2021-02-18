@@ -1,7 +1,7 @@
 /* goes around all content below the title */
 .container
 {
-	background: #fcfdff;
+	background: #f7f9ff;
 	margin-top: 0;
 	margin-left: auto;
 	margin-right: auto;
@@ -13,7 +13,6 @@
 /* goes around all of the archive */
 .sidebar
 {
-	background: #f7f9ff;
 	margin-top: 0pt;
 	margin-bottom: 0pt;
 	padding-top: 4.5pt;
@@ -23,6 +22,7 @@
 	width: 103.5pt;
 	float: right;
 	border-radius: 0 1em 1em 0;
+	overflow: auto;
 }
 
 /* one of the year entries in the archive */
@@ -90,7 +90,8 @@ li span
 	background: #fcfdff; 
 	padding-top: 1em;
 	padding-left: 1em;
-	margin-right: 132.75pt;
+	padding-right: 1em;
+	margin-right: 116.75pt;
 	border-radius: 1em 0 0 1em;
 	overflow: auto;
 }
@@ -111,7 +112,6 @@ li span
 	.content
 	{
 		margin-right: 0;
-		padding-right: 1em;
 		border-radius: 1em;
 	}
 }
