@@ -1,17 +1,19 @@
 /* goes around all content below the title */
 .container
 {
+	background: #fcfdff;
 	margin-top: 0;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-bottom: 0.001em;
 	max-width: 712.5pt;
+	border-radius: 1em;
 }
 
 /* goes around all of the archive */
 .sidebar
 {
+	background: #f7f9ff;
 	margin-top: 0pt;
 	margin-bottom: 0pt;
 	padding-top: 4.5pt;
@@ -19,8 +21,8 @@
 	padding-right: 8.25pt;
 	padding-left: 8.25pt;
 	width: 103.5pt;
-	background-color: #f7f9ff;
 	float: right;
+	border-radius: 0 1em 1em 0;
 }
 
 /* one of the year entries in the archive */
@@ -85,9 +87,12 @@ li span
 /* content apart from the sidebar */
 .content
 {
-	padding-top: 11.75pt;
+	background: #fcfdff; 
+	padding-top: 1em;
+	padding-left: 1em;
 	margin-right: 132.75pt;
-	margin-bottom: 11.75pt;
+	border-radius: 1em 0 0 1em;
+	overflow: auto;
 }
 
 /* small screens */
@@ -105,6 +110,8 @@ li span
 	}
 	.content
 	{
-		margin-right: 0pt;
+		margin-right: 0;
+		padding-right: 1em;
+		border-radius: 1em;
 	}
 }

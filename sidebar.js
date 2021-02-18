@@ -3,11 +3,9 @@ window.addEventListener('resize', sidebarHeight);
 
 function sidebarHeight()
 {
-	// +15 accounts for the margin-bottom of an entry
-	var contentHeight = $('.content').height() + 15;
-	// height all the way to the bottom
-	var windowHeight = window.innerHeight - $('.title')[0].offsetHeight - 12;
-	$('.sidebar').height(Math.max(contentHeight, windowHeight));
+	// +11 accounts for the padding of the sidebar
+	var contentHeight = $('.content')[0].offsetHeight - 11;
+	$('.sidebar').height(contentHeight);
 }
 
 sidebarHeight();

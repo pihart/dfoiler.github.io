@@ -1,9 +1,9 @@
 body
 {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Helvetica, sans-serif;
 	font-size: 13pt;
 	color: #303030;
-	background: #fcfdff;
+	background: #ecf3ff;
 	height: 100%;
 	margin: 0;
 }
@@ -28,6 +28,7 @@ h3
 
 p
 {
+	font-family: Roboto;
 	margin-top: 0pt;
 	margin-bottom: 5pt;
 }
@@ -78,5 +79,5 @@ img
 	padding-right: 8.25pt;
 	padding-left: 8.25pt;
 	border-radius: 6.75pt;
-	margin-bottom: 11.25pt;
+	margin-bottom: 1em;
 }
