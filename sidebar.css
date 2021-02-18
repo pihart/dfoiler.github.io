@@ -17,10 +17,9 @@
 	padding-bottom: 5px;
 	padding-right: 11px;
 	padding-left: 11px;
-	border-radius: 9px;
 	width: 138px;
 	background-color: #f7f9ff;
-	position: absolute;
+	float: right;
 }
 
 .yearmenu
@@ -71,9 +70,16 @@ li span
 	left: -3px;
 }
 
+.back
+{
+	display: none;
+	margin-top: 0px;
+}
+
 .content
 {
-	margin-left: 175px;
+	padding-top: 14px;
+	margin-right: 177px;
 }
 
 @media screen and (max-width: 800px)
@@ -82,8 +88,12 @@ li span
 	{
 		display: none;
 	}
+	.back
+	{
+		display: block;
+	}
 	.content
 	{
-		margin-left: 0px;
+		margin-right: 0px;
 	}
 }

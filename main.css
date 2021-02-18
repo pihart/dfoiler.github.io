@@ -28,6 +28,7 @@ h3
 
 p
 {
+	margin-top: 0pt;
 	margin-bottom: 5pt;
 }
 
@@ -50,11 +51,6 @@ img
 	margin-right: 30%;
 }
 
-.back
-{
-	margin-top: 10px;
-}
-
 .link
 {
 	color: #676767;
@@ -64,7 +60,7 @@ img
 
 .title
 {
-	background: #e3e9ff;
+	background: #ecf3ff;
 	padding-top: 1em;
 	padding-bottom: 1em;
 	margin: 0px;
