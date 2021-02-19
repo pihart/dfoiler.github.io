@@ -409,7 +409,7 @@ I will also mention the definition of compact support, which is actually why I h
 has support $\overline{(-1,1)}=[-1,1]$ and therefore has compact support. In general, I'm thinking about compact support as meaning some strongish form of very small---the nonzero set must be bounded for compact support.
 
 \subsubsection{February 13th}
-Today I learned basic results in topological group theory. What's interesting here is that topology on its own has the potential to be quite disgusting, but adding in a little group theory makes the condition significantly nicer. I think the high-level reason why is that topological grops put all elements on a more equal footing because we require, for any element $g,$
+Today I learned some basic results in topological group theory. What's interesting here is that topology on its own has the potential to be quite disgusting, but adding in a little group theory makes the condition significantly nicer. I think the high-level reason why is that topological grops put all elements on a more equal footing because we require, for any element $g,$
 \[U\text{ open}\iff gU\text{ open}\iff Ug\text{ open}.\]
 This condition is called homogeneity. In particular, knowing all (open) neighborhoods around $g$ is equivalent to knowing the (open) neighborhoods around $e$ and then multiplying by $g.$
 
@@ -562,7 +562,7 @@ for some suitable modulus $\mf m.$ In order to use Artin reciprocity, we would l
 Indeed, the remarkable property of $\QQ(\zeta_m)$ is that we claim
 \[H(\QQ(\zeta_m)/\QQ,m\infty)=P_\QQ^{\mf m,1}.\]
 This makes $\QQ(\zeta_m)$ a ``ray class field'' of $\mf m.$ Anyways, this is the kernel of the map
-\[I_\QQ^\mf m\longrightarrow\op{Gal}(\QQ(\zeta_m/\QQ)\cong(\ZZ/m\ZZ)^\times.\]
+\[I_\QQ^\mf m\longrightarrow\op{Gal}(\QQ(\zeta_m)/\QQ)\cong(\ZZ/m\ZZ)^\times.\]
 This map by definition takes $p\ZZ$ (coprime to $m$) to $\zeta_m\mapsto\zeta_m^p$ (this maps to the Frobenius property), which is taken to $[p]_m.$ Extending multiplicatively, we're taking
 \[\frac ab\ZZ\mapsto\left[\frac ab\right]_m.\]
 Note that this makes sense because $I_\QQ^\mf m$ requires $\gcd(a,m)=\gcd(b,m)=1.$ So being in the kernel merely asserts that $\frac ab\ZZ$ has $\frac ab\equiv1\pmod m.$ That is, our kernel is
@@ -653,3 +653,28 @@ This is good enough for our purposes, and at least it looks pretty.
 Putting everything together, we see
 \[\left|\op{Cl}_K^\mf m\right|=\left|\op{Cl}_K\right|\cdot2^{r_0}\cdot\prod_{\substack{\mf p\mid\mf m\\\mf p<\infty}}\op N(\mf p)^{\nu_\mf p(\mf m)}\left(1-\frac1{\op N(\mf p)}\right)\cdot\frac1{[K^\mf m\cap\mathcal O_K^\times:K^{\mf m,1}\cap\mathcal O_K^\times]}.\]
 This is at least a formula, so we call it quits.
+
+\subsubsection{February 17th}
+Today I learned Ostrowski's theorem for function fields, from \href{https://kconrad.math.uconn.edu/blurbs/gradnumthy/ostrowskiF(T).pdf}{here}. The analog here is that all of our nontrivial places $|\bullet|:F(x)\to\RR$ which are trivial on $F$ (!) are equivalent to $|\bullet|_\infty$ or $|\bullet|_\pi$ for a monic irreducible $\pi\in F[x].$ Here, $|\bullet|_\infty=c^{-\deg\bullet}$ and $|\bullet|_\pi=c^{\nu_\pi(\bullet)}$ for some positive constant $c<1.$ We remark quickly that being trivial on $F$ is somewhat reasonable because, when $F$ is finite, these are our ``torsion units'' in $F[x].$ So we expect this statement to reflect the case with $\QQ$ more closely.
+
+Anyways, fix $|\bullet|$ a valuation on $F(x).$ Note that $|\bullet|$ is multiplicative, so we can focus on its behavior on $F[x]$ because $F(x)$ is just quotients of $F[x].$ The nice thing about function fields is that $|\bullet|$ is surely nonarchimedean: the embedding $\ZZ\to F[x]$ ends up in $F,$ and $F$ gets sent to $1,$ so
+\[\max_{n\in\ZZ}|n|=1<\infty\]
+is bounded. So being archimedean will not differentiate between $|\bullet|_\infty$ and $|\bullet|_\pi$ as in $\QQ.$ Instead, we do casework on $|x|$ because we know $|x|_\infty>1$ while $|x|_\pi\le1.$
+
+On one hand, we might have $|x|>1.$ Then we hope $|\bullet|$ is equivalent to $|\bullet|_\infty.$ For a polynomial $\alpha(x)=\sum_{k=0}^{\deg\alpha}a_kx^k,$ we note that being nonarchimedean implies
+\[|\alpha|=\left|\sum_{k=0}^{\deg a}a_kx^k\right|\le\max_{0\le k\le\deg a}\left(|a_k|\cdot|x|^k\right).\]
+Because $a_k\in F$ has $|a_k|=1,$ this is actually the maximum of $|x|^\bullet.$ Well, $|x|>1,$ so the maximum occurs (uniquely!) at $|x|^{\deg\alpha}.$ The importance of a unique maximum is that, because all triangles are isosceles, $|a|$ must be equal to $|x|^{\deg\alpha},$ our unique minimum. That is,
+\[|\alpha|=(1/|x|)^{-\deg\alpha}\]
+for a positive constant $1/|x|<1.$ Thus, $|\bullet|$ is equivalent to $|\bullet|_\infty,$ as desired.
+
+On the other hand, we might have $|x|\le1.$ Then we hope $|\bullet|$ is equivalent to $|\bullet|_\pi$ for some monic irreducible $\pi\in F[x].$ In particular, we need to extract the monic irreducible $\pi,$ which we do by thinking about this like $F[x]_\pi.$ Here, $\pi$ is our uniformizer, generating our topology. So, after noting that any $F[x]$ has
+\[\left|\sum_{k=0}^da_kx^k\right|\le\max_{0\le k\le d}\left(|a_k|\cdot|x|^k\right)\le1,\]
+and that $|\bullet|$ cannot be trivial on all $F[x]$ (else $|\bullet|$ would be trivial), we're allowed to extract $\pi$ as an element of $F[x]$ satisfying $|\pi|<1$ with least degree. Because multiplying by an element of $F$ won't affect $|\pi|,$ we take $\pi$ monic.
+
+We verify that $\pi$ behaves like we want. Note $\pi$ is non-constant because $|\bullet|$ is trivial on $F$---this is where this condition shows up in this case. Further, $\pi$ is irreducible, for if $\pi=\alpha\beta$ with $\deg\alpha,\deg\beta<\deg\pi,$ then $|\alpha|=|\beta|=1$ by the degree of minimality of $\pi.$ But $|\pi|<1,$ so this is impossible.
+
+To finish, fix any $\alpha\in F[x],$ and set $\alpha=\pi^\nu\beta$ where $\nu:=\nu_\pi(\alpha).$ We would like to show that $|\alpha|=|\pi|^\nu,$ where $c:=|\pi|<1$ will be our positive constant. Well, $|\alpha|=|\pi|^\nu\cdot|\beta|,$ so it suffices to show $|\beta|=1.$ We need to use the condition $\pi\nmid\beta,$ so we use the division algorithm to write
+\[\beta=q\pi+r.\]
+Here, $\pi\nmid\beta$ requires $r\ne0,$ so $r$ is a nonzero polynomial with degree smaller than $\deg\pi.$ But by minimality, this means $|r|=1,$ so the inequality
+\[|\beta|\le\max\{|q|\cdot|\pi|,|r|\}\]
+has $|r|=1$ as a unique maximum---$|q|\cdot|\pi|\le|\pi|<1.$ So because all triangles are isosceles, $|\beta|=1.$ This completes the proof.

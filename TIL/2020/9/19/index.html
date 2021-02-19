@@ -32,11 +32,35 @@
 				<p class="back"><a href="../" class="link">(back up to September)</a></p>
 				<div class="entry">
 					<h2>September 19th</h2>
-					<p>Today I learned the categorical definition of the direct sum/coproduct. Essentially, for sets $\{S_\alpha\},$ we define that prod $\prod_\alpha S_\alpha$ with projections $\pi_\alpha:\prod_\alpha S_\alpha\to S_\alpha$ so that any time we have maps $T\to S_\alpha,$ these maps factor uniquely through the $\pi_\alpha.$ In pictures, this diagram commutes.</p>
+					<p>Today I learned an example a proof by universal properties, by proving that localization commutes with arbitrary direct sums. We show this here, with many pretty commutative diagrams.</p>
+					<p>For our first proof, we start with the obvious mappings as follows.</p>
 					<img src="img1.png">
-					<p>Then for the direct sum, we just want to reverse the arrows. Namely, we want this diagram to commute.</p>
+					<p>The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.</p>
 					<img src="img2.png">
-					<p>Formally, we define $\bigoplus_\alpha S_\alpha$ with inclusions $\iota_\alpha:S_\alpha\to\bigoplus_\alpha S_\alpha$ so that any time we have maps $S_\alpha\to T,$ then these maps factor uniquely through $\iota_\alpha.$</p>
+					<p>We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<img src="img3.png">
+					<p>Indeed, re-expand out the diagram as before.</p>
+					<img src="img4.png">
+					<p>Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<img src="img5.png">
+					<p>So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<img src="img6.png">
+					<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+					<img src="img7.png">
+					<p></p>
+					<p>We now provide a second proof. Again we start with the obvious mappings.</p>
+					<img src="img8.png">
+					<p>Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.</p>
+					<img src="img9.png">
+					<p>We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.</p>
+					<img src="img10.png">
+					<p>However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.</p>
+					<img src="img11.png">
+					<p>But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.</p>
+					<img src="img12.png">
+					<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+					<img src="img13.png">
+					<p>The pretty pictures are pretty.</p>
 				</div>
 			</div>
 		</div>

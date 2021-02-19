@@ -1,3 +1,4 @@
+import sys			# argv
 import os			# path, chdir, listdir, mkdir
 
 # Get absolute path
@@ -66,6 +67,7 @@ def end_html(level):
 	html += '</html>\n'
 	return html
 
+no_images = '-noimg' in sys.argv
 def process_img(tex):
 	# Remember we are in the day's directory right now
 	# This makes latex and asy behave somewhat
@@ -78,10 +80,9 @@ def process_img(tex):
 		# We don't want the center tags
 		img = parts[i][:parts[i].index('\\end{center}')]
 		# For convenience, we treat asy and tikz separately
-		filename = ''
-		if '\\begin{tikz' in img:
+		filename = 'img'+str(i)
+		if '\\begin{tikz' in img and not no_images:
 			print('processing tikz: ' + str(i) + '/' + str(len(parts)-1))
-			filename = 'img'+str(i)
 			# Generate file
 			img = '\\documentclass[convert={density=500}]{standalone}\n' \
 				+standalone+'\\begin{document}'+img+'\n\end{document}'
@@ -90,9 +91,8 @@ def process_img(tex):
 			f.close()
 			# Compile; this hangs on error
 			os.system('latex -shell-escape '+filename+'.tex > /dev/null 2>&1')
-		elif '\\begin{asy}' in img:
+		elif '\\begin{asy}' in img and not no_images:
 			print('processing asy : ' + str(i) + '/' + str(len(parts)-1))
-			filename = 'img'+str(i)
 			# Generate file
 			img = 'settings.outformat = "png";\nsettings.render=5;\n'+img
 			img = img.replace('\\begin{asy}','')
