@@ -7,7 +7,7 @@
 	margin-right: auto;
 	padding-bottom: 0.001em;
 	max-width: 712.5pt;
-	border-radius: 1em;
+	border-radius: 0 0 1em 1em;
 }
 
 /* goes around all of the archive */
@@ -21,7 +21,7 @@
 	padding-left: 8.25pt;
 	width: 103.5pt;
 	float: right;
-	border-radius: 0 1em 1em 0;
+	border-radius: 0 0 1em 0;
 	overflow: auto;
 }
 
@@ -92,7 +92,7 @@ li span
 	padding-left: 1em;
 	padding-right: 1em;
 	margin-right: 116.75pt;
-	border-radius: 1em 0 0 1em;
+	border-radius: 0 0 0 1em;
 	overflow: auto;
 }
 
@@ -112,6 +112,6 @@ li span
 	.content
 	{
 		margin-right: 0;
-		border-radius: 1em;
+		border-radius: 0 0 1em 1em;
 	}
 }
