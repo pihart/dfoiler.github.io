@@ -115,3 +115,11 @@ li span
 		border-radius: 0 0 1em 1em;
 	}
 }
+
+@media screen and (hover: none) and (pointer: coarse)
+{
+	.body
+	{
+		background: #ff0000;
+	}
+}
