@@ -1,6 +1,4 @@
 // setting the sidebar's height
-window.addEventListener('resize', sidebarHeight);
-
 function sidebarHeight()
 {
 	// +11 accounts for the padding of the sidebar
@@ -8,11 +6,48 @@ function sidebarHeight()
 	$('.sidebar').height(contentHeight);
 }
 
-sidebarHeight();
+// rounding the corners
+function roundCorners()
+{
+	var containerHeight = $('.container')[0].offsetHeight;
+	var titleHeight = $('.title')[0].offsetHeight;
+	var windowHeight = $(window).height();
+	var windowWidth = $(window).width();
+	// we extend to the bottom of the screen
+	if(containerHeight + titleHeight > windowHeight)
+	{
+		$('.container').css({'border-radius':'0 0 0 0'});
+		$('.content').css({'border-radius':'0 0 0 0'});
+		$('.sidebar').css({'border-radius':'0 0 0 0'});
+	}
+	// there's a sidebar
+	else if(windowWidth > 800)
+	{
+		$('.container').css({'border-radius':'0 0 1em 1em'});
+		$('.content').css({'border-radius':'0 0 0 1em'});
+		$('.sidebar').css({'border-radius':'0 0 1em 0'});
+	}
+	// there's no sidebar
+	else
+	{
+		$('.container').css({'border-radius':'0 0 1em 1em'});
+		$('.content').css({'border-radius':'0 0 1em 1em'});
+	}
+}
 
+// run the methods
+sidebarHeight();
+roundCorners();
+
+// update on resize
+window.addEventListener('resize', sidebarHeight);
+window.addEventListener('resize', roundCorners);
+
+// it's possible that MathJax expands the container, so we have to adjust
 window.MathJax.Hub.Queue(function ()
 {
 	sidebarHeight();
+	roundCorners();
 });
 
 // the clickable menus
