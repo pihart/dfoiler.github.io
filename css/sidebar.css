@@ -96,8 +96,9 @@ li span
 	overflow: auto;
 }
 
-/* small screens */
-@media screen and (max-width: 600pt)
+/* small screens and mobile */
+@media screen and ((max-width: 600pt) or
+	((hover: none) and (pointer: coarse)))
 {
 	/* get rid of the sidebar */
 	.sidebar
