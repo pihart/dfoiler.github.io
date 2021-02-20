@@ -97,7 +97,7 @@ li span
 }
 
 /* small screens and mobile */
-@media screen and (max-width: 600pt),(hover: none) and (pointer: coarse)
+@media screen and (max-width: 600pt)
 {
 	/* get rid of the sidebar */
 	.sidebar
@@ -113,13 +113,5 @@ li span
 	{
 		margin-right: 0;
 		border-radius: 0 0 1em 1em;
-	}
-}
-
-@media screen and (hover: none) and (pointer: coarse)
-{
-	.body
-	{
-		background: #ff0000;
 	}
 }
