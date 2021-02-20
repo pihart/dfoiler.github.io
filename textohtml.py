@@ -31,7 +31,7 @@ months = ['January','February','March','April','May','April','June'
 archive = ''
 for year in next(os.walk('TeX'))[1]:
 	year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
-	archive += '{0}<p class="yearmenu">'+year+'</p>\n'
+	archive += '{0}<button class="yearmenu">'+year+'</button>\n'
 	archive += '{0}<ul class="monthmenu">\n'
 	for month in year_months:
 		directory = year + '/'+str(month)
