@@ -97,8 +97,7 @@ li span
 }
 
 /* small screens and mobile */
-@media screen and ((max-width: 600pt) or
-	((hover: none) and (pointer: coarse)))
+@media screen and (max-width: 600pt),(hover: none) and (pointer: coarse)
 {
 	/* get rid of the sidebar */
 	.sidebar
