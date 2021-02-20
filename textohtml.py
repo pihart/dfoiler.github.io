@@ -15,11 +15,11 @@ def header(level):
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-		<link rel="stylesheet" href="'''+'../'*level+'''css/main.css">
-		<link rel="stylesheet" href="'''+'../'*level+'''css/sidebar.css">
-		<link rel=icon href="'''+'../'*level+'''p.ico">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="'''+'../'*level+'''js/mathjax-config.js"></script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>\n'''
 
@@ -38,22 +38,22 @@ def gen_sidebar():
 		for month in year_months:
 			directory = year + '/'+str(month)
 			title = months[month-1] + ' ' + year
-			r += '\t\t\t\t\t<li><span><a href={0}' \
-				+directory+'/>'+title+'</a></span></li>\n'
+			r += '\t\t\t\t\t<li><span><a href="https://dfoiler.github.io/TIL/'\
+				+directory+'/">'+title+'</a></span></li>\n'
 		r += '\t\t\t\t</ul>\n'
 	r += '\t\t\t</div>\n'
 	return r
 
 sidebar_template = gen_sidebar()
 def sidebar(level):
-	return sidebar_template.format('../'*(level-1))
+	return sidebar_template
 
 indent = lambda n : (4+n)*'\t'
 def start_html(level):
 	html = header(level)
 	html += '\t<body>\n'
-	html += '\t\t<h1 class="title"><a href="./'+ '../'*(level-1) + \
-		'" class="title">Today I Learned</a></h1>\n'
+	html += '\t\t<h1 class="title"><a href="https://dfoiler.github.io/TIL/"' \
+		' class="title">Today I Learned</a></h1>\n'
 	html += '\t\t<div class="container">\n'
 	html += sidebar(level)
 	html += '\t\t\t<div class="content">\n'
@@ -62,7 +62,7 @@ def start_html(level):
 def end_html(level):
 	html = '\t\t\t</div>\n'
 	html += '\t\t</div>\n'
-	html += '\t\t<script src="'+'../'*level+'js/sidebar.js"></script>\n'
+	html += '\t\t<script src="https://dfoiler.github.io/js/sidebar.js"></script>\n'
 	html += '\t</body>\n'
 	html += '</html>\n'
 	return html
