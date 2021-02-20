@@ -15,11 +15,11 @@ def header(level):
 	<head>
 		<title>Today I Learned</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-		<link rel="stylesheet" href="'''+'../'*level+'''main.css">
-		<link rel="stylesheet" href="'''+'../'*level+'''sidebar.css">
+		<link rel="stylesheet" href="'''+'../'*level+'''css/main.css">
+		<link rel="stylesheet" href="'''+'../'*level+'''css/sidebar.css">
 		<link rel=icon href="'''+'../'*level+'''p.ico">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="'''+'../'*level+'''mathjax-config.js"></script>
+		<script src="'''+'../'*level+'''js/mathjax-config.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
 	</head>\n'''
 
@@ -62,7 +62,7 @@ def start_html(level):
 def end_html(level):
 	html = '\t\t\t</div>\n'
 	html += '\t\t</div>\n'
-	html += '\t\t<script src="'+'../'*level+'sidebar.js"></script>\n'
+	html += '\t\t<script src="'+'../'*level+'js/sidebar.js"></script>\n'
 	html += '\t</body>\n'
 	html += '</html>\n'
 	return html
