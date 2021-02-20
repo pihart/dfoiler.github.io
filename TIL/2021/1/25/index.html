@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 25th</h2>
 					<p>Today I learned about the regular representation of a group, from Artin as usual. The big-picture is that we can turn any group action into a representation: if $G$ acts on a set $S,$ then we we can index a basis of $\CC^{|S|}$ by $S$ named $e_s$ and then define $\rho_\bullet:G\to\op{GL}_{|S|}(\CC)$ by\[\rho_ge_s=e_{gs}.\]In other words, we just create the permutation matrix associated with the group action. As an aside, we remark that the character $\chi(g):=\op{trace}(\rho_g)$ associated with this action is fairly well-behaved. Using the given matrix representation for $\rho_g,$ we can directly compute the trace by summing along the diagonal, for each nonzero entry along the diagonal is $1$ and signifies the basis vector $e_s$ being fixed. Thus, we're counting elements fixed by $g,$ which is\[\chi(g)=|\op{Stab}(g)|.\]For example, $\chi(e)=|S|,$ which matches $\dim\CC^{|S|}$ as it should. (Namely, $\chi(e)=\dim V$ for any $\rho:G\to\op{GL}(V)$ because, after choosing any basis, $\rho_e$ turns into $I\in\op{GL}_\bullet(\CC).$)</p>

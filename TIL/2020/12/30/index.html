@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 30th</h2>
 					<p>Today I learned more formally about proving propositions as types. The idea is that we can "prove'' a proposition by exhibiting an element which witnesses to a type which communicates the proposition. The idea is a bit abstract. Anyways, here is the table of translations.\[\begin{array}{c|c}    \text{Logic} & \text{Type theory} \\    \hline    0 & \text{False} \\    1 & \text{True} \\    A\land B & A\times B \\    A\lor B & A+B \\    A\to B & A\to B \\    A\leftrightarrow B & (A\to B)\times(B\to A) \\    \lnot A & A\to0 \\    \hline    \forall x:A,\,P(x) & \prod_{x:A}P(x) \\    \exists x:A,\,P(x) & \sum_{x:A}P(x)\end{array}\]Many of these make some intuitive sense. For example, in type theory, $A\land B$ should hold if and only if we can exhibit a witness of both $A$ and $B.$ So our witness for $A\land B$ should be the ordered pair of the witnesses, which would be anything in $A\times B.$ Similarly, a witness of $A\lor B$ is something in $A$ or $B,$ which witnesses exactly $A+B.$ The $\forall$ and $\exists$ statements are similar.</p>

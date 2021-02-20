@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
 				<div class="entry">
 					<h2>September 12th</h2>
 					<p>Today I learned that $\FF_q$ is also a perfect field for prime-powers $q,$ continuing from the Conrad expository paper. Namely, we want to show that no irreducible polynomial $\pi(x)\in\FF_q[x]$ has repeated roots in the algebraic closure $\overline{\FF_q}.$ The outline is to show that $\pi(x)$ divides into a polynomial with no repeated roots, from which the result will follow. Note that\[\frac{\FF_q[x]}{(\pi(x))}\]is a finite field, of order $Q:=q^{\deg\pi}.$ In fact, this is the splitting field of $\pi(x),$ but we don't that strong of information to complete the proof completely. Note if $\pi(x)=x,$ then we're already done; else look at $x$ in the above finite field, which is a nonzero element with multiplicative order dividing $Q-1.$ It follows\[x^Q\equiv x\pmod{\pi(x)}.\]Thus, $\pi(x)\mid x^Q-x.$ However, $x^Q-x$ has no repeated roots in the algebraic closure: its derivative is $Qx^{Q-1}-1=-1$ has $\textit{no roots at all!}$ So it follows that $\pi(x)$ cannot have repeated roots for $x^Q-x$ to also have no repeated roots, which completes the proof.</p>

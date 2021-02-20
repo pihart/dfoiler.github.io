@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 21st</h2>
 					<p>Today I learned an alternative proof of Wilson's theorem, from group actions. The main result is something called the $p$-group fixed point theorem, from <a href="https://qchu.wordpress.com/2013/07/09/the-p-group-fixed-point-theorem/">here</a>. Namely, if a finite $p$-group $G$ acts on a set $X$ then the set of fixed points $X^G$ satisfies\[|X|\equiv\left|X^G\right|\pmod p.\]This follows directly from the class equation. Quickly, for $x\in G,$ we can biject cosets in $G/\op{Stab}_x$ with elements in the orbit $Gx$ (explicitly, $g\op{Stab}_x\mapsto gx$), we see that\[|X|=\sum_{\text{orbits }Gx}|Gx|=\sum_{\text{orbits }Gx}[G:\op{Stab}_x]=\sum_{\text{orbits }Gx}\frac{|G|}{|\op{Stab}_x|}.\]Now, $|\op{Stab}_x|$ divides $|G|$ and is therefore a power of $p,$ so $|G|/|\op{Stab}_x|$ is as well. So this is divisible by $p$ unless it is equal to $1,$ in which case $|Gx|=1$ exactly describes $x\in X^G,$ so $1\cdot\left|X^G\right|$ exactly measures the perturbations$\pmod p.$</p>

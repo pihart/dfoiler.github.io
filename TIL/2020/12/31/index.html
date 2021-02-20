@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 31st</h2>
 					<p>Today I learned about equality types. This is along the lines of propositions as types, where if we want to "prove'' $a=b,$ we have to inhabit $a=b$ somehow. As expected, our main tool for constructing functions is induction, which is called path induction in order to allude to the coming homotopy type theory. Path induction states that for a family\[C:\prod_{(a,b:A)}(a=_Ab)\to\UU,\]and witnesses\[c:\prod_{a:A}C(a,a,\refl_a),\]then we have a function\[f:\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\]satisfying $f(a,a,\refl_a)\equiv c(a).$ Here, $\refl_a$ refers to a "reflexive'' proof of the equality $a=a.$ Stated succinctly, we can write\[\op{ind}_{=A}:\left(\prod_{(a,b:A)}(a=_Ab)\to\UU\right)\to\left(\prod_{a:A}C(a,a,\refl_a)\right)\to\left(\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\right)\]which satisfies $\op{ind}_{=A}(C,c)(a,a,\refl_a)\equiv c(a).$</p>

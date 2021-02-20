@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 8th</h2>
 					<p>Today I learned the definition of generalized eigenvectors, to move towards Jordan normal form sometime in my far future. The idea is to patch the fact that sometimes we can't make a full eigenbasis. So, for example, the horizontal shear\[A=\begin{bmatrix}    1 & 1 \\    0 & 1\end{bmatrix}\]has only a dimension-one eigenspace, spanned by $\langle1,0\rangle.$ Explicitly, its characteristic polynomial is $(\lambda-1)^2,$ so $1$ is the only eigenvalue. Its eigenspace is\[\ker(A-1I)=\ker\left(\begin{bmatrix}    0 & 1 \\    0 & 0\end{bmatrix}\right),\]which evaluates to $\{\langle x,0\rangle:x\in\RR\},$ indeed spanned by $\langle1,0\rangle.$ While there are no more eigenvectors, we can get close to being an eigenvector by chaining, solving\[\begin{bmatrix}    0 & 1 \\    0 & 0\end{bmatrix}v=\begin{bmatrix} 1 \\ 0 \end{bmatrix}.\]This gives $v=\langle x,1\rangle$ for any other $x.$ And further, our $\langle1,0\rangle$ and $\langle0,1\rangle$ (say) from our "chain'' does indeed form a basis of $\RR^2.$ So while we don't have an eigenbasis, we do have a generalized eigenbasis.</p>

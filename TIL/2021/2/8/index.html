@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 8th</h2>
 					<p>Today I learned some deeper type-theoretic significance to currying. Quickly, currying is, very roughly, induction for dependent pair types. That is, for $A:\UU$ and $B:A\to\UU$ with $C:\prod_{(a:A)}B(a)\to\UU,$ we define\[\op{curry}:\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\to\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\]by\[\op{curry}(f):\equiv\lambda(a:A).\lambda(b:B(a)).f((a,b)).\]We also have the sibling function\[\op{uncurry}:\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\to\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\]defined by\[\op{uncurry}(f):\equiv\lambda\left((a,b):\textstyle\sum_{(a:A)}B(a)\right).f(a)(b).\]We don't check that these type-check here. We remark that this $\lambda$-calculus on dependent pairs is really just doing an induction by defining how the pair behaves on a particular element. Indeed, $\op{uncurry}$ is the induction principle.</p>

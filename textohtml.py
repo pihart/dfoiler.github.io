@@ -8,9 +8,8 @@ os.chdir(PATH)
 
 # standalone is for making tikz images
 standalone = open('standalone.sty').read()
-# This occurs at varying levels, so we make a function for it
-def header(level):
-	return '''<!DOCTYPE html>
+# Generating our header
+header = '''<!DOCTYPE html>
 <html>
 	<head>
 		<title>Today I Learned</title>
@@ -28,35 +27,32 @@ def header(level):
 months = ['January','February','March','April','May','April','June'
 	'July','August','September','October','November','December']
 
-def gen_sidebar():
-	r = '\t\t\t<div class="sidebar">\n'
-	r += '\t\t\t\t<p style="text-align: center; font-weight: bold; '\
-		'margin-top: 5px;">Archive</p>\n'
-	for year in next(os.walk('TeX'))[1]:
-		year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
-		r += '\t\t\t\t<p class="yearmenu">'+year+'</p>\n'
-		r += '\t\t\t\t<ul class="monthmenu">\n'
-		for month in year_months:
-			directory = year + '/'+str(month)
-			title = months[month-1] + ' ' + year
-			r += '\t\t\t\t\t<li><span><a href="https://dfoiler.github.io/TIL/'\
-				+directory+'/">'+title+'</a></span></li>\n'
-		r += '\t\t\t\t</ul>\n'
-	r += '\t\t\t</div>\n'
-	return r
-
-sidebar_template = gen_sidebar()
-def sidebar(level):
-	return sidebar_template
+# Generating the archive
+archive = ''
+for year in next(os.walk('TeX'))[1]:
+	year_months = sorted([int(m[:-len('.tex')]) for m in os.listdir('TeX/'+year)])
+	archive += '{0}<p class="yearmenu">'+year+'</p>\n'
+	archive += '{0}<ul class="monthmenu">\n'
+	for month in year_months:
+		directory = year + '/'+str(month)
+		title = months[month-1] + ' ' + year
+		archive += '{0}\t<li><span><a href="https://dfoiler.github.io/TIL/' \
+			+directory+'/">'+title+'</a></span></li>\n'
+	archive += '{0}</ul>\n'
 
 indent = lambda n : (4+n)*'\t'
 def start_html(level):
-	html = header(level)
+	html = header
 	html += '\t<body>\n'
 	html += '\t\t<h1 class="title"><a href="https://dfoiler.github.io/TIL/"' \
 		' class="title">Today I Learned</a></h1>\n'
 	html += '\t\t<div class="container">\n'
-	html += sidebar(level)
+	# Add in the archive sidebar
+	html += '\t\t\t<div class="sidebar">\n'
+	html += '\t\t\t\t<p style="text-align: center; font-weight: bold; '\
+		'margin-top: 5px;">Archive</p>\n'
+	html += archive.format(indent(0))
+	html += '\t\t\t</div>\n'
 	html += '\t\t\t<div class="content">\n'
 	return html
 
@@ -168,7 +164,7 @@ def to_html(tex):
 		if '\\subsubsection' in line:
 			h2 = line[len('\\subsubsection{'):-len('}')]
 			month, day = h2.split()
-			day_html += indent(0)+'<p class="back"><a href="../" class="link">' \
+			day_html += indent(0)+'<p class="mobilenav"><a href="../" class="link">' \
 				'(back up to '+month+')</a></p>\n'
 			day_html += indent(0)+'<div class="entry">\n'
 			day_html += indent(1)+'<h2>'+h2+'</h2>\n'
@@ -217,22 +213,31 @@ if 'TIL' not in os.listdir():
 # Start the total file
 total_html = start_html(1)
 # Add in the intro
+total_html += indent(0)+'<h2>Welcome</h2>\n'
 intro = process_tex(open('TeX/intro.tex').read())
 parts = [part for part in intro.split('\n') if part]
 for part in parts:
 	total_html += indent(0)+'<p>'+part+'</p>\n'
-# A bit of padding
+# Mobile navigation
+total_html += indent(0)+'<div class="mobilenav">\n'
+total_html += indent(1)+'<h2 style="margin-top: 8pt">Archive</h2>\n'
+total_html += indent(1)+'<p>You can navigate to an entry from the archive below.</p>\n'
+total_html += archive.format(indent(1))
+# Some padding
+total_html += indent(1)+'<div style="height: 6pt;"></div>\n'
+total_html += indent(0)+'</div>\n'
 total_html += indent(0)+'<div style="height: 6pt;"></div>\n'
 total_html += end_html(1)
 # Make the total file
 f = open('TIL/index.html','w')
 f.write(total_html)
 f.close()
+
 # Iterate through the years subdirectories
 for year in next(os.walk('TeX'))[1]:
 	# Start the year file
 	year_html = start_html(2)
-	year_html += indent(0)+'<p class="back"><a href="../" class="link">' \
+	year_html += indent(0)+'<p class="mobilenav"><a href="../" class="link">' \
 		'(back up to main page) </a></p>\n'
 	year_html += indent(0)+'<h2><a href="./">'+year+'</a></h2>\n'
 	# Make year if not there
@@ -247,8 +252,8 @@ for year in next(os.walk('TeX'))[1]:
 			os.mkdir('TIL/'+year+'/'+month)
 		# Start the month file
 		month_html = start_html(3)
-		month_html += indent(0)+'<p class="back"><a href="../" class="link">' \
-			'(back up to '+year+')</a></p>\n'
+		month_html += indent(0)+'<p class="mobilenav"><a href="../../" class="link">' \
+			'(back up to main page)</a></p>\n'
 		month_html += indent(0)+'<h2>' + months[int(month)-1] + ' '+year+'</h2>\n'
 		# Increment the year file
 		year_html += indent(0)+'<h3><a href="'+month+'/">'+ \

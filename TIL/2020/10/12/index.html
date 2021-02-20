@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to October)</a></p>
 				<div class="entry">
 					<h2>October 12th</h2>
 					<p>Today I learned that the leading digits of Fibonacci numbers $F_n$ follow Benford's Law. (Yesterday I learned $9^k$ follows Benford's Law.) The main lemma is that $\{\log F_n\}$ is equidistributed in $[0,1],$ where we are taking $\log$s base $10.$ (The base isn't important, so I prefer not to write it.) In particular, we use Binet's Formula to write\[\log F_n=\log\left(\frac{\varphi^n-(-1)^n\varphi^{-n}}{\sqrt5}\right)=n\log\varphi+\log\left(1-(-1)^n\varphi^{-2n}\right)-\log\sqrt5.\]Note $\log\sqrt5$ is a translation and will not affect the distribution$\pmod1,$ so we may ignore it. We're left with\[n\log\varphi+\log\left(1-(-1)^n\varphi^{-2n}\right).\]We already know that $\{n\log\varphi\}$ is equidistributed by the Equidistribution theorem, so we hope that the other term is sufficiently small; we show that it is. I guess we have to show that $\log\varphi$ is irrational, but $\log\varphi=\frac pq\in\QQ$ would imply that $\varphi^q=10^p.$ However, no $\varphi^\bullet$ is an integer by adding in their conjugate power, which is less than $1,$ so this is a contradiction.</p>

@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 18th</h2>
 					<p>Today I learned an alternative explanation for the decimal expansion of fractions like $\frac1{9801},$ from <a href="https://math.stackexchange.com/a/102684/869257">here</a>. I'm used to evaluating the arithmetico-geometric series $\sum nx^{n+1}$ directly, but in fact it is in general true that\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{n=1}^\infty nx^{n+1}.\]There are a variety of ways to see this, one of which is directly computing the right-hand side by setting $S=\sum_{n=1}^\infty nx^{n+1}$ and seeing\[\frac1xS-S=\sum_{n=1}^\infty x^n=\frac x{1-x}.\]This rearranges to $S=\left(\frac x{1-x}\right)^2,$ which is what we wanted after expanding the geometric series. However, presenting this as that single equation makes it much easier to say something like\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{a=1}^\infty\sum_{b=1}^\infty x^ax^b=\sum_{n=2}^\infty\left(\sum_{a+b=2}1\right)x^n.\]This quickly turns into our desired $S$ after shifting the index of the sum.</p>

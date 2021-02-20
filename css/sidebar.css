@@ -78,7 +78,7 @@ li span
 }
 
 /* messages going up the tree for small screens */
-.back
+.mobilenav
 {
 	display: none;
 	margin-top: 0;
@@ -105,7 +105,7 @@ li span
 		display: none;
 	}
 	/* add in the crude navigation */
-	.back
+	.mobilenav
 	{
 		display: block;
 	}

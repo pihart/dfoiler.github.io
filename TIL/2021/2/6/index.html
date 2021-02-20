@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
 				<div class="entry">
 					<h2>February 6th</h2>
 					<p>Today I learned how to recover the modulus of a linear congruential pseudorandom number generator, from <a href="https://security.stackexchange.com/a/4306">here</a>. Very quickly, a linear congruential generator is a sequence of pseudorandom modular classes $a_0,a_1,a_2,\ldots$ defined by a seed $a_0$ and the recurrence relation\[a_{n+1}\equiv Aa_n+B\pmod N\]for some constants $A,B,N.$ The question is how we should back-construct $A,B,N$ if given some (hopefully small) number of terms of $a_\bullet$; this would let us predict the rest of the pseudorandom sequence and is therefore bad. We note that if we know $N,$ we see\[\begin{cases}    a_1\equiv Aa_0+B\pmod N, \\    a_2\equiv Aa_1+B\pmod N\end{cases}\]is a system of linear congruences. Assuming that the sequence is kind, we can use this to solve for $A$ and $B$ by just solving with row reduction in the normal way. Thus, we can recover $A$ and $B$ given $N$ in roughly $3$ terms. Explicitly, subtracting and then solving gives\[A\equiv\frac{a_2-a_1}{a_1-a_0},\qquad B\equiv a_1-Aa_0\pmod N.\]We remark that "the sequence is kind'' means that $\gcd(u_1-u_0,N)=1$ so that we can actually do division here. However, this is a non-problem, for $\gcd(u_1-u_0,N)$ will get propagated through the entire sequence, so we can just divide it from all terms, and then do the modular division safely. Note if $u_1-u_0\equiv0,$ then the sequence is constant.</p>

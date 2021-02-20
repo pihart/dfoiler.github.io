@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 19th</h2>
 					<p>Today I learn an application of the (truncated) Poisson summation formula to compute the quadratic Gauss sum. We begin by presenting the truncated Poisson summation formula. Fix $f:\RR\to\CC$ satisfying some boundedness conditions to give is a Fourier series. Dirichlet's theorem on representing functions by a Fourier series on $f:[0,1]\to\CC$ says that\[\frac{f(0^-)+f(1^+)}2=\sum_{n=-\infty}^\infty\int_0^1f(x)e^{-2\pi inx}\,dx.\]That is, our Fourier series represents the average of the limits approaching the point for a piecewise continuous function. I don't know the proof of this, but Fourier analysis is sad. Running the above with $f(x+k)$ for integers $k$ reveals\[\frac{f(k^-)+f(k+1^+)}2=\sum_{n=-\infty}^\infty\int_0^1f(x+k)e^{-2\pi ix}\,dx=\sum_{n=-\infty}^\infty\int_k^{k+1}f(x)e^{-2\pi inx}\,dx,\]so summing up to $m$ implies that\[\frac12f(0)+f(1)+\cdots+f(m-1)+\frac12f(m)=\sum_{n=-\infty}^\infty\int_0^mf(x)e^{-2\pi inx}\,dx.\]This is the truncated Poisson summation formula. We remark that adding the flipped sum with $m\mapsto-m$ and then sending $m\to\infty$ recovers the original Poisson summation formula.</p>

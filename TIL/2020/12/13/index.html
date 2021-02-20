@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
 				<div class="entry">
 					<h2>December 13th</h2>
 					<p>Today I learned about Laplace integration. Recall that the Laplace transform $\mathcal L\{f(t)\}$ is a function in $s$ defined by\[\mathcal L\{f(t)\}=\int_0^\infty f(t)e^{-st}\,dt.\]Now the idea is that we can integrate $F(s)$ to be\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\left(\int_0^\infty f(t)e^{-st}\,dt\right)ds=\int_0^\infty\left(\int_0^\infty e^{-st}\,ds\right)f(t)\,dt\]by waving our hands. The integral evaluates to $\frac1t,$ so we are left with\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\frac{f(t)}t\,dt.\]Of course, this is just a manifestation of the fact that $\mathcal L\{t\cdot f(t)\}=-\frac d{ds}\mathcal L\{f(t)\}.$</p>

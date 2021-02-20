@@ -30,7 +30,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<p class="back"><a href="../" class="link">(back up to October)</a></p>
+				<p class="mobilenav"><a href="../" class="link">(back up to October)</a></p>
 				<div class="entry">
 					<h2>October 26th</h2>
 					<p>Today I learned an elementary proof that the set of primes which split completely in a Galois extension $K/\QQ$ of degree $n$ have density $1/n,$ only assuming some minor analytic facts about the Dedekind zeta function. Namely, this weaker statement does not require use of the Chebotarev Density Theorem. Basically, recall\[\zeta_K(s)=\sum_{I\subseteq\mathcal O_K}\frac1{\op N(I)^s}=\prod_\mf p\frac1{1-\op N(\mf p)^{-s}}.\]Noting that $\zeta_K(s)$ has a simple pole of rank $1$ at $s=1,$ we may say that $(s-1)\zeta_K(s)$ approaches some positive real number as $s\to1^+.$ We use this to get the result. In particular, we get to write\[\lim_{s\to1^+}\frac{\log(\zeta_K(s))}{\log\left(\frac1{s-1}\right)}=1+\lim_{s\to1^+}\frac{\log((s-1)\zeta_K(s))}{\log\left(\frac1{s-1}\right)}=1.\]Because this holds for $K=K$ and for $K=\QQ,$ we can divide the limits corresponding to each to get\[\lim_{s\to1^+}\frac{\log(\zeta_K(s))}{\log(\zeta_\QQ(s))}=1.\]But, akin to Dirichlet's Theorem, we can also expand\[\log(\zeta_K(s))=\log\left(\prod_{\mf p}\frac1{1-\op N(\mf p)^{-s}}\right)=\sum_{\mf p}\sum_{k=1}^\infty\frac1{k\op N(\mf p)^{sk}}\]because $-\log(1-x)=\sum_kx^k/k.$ We're going to get our result because the only terms that we care about in the above sum come from the rational primes that split completely.</p>
