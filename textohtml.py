@@ -146,56 +146,64 @@ def get_blurb(tex):
 	blurb = blurb[:end].strip()
 	return blurb
 
-def process_line(html, line, i, first_item, last_tag):
+# TODO: make a last_tag stack for more memory
+# TODO: make each list item start a paragraph
+def process_line(line, i, last_tags, first_item):
 	to_add = ''
-	close = (last_tag != '')
-	closing_tag = last_tag
-	# Two consecutive new lines implies new paragraph
+	close = last_tags[-1] != '' and not first_item
+	new_tags = []
+	# Update ending indents now
+	environs = ['itemize','enumerate']
+	# Consecutive lines implies a new paragraph
 	if line == '':
 		to_add += indent(i)+'<p>'
-		last_tag = 'p'
+		new_tags = ['p']
 	# Various list commands
-	# We start the first item
 	elif '\\begin{itemize}' in line:
 		to_add += indent(i)+'<ul>\n'+indent(i+1)+'<li>'
-		i += 1
-		first_item = True
-		last_tag = ''
+		new_tags = ['ul','li']
 	elif '\\end{itemize}' in line:
-		i -= 1
-		to_add += indent(i)+'</ul>\n'
-		last_tag = ''
+		to_add += indent(i-1)+'</ul>\n'
 	elif '\\begin{enumerate}' in line:
 		to_add += indent(i)+'<ol>\n'+indent(i+1)+'<li>'
-		i += 1
-		first_item = True
-		last_tag = ''
+		new_tags = ['ol','li']
 	elif '\\end{enumerate}' in line:
-		i -= 1
-		to_add += indent(i)+'</ol>\n'
-		last_tag = ''
+		to_add += indent(i-1)+'</ol>\n'
+		first_item =  False
 	elif '\\item' in line:
 		line = line.replace('\\item','')
 		if not first_item:
 			to_add += indent(i)+'<li>'
-		first_item = False
+			new_tags = ['li']
 		to_add += line
-		last_tag = 'li'
+		first_item = False
 	# Image marker
 	elif line[0] == '\00':
 		filename = line[1:]
 		to_add += indent(i)+'<img src="'+filename+'">\n'
-		last_tag = ''
 	# Catch-all
 	else:
 		close = False
-		if last_tag == '':
+		if last_tags[-1] == '':
 			to_add += indent(i)+'<p>'
-			last_tag = 'p'
+			new_tags = ['p']
 		to_add += line
+	# Update beginning indents later
+	if any('\\begin{'+env in line for env in environs):
+		i += 1
+		first_item = True
+		# Close if we're coming from a paragraph
+		close = last_tags[-1] == 'p'
+		if not close:
+			to_add = '\n'+to_add
+	# Add in the closing
 	if close:
-		to_add = '</'+closing_tag+'>\n'+to_add
-	return html+to_add, i, first_item, last_tag
+		to_add = '</'+last_tags.pop()+'>\n'+to_add
+	if any('\\end{'+env in line for env in environs):
+		i -= 1
+		last_tags.pop()
+	last_tags += new_tags
+	return to_add, i, last_tags, first_item
 
 def to_html(tex):
 	# This is not general-purpose and will not work with your TeX
@@ -212,7 +220,7 @@ def to_html(tex):
 	first_item = False
 	# Indents
 	i = 1
-	last_tag = ''
+	last_tags = ['']
 	for line in tex:
 		# A starting line
 		if '\\subsubsection' in line:
@@ -226,10 +234,15 @@ def to_html(tex):
 			month_html += indent(1)+'<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
 			# Go ahead and start the first paragraph
 		else:
-			day_html, i, first_item, last_tag = \
-				process_line(day_html, line, i, first_item, last_tag)
-	if last_tag:
-		day_html += '</'+last_tag+'>\n'
+			try:
+				to_add, i, last_tags, first_item = \
+					process_line(line, i, last_tags, first_item)
+			except:
+				print(day_html)
+				print(0/0)
+			day_html += to_add
+	if last_tags[-1]:
+		day_html += '</'+last_tags[-1]+'>\n'
 	day_html += indent(0)+'</div>\n' + end_html(4)
 	month_html += indent(1)+'<p>'+blurb+'\n'
 	month_html += indent(1)+'<a href="'+day+'/" class="link">(continue reading...)</a></p>\n'
