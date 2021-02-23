@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 4th</h2>
-					<p>Today I learned the asymptotic formula for derangements. Fix a nonnegative integer $n.$ We are interested in counting the number permutations on $n$ letters which fix no elements. One way symbolically heavy but conceptually easy way to do this is with the principle of inclusion-exclusion on the complement.</p>
-					<p>Explicitly, we'll count the number of permutations which fix at least one element. For this, we define $S_\bullet$ to be the set of permutations which fix the element $\bullet,$ implying we are interested in\[\left|\bigcup_{k=1}^nS_k\right|.\]Using the principle of inclusion-exclusion, this is\[\left|\bigcup_{k=1}^nS_k\right|=\sum_{m=1}^n(-1)^{m+1}\sum_{\substack{T\subseteq[1,n]\\|T|=m}}\left|\bigcap_{t\in T}S_t\right|.\]Now, these intersections are actually quite nice because the number of permutations fixing some given $m$ elements is the number of permutations of the remaining elements, which is $(n-m)!.$ Then the number of possible subsets comes out to $\binom nm,$ so this collapses into\[\left|\bigcup_{k=1}^nS_k\right|=\sum_{m=1}^n(-1)^{m+1}\cdot\binom nm(n-m)!=n!\sum_{m=1}^n\frac{(-1)^{m+1}}{m!}.\]</p>
-					<p>To finish, we return the question of derangements. The above is the number of permutations which aren't derangements, so subtracting from $n!$ tells us we want\[n!-n!\sum_{m=1}^n\frac{(-1)^{m+1}}{m!}=\boxed{n!\sum_{m=0}^n\frac{(-1)^m}{m!}}.\]Of particular interest is that we see that the fraction of permutations which are derangements is\[\frac{n!}{n!}\sum_{m=0}^n\frac{(-1)^m}{m!}=\sum_{m=0}^n\frac{(-1)^m}{m!}.\]As $n\to\infty,$ this rapidly converges to $e^{-1}\approx0.368.$ So a positive and reasonably sized proportion of all permutations are derangements, which is nice.</p>
+					<h2>
+						November 4th
+					</h2>
+					<p>
+						Today I learned the asymptotic formula for derangements. Fix a nonnegative integer $n.$ We are interested in counting the number permutations on $n$ letters which fix no elements. One way symbolically heavy but conceptually easy way to do this is with the principle of inclusion-exclusion on the complement.
+					</p>
+					<p>
+						Explicitly, we'll count the number of permutations which fix at least one element. For this, we define $S_\bullet$ to be the set of permutations which fix the element $\bullet,$ implying we are interested in\[\left|\bigcup_{k=1}^nS_k\right|.\]Using the principle of inclusion-exclusion, this is\[\left|\bigcup_{k=1}^nS_k\right|=\sum_{m=1}^n(-1)^{m+1}\sum_{\substack{T\subseteq[1,n]\\|T|=m}}\left|\bigcap_{t\in T}S_t\right|.\]Now, these intersections are actually quite nice because the number of permutations fixing some given $m$ elements is the number of permutations of the remaining elements, which is $(n-m)!.$ Then the number of possible subsets comes out to $\binom nm,$ so this collapses into\[\left|\bigcup_{k=1}^nS_k\right|=\sum_{m=1}^n(-1)^{m+1}\cdot\binom nm(n-m)!=n!\sum_{m=1}^n\frac{(-1)^{m+1}}{m!}.\]
+					</p>
+					<p>
+						To finish, we return the question of derangements. The above is the number of permutations which aren't derangements, so subtracting from $n!$ tells us we want\[n!-n!\sum_{m=1}^n\frac{(-1)^{m+1}}{m!}=\boxed{n!\sum_{m=0}^n\frac{(-1)^m}{m!}}.\]Of particular interest is that we see that the fraction of permutations which are derangements is\[\frac{n!}{n!}\sum_{m=0}^n\frac{(-1)^m}{m!}=\sum_{m=0}^n\frac{(-1)^m}{m!}.\]As $n\to\infty,$ this rapidly converges to $e^{-1}\approx0.368.$ So a positive and reasonably sized proportion of all permutations are derangements, which is nice.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

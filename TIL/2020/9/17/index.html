@@ -1,43 +1,105 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 17th</h2>
-					<p>Today I learned a very natural proof of Lucas's Theorem: for $p$ prime and integers $m=\sum_km_kp^k$ and $n=\sum_kn_kp^k$ written in base $p,$ we have\[\binom mn\equiv\prod_{k=0}^\infty\binom{m_k}{n_k}\pmod p.\]</p>
-					<p>What I really like about this proof is that it's really just an answer to "What happens if I apply the Frobenius to base-$p$ expansions?'' Everything else follows naturally. Indeed, the main ingredient in the proof is generating functions. Observe that\[(1+x)^p=1+x^p\pmod p\]in $\FF_p[x].$ From this it follwos $(1+x)^{p^k}=1+x^{p^k}$ by induction. So to prove the result, we combine base-$p$ representations with this automorphism. On one hand, we see\[(1+x)^m=\sum_{n=0}^m\binom mnx^n.\]It follows in the resulting discussion we know that we want to isolate $x^n.$ So on the other hand, we can write\[(1+x)^m=(1+x)^{\sum_km_kp^k}=\prod_{k=0}^\infty(1+x)^{m_kp^k}.\]But applying the Frobenius automorphism, this looks like\[(1+x)^m=\prod_{k=0}^\infty\left(1+x^{p^k}\right)^{m_k}=\prod_{k=0}^\infty\left(\sum_{n_k=0}^{m_k}\binom{m_k}{n_k}x^{n_kp^k}\right)\]after expanding. Now because $m_k{\lt}p,$ we can extend this into\[(1+x)^m=\prod_{k=0}^\infty\left(\sum_{n_k=0}^{p-1}\binom{m_k}{n_k}x^{n_kp^k}\right).\]Now we can collect powers of $x$ easily because $x^n$ will have a unique base-$p$ expansion from the $n_k,$ giving\[(1+x)^m=\sum_{n=0}^\infty\left(\prod_{k=0}^\infty\binom{m_k}{n_k}\right)x^n.\]Comparing coefficients with our original expression gives the result.</p>
+					<h2>
+						September 17th
+					</h2>
+					<p>
+						Today I learned a very natural proof of Lucas's Theorem: for $p$ prime and integers $m=\sum_km_kp^k$ and $n=\sum_kn_kp^k$ written in base $p,$ we have\[\binom mn\equiv\prod_{k=0}^\infty\binom{m_k}{n_k}\pmod p.\]
+					</p>
+					<p>
+						What I really like about this proof is that it's really just an answer to "What happens if I apply the Frobenius to base-$p$ expansions?'' Everything else follows naturally. Indeed, the main ingredient in the proof is generating functions. Observe that\[(1+x)^p=1+x^p\pmod p\]in $\FF_p[x].$ From this it follwos $(1+x)^{p^k}=1+x^{p^k}$ by induction. So to prove the result, we combine base-$p$ representations with this automorphism. On one hand, we see\[(1+x)^m=\sum_{n=0}^m\binom mnx^n.\]It follows in the resulting discussion we know that we want to isolate $x^n.$ So on the other hand, we can write\[(1+x)^m=(1+x)^{\sum_km_kp^k}=\prod_{k=0}^\infty(1+x)^{m_kp^k}.\]But applying the Frobenius automorphism, this looks like\[(1+x)^m=\prod_{k=0}^\infty\left(1+x^{p^k}\right)^{m_k}=\prod_{k=0}^\infty\left(\sum_{n_k=0}^{m_k}\binom{m_k}{n_k}x^{n_kp^k}\right)\]after expanding. Now because $m_k{\lt}p,$ we can extend this into\[(1+x)^m=\prod_{k=0}^\infty\left(\sum_{n_k=0}^{p-1}\binom{m_k}{n_k}x^{n_kp^k}\right).\]Now we can collect powers of $x$ easily because $x^n$ will have a unique base-$p$ expansion from the $n_k,$ giving\[(1+x)^m=\sum_{n=0}^\infty\left(\prod_{k=0}^\infty\binom{m_k}{n_k}\right)x^n.\]Comparing coefficients with our original expression gives the result.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

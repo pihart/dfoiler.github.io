@@ -1,48 +1,120 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 8th</h2>
-					<p>Today I learned the proof of the $abc$ conjecture for polynomials, and notably function fields. (I think&mdash;there might be a hole.) The $abc$ conjecture states that for given $\varepsilon{\gt}0,$ there are only finitely many triples of positive pairwise coprime positive integers $(a,b,c)$ satisfying $a+b=c$ and violating\[c{\lt}\op{rad}(abc)^{1+\varepsilon}.\]Here $\op{rad}$ is the product of the distinct prime factors. Anyways, we're saying that the above equality holds most of the time.</p>
-					<p>Fix $K$ a perfect field. The $abc$ conjecture for function fields is called Mason's theorem and says that for pairwise coprime polynomials $a,b,c\in K[t]$ not all of which have vanishing derivative satisfying $a+b=c,$ we always have\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_K(abc))-1.\]That is, our corresponding inequality holds strictly and always. Again, $\op{rad}$ refers to the product of the distinct irreducible factors, but I am writing $\op{rad}_K$ because $\deg(\op{rad}_K(abc))$ is poorly behaved. We are actually going to show that\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_{\overline K}(abc))-1,\]where here $\deg(\op{rad}_{\overline K}(abc))$ is counting distinct irreducible factors in $\overline K,$ which just counts the number of distinct roots of $abc.$ However,\[\deg(\op{rad}_{\overline K}(p))=\deg(\op{rad}_K(p))\]for $p\in K[t]$ by unique prime factorization. Namely, multiplicativity of $\op{rad}$ and additivity of $\deg$ means that it suffices to take $p$ an irreducible in $K$ after decomposing $p$ into irreducible parts over $K.$ Then the statement is saying that the degree of the irreducible is the number of distinct roots in the algebraic closure, which holds because our field is perfect, where no double roots are permitted for irreducibles.</p>
-					<p>Anyways, the theme is to pass into an algebraicly closed field, and once we remark that it suffices to show\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_{\overline K}(abc))-1,\]as above, we may just assert $a,b,c\in\overline K[t]$ and pretend that $K$ was algebraicly closed the entire time. (Aside from $\op{rad},$ the degrees aren't changing.) So without loss of generality, $K$ is algebraicly closed. Also, for symmetry, we replace the condition $a+b=c$ with $a+b+c=0,$ which changes no degrees and is therefore safe. So it suffices to show\[\deg(c)\le\deg(\op{rad}_{\overline K}(abc))-1\]by symmetry.</p>
-					<p>The way we access $\op{rad}$ algebraically is through the formal derivative. To exhibit this, consider a nonzero $p\in K[t].$ Factoring in the algebraicly closed $K$ looks like\[p(t)=\prod_{k=1}^P(t-\alpha_k)^{\nu_k},\]which gives $\op{rad}(p)(t)=\prod_k(t-\alpha_k).$ Now, we know that we can detect double-roots with the formal derivative, but we can do better than this, for actually what we know is that the formal derivative decreases multiplicities by $1.$ Namely, we see, by the product rule,\[p'(t)=\sum_{\ell=1}^P\left(\frac d{dt}(t-\alpha_\ell)^{\nu_\ell}\right)\prod_{\substack{k=1\\k\ne\ell}}^P(t-\alpha_k)^{\nu_k}.\]However, we can factor out many of these factors like\[p'(t)=\left(\prod_{k=1}^P(t-\alpha_k)^{\nu_k-1}\right)\Bigg(\sum_{\ell=1}^Am_\ell\prod_{\substack{k=1\\k\ne\ell}}^P(t-\alpha_k)\Bigg).\]In particular, we see that if we add in $\op{rad}(p)$ into the mix, we will have $p\mid p'\op{rad}(p),$ and even $p\mid(p,p')\op{rad}(p).$ The precise result we're going to need is the resulting statement\[\deg(p)\le\deg((p,p'))+\deg(\op{rad}(p)).\tag{$*$}\label{eq:rad-der}\]Note the degrees make sense with $p\ne0.$</p>
-					<p>Continuing, the main character in our story is the Wronskian. In our case, we will say $W(a,b)=ab'-ba'$ for $a,b\in K[t],$ but there is a more general theory here about detecting linear dependence of polynomials and their derivatives (which I do not currently understand). We start with some details. We claim that $a+b+c=0$ implies $W(a,b)=W(b,c)=W(c,a)=:W.$ By symmetry, it suffices to show $W(a,b)=W(b,c)$ (and then cycle the letters of the argument $(a,b,c)\mapsto(b,c,a)$), where this follows by writing\[W(b,c)=bc'-cb'=b(-a-b)'-(-a-b)b'=(-a'b-bb')+(ab'+bb')=ab'-ba'=W(a,b).\]As another detail, we claim $W\ne0,$ for $W=0$ will force $a'=b'=c'=0.$ Indeed, we can show $a'=0$ because $W=0$ implies $ab'=ba',$ so $a\mid a'$ because $\gcd(a,b)=1.$ From this, $a'=0$ would follow because $a'\ne0$ would force $\deg(a){\gt}\deg(a'),$ which violates $a\mid a'.$</p>
-					<p>Now for the magic. Because $a,b,c$ are pairwise coprime, we remark $\op{rad}_{\overline K}(abc)=\op{rad}_{\overline K}(a)\op{rad}_{\overline K}(b)\op{rad}_{\overline K}(c).$ So we want to show\[\deg(c)\le\deg(\op{rad}_{\overline K}(a))+\deg(\op{rad}_{\overline K}(b))+\deg(\op{rad}_{\overline K}(c))-1.\]In order to make \hyperref[eq:rad-der]{$(*)$} appear, we add $\deg((a,a'))$ and friends to both sides so that it suffices to show (the stronger)\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))+\deg(c)\le\deg(a)+\deg(b)+\deg(c)-1.\]Cancelling the $\deg(c),$ we need\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))\le\deg(a)+\deg(b)-1.\]Now, we do have to deal with the asymmetry of not having $\deg(c)$ on the right-hand side, which is where the Wronskian enters. Because $\deg(p')\le\deg(p)-1,$ we see \[\deg(W)=\deg(ab'-ba')\le\max\{\deg(ab'),\deg(ba')\}=\deg(a)+\deg(b)-1.\]Thus, it suffices to show\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))\le\deg(W).\]This is now symmetric.</p>
-					<p>We are almost done. Because $W\ne0,$ we may show what we need by showing\[(a,a')(b,b')(c,c')\mid W.\]However, of course $(a,a')\mid ab'-ba'=W.$ And with $a,b,c$ pairwise coprime, the above follows.</p>
+					<h2>
+						January 8th
+					</h2>
+					<p>
+						Today I learned the proof of the $abc$ conjecture for polynomials, and notably function fields. (I think&mdash;there might be a hole.) The $abc$ conjecture states that for given $\varepsilon{\gt}0,$ there are only finitely many triples of positive pairwise coprime positive integers $(a,b,c)$ satisfying $a+b=c$ and violating\[c{\lt}\op{rad}(abc)^{1+\varepsilon}.\]Here $\op{rad}$ is the product of the distinct prime factors. Anyways, we're saying that the above equality holds most of the time.
+					</p>
+					<p>
+						Fix $K$ a perfect field. The $abc$ conjecture for function fields is called Mason's theorem and says that for pairwise coprime polynomials $a,b,c\in K[t]$ not all of which have vanishing derivative satisfying $a+b=c,$ we always have\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_K(abc))-1.\]That is, our corresponding inequality holds strictly and always. Again, $\op{rad}$ refers to the product of the distinct irreducible factors, but I am writing $\op{rad}_K$ because $\deg(\op{rad}_K(abc))$ is poorly behaved. We are actually going to show that\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_{\overline K}(abc))-1,\]where here $\deg(\op{rad}_{\overline K}(abc))$ is counting distinct irreducible factors in $\overline K,$ which just counts the number of distinct roots of $abc.$ However,\[\deg(\op{rad}_{\overline K}(p))=\deg(\op{rad}_K(p))\]for $p\in K[t]$ by unique prime factorization. Namely, multiplicativity of $\op{rad}$ and additivity of $\deg$ means that it suffices to take $p$ an irreducible in $K$ after decomposing $p$ into irreducible parts over $K.$ Then the statement is saying that the degree of the irreducible is the number of distinct roots in the algebraic closure, which holds because our field is perfect, where no double roots are permitted for irreducibles.
+					</p>
+					<p>
+						Anyways, the theme is to pass into an algebraicly closed field, and once we remark that it suffices to show\[\max\{\deg(a),\deg(b),\deg(c)\}\le\deg(\op{rad}_{\overline K}(abc))-1,\]as above, we may just assert $a,b,c\in\overline K[t]$ and pretend that $K$ was algebraicly closed the entire time. (Aside from $\op{rad},$ the degrees aren't changing.) So without loss of generality, $K$ is algebraicly closed. Also, for symmetry, we replace the condition $a+b=c$ with $a+b+c=0,$ which changes no degrees and is therefore safe. So it suffices to show\[\deg(c)\le\deg(\op{rad}_{\overline K}(abc))-1\]by symmetry.
+					</p>
+					<p>
+						The way we access $\op{rad}$ algebraically is through the formal derivative. To exhibit this, consider a nonzero $p\in K[t].$ Factoring in the algebraicly closed $K$ looks like\[p(t)=\prod_{k=1}^P(t-\alpha_k)^{\nu_k},\]which gives $\op{rad}(p)(t)=\prod_k(t-\alpha_k).$ Now, we know that we can detect double-roots with the formal derivative, but we can do better than this, for actually what we know is that the formal derivative decreases multiplicities by $1.$ Namely, we see, by the product rule,\[p'(t)=\sum_{\ell=1}^P\left(\frac d{dt}(t-\alpha_\ell)^{\nu_\ell}\right)\prod_{\substack{k=1\\k\ne\ell}}^P(t-\alpha_k)^{\nu_k}.\]However, we can factor out many of these factors like\[p'(t)=\left(\prod_{k=1}^P(t-\alpha_k)^{\nu_k-1}\right)\Bigg(\sum_{\ell=1}^Am_\ell\prod_{\substack{k=1\\k\ne\ell}}^P(t-\alpha_k)\Bigg).\]In particular, we see that if we add in $\op{rad}(p)$ into the mix, we will have $p\mid p'\op{rad}(p),$ and even $p\mid(p,p')\op{rad}(p).$ The precise result we're going to need is the resulting statement\[\deg(p)\le\deg((p,p'))+\deg(\op{rad}(p)).\tag{$*$}\label{eq:rad-der}\]Note the degrees make sense with $p\ne0.$
+					</p>
+					<p>
+						Continuing, the main character in our story is the Wronskian. In our case, we will say $W(a,b)=ab'-ba'$ for $a,b\in K[t],$ but there is a more general theory here about detecting linear dependence of polynomials and their derivatives (which I do not currently understand). We start with some details. We claim that $a+b+c=0$ implies $W(a,b)=W(b,c)=W(c,a)=:W.$ By symmetry, it suffices to show $W(a,b)=W(b,c)$ (and then cycle the letters of the argument $(a,b,c)\mapsto(b,c,a)$), where this follows by writing\[W(b,c)=bc'-cb'=b(-a-b)'-(-a-b)b'=(-a'b-bb')+(ab'+bb')=ab'-ba'=W(a,b).\]As another detail, we claim $W\ne0,$ for $W=0$ will force $a'=b'=c'=0.$ Indeed, we can show $a'=0$ because $W=0$ implies $ab'=ba',$ so $a\mid a'$ because $\gcd(a,b)=1.$ From this, $a'=0$ would follow because $a'\ne0$ would force $\deg(a){\gt}\deg(a'),$ which violates $a\mid a'.$
+					</p>
+					<p>
+						Now for the magic. Because $a,b,c$ are pairwise coprime, we remark $\op{rad}_{\overline K}(abc)=\op{rad}_{\overline K}(a)\op{rad}_{\overline K}(b)\op{rad}_{\overline K}(c).$ So we want to show\[\deg(c)\le\deg(\op{rad}_{\overline K}(a))+\deg(\op{rad}_{\overline K}(b))+\deg(\op{rad}_{\overline K}(c))-1.\]In order to make \hyperref[eq:rad-der]{$(*)$} appear, we add $\deg((a,a'))$ and friends to both sides so that it suffices to show (the stronger)\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))+\deg(c)\le\deg(a)+\deg(b)+\deg(c)-1.\]Cancelling the $\deg(c),$ we need\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))\le\deg(a)+\deg(b)-1.\]Now, we do have to deal with the asymmetry of not having $\deg(c)$ on the right-hand side, which is where the Wronskian enters. Because $\deg(p')\le\deg(p)-1,$ we see \[\deg(W)=\deg(ab'-ba')\le\max\{\deg(ab'),\deg(ba')\}=\deg(a)+\deg(b)-1.\]Thus, it suffices to show\[\deg((a,a'))+\deg((b,b'))+\deg((c,c'))\le\deg(W).\]This is now symmetric.
+					</p>
+					<p>
+						We are almost done. Because $W\ne0,$ we may show what we need by showing\[(a,a')(b,b')(c,c')\mid W.\]However, of course $(a,a')\mid ab'-ba'=W.$ And with $a,b,c$ pairwise coprime, the above follows.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

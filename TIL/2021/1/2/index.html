@@ -1,47 +1,117 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 2nd</h2>
-					<p>Today I learned some properties of equality. The one I found most remarkable is how type theory deals with the "substitution'' property of equality. Roughly speaking, we want to show that for $x,y:A,$ given an expression $\Phi,$ we know $x=y$ implies $\Phi_x=\Phi_y,$ where $\Phi_\bullet$ replaces needed instances with $\bullet.$</p>
-					<p>The way we can talk about expressions like $\Phi$ is with $\lambda$ calculus. Namely, our formalization will show that\[(x=_Ay)\to(f(x)=_Bf(y))\]for any function $f:A\to B.$ This means that for $f\equiv\lambda z.\Phi,$ judgemental equality lets us write\[(x=_Ay)\to(\Phi_x=_B\Phi_y).\]There is some technicality in that we might not want to assume that $\Phi_x$ and $\Phi_y$ are the same type, but this is good enough for me. Anyways, this reduction is basically saying that the substitution property of equality is (roughly) the same idea as being able to "do the same thing to both sides of the equal sign.'' I find this somewhat cute.</p>
-					<p>It remains to inhabit\[\prod_{x,y:A}\prod_{p:(x=_Ay)}f(x)=_Bf(y).\]For this we use path induction. Let our family be $C:\prod_{x,y:A}(x=y)\to\mathcal U$ by $C(x,y,p):\equiv f(x)=_Bf(t)$ so that we want to exhibit $\prod_{x,y:A}\prod_{p:(x=y)}C(x,y,p).$</p>
-					<p>It remains to show the conditions of path induction on our family $C.$ The actual content of the prove lives in the case where $x\equiv y,$ but here $f(x)\equiv f(y),$ meaning $\op{refl}_{f(x)}:f(x)=f(y)$ can witness. Thus, we may set\[c(x):\equiv\op{refl}_{f(x)}:\prod_{x:A}C(x,x,\op{refl}_x).\]This finishes the proof by path induction.</p>
-					<p>Path induction in general makes quick work of equality statements. In the above, what feels so weird is that it's not at all obvious how we would go about constructing a witness of $f(x)=_Bf(y)$ from $x=_Ay,$ but nonetheless we know that the witness exists. Namely, we've only shown the witness only for the most trivial case, in which they are judgementally equal.</p>
-					<p>This nonconstructivity feels a bit off in type theory, but it is certainly very powerful. The proof may be obnoxious to write out, but we could just have well said the following: "By path induction, it suffices to show that $(x=_Ay)\to f(x)=_Bf(y)$ in the case $x\equiv y$ and $\op{refl}_x$ is our input. But then $f(x)\equiv f(y),$ so we may take $\op{refl}_x\to\op{refl}_{f(x)},$ which finishes.''</p>
+					<h2>
+						January 2nd
+					</h2>
+					<p>
+						Today I learned some properties of equality. The one I found most remarkable is how type theory deals with the "substitution'' property of equality. Roughly speaking, we want to show that for $x,y:A,$ given an expression $\Phi,$ we know $x=y$ implies $\Phi_x=\Phi_y,$ where $\Phi_\bullet$ replaces needed instances with $\bullet.$
+					</p>
+					<p>
+						The way we can talk about expressions like $\Phi$ is with $\lambda$ calculus. Namely, our formalization will show that\[(x=_Ay)\to(f(x)=_Bf(y))\]for any function $f:A\to B.$ This means that for $f\equiv\lambda z.\Phi,$ judgemental equality lets us write\[(x=_Ay)\to(\Phi_x=_B\Phi_y).\]There is some technicality in that we might not want to assume that $\Phi_x$ and $\Phi_y$ are the same type, but this is good enough for me. Anyways, this reduction is basically saying that the substitution property of equality is (roughly) the same idea as being able to "do the same thing to both sides of the equal sign.'' I find this somewhat cute.
+					</p>
+					<p>
+						It remains to inhabit\[\prod_{x,y:A}\prod_{p:(x=_Ay)}f(x)=_Bf(y).\]For this we use path induction. Let our family be $C:\prod_{x,y:A}(x=y)\to\mathcal U$ by $C(x,y,p):\equiv f(x)=_Bf(t)$ so that we want to exhibit $\prod_{x,y:A}\prod_{p:(x=y)}C(x,y,p).$
+					</p>
+					<p>
+						It remains to show the conditions of path induction on our family $C.$ The actual content of the prove lives in the case where $x\equiv y,$ but here $f(x)\equiv f(y),$ meaning $\op{refl}_{f(x)}:f(x)=f(y)$ can witness. Thus, we may set\[c(x):\equiv\op{refl}_{f(x)}:\prod_{x:A}C(x,x,\op{refl}_x).\]This finishes the proof by path induction.
+					</p>
+					<p>
+						Path induction in general makes quick work of equality statements. In the above, what feels so weird is that it's not at all obvious how we would go about constructing a witness of $f(x)=_Bf(y)$ from $x=_Ay,$ but nonetheless we know that the witness exists. Namely, we've only shown the witness only for the most trivial case, in which they are judgementally equal.
+					</p>
+					<p>
+						This nonconstructivity feels a bit off in type theory, but it is certainly very powerful. The proof may be obnoxious to write out, but we could just have well said the following: "By path induction, it suffices to show that $(x=_Ay)\to f(x)=_Bf(y)$ in the case $x\equiv y$ and $\op{refl}_x$ is our input. But then $f(x)\equiv f(y),$ so we may take $\op{refl}_x\to\op{refl}_{f(x)},$ which finishes.''
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 21st</h2>
-					<p>Today I learned some applications of the idea that prime-splitting can tell us useful information about Galois groups. For example, suppose we have a normal extension $L/K$ with primes $\mf q/\mf p$ so that $\mf p$ splits completely in every intermediate nontrivial subfield between $L$ and $K$ but not in $L.$</p>
-					<p>Then we claim that $D=D(\mf q/\mf p)$ is the unique smallest nontrivial subgroup of $\op{Gal}(L/K).$ For this we use the argument suggested in $\textit{Number Fields}.$ We are given that $e(\mf q/\mf p)f(\mf q/\mf p){\gt}1$ because $\mf p$ does not split completely in $L,$ so we get that $[L:L_D]{\gt}1.$ So it follows $D$ is actually a nontrivial subgroup. Further, for any other subgroup $H\ne\langle e\rangle$ of $G,$ there is an intermediate field $L_H\le L$ with $\mf q_H$ between $\mf p$ and $\mf q.$ So it follows $e(\mf q_H/\mf p)f(\mf q_H/\mf p)=1,$ which implies\[[L:L_EL_H]=e(\mf q/\mf q_H)f(\mf q/\mf q_H)=e(\mf q/\mf p)f(\mf q/\mf p)=[L:L_E].\]It follows that $L_H\subseteq L_E,$ so $E\subseteq H.$</p>
-					<p>It might not appear a very strong condition that we have a unique smallest nontrivial subgroup, but there are quite a few things that we get out of this. For example, we get that $D$ must be a subset and therefore equal to all of its conjugate subgroups, so $D$ is a normal subgroup. Further, considering any prime $p$ dividing into the order of $\op{Gal}(L/K),$ we know that the $D$ is a subgroup of any subgroup of order $p$ (guaranteed by Cauchy's Theorem), so in fact the Galois group is of prime-power order!</p>
-					<p>Sure, the condition is esoteric, but it ought be not terribly odd to think that perfect knowledge of prime-splitting should give perfect knowledge of the field extension; after all, the above discussion centers around information about a single prime $\mf p\subseteq K.$</p>
+					<h2>
+						September 21st
+					</h2>
+					<p>
+						Today I learned some applications of the idea that prime-splitting can tell us useful information about Galois groups. For example, suppose we have a normal extension $L/K$ with primes $\mf q/\mf p$ so that $\mf p$ splits completely in every intermediate nontrivial subfield between $L$ and $K$ but not in $L.$
+					</p>
+					<p>
+						Then we claim that $D=D(\mf q/\mf p)$ is the unique smallest nontrivial subgroup of $\op{Gal}(L/K).$ For this we use the argument suggested in $\textit{Number Fields}.$ We are given that $e(\mf q/\mf p)f(\mf q/\mf p){\gt}1$ because $\mf p$ does not split completely in $L,$ so we get that $[L:L_D]{\gt}1.$ So it follows $D$ is actually a nontrivial subgroup. Further, for any other subgroup $H\ne\langle e\rangle$ of $G,$ there is an intermediate field $L_H\le L$ with $\mf q_H$ between $\mf p$ and $\mf q.$ So it follows $e(\mf q_H/\mf p)f(\mf q_H/\mf p)=1,$ which implies\[[L:L_EL_H]=e(\mf q/\mf q_H)f(\mf q/\mf q_H)=e(\mf q/\mf p)f(\mf q/\mf p)=[L:L_E].\]It follows that $L_H\subseteq L_E,$ so $E\subseteq H.$
+					</p>
+					<p>
+						It might not appear a very strong condition that we have a unique smallest nontrivial subgroup, but there are quite a few things that we get out of this. For example, we get that $D$ must be a subset and therefore equal to all of its conjugate subgroups, so $D$ is a normal subgroup. Further, considering any prime $p$ dividing into the order of $\op{Gal}(L/K),$ we know that the $D$ is a subgroup of any subgroup of order $p$ (guaranteed by Cauchy's Theorem), so in fact the Galois group is of prime-power order!
+					</p>
+					<p>
+						Sure, the condition is esoteric, but it ought be not terribly odd to think that perfect knowledge of prime-splitting should give perfect knowledge of the field extension; after all, the above discussion centers around information about a single prime $\mf p\subseteq K.$
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

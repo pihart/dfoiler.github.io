@@ -1,51 +1,125 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 30th</h2>
-					<p>Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute\[(a_\varphi)_n=\begin{cases}    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\    0 & \text{otherwise}.\end{cases}\]Now, we do the casework on $\varphi$ halts.</p>
+					<h2>
+						January 30th
+					</h2>
+					<p>
+						Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute\[(a_\varphi)_n=\begin{cases}    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\    0 & \text{otherwise}.\end{cases}\]Now, we do the casework on $\varphi$ halts.
+					</p>
 					<ul>
-						<li>     If $\varphi$ halts in $N$ steps, then the infinite sum is $0$ after $N,$ so the sum is finite and converges. Similarly, this would mean that there is a $0$ in the infinite product, so the infinite product would converge to $0.$</li>
-						<li>     If $\varphi$ never halts, then the infinite sum sums $2$ for each $n,$ which of course diverges (say, by divergence test). And the infinite product is multiplying $2$ for each $n,$ which also diverges.</li>
+						<li>
+							If $\varphi$ halts in $N$ steps, then the infinite sum is $0$ after $N,$ so the sum is finite and converges. Similarly, this would mean that there is a $0$ in the infinite product, so the infinite product would converge to $0.$
+						</li>
+						<li>
+							If $\varphi$ never halts, then the infinite sum sums $2$ for each $n,$ which of course diverges (say, by divergence test). And the infinite product is multiplying $2$ for each $n,$ which also diverges.
+						</li>
 					</ul>
-					<p>It follows that the infinite sum and product each converge if and only if $\varphi$ halts.</p>
-					<p>I find this somewhat unsatisfying because $(a_\varphi)_n$ is quite a contrived sequence. In reality, I'd like to think about this as a symbolic algebra problem: in the same way that it is uncomputable to determine if a given algebraic expression is identically $0,$ I feel like it should be uncomputable to determine if sequence converge. At a high level, I expect $\sum$ and $\prod$ to be able to look "globally'' at a given function, allowing a weak $\forall$ check, which should be enough.</p>
-					<p>At the bare minimum, we should allow polynomials, which makes me feel like Hilbert's 10th will be involved. One basic difficulty is that the polynomials involved in Hilbert's 10th have lots of variables, but we are only summing over a single variable. This is not a huge problem, for good bijections $\NN\times\NN\to\NN$ exist, but it does require us to go outside of polynomials. For example,\[f_2(n)=\left(\left|\floor{\sqrt n}-\left(n-\floor{\sqrt n}^2\right)\right|,n-\floor{\sqrt n}^2\right)\]is a surjection $\NN\to\NN^2.$ (The idea here is that $\floor{\sqrt n}$ is a function slower than linear but still goes to infinity. Then we use it to dictate the coordinate sum for a contiguous set of inputs.) I don't like using $\sqrt\bullet$ because it is potentially undefined, but so it goes.</p>
-					<p>So because we have a function $f_2:\NN\to\NN^2,$ we can iteratively apply this to the first outputted coordinate to give a function $f_k:\NN\to\NN^k$ for any $k\in\NN.$ Thus, Hilbert's 10th begins to be possible here: at this point, we can do products. Indeed, fix a polynomial $P(x_1,\ldots,x_k)\in\ZZ[x_1,\ldots,x_k],$ and set\[a_n=2|(P\circ f_k)(n)|.\]Now, the infinite product $\prod_{n=0}^\infty a_n$ will get sent to $0$ if $P$ is $0$ anywhere in $\NN^k.$ If $P$ isn't $0$ anywhere, then each $a_\bullet\ge2,$ so the product will again not converge. It follows that determining convergence of infinite products even with just polynomials, $\floor\bullet,$ and $\sqrt\bullet$ is uncomputable, but for rather stupid reasons.</p>
-					<p>By this point, I think I've exhausted what easy arguments can give. For example, what made infinite products work is that products have a "memory'' of previous elements of the sequence because $0$ ruins the party immediately. Infinite sums do not have this kind of luxury; we do remark that convergence of the infinite sum of\[b_n=\prod_{k=0}^n|(P\circ f_k)(n)|\]will be able detect if $P$ has a root because this forces a memory into the summation. However, I find this quite inelegant and unsatisfying.</p>
+					<p>
+						It follows that the infinite sum and product each converge if and only if $\varphi$ halts.
+					</p>
+					<p>
+						I find this somewhat unsatisfying because $(a_\varphi)_n$ is quite a contrived sequence. In reality, I'd like to think about this as a symbolic algebra problem: in the same way that it is uncomputable to determine if a given algebraic expression is identically $0,$ I feel like it should be uncomputable to determine if sequence converge. At a high level, I expect $\sum$ and $\prod$ to be able to look "globally'' at a given function, allowing a weak $\forall$ check, which should be enough.
+					</p>
+					<p>
+						At the bare minimum, we should allow polynomials, which makes me feel like Hilbert's 10th will be involved. One basic difficulty is that the polynomials involved in Hilbert's 10th have lots of variables, but we are only summing over a single variable. This is not a huge problem, for good bijections $\NN\times\NN\to\NN$ exist, but it does require us to go outside of polynomials. For example,\[f_2(n)=\left(\left|\floor{\sqrt n}-\left(n-\floor{\sqrt n}^2\right)\right|,n-\floor{\sqrt n}^2\right)\]is a surjection $\NN\to\NN^2.$ (The idea here is that $\floor{\sqrt n}$ is a function slower than linear but still goes to infinity. Then we use it to dictate the coordinate sum for a contiguous set of inputs.) I don't like using $\sqrt\bullet$ because it is potentially undefined, but so it goes.
+					</p>
+					<p>
+						So because we have a function $f_2:\NN\to\NN^2,$ we can iteratively apply this to the first outputted coordinate to give a function $f_k:\NN\to\NN^k$ for any $k\in\NN.$ Thus, Hilbert's 10th begins to be possible here: at this point, we can do products. Indeed, fix a polynomial $P(x_1,\ldots,x_k)\in\ZZ[x_1,\ldots,x_k],$ and set\[a_n=2|(P\circ f_k)(n)|.\]Now, the infinite product $\prod_{n=0}^\infty a_n$ will get sent to $0$ if $P$ is $0$ anywhere in $\NN^k.$ If $P$ isn't $0$ anywhere, then each $a_\bullet\ge2,$ so the product will again not converge. It follows that determining convergence of infinite products even with just polynomials, $\floor\bullet,$ and $\sqrt\bullet$ is uncomputable, but for rather stupid reasons.
+					</p>
+					<p>
+						By this point, I think I've exhausted what easy arguments can give. For example, what made infinite products work is that products have a "memory'' of previous elements of the sequence because $0$ ruins the party immediately. Infinite sums do not have this kind of luxury; we do remark that convergence of the infinite sum of\[b_n=\prod_{k=0}^n|(P\circ f_k)(n)|\]will be able detect if $P$ has a root because this forces a memory into the summation. However, I find this quite inelegant and unsatisfying.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

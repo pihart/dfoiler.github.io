@@ -1,48 +1,120 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 30th</h2>
-					<p>Today I learned that for any polynomial $P(x_1,\ldots,x_n)\in\ZZ_p[x_1,\ldots,x_n]$ has a root in $(\ZZ_p)^n$ if and only if has roots in each $(\ZZ/p^\bullet\ZZ)^n.$ One direction of this easy. Indeed, if we have a root $(\alpha_1,\ldots,\alpha_n)\in(\ZZ_p)^n,$ then\[P(\alpha_1,\ldots,\alpha_n)=0\]in $\ZZ_p.$ Reducing all values$\pmod{p^\bullet}$ will give an equality there as well, so we get our solution in $(\ZZ/p^\bullet)^n$ by projecting $(\alpha_1,\ldots,\alpha_n).$</p>
-					<p>The harder direction is that if we have solutions for $P$ in $(\ZZ/p^\bullet\ZZ)^n$ for each $p^\bullet,$ then we can piece together a solution in $(\ZZ_p)^n.$ For this, we construct a Cauchy sequence in Hensel style. This is done in inductive-style steps. We construct a sequence of solutions\[(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}),\]which holds in $(\ZZ/p^\bullet\ZZ)^n$ and satisfies $\alpha_{k,\bullet}\equiv\alpha_{k,\bullet+1}\pmod{p^\bullet}$; this of course makes a Cauchy sequence for each $\alpha_{k,\bullet}$ which converges to a solution $\alpha_k$ in $\ZZ_p.$ So this will be enough to give our solution in $(\ZZ_p)^n.$</p>
-					<p>The trick is that we're going to construct our solution such that, when reducing all of the solutions $(\ZZ/p^\bullet\ZZ)^n$ to our particular $(\ZZ/p^\bullet\ZZ)^n,$ infinitely many fall on top of $(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}).$</p>
-					<p>As our base case, we begin with\[(\alpha_{1,0},\ldots,\alpha_{n,0})=(0,\ldots,0),\]which is a solution to $P$ in $(\ZZ/p^0\ZZ)^n.$ Further note that reducing any of our solutions to $P$ of $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^0\ZZ)^n$ will project here, so infinitely many lie on top of $(0,\ldots,0).$</p>
-					<p>Now suppose we have a solution $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell})$ satisfying the statement. Reducing all of our solutions of $P$ in each $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^\ell\ZZ)^n,$ we have infinitely many that lie on top of $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell}),$ by inductive hypothesis. Raising this into $(\ZZ/p^{\ell+1}\ZZ),$ note that there are only $p^n$ possible residues in $(\ZZ/p^{\ell+1}\ZZ)^n$ equivalent to $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell}).$ However, infinitely many fall into this group of residue classes, so one of the $p^n$ residue classes must appear infinitely often. Name this class of $(\ZZ/p^{\ell+1}\ZZ)^n$ as\[(\alpha_{1,\ell+1},\ldots,\alpha_{n,\ell+1}).\]By construction, we have $\alpha_{k,\ell}\equiv a_{k+1,\ell}\pmod{p^\ell}$ for each $k,$ and infinitely many solutions fell on top of this residue class, making this a solution in $(\ZZ/p^\ell\ZZ)^n$ as well. This completes the inductive step.</p>
-					<p>This does complete the proof, with our Cauchy sequence in hand. What I find interesting about this proof is that it doesn't really use the fact that we're dealing with a polynomial anywhere in the proof. I guess implicitly used is that if\[P(\alpha_1,\ldots,\alpha_n)\equiv0\pmod{p^{\bullet+1}},\]then the equivalence holds in$\pmod{p^\bullet}$ as well, which is somewhat contingent on this being a polynomial. However, this is really it. Our polynomial can have as many variables as needed, it can be of any degree, it's coefficients can be anything from $\ZZ_p,$ and so on. It might even be possible to let these be power series, but this runs the risk of convergence problems.</p>
-					<p>Professor Kedlaya made the remark that this lemma is a bit misleading, in that it suggests that we need infinite information (solutions for each $\ZZ/p^\bullet\ZZ$) to get a solution in $\ZZ_p.$ Of course, this is not the case, a la Hensel's Lemma and the various ways to strengthen it. The prototypical example is quadratic residues, where, for $p{\gt}2,$\[x^2\equiv c\pmod{p^\bullet}\]with $p\nmid c$ will have solutions if and only if $\left(\frac cp\right)=1.$ This is a finite check to get the infinite information that we need. The proof of this statement is exactly Hensel's Lemma, for the derivative of $x^2-c$ is $2x,$ the only roots of which are $0$ for $p=2.$ We have to push a little bit harder to get $p=2,$ I suppose, but it still only amounts to a finite check.</p>
+					<h2>
+						November 30th
+					</h2>
+					<p>
+						Today I learned that for any polynomial $P(x_1,\ldots,x_n)\in\ZZ_p[x_1,\ldots,x_n]$ has a root in $(\ZZ_p)^n$ if and only if has roots in each $(\ZZ/p^\bullet\ZZ)^n.$ One direction of this easy. Indeed, if we have a root $(\alpha_1,\ldots,\alpha_n)\in(\ZZ_p)^n,$ then\[P(\alpha_1,\ldots,\alpha_n)=0\]in $\ZZ_p.$ Reducing all values$\pmod{p^\bullet}$ will give an equality there as well, so we get our solution in $(\ZZ/p^\bullet)^n$ by projecting $(\alpha_1,\ldots,\alpha_n).$
+					</p>
+					<p>
+						The harder direction is that if we have solutions for $P$ in $(\ZZ/p^\bullet\ZZ)^n$ for each $p^\bullet,$ then we can piece together a solution in $(\ZZ_p)^n.$ For this, we construct a Cauchy sequence in Hensel style. This is done in inductive-style steps. We construct a sequence of solutions\[(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}),\]which holds in $(\ZZ/p^\bullet\ZZ)^n$ and satisfies $\alpha_{k,\bullet}\equiv\alpha_{k,\bullet+1}\pmod{p^\bullet}$; this of course makes a Cauchy sequence for each $\alpha_{k,\bullet}$ which converges to a solution $\alpha_k$ in $\ZZ_p.$ So this will be enough to give our solution in $(\ZZ_p)^n.$
+					</p>
+					<p>
+						The trick is that we're going to construct our solution such that, when reducing all of the solutions $(\ZZ/p^\bullet\ZZ)^n$ to our particular $(\ZZ/p^\bullet\ZZ)^n,$ infinitely many fall on top of $(\alpha_{1,\bullet},\ldots,\alpha_{n,\bullet}).$
+					</p>
+					<p>
+						As our base case, we begin with\[(\alpha_{1,0},\ldots,\alpha_{n,0})=(0,\ldots,0),\]which is a solution to $P$ in $(\ZZ/p^0\ZZ)^n.$ Further note that reducing any of our solutions to $P$ of $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^0\ZZ)^n$ will project here, so infinitely many lie on top of $(0,\ldots,0).$
+					</p>
+					<p>
+						Now suppose we have a solution $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell})$ satisfying the statement. Reducing all of our solutions of $P$ in each $(\ZZ/p^\bullet\ZZ)^n$ into $(\ZZ/p^\ell\ZZ)^n,$ we have infinitely many that lie on top of $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell}),$ by inductive hypothesis. Raising this into $(\ZZ/p^{\ell+1}\ZZ),$ note that there are only $p^n$ possible residues in $(\ZZ/p^{\ell+1}\ZZ)^n$ equivalent to $(\alpha_{1,\ell},\ldots,\alpha_{n,\ell}).$ However, infinitely many fall into this group of residue classes, so one of the $p^n$ residue classes must appear infinitely often. Name this class of $(\ZZ/p^{\ell+1}\ZZ)^n$ as\[(\alpha_{1,\ell+1},\ldots,\alpha_{n,\ell+1}).\]By construction, we have $\alpha_{k,\ell}\equiv a_{k+1,\ell}\pmod{p^\ell}$ for each $k,$ and infinitely many solutions fell on top of this residue class, making this a solution in $(\ZZ/p^\ell\ZZ)^n$ as well. This completes the inductive step.
+					</p>
+					<p>
+						This does complete the proof, with our Cauchy sequence in hand. What I find interesting about this proof is that it doesn't really use the fact that we're dealing with a polynomial anywhere in the proof. I guess implicitly used is that if\[P(\alpha_1,\ldots,\alpha_n)\equiv0\pmod{p^{\bullet+1}},\]then the equivalence holds in$\pmod{p^\bullet}$ as well, which is somewhat contingent on this being a polynomial. However, this is really it. Our polynomial can have as many variables as needed, it can be of any degree, it's coefficients can be anything from $\ZZ_p,$ and so on. It might even be possible to let these be power series, but this runs the risk of convergence problems.
+					</p>
+					<p>
+						Professor Kedlaya made the remark that this lemma is a bit misleading, in that it suggests that we need infinite information (solutions for each $\ZZ/p^\bullet\ZZ$) to get a solution in $\ZZ_p.$ Of course, this is not the case, a la Hensel's Lemma and the various ways to strengthen it. The prototypical example is quadratic residues, where, for $p{\gt}2,$\[x^2\equiv c\pmod{p^\bullet}\]with $p\nmid c$ will have solutions if and only if $\left(\frac cp\right)=1.$ This is a finite check to get the infinite information that we need. The proof of this statement is exactly Hensel's Lemma, for the derivative of $x^2-c$ is $2x,$ the only roots of which are $0$ for $p=2.$ We have to push a little bit harder to get $p=2,$ I suppose, but it still only amounts to a finite check.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

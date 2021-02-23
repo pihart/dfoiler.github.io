@@ -1,49 +1,123 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 17th</h2>
-					<p>Today I learned an application of the theory from yesterday. This was really a synthesis of old ideas. As an example, suppose we want a nice condition for a prime $p$ being a (nonzero) cube$\pmod7.$ This is a subgroup of $(\ZZ/7\ZZ)^\times,$ so Galois theory says that these $p$ will belong to the fixed field of some subfield of $\QQ(\zeta_7).$ Name this subfield $\QQ(\alpha),$ for some $\alpha$ with minimal polynomial $f(x).$ It happens that $f(x)=x^3-21x-7,$ which we will talk about later.</p>
-					<p>Now for primes $p{\gt}7,$ it happens that Dedekind-Kummer applies and ramification stops happening, so $p$ splits completely in $\QQ(\alpha)$ if and only if\[x^3-21x-7\pmod p\]splits completely. Continuing, theory around the Frobenius (check yesterday if bored) says that splitting completely in $\QQ(\alpha)$ is equivalent to the Frobenius $\varphi\in\op{Gal}(\QQ(\zeta_7)/\QQ)$ in the subgroup fixing $\QQ(\alpha).$</p>
-					<p>To finish, label the Galois group $\op{Gal}(\QQ(\zeta_7)/\QQ)\cong(\ZZ/7\ZZ)^\times$ by automorphisms $\sigma_\bullet:\zeta_7\mapsto\zeta_7^\bullet.$ We can compute that $\varphi=\sigma_p$ because $\varphi(\zeta_7)=\zeta_7^p$ by definition of the Frobenius. It follows that $\sigma_p$ fixes $\QQ(\alpha)$ if and only if\[\sigma_p\in\{\sigma_k:k\text{ is a cube}\pmod7\}.\]In total, for $p{\gt}7,$\[x^3-21x-7\pmod p\text{ splits completely}\iff p\text{ is a cube}\pmod7.\]I thought this was reasonably cute.</p>
-					<p>I guess I should talk about how $\alpha$ and its $f(x)$ were generated. Well, we can notice that\[\sum_{k=1}^7\zeta_7^{k^3}\]will be fixed by any automorphism fixing the cubes; this makes our $\alpha.$ Note that this is just taking the trace, in disguise. It's possible to compute $f(x)$ by hand by setting a system of equations with $1,\alpha,\alpha^2,\alpha^3$ and looking for the linear relation, but I just used sage.</p>
-					<p>This is easily generalized. Really, what we just did is show that for any subgroup of $S\subseteq(\ZZ/N\ZZ)^\times$ (cubes$\pmod7$), there exists a polynomial $f(x)$ such that for all sufficiently large primes $p,$\[f(x)\pmod p\text{ splits completely}\iff p\in S.\]Splitting completely can be replaced with having a single root, which is perhaps aesthetically nicer&mdash;we were dealing with abelian extensions, so our $\QQ(\alpha)$ is a Galois extension. This does generalize quadratic reciprocity, but it doesn't seem to give cubic reciprocity or friends. Namely, we don't really know what $f(x)$ looks like, though it's not hard to construct for an $S.$</p>
-					<p>Unrelated to this, let's talk linear recurrences because I like them. Let's say $f(x)\in\ZZ[x]$ is some irreducible polynomial corresponding to a linear recurrence $\{a_n\}$ with\[\sum_{k=0}c_ka_{n+k}=0.\]Namely, $f(x)=\sum c_kx^k.$ Stuff about linear recurrences says that $f(x)$ can be written as\[a_n=\sum_{k=0}^nA_k\alpha_k^n\]where $\alpha_\bullet$ roots of $f(x).$ Let's examine this sequence$\pmod p$ for some prime $p.$ If each of the $\alpha_k$ live in $\FF_p,$ then $a_n$ will be periodic with period $p,$ and that condition is equivalent to $f(x)$ splitting into linear factors$\pmod p.$</p>
-					<p>Now, for all but finitely many primes, $f(x)$ splits into linear factors if and only if $(p)$ splits completely in $\QQ(\alpha)$ for one of the roots $\alpha$ of $f(x).$ This will happen for a positive proportion of primes.; in fact, we know that the proportion is the reciprocal of the degree of the Galois closure of $\QQ(\alpha).$ It follows that a nice positive proportion of primes make the sequence have period $p.$</p>
-					<p>Extra conditions on $f$ (e.g., defining a Galois or even abelian extension) can give us nicer properties of the periodicity. For example, it's hard to talk about how the factorization of $f(x)$ behaves when not entirely linear. But if Galois, then for all but finitely many primes all of these factors had better have the same degree, so we can talk more concretely about when we have periods of $p^2$ and upwards. Namely, the least common multiple of the largest factor is where the most problematic roots life, upper-bounding our period.</p>
+					<h2>
+						December 17th
+					</h2>
+					<p>
+						Today I learned an application of the theory from yesterday. This was really a synthesis of old ideas. As an example, suppose we want a nice condition for a prime $p$ being a (nonzero) cube$\pmod7.$ This is a subgroup of $(\ZZ/7\ZZ)^\times,$ so Galois theory says that these $p$ will belong to the fixed field of some subfield of $\QQ(\zeta_7).$ Name this subfield $\QQ(\alpha),$ for some $\alpha$ with minimal polynomial $f(x).$ It happens that $f(x)=x^3-21x-7,$ which we will talk about later.
+					</p>
+					<p>
+						Now for primes $p{\gt}7,$ it happens that Dedekind-Kummer applies and ramification stops happening, so $p$ splits completely in $\QQ(\alpha)$ if and only if\[x^3-21x-7\pmod p\]splits completely. Continuing, theory around the Frobenius (check yesterday if bored) says that splitting completely in $\QQ(\alpha)$ is equivalent to the Frobenius $\varphi\in\op{Gal}(\QQ(\zeta_7)/\QQ)$ in the subgroup fixing $\QQ(\alpha).$
+					</p>
+					<p>
+						To finish, label the Galois group $\op{Gal}(\QQ(\zeta_7)/\QQ)\cong(\ZZ/7\ZZ)^\times$ by automorphisms $\sigma_\bullet:\zeta_7\mapsto\zeta_7^\bullet.$ We can compute that $\varphi=\sigma_p$ because $\varphi(\zeta_7)=\zeta_7^p$ by definition of the Frobenius. It follows that $\sigma_p$ fixes $\QQ(\alpha)$ if and only if\[\sigma_p\in\{\sigma_k:k\text{ is a cube}\pmod7\}.\]In total, for $p{\gt}7,$\[x^3-21x-7\pmod p\text{ splits completely}\iff p\text{ is a cube}\pmod7.\]I thought this was reasonably cute.
+					</p>
+					<p>
+						I guess I should talk about how $\alpha$ and its $f(x)$ were generated. Well, we can notice that\[\sum_{k=1}^7\zeta_7^{k^3}\]will be fixed by any automorphism fixing the cubes; this makes our $\alpha.$ Note that this is just taking the trace, in disguise. It's possible to compute $f(x)$ by hand by setting a system of equations with $1,\alpha,\alpha^2,\alpha^3$ and looking for the linear relation, but I just used sage.
+					</p>
+					<p>
+						This is easily generalized. Really, what we just did is show that for any subgroup of $S\subseteq(\ZZ/N\ZZ)^\times$ (cubes$\pmod7$), there exists a polynomial $f(x)$ such that for all sufficiently large primes $p,$\[f(x)\pmod p\text{ splits completely}\iff p\in S.\]Splitting completely can be replaced with having a single root, which is perhaps aesthetically nicer&mdash;we were dealing with abelian extensions, so our $\QQ(\alpha)$ is a Galois extension. This does generalize quadratic reciprocity, but it doesn't seem to give cubic reciprocity or friends. Namely, we don't really know what $f(x)$ looks like, though it's not hard to construct for an $S.$
+					</p>
+					<p>
+						Unrelated to this, let's talk linear recurrences because I like them. Let's say $f(x)\in\ZZ[x]$ is some irreducible polynomial corresponding to a linear recurrence $\{a_n\}$ with\[\sum_{k=0}c_ka_{n+k}=0.\]Namely, $f(x)=\sum c_kx^k.$ Stuff about linear recurrences says that $f(x)$ can be written as\[a_n=\sum_{k=0}^nA_k\alpha_k^n\]where $\alpha_\bullet$ roots of $f(x).$ Let's examine this sequence$\pmod p$ for some prime $p.$ If each of the $\alpha_k$ live in $\FF_p,$ then $a_n$ will be periodic with period $p,$ and that condition is equivalent to $f(x)$ splitting into linear factors$\pmod p.$
+					</p>
+					<p>
+						Now, for all but finitely many primes, $f(x)$ splits into linear factors if and only if $(p)$ splits completely in $\QQ(\alpha)$ for one of the roots $\alpha$ of $f(x).$ This will happen for a positive proportion of primes.; in fact, we know that the proportion is the reciprocal of the degree of the Galois closure of $\QQ(\alpha).$ It follows that a nice positive proportion of primes make the sequence have period $p.$
+					</p>
+					<p>
+						Extra conditions on $f$ (e.g., defining a Galois or even abelian extension) can give us nicer properties of the periodicity. For example, it's hard to talk about how the factorization of $f(x)$ behaves when not entirely linear. But if Galois, then for all but finitely many primes all of these factors had better have the same degree, so we can talk more concretely about when we have periods of $p^2$ and upwards. Namely, the least common multiple of the largest factor is where the most problematic roots life, upper-bounding our period.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

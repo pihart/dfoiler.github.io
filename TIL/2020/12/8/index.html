@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 8th</h2>
-					<p>Today I learned the definition of generalized eigenvectors, to move towards Jordan normal form sometime in my far future. The idea is to patch the fact that sometimes we can't make a full eigenbasis. So, for example, the horizontal shear\[A=\begin{bmatrix}    1 & 1 \\    0 & 1\end{bmatrix}\]has only a dimension-one eigenspace, spanned by $\langle1,0\rangle.$ Explicitly, its characteristic polynomial is $(\lambda-1)^2,$ so $1$ is the only eigenvalue. Its eigenspace is\[\ker(A-1I)=\ker\left(\begin{bmatrix}    0 & 1 \\    0 & 0\end{bmatrix}\right),\]which evaluates to $\{\langle x,0\rangle:x\in\RR\},$ indeed spanned by $\langle1,0\rangle.$ While there are no more eigenvectors, we can get close to being an eigenvector by chaining, solving\[\begin{bmatrix}    0 & 1 \\    0 & 0\end{bmatrix}v=\begin{bmatrix} 1 \\ 0 \end{bmatrix}.\]This gives $v=\langle x,1\rangle$ for any other $x.$ And further, our $\langle1,0\rangle$ and $\langle0,1\rangle$ (say) from our "chain'' does indeed form a basis of $\RR^2.$ So while we don't have an eigenbasis, we do have a generalized eigenbasis.</p>
-					<p>With this in mind, I should probably define what a generalized eigenvector is. We say that $v$ is a generalized eigenvector of rank $m$ if and only if $m$ is the smallest positive integer for which\[(A-\lambda I)^mv=0.\]Eigenvectors, then, are generalized eigenvectors of rank $1.$ In the above example, $\langle0,1\rangle$ is a generalized eigenvector of rank $2.$</p>
-					<p>It will turn out that the dimension of the generalized eigenspace associated with an eigenvalue does indeed match the algebraic multiplicity of the eigenvalue, something which I do not currently know a proof of. (I expect chaining as above to be able to give a full basis.) Then it's my understanding that changing to a basis of these chains will give the Jordan normal form, but I have not learned the details of this argument.</p>
+					<h2>
+						December 8th
+					</h2>
+					<p>
+						Today I learned the definition of generalized eigenvectors, to move towards Jordan normal form sometime in my far future. The idea is to patch the fact that sometimes we can't make a full eigenbasis. So, for example, the horizontal shear\[A=\begin{bmatrix}    1 & 1 \\    0 & 1\end{bmatrix}\]has only a dimension-one eigenspace, spanned by $\langle1,0\rangle.$ Explicitly, its characteristic polynomial is $(\lambda-1)^2,$ so $1$ is the only eigenvalue. Its eigenspace is\[\ker(A-1I)=\ker\left(\begin{bmatrix}    0 & 1 \\    0 & 0\end{bmatrix}\right),\]which evaluates to $\{\langle x,0\rangle:x\in\RR\},$ indeed spanned by $\langle1,0\rangle.$ While there are no more eigenvectors, we can get close to being an eigenvector by chaining, solving\[\begin{bmatrix}    0 & 1 \\    0 & 0\end{bmatrix}v=\begin{bmatrix} 1 \\ 0 \end{bmatrix}.\]This gives $v=\langle x,1\rangle$ for any other $x.$ And further, our $\langle1,0\rangle$ and $\langle0,1\rangle$ (say) from our "chain'' does indeed form a basis of $\RR^2.$ So while we don't have an eigenbasis, we do have a generalized eigenbasis.
+					</p>
+					<p>
+						With this in mind, I should probably define what a generalized eigenvector is. We say that $v$ is a generalized eigenvector of rank $m$ if and only if $m$ is the smallest positive integer for which\[(A-\lambda I)^mv=0.\]Eigenvectors, then, are generalized eigenvectors of rank $1.$ In the above example, $\langle0,1\rangle$ is a generalized eigenvector of rank $2.$
+					</p>
+					<p>
+						It will turn out that the dimension of the generalized eigenspace associated with an eigenvalue does indeed match the algebraic multiplicity of the eigenvalue, something which I do not currently know a proof of. (I expect chaining as above to be able to give a full basis.) Then it's my understanding that changing to a basis of these chains will give the Jordan normal form, but I have not learned the details of this argument.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

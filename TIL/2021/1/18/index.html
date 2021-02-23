@@ -1,43 +1,109 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 18th</h2>
-					<p>Today I learned an alternative explanation for the decimal expansion of fractions like $\frac1{9801},$ from <a href="https://math.stackexchange.com/a/102684/869257">here</a>. I'm used to evaluating the arithmetico-geometric series $\sum nx^{n+1}$ directly, but in fact it is in general true that\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{n=1}^\infty nx^{n+1}.\]There are a variety of ways to see this, one of which is directly computing the right-hand side by setting $S=\sum_{n=1}^\infty nx^{n+1}$ and seeing\[\frac1xS-S=\sum_{n=1}^\infty x^n=\frac x{1-x}.\]This rearranges to $S=\left(\frac x{1-x}\right)^2,$ which is what we wanted after expanding the geometric series. However, presenting this as that single equation makes it much easier to say something like\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{a=1}^\infty\sum_{b=1}^\infty x^ax^b=\sum_{n=2}^\infty\left(\sum_{a+b=2}1\right)x^n.\]This quickly turns into our desired $S$ after shifting the index of the sum.</p>
-					<p>Anyways, from this we see\[\sum_{n=1}^\infty\frac n{100^{n+1}}=\left(\sum_{n=1}^\infty\frac1{100}\right)^2=\frac1{99^2}.\]This is how $\frac1{9801}$ is expanded. As an aside, I guess I should explain why $98$ is skipped in the decimal expansion. Well, consider the following point in the sum:\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{98}{100^{99}}+\frac{99}{100^{100}}+\frac{100}{100^{101}}+\cdots.\]The $100$ is in fact too big for its position, so its $100$ gets shifted over to the previous $99,$ collapsing things into\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{99}{100^{99}}+\frac{00}{100^{100}}+\frac{00}{100^{101}}+\cdots.\]So in fact the $98$ is present, but it was turned into a $99$ by the carry, which shifted everything one over. In fact, all of the $100$s shift one over: the $100$ was turned into $00$ in the above, but the $101$ next to it makes the $00$ into $01.$ Then $101$ turns to $02,$ and so on. This pattern continues into the familiar decimal expansion\[\frac1{9801}=0.\overline{000102\cdots969799}.\]I think a formal proof would induct on the $100$s, but I don't feel like doing that now.</p>
+					<h2>
+						January 18th
+					</h2>
+					<p>
+						Today I learned an alternative explanation for the decimal expansion of fractions like $\frac1{9801},$ from
+						<a href="https://math.stackexchange.com/a/102684/869257">
+							here
+						</a>
+						. I'm used to evaluating the arithmetico-geometric series $\sum nx^{n+1}$ directly, but in fact it is in general true that\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{n=1}^\infty nx^{n+1}.\]There are a variety of ways to see this, one of which is directly computing the right-hand side by setting $S=\sum_{n=1}^\infty nx^{n+1}$ and seeing\[\frac1xS-S=\sum_{n=1}^\infty x^n=\frac x{1-x}.\]This rearranges to $S=\left(\frac x{1-x}\right)^2,$ which is what we wanted after expanding the geometric series. However, presenting this as that single equation makes it much easier to say something like\[\left(\sum_{n=1}^\infty x^n\right)^2=\sum_{a=1}^\infty\sum_{b=1}^\infty x^ax^b=\sum_{n=2}^\infty\left(\sum_{a+b=2}1\right)x^n.\]This quickly turns into our desired $S$ after shifting the index of the sum.
+					</p>
+					<p>
+						Anyways, from this we see\[\sum_{n=1}^\infty\frac n{100^{n+1}}=\left(\sum_{n=1}^\infty\frac1{100}\right)^2=\frac1{99^2}.\]This is how $\frac1{9801}$ is expanded. As an aside, I guess I should explain why $98$ is skipped in the decimal expansion. Well, consider the following point in the sum:\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{98}{100^{99}}+\frac{99}{100^{100}}+\frac{100}{100^{101}}+\cdots.\]The $100$ is in fact too big for its position, so its $100$ gets shifted over to the previous $99,$ collapsing things into\[\frac1{9801}=\frac0{100}+\frac1{100^2}+\cdots+\frac{97}{100^{98}}+\frac{99}{100^{99}}+\frac{00}{100^{100}}+\frac{00}{100^{101}}+\cdots.\]So in fact the $98$ is present, but it was turned into a $99$ by the carry, which shifted everything one over. In fact, all of the $100$s shift one over: the $100$ was turned into $00$ in the above, but the $101$ next to it makes the $00$ into $01.$ Then $101$ turns to $02,$ and so on. This pattern continues into the familiar decimal expansion\[\frac1{9801}=0.\overline{000102\cdots969799}.\]I think a formal proof would induct on the $100$s, but I don't feel like doing that now.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

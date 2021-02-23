@@ -1,46 +1,118 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 20th</h2>
-					<p>Today I learned an extension of the information-theoretic proof of the infinitude of primes, from <a href="https://qchu.wordpress.com/2009/09/02/some-remarks-on-the-infinitude-of-primes/">here</a>. The proof, roughly speaking, is that there aren't "enough'' integers with all primes in a fixed set of $k$ primes named $p_1,\ldots,p_k.$ Essentially, if we can express all positive integers $n$ as\[n=\prod_{\ell=1}^kp_\ell^{\nu_\ell},\]then we can represent integers $n$ using the $k$-tuple $(\nu_1,\ldots,\nu_k),$ which only needs\[\sum_{\ell=1}^k\log(\nu_\ell){\lt}\log n\]bits to represent, which is impossible.</p>
-					<p>To push this idea further, we fix a bound $n\le N$ and bound the number of integers $n$ with primes in $\{p_1,\ldots,p_k\}.$ In this case, fixing one such prime $p_\bullet,$ we see\[2^{\nu_\bullet}\le p_\bullet^{\nu_\bullet}\le n=\prod_{\ell=1}^kp_\ell^{\nu_\ell}\le N.\]It follows that $\nu_\bullet\le\log_2N$ for each $p_\bullet.$ Combining this for all $k$ primes, there are no more than $(\log_2N)^k$ total numbers which can be represented in this way. We remark that the inequality\[(\log_2N)^k{\lt}N\]for $N\to\infty$ is our proof of the infinitude of primes.</p>
-					<p>However, this provides a strange contrapositive of our statement. If we have any infinite sequence of positive integers $a_1,a_2,\ldots$ such that, for a bound $N,$ there are more than $(\log_2N)^k$ terms of the sequence less than $N,$ then our sequence represents more than $k$ primes. Quite simply, there are too many integers to be represented by any fixed set of $k$ primes. For concreteness, let's say our sequence is increasing so that we can set $N=a_n,$ from which we see\[(\log_2a_n)^k{\lt}n\]is enough to give more than $k$ primes. Rearranging, this bound is saying that\[a_n{\lt}2^{\sqrt[k]n}\]gives more than $k$ primes.</p>
-					<p>Adjusting for aesthetics, this implies that if an increasing sequence of positive integers $a_1,a_2,\ldots$ is $o\big(2^{\sqrt[k]n}\big)$ for any positive integer $k,$ then our sequence represents infinitely many primes. Because $2^{1/k}\to1^+$ as $k\to\infty,$ we might as well say that if our sequence of positive integers $a_1,a_2,\ldots$ is $o\left(\alpha^n\right)$ for any $\alpha{\gt}1,$ then our sequence represents infinitely many primes. Of course, the argument is a bit stronger than this, but this is aesthetically nice.</p>
-					<p>So, for example, $a_n=P(n)$ for any polynomial $P$ will suffice. This suggests that polynomials represent infinitely many primes, not because of any intrinsic property of polynomials, but because they grow too slowly. They give too many integers to represent the relatively sparse set of positive integers with only a fixed set of prime factors. This is somewhat remarkable because I'm used to doing the Euclidean proof by\[a\equiv b\pmod p\implies P(a)\equiv P(b)\pmod p,\]but this structure is technically unnecessary.</p>
+					<h2>
+						January 20th
+					</h2>
+					<p>
+						Today I learned an extension of the information-theoretic proof of the infinitude of primes, from
+						<a href="https://qchu.wordpress.com/2009/09/02/some-remarks-on-the-infinitude-of-primes/">
+							here
+						</a>
+						. The proof, roughly speaking, is that there aren't "enough'' integers with all primes in a fixed set of $k$ primes named $p_1,\ldots,p_k.$ Essentially, if we can express all positive integers $n$ as\[n=\prod_{\ell=1}^kp_\ell^{\nu_\ell},\]then we can represent integers $n$ using the $k$-tuple $(\nu_1,\ldots,\nu_k),$ which only needs\[\sum_{\ell=1}^k\log(\nu_\ell){\lt}\log n\]bits to represent, which is impossible.
+					</p>
+					<p>
+						To push this idea further, we fix a bound $n\le N$ and bound the number of integers $n$ with primes in $\{p_1,\ldots,p_k\}.$ In this case, fixing one such prime $p_\bullet,$ we see\[2^{\nu_\bullet}\le p_\bullet^{\nu_\bullet}\le n=\prod_{\ell=1}^kp_\ell^{\nu_\ell}\le N.\]It follows that $\nu_\bullet\le\log_2N$ for each $p_\bullet.$ Combining this for all $k$ primes, there are no more than $(\log_2N)^k$ total numbers which can be represented in this way. We remark that the inequality\[(\log_2N)^k{\lt}N\]for $N\to\infty$ is our proof of the infinitude of primes.
+					</p>
+					<p>
+						However, this provides a strange contrapositive of our statement. If we have any infinite sequence of positive integers $a_1,a_2,\ldots$ such that, for a bound $N,$ there are more than $(\log_2N)^k$ terms of the sequence less than $N,$ then our sequence represents more than $k$ primes. Quite simply, there are too many integers to be represented by any fixed set of $k$ primes. For concreteness, let's say our sequence is increasing so that we can set $N=a_n,$ from which we see\[(\log_2a_n)^k{\lt}n\]is enough to give more than $k$ primes. Rearranging, this bound is saying that\[a_n{\lt}2^{\sqrt[k]n}\]gives more than $k$ primes.
+					</p>
+					<p>
+						Adjusting for aesthetics, this implies that if an increasing sequence of positive integers $a_1,a_2,\ldots$ is $o\big(2^{\sqrt[k]n}\big)$ for any positive integer $k,$ then our sequence represents infinitely many primes. Because $2^{1/k}\to1^+$ as $k\to\infty,$ we might as well say that if our sequence of positive integers $a_1,a_2,\ldots$ is $o\left(\alpha^n\right)$ for any $\alpha{\gt}1,$ then our sequence represents infinitely many primes. Of course, the argument is a bit stronger than this, but this is aesthetically nice.
+					</p>
+					<p>
+						So, for example, $a_n=P(n)$ for any polynomial $P$ will suffice. This suggests that polynomials represent infinitely many primes, not because of any intrinsic property of polynomials, but because they grow too slowly. They give too many integers to represent the relatively sparse set of positive integers with only a fixed set of prime factors. This is somewhat remarkable because I'm used to doing the Euclidean proof by\[a\equiv b\pmod p\implies P(a)\equiv P(b)\pmod p,\]but this structure is technically unnecessary.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

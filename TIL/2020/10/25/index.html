@@ -1,50 +1,120 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to October)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to October)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>October 25th</h2>
-					<p>Today I learned the definition of the categorical kernel. We begin with the definition of zero morphisms. It's zero morphisms plural because we define zero morphisms to be a set of morphisms in $\mathcal C$ that satisfy the property\[0\circ a=b\circ 0=0\]for any other morphisms $a$ and $b.$ Explicitly, every pair of objects $A,B\in\mathcal C$ is equipped with a zero morphism $0_{AB},$ and for any additional morphism $\varphi:B\to C,$ we have\[\varphi\circ 0_{AB}=0_{AC}.\]Similarly, for any additional morphism $\varphi:C\to A,$ we have\[0_{AB}\circ\varphi=0_{CB}.\]In other words, the following pair of diagrams always commute.</p>
+					<h2>
+						October 25th
+					</h2>
+					<p>
+						Today I learned the definition of the categorical kernel. We begin with the definition of zero morphisms. It's zero morphisms plural because we define zero morphisms to be a set of morphisms in $\mathcal C$ that satisfy the property\[0\circ a=b\circ 0=0\]for any other morphisms $a$ and $b.$ Explicitly, every pair of objects $A,B\in\mathcal C$ is equipped with a zero morphism $0_{AB},$ and for any additional morphism $\varphi:B\to C,$ we have\[\varphi\circ 0_{AB}=0_{AC}.\]Similarly, for any additional morphism $\varphi:C\to A,$ we have\[0_{AB}\circ\varphi=0_{CB}.\]In other words, the following pair of diagrams always commute.
+					</p>
 					<img src="img1.png">
-					<p>As an example, the category of groups has these very convenient morphisms $0:G\to G'$ by $g\mapsto e,$ which satisfy this condition. Indeed, composing any morphism before this still sends everything to the identity, and doing anything afterwards is doomed just to send the identity to the identity.</p>
-					<p>To define the kernel, now, we start with a function $f:A\to B.$ Then the kernel is an object $K$ with a morphism $k:K\to A$ to be thought of an inclusion mapping. We also require that $K\to A\to B=0_{KB}$ is the zero morphism and that if there's a parallel mapping $k':K'\to A$ with $K'\to A\to B=0_{K'B},$ then $k'$ factors uniquely through $k.$ In diagrams, this commutes.</p>
+					<p>
+						As an example, the category of groups has these very convenient morphisms $0:G\to G'$ by $g\mapsto e,$ which satisfy this condition. Indeed, composing any morphism before this still sends everything to the identity, and doing anything afterwards is doomed just to send the identity to the identity.
+					</p>
+					<p>
+						To define the kernel, now, we start with a function $f:A\to B.$ Then the kernel is an object $K$ with a morphism $k:K\to A$ to be thought of an inclusion mapping. We also require that $K\to A\to B=0_{KB}$ is the zero morphism and that if there's a parallel mapping $k':K'\to A$ with $K'\to A\to B=0_{K'B},$ then $k'$ factors uniquely through $k.$ In diagrams, this commutes.
+					</p>
 					<img src="img2.png">
-					<p>And there is a unique $\varphi$ making this commute.</p>
+					<p>
+						And there is a unique $\varphi$ making this commute.
+					</p>
 					<img src="img3.png">
-					<p>As alluded to, $K$ is usually what we refer to as "the kernel'' because we would like it to be a subset of the input space; explicitly, we want $k$ to be an inclusion. For example, using our category of groups again, the typical kernel gets the job done. Indeed, $\ker(f)$ in groups is by definition the subgroup of $A$ which goes to the identity, and going to the identity is what our zero morphisms are.</p>
-					<p>And if we have another group so that $K'\to A\to B$ also goes to the identity, then this must be a subgroup of our original kernel, letting us back-construct the inclusion mapping into $K.$ This completes our checks.</p>
+					<p>
+						As alluded to, $K$ is usually what we refer to as "the kernel'' because we would like it to be a subset of the input space; explicitly, we want $k$ to be an inclusion. For example, using our category of groups again, the typical kernel gets the job done. Indeed, $\ker(f)$ in groups is by definition the subgroup of $A$ which goes to the identity, and going to the identity is what our zero morphisms are.
+					</p>
+					<p>
+						And if we have another group so that $K'\to A\to B$ also goes to the identity, then this must be a subgroup of our original kernel, letting us back-construct the inclusion mapping into $K.$ This completes our checks.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

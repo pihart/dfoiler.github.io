@@ -1,49 +1,123 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 11th</h2>
-					<p>Today I learned the proof that splitting of $\mf p$ in a non-Galois extension $L/K$ is in bijection with cosets $H\sigma D_\mf P$ for some prime $\mf P$ over $\mf p$ in the Galois closure $M$ of $L/K,$ where $H$ is subgroup of $G=\op{Gal}(M/K)$ fixing $L,$ and $D_\mf P$ is the decomposition subgroup. This idea appears in Marcus, but I like the exposition as presented by Professor Kedlaya better.</p>
-					<p>We claim that there is a natural bijection between primes over $\mf p$ in $\mathcal O_L$ and double cosets $H\sigma D_\mf P$ by mapping\[H\sigma D_\mf P\longmapsto L\cap\sigma\mf P.\]Quickly, note that we can represent all primes in $\mathcal O_L$ over $\mf p$ in the form $L\cap\sigma\mf P$ for some $\sigma$ because all of these primes is below some prime in $M$ over $\mf p,$ and all of the latter primes have the form $\sigma\mf P$ because the Galois group acts transitively here.</p>
-					<p>It remains to show the bijection. That is, $H\sigma D_\mf p=H\tau D_\mf P$ if and only if $L\cap\sigma\mf P=L\cap\tau\mf P.$ In one direction, if $H\sigma D_\mf p=H\tau D_\mf P,$ then there exist $h\in H$ and $d\in D_\mf P$ such that $\sigma=h\tau d.$ It follows that\[L\cap\sigma\mf P=L\cap(h\tau d)\mf P=L\cap h\tau\mf P.\]To finish, we note that $L\cap h\tau\mf P=L\cap\tau\mf P$ because $\alpha\in L\cap \tau\mf P$ if and only if $\alpha\in L$ and $\alpha\in\tau\mf P,$ so $\alpha=h(\alpha)$ is in both $L$ and $h\tau\mf P$ for free. Namely, this prime is fixed by $H.$</p>
-					<p>In the other direction, suppose that $L\cap\sigma\mf P=L\cap\tau\mf P.$ Taking a cue from Marcus, we remark that both $\tau\mf P$ and $\sigma\mf P$ are primes lying over $L\cap\sigma\mf P,$ so there exists an $h\in\op{Gal}(M/L)=H$ such that\[\tau\mf P=h\sigma\mf P.\]But then $\tau^{-1}h\sigma$ fixes $\mf P,$ so $\tau^{-1}h\sigma=d$ for some $d\in D_\mf P.$ From this it follows $\tau=h\sigma d^{-1},$ so $H\tau D_\mf P=H\sigma D_\mf P.$ This is what we wanted.</p>
-					<p>As an addendum, let's show that $f(L\cap\sigma\mf P/\mf p)=[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}].$ We're going to reconstruct Marcus's proof. We claim that actually both of these are equal to the number of elements in\[\left\{H\sigma,H\sigma\varphi,H\sigma\varphi^2,\ldots,H\sigma\varphi^{f_\sigma-1}\right\}\]for Frobenius $\varphi$ at $\mf P.$ In other words, $H\sigma\varphi^{f_\sigma}$ goes back into this double coset. And in fact it must be $H\sigma,$ for if $H\sigma\varphi^\bullet=H\sigma\varphi^{f_\sigma},$ then $H\sigma=H\sigma\varphi^{f_\sigma-\bullet},$ violating the minimality of $f_\sigma.$</p>
-					<p>Showing that $f_\sigma=[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}]$ is not as difficult. Notice that $H\sigma\varphi^{f_\sigma}=H\sigma$ is equivalent to $\varphi^{f_\sigma}\in\sigma^{-1} H\sigma.$ So $f_\sigma,$ which is the size of this double coset, is the smallest element in $\langle\varphi\rangle$ which is in $\sigma^{-1}H\sigma.$ Using a normal division algorithm argument, it follows that\[D_\mf P\cap\sigma^{-1}H\sigma=\langle\varphi^{f_\sigma}\rangle.\]In particular, the size of this is $|D_\mf P\cap\sigma^{-1}H\sigma|=|D_\mf P|/f_\sigma.$ Rearranging gets the result.</p>
-					<p>It remains to show that $f_\sigma=f(\cap\sigma\mf P).$ We begin by showing $f(L\cap\sigma\mf P)\le f_\sigma.$ Note that $H\sigma=H\sigma\varphi^{f_\sigma}$ is equivalent to\[\left(\sigma\varphi\sigma^{-1}\right)^{f_\sigma}\in H.\]Now, $\sigma\varphi\sigma^{-1}$ is the Frobenius at $\sigma\mf P$ because, for any $\alpha,$\[\sigma\varphi\sigma^{-1}(\alpha+\sigma\mf P)=\sigma\varphi(\sigma^{-1}(\alpha)+\mf P)=\sigma\left(\sigma^{-1}\left(\alpha^{|\mathcal O_K/\mf p|}\right)+\mf P\right)=\alpha^{|\mathcal O_K/\mf p|}+\sigma\mf P.\]In particular, $L\cap\sigma\mf P\subseteq\mf P,$ so we may say\[\sigma^{-1}\varphi\sigma(\alpha)\equiv\alpha^{|\mathcal O_K/\mf p|}\pmod{L\cap\sigma\mf P}.\]Iterating $\sigma^{-1}\varphi\sigma$ a total of $f_\sigma$ times, we remark that $\left(\sigma^{-1}\varphi\sigma\right)^{f_\sigma}\in H$ and so will fix $\alpha.$ So we see\[\alpha^{|\mathcal O_K/\mf p|^{f_\sigma}}\equiv\left(\sigma^{-1}\varphi\sigma\right)^{f_\sigma}\equiv\alpha\pmod{L\cap\sigma\mf P}.\]In particular, if we let $\alpha$ generate the multiplicative group of $\mathcal O_L/L\cap\sigma\mf P,$ then $\alpha$ will have multiplicative order $|\mathcal O_K/\mf p|^{f(L\cap\sigma\mf P/\mf p)}-1.$ But the above says that the order is no more than $|\mathcal O_K/\mf p|^{f_\sigma}-1.$ It follows $f(L\cap\sigma\mf P/\mf p)\le f_\sigma$ like we need.</p>
-					<p>To finish, we remark that\[\sum_{H\sigma D_\mf P}f(L\cap\sigma\mf P/\mf p)=[L:K]\]from the fundamental identity. But also\[\sum_{H\sigma D_\mf P}f_\sigma=\sum_{H\sigma D_\mf P}\left|\left\{H\sigma,H\sigma\varphi,\ldots,H\sigma\varphi^{f_\sigma-1}\right\}\right|=[G:H].\]So the fact $[L:K]=[G:H]$ gives us equal sums for both. So the inequality $f(L\cap\sigma\mf P/\mf p)\le f_\sigma$ must in fact be an equality, and we are done here.</p>
+					<h2>
+						November 11th
+					</h2>
+					<p>
+						Today I learned the proof that splitting of $\mf p$ in a non-Galois extension $L/K$ is in bijection with cosets $H\sigma D_\mf P$ for some prime $\mf P$ over $\mf p$ in the Galois closure $M$ of $L/K,$ where $H$ is subgroup of $G=\op{Gal}(M/K)$ fixing $L,$ and $D_\mf P$ is the decomposition subgroup. This idea appears in Marcus, but I like the exposition as presented by Professor Kedlaya better.
+					</p>
+					<p>
+						We claim that there is a natural bijection between primes over $\mf p$ in $\mathcal O_L$ and double cosets $H\sigma D_\mf P$ by mapping\[H\sigma D_\mf P\longmapsto L\cap\sigma\mf P.\]Quickly, note that we can represent all primes in $\mathcal O_L$ over $\mf p$ in the form $L\cap\sigma\mf P$ for some $\sigma$ because all of these primes is below some prime in $M$ over $\mf p,$ and all of the latter primes have the form $\sigma\mf P$ because the Galois group acts transitively here.
+					</p>
+					<p>
+						It remains to show the bijection. That is, $H\sigma D_\mf p=H\tau D_\mf P$ if and only if $L\cap\sigma\mf P=L\cap\tau\mf P.$ In one direction, if $H\sigma D_\mf p=H\tau D_\mf P,$ then there exist $h\in H$ and $d\in D_\mf P$ such that $\sigma=h\tau d.$ It follows that\[L\cap\sigma\mf P=L\cap(h\tau d)\mf P=L\cap h\tau\mf P.\]To finish, we note that $L\cap h\tau\mf P=L\cap\tau\mf P$ because $\alpha\in L\cap \tau\mf P$ if and only if $\alpha\in L$ and $\alpha\in\tau\mf P,$ so $\alpha=h(\alpha)$ is in both $L$ and $h\tau\mf P$ for free. Namely, this prime is fixed by $H.$
+					</p>
+					<p>
+						In the other direction, suppose that $L\cap\sigma\mf P=L\cap\tau\mf P.$ Taking a cue from Marcus, we remark that both $\tau\mf P$ and $\sigma\mf P$ are primes lying over $L\cap\sigma\mf P,$ so there exists an $h\in\op{Gal}(M/L)=H$ such that\[\tau\mf P=h\sigma\mf P.\]But then $\tau^{-1}h\sigma$ fixes $\mf P,$ so $\tau^{-1}h\sigma=d$ for some $d\in D_\mf P.$ From this it follows $\tau=h\sigma d^{-1},$ so $H\tau D_\mf P=H\sigma D_\mf P.$ This is what we wanted.
+					</p>
+					<p>
+						As an addendum, let's show that $f(L\cap\sigma\mf P/\mf p)=[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}].$ We're going to reconstruct Marcus's proof. We claim that actually both of these are equal to the number of elements in\[\left\{H\sigma,H\sigma\varphi,H\sigma\varphi^2,\ldots,H\sigma\varphi^{f_\sigma-1}\right\}\]for Frobenius $\varphi$ at $\mf P.$ In other words, $H\sigma\varphi^{f_\sigma}$ goes back into this double coset. And in fact it must be $H\sigma,$ for if $H\sigma\varphi^\bullet=H\sigma\varphi^{f_\sigma},$ then $H\sigma=H\sigma\varphi^{f_\sigma-\bullet},$ violating the minimality of $f_\sigma.$
+					</p>
+					<p>
+						Showing that $f_\sigma=[D_\mf P:D_\mf P\cap\sigma H\sigma^{-1}]$ is not as difficult. Notice that $H\sigma\varphi^{f_\sigma}=H\sigma$ is equivalent to $\varphi^{f_\sigma}\in\sigma^{-1} H\sigma.$ So $f_\sigma,$ which is the size of this double coset, is the smallest element in $\langle\varphi\rangle$ which is in $\sigma^{-1}H\sigma.$ Using a normal division algorithm argument, it follows that\[D_\mf P\cap\sigma^{-1}H\sigma=\langle\varphi^{f_\sigma}\rangle.\]In particular, the size of this is $|D_\mf P\cap\sigma^{-1}H\sigma|=|D_\mf P|/f_\sigma.$ Rearranging gets the result.
+					</p>
+					<p>
+						It remains to show that $f_\sigma=f(\cap\sigma\mf P).$ We begin by showing $f(L\cap\sigma\mf P)\le f_\sigma.$ Note that $H\sigma=H\sigma\varphi^{f_\sigma}$ is equivalent to\[\left(\sigma\varphi\sigma^{-1}\right)^{f_\sigma}\in H.\]Now, $\sigma\varphi\sigma^{-1}$ is the Frobenius at $\sigma\mf P$ because, for any $\alpha,$\[\sigma\varphi\sigma^{-1}(\alpha+\sigma\mf P)=\sigma\varphi(\sigma^{-1}(\alpha)+\mf P)=\sigma\left(\sigma^{-1}\left(\alpha^{|\mathcal O_K/\mf p|}\right)+\mf P\right)=\alpha^{|\mathcal O_K/\mf p|}+\sigma\mf P.\]In particular, $L\cap\sigma\mf P\subseteq\mf P,$ so we may say\[\sigma^{-1}\varphi\sigma(\alpha)\equiv\alpha^{|\mathcal O_K/\mf p|}\pmod{L\cap\sigma\mf P}.\]Iterating $\sigma^{-1}\varphi\sigma$ a total of $f_\sigma$ times, we remark that $\left(\sigma^{-1}\varphi\sigma\right)^{f_\sigma}\in H$ and so will fix $\alpha.$ So we see\[\alpha^{|\mathcal O_K/\mf p|^{f_\sigma}}\equiv\left(\sigma^{-1}\varphi\sigma\right)^{f_\sigma}\equiv\alpha\pmod{L\cap\sigma\mf P}.\]In particular, if we let $\alpha$ generate the multiplicative group of $\mathcal O_L/L\cap\sigma\mf P,$ then $\alpha$ will have multiplicative order $|\mathcal O_K/\mf p|^{f(L\cap\sigma\mf P/\mf p)}-1.$ But the above says that the order is no more than $|\mathcal O_K/\mf p|^{f_\sigma}-1.$ It follows $f(L\cap\sigma\mf P/\mf p)\le f_\sigma$ like we need.
+					</p>
+					<p>
+						To finish, we remark that\[\sum_{H\sigma D_\mf P}f(L\cap\sigma\mf P/\mf p)=[L:K]\]from the fundamental identity. But also\[\sum_{H\sigma D_\mf P}f_\sigma=\sum_{H\sigma D_\mf P}\left|\left\{H\sigma,H\sigma\varphi,\ldots,H\sigma\varphi^{f_\sigma-1}\right\}\right|=[G:H].\]So the fact $[L:K]=[G:H]$ gives us equal sums for both. So the inequality $f(L\cap\sigma\mf P/\mf p)\le f_\sigma$ must in fact be an equality, and we are done here.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 24th</h2>
-					<p>Today I learned the proof of the prime number theorem for function fields using $\zeta_q.$ (I'm used to doing this by counting field extensions.) We do have an Euler product\[\zeta_q(s)=\prod_\mf p\frac1{1-\op{Norm}(\mf p)^{-s}}=\prod_{(\pi)}\frac1{1-q^{-s\deg\pi}},\]proven in the same way that we prove the Euler product for Dedekind zeta functions. I won't do so here; if interested, the idea is to note that the Euler product with only finitely many factors (say, those of degree $\le d$) will have all elements of $\zeta_q$ of degree $\le d$ while not having all elements in $\zeta_q.$ Sending $d\to\infty$ recovers the equality by squeeze theorem.</p>
-					<p>Anyways, let $\iota_d$ be the number of monic irreducibles of degree $d,$ and then\[\zeta_q(s)=\prod_{d=1}^\infty\left(\frac1{1-q^{-sd}}\right)^{\iota_d}.\]Recall the analytic continuation of $\zeta_q$ from yesterday, which lets us say\[\frac1{1-q^{1-s}}=\prod_{d=0}^\infty\left(\frac1{1-q^{-sd}}\right)^{\iota_d}\]for $\op{Re}(s){\gt}1.$ Note there are no $0$s in this region for the left-hand side, for there are no $0$s anywhere for $\zeta_q$&mdash;recall the "Riemann hypothesis'' from yesterday.</p>
-					<p>The key step, then, is to happily take $\log$ to say\[-\log\left(1-q^{1-s}\right)=\sum_{d=1}^\infty-\iota_d\log\left(1-q^{-sd}\right)\]for $\op{Re}(s){\gt}1.$ The series converges because the product did, but I suppose we could show this by another means; we don't bother. We would like to introduce a double summation to rearrange, so let's expand out $\log.$ Note that $\op{Re}(s){\gt}1$ means $\left|q^{1-s}\right|{\lt}1$ and $\left|q^{-sd}\right|{\lt}1,$ so we may apply the Taylor series for $-\log(1-z).$ So we see\[\sum_{k=1}^\infty\frac{\left(q^{1-s}\right)^k}k=\sum_{d=1}^\infty\sum_{k=1}^\infty\frac{\iota_d\left(q^{-sd}\right)^k}k=\sum_{k=1}^\infty\sum_{d=1}^\infty\frac{\iota_d\left(q^{-sd}\right)^k}k.\]for $\op{Re}(s){\gt}1.$ (All terms are positive, so rearrangement is permitted.) We would like to end this part of the proof by saying something nontrivial with the equality of Taylor coefficients. To make this clearer, we let $z=q^{1-s}$ and write the above as\[\sum_{k=1}^\infty\frac{z^k}k=\sum_{k=1}^\infty\sum_{d=1}^\infty\frac{\iota_dq^{-dk}z^{dk}}k.\]The way we make this collapse is to sum not over $k$ but over $dk=:n.$ Applying the variable change, we see\[\sum_{k=1}^\infty\frac{z^k}k=\sum_{n=1}^\infty\left(\sum_{d\mid n}d\iota_dq^{-n}\right)\frac{z^n}n.\]As promised, we now get to equate coefficients of the Taylor series (formally, take derivatives and then plug in $z=0$) to say\[\sum_{d\mid n}d\iota_d=q^n.\]</p>
-					<p>We are almost done. M\"obius inversion implies\[n\iota_n=\sum_{d\mid n}q^d\mu(n/d),\]which provides an explicit formula for $\iota_n.$ We can roughly bound this as\[n\iota_n=q^n+O\left(\sum_{d=1}^{n/2}q^d\right)=q^n+O\left(\frac{q^{n/2+1}-1}{q-1}\right)=q^n+O\left(2q^{n/2}\right).\]The $2$ can vanish into the $O,$ but I have included it for clarity. It follows that $\iota_n=\frac{q^n}n+O\left(\frac{q^{n/2}}n\right).$ So the number of monic irreducibles of norm equal to $t$ is approximately\[\frac t{\log_qt}+O\left(\frac{\sqrt t}{\log_qt}\right),\]which is the prime number theorem with best possible error term.</p>
+					<h2>
+						December 24th
+					</h2>
+					<p>
+						Today I learned the proof of the prime number theorem for function fields using $\zeta_q.$ (I'm used to doing this by counting field extensions.) We do have an Euler product\[\zeta_q(s)=\prod_\mf p\frac1{1-\op{Norm}(\mf p)^{-s}}=\prod_{(\pi)}\frac1{1-q^{-s\deg\pi}},\]proven in the same way that we prove the Euler product for Dedekind zeta functions. I won't do so here; if interested, the idea is to note that the Euler product with only finitely many factors (say, those of degree $\le d$) will have all elements of $\zeta_q$ of degree $\le d$ while not having all elements in $\zeta_q.$ Sending $d\to\infty$ recovers the equality by squeeze theorem.
+					</p>
+					<p>
+						Anyways, let $\iota_d$ be the number of monic irreducibles of degree $d,$ and then\[\zeta_q(s)=\prod_{d=1}^\infty\left(\frac1{1-q^{-sd}}\right)^{\iota_d}.\]Recall the analytic continuation of $\zeta_q$ from yesterday, which lets us say\[\frac1{1-q^{1-s}}=\prod_{d=0}^\infty\left(\frac1{1-q^{-sd}}\right)^{\iota_d}\]for $\op{Re}(s){\gt}1.$ Note there are no $0$s in this region for the left-hand side, for there are no $0$s anywhere for $\zeta_q$&mdash;recall the "Riemann hypothesis'' from yesterday.
+					</p>
+					<p>
+						The key step, then, is to happily take $\log$ to say\[-\log\left(1-q^{1-s}\right)=\sum_{d=1}^\infty-\iota_d\log\left(1-q^{-sd}\right)\]for $\op{Re}(s){\gt}1.$ The series converges because the product did, but I suppose we could show this by another means; we don't bother. We would like to introduce a double summation to rearrange, so let's expand out $\log.$ Note that $\op{Re}(s){\gt}1$ means $\left|q^{1-s}\right|{\lt}1$ and $\left|q^{-sd}\right|{\lt}1,$ so we may apply the Taylor series for $-\log(1-z).$ So we see\[\sum_{k=1}^\infty\frac{\left(q^{1-s}\right)^k}k=\sum_{d=1}^\infty\sum_{k=1}^\infty\frac{\iota_d\left(q^{-sd}\right)^k}k=\sum_{k=1}^\infty\sum_{d=1}^\infty\frac{\iota_d\left(q^{-sd}\right)^k}k.\]for $\op{Re}(s){\gt}1.$ (All terms are positive, so rearrangement is permitted.) We would like to end this part of the proof by saying something nontrivial with the equality of Taylor coefficients. To make this clearer, we let $z=q^{1-s}$ and write the above as\[\sum_{k=1}^\infty\frac{z^k}k=\sum_{k=1}^\infty\sum_{d=1}^\infty\frac{\iota_dq^{-dk}z^{dk}}k.\]The way we make this collapse is to sum not over $k$ but over $dk=:n.$ Applying the variable change, we see\[\sum_{k=1}^\infty\frac{z^k}k=\sum_{n=1}^\infty\left(\sum_{d\mid n}d\iota_dq^{-n}\right)\frac{z^n}n.\]As promised, we now get to equate coefficients of the Taylor series (formally, take derivatives and then plug in $z=0$) to say\[\sum_{d\mid n}d\iota_d=q^n.\]
+					</p>
+					<p>
+						We are almost done. M\"obius inversion implies\[n\iota_n=\sum_{d\mid n}q^d\mu(n/d),\]which provides an explicit formula for $\iota_n.$ We can roughly bound this as\[n\iota_n=q^n+O\left(\sum_{d=1}^{n/2}q^d\right)=q^n+O\left(\frac{q^{n/2+1}-1}{q-1}\right)=q^n+O\left(2q^{n/2}\right).\]The $2$ can vanish into the $O,$ but I have included it for clarity. It follows that $\iota_n=\frac{q^n}n+O\left(\frac{q^{n/2}}n\right).$ So the number of monic irreducibles of norm equal to $t$ is approximately\[\frac t{\log_qt}+O\left(\frac{\sqrt t}{\log_qt}\right),\]which is the prime number theorem with best possible error term.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

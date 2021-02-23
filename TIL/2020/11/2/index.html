@@ -1,43 +1,105 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 2nd</h2>
-					<p>Today I learned about the regulator of a number field. Fix $K$ a number field with of integers $\mathcal O_K.$ The idea is to measure the size of the (non-torsion unit group). We know that $\op{Log}\mathcal O_K^\times$ is an abelian group with $r+s-1$ generators, so let them be $u_1,\ldots,u_{r+s-1}.$ In particular, $\op{Log}(u_\bullet)$ generates the unit (trace-$0$) hyperplane $H$ in the logarithmic Minkowski space $\RR^{r+s}.$ So one measurement of size could be\[\op{vol}(H/\op{Log}\mathcal O_K^\times).\]This definition turns out to be a bit obnoxious to work with, though we will return to this idea. Instead, it turns out to be easier to apply a coordinate projection $\pi$ to everything and then compute\[\op{Reg}_K=\op{vol}(\pi(H)/\pi(\op{Log}\mathcal O_K^\times)).\]It should not be clear why the regulator is not dependent on which coordinate projection we use; we will return to this, but for now we can use $\pi(x_1,\ldots,x_{r+s})=(x_1,\ldots,x_{r+s-1})$ for concreteness. The way to compute this is to use our generators $\op{Log}(u_\bullet)\in\RR^{r+s}.$ In essence, this covolume is equal to\[\op{Reg}_K=\left|\det\begin{bmatrix}    | & | &  & | \\    \pi\op{Log}(u_1) & \pi\op{Log}(u_2) & \cdots & \pi\op{Log}(u_{r+s-1}) \\    | & | &  & |\end{bmatrix}\right|.\]Note that this determinant makes sense because there are $r+s-1$ vectors with dimension $(r+s)-1.$ (This is the reason we used the coordinate projection.) For concreteness, it will be worth writing out more explicitly what this matrix is. Fix real embeddings $\rho_1,\ldots,\rho_r$ and complex embeddings $\sigma_1,\overline{\sigma_1},\ldots,\sigma_s,\overline{\sigma_s}$ so that\[\op{Reg}_K=\left|\det\begin{bmatrix}    \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \ddots & \vdots \\    \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \ddots & \vdots \\    2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}|\end{bmatrix}\right|.\]The $2$ is here because the Minkowski inner product double-counts complex embeddings. Expansion by minors gives this a more natural expression as\[\op{Reg}_K=\left|\det\begin{bmatrix}    0 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    0 & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    0 & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    0 & 2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}| \\    1 & 2\log|\sigma_su_1| & \cdots & 2\log|\sigma_su_{r+s-1}| \\\end{bmatrix}\right|.\]In fact, we claim that we can replace the leftmost vector with any vectors whose coordinate sum is $1$; this will prove that the coordinate projection $\pi$ we chose at the beginning definition doesn't matter, for a different coordinate projection amounts to changing the position of the $1.$ Anyways, for $v_1+\cdots+v_{r+s-1}=1,$ we want to show\[\op{Reg}_K\stackrel?=\left|\det\begin{bmatrix}    v_1 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_r & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    v_{r+1} & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_{r+s} & 2\log|\sigma_su_1| & \cdots & 2\log|\sigma_su_{r+s-1}| \\\end{bmatrix}\right|.\]We have to use the fact that the $u_\bullet$ are units, which roughly amounts to saying $\op{Log}(u_\bullet)$ has coordinate sum equal to $0.$ So we add all rows to the last row to simulate a coordinate sum, which doesn't change the determinant and means we want to show\[\op{Reg}_K\stackrel?=\left|\det\begin{bmatrix}    v_1 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_r & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    v_{r+1} & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_{r+s-1} & 2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}| \\    1 & 0 & \cdots & 0 \\\end{bmatrix}\right|.\]Doing expansion by minors on the bottom row gives the original determinant for $\op{Reg}_K,$ with a possible sign. Signs don't matter because of the absolute value, so we see that the above equality holds.</p>
-					<p>Let's return to the initial idea $\op{vol}(H/\op{Log}\mathcal O_K^\times).$ Our key will be $v=\frac1{r+s}(1,\ldots,1).$ This vector is orthogonal to $H$ (vectors in $H$ have coordinate sum $0$), so we see\[\left|\det\begin{bmatrix}    | & | &  & | \\    v & \op{Log}(u_1) & \cdots & \op{Log}(u_{r+s-1}) \\    | & | &  & |\end{bmatrix}\right|=\op{vol}(H/\op{Log}\mathcal O_K^\times)\cdot|v|\]by saying that volume ($\det$) is base ($\op{vol}(H/\op{Log}\mathcal O_K^\times)$) times height ($|v|$). However, $v$ has coordinate sum equal to $1,$ so the above work says that the right-hand side is actually regulator. Simplifying $|v|=1/\sqrt{r+s}$ as well tells us\[\op{Reg}_K=\frac{\op{vol}(H/\op{Log}\mathcal O_K^\times)}{\sqrt{r+s}}.\]So the regulator does measure what we wanted it to, up to a scale factor $1/\sqrt{r+s}.$</p>
+					<h2>
+						November 2nd
+					</h2>
+					<p>
+						Today I learned about the regulator of a number field. Fix $K$ a number field with of integers $\mathcal O_K.$ The idea is to measure the size of the (non-torsion unit group). We know that $\op{Log}\mathcal O_K^\times$ is an abelian group with $r+s-1$ generators, so let them be $u_1,\ldots,u_{r+s-1}.$ In particular, $\op{Log}(u_\bullet)$ generates the unit (trace-$0$) hyperplane $H$ in the logarithmic Minkowski space $\RR^{r+s}.$ So one measurement of size could be\[\op{vol}(H/\op{Log}\mathcal O_K^\times).\]This definition turns out to be a bit obnoxious to work with, though we will return to this idea. Instead, it turns out to be easier to apply a coordinate projection $\pi$ to everything and then compute\[\op{Reg}_K=\op{vol}(\pi(H)/\pi(\op{Log}\mathcal O_K^\times)).\]It should not be clear why the regulator is not dependent on which coordinate projection we use; we will return to this, but for now we can use $\pi(x_1,\ldots,x_{r+s})=(x_1,\ldots,x_{r+s-1})$ for concreteness. The way to compute this is to use our generators $\op{Log}(u_\bullet)\in\RR^{r+s}.$ In essence, this covolume is equal to\[\op{Reg}_K=\left|\det\begin{bmatrix}    | & | &  & | \\    \pi\op{Log}(u_1) & \pi\op{Log}(u_2) & \cdots & \pi\op{Log}(u_{r+s-1}) \\    | & | &  & |\end{bmatrix}\right|.\]Note that this determinant makes sense because there are $r+s-1$ vectors with dimension $(r+s)-1.$ (This is the reason we used the coordinate projection.) For concreteness, it will be worth writing out more explicitly what this matrix is. Fix real embeddings $\rho_1,\ldots,\rho_r$ and complex embeddings $\sigma_1,\overline{\sigma_1},\ldots,\sigma_s,\overline{\sigma_s}$ so that\[\op{Reg}_K=\left|\det\begin{bmatrix}    \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \ddots & \vdots \\    \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \ddots & \vdots \\    2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}|\end{bmatrix}\right|.\]The $2$ is here because the Minkowski inner product double-counts complex embeddings. Expansion by minors gives this a more natural expression as\[\op{Reg}_K=\left|\det\begin{bmatrix}    0 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    0 & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    0 & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    0 & 2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}| \\    1 & 2\log|\sigma_su_1| & \cdots & 2\log|\sigma_su_{r+s-1}| \\\end{bmatrix}\right|.\]In fact, we claim that we can replace the leftmost vector with any vectors whose coordinate sum is $1$; this will prove that the coordinate projection $\pi$ we chose at the beginning definition doesn't matter, for a different coordinate projection amounts to changing the position of the $1.$ Anyways, for $v_1+\cdots+v_{r+s-1}=1,$ we want to show\[\op{Reg}_K\stackrel?=\left|\det\begin{bmatrix}    v_1 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_r & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    v_{r+1} & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_{r+s} & 2\log|\sigma_su_1| & \cdots & 2\log|\sigma_su_{r+s-1}| \\\end{bmatrix}\right|.\]We have to use the fact that the $u_\bullet$ are units, which roughly amounts to saying $\op{Log}(u_\bullet)$ has coordinate sum equal to $0.$ So we add all rows to the last row to simulate a coordinate sum, which doesn't change the determinant and means we want to show\[\op{Reg}_K\stackrel?=\left|\det\begin{bmatrix}    v_1 & \log|\rho_1u_1| & \cdots & \log|\rho_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_r & \log|\rho_ru_1| & \cdots & \log|\rho_ru_{r+s-1}| \\    v_{r+1} & 2\log|\sigma_1u_1| & \cdots & 2\log|\sigma_1u_{r+s-1}| \\    \vdots & \vdots & \ddots & \vdots \\    v_{r+s-1} & 2\log|\sigma_{s-1}u_1| & \cdots & 2\log|\sigma_{s-1}u_{r+s-1}| \\    1 & 0 & \cdots & 0 \\\end{bmatrix}\right|.\]Doing expansion by minors on the bottom row gives the original determinant for $\op{Reg}_K,$ with a possible sign. Signs don't matter because of the absolute value, so we see that the above equality holds.
+					</p>
+					<p>
+						Let's return to the initial idea $\op{vol}(H/\op{Log}\mathcal O_K^\times).$ Our key will be $v=\frac1{r+s}(1,\ldots,1).$ This vector is orthogonal to $H$ (vectors in $H$ have coordinate sum $0$), so we see\[\left|\det\begin{bmatrix}    | & | &  & | \\    v & \op{Log}(u_1) & \cdots & \op{Log}(u_{r+s-1}) \\    | & | &  & |\end{bmatrix}\right|=\op{vol}(H/\op{Log}\mathcal O_K^\times)\cdot|v|\]by saying that volume ($\det$) is base ($\op{vol}(H/\op{Log}\mathcal O_K^\times)$) times height ($|v|$). However, $v$ has coordinate sum equal to $1,$ so the above work says that the right-hand side is actually regulator. Simplifying $|v|=1/\sqrt{r+s}$ as well tells us\[\op{Reg}_K=\frac{\op{vol}(H/\op{Log}\mathcal O_K^\times)}{\sqrt{r+s}}.\]So the regulator does measure what we wanted it to, up to a scale factor $1/\sqrt{r+s}.$
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 1st</h2>
-					<p>Today I learned the definition of the Krull topology. Basically, the idea is that we want to have some nicer control over infinite Galois extensions, and there's a notion of "closeness'' provided between automorphisms, so this will induce a topology. More formally, fix a probably infinite extension $L/K.$ Then for an intermediate field $K'$ where $K'/K$ is finite, we define the neighborhood\[U_{\sigma,K'}=\{\tau\in\op{Gal}(L/K):\tau=\sigma\text{ on }K'\}.\]So two automorphisms are "close'' if they agree on a "small'' subfield $K'/K.$ We can also write\[U_{\sigma,K'}=\sigma\left\{\sigma^{-1}\tau\in\op{Gal}(L/K):\sigma^{-1}\tau\text{ fixes }K'/K\right\},\]so our open sets are actually cosets of $\op{Aut}(K'/K).$ Note $K'/K$ is not required to be Galois, so this might not even be a coset of a subgroup.</p>
-					<p>I guess most pedestrian examples aren't super interesting. For example, any finite extension $L/K$ will just get the discrete topology. Indeed, for some $\sigma\in\op{Gal}(L/K),$ we get that\[U_{\sigma,L}=\{\tau:\tau=\sigma\text{ on }L\}=\{\sigma\},\]which is legal because $L/K$ is a finite extension. It follows that every singleton is open, giving us the discrete topology.</p>
-					<p>With $\op{Gal}(\QQ(\zeta_{p^\infty})/\QQ),$ we see that our open sets are really\[U_{\sigma,\QQ(\zeta_{p^\bullet})}=\sigma\cdot\op{Gal}(\QQ(\zeta_{p^\bullet})/\QQ)=a_\sigma\ZZ_p^\times,\]where $a_\sigma$ is our element of $\ZZ_p^\times$ corresponding to the automorphism $\sigma.$ It follows that the topology over $\ZZ_p$ more or less caries over with the obvious caveat that we're living in $\ZZ_p^\times,$ provided that I didn't make a mistake somewhere. Basically, we're finding that $\ZZ_p^\times$ and $\op{Gal}(\QQ(\zeta_{p^\infty})/\QQ)$ are not just the same as groups, but it's nice to note that the natural isomorphism can also preserve the topology of $\ZZ_p.$</p>
+					<h2>
+						November 1st
+					</h2>
+					<p>
+						Today I learned the definition of the Krull topology. Basically, the idea is that we want to have some nicer control over infinite Galois extensions, and there's a notion of "closeness'' provided between automorphisms, so this will induce a topology. More formally, fix a probably infinite extension $L/K.$ Then for an intermediate field $K'$ where $K'/K$ is finite, we define the neighborhood\[U_{\sigma,K'}=\{\tau\in\op{Gal}(L/K):\tau=\sigma\text{ on }K'\}.\]So two automorphisms are "close'' if they agree on a "small'' subfield $K'/K.$ We can also write\[U_{\sigma,K'}=\sigma\left\{\sigma^{-1}\tau\in\op{Gal}(L/K):\sigma^{-1}\tau\text{ fixes }K'/K\right\},\]so our open sets are actually cosets of $\op{Aut}(K'/K).$ Note $K'/K$ is not required to be Galois, so this might not even be a coset of a subgroup.
+					</p>
+					<p>
+						I guess most pedestrian examples aren't super interesting. For example, any finite extension $L/K$ will just get the discrete topology. Indeed, for some $\sigma\in\op{Gal}(L/K),$ we get that\[U_{\sigma,L}=\{\tau:\tau=\sigma\text{ on }L\}=\{\sigma\},\]which is legal because $L/K$ is a finite extension. It follows that every singleton is open, giving us the discrete topology.
+					</p>
+					<p>
+						With $\op{Gal}(\QQ(\zeta_{p^\infty})/\QQ),$ we see that our open sets are really\[U_{\sigma,\QQ(\zeta_{p^\bullet})}=\sigma\cdot\op{Gal}(\QQ(\zeta_{p^\bullet})/\QQ)=a_\sigma\ZZ_p^\times,\]where $a_\sigma$ is our element of $\ZZ_p^\times$ corresponding to the automorphism $\sigma.$ It follows that the topology over $\ZZ_p$ more or less caries over with the obvious caveat that we're living in $\ZZ_p^\times,$ provided that I didn't make a mistake somewhere. Basically, we're finding that $\ZZ_p^\times$ and $\op{Gal}(\QQ(\zeta_{p^\infty})/\QQ)$ are not just the same as groups, but it's nice to note that the natural isomorphism can also preserve the topology of $\ZZ_p.$
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

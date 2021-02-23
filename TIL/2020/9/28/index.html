@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 28th</h2>
-					<p>Today I learned the definition of ramification groups. Let $L/K$ be a normal extesion of number fields. I think it's natural to introduce these as generalizations of the inertia subgroup, noting that we can generalize\[E(\mf q/\mf p)=\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q}~~\forall\alpha\}\]to\[V_m=\left\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q^{m+1}}\right\}.\]In particular, $V_{-1}=\op{Gal}(L/K)$ and $V_0=E.$ Composing automorphisms shows that these are indeed subgroups; in particular, $\op{id}$ is in every $V_m$ because it's the identity, and we also have $\op{id}(\alpha)=\alpha\equiv\alpha\pmod{\mf q^\bullet}$ always.</p>
-					<p>What follow are some basic properties. For example, we can quickly show that the $V_m$ are normal subgroups of $D(\mf q/\mf p)$ because for $\sigma\in D(\mf q/\mf p),$ we see\[\sigma V_m\sigma^{-1}\left(\alpha+\mf q^{m+1}\right)=\sigma V_m\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\sigma\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\alpha+\mf q^{m+1}.\]This implies $\sigma V_m\sigma^{-1}\subseteq V_m,$ which is what we wanted.</p>
-					<p>Because $\mf q^{m+1}\subsetneq\mf q^m,$ we see that $\sigma(\alpha)\equiv\alpha\pmod{q^{m+1}}$ implies $\sigma(\alpha)\equiv\alpha\pmod{\mf q^m},$ so the $V_m$ are a (not strictly) decreasing sequence of subgroups. And in fact, we claim that there is an $M$ for which $V_m=\{\op{id}\}$ for any integer $m\ge M.$ In fact, we can construct that $M$ explicitly: fix $L=K[\alpha]$ where $\alpha\in\mathcal O_L.$ (Certainly an $\alpha$ exists; multiplying it by a sufficient constant will make its polynomial monic.) Then we claim/I think\[M=\max\left\{\nu_\mf q\left((\sigma(\alpha)-\alpha)\mathcal O_L\right):\sigma\in\op{Gal}(L/K)\setminus\{\op{id}\}\right\}\]works and is in fact sharp. Quickly, note that $M$ is well-defined because for $\alpha\ne\op{id},$ we have $\sigma(\alpha)\ne\alpha.$ Indeed, $\sigma(\alpha)=\alpha$ forces all polynomials and ratios of polynomials of $\alpha$ to be fixed by $\sigma,$ which is all of $L.$</p>
-					<p>Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\not\in V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if\[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if\[\sigma(\alpha)-\alpha\not\in\mf q^{m+1}\]because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\not\in V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.</p>
+					<h2>
+						September 28th
+					</h2>
+					<p>
+						Today I learned the definition of ramification groups. Let $L/K$ be a normal extesion of number fields. I think it's natural to introduce these as generalizations of the inertia subgroup, noting that we can generalize\[E(\mf q/\mf p)=\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q}~~\forall\alpha\}\]to\[V_m=\left\{\sigma\in\op{Gal}(L/K):\sigma(\alpha)\equiv\alpha\pmod{\mf q^{m+1}}\right\}.\]In particular, $V_{-1}=\op{Gal}(L/K)$ and $V_0=E.$ Composing automorphisms shows that these are indeed subgroups; in particular, $\op{id}$ is in every $V_m$ because it's the identity, and we also have $\op{id}(\alpha)=\alpha\equiv\alpha\pmod{\mf q^\bullet}$ always.
+					</p>
+					<p>
+						What follow are some basic properties. For example, we can quickly show that the $V_m$ are normal subgroups of $D(\mf q/\mf p)$ because for $\sigma\in D(\mf q/\mf p),$ we see\[\sigma V_m\sigma^{-1}\left(\alpha+\mf q^{m+1}\right)=\sigma V_m\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\sigma\left(\sigma^{-1}(\alpha)+\mf q^{m+1}\right)=\alpha+\mf q^{m+1}.\]This implies $\sigma V_m\sigma^{-1}\subseteq V_m,$ which is what we wanted.
+					</p>
+					<p>
+						Because $\mf q^{m+1}\subsetneq\mf q^m,$ we see that $\sigma(\alpha)\equiv\alpha\pmod{q^{m+1}}$ implies $\sigma(\alpha)\equiv\alpha\pmod{\mf q^m},$ so the $V_m$ are a (not strictly) decreasing sequence of subgroups. And in fact, we claim that there is an $M$ for which $V_m=\{\op{id}\}$ for any integer $m\ge M.$ In fact, we can construct that $M$ explicitly: fix $L=K[\alpha]$ where $\alpha\in\mathcal O_L.$ (Certainly an $\alpha$ exists; multiplying it by a sufficient constant will make its polynomial monic.) Then we claim/I think\[M=\max\left\{\nu_\mf q\left((\sigma(\alpha)-\alpha)\mathcal O_L\right):\sigma\in\op{Gal}(L/K)\setminus\{\op{id}\}\right\}\]works and is in fact sharp. Quickly, note that $M$ is well-defined because for $\alpha\ne\op{id},$ we have $\sigma(\alpha)\ne\alpha.$ Indeed, $\sigma(\alpha)=\alpha$ forces all polynomials and ratios of polynomials of $\alpha$ to be fixed by $\sigma,$ which is all of $L.$
+					</p>
+					<p>
+						Now we show that this $M$ works. Suppose $m\ge M$ and $\sigma\ne\op{id}.$ We want to show that $\sigma\not\in V_m,$ from which $V_m=\{\op{id}\}$ will follow. Note that $\sigma(\alpha)\ne\alpha$ as before, so we may talk about $(\sigma(\alpha)-\alpha)\mathcal O_L.$ Now, $m\ge M\ge\nu_\mf q((\sigma(\alpha)-\alpha)\mathcal O_L)$ if and only if\[\mf q^{m+1}\nmid(\sigma(\alpha)-\alpha)\mathcal O_L.\]But then the definition of divides means that this holds if and only if $(\sigma(\alpha)-\alpha)\mathcal O_L\not\subseteq\mf q^{m+1},$ which is true if and only if\[\sigma(\alpha)-\alpha\not\in\mf q^{m+1}\]because $\mf q^{m+1}$ is an ideal. But this is equivalent to $\sigma(\alpha)\not\equiv\alpha\pmod{\mf q^{m+1}},$ which translates into $\sigma\not\in V_m$ because $\alpha$ generates all of $L.$ We get sharpness of our bound $M$ by taking this over each $\sigma$ and noting that all manipulations were equivalences.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

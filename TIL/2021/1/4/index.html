@@ -1,45 +1,109 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 4th</h2>
-					<p>Today I learned about type-theoretic homotopies between (dependent) functions. Fix a type $A$ with family $P:A\to\UU.$ Then for dependent functions $f,g:\prod_{(x:A)}P(x),$ we define the type of homotopies as\[f\sim g\equiv\prod_{x:A}(f(x)=g(x)).\]Essentially, we're saying that the two functions are "the same'' (homotopically equivalent) if they are pairwise "identical.'' Topologically, we can view this as saying that we have a path from each $f(x)$ to $g(x),$ so we can visualize the corresponding deformation/homotopy from $g$ to $g$ along each input.</p>
+					<h2>
+						January 4th
+					</h2>
+					<p>
+						Today I learned about type-theoretic homotopies between (dependent) functions. Fix a type $A$ with family $P:A\to\UU.$ Then for dependent functions $f,g:\prod_{(x:A)}P(x),$ we define the type of homotopies as\[f\sim g\equiv\prod_{x:A}(f(x)=g(x)).\]Essentially, we're saying that the two functions are "the same'' (homotopically equivalent) if they are pairwise "identical.'' Topologically, we can view this as saying that we have a path from each $f(x)$ to $g(x),$ so we can visualize the corresponding deformation/homotopy from $g$ to $g$ along each input.
+					</p>
 					<img src="img1.png">
-					<p>In this way, we can imagine deforming (the graph of) each $f(x)$ and $g(x)$ along the given paths, which is our homotopy. In practice, the fact that this is a dependent function makes this visual not make as much sense&mdash;the $f(x)$ and $g(x)$ can live in vastly different universes.</p>
-					<p>Anyways, homotopy behaves the way we want it to. For example, it forms an equivalence class of functions. Reflexive means that we can witness\[\prod_{f:\prod_{(x:A)}P(x)}(f\sim f)\equiv\prod_{\left(f:\prod_{(x:A)}P(x)\right)}\prod_{(x:A)}(f(x)=f(x)),\]for which $\lambda f.\lambda x.\refl_{f(x)}$ will work because $\refl_{f(x)}:f(x)=f(x).$ Symmetric means that we can witness\[\prod_{f,g:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim f)\equiv\prod_{\left(f,g:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=f(x)\right),\]for which $\lambda f.\lambda g.\lambda(H:f\sim g).\lambda(x:A).H(x)^{-1}$ will work because $H(x)^{-1}:g(x)=f(x).$ Transitivity means that we can witness\[\prod_{f,g,h:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim h)\to(f\sim h),\]which is\[\prod_{\left(f,g,h:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=h(x)\right)\to\left(\prod_{x:A}f(x)=h(x)\right),\]for which $\lambda f.\lambda g.\lambda h.\lambda(H_1:f\sim g).\lambda(H_2:g\sim h).\lambda(x:A).H_1(x)\cdot H_2(x)$ will work because $H_1(x)\cdot H_2(x):f(x)=h(x).$</p>
+					<p>
+						In this way, we can imagine deforming (the graph of) each $f(x)$ and $g(x)$ along the given paths, which is our homotopy. In practice, the fact that this is a dependent function makes this visual not make as much sense&mdash;the $f(x)$ and $g(x)$ can live in vastly different universes.
+					</p>
+					<p>
+						Anyways, homotopy behaves the way we want it to. For example, it forms an equivalence class of functions. Reflexive means that we can witness\[\prod_{f:\prod_{(x:A)}P(x)}(f\sim f)\equiv\prod_{\left(f:\prod_{(x:A)}P(x)\right)}\prod_{(x:A)}(f(x)=f(x)),\]for which $\lambda f.\lambda x.\refl_{f(x)}$ will work because $\refl_{f(x)}:f(x)=f(x).$ Symmetric means that we can witness\[\prod_{f,g:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim f)\equiv\prod_{\left(f,g:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=f(x)\right),\]for which $\lambda f.\lambda g.\lambda(H:f\sim g).\lambda(x:A).H(x)^{-1}$ will work because $H(x)^{-1}:g(x)=f(x).$ Transitivity means that we can witness\[\prod_{f,g,h:\prod_{(x:A)}P(x)}(f\sim g)\to(g\sim h)\to(f\sim h),\]which is\[\prod_{\left(f,g,h:\prod_{(x:A)}P(x)\right)}\left(\prod_{x:A}f(x)=g(x)\right)\to\left(\prod_{x:A}g(x)=h(x)\right)\to\left(\prod_{x:A}f(x)=h(x)\right),\]for which $\lambda f.\lambda g.\lambda h.\lambda(H_1:f\sim g).\lambda(H_2:g\sim h).\lambda(x:A).H_1(x)\cdot H_2(x)$ will work because $H_1(x)\cdot H_2(x):f(x)=h(x).$
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

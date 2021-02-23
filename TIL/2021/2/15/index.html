@@ -1,54 +1,142 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>February 15th</h2>
-					<p>Today I learned the statement of Artin reciprocity, which we use with some auxiliary results to derive Hilbert class fields and Kronecker-Weber, from <a href="https://usamo.wordpress.com/2016/05/03/artin-reciprocity/">here</a>. I'm kind of waiting to see what this has to with $L(\rho,s),$ but I suspect that it is somewhat beyond me. We require a sequence of definitions to get set up. A modulus $\mf m$ is defined as a formal product of places (real or infinite). We will restrict the formal product by having only finitely many nonzero powers and $\nu_\mf p(\mf m)=0$ if $\mf p$ is a complex infinite place and $\nu_\mf p(\mf m)\le1$ if $\mf p$ is a finite place. However,\[\mf m=(2)(3)^3(5)^{123}(17)(101)\infty\]is a perfectly valid modulus of $\QQ.$</p>
-					<p>Fixing a modulus $\mf m$ and number field $K,$ we define the generalized fractional ideal group by\[I_K^{\mf m}=\{\mf a\in I_K:\mf a\text{ and }\mf m\text{ are relatively prime}\}.\]Because of unique prime factorization of the fractional ideals $I_K,$ this is really just a restriction on the prime factorization of $\mf a.$ We do remark that a real infinite place $\sigma:K\to\RR$ gives $\alpha\equiv\beta\pmod\sigma$ if and only if $\sigma(\alpha/\beta){\gt}0.$ Note that this is motivated by wanting $\alpha/\beta\equiv1.$</p>
-					<p>From this we also define generalized principal ideals by\[P_K^{\mf m,1}=\{(\alpha):\alpha\equiv1\pmod{\mf m}\}.\]Note $P_K(\mf m)\subseteq I_K(\mf m)$ and that $P_K(1)$ with $I_K(1)$ recover the $P_K$ and $I_K$ we are used to. This let us define a generalized class group by\[\op{Cl}_K^{\mf m}=I_K^{\mf m}/P_K^{\mf m,1}.\]These are called ray class groups. Note $\op{Cl}_K^1$ is the normal class group.</p>
-					<p>We are close to stating the Artin reciprocity law. Fix $L/K$ and abelian extension of number fields. Recalling the Frobenius map $\mf p\mapsto\op{Frob}_\mf p\in\op{Gal}(L/K)$ is well-defined, we can extend this multiplicatively to a mapping\[I_K^{\mf m}\to\op{Gal}(L/K),\]where our modulus $\mf m$ is divisible by all ramified places. It turns out that this mapping is surjective, so there exists a subgroup $H(L/K,\mf m)\subseteq I_K^{\mf m}$ for which\[I_K^{\mf m}/H(L/K,\mf m)\cong\op{Gal}(L/K).\]The subgroup $H(L/K,\mf m)$ is a congruence subgroup.</p>
-					<p>Now, the Artin reciprocity law asserts the existence of a modulus $\mf f$ (the conductor) divisible by exactly the ramified places for which\[\mf f\mid\mf m\iff P_K^{\mf m,1}\subseteq H(L/K,\mf m)\subseteq I_K^{\mf m}.\]What's nice here is that we get a sequence of surjective maps\[I_K^{\mf f}\longrightarrow\frac{I_K^{\mf f}}{P_K^{\mf f,1}}\cong\op{Cl}_K^{\mf f}\longrightarrow\frac{I_K^{\mf f}}{H(L/K,\mf f)}\cong\op{Gal}(L/K).\]So if we track an individual unramified prime $\mf p$ through the maps, we can determine $\op{Frob}_\mf p$ by first checking where $\mf p$ lands in $\op{Cl}_K^{\mf f}.$ In other words, aside from computation of the conductor $\mf f$ (which we can read as getting rid of ramification), we're saying that $\op{Frob}_\mf p$ is dependent entirely on information intrinsic to $K$ not involving $L$&mdash;there was no $L$ involved in our definition of $\op{Cl}_K^{\mf f}.$ This is miraculous.</p>
-					<p>In particular, $\op{Cl}_K^{\mf f}$ is a finite group where we have modded out by "$1\pmod{\mf f},$'' so we can think about this like "$\mf p\pmod{\mf f}.$'' So, for example, quadratic reciprocity cares about how $q$ splits in $\QQ(\sqrt{p^*}),$ which is associated to $\op{Frob}_\mf q.$ Well, we can check $\op{Frob}_\mf q$ by checking entirely where $(q)$ lands in $\op{Cl}_{\QQ(\sqrt{p^*})}^{\mf f},$ which turns into quadratic reciprocity.</p>
-					<p>It is a theorem (Takagi existence) that, in fact, every subgroup $H$ with\[P_K^{\mf m,1}\subseteq H\subseteq I_K^{\mf m}\]corresponds to $H(L/K,\mf m)$ for a unique abelian extension $L/K.$ So, for example, taking $\mf m=1$ and $H=P_K^{1,1}$ gives us an extension $M$ for which $H(M/K,1)=P_K^{1,1}.$ (Note that this means all primes are unramified by definition of $H(-,\mf m).$) Thus,\[\op{Cl}_K=\frac{I_K^1}{P_K^{1,1}}=\frac{I_K^1}{H(M/K,1)}\cong\op{Gal}(M/K).\]This remarkable field $M$ is called the Hilbert class field. Here we showed that its class Galois group is $\op{Cl}_K.$</p>
-					<p>Further, if $L$ is any other totally unramified abelian extension, then we can still look at the corresponding $H(M/K,1),$ which satisfies\[H(L/K,1)=P_K^{1,1}\subseteq H(M/K,1)\subseteq I_K^1.\]It turns out that $H(L/K,1)\subseteq H(M/K,1)$ actually implies $M\subseteq L$ (that is, congruence subgroups are inclusion-reversing), so $L$ is in fact that maximal totally unramified extension.</p>
-					<p>As a final nice property of Hilbert class fields, fix a prime $\mf p$ of $K.$ Now, $\mf p$ is principal if and only if $\mf p\in P_K^{1,1}=H(M/K,1).$ But this implies\[\mf p\in H(M/K,1)\longmapsto\op{id}\in\frac{I_K^1}{H(M/K,1)}\cong\op{Gal}(M/K).\]That is, $\mf p$ is principal if and only if $\op{Frob}_\mf p$ is the identity in $\op{Gal}(M/K),$ equivalent to $\op{Frob}_\mf p$ having order $1,$ equivalent to $f(\bullet/\mf p)=1.$ Because $\mf p$ is already unramified for free, this means $\mf p$ is principal if and only if $\mf p$ splits completely in $M.$ Cute.</p>
-					<p>We also remark that the Kronecker-Weber theorem falls out of this machinery. Here we are interested in abelian field extensions of $\QQ,$ which Artin reciprocity tells us we should be able to understand using information entirely intrinsic to $\QQ.$ This is good news because we understand $\QQ$ pretty well.</p>
-					<p>Anyways, we are trying to show that for any $K/\QQ,$ there exists an $m$ such that $K\subseteq\QQ(\zeta_m).$ Because of the inclusion reversal, this is equivalent to\[H(\QQ(\zeta_m)/\QQ,\mf m)\subseteq H(K/\QQ,\mf m)\]for some suitable modulus $\mf m.$ In order to use Artin reciprocity, we would like $\mf m$ to be divisible by the conductor of $K.$ Letting this conductor be $\mf f,$ we remark that we will also need $\infty\mid\mf m$ for $\QQ(\zeta_m)/\QQ,$ so we take $\mf f\mid m\infty=:\mf m,$ where $m\in\ZZ$ is divisible by exactly all the ramified primes in $K.$ We claim this $m$ works for $\QQ(\zeta_m).$</p>
-					<p>Indeed, the remarkable property of $\QQ(\zeta_m)$ is that we claim\[H(\QQ(\zeta_m)/\QQ,m\infty)=P_\QQ^{\mf m,1}.\]This makes $\QQ(\zeta_m)$ a "ray class field'' of $\mf m.$ Anyways, this is the kernel of the map\[I_\QQ^\mf m\longrightarrow\op{Gal}(\QQ(\zeta_m)/\QQ)\cong(\ZZ/m\ZZ)^\times.\]This map by definition takes $p\ZZ$ (coprime to $m$) to $\zeta_m\mapsto\zeta_m^p$ (this maps to the Frobenius property), which is taken to $[p]_m.$ Extending multiplicatively, we're taking\[\frac ab\ZZ\mapsto\left[\frac ab\right]_m.\]Note that this makes sense because $I_\QQ^\mf m$ requires $\gcd(a,m)=\gcd(b,m)=1.$ So being in the kernel merely asserts that $\frac ab\ZZ$ has $\frac ab\equiv1\pmod m.$ That is, our kernel is\[P_\QQ^{\mf m,1}=\left\{\frac ab\ZZ:\frac ab\equiv1\pmod m\text{ and }\frac ab{\gt}0\right\}.\]Here the condition $\frac ab{\gt}0$ is inherited from $I_K^\mf m.$ This completes the claim.</p>
-					<p>However, we are now done by Artin reciprocity, for we know\[H(\QQ(\zeta_m)/\QQ,\mf m)=P_\QQ^\mf m\subseteq H(K/\QQ,\mf m),\]which is exactly what we wanted.</p>
+					<h2>
+						February 15th
+					</h2>
+					<p>
+						Today I learned the statement of Artin reciprocity, which we use with some auxiliary results to derive Hilbert class fields and Kronecker-Weber, from
+						<a href="https://usamo.wordpress.com/2016/05/03/artin-reciprocity/">
+							here
+						</a>
+						. I'm kind of waiting to see what this has to with $L(\rho,s),$ but I suspect that it is somewhat beyond me. We require a sequence of definitions to get set up. A modulus $\mf m$ is defined as a formal product of places (real or infinite). We will restrict the formal product by having only finitely many nonzero powers and $\nu_\mf p(\mf m)=0$ if $\mf p$ is a complex infinite place and $\nu_\mf p(\mf m)\le1$ if $\mf p$ is a finite place. However,\[\mf m=(2)(3)^3(5)^{123}(17)(101)\infty\]is a perfectly valid modulus of $\QQ.$
+					</p>
+					<p>
+						Fixing a modulus $\mf m$ and number field $K,$ we define the generalized fractional ideal group by\[I_K^{\mf m}=\{\mf a\in I_K:\mf a\text{ and }\mf m\text{ are relatively prime}\}.\]Because of unique prime factorization of the fractional ideals $I_K,$ this is really just a restriction on the prime factorization of $\mf a.$ We do remark that a real infinite place $\sigma:K\to\RR$ gives $\alpha\equiv\beta\pmod\sigma$ if and only if $\sigma(\alpha/\beta){\gt}0.$ Note that this is motivated by wanting $\alpha/\beta\equiv1.$
+					</p>
+					<p>
+						From this we also define generalized principal ideals by\[P_K^{\mf m,1}=\{(\alpha):\alpha\equiv1\pmod{\mf m}\}.\]Note $P_K(\mf m)\subseteq I_K(\mf m)$ and that $P_K(1)$ with $I_K(1)$ recover the $P_K$ and $I_K$ we are used to. This let us define a generalized class group by\[\op{Cl}_K^{\mf m}=I_K^{\mf m}/P_K^{\mf m,1}.\]These are called ray class groups. Note $\op{Cl}_K^1$ is the normal class group.
+					</p>
+					<p>
+						We are close to stating the Artin reciprocity law. Fix $L/K$ and abelian extension of number fields. Recalling the Frobenius map $\mf p\mapsto\op{Frob}_\mf p\in\op{Gal}(L/K)$ is well-defined, we can extend this multiplicatively to a mapping\[I_K^{\mf m}\to\op{Gal}(L/K),\]where our modulus $\mf m$ is divisible by all ramified places. It turns out that this mapping is surjective, so there exists a subgroup $H(L/K,\mf m)\subseteq I_K^{\mf m}$ for which\[I_K^{\mf m}/H(L/K,\mf m)\cong\op{Gal}(L/K).\]The subgroup $H(L/K,\mf m)$ is a congruence subgroup.
+					</p>
+					<p>
+						Now, the Artin reciprocity law asserts the existence of a modulus $\mf f$ (the conductor) divisible by exactly the ramified places for which\[\mf f\mid\mf m\iff P_K^{\mf m,1}\subseteq H(L/K,\mf m)\subseteq I_K^{\mf m}.\]What's nice here is that we get a sequence of surjective maps\[I_K^{\mf f}\longrightarrow\frac{I_K^{\mf f}}{P_K^{\mf f,1}}\cong\op{Cl}_K^{\mf f}\longrightarrow\frac{I_K^{\mf f}}{H(L/K,\mf f)}\cong\op{Gal}(L/K).\]So if we track an individual unramified prime $\mf p$ through the maps, we can determine $\op{Frob}_\mf p$ by first checking where $\mf p$ lands in $\op{Cl}_K^{\mf f}.$ In other words, aside from computation of the conductor $\mf f$ (which we can read as getting rid of ramification), we're saying that $\op{Frob}_\mf p$ is dependent entirely on information intrinsic to $K$ not involving $L$&mdash;there was no $L$ involved in our definition of $\op{Cl}_K^{\mf f}.$ This is miraculous.
+					</p>
+					<p>
+						In particular, $\op{Cl}_K^{\mf f}$ is a finite group where we have modded out by "$1\pmod{\mf f},$'' so we can think about this like "$\mf p\pmod{\mf f}.$'' So, for example, quadratic reciprocity cares about how $q$ splits in $\QQ(\sqrt{p^*}),$ which is associated to $\op{Frob}_\mf q.$ Well, we can check $\op{Frob}_\mf q$ by checking entirely where $(q)$ lands in $\op{Cl}_{\QQ(\sqrt{p^*})}^{\mf f},$ which turns into quadratic reciprocity.
+					</p>
+					<p>
+						It is a theorem (Takagi existence) that, in fact, every subgroup $H$ with\[P_K^{\mf m,1}\subseteq H\subseteq I_K^{\mf m}\]corresponds to $H(L/K,\mf m)$ for a unique abelian extension $L/K.$ So, for example, taking $\mf m=1$ and $H=P_K^{1,1}$ gives us an extension $M$ for which $H(M/K,1)=P_K^{1,1}.$ (Note that this means all primes are unramified by definition of $H(-,\mf m).$) Thus,\[\op{Cl}_K=\frac{I_K^1}{P_K^{1,1}}=\frac{I_K^1}{H(M/K,1)}\cong\op{Gal}(M/K).\]This remarkable field $M$ is called the Hilbert class field. Here we showed that its class Galois group is $\op{Cl}_K.$
+					</p>
+					<p>
+						Further, if $L$ is any other totally unramified abelian extension, then we can still look at the corresponding $H(M/K,1),$ which satisfies\[H(L/K,1)=P_K^{1,1}\subseteq H(M/K,1)\subseteq I_K^1.\]It turns out that $H(L/K,1)\subseteq H(M/K,1)$ actually implies $M\subseteq L$ (that is, congruence subgroups are inclusion-reversing), so $L$ is in fact that maximal totally unramified extension.
+					</p>
+					<p>
+						As a final nice property of Hilbert class fields, fix a prime $\mf p$ of $K.$ Now, $\mf p$ is principal if and only if $\mf p\in P_K^{1,1}=H(M/K,1).$ But this implies\[\mf p\in H(M/K,1)\longmapsto\op{id}\in\frac{I_K^1}{H(M/K,1)}\cong\op{Gal}(M/K).\]That is, $\mf p$ is principal if and only if $\op{Frob}_\mf p$ is the identity in $\op{Gal}(M/K),$ equivalent to $\op{Frob}_\mf p$ having order $1,$ equivalent to $f(\bullet/\mf p)=1.$ Because $\mf p$ is already unramified for free, this means $\mf p$ is principal if and only if $\mf p$ splits completely in $M.$ Cute.
+					</p>
+					<p>
+						We also remark that the Kronecker-Weber theorem falls out of this machinery. Here we are interested in abelian field extensions of $\QQ,$ which Artin reciprocity tells us we should be able to understand using information entirely intrinsic to $\QQ.$ This is good news because we understand $\QQ$ pretty well.
+					</p>
+					<p>
+						Anyways, we are trying to show that for any $K/\QQ,$ there exists an $m$ such that $K\subseteq\QQ(\zeta_m).$ Because of the inclusion reversal, this is equivalent to\[H(\QQ(\zeta_m)/\QQ,\mf m)\subseteq H(K/\QQ,\mf m)\]for some suitable modulus $\mf m.$ In order to use Artin reciprocity, we would like $\mf m$ to be divisible by the conductor of $K.$ Letting this conductor be $\mf f,$ we remark that we will also need $\infty\mid\mf m$ for $\QQ(\zeta_m)/\QQ,$ so we take $\mf f\mid m\infty=:\mf m,$ where $m\in\ZZ$ is divisible by exactly all the ramified primes in $K.$ We claim this $m$ works for $\QQ(\zeta_m).$
+					</p>
+					<p>
+						Indeed, the remarkable property of $\QQ(\zeta_m)$ is that we claim\[H(\QQ(\zeta_m)/\QQ,m\infty)=P_\QQ^{\mf m,1}.\]This makes $\QQ(\zeta_m)$ a "ray class field'' of $\mf m.$ Anyways, this is the kernel of the map\[I_\QQ^\mf m\longrightarrow\op{Gal}(\QQ(\zeta_m)/\QQ)\cong(\ZZ/m\ZZ)^\times.\]This map by definition takes $p\ZZ$ (coprime to $m$) to $\zeta_m\mapsto\zeta_m^p$ (this maps to the Frobenius property), which is taken to $[p]_m.$ Extending multiplicatively, we're taking\[\frac ab\ZZ\mapsto\left[\frac ab\right]_m.\]Note that this makes sense because $I_\QQ^\mf m$ requires $\gcd(a,m)=\gcd(b,m)=1.$ So being in the kernel merely asserts that $\frac ab\ZZ$ has $\frac ab\equiv1\pmod m.$ That is, our kernel is\[P_\QQ^{\mf m,1}=\left\{\frac ab\ZZ:\frac ab\equiv1\pmod m\text{ and }\frac ab{\gt}0\right\}.\]Here the condition $\frac ab{\gt}0$ is inherited from $I_K^\mf m.$ This completes the claim.
+					</p>
+					<p>
+						However, we are now done by Artin reciprocity, for we know\[H(\QQ(\zeta_m)/\QQ,\mf m)=P_\QQ^\mf m\subseteq H(K/\QQ,\mf m),\]which is exactly what we wanted.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

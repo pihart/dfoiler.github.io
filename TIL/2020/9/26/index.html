@@ -1,48 +1,118 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 26th</h2>
-					<p>Today I learned the sequence construction for the inverse limit in $\texttt{Set}$, or $\texttt{Grp}$ or $\texttt{Rings}$ or $\texttt{Vec}_k$ for that matter.</p>
-					<p>Namely, fix an index category $\mathcal I$ and a category $\mathcal C$ with a functor $F:\mathcal I\to\mathcal C$ taking $\bullet\in\mathcal I$ to $A_\bullet\in\mathcal C.$ We claim that\[A:=\left\{(a_i)_{i\in\mathcal I}\in\prod_{i\in\mathcal I}A_i:a_j\stackrel{F(m)}\longmapsto a_k\text{ when }k\stackrel m\longmapsto k\right\}\]is the limit $\varprojlim A_i$ we're looking for. Note we also have the natural projections $\pi_i:A\to A_i$ by taking $a\in A$ to to the component belonging to $i\in\mathcal I,$ which lives in $A_i.$</p>
-					<p>To get some feeling for this construction, we can say that it's thinking about $p$-adics like\[\ZZ_p=\left(a\pmod p,\,a\pmod{p^2},\,a\pmod{p^3},\ldots\right),\]for some $a\in\ZZ_p.$ If we squint really hard and chant the world "analysis'' three times, this can be even viewed as a kind of limiting sequence, approaching whatever element of $a\in\ZZ_p$ we were looking at.</p>
-					<p>Further, if there is some $B$ with maps $\varphi_i:B\to A_i$ which commute with the $F(m)$ maps, then we need to show that there is a unique induced map $\varphi:B\to A$ which also commutes, as follows.</p>
+					<h2>
+						September 26th
+					</h2>
+					<p>
+						Today I learned the sequence construction for the inverse limit in $\texttt{Set}$, or $\texttt{Grp}$ or $\texttt{Rings}$ or $\texttt{Vec}_k$ for that matter.
+					</p>
+					<p>
+						Namely, fix an index category $\mathcal I$ and a category $\mathcal C$ with a functor $F:\mathcal I\to\mathcal C$ taking $\bullet\in\mathcal I$ to $A_\bullet\in\mathcal C.$ We claim that\[A:=\left\{(a_i)_{i\in\mathcal I}\in\prod_{i\in\mathcal I}A_i:a_j\stackrel{F(m)}\longmapsto a_k\text{ when }k\stackrel m\longmapsto k\right\}\]is the limit $\varprojlim A_i$ we're looking for. Note we also have the natural projections $\pi_i:A\to A_i$ by taking $a\in A$ to to the component belonging to $i\in\mathcal I,$ which lives in $A_i.$
+					</p>
+					<p>
+						To get some feeling for this construction, we can say that it's thinking about $p$-adics like\[\ZZ_p=\left(a\pmod p,\,a\pmod{p^2},\,a\pmod{p^3},\ldots\right),\]for some $a\in\ZZ_p.$ If we squint really hard and chant the world "analysis'' three times, this can be even viewed as a kind of limiting sequence, approaching whatever element of $a\in\ZZ_p$ we were looking at.
+					</p>
+					<p>
+						Further, if there is some $B$ with maps $\varphi_i:B\to A_i$ which commute with the $F(m)$ maps, then we need to show that there is a unique induced map $\varphi:B\to A$ which also commutes, as follows.
+					</p>
 					<img src="img1.png">
-					<p>Indeed, for $b\in B,$ this mapping $\varphi$ works if and only if it satisfies $\pi_i\varphi(b)=\varphi_i(b)$ for each $i.$ But this forces\[\varphi(b)=(\varphi_i(b))_{i\in\mathcal I},\]which works with our projections as promised.</p>
-					<p>Something that's a bit bothersome is that we haven't even proven that $A$ has any elements. After all, it's not trivial to me why we can make the elements in the sequence indexed by $\mathcal I$ like that are going to commute with the category of $\mathcal I$'s maps nicely. But even if $A$ were empty, then this isn't really a huge problem: $A$ works as proven, so apparently the empty set works fine as a limit.</p>
+					<p>
+						Indeed, for $b\in B,$ this mapping $\varphi$ works if and only if it satisfies $\pi_i\varphi(b)=\varphi_i(b)$ for each $i.$ But this forces\[\varphi(b)=(\varphi_i(b))_{i\in\mathcal I},\]which works with our projections as promised.
+					</p>
+					<p>
+						Something that's a bit bothersome is that we haven't even proven that $A$ has any elements. After all, it's not trivial to me why we can make the elements in the sequence indexed by $\mathcal I$ like that are going to commute with the category of $\mathcal I$'s maps nicely. But even if $A$ were empty, then this isn't really a huge problem: $A$ works as proven, so apparently the empty set works fine as a limit.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

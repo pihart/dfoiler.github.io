@@ -1,43 +1,105 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 13th</h2>
-					<p>Today I learned about Laplace integration. Recall that the Laplace transform $\mathcal L\{f(t)\}$ is a function in $s$ defined by\[\mathcal L\{f(t)\}=\int_0^\infty f(t)e^{-st}\,dt.\]Now the idea is that we can integrate $F(s)$ to be\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\left(\int_0^\infty f(t)e^{-st}\,dt\right)ds=\int_0^\infty\left(\int_0^\infty e^{-st}\,ds\right)f(t)\,dt\]by waving our hands. The integral evaluates to $\frac1t,$ so we are left with\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\frac{f(t)}t\,dt.\]Of course, this is just a manifestation of the fact that $\mathcal L\{t\cdot f(t)\}=-\frac d{ds}\mathcal L\{f(t)\}.$</p>
-					<p>As an example of doing this something interest, we can recall that $\mathcal L\{\sin(t)\}=\frac1{1+t^2}$ (say, write $\sin(t)=\frac1{2i}\left(e^{it}+e^{-it}\right)$), we find that\[\int_0^\infty\frac{\sin(t)}t\,dt=\int_0^\infty\frac1{1+t^2}\,dt=\arctan(t)\bigg|_0^\infty=\frac\pi2.\]Normally this integral is computed with the Residue theorem or some other technique, but it's quite painless with this theory, which is nice.</p>
+					<h2>
+						December 13th
+					</h2>
+					<p>
+						Today I learned about Laplace integration. Recall that the Laplace transform $\mathcal L\{f(t)\}$ is a function in $s$ defined by\[\mathcal L\{f(t)\}=\int_0^\infty f(t)e^{-st}\,dt.\]Now the idea is that we can integrate $F(s)$ to be\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\left(\int_0^\infty f(t)e^{-st}\,dt\right)ds=\int_0^\infty\left(\int_0^\infty e^{-st}\,ds\right)f(t)\,dt\]by waving our hands. The integral evaluates to $\frac1t,$ so we are left with\[\int_0^\infty\mathcal L\{f(t)\}\,ds=\int_0^\infty\frac{f(t)}t\,dt.\]Of course, this is just a manifestation of the fact that $\mathcal L\{t\cdot f(t)\}=-\frac d{ds}\mathcal L\{f(t)\}.$
+					</p>
+					<p>
+						As an example of doing this something interest, we can recall that $\mathcal L\{\sin(t)\}=\frac1{1+t^2}$ (say, write $\sin(t)=\frac1{2i}\left(e^{it}+e^{-it}\right)$), we find that\[\int_0^\infty\frac{\sin(t)}t\,dt=\int_0^\infty\frac1{1+t^2}\,dt=\arctan(t)\bigg|_0^\infty=\frac\pi2.\]Normally this integral is computed with the Residue theorem or some other technique, but it's quite painless with this theory, which is nice.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

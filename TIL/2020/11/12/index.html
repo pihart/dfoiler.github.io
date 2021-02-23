@@ -1,46 +1,114 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 12th</h2>
-					<p>Today I learned the classification of nilpotent matrices with maximal index. Suppose $A$ is a nilpotent transformation of index $k$ sending, say, $F^n\to F^n.$ This means we can get a vector $v\in F^n$ such that $A^{k-1}v\ne0,$ but $A^k=0.$</p>
-					<p>We claim that the vectors $v,Av,A^2v,\ldots,A^{k-1}v$ are linearly independent. Indeed, fix a linear relation\[\sum_{\ell=0}^{k-1}c_\ell A^\ell v=0.\]We can inductively show that the $c_\ell$ are all $0.$ Indeed, if everybody below some $c_L$ ($L{\lt}k$) is equal to $0,$ these terms don't do anything for the relation, so may multiply both sides by $A^{k-L-1},$ which gives\[c_LA^{k-1}v=c_LA^{k-1}v+\sum_{\ell=L+1}^{k-1}c_\ell A^{\ell-L-1}A^kv=0.\]We assumed $A^{k-1}v\ne0,$ so we must have $c_L=0,$ which is what we wanted.</p>
-					<p>It follows that we can have no larger than index $n$ for $A,$ for this would make $v,Av,A^2v,\ldots,A^{k-1}v$ a full basis. I.e., $n$ is the maximal index. In fact, $n$ is achievable by\[N=\begin{bmatrix}    0 & 1 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 1 & 0 & \cdots & 0 & 0 \\    0 & 0 & 0 & 1 & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & 0 & \cdots & 0 & 1 \\    0 & 0 & 0 & 0 & \cdots & 0 & 0\end{bmatrix}.\]Quickly, $N$ sends $e_n\to e_{n-1}\to\cdots\to e_3\to e_2\to e_1\to0.$ So after $n$ iterations, all basis vectors will be sent to $0,$ but after $n-1$ iterations, we will have $e_n\to e_1\ne0.$ In fact, this is readily seen to be the only linear transformation of index $n,$ up to a change of basis. Indeed, if we refix our basis\[(e_1,e_2,\ldots,e_n)=\left(A^{k-1}v,A^{k-2}v,\ldots,A^2v,Av,v\right),\]then $A$ is sending $e_n\to e_{n-1}\to\cdots\to e_3\to e_2\to e_1\to0$ again. In other words, $A$ looks like $N$ according to this basis, as claimed.</p>
-					<p>It follows that all nilpotent matrices of maximal index (i.e., $n$), are $N$ up to a change of basis. If our change of basis matrix is $S,$ then we can classify these nilpotent matrices as having the form $S^{-1}NS$ for any invertible matrix $S.$ This classification is good enough for me, so we are done here.</p>
-					<p>What I like about this proof is that asking for nilpotent matrices of rank $n$ is an entirely natural (for some definitions of natural) question, one that could be asked as soon as a student learns about matrix multiplication. But in fact, the proof here requires somewhat deep technology (change of basis) to get our classification, and further, this deep technology makes the proof immediate. It's quite cute.</p>
+					<h2>
+						November 12th
+					</h2>
+					<p>
+						Today I learned the classification of nilpotent matrices with maximal index. Suppose $A$ is a nilpotent transformation of index $k$ sending, say, $F^n\to F^n.$ This means we can get a vector $v\in F^n$ such that $A^{k-1}v\ne0,$ but $A^k=0.$
+					</p>
+					<p>
+						We claim that the vectors $v,Av,A^2v,\ldots,A^{k-1}v$ are linearly independent. Indeed, fix a linear relation\[\sum_{\ell=0}^{k-1}c_\ell A^\ell v=0.\]We can inductively show that the $c_\ell$ are all $0.$ Indeed, if everybody below some $c_L$ ($L{\lt}k$) is equal to $0,$ these terms don't do anything for the relation, so may multiply both sides by $A^{k-L-1},$ which gives\[c_LA^{k-1}v=c_LA^{k-1}v+\sum_{\ell=L+1}^{k-1}c_\ell A^{\ell-L-1}A^kv=0.\]We assumed $A^{k-1}v\ne0,$ so we must have $c_L=0,$ which is what we wanted.
+					</p>
+					<p>
+						It follows that we can have no larger than index $n$ for $A,$ for this would make $v,Av,A^2v,\ldots,A^{k-1}v$ a full basis. I.e., $n$ is the maximal index. In fact, $n$ is achievable by\[N=\begin{bmatrix}    0 & 1 & 0 & 0 & \cdots & 0 & 0 \\    0 & 0 & 1 & 0 & \cdots & 0 & 0 \\    0 & 0 & 0 & 1 & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & 0 & \cdots & 0 & 1 \\    0 & 0 & 0 & 0 & \cdots & 0 & 0\end{bmatrix}.\]Quickly, $N$ sends $e_n\to e_{n-1}\to\cdots\to e_3\to e_2\to e_1\to0.$ So after $n$ iterations, all basis vectors will be sent to $0,$ but after $n-1$ iterations, we will have $e_n\to e_1\ne0.$ In fact, this is readily seen to be the only linear transformation of index $n,$ up to a change of basis. Indeed, if we refix our basis\[(e_1,e_2,\ldots,e_n)=\left(A^{k-1}v,A^{k-2}v,\ldots,A^2v,Av,v\right),\]then $A$ is sending $e_n\to e_{n-1}\to\cdots\to e_3\to e_2\to e_1\to0$ again. In other words, $A$ looks like $N$ according to this basis, as claimed.
+					</p>
+					<p>
+						It follows that all nilpotent matrices of maximal index (i.e., $n$), are $N$ up to a change of basis. If our change of basis matrix is $S,$ then we can classify these nilpotent matrices as having the form $S^{-1}NS$ for any invertible matrix $S.$ This classification is good enough for me, so we are done here.
+					</p>
+					<p>
+						What I like about this proof is that asking for nilpotent matrices of rank $n$ is an entirely natural (for some definitions of natural) question, one that could be asked as soon as a student learns about matrix multiplication. But in fact, the proof here requires somewhat deep technology (change of basis) to get our classification, and further, this deep technology makes the proof immediate. It's quite cute.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

@@ -1,43 +1,105 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 12th</h2>
-					<p>Today I learned that $\FF_q$ is also a perfect field for prime-powers $q,$ continuing from the Conrad expository paper. Namely, we want to show that no irreducible polynomial $\pi(x)\in\FF_q[x]$ has repeated roots in the algebraic closure $\overline{\FF_q}.$ The outline is to show that $\pi(x)$ divides into a polynomial with no repeated roots, from which the result will follow. Note that\[\frac{\FF_q[x]}{(\pi(x))}\]is a finite field, of order $Q:=q^{\deg\pi}.$ In fact, this is the splitting field of $\pi(x),$ but we don't that strong of information to complete the proof completely. Note if $\pi(x)=x,$ then we're already done; else look at $x$ in the above finite field, which is a nonzero element with multiplicative order dividing $Q-1.$ It follows\[x^Q\equiv x\pmod{\pi(x)}.\]Thus, $\pi(x)\mid x^Q-x.$ However, $x^Q-x$ has no repeated roots in the algebraic closure: its derivative is $Qx^{Q-1}-1=-1$ has $\textit{no roots at all!}$ So it follows that $\pi(x)$ cannot have repeated roots for $x^Q-x$ to also have no repeated roots, which completes the proof.</p>
-					<p>As an aside, the paper has a pretty clean finish which avoids the derivative. Namely, suppose $\alpha$ is a root of $x^Q-x$ so that we want to know that $(x-\alpha)^2$ is not a root. Well, just write\[x^Q-x=x^Q-x-\left(\alpha^Q-\alpha\right)=(x-\alpha)^Q-(x-\alpha)=(x-\alpha)\left((x-\alpha)^{Q-1}-1\right).\]However, $\alpha$ is not a root of the other factor because it gives $\alpha-\alpha=0,$ so this evaluates to $-1.$ This is roughly isomorphic to taking the derivative (note that the end contradiction $-1\ne0$ is the same), but it's a bit more clever with the $\alpha^Q-\alpha$ trick.</p>
+					<h2>
+						September 12th
+					</h2>
+					<p>
+						Today I learned that $\FF_q$ is also a perfect field for prime-powers $q,$ continuing from the Conrad expository paper. Namely, we want to show that no irreducible polynomial $\pi(x)\in\FF_q[x]$ has repeated roots in the algebraic closure $\overline{\FF_q}.$ The outline is to show that $\pi(x)$ divides into a polynomial with no repeated roots, from which the result will follow. Note that\[\frac{\FF_q[x]}{(\pi(x))}\]is a finite field, of order $Q:=q^{\deg\pi}.$ In fact, this is the splitting field of $\pi(x),$ but we don't that strong of information to complete the proof completely. Note if $\pi(x)=x,$ then we're already done; else look at $x$ in the above finite field, which is a nonzero element with multiplicative order dividing $Q-1.$ It follows\[x^Q\equiv x\pmod{\pi(x)}.\]Thus, $\pi(x)\mid x^Q-x.$ However, $x^Q-x$ has no repeated roots in the algebraic closure: its derivative is $Qx^{Q-1}-1=-1$ has $\textit{no roots at all!}$ So it follows that $\pi(x)$ cannot have repeated roots for $x^Q-x$ to also have no repeated roots, which completes the proof.
+					</p>
+					<p>
+						As an aside, the paper has a pretty clean finish which avoids the derivative. Namely, suppose $\alpha$ is a root of $x^Q-x$ so that we want to know that $(x-\alpha)^2$ is not a root. Well, just write\[x^Q-x=x^Q-x-\left(\alpha^Q-\alpha\right)=(x-\alpha)^Q-(x-\alpha)=(x-\alpha)\left((x-\alpha)^{Q-1}-1\right).\]However, $\alpha$ is not a root of the other factor because it gives $\alpha-\alpha=0,$ so this evaluates to $-1.$ This is roughly isomorphic to taking the derivative (note that the end contradiction $-1\ne0$ is the same), but it's a bit more clever with the $\alpha^Q-\alpha$ trick.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

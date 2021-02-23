@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to October)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to October)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>October 10th</h2>
-					<p>Today I learned the finale to the classification of $\widehat\QQ.$ Namely, that $\widehat\QQ\cong\AA_\QQ/\QQ.$ We begin by remarking that the identification between $\chi\in\widehat\QQ$ with adeles in $[0,1)\times\prod_p\ZZ_p$ was in fact unique. Indeed, $a_\infty$ was forced by $\chi(0),$ and each $a_p$ had its $\ZZ/p^\bullet\ZZ$ information uniquely read by each $\chi(1/p^\bullet).$ And in reverse, each $a_\infty\in[0,1)$ uniquely talks about $\chi(0),$ and the $a_p$ in this set cover all possible $\chi(1/p^\bullet)$ possibilities, information which extends to all of $\QQ$ roughly using our arguments from before.</p>
-					<p>It more or less remains to show, then, that every adele $a\in\AA_\QQ$ is a rational adele away from an element of $[0,1)\times\prod_p\ZZ_p.$ The main trick is to start by dealing with the $p$-adic problems by looking at\[-\sum_p\{a_p\}_p.\]Because all but finitely many of the $a_p$ belong to $\ZZ_p,$ this is a finite sum. It follows that adding the rational (adele associated with this rational) to $a$ will give an adele which is always in $\ZZ_p.$ To force us into $[0,1),$ then, we consider\[-\floor{a_\infty-\sum_p\{a_p\}_p}-\sum_p\{a_p\}_p.\]Note that the new integer added here does not change the status of $a_p\in\ZZ_p,$ and as for $a_\infty,$ the floor is chosen so that we are left with $\{\bullet\}\in[0,1)$ for a mess $\bullet.$ This shows that, more or less, we may write\[\AA_\QQ/\QQ\cong\QQ+[0,1)\times\prod_p\ZZ_p.\]We formalize this slightly.</p>
-					<p>To finish, we recall that our mapping $\Psi_\bullet:\AA_\QQ\to\widehat\QQ$ was a surjective (shown yesterday) homomorphism and has $\QQ$ in the kernel; we close by showing the kernel is $\QQ.$ Fix some adele in the kernel $a.$ Writing $a=q+a'$ with $q$ a rational adele and $a'\in[0,1)\times\prod_p\ZZ_p$ given by the above, we see\[\Psi_a=\Psi_q\Psi_{a'}=\Psi_{a'}.\]However, the uniqueness of our identification of characters $\widehat\QQ$ with $[0,1)\times\prod_p\ZZ_p$ implies that for $a$ (and thus $a'$) to be in the kernel, we must have $a'=0.$ In particular, $a=q$ was a rational adele all along, so $\QQ$ is precisely the kernel.</p>
-					<p>It follows that\[\widehat\QQ\cong\AA_\QQ/\QQ,\]which is what we wanted.</p>
+					<h2>
+						October 10th
+					</h2>
+					<p>
+						Today I learned the finale to the classification of $\widehat\QQ.$ Namely, that $\widehat\QQ\cong\AA_\QQ/\QQ.$ We begin by remarking that the identification between $\chi\in\widehat\QQ$ with adeles in $[0,1)\times\prod_p\ZZ_p$ was in fact unique. Indeed, $a_\infty$ was forced by $\chi(0),$ and each $a_p$ had its $\ZZ/p^\bullet\ZZ$ information uniquely read by each $\chi(1/p^\bullet).$ And in reverse, each $a_\infty\in[0,1)$ uniquely talks about $\chi(0),$ and the $a_p$ in this set cover all possible $\chi(1/p^\bullet)$ possibilities, information which extends to all of $\QQ$ roughly using our arguments from before.
+					</p>
+					<p>
+						It more or less remains to show, then, that every adele $a\in\AA_\QQ$ is a rational adele away from an element of $[0,1)\times\prod_p\ZZ_p.$ The main trick is to start by dealing with the $p$-adic problems by looking at\[-\sum_p\{a_p\}_p.\]Because all but finitely many of the $a_p$ belong to $\ZZ_p,$ this is a finite sum. It follows that adding the rational (adele associated with this rational) to $a$ will give an adele which is always in $\ZZ_p.$ To force us into $[0,1),$ then, we consider\[-\floor{a_\infty-\sum_p\{a_p\}_p}-\sum_p\{a_p\}_p.\]Note that the new integer added here does not change the status of $a_p\in\ZZ_p,$ and as for $a_\infty,$ the floor is chosen so that we are left with $\{\bullet\}\in[0,1)$ for a mess $\bullet.$ This shows that, more or less, we may write\[\AA_\QQ/\QQ\cong\QQ+[0,1)\times\prod_p\ZZ_p.\]We formalize this slightly.
+					</p>
+					<p>
+						To finish, we recall that our mapping $\Psi_\bullet:\AA_\QQ\to\widehat\QQ$ was a surjective (shown yesterday) homomorphism and has $\QQ$ in the kernel; we close by showing the kernel is $\QQ.$ Fix some adele in the kernel $a.$ Writing $a=q+a'$ with $q$ a rational adele and $a'\in[0,1)\times\prod_p\ZZ_p$ given by the above, we see\[\Psi_a=\Psi_q\Psi_{a'}=\Psi_{a'}.\]However, the uniqueness of our identification of characters $\widehat\QQ$ with $[0,1)\times\prod_p\ZZ_p$ implies that for $a$ (and thus $a'$) to be in the kernel, we must have $a'=0.$ In particular, $a=q$ was a rational adele all along, so $\QQ$ is precisely the kernel.
+					</p>
+					<p>
+						It follows that\[\widehat\QQ\cong\AA_\QQ/\QQ,\]which is what we wanted.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

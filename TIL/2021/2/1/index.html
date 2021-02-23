@@ -1,45 +1,109 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>February 1st</h2>
-					<p>Today I learned the definition of a natural transformation. These, are more or less, maps&mdash;or homotopies&mdash;between functors. Actually, because I know some homotopy type theory, I'll present these as homotopies. Fix categories $\mathcal C$ and $\mathcal D$ with two functors $F,G:\mathcal C\to\mathcal D.$ Formally, a natural transformation $\eta$ is, type-theoretically, the data\[\eta_\bullet:\prod_{X:\mathcal C}F(X)\to G(X)\]which commutes with $F$ and $G$ nicely. In other words, $\eta$ is made up morphisms $\eta_X:F(x)\to G(X),$ and we require the following diagram to commute.</p>
+					<h2>
+						February 1st
+					</h2>
+					<p>
+						Today I learned the definition of a natural transformation. These, are more or less, maps&mdash;or homotopies&mdash;between functors. Actually, because I know some homotopy type theory, I'll present these as homotopies. Fix categories $\mathcal C$ and $\mathcal D$ with two functors $F,G:\mathcal C\to\mathcal D.$ Formally, a natural transformation $\eta$ is, type-theoretically, the data\[\eta_\bullet:\prod_{X:\mathcal C}F(X)\to G(X)\]which commutes with $F$ and $G$ nicely. In other words, $\eta$ is made up morphisms $\eta_X:F(x)\to G(X),$ and we require the following diagram to commute.
+					</p>
 					<img src="img1.png">
-					<p>As an example, in the category of vector spaces over $k,$ we have a natural transformation from $\op{id}$ to the endofunctor $V\mapsto V^{\vee\vee}$ the double-dual of $V.$ Proving this is not terribly enlightening: the required $\eta_V$ takes $v\in V$ to $(T:V\to k)\mapsto Tv\in V^{\vee\vee},$ and this works. In fact, if we restrict our view to finite-dimensional vector spaces, this natural transformation is made up of isomorphisms, and we call $\eta$ a natural isomorphism.</p>
-					<p>Let's make the analogy to homotopy type theory explicit. Viewing a morphism between objects in a type $A:\UU$ as a "path'' between them, functions between types become functors for free. To be explicit, this amounts to the statement\[\prod_{(x,y:A)}(x=_Ay)\to(f(x)=_Bf(y)),\]where $f:A\to B.$ Now our natural transformation $\eta$ goes between two functor/functions $f,g:A\to B,$ in our analogy that $\to$ is $=$ for objects, we see\[\eta_\bullet:\prod_{x:A}f(x)=_Bg(x)\]in terms of homotopy type theory. That is, $\eta$ is just a witness for the $f\sim g,$ so natural transformations are really just homotopies in this analogy.</p>
+					<p>
+						As an example, in the category of vector spaces over $k,$ we have a natural transformation from $\op{id}$ to the endofunctor $V\mapsto V^{\vee\vee}$ the double-dual of $V.$ Proving this is not terribly enlightening: the required $\eta_V$ takes $v\in V$ to $(T:V\to k)\mapsto Tv\in V^{\vee\vee},$ and this works. In fact, if we restrict our view to finite-dimensional vector spaces, this natural transformation is made up of isomorphisms, and we call $\eta$ a natural isomorphism.
+					</p>
+					<p>
+						Let's make the analogy to homotopy type theory explicit. Viewing a morphism between objects in a type $A:\UU$ as a "path'' between them, functions between types become functors for free. To be explicit, this amounts to the statement\[\prod_{(x,y:A)}(x=_Ay)\to(f(x)=_Bf(y)),\]where $f:A\to B.$ Now our natural transformation $\eta$ goes between two functor/functions $f,g:A\to B,$ in our analogy that $\to$ is $=$ for objects, we see\[\eta_\bullet:\prod_{x:A}f(x)=_Bg(x)\]in terms of homotopy type theory. That is, $\eta$ is just a witness for the $f\sim g,$ so natural transformations are really just homotopies in this analogy.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

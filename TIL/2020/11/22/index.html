@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 22nd</h2>
-					<p>Today I learned the finish for the fact that the greedy algorithm for Egyptian fractions works. Suppose that we want to write a reduced, positive rational $p/q$ as sum of rationals of the form $1/n.$ Without loss of generality $p/q$; else we just have to subtract $1/1$ a whole bunch of times.</p>
-					<p>Now, the greedy algorithm chooses the largest possible $1/n$ which will fit and then continues. Indeed, we want to use the integer $n$ such that\[\frac1n\le\frac pq{\lt}\frac1{n-1}.\]In other words, $n\ge q/p{\gt}n-1,$ so $n=\ceil{q/p}.$ So basically, the algorithm (formally) computes $\ceil{q/p}$ and then recursively continues with\[\frac pq-\frac1{\ceil{q/p}}.\]We'd like to show that this algorithm must terminate. For this, a monovariant or an invariant would be useful because terms in the above are in $\NN,$ so well-order would finish. Well, we claim that the numerator is strictly smaller in the new fraction when reduced; this will finish because there are only finitely many possible numerators to go through, so termination would be forced. Indeed, the new fraction is\[\frac{p\ceil{q/p}-q}{q\ceil{q/p}}.\]</p>
-					<p>After reducing, the numerator is no more than $p\ceil{q/p}-q,$ so it remains to show that this is less than $p.$ (In fact, it might be equal, so the inequality $p\ceil{q/p}-q{\lt}p$ had better holds regardless.) Explicitly, we need\[p\ceil{\frac qp}-q{\lt}p.\]Dividing by $p,$ this reads\[\ceil{\frac qp}-\frac qp{\lt}1,\]which is true by the definition of ceiling. The ceiling is the smallest positive integer above $q/p,$ so if the left-hand side were at least $1,$ then we could select $\ceil{q/p}-1$ as a smaller integer above $q/p,$ contradicting.</p>
-					<p>As an aside, we can also notice that the inequality is\[p\ceil{q/p}{\lt}q+p.\]The common number-theoretic way to deal with floors and ceilings is to note that $p\ceil{q/p}$ is the smallest multiple of $p$ above $q.$ Well, there's a multiple of $q$ somewhere in $[q,q+p)$ because this fully covers $\ZZ/p\ZZ,$ so the above inequality follows.</p>
+					<h2>
+						November 22nd
+					</h2>
+					<p>
+						Today I learned the finish for the fact that the greedy algorithm for Egyptian fractions works. Suppose that we want to write a reduced, positive rational $p/q$ as sum of rationals of the form $1/n.$ Without loss of generality $p/q$; else we just have to subtract $1/1$ a whole bunch of times.
+					</p>
+					<p>
+						Now, the greedy algorithm chooses the largest possible $1/n$ which will fit and then continues. Indeed, we want to use the integer $n$ such that\[\frac1n\le\frac pq{\lt}\frac1{n-1}.\]In other words, $n\ge q/p{\gt}n-1,$ so $n=\ceil{q/p}.$ So basically, the algorithm (formally) computes $\ceil{q/p}$ and then recursively continues with\[\frac pq-\frac1{\ceil{q/p}}.\]We'd like to show that this algorithm must terminate. For this, a monovariant or an invariant would be useful because terms in the above are in $\NN,$ so well-order would finish. Well, we claim that the numerator is strictly smaller in the new fraction when reduced; this will finish because there are only finitely many possible numerators to go through, so termination would be forced. Indeed, the new fraction is\[\frac{p\ceil{q/p}-q}{q\ceil{q/p}}.\]
+					</p>
+					<p>
+						After reducing, the numerator is no more than $p\ceil{q/p}-q,$ so it remains to show that this is less than $p.$ (In fact, it might be equal, so the inequality $p\ceil{q/p}-q{\lt}p$ had better holds regardless.) Explicitly, we need\[p\ceil{\frac qp}-q{\lt}p.\]Dividing by $p,$ this reads\[\ceil{\frac qp}-\frac qp{\lt}1,\]which is true by the definition of ceiling. The ceiling is the smallest positive integer above $q/p,$ so if the left-hand side were at least $1,$ then we could select $\ceil{q/p}-1$ as a smaller integer above $q/p,$ contradicting.
+					</p>
+					<p>
+						As an aside, we can also notice that the inequality is\[p\ceil{q/p}{\lt}q+p.\]The common number-theoretic way to deal with floors and ceilings is to note that $p\ceil{q/p}$ is the smallest multiple of $p$ above $q.$ Well, there's a multiple of $q$ somewhere in $[q,q+p)$ because this fully covers $\ZZ/p\ZZ,$ so the above inequality follows.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

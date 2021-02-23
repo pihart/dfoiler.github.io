@@ -1,45 +1,115 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to October)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to October)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>October 19th</h2>
-					<p>Today I learned about <a href="https://en.wikipedia.org/wiki/Midy's_theorem">Midy's Theorem</a>. The statement is more magical than the proof. Basically, if the fraction $\frac ap\in\QQ\setminus\ZZ$ (for prime denominator $p$) has an even period when expanded in base $b,$ then the sum of the first and second halves of the period is of the form $b^k-1.$ By way of example, $\frac1{13}=0.\overline{076923},$ and so\[076+923=\boxed{999}.\]Similarly, $\frac{10}{137}=0.\overline{07299270},$\[0729+9270=\boxed{9999}.\]</p>
-					<p>Anyways, as promised, the proof is not terribly exciting, but it simultaneously touches a lot of low-machinery elementary number theory, which is cute. There is a clean generalization of this to when we can divide the decimal expansion into any number of equal parts (not just $2$), but we won't bother with this. Suppose that we have $\frac ap$ satisfying the conditions so that\[\frac ap=(0.\overline{a_1\cdots a_{2n}})_b=\frac A{b^{2n}-1},\]where $A=\overline{a_1\cdots a_{2n}}_b.$ The clever part of this proof, really, is combining the divisibility condition on the period with the actual fact that it is the period. Namely, to use the divisibility, write\[\frac ap=\frac A{\left(b^n+1\right)\left(b^n-1\right)}.\]But because the period of $\frac ap$ is $2n,$ we have that $p$ cannot divide into $b^n-1,$ for then the period would no more than $k.$ (In particular, the base-$b$ expansion of $\frac 1p$ would be $\frac{b^n-1}p.$) But $p$ must divide the denominator of the right-hand side somehow, so it must divide into $b^n+1,$ implying that\[\frac A{b^n-1}=a\cdot\frac{b^n+1}p\in\ZZ.\]This means that $A\equiv0\pmod{b^k-1}.$</p>
-					<p>To finish, we then combine the above with the divisibility by $9$ trick. We write\[A=\overline{a_1\cdots a_{2n}}=\underbrace{(\overline{a_1\cdots a_n})_b}_{A_1}\cdot b^n+\underbrace{(\overline{a_{n+1}\cdots a_{2n}})_b}_{A_2},\]where $A_1$ and $A_2$ are the first and second halves of the base-$b$ expansion. Now, it remains to show that $A_1+A_2=b^n-1.$ The above shows that $b^n-1$ divides $A_1+A_2\equiv A,$ so we just need bounding information.</p>
-					<p>On one hand, they can't both be $0,$ for then the period would be $1,$ so $A_1+A_2{\gt}0.$ On the other hand, the fact that each has $k$ digits implies that $A_1$ and $A_2$ are each less than $b^k-1,$ so $A_1+A_2{\lt}2\left(b^n-1\right).$ The equality follows.</p>
+					<h2>
+						October 19th
+					</h2>
+					<p>
+						Today I learned about
+						<a href="https://en.wikipedia.org/wiki/Midy's_theorem">
+							Midy's Theorem
+						</a>
+						. The statement is more magical than the proof. Basically, if the fraction $\frac ap\in\QQ\setminus\ZZ$ (for prime denominator $p$) has an even period when expanded in base $b,$ then the sum of the first and second halves of the period is of the form $b^k-1.$ By way of example, $\frac1{13}=0.\overline{076923},$ and so\[076+923=\boxed{999}.\]Similarly, $\frac{10}{137}=0.\overline{07299270},$\[0729+9270=\boxed{9999}.\]
+					</p>
+					<p>
+						Anyways, as promised, the proof is not terribly exciting, but it simultaneously touches a lot of low-machinery elementary number theory, which is cute. There is a clean generalization of this to when we can divide the decimal expansion into any number of equal parts (not just $2$), but we won't bother with this. Suppose that we have $\frac ap$ satisfying the conditions so that\[\frac ap=(0.\overline{a_1\cdots a_{2n}})_b=\frac A{b^{2n}-1},\]where $A=\overline{a_1\cdots a_{2n}}_b.$ The clever part of this proof, really, is combining the divisibility condition on the period with the actual fact that it is the period. Namely, to use the divisibility, write\[\frac ap=\frac A{\left(b^n+1\right)\left(b^n-1\right)}.\]But because the period of $\frac ap$ is $2n,$ we have that $p$ cannot divide into $b^n-1,$ for then the period would no more than $k.$ (In particular, the base-$b$ expansion of $\frac 1p$ would be $\frac{b^n-1}p.$) But $p$ must divide the denominator of the right-hand side somehow, so it must divide into $b^n+1,$ implying that\[\frac A{b^n-1}=a\cdot\frac{b^n+1}p\in\ZZ.\]This means that $A\equiv0\pmod{b^k-1}.$
+					</p>
+					<p>
+						To finish, we then combine the above with the divisibility by $9$ trick. We write\[A=\overline{a_1\cdots a_{2n}}=\underbrace{(\overline{a_1\cdots a_n})_b}_{A_1}\cdot b^n+\underbrace{(\overline{a_{n+1}\cdots a_{2n}})_b}_{A_2},\]where $A_1$ and $A_2$ are the first and second halves of the base-$b$ expansion. Now, it remains to show that $A_1+A_2=b^n-1.$ The above shows that $b^n-1$ divides $A_1+A_2\equiv A,$ so we just need bounding information.
+					</p>
+					<p>
+						On one hand, they can't both be $0,$ for then the period would be $1,$ so $A_1+A_2{\gt}0.$ On the other hand, the fact that each has $k$ digits implies that $A_1$ and $A_2$ are each less than $b^k-1,$ so $A_1+A_2{\lt}2\left(b^n-1\right).$ The equality follows.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

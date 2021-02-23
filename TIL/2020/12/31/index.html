@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 31st</h2>
-					<p>Today I learned about equality types. This is along the lines of propositions as types, where if we want to "prove'' $a=b,$ we have to inhabit $a=b$ somehow. As expected, our main tool for constructing functions is induction, which is called path induction in order to allude to the coming homotopy type theory. Path induction states that for a family\[C:\prod_{(a,b:A)}(a=_Ab)\to\UU,\]and witnesses\[c:\prod_{a:A}C(a,a,\refl_a),\]then we have a function\[f:\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\]satisfying $f(a,a,\refl_a)\equiv c(a).$ Here, $\refl_a$ refers to a "reflexive'' proof of the equality $a=a.$ Stated succinctly, we can write\[\op{ind}_{=A}:\left(\prod_{(a,b:A)}(a=_Ab)\to\UU\right)\to\left(\prod_{a:A}C(a,a,\refl_a)\right)\to\left(\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\right)\]which satisfies $\op{ind}_{=A}(C,c)(a,a,\refl_a)\equiv c(a).$</p>
-					<p>As usual, path induction lets us construct dependent functions from equality types from the "canonical'' elements $\op{refl}_\bullet.$ This actually makes me somewhat uncomfortable, in that we're being told what to do with non-reflexive elements without being told, so we're getting a surprising amount of power. Homotopically, this is roughly defining a continuous functions over all paths after having only been told what to do with constant paths, which doesn't make much sense to me.</p>
-					<p>I guess I should mention based path induction. Essentially, we fix $a:A,$ in that we now take a family\[C:\prod_{x:A}(a=_Ax)\to\UU\]with witness\[c:C(a,\refl_a),\]and we get a function\[f:\prod_{(x:A)}\prod_{(p:a=_Ax)}C(a,p).\]The two forms of induction are equivalent (we can derive each from the other), but this is not easy to see.</p>
+					<h2>
+						December 31st
+					</h2>
+					<p>
+						Today I learned about equality types. This is along the lines of propositions as types, where if we want to "prove'' $a=b,$ we have to inhabit $a=b$ somehow. As expected, our main tool for constructing functions is induction, which is called path induction in order to allude to the coming homotopy type theory. Path induction states that for a family\[C:\prod_{(a,b:A)}(a=_Ab)\to\UU,\]and witnesses\[c:\prod_{a:A}C(a,a,\refl_a),\]then we have a function\[f:\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\]satisfying $f(a,a,\refl_a)\equiv c(a).$ Here, $\refl_a$ refers to a "reflexive'' proof of the equality $a=a.$ Stated succinctly, we can write\[\op{ind}_{=A}:\left(\prod_{(a,b:A)}(a=_Ab)\to\UU\right)\to\left(\prod_{a:A}C(a,a,\refl_a)\right)\to\left(\prod_{(a,b:A)}\prod_{(p:a=_Ab)}C(a,b,p)\right)\]which satisfies $\op{ind}_{=A}(C,c)(a,a,\refl_a)\equiv c(a).$
+					</p>
+					<p>
+						As usual, path induction lets us construct dependent functions from equality types from the "canonical'' elements $\op{refl}_\bullet.$ This actually makes me somewhat uncomfortable, in that we're being told what to do with non-reflexive elements without being told, so we're getting a surprising amount of power. Homotopically, this is roughly defining a continuous functions over all paths after having only been told what to do with constant paths, which doesn't make much sense to me.
+					</p>
+					<p>
+						I guess I should mention based path induction. Essentially, we fix $a:A,$ in that we now take a family\[C:\prod_{x:A}(a=_Ax)\to\UU\]with witness\[c:C(a,\refl_a),\]and we get a function\[f:\prod_{(x:A)}\prod_{(p:a=_Ax)}C(a,p).\]The two forms of induction are equivalent (we can derive each from the other), but this is not easy to see.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

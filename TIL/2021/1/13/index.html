@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 13th</h2>
-					<p>Today I learned the outline of how to use class field theory to classify primes of the form $x^2+ny^2,$ where $n\equiv1\pmod4$ and is squarefree. To introduce in the algebraic number theory, we write this as\[p=\left(x+y\sqrt{-n}\right)\left(x-y\sqrt{-n}\right),\]so really we're saying that $p$ splits completely in $K:=\QQ(\sqrt{-n})$ into principal ideals. Notably, our rink of integers is $\mathcal O_K=\ZZ[\sqrt{-n}],$ so principal really does mean $\left(x+y\sqrt{-n}\right).$ We remark that this is an equivalence because if $p$ splits completely into principal ideals in $K,$ then we can write $p=(\alpha)(\beta)=(\alpha\beta),$ so $p^2=\op{Norm}(\alpha)\cdot\op{Norm}(\beta).$ Not both $\alpha$ and $\beta$ may be units, so we must have (say) $p=\op{Norm}(\alpha),$ which finishes. So we get\[p=x^2+ny^2\iff p=\mf p\mf q,\,\text{ with }\mf p,\mf q\subseteq\mathcal O_K\text{ principal}.\]</p>
-					<p>It remains to classify primes $p$ which split completely into $\mf p\mf q$ in $\mathcal O_K$ where $\mf p$ and $\mf q$ are principal. Now we bring in the class field theory. Let $L$ be the Hilbert class field of $K,$ which has a number of remarkable properties. For example,\[\mf p\text{ is principal}\iff\mf p\text{ splits completely in }L.\]This is called the Principal Ideal Theorem. So we need the factors of $p$ to split completely in $L.$ And noting the multiplicativity of $e(\bullet/p)$ and $f(\bullet/p),$ we see that the factors of $p$ split completely if and only if $p$ itself splits completely, for we know that $p$ should split completely as a hypothesis already. It follows\[p=x^2+ny^2\iff p\text{ splits completely in }L.\]</p>
-					<p>We can provide some aesthetically nicer conditions on splitting completely in $L.$ If we fix $L=K[\alpha]$ with $f(x)$ the minimal polynomial of our $\alpha,$ then for all but finitely many primes, we can be reassured the splitting of $p$ depends on the factorization of $f\pmod p.$ The end goal is to be able to have our condition be\[p=x^2+ny^2\iff f(x)\equiv0\pmod p\text{ has a solution},\]but we can't say that yet because of ramification. Well, another remarkable property of $L$ is that it is an unramified extension of $K,$ so it is enough to check that $p$ is unramified in $K.$ (It should be unramified because it should split completely, but we must check this in order to apply Dedekind-Kummer.) Ramification can be checked by checking $p\nmid\disc\mathcal O_K=-4n.$ So for all but finitely many primes,\[p=x^2+ny^2\iff p\nmid4n\text{ and }f(x)\equiv0\pmod p\text{ has a solution}.\]In particular, $f(x)\equiv0$ having a solution means that $p$ has a factor of inertial degree $1$ in $L,$ but then all factors have inertial degree $1,$ so $p$ does split completely.</p>
+					<h2>
+						January 13th
+					</h2>
+					<p>
+						Today I learned the outline of how to use class field theory to classify primes of the form $x^2+ny^2,$ where $n\equiv1\pmod4$ and is squarefree. To introduce in the algebraic number theory, we write this as\[p=\left(x+y\sqrt{-n}\right)\left(x-y\sqrt{-n}\right),\]so really we're saying that $p$ splits completely in $K:=\QQ(\sqrt{-n})$ into principal ideals. Notably, our rink of integers is $\mathcal O_K=\ZZ[\sqrt{-n}],$ so principal really does mean $\left(x+y\sqrt{-n}\right).$ We remark that this is an equivalence because if $p$ splits completely into principal ideals in $K,$ then we can write $p=(\alpha)(\beta)=(\alpha\beta),$ so $p^2=\op{Norm}(\alpha)\cdot\op{Norm}(\beta).$ Not both $\alpha$ and $\beta$ may be units, so we must have (say) $p=\op{Norm}(\alpha),$ which finishes. So we get\[p=x^2+ny^2\iff p=\mf p\mf q,\,\text{ with }\mf p,\mf q\subseteq\mathcal O_K\text{ principal}.\]
+					</p>
+					<p>
+						It remains to classify primes $p$ which split completely into $\mf p\mf q$ in $\mathcal O_K$ where $\mf p$ and $\mf q$ are principal. Now we bring in the class field theory. Let $L$ be the Hilbert class field of $K,$ which has a number of remarkable properties. For example,\[\mf p\text{ is principal}\iff\mf p\text{ splits completely in }L.\]This is called the Principal Ideal Theorem. So we need the factors of $p$ to split completely in $L.$ And noting the multiplicativity of $e(\bullet/p)$ and $f(\bullet/p),$ we see that the factors of $p$ split completely if and only if $p$ itself splits completely, for we know that $p$ should split completely as a hypothesis already. It follows\[p=x^2+ny^2\iff p\text{ splits completely in }L.\]
+					</p>
+					<p>
+						We can provide some aesthetically nicer conditions on splitting completely in $L.$ If we fix $L=K[\alpha]$ with $f(x)$ the minimal polynomial of our $\alpha,$ then for all but finitely many primes, we can be reassured the splitting of $p$ depends on the factorization of $f\pmod p.$ The end goal is to be able to have our condition be\[p=x^2+ny^2\iff f(x)\equiv0\pmod p\text{ has a solution},\]but we can't say that yet because of ramification. Well, another remarkable property of $L$ is that it is an unramified extension of $K,$ so it is enough to check that $p$ is unramified in $K.$ (It should be unramified because it should split completely, but we must check this in order to apply Dedekind-Kummer.) Ramification can be checked by checking $p\nmid\disc\mathcal O_K=-4n.$ So for all but finitely many primes,\[p=x^2+ny^2\iff p\nmid4n\text{ and }f(x)\equiv0\pmod p\text{ has a solution}.\]In particular, $f(x)\equiv0$ having a solution means that $p$ has a factor of inertial degree $1$ in $L,$ but then all factors have inertial degree $1,$ so $p$ does split completely.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

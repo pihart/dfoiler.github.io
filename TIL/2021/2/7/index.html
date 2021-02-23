@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>February 7th</h2>
-					<p>Today I learned that random play in two-pile Nim give each player a $\frac12$ probability of winning if one pile has at least $2$ stones. Formally speaking, "random play'' means that a player on her turn lists all possible moves and then makes a random move. This is different from picking a legal pile randomly and then taking a random number of stones, but I don't think the result changes.</p>
-					<p>We prove this by brute-force tabulation. Let $p(m,n)$ be the probability that player $1$ if the two piles have $m$ and $n$ stones. By convention, we set $p(0,0)=0$ because player $1$ is the first player to be unable to make a move. From here, we note that we have the recurrence\[p(m,n)=1-\frac1{m+n}\left(\sum_{k=1}^mp(m-k,n)+\sum_{\ell=1}^np(m,n-\ell)\right)\]for $m,n,m+n\ge0.$ To prove this, we note that player $1$ must make a move, which consists of either taking $k\le m$ stones from the first pile or $\ell\le n$ stones from the second pile. Each of these moves occur with probability $\frac1{m+n},$ and afterwards, player $1$ is effectively playing as player $2$ in the $p(m-k,n)$ or $p(m,n-\ell)$ game, so we subtract the probabilities from $1.$</p>
-					<p>Quickly, we simplify our recurrence to\[p(m,n)=1-\frac1{m+n}\left(\sum_{k=0}^{m-1}p(k,n)+\sum_{\ell=0}^{n-1}p(m,\ell)\right)\]by flipping the sums. As some motivation, we remark that we could use the recurrence relation to build a table of the various values of $p(m,n).$ New values are computed by one minus the average of all terms above or to the left. Here is the start of the table.\[\begin{array}{r|c|c|c|c}           & 0      & 1       & 2     & \cdots \\\hline    0      & 0      & 1      & 1/2    & \cdots \\\hline    1      & 1      & 0      & 1/2    & \cdots \\\hline    2      & 1/2    & 1/2    & 1/2    & \cdots \\\hline    \vdots & \vdots & \vdots & \vdots & \ddots\end{array}\]However, the fast way to finish the proof is to claim directly that $p(m,n)$ is\[p(m,n)=\begin{cases}    0 & (m,n)\in\{(0,0),(1,1)\}, \\    1 & (m,n)\in\{(0,1),(1,0)\}, \\    1/2 & \text{else}.\end{cases}\]Note that this is the main claim. To prove, we see this matches our initial condition $p(0,0)=0,$ so it suffices to show that we satisfy the recurrence relation. We quickly check that $p(0,1)=p(1,0)=1-0$ and that $p(1,1)=1-\frac12(1+1)=0.$ It follows that, for $m\ge2,$ we see\[\sum_{k=0}^{m-1}p(k,n)=p(0,n)+p(1,n)+\sum_{k=2}^{m-1}p(k,m)=1+\frac{m-2}2=\frac m2.\]Here the trick is that $p(0,n)+p(1,n)$ is one of $1+0,\,0+1,\,\frac12+\frac12,$ all of which are equal to $1.$ Similarly, for $n\ge2,$ we see\[\sum_{\ell=0}^{n-1}p(m,\ell)=p(m,0)+p(m,1)+\sum_{\ell=2}^{n-1}p(m,\ell)=1+\frac{n-2}2=\frac n2.\]Again, the trick is that $p(0,m)+p(1,m)$ always evaluates to $1.$ It follows that\[1-\frac1{m+n}\left(\sum_{k=0}^{m-1}p(k,n)+\sum_{\ell=0}^{m-1}p(m,\ell)\right)=1-\frac1{m+n}\cdot\frac{m+n}2=\frac12,\]which completes the proof.</p>
-					<p>Quickly, we talk about the alternate method of "random play'' mentioned at the beginning: a player picks a random pile and then picks up a random number of stones. Let the probability of player $1$ winning in this game with $m$ and $n$ stones be $q(m,n).$ We still have $q(0,0)=0,$ and a similar computation as before gives the recurrence relation\[q(m,n)=1-\frac12\left(\frac1m\sum_{k=0}^{m-1}q(k,n)+\frac1n\sum_{\ell=0}^{n-1}q(m,\ell)\right)\]for $m,n{\gt}0,$ and\[q(m,0)=1-\frac1m\sum_{k=0}^{m-1}q(k,0),\qquad q(0,n)=1-\frac1n\sum_{\ell=0}^{n-1}q(0,\ell).\]With these in hand, it's not difficult to actually show $q=p$ always. Indeed, our recurrence relations matches $p$ for the $m=0$ and $n=0$ cases, so we match there. We can also check that $q(1,1)=1-\frac12(1+1)=0$ still. Then for $m,n{\gt}0,$ the internal sums will match what we evaluates for $p$ in the above proof, so we see\[1-\frac12\left(\frac1m\cdot\frac m2+\frac1n\cdot\frac n2\right)=\frac12.\]This finishes the proof that $p$ satisfies the recurrence relation of $q,$ so they are equal.</p>
+					<h2>
+						February 7th
+					</h2>
+					<p>
+						Today I learned that random play in two-pile Nim give each player a $\frac12$ probability of winning if one pile has at least $2$ stones. Formally speaking, "random play'' means that a player on her turn lists all possible moves and then makes a random move. This is different from picking a legal pile randomly and then taking a random number of stones, but I don't think the result changes.
+					</p>
+					<p>
+						We prove this by brute-force tabulation. Let $p(m,n)$ be the probability that player $1$ if the two piles have $m$ and $n$ stones. By convention, we set $p(0,0)=0$ because player $1$ is the first player to be unable to make a move. From here, we note that we have the recurrence\[p(m,n)=1-\frac1{m+n}\left(\sum_{k=1}^mp(m-k,n)+\sum_{\ell=1}^np(m,n-\ell)\right)\]for $m,n,m+n\ge0.$ To prove this, we note that player $1$ must make a move, which consists of either taking $k\le m$ stones from the first pile or $\ell\le n$ stones from the second pile. Each of these moves occur with probability $\frac1{m+n},$ and afterwards, player $1$ is effectively playing as player $2$ in the $p(m-k,n)$ or $p(m,n-\ell)$ game, so we subtract the probabilities from $1.$
+					</p>
+					<p>
+						Quickly, we simplify our recurrence to\[p(m,n)=1-\frac1{m+n}\left(\sum_{k=0}^{m-1}p(k,n)+\sum_{\ell=0}^{n-1}p(m,\ell)\right)\]by flipping the sums. As some motivation, we remark that we could use the recurrence relation to build a table of the various values of $p(m,n).$ New values are computed by one minus the average of all terms above or to the left. Here is the start of the table.\[\begin{array}{r|c|c|c|c}           & 0      & 1       & 2     & \cdots \\\hline    0      & 0      & 1      & 1/2    & \cdots \\\hline    1      & 1      & 0      & 1/2    & \cdots \\\hline    2      & 1/2    & 1/2    & 1/2    & \cdots \\\hline    \vdots & \vdots & \vdots & \vdots & \ddots\end{array}\]However, the fast way to finish the proof is to claim directly that $p(m,n)$ is\[p(m,n)=\begin{cases}    0 & (m,n)\in\{(0,0),(1,1)\}, \\    1 & (m,n)\in\{(0,1),(1,0)\}, \\    1/2 & \text{else}.\end{cases}\]Note that this is the main claim. To prove, we see this matches our initial condition $p(0,0)=0,$ so it suffices to show that we satisfy the recurrence relation. We quickly check that $p(0,1)=p(1,0)=1-0$ and that $p(1,1)=1-\frac12(1+1)=0.$ It follows that, for $m\ge2,$ we see\[\sum_{k=0}^{m-1}p(k,n)=p(0,n)+p(1,n)+\sum_{k=2}^{m-1}p(k,m)=1+\frac{m-2}2=\frac m2.\]Here the trick is that $p(0,n)+p(1,n)$ is one of $1+0,\,0+1,\,\frac12+\frac12,$ all of which are equal to $1.$ Similarly, for $n\ge2,$ we see\[\sum_{\ell=0}^{n-1}p(m,\ell)=p(m,0)+p(m,1)+\sum_{\ell=2}^{n-1}p(m,\ell)=1+\frac{n-2}2=\frac n2.\]Again, the trick is that $p(0,m)+p(1,m)$ always evaluates to $1.$ It follows that\[1-\frac1{m+n}\left(\sum_{k=0}^{m-1}p(k,n)+\sum_{\ell=0}^{m-1}p(m,\ell)\right)=1-\frac1{m+n}\cdot\frac{m+n}2=\frac12,\]which completes the proof.
+					</p>
+					<p>
+						Quickly, we talk about the alternate method of "random play'' mentioned at the beginning: a player picks a random pile and then picks up a random number of stones. Let the probability of player $1$ winning in this game with $m$ and $n$ stones be $q(m,n).$ We still have $q(0,0)=0,$ and a similar computation as before gives the recurrence relation\[q(m,n)=1-\frac12\left(\frac1m\sum_{k=0}^{m-1}q(k,n)+\frac1n\sum_{\ell=0}^{n-1}q(m,\ell)\right)\]for $m,n{\gt}0,$ and\[q(m,0)=1-\frac1m\sum_{k=0}^{m-1}q(k,0),\qquad q(0,n)=1-\frac1n\sum_{\ell=0}^{n-1}q(0,\ell).\]With these in hand, it's not difficult to actually show $q=p$ always. Indeed, our recurrence relations matches $p$ for the $m=0$ and $n=0$ cases, so we match there. We can also check that $q(1,1)=1-\frac12(1+1)=0$ still. Then for $m,n{\gt}0,$ the internal sums will match what we evaluates for $p$ in the above proof, so we see\[1-\frac12\left(\frac1m\cdot\frac m2+\frac1n\cdot\frac n2\right)=\frac12.\]This finishes the proof that $p$ satisfies the recurrence relation of $q,$ so they are equal.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

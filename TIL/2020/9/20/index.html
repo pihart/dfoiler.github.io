@@ -1,49 +1,117 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 20th</h2>
-					<p>Today I learned about fibered products, which are basically products that make diagrams commute. In particular, given objects $X$ and $Y$ with maps $\alpha:X\to Z$ and $\beta:Y\to Z,$ then the fibered product begin by being an object $X\times_ZY$ with maps $\pi_X$ and $\pi_Y$ such that the following diagram commutes.</p>
+					<h2>
+						September 20th
+					</h2>
+					<p>
+						Today I learned about fibered products, which are basically products that make diagrams commute. In particular, given objects $X$ and $Y$ with maps $\alpha:X\to Z$ and $\beta:Y\to Z,$ then the fibered product begin by being an object $X\times_ZY$ with maps $\pi_X$ and $\pi_Y$ such that the following diagram commutes.
+					</p>
 					<img src="img1.png">
-					<p>But to finish the universal property definition, we assert that for any object $W$ with maps $W\to X$ and $W\to Y$ commuting with $\alpha$ and $\beta,$ then those maps factor uniquely through $X\times_ZY.$</p>
+					<p>
+						But to finish the universal property definition, we assert that for any object $W$ with maps $W\to X$ and $W\to Y$ commuting with $\alpha$ and $\beta,$ then those maps factor uniquely through $X\times_ZY.$
+					</p>
 					<img src="img2.png">
-					<p>So for example, in the category of sets, we claim that $X\times_ZY=\{(x,y):\alpha(x)=\beta(y)\},$ which as claimed is pretty much "$X\times Y$ which makes the diagram commute.'' Indeed, the diagram does commute, and for any $W$ with $f:W\to X$ and $g:W\to Y$ satisfying $\alpha f=\beta g,$ we claim a unique $\varphi$ such that $f=\pi_X\phi$ and $g=\pi_Y\varphi.$ But then this forces\[\varphi(w)=(f(w),g(w))\]in order to make the projections work. (Formally, if $\varphi(w)=(w_x,w_y),$ we must have $w_x=\pi_X\varphi(w)=f(w)$ and $w_y=\pi_Y\varphi(w)=g(w).$) This is indeed a map $\varphi:W\to X\times_ZY$ because $f$ ad $g$ commute with $\alpha$ and $\beta$ already, so we have our unique factorization.</p>
-					<p>As another example, if $Z$ is a final object in the category, then all of our mappings kind of collapse into each other, implying that we should have $X\times_ZY=X\times Y.$ Indeed, look at the associated diagram.</p>
+					<p>
+						So for example, in the category of sets, we claim that $X\times_ZY=\{(x,y):\alpha(x)=\beta(y)\},$ which as claimed is pretty much "$X\times Y$ which makes the diagram commute.'' Indeed, the diagram does commute, and for any $W$ with $f:W\to X$ and $g:W\to Y$ satisfying $\alpha f=\beta g,$ we claim a unique $\varphi$ such that $f=\pi_X\phi$ and $g=\pi_Y\varphi.$ But then this forces\[\varphi(w)=(f(w),g(w))\]in order to make the projections work. (Formally, if $\varphi(w)=(w_x,w_y),$ we must have $w_x=\pi_X\varphi(w)=f(w)$ and $w_y=\pi_Y\varphi(w)=g(w).$) This is indeed a map $\varphi:W\to X\times_ZY$ because $f$ ad $g$ commute with $\alpha$ and $\beta$ already, so we have our unique factorization.
+					</p>
+					<p>
+						As another example, if $Z$ is a final object in the category, then all of our mappings kind of collapse into each other, implying that we should have $X\times_ZY=X\times Y.$ Indeed, look at the associated diagram.
+					</p>
 					<img src="img3.png">
-					<p>Note that $Z$ being final implies that there is only one mapping $X\to Z$ and $Y\to Z,$ and for the same reason, the maps $X\times Y\to X\to Z$ and $X\times Y\to Y\to Z$ commute for free as both are $X\times Y\to Z.$ So we are allowed to place $X\times Y$ in this diagram. Now, given maps $W\to X$ and $W\to Y,$ the universal property of $X\times Y$ gives us the unique map for which $W\to X\times Y$ commutes with the diagram, satisfying the universal property of $X\times_ZY,$ so we are done here.</p>
+					<p>
+						Note that $Z$ being final implies that there is only one mapping $X\to Z$ and $Y\to Z,$ and for the same reason, the maps $X\times Y\to X\to Z$ and $X\times Y\to Y\to Z$ commute for free as both are $X\times Y\to Z.$ So we are allowed to place $X\times Y$ in this diagram. Now, given maps $W\to X$ and $W\to Y,$ the universal property of $X\times Y$ gives us the unique map for which $W\to X\times Y$ commutes with the diagram, satisfying the universal property of $X\times_ZY,$ so we are done here.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

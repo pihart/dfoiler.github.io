@@ -1,52 +1,132 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 31st</h2>
-					<p>Today I learned an expression for Hermitian inner products in terms of the lengths they induce, from <a href="http://estoyanov.net/files/MATAMATIKA/23982177-TheCauchy-Schwartz-Master-Class.pdf">here</a>. These are, more or less, generalizations of the parallelogram law to work for Hermitian spaces.</p>
-					<p>To start, we fix a root of unity $\omega$ with $\omega^n=1$ but $\omega^2\ne1.$ Then we claim that, for $x,y\in\CC^\bullet,$\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k.\]The feeling I get from this statement is that we are "averaging'' the length over the various $\alpha^\bullet,$ in a way that looks analogous to the averaging process to define Hermitian inner products from group representations. I'm unsure if the relationship is more than aesthetic. Anyways, expanding out the length gives\[\left\lVert x+\alpha^ky\right\rVert=\left\langle x+\alpha^ky,x+\alpha^k y\right\rangle=\langle x,x\rangle+\left\langle\alpha^ky,\alpha^ky\right\rangle+\left\langle\alpha^ky,x\right\rangle+\left\langle x,\alpha^ky\right\rangle.\]Now, we dictate the fate of each of these terms as we sum over each $k.$</p>
+					<h2>
+						January 31st
+					</h2>
+					<p>
+						Today I learned an expression for Hermitian inner products in terms of the lengths they induce, from
+						<a href="http://estoyanov.net/files/MATAMATIKA/23982177-TheCauchy-Schwartz-Master-Class.pdf">
+							here
+						</a>
+						. These are, more or less, generalizations of the parallelogram law to work for Hermitian spaces.
+					</p>
+					<p>
+						To start, we fix a root of unity $\omega$ with $\omega^n=1$ but $\omega^2\ne1.$ Then we claim that, for $x,y\in\CC^\bullet,$\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k.\]The feeling I get from this statement is that we are "averaging'' the length over the various $\alpha^\bullet,$ in a way that looks analogous to the averaging process to define Hermitian inner products from group representations. I'm unsure if the relationship is more than aesthetic. Anyways, expanding out the length gives\[\left\lVert x+\alpha^ky\right\rVert=\left\langle x+\alpha^ky,x+\alpha^k y\right\rangle=\langle x,x\rangle+\left\langle\alpha^ky,\alpha^ky\right\rangle+\left\langle\alpha^ky,x\right\rangle+\left\langle x,\alpha^ky\right\rangle.\]Now, we dictate the fate of each of these terms as we sum over each $k.$
+					</p>
 					<ul>
-						<li>     We note $\langle x,x\rangle$ is constant, so we have    \[\langle x,x\rangle\sum_{k=0}^{n-1}\alpha^k=0\]    because $\alpha\ne1$ is an $n$th root of unity.</li>
-						<li>     Because our inner product is Hermitian, $\left\langle\alpha^ky,\alpha^ky\right\rangle=\alpha^k\overline\alpha^k\langle y,y\rangle$ is constant as well (note $|\alpha|=1$), so this term vanishes as well.</li>
-						<li>     Again because our inner product is Hermitian, $\left\langle\alpha^ky,x\right\rangle=\alpha^k\langle y,x\rangle.$ Thus, we have    \[\langle y,x\rangle\sum_{k=0}^{n-1}\alpha^{2k}=0\]    because $\alpha^2\ne1$ is an $n$th root of unity. This is the only part of the proof which requires $\alpha^2\ne1.$</li>
-						<li>     Finally, $\left\langle x,\alpha^ky\right\rangle=\overline\alpha^k\langle x,y\rangle,$ so we have    \[\langle x,y\rangle\sum_{k=0}^{n-1}\overline\alpha^k\alpha^k=n\langle x,y\rangle.\]</li>
+						<li>
+							We note $\langle x,x\rangle$ is constant, so we have    \[\langle x,x\rangle\sum_{k=0}^{n-1}\alpha^k=0\]    because $\alpha\ne1$ is an $n$th root of unity.
+						</li>
+						<li>
+							Because our inner product is Hermitian, $\left\langle\alpha^ky,\alpha^ky\right\rangle=\alpha^k\overline\alpha^k\langle y,y\rangle$ is constant as well (note $|\alpha|=1$), so this term vanishes as well.
+						</li>
+						<li>
+							Again because our inner product is Hermitian, $\left\langle\alpha^ky,x\right\rangle=\alpha^k\langle y,x\rangle.$ Thus, we have    \[\langle y,x\rangle\sum_{k=0}^{n-1}\alpha^{2k}=0\]    because $\alpha^2\ne1$ is an $n$th root of unity. This is the only part of the proof which requires $\alpha^2\ne1.$
+						</li>
+						<li>
+							Finally, $\left\langle x,\alpha^ky\right\rangle=\overline\alpha^k\langle x,y\rangle,$ so we have    \[\langle x,y\rangle\sum_{k=0}^{n-1}\overline\alpha^k\alpha^k=n\langle x,y\rangle.\]
+						</li>
 					</ul>
-					<p>It follows that, after all of the dust has settled, we see\[\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k=\frac nn\langle x,y\rangle=\langle x,y\rangle,\]which is what we wanted.</p>
-					<p>What amuses me most about this result is that we can read it as a Riemann sum, in the same way that the discrete Fourier transform is a Riemann sum of the continuous Fourier transform. Indeed, take $n{\gt}4$ and $\alpha=e^{2\pi i/n},$ which tells us\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\big\lVert x+e^{2\pi i(k/n)}y\big\rVert^2e^{2\pi i(k/n)}.\]Now, taking $n\to\infty$ and seeing this as a Riemann sum tells us\[\langle x,y\rangle=\int_0^1\big\lVert x+e^{2\pi i\theta}y\big\rVert^2e^{2\pi i\theta}\,d\theta.\]This is a bit prettier by taking $2\pi\theta\mapsto\theta,$ which gives\[\langle x,y\rangle=\frac1{2\pi}\int_0^{2\pi}\left\lVert x+e^{i\theta}y\right\rVert^2e^{i\theta}\,d\theta.\]This is cute, so we stop here.</p>
-					<p>We remark that we have not shown that the Riemann sum here is well-defined, but the induced norm is continuous, which is good enough. We do not show this continuity here, but I will outline: a Cauchy sequence $x_\bullet\to x$ by definition satisfies $\lVert x-x_\bullet\rVert\to0.$ But the triangle inequality gives\[\left|\,\lVert x\rVert-\lVert x_\bullet\rVert\,\right|\le\lVert x-x_\bullet\rVert,\]so $\lVert x_\bullet\rVert\to\lVert x\rVert$ as well, which is what we wanted.</p>
+					<p>
+						It follows that, after all of the dust has settled, we see\[\frac1n\sum_{k=0}^{n-1}\left\lVert x+\alpha^ky\right\rVert^2\alpha^k=\frac nn\langle x,y\rangle=\langle x,y\rangle,\]which is what we wanted.
+					</p>
+					<p>
+						What amuses me most about this result is that we can read it as a Riemann sum, in the same way that the discrete Fourier transform is a Riemann sum of the continuous Fourier transform. Indeed, take $n{\gt}4$ and $\alpha=e^{2\pi i/n},$ which tells us\[\langle x,y\rangle=\frac1n\sum_{k=0}^{n-1}\big\lVert x+e^{2\pi i(k/n)}y\big\rVert^2e^{2\pi i(k/n)}.\]Now, taking $n\to\infty$ and seeing this as a Riemann sum tells us\[\langle x,y\rangle=\int_0^1\big\lVert x+e^{2\pi i\theta}y\big\rVert^2e^{2\pi i\theta}\,d\theta.\]This is a bit prettier by taking $2\pi\theta\mapsto\theta,$ which gives\[\langle x,y\rangle=\frac1{2\pi}\int_0^{2\pi}\left\lVert x+e^{i\theta}y\right\rVert^2e^{i\theta}\,d\theta.\]This is cute, so we stop here.
+					</p>
+					<p>
+						We remark that we have not shown that the Riemann sum here is well-defined, but the induced norm is continuous, which is good enough. We do not show this continuity here, but I will outline: a Cauchy sequence $x_\bullet\to x$ by definition satisfies $\lVert x-x_\bullet\rVert\to0.$ But the triangle inequality gives\[\left|\,\lVert x\rVert-\lVert x_\bullet\rVert\,\right|\le\lVert x-x_\bullet\rVert,\]so $\lVert x_\bullet\rVert\to\lVert x\rVert$ as well, which is what we wanted.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

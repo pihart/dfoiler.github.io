@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 19th</h2>
-					<p>Today I learned an explicit expression for $L(1,\chi)$ with Gauss sums, which I think leads towards the quadratic class number formula and a somewhat elementary proof of Dirichlet's theorem. I don't know the details of the applications as of now.</p>
-					<p>Fix $\chi$ a nonprincipal character$\pmod m.$ For now let $s{\gt}1,$ to be taken to $1^+$ later. This lets us say\[L(s,\chi)=\sum_{n=1}^\infty\frac{\chi(n)}{n^s}\]converges absolutely, and therefore we may rearrange the terms as we want. The idea is that $\chi(n)$ is pretty poorly behaved, but it only has a finite amount of complexity because it's a character over $(\ZZ/m\ZZ)^\times.$ So we isolate residue classes and write\[L(s,\chi)=\sum_{t=1}^m\chi(t)\sum_{\substack{n=1\\n\equiv t}}^\infty\frac1{n^s}.\]We have to sift out $n\equiv t\pmod m$ now, which we do with a roots of unity filter. In particular, look at\[\sum_{k=0}^{m-1}\zeta_m^{tk}\zeta_m^{-nk}.\]If $t\equiv n,$ then all of these terms are $1,$ so we total to $m.$ If $t\not\equiv n,$ then this is a finite geometric series evaluating to $\frac{\zeta_m^{(t-n)m}-1}{\zeta_m^{t-n}-1}=0.$ So dividing this sum by $m$ will give our indicator, letting us write\[L(s,\chi)=\sum_{t=1}^m\chi(t)\sum_{n=1}^\infty\frac1{n^s}\sum_{k=0}^{m-1}\frac{\zeta_m^{tk}\zeta_m^{-nk}}m.\]This can be rearranged into something nicer by putting letters where they belong, like\[L(s,\chi)=\frac1m\sum_{k=0}^{m-1}\left(\sum_{t=1}^m\chi(t)\zeta_m^{tk}\right)\left(\sum_{n=1}^\infty\frac{\zeta_m^{-nk}}{n^s}\right).\]The sum over $t$ is $g_m(k,\chi),$ which is our Gauss sum. We will simplify it a bit more later. For now, we'd like to send $s\to1^+$ and then plug into the Taylor series of $-\log(1-z)$ to get rid of the infinite sum, but the $k=0$ will cause this to diverge. However, we're in luck, for $\chi$ nonprincipal implies\[g_m(0,\chi)=\sum_{t=1}^m\chi(t)\cdot1=0,\]making $k=0$ vanish. Indeed, for $\chi(T)\ne1,$ we could write $g_m(0,\chi)=\chi(T)g_m(0,\chi)$ because multiplication by $T$ is a bijection over $(\ZZ/m\ZZ)^\times,$ which gives the result. So we get to say\[L(s,\chi)=\frac1m\sum_{k=1}^{m-1}g_m(k,\chi)\left(\sum_{n=1}^\infty\frac{\zeta_m^{-nk}}{n^s}\right).\]Now we send $s\to1^+$ as promised, and the infinite sum will stabilize to $-\log\left(1-\zeta_m^{-k}\right).$ So we have\[L(1,\chi)=-\frac1m\sum_{k=1}^{m-1}g_m(k,\chi)\log\left(1-\zeta_m^{-k}\right),\]which is what we wanted.</p>
-					<p>This can be simplified more, with a little more work. If we take $\chi$ primitive, then $g_m(k,\chi)$ will vanish for $(k,m){\gt}1,$ which I don't show here. As for $(k,m)=1,$ we get to write\[g_m(k,\chi)=\sum_{\substack{t=1\\(t,m)=1}}^{m-1}\chi(t)\zeta_m^{tk}=\overline\chi(k)\sum_{\substack{tk=1\\(tk,m)=1}}^{m-1}\chi(tk)\zeta_m^{tk}=\overline\chi(k)g_m(1,\chi).\]This means that we can move the Gauss sum outside of our $L(1,\chi),$ giving\[L(1,\chi)=-\frac{g_m(1,\chi)}m\sum_{\substack{k=1\\(k,m)=1}}^{m-1}\overline\chi(k)\log\left(1-\zeta_m^{-k}\right).\]If sadistic, we can even make the log disappear, by noticing\[1-\zeta_m^{-k}=2i\zeta_m^{-k/2}\cdot\frac{\zeta_m^{k/2}-\zeta_m^{-k/2}}{2i}=2i\cdot\sin\left(\frac{k\pi}m\right)\zeta_m^{-k/2}.\]So the logarithm is $\log(2i)+\log\left(\sin\left(\frac{k\pi}m\right)\zeta_m^{-k/2}\right).$ The constant $\log(2i)$ will contribute a full sum $\log(2i)\sum\overline\chi(k),$ which vanishes. This gives us\[L(1,\chi)=-\frac{g_m(1,\chi)}m\sum_{\substack{k=1\\(k,m)=1}}^{m-1}\overline\chi(k)\left(\log\left(\sin\left(\frac{k\pi}m\right)\right)-\frac{k\pi i}m\right).\]From here we're supposed to divide this into cases where $\chi(-1)=1$ or $\chi(-1)=-1,$ but I can't be bothered. The above at least got rid of having to do compute logarithms of complex numbers, which is nice.</p>
+					<h2>
+						December 19th
+					</h2>
+					<p>
+						Today I learned an explicit expression for $L(1,\chi)$ with Gauss sums, which I think leads towards the quadratic class number formula and a somewhat elementary proof of Dirichlet's theorem. I don't know the details of the applications as of now.
+					</p>
+					<p>
+						Fix $\chi$ a nonprincipal character$\pmod m.$ For now let $s{\gt}1,$ to be taken to $1^+$ later. This lets us say\[L(s,\chi)=\sum_{n=1}^\infty\frac{\chi(n)}{n^s}\]converges absolutely, and therefore we may rearrange the terms as we want. The idea is that $\chi(n)$ is pretty poorly behaved, but it only has a finite amount of complexity because it's a character over $(\ZZ/m\ZZ)^\times.$ So we isolate residue classes and write\[L(s,\chi)=\sum_{t=1}^m\chi(t)\sum_{\substack{n=1\\n\equiv t}}^\infty\frac1{n^s}.\]We have to sift out $n\equiv t\pmod m$ now, which we do with a roots of unity filter. In particular, look at\[\sum_{k=0}^{m-1}\zeta_m^{tk}\zeta_m^{-nk}.\]If $t\equiv n,$ then all of these terms are $1,$ so we total to $m.$ If $t\not\equiv n,$ then this is a finite geometric series evaluating to $\frac{\zeta_m^{(t-n)m}-1}{\zeta_m^{t-n}-1}=0.$ So dividing this sum by $m$ will give our indicator, letting us write\[L(s,\chi)=\sum_{t=1}^m\chi(t)\sum_{n=1}^\infty\frac1{n^s}\sum_{k=0}^{m-1}\frac{\zeta_m^{tk}\zeta_m^{-nk}}m.\]This can be rearranged into something nicer by putting letters where they belong, like\[L(s,\chi)=\frac1m\sum_{k=0}^{m-1}\left(\sum_{t=1}^m\chi(t)\zeta_m^{tk}\right)\left(\sum_{n=1}^\infty\frac{\zeta_m^{-nk}}{n^s}\right).\]The sum over $t$ is $g_m(k,\chi),$ which is our Gauss sum. We will simplify it a bit more later. For now, we'd like to send $s\to1^+$ and then plug into the Taylor series of $-\log(1-z)$ to get rid of the infinite sum, but the $k=0$ will cause this to diverge. However, we're in luck, for $\chi$ nonprincipal implies\[g_m(0,\chi)=\sum_{t=1}^m\chi(t)\cdot1=0,\]making $k=0$ vanish. Indeed, for $\chi(T)\ne1,$ we could write $g_m(0,\chi)=\chi(T)g_m(0,\chi)$ because multiplication by $T$ is a bijection over $(\ZZ/m\ZZ)^\times,$ which gives the result. So we get to say\[L(s,\chi)=\frac1m\sum_{k=1}^{m-1}g_m(k,\chi)\left(\sum_{n=1}^\infty\frac{\zeta_m^{-nk}}{n^s}\right).\]Now we send $s\to1^+$ as promised, and the infinite sum will stabilize to $-\log\left(1-\zeta_m^{-k}\right).$ So we have\[L(1,\chi)=-\frac1m\sum_{k=1}^{m-1}g_m(k,\chi)\log\left(1-\zeta_m^{-k}\right),\]which is what we wanted.
+					</p>
+					<p>
+						This can be simplified more, with a little more work. If we take $\chi$ primitive, then $g_m(k,\chi)$ will vanish for $(k,m){\gt}1,$ which I don't show here. As for $(k,m)=1,$ we get to write\[g_m(k,\chi)=\sum_{\substack{t=1\\(t,m)=1}}^{m-1}\chi(t)\zeta_m^{tk}=\overline\chi(k)\sum_{\substack{tk=1\\(tk,m)=1}}^{m-1}\chi(tk)\zeta_m^{tk}=\overline\chi(k)g_m(1,\chi).\]This means that we can move the Gauss sum outside of our $L(1,\chi),$ giving\[L(1,\chi)=-\frac{g_m(1,\chi)}m\sum_{\substack{k=1\\(k,m)=1}}^{m-1}\overline\chi(k)\log\left(1-\zeta_m^{-k}\right).\]If sadistic, we can even make the log disappear, by noticing\[1-\zeta_m^{-k}=2i\zeta_m^{-k/2}\cdot\frac{\zeta_m^{k/2}-\zeta_m^{-k/2}}{2i}=2i\cdot\sin\left(\frac{k\pi}m\right)\zeta_m^{-k/2}.\]So the logarithm is $\log(2i)+\log\left(\sin\left(\frac{k\pi}m\right)\zeta_m^{-k/2}\right).$ The constant $\log(2i)$ will contribute a full sum $\log(2i)\sum\overline\chi(k),$ which vanishes. This gives us\[L(1,\chi)=-\frac{g_m(1,\chi)}m\sum_{\substack{k=1\\(k,m)=1}}^{m-1}\overline\chi(k)\left(\log\left(\sin\left(\frac{k\pi}m\right)\right)-\frac{k\pi i}m\right).\]From here we're supposed to divide this into cases where $\chi(-1)=1$ or $\chi(-1)=-1,$ but I can't be bothered. The above at least got rid of having to do compute logarithms of complex numbers, which is nice.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

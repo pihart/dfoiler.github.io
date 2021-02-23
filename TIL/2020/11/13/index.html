@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 13th</h2>
-					<p>Today I learned that the inverse Galois problem holds for abelian groups, and it's actually fairly nice. Fix a finite abelian group $A.$ The restriction that we make is to try to find $A$ as an extension over $\QQ,$ and the rest of the proof is forced.</p>
-					<p>From Kronecker-Weber, we know that every abelian extension is a subextension of a cyclotomic extension, so we look inside cyclotomic extensions. These all have Galois groups $(\ZZ/N\ZZ)^\times,$ so if our approach is possible, we had better be able to fit $A$ inside of such a group. However, the only way to access $(\ZZ/N\ZZ)^\times$ is via Chinese Remainder Theorem. With this in mind, we would like to express $A$ as a product of cyclic groups, so we invoke the classification of finite abelian groups to write\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\]for some sequence of integers $\{n_k\}.$ For example, the classification of finite abelian groups gives $n_k$ each a power of a prime.</p>
-					<p>Now we proceed with the construction. We can actually show (classically) that there are infinitely many primes $1\pmod{n_k}$ for any of the $k,$ so we may fix $\{q_k\}$ a sequence of strictly increasing primes such that $q_k\equiv1\pmod{n_k}.$ This technically follows from Dirichlet's theorem, so we don't talk about this more here. Let $Q$ be the product of these primes, and now we see\[(\ZZ/Q\ZZ)^\times\cong\prod_{k=1}^N(\ZZ/q_k\ZZ)^\times\cong\prod_{k=1}^N\ZZ/(q_k-1)\ZZ.\]In particular, we $n_k\mid q_k-1$ implies that\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\cong\prod_{k=1}^n\frac{\ZZ/(q_k-1)\ZZ}{n_k\ZZ/(q_k-1)\ZZ}\cong(\ZZ/Q\ZZ)^\times\bigg/\prod_{k=1}^Nn_k\ZZ/(q_k-1)/\ZZ.\]The last isomorphism holds by looking at the kernel of $\ZZ/Q\ZZ$ onto the middle group. So we let $B$ be the subgroup giving $A\cong(\ZZ/Q\ZZ)^\times/B.$ Therefore we have fit $A$ inside of $(\ZZ/Q\ZZ)^\times.$</p>
-					<p>The rest of the finish is Galois theory. We know $\op{Gal}(\QQ(\zeta_Q)/\QQ)\cong(\ZZ/Q\ZZ)^\times,$ and from the Galois correspondence, every subgroup of $(\ZZ/Q\ZZ)^\times$ appears as a fixed field. Let $K$ be the fixed field corresponding to $B.$ Then, because our extension is abelian, every subgroup and therefore every extension is normal, so we see\[\op{Gal}(K/\QQ)\cong\op{Gal}(\QQ(\zeta_Q)/\QQ)/B\cong(\ZZ/Q\ZZ)^\times/B\cong A.\]This is what we wanted, so we're done here.</p>
+					<h2>
+						November 13th
+					</h2>
+					<p>
+						Today I learned that the inverse Galois problem holds for abelian groups, and it's actually fairly nice. Fix a finite abelian group $A.$ The restriction that we make is to try to find $A$ as an extension over $\QQ,$ and the rest of the proof is forced.
+					</p>
+					<p>
+						From Kronecker-Weber, we know that every abelian extension is a subextension of a cyclotomic extension, so we look inside cyclotomic extensions. These all have Galois groups $(\ZZ/N\ZZ)^\times,$ so if our approach is possible, we had better be able to fit $A$ inside of such a group. However, the only way to access $(\ZZ/N\ZZ)^\times$ is via Chinese Remainder Theorem. With this in mind, we would like to express $A$ as a product of cyclic groups, so we invoke the classification of finite abelian groups to write\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\]for some sequence of integers $\{n_k\}.$ For example, the classification of finite abelian groups gives $n_k$ each a power of a prime.
+					</p>
+					<p>
+						Now we proceed with the construction. We can actually show (classically) that there are infinitely many primes $1\pmod{n_k}$ for any of the $k,$ so we may fix $\{q_k\}$ a sequence of strictly increasing primes such that $q_k\equiv1\pmod{n_k}.$ This technically follows from Dirichlet's theorem, so we don't talk about this more here. Let $Q$ be the product of these primes, and now we see\[(\ZZ/Q\ZZ)^\times\cong\prod_{k=1}^N(\ZZ/q_k\ZZ)^\times\cong\prod_{k=1}^N\ZZ/(q_k-1)\ZZ.\]In particular, we $n_k\mid q_k-1$ implies that\[A\cong\prod_{k=1}^N\ZZ/n_k\ZZ\cong\prod_{k=1}^n\frac{\ZZ/(q_k-1)\ZZ}{n_k\ZZ/(q_k-1)\ZZ}\cong(\ZZ/Q\ZZ)^\times\bigg/\prod_{k=1}^Nn_k\ZZ/(q_k-1)/\ZZ.\]The last isomorphism holds by looking at the kernel of $\ZZ/Q\ZZ$ onto the middle group. So we let $B$ be the subgroup giving $A\cong(\ZZ/Q\ZZ)^\times/B.$ Therefore we have fit $A$ inside of $(\ZZ/Q\ZZ)^\times.$
+					</p>
+					<p>
+						The rest of the finish is Galois theory. We know $\op{Gal}(\QQ(\zeta_Q)/\QQ)\cong(\ZZ/Q\ZZ)^\times,$ and from the Galois correspondence, every subgroup of $(\ZZ/Q\ZZ)^\times$ appears as a fixed field. Let $K$ be the fixed field corresponding to $B.$ Then, because our extension is abelian, every subgroup and therefore every extension is normal, so we see\[\op{Gal}(K/\QQ)\cong\op{Gal}(\QQ(\zeta_Q)/\QQ)/B\cong(\ZZ/Q\ZZ)^\times/B\cong A.\]This is what we wanted, so we're done here.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

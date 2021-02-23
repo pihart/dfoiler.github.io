@@ -1,47 +1,121 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 14th</h2>
-					<p>Today I learned that, for $K$ the fraction field of $\mathcal O_K$ Dedekind, $\op{SL}_2(\mathcal O_K)$ acts transitively on $K\cup\{\infty\}$ as fractional linear transformations if and only if $K$ has class number 1, from <a href="https://kconrad.math.uconn.edu/blurbs/gradnumthy/SL2classno.pdf">Keith Conrad</a>. Amazingly, the main idea is that all ideals in Dedekind domains can be written with two generators.</p>
-					<p>The main reduction is to note that having $\op{SL}_2(\mathcal O_K)$ act transitively is equivalent to every element of $K$ being of the form $\alpha/\beta$ for $(\alpha,\beta)=(1)$ and $\alpha,\beta\in\mathcal O_K.$ In other words, we can write elements of $K$ in "reduced form.'' Equivalently, every element is in the orbit of $\infty$ if and only if we can write elements of $K$ in reduced form.</p>
-					<p>In one direction, suppose we can pick up an arbitrary element of $\alpha\in K$ and write it as $a/b$ with $(a,b)=(1).$ To show all elements are in the orbit of $\infty,$ note that $\infty$ is certainly in its own orbit, and for other elements $\alpha=a/b,$ we note $(a,b)=(1)$ implies we can write\[ad-bc=1\]for some $c,d\in\mathcal O_K.$ But then\[\begin{bmatrix}    a & c \\    b & d\end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix}\]shows what we need. In particular, the matrix is in $\op{SL}_2(\mathcal O_K).$</p>
-					<p>In the other direction, if all elements are in the orbit of $\infty,$ then for any $\alpha\in K,$ there exists a matrix in $\op{SL}_2(\mathcal O_K)$ such that\[\begin{bmatrix}    a & c \\    b & d\end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix},\]where $\alpha=a/b.$ Certainly $a,b\in\mathcal O_K$ by construction, and $ad-bc=1$ (by construction) again implies that $(a,b)=1.$ So we're done with the reduction.</p>
-					<p>To finish, we have to show that being able to write elements of $K$ in reduced form is equivalent to having class number $1.$ Well, if we have class number $1,$ then $\mathcal O_K$ is a PID and therefore a UFD. So when we write elements $\alpha\in K$ as $a/b$ for any $a,b\in\mathcal O_K,$ we can prime factor $a$ and $b$ to make the numerator and denominator coprime. Alternatively, letting $(c)=(a)+(b)$ because $\mathcal O_K$ is a PID, the fraction we're looking for is $(a/c)/(b/c).$</p>
-					<p>The other direction is harder. Again suppose that every fraction can be written in reduced form, and we'll show that $\mathcal O_K$ is a principal ideal domain. Pick up some ideal, and it's at least generated by $(a,b)$ for some $a,b\in\mathcal O_K.$ If $b=0,$ then $(a,b)=(a)$ and principal; the same holds for $a=0.$ So assume $ab\ne0.$ We attempt to extract a greatest common denominator of $a$ and $b$ using reducing fractions. Suppose that\[\frac ab=\frac cd\]where $(c,d)=(1).$ Experience with $\ZZ$ tells us that $b/d$ should be our greatest common denominator, so let's extract it. The above implies that $ad=bc,$ so $bc\in(d).$ In fact, $(c,d)=(1)$ lets us write $cx+dy=1,$ implying that\[b=bcx+bdy\in(d)\]as well, so we may finally let $g=b/d\in\mathcal O_K.$ Additionally, we see $a/c=b/d=g$ as well. To finish, we compute\[(a,b)=(g)(a/g,b/g)=(g)(c,d)=(g)(1)=(g),\]so $(a,b)$ was principal after all.</p>
+					<h2>
+						December 14th
+					</h2>
+					<p>
+						Today I learned that, for $K$ the fraction field of $\mathcal O_K$ Dedekind, $\op{SL}_2(\mathcal O_K)$ acts transitively on $K\cup\{\infty\}$ as fractional linear transformations if and only if $K$ has class number 1, from
+						<a href="https://kconrad.math.uconn.edu/blurbs/gradnumthy/SL2classno.pdf">
+							Keith Conrad
+						</a>
+						. Amazingly, the main idea is that all ideals in Dedekind domains can be written with two generators.
+					</p>
+					<p>
+						The main reduction is to note that having $\op{SL}_2(\mathcal O_K)$ act transitively is equivalent to every element of $K$ being of the form $\alpha/\beta$ for $(\alpha,\beta)=(1)$ and $\alpha,\beta\in\mathcal O_K.$ In other words, we can write elements of $K$ in "reduced form.'' Equivalently, every element is in the orbit of $\infty$ if and only if we can write elements of $K$ in reduced form.
+					</p>
+					<p>
+						In one direction, suppose we can pick up an arbitrary element of $\alpha\in K$ and write it as $a/b$ with $(a,b)=(1).$ To show all elements are in the orbit of $\infty,$ note that $\infty$ is certainly in its own orbit, and for other elements $\alpha=a/b,$ we note $(a,b)=(1)$ implies we can write\[ad-bc=1\]for some $c,d\in\mathcal O_K.$ But then\[\begin{bmatrix}    a & c \\    b & d\end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix}\]shows what we need. In particular, the matrix is in $\op{SL}_2(\mathcal O_K).$
+					</p>
+					<p>
+						In the other direction, if all elements are in the orbit of $\infty,$ then for any $\alpha\in K,$ there exists a matrix in $\op{SL}_2(\mathcal O_K)$ such that\[\begin{bmatrix}    a & c \\    b & d\end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} a \\ b \end{bmatrix},\]where $\alpha=a/b.$ Certainly $a,b\in\mathcal O_K$ by construction, and $ad-bc=1$ (by construction) again implies that $(a,b)=1.$ So we're done with the reduction.
+					</p>
+					<p>
+						To finish, we have to show that being able to write elements of $K$ in reduced form is equivalent to having class number $1.$ Well, if we have class number $1,$ then $\mathcal O_K$ is a PID and therefore a UFD. So when we write elements $\alpha\in K$ as $a/b$ for any $a,b\in\mathcal O_K,$ we can prime factor $a$ and $b$ to make the numerator and denominator coprime. Alternatively, letting $(c)=(a)+(b)$ because $\mathcal O_K$ is a PID, the fraction we're looking for is $(a/c)/(b/c).$
+					</p>
+					<p>
+						The other direction is harder. Again suppose that every fraction can be written in reduced form, and we'll show that $\mathcal O_K$ is a principal ideal domain. Pick up some ideal, and it's at least generated by $(a,b)$ for some $a,b\in\mathcal O_K.$ If $b=0,$ then $(a,b)=(a)$ and principal; the same holds for $a=0.$ So assume $ab\ne0.$ We attempt to extract a greatest common denominator of $a$ and $b$ using reducing fractions. Suppose that\[\frac ab=\frac cd\]where $(c,d)=(1).$ Experience with $\ZZ$ tells us that $b/d$ should be our greatest common denominator, so let's extract it. The above implies that $ad=bc,$ so $bc\in(d).$ In fact, $(c,d)=(1)$ lets us write $cx+dy=1,$ implying that\[b=bcx+bdy\in(d)\]as well, so we may finally let $g=b/d\in\mathcal O_K.$ Additionally, we see $a/c=b/d=g$ as well. To finish, we compute\[(a,b)=(g)(a/g,b/g)=(g)(c,d)=(g)(1)=(g),\]so $(a,b)$ was principal after all.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

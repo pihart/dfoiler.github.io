@@ -1,54 +1,138 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 11th</h2>
-					<p>Today I learned a proof of the Jordan normal form, from <a href="https://terrytao.wordpress.com/2007/10/12/the-jordan-normal-form-and-the-euclidean-algorithm/">Terrence Tao</a>. We begin by classifying all nilpotent transformations. For this we define a "shift'' transformation $T:V\to V$ as one that sends \[(x_1,x_2\ldots,x_n)\stackrel T\longmapsto(0,x_1,\ldots,x_{n-1})\]for some basis of $x_1,\ldots,x_n$ of $V.$ We showed last month that all nilpotent transformations of rank $n$ are similar to\[S=\begin{bmatrix}    0 & 1 & 0 & \cdots & 0 \\    0 & 0 & 1 & \cdots & 0 \\    \vdots & \vdots & \vdots & \ddots & \vdots \\    0 & 0 & 0 & \cdots & 1 \\    0 & 0 & 0 & \cdots & 0 \\\end{bmatrix},\]which says that all nilpotent matrices of rank $n$ are shift matrices.</p>
-					<p>The claim is that all nilpotent transformations are direct sums of shift transformations; note that this is the Jordan normal form for nilpotent transformations because the only eigenvalue of a nilpotent transformation is $0.$ That is, we can decompose $V=V_1\oplus\cdots\oplus V_m$ such that the restriction of $T$ to each space $V_\bullet$ is a shift. Equivalently, we show we can build a basis of $V$ consisting of "chains''\[x_\bullet,Tx_\bullet,T^2x_\bullet,\ldots,T^{m_\bullet-1}x_\bullet\]where $m_\bullet$ is the smallest positive integer satisfying $T^{m_\bullet}x=0.$ Then each chain will span some $V_\bullet,$ over which $T$ does act like a shift transformation, which is what we want. I guess there is some technicality in that we have to show that these vectors are linearly independent, but we gave the argument last month that minimality of $m_\bullet$ and $T$ being nilpotent forces linear independence.</p>
-					<p>Certainly we can build a set of chains which span $V$; for example, take a basis, and build the chain of each element, and the added vectors will not disrupt spanning. The hard part is giving linear independence. We claim that if we have a set of chains spanning $V$ whose vectors are linearly dependent, then we can provide a smaller set of chains spanning $V.$ It will follow that taking the smallest set of chains spanning $V$ will suffice. Well suppose we have a set of $m$ chains\[\bigcup_{k=1}^m\left\{T^\ell x_k:0\le \ell{\lt}m_k\right\}\]which span $V$ and have a nontrivial relation named\[\sum_{k=1}^m\sum_{\ell=0}^{m_k-1}a_{k\ell}T^\ell x_k=0.\]We can force there to be at most element of each chain in the relation by multiplying by a sufficient power of $T.$ Explicitly, for each chain $k$ find the smallest $\ell$ for which $a_{k\ell}\ne0,$ and note that multiplying the relation by $T^{m_k-\ell-1}$ will cause all higher terms to vanish, leaving only a $T^{m_k-1}x_k$ term. Multiplying by the largest $T^{m_k-\ell-1}$ over all chains will leave the relation nontrivial while still forcing all terms to have the form $T^{m_k-1}x_k.$ So our relation looks like\[\sum_{k=1}^ma_kT^{m_k-1}x_k=0\]for some new nontrivial sequence $\{a_k\}.$ We'll say, without loss of generality, that $a_1\ne0$ and $m_1$ is the minimum of the $m_\bullet.$ This lets us rearrange to\[T^{m_1-1}\underbrace{\left(x_1+\sum_{k=2}^m\frac{a_k}{a_1}T^{m_k-m_1}x_k\right)}_y=0.\]Now we see that we may replace the $x_1$ chain with the $y$ chain. Span is unaffected because $y$ is a linear combination of the basis vectors which includes $x_1$ (so we can re-express $T^\bullet x_1$ in terms of $T^\bullet y$), but this chain is shorter&mdash;$y$'s chain has length no more than $m_1-1,$ where $x_1$'s chain had length $m_1.$ This is what we wanted.</p>
-					<p>It remains to deal with general-case transformations. In order to abstract what we need to prove, note that a Jordan block is\[J_\lambda=\begin{bmatrix}    \lambda & 1 & 0 & \cdots & 0 & 0 \\    0 & \lambda & 1 & \cdots & 0 & 0 \\    0 & 0 & \lambda & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & \cdots & \lambda & 1 \\    0 & 0 & 0 & \cdots & & \lambda \\\end{bmatrix}=S+\lambda I,\]a shift plus a constant. Jordan normal form is basically asking us to decompose our transformation $T:V\to V$ into a direct sum of these shift-plus-constant transformations. Indeed, we're trying to decompose $V=V_1\oplus\cdots\oplus V_k$ so that the restriction of $T$ to each $V_\bullet$ is a shift plus a constant.</p>
-					<p>This part of the proof is typically done with minimal polynomials or something. We just note that there at least exists some (monic) polynomial $P$ for which $P(T)=0.$ For example, if we were to write $T$ as an $n\times n$ matrix, we can look at all matrices from $T^0,T^1,\ldots,T^{n^2}$ and find a nontrivial relation of these which vanishes&mdash;it amounts to $n^2+1$ coefficients and $n^2$ equations. As an overview of what's about to happen, if we factor $P(\lambda)$ into coprime factors as\[P(\lambda)=\prod_{k=1}^mQ_k(\lambda),\]then we'll have that the transformation $T$ on $V=\ker(P(T))$ will be the direct sum of $T$ on each $\ker(Q_k(T)),$ and the restriction of $T$ to each factor will be a shift plus a constant. At a high level, factorizations of polynomials will give us factorization into Jordan normal form.</p>
-					<p>Now, suppose we factor $P=QR$ into coprime polynomials $Q$ and $R.$ Because polynomials over our ground field form a Euclidean domain, we're allowed to invoke B\'ezout's Lemma to get polynomials $A$ and $B$ such that\[AQ+BR=1.\]It will be enough to show that the transformation $T$ on $\ker(P(T))$ is the direct sum of the restriction of $T$ to $\ker(Q(T))$ and $\ker(P(T))$; fully factoring $P$ and then applying this lemma inductively will give what we want.</p>
+					<h2>
+						December 11th
+					</h2>
+					<p>
+						Today I learned a proof of the Jordan normal form, from
+						<a href="https://terrytao.wordpress.com/2007/10/12/the-jordan-normal-form-and-the-euclidean-algorithm/">
+							Terrence Tao
+						</a>
+						. We begin by classifying all nilpotent transformations. For this we define a "shift'' transformation $T:V\to V$ as one that sends \[(x_1,x_2\ldots,x_n)\stackrel T\longmapsto(0,x_1,\ldots,x_{n-1})\]for some basis of $x_1,\ldots,x_n$ of $V.$ We showed last month that all nilpotent transformations of rank $n$ are similar to\[S=\begin{bmatrix}    0 & 1 & 0 & \cdots & 0 \\    0 & 0 & 1 & \cdots & 0 \\    \vdots & \vdots & \vdots & \ddots & \vdots \\    0 & 0 & 0 & \cdots & 1 \\    0 & 0 & 0 & \cdots & 0 \\\end{bmatrix},\]which says that all nilpotent matrices of rank $n$ are shift matrices.
+					</p>
+					<p>
+						The claim is that all nilpotent transformations are direct sums of shift transformations; note that this is the Jordan normal form for nilpotent transformations because the only eigenvalue of a nilpotent transformation is $0.$ That is, we can decompose $V=V_1\oplus\cdots\oplus V_m$ such that the restriction of $T$ to each space $V_\bullet$ is a shift. Equivalently, we show we can build a basis of $V$ consisting of "chains''\[x_\bullet,Tx_\bullet,T^2x_\bullet,\ldots,T^{m_\bullet-1}x_\bullet\]where $m_\bullet$ is the smallest positive integer satisfying $T^{m_\bullet}x=0.$ Then each chain will span some $V_\bullet,$ over which $T$ does act like a shift transformation, which is what we want. I guess there is some technicality in that we have to show that these vectors are linearly independent, but we gave the argument last month that minimality of $m_\bullet$ and $T$ being nilpotent forces linear independence.
+					</p>
+					<p>
+						Certainly we can build a set of chains which span $V$; for example, take a basis, and build the chain of each element, and the added vectors will not disrupt spanning. The hard part is giving linear independence. We claim that if we have a set of chains spanning $V$ whose vectors are linearly dependent, then we can provide a smaller set of chains spanning $V.$ It will follow that taking the smallest set of chains spanning $V$ will suffice. Well suppose we have a set of $m$ chains\[\bigcup_{k=1}^m\left\{T^\ell x_k:0\le \ell{\lt}m_k\right\}\]which span $V$ and have a nontrivial relation named\[\sum_{k=1}^m\sum_{\ell=0}^{m_k-1}a_{k\ell}T^\ell x_k=0.\]We can force there to be at most element of each chain in the relation by multiplying by a sufficient power of $T.$ Explicitly, for each chain $k$ find the smallest $\ell$ for which $a_{k\ell}\ne0,$ and note that multiplying the relation by $T^{m_k-\ell-1}$ will cause all higher terms to vanish, leaving only a $T^{m_k-1}x_k$ term. Multiplying by the largest $T^{m_k-\ell-1}$ over all chains will leave the relation nontrivial while still forcing all terms to have the form $T^{m_k-1}x_k.$ So our relation looks like\[\sum_{k=1}^ma_kT^{m_k-1}x_k=0\]for some new nontrivial sequence $\{a_k\}.$ We'll say, without loss of generality, that $a_1\ne0$ and $m_1$ is the minimum of the $m_\bullet.$ This lets us rearrange to\[T^{m_1-1}\underbrace{\left(x_1+\sum_{k=2}^m\frac{a_k}{a_1}T^{m_k-m_1}x_k\right)}_y=0.\]Now we see that we may replace the $x_1$ chain with the $y$ chain. Span is unaffected because $y$ is a linear combination of the basis vectors which includes $x_1$ (so we can re-express $T^\bullet x_1$ in terms of $T^\bullet y$), but this chain is shorter&mdash;$y$'s chain has length no more than $m_1-1,$ where $x_1$'s chain had length $m_1.$ This is what we wanted.
+					</p>
+					<p>
+						It remains to deal with general-case transformations. In order to abstract what we need to prove, note that a Jordan block is\[J_\lambda=\begin{bmatrix}    \lambda & 1 & 0 & \cdots & 0 & 0 \\    0 & \lambda & 1 & \cdots & 0 & 0 \\    0 & 0 & \lambda & \cdots & 0 & 0 \\    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & 0 & \cdots & \lambda & 1 \\    0 & 0 & 0 & \cdots & & \lambda \\\end{bmatrix}=S+\lambda I,\]a shift plus a constant. Jordan normal form is basically asking us to decompose our transformation $T:V\to V$ into a direct sum of these shift-plus-constant transformations. Indeed, we're trying to decompose $V=V_1\oplus\cdots\oplus V_k$ so that the restriction of $T$ to each $V_\bullet$ is a shift plus a constant.
+					</p>
+					<p>
+						This part of the proof is typically done with minimal polynomials or something. We just note that there at least exists some (monic) polynomial $P$ for which $P(T)=0.$ For example, if we were to write $T$ as an $n\times n$ matrix, we can look at all matrices from $T^0,T^1,\ldots,T^{n^2}$ and find a nontrivial relation of these which vanishes&mdash;it amounts to $n^2+1$ coefficients and $n^2$ equations. As an overview of what's about to happen, if we factor $P(\lambda)$ into coprime factors as\[P(\lambda)=\prod_{k=1}^mQ_k(\lambda),\]then we'll have that the transformation $T$ on $V=\ker(P(T))$ will be the direct sum of $T$ on each $\ker(Q_k(T)),$ and the restriction of $T$ to each factor will be a shift plus a constant. At a high level, factorizations of polynomials will give us factorization into Jordan normal form.
+					</p>
+					<p>
+						Now, suppose we factor $P=QR$ into coprime polynomials $Q$ and $R.$ Because polynomials over our ground field form a Euclidean domain, we're allowed to invoke B\'ezout's Lemma to get polynomials $A$ and $B$ such that\[AQ+BR=1.\]It will be enough to show that the transformation $T$ on $\ker(P(T))$ is the direct sum of the restriction of $T$ to $\ker(Q(T))$ and $\ker(P(T))$; fully factoring $P$ and then applying this lemma inductively will give what we want.
+					</p>
 					<ul>
-						<li>     The restrictions make sense because $v\in\ker(S(T))$ will still have $Tv\in\ker(S(T))$ because $T(S(T)v)=S(T)Tv$.</li>
-						<li>     Note $\ker(Q(T))\cap\ker(R(T))=\{0\}$ because $v$ in the intersection would satisfy $v=AQv+BRv=0.$</li>
-						<li>     Note $\ker(Q(T))+\ker(R(T))=\ker(P(T))$ because we may write    \[v=R(T)B(T)v+Q(T)A(T)v.\]    For $v\in\ker(P(T)),$ we see this implies $R(T)B(T)v\in\ker(Q(T))$ because it evaluates to $B(t)Q(T)R(T)v=B(T)P(T)v=0$; similar shows $Q(T)A(T)v\in\ker(R(T)),$ so we're done.</li>
+						<li>
+							The restrictions make sense because $v\in\ker(S(T))$ will still have $Tv\in\ker(S(T))$ because $T(S(T)v)=S(T)Tv$.
+						</li>
+						<li>
+							Note $\ker(Q(T))\cap\ker(R(T))=\{0\}$ because $v$ in the intersection would satisfy $v=AQv+BRv=0.$
+						</li>
+						<li>
+							Note $\ker(Q(T))+\ker(R(T))=\ker(P(T))$ because we may write    \[v=R(T)B(T)v+Q(T)A(T)v.\]    For $v\in\ker(P(T)),$ we see this implies $R(T)B(T)v\in\ker(Q(T))$ because it evaluates to $B(t)Q(T)R(T)v=B(T)P(T)v=0$; similar shows $Q(T)A(T)v\in\ker(R(T)),$ so we're done.
+						</li>
 					</ul>
-					<p>The final two points tell us that $\ker(P(T))=\ker(Q(T))\oplus\ker(R(T)),$ and the first point lets us restrict $T$ to each.</p>
-					<p>Continuing, when we're working in an algebraically closed field, we know we may factor $P(\lambda)$ into only linear factors, but as our lemma only applies as long as the factors are coprime, we have to let\[P(\lambda)=\prod_{k=1}^m(\lambda-\lambda_k)^{d_k}=:\prod_{k=1}^mQ_k(\lambda).\]Now, our lemma lets us say that $T$ is the direct sum of its restrictions to each $\ker(Q_k(T))=\ker\left((T-\lambda_kI)^{d_k}\right).$ However, over each of these spaces, we see that $T-\lambda_k$ is a nilpotent transformation and therefore a direct sum of shift transformations by our classification. It follows that $T$ is a direct sum of shifts plus a constant over $\ker(Q_k(T)),$ so $T$ is still a direct sum of shifts plus a constant over $V.$ This completes the proof.</p>
+					<p>
+						The final two points tell us that $\ker(P(T))=\ker(Q(T))\oplus\ker(R(T)),$ and the first point lets us restrict $T$ to each.
+					</p>
+					<p>
+						Continuing, when we're working in an algebraically closed field, we know we may factor $P(\lambda)$ into only linear factors, but as our lemma only applies as long as the factors are coprime, we have to let\[P(\lambda)=\prod_{k=1}^m(\lambda-\lambda_k)^{d_k}=:\prod_{k=1}^mQ_k(\lambda).\]Now, our lemma lets us say that $T$ is the direct sum of its restrictions to each $\ker(Q_k(T))=\ker\left((T-\lambda_kI)^{d_k}\right).$ However, over each of these spaces, we see that $T-\lambda_k$ is a nilpotent transformation and therefore a direct sum of shift transformations by our classification. It follows that $T$ is a direct sum of shifts plus a constant over $\ker(Q_k(T)),$ so $T$ is still a direct sum of shifts plus a constant over $V.$ This completes the proof.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

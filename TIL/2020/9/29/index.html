@@ -1,47 +1,117 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 29th</h2>
-					<p>Today I learned a construction giving a construction for a witness to the Solovay&ndash;Strassen primality test, from <a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/solovaystrassen.pdf">Keith Conrad</a>. It's roughly what I expected, but the construction gets kind of involved in places. Take $n$ an odd composite. We have two cases.</p>
+					<h2>
+						September 29th
+					</h2>
+					<p>
+						Today I learned a construction giving a construction for a witness to the Solovay&ndash;Strassen primality test, from
+						<a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/solovaystrassen.pdf">
+							Keith Conrad
+						</a>
+						. It's roughly what I expected, but the construction gets kind of involved in places. Take $n$ an odd composite. We have two cases.
+					</p>
 					<ol>
-						<li>     $n$ is squarefree; write $n=p_1\cdots p_r,$ taking $r{\gt}1.$ Because $p_1{\gt}2,$ we may conjure some $b$ for which $\left(\frac b{p_1}\right)=-1.$ Then, from the Chinese Remainder Theorem, we find $a$ satisfying    \[\begin{cases}        a\equiv b\pmod{p_1} \\        a\equiv1\pmod{p_k} & k{\gt}1.    \end{cases}\]    We claim that $a$ is a witness. Indeed, it follows that    \[\left(\frac an\right)=\prod_{k=1}^r\left(\frac a{p_k}\right)=-1\cdot\prod_{k=2}^r1=-1.\]    On the other hand, $a\equiv1\pmod{p_2},$ so    \[\left(\frac an\right)\equiv-1\not\equiv1\equiv a^{(n-1)/2}\pmod{p_2},\]    from which it follows that $\left(\frac an\right)\not\equiv a^{(n-1)/2}\pmod n.$    </li>
-						<li>     $n$ is the divisible by the square of a prime; write $n=p^km$ with $k=\nu_p(n){\gt}1.$ We'll show that $a$ cannot even be a Carmichael number, which will be good enough. This time we set $a$ so that    \[\begin{cases}        a \equiv 1+p\pmod{p^2} \\         a \equiv 1\pmod m.    \end{cases}\]    Certainly $\gcd(a,n)=1,$ so to witness $n$ is not a Carmichael number, we need $a^{n-1}\not\equiv1\pmod n.$ Indeed, note that    \[a^{n-1}\equiv(1+p)^{n-1}\equiv 1+(n-1)p\pmod{p^2}\]    from the binomial theorem. But $p\mid n$ implies that $1+(n-1)p\not\equiv1\pmod{p^2},$ so $a^{n-1}\not\equiv1\pmod{p^2}.$ It follows $a^{n-1}\not\equiv1\pmod n$ as well, which means that $a$ is a witness for $n.$</li>
+						<li>
+							$n$ is squarefree; write $n=p_1\cdots p_r,$ taking $r{\gt}1.$ Because $p_1{\gt}2,$ we may conjure some $b$ for which $\left(\frac b{p_1}\right)=-1.$ Then, from the Chinese Remainder Theorem, we find $a$ satisfying    \[\begin{cases}        a\equiv b\pmod{p_1} \\        a\equiv1\pmod{p_k} & k{\gt}1.    \end{cases}\]    We claim that $a$ is a witness. Indeed, it follows that    \[\left(\frac an\right)=\prod_{k=1}^r\left(\frac a{p_k}\right)=-1\cdot\prod_{k=2}^r1=-1.\]    On the other hand, $a\equiv1\pmod{p_2},$ so    \[\left(\frac an\right)\equiv-1\not\equiv1\equiv a^{(n-1)/2}\pmod{p_2},\]    from which it follows that $\left(\frac an\right)\not\equiv a^{(n-1)/2}\pmod n.$
+						</li>
+						<li>
+							$n$ is the divisible by the square of a prime; write $n=p^km$ with $k=\nu_p(n){\gt}1.$ We'll show that $a$ cannot even be a Carmichael number, which will be good enough. This time we set $a$ so that    \[\begin{cases}        a \equiv 1+p\pmod{p^2} \\         a \equiv 1\pmod m.    \end{cases}\]    Certainly $\gcd(a,n)=1,$ so to witness $n$ is not a Carmichael number, we need $a^{n-1}\not\equiv1\pmod n.$ Indeed, note that    \[a^{n-1}\equiv(1+p)^{n-1}\equiv 1+(n-1)p\pmod{p^2}\]    from the binomial theorem. But $p\mid n$ implies that $1+(n-1)p\not\equiv1\pmod{p^2},$ so $a^{n-1}\not\equiv1\pmod{p^2}.$ It follows $a^{n-1}\not\equiv1\pmod n$ as well, which means that $a$ is a witness for $n.$
+						</li>
 					</ol>
-					<p>This covers all $n,$ so we are done here. I would have hoped for a single-case proof, but it's a bit obnoxious to deal with perfect squares without having some kind of separation like this.</p>
+					<p>
+						This covers all $n,$ so we are done here. I would have hoped for a single-case proof, but it's a bit obnoxious to deal with perfect squares without having some kind of separation like this.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

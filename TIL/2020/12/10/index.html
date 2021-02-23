@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 10th</h2>
-					<p>Today I learned a proof of Niven's theorem, the statement that the only $\theta$ for which $\theta$ and $\sin(\theta)$ are both rational give $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\}.$ Namely, we have $\theta\in\left\{0,\pm\frac16\pi,\pm\frac12\pi,\pm\frac56\pi\right\}\pmod{2\pi}.$ Indeed, if $\theta=\frac ab\in\QQ,$ then $e^{i\theta}$ is a root of\[z^b-1=0,\]so $e^{i\theta}$ is an algebraic integer. From this it follows\[2\sin(\theta)=-i\left(e^{i\theta}-e^{-i\theta}\right)\]is an algebraic integer as well. But we also have $2\sin(\theta)\in\QQ,$ so $2\sin(\theta)$ is a rational integer. Bounding, we see $2\sin(\theta)\in[-2,2]\cap\ZZ,$ requiring that $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\},$ which is what we wanted.</p>
-					<p>An identical proof works for $\theta$ and $\cos(\theta),$ for $2\cos(\theta)=e^{i\theta}+e^{-i\theta}$ would also be an algebraic integer. We get pretty much the same statement, now we have $\cos(\theta)\in\left\{0,\pm\frac12,\pm1\right\}$ which forces $\theta\in\left\{0,\pm\frac13\pi,\pm\frac12\pi,\pm\frac23\pi\right\}\pmod{2\pi}.$</p>
-					<p>This proof is very slick, of similar slickness as the proof of the Fundamental theorem of algebra from Galois theory. Namely, it does exactly what it needs to do with its hypotheses in as few steps as possible&mdash;it's very obvious where our hypotheses come into play, and it's very obvious that this proof could not be shortened. What pleases me aesthetically is that the proof reads the $\left\{0,\pm\frac12,\pm1\right\}$ as a $\textit{bounding}$ condition instead of something special about these angles in particular, which a priori is what I expected out of a proof of this statement.</p>
+					<h2>
+						December 10th
+					</h2>
+					<p>
+						Today I learned a proof of Niven's theorem, the statement that the only $\theta$ for which $\theta$ and $\sin(\theta)$ are both rational give $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\}.$ Namely, we have $\theta\in\left\{0,\pm\frac16\pi,\pm\frac12\pi,\pm\frac56\pi\right\}\pmod{2\pi}.$ Indeed, if $\theta=\frac ab\in\QQ,$ then $e^{i\theta}$ is a root of\[z^b-1=0,\]so $e^{i\theta}$ is an algebraic integer. From this it follows\[2\sin(\theta)=-i\left(e^{i\theta}-e^{-i\theta}\right)\]is an algebraic integer as well. But we also have $2\sin(\theta)\in\QQ,$ so $2\sin(\theta)$ is a rational integer. Bounding, we see $2\sin(\theta)\in[-2,2]\cap\ZZ,$ requiring that $\sin(\theta)\in\left\{0,\pm\frac12,\pm1\right\},$ which is what we wanted.
+					</p>
+					<p>
+						An identical proof works for $\theta$ and $\cos(\theta),$ for $2\cos(\theta)=e^{i\theta}+e^{-i\theta}$ would also be an algebraic integer. We get pretty much the same statement, now we have $\cos(\theta)\in\left\{0,\pm\frac12,\pm1\right\}$ which forces $\theta\in\left\{0,\pm\frac13\pi,\pm\frac12\pi,\pm\frac23\pi\right\}\pmod{2\pi}.$
+					</p>
+					<p>
+						This proof is very slick, of similar slickness as the proof of the Fundamental theorem of algebra from Galois theory. Namely, it does exactly what it needs to do with its hypotheses in as few steps as possible&mdash;it's very obvious where our hypotheses come into play, and it's very obvious that this proof could not be shortened. What pleases me aesthetically is that the proof reads the $\left\{0,\pm\frac12,\pm1\right\}$ as a $\textit{bounding}$ condition instead of something special about these angles in particular, which a priori is what I expected out of a proof of this statement.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

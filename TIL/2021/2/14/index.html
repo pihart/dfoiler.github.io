@@ -1,48 +1,120 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>February 14th</h2>
-					<p>Today I learned some basic facts about Artin $L$-functions. We define these by an Euler product, but it turns out that unramified primes are a bit annoying to deal with, so I will adopt the notation\[\prod_\mf pf(\mf p)\simeq\prod_\mf pg(\mf p)\]to mean that the two Euler products agree on all but finitely many terms.</p>
-					<p>Fix $L/K$ a finite Galois extension of number fields. (I think this works for arbitrary global fields, but I don't want to think about that.) For an unramified prime $\mf p$ of $K$ under a prime $\mf P$ of $L,$ we have a Frobenius element $\op{Frob}_\mf P\in\op{Gal}(L/K),$ but in fact $\op{Frob}_\mf P$ is determined up to conjugacy by $\mf p.$ So, abusing notation, we write $\op{Frob}_\mf p$ to mean the entire conjugacy class.</p>
-					<p>Now, what Artin $L$-functions bring in is representation theory: for a representation $\rho:\op{Gal}(L/K)\to\op{GL}(V),$ we note that $\rho(\op{Frob}_\mf p)$ is determined up to change of basis (conjugacy), so\[\op{charpoly}(\rho(\op{Frob}_\mf p))=\det(I-t\rho(\op{Frob}_\mf p))\]is completely determined by $\op{Frob}_\mf p.$ Note that this is a bit of a nonstandard definition of the characteristic polynomial, but it functions. Now, we define the Artin $L$-function by plugging in $\op N(\mf p)^{-s}$ into the characteristic polynomial, writing\[L(\rho,s)=\prod_{\mf p\text{ unramified}}\frac1{\det\left(I-\op N(\mf p)^{-s}\rho(\op{Frob}_\mf p)\right)}.\]Note that only finitely many primes are unramified, so this is a pretty good definition of the Artin $L$-function. I have been told there are things one can do to deal with ramification, but I don't know this yet.</p>
-					<p>We do the trivial example for concreteness. If we fix our extension to be $K/\QQ$ and use the trivial representation $\rho_{\text{trivial}}:g\mapsto I,$ then we get\[L(\rho,s)=\prod_{(p)\text{ unramified}}\frac1{\det(I-p^{-s}I)}=\prod_{(p)\text{ unramified}}\frac1{1-p^{-s}}.\]This is $\zeta(s)$ (up to finitely many Euler factors), so our Artin $L$-functions do give the typical $\zeta$ function.</p>
-					<p>The main theorem we're going to show is that Artin $L$-functions include Dedekind $\zeta$-functions. Namely, if we fix our extension $K/\QQ,$\[L(\rho_{\text{reg}},s)\simeq\zeta_K(s),\]where $\zeta_K$ is the Dedekind $\zeta$ function. Notably, the regular representation actually matters. Expanding out the Euler products, we need to show that\[\prod_{(p)\text{ unramified}}\frac1{\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)}\stackrel?\simeq\prod_{\mf p\subseteq K}\frac1{1-\op N(\mf p)^{-s}}.\]For ease, fix $n=[L:K]$ with $e_p$ and $f_p$ the inertial and ramification information of $(p).$ Collecting the Euler factors on the right-hand side above a particular rational $(p),$ we want to show\[\prod_{(p)\text{ unramified}}\frac1{\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)}\stackrel?\simeq\prod_{(p)}\left(\frac1{1-p^{-f_ps}}\right)^{n/(e_pf_p)}.\]In light of the $\simeq,$ it suffices to ignore ramification and show that\[\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)\stackrel?=\left(1-p^{-f_ps}\right)^{n/f_p}.\]The $p^{-s}$ is somewhat arbitrary, so we might as well show $\det\left(I-t\rho_{\text{reg}}(\op{Frob}_p)\right)=\left(1-t^{f_p}\right)^{n/f_p}.$</p>
-					<p>By this point, the number theory is actually gone. For $g\in G=\op{Gal}(K/\QQ)$ with $|G|=n,$ we claim that\[\det(I-t\rho_{\text{reg}}(g))\stackrel?=\left(1-t^f\right)^{n/f},\]where $f$ is the order of $g.$ (Note $f_p$ is the order of $\op{Frob}_p.$) In order to make the characteristic polynomial more familiar, we send $t\mapsto\frac1\lambda$ and multiply by $\lambda^n$ so that we want\[\det(\lambda I-\rho_{\text{reg}}(g))\stackrel?=\left(\lambda^f-1\right)^{n/f}.\]Showing this is the matter of pick the right basis for $\rho_{\text{reg}}(g),$ for there is general theory about how to compute characteristic polynomials of permutation matrices. We organize $G$ by cosets $G/\langle g\rangle$: naming our cosets $h_1\langle g\rangle,h_2\langle g\rangle,\ldots,h_{n/f}\langle g\rangle,$ we order our basis for $\rho_{\text{reg}}(g)$ as\[e_{h_1},e_{h_1g},\ldots,e_{h_1g^{f-1}},\quad e_{h_2},\ldots,e_{h_2g^{f-1}},\quad\ldots\quad e_{h_{n/f}},\ldots,e_{h_{n/f}g^{f-1}}.\]This has the advantage that, for any of these coset-blocks of $f$ vectors, the definition of the regular representation tells us that\[\rho_{\text{reg}}(g):e_{h_\bullet}\mapsto e_{h_\bullet g}\mapsto\cdots\mapsto e_{h_\bullet g^{f-1}}\mapsto e_{h_\bullet}.\]Thus, under this basis, $\rho_{\text{reg}}(g)$ looks like\[\begin{bmatrix}    C_f \\ & \ddots \\ & & C_f\end{bmatrix},\]where $C_f$ is the $f\times f$ matrix\[C_f=\begin{bmatrix}    0 & 0 & \cdots & 0 & 1 \\    1 & 0 & \cdots & 0 & 0 \\    0 & 1 & \cdots & 0 & 0 \\    \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & \cdots & 1 & 0\end{bmatrix}.\]We can now compute the characteristic polynomial with few tears. Because of the blocky form of $\rho_{\text{reg}}(g),$ we already have $\det(\lambda I-\rho_{\text{reg}}(g))=\det(\lambda I-C_f)^{n/f}.$ So we want to show\[\det(\lambda I-C_f)\stackrel?=\lambda^f-1.\]We could show this by computing eigenvalues of $C_f$ or just noting it is\[\det\begin{bmatrix}    \lambda & 0 & \cdots & 0 & -1 \\    -1 & \lambda & \cdots & 0 & 0 \\    0 & -1 & \cdots & 0 & 0 \\    \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & \cdots & -1 & \lambda\end{bmatrix},\]which is\[\lambda\det\begin{bmatrix}    \lambda & \cdots & 0 & 0 \\    -1 & \cdots & 0 & 0 \\    \vdots & \ddots & \vdots & \vdots \\    0 & \cdots & -1 & \lambda\end{bmatrix}-(-1)^f(-1)\det\begin{bmatrix}    -1 & \lambda & \cdots & 0 \\    0 & -1 & \cdots & 0 \\    \vdots & \vdots & \ddots & \vdots\\    0 & 0 & \cdots & -1\end{bmatrix}\]after doing expansion along the top row. The left-hand matrix is lower-triangle with $\lambda$ along the diagonal, so that term is $\lambda^f.$ The right-hand matrix is upper-triangle with $-1$ along the diagonal, so that term is $(-1)^f(-1)(-1)^{f-1}=1.$ In total, we see\[\det(\lambda I-C_f)=\lambda^f-1,\]which is what we wanted. We remark that this method can find the characteristic polynomial of a general permutation matrix.</p>
-					<p>We give a small application to close. Very quickly, we note that $L(\rho_1\oplus\rho_2,s)=L(\rho_1,s)L(\rho_2,s)$ because, after expanding Euler products, it suffices to show that\[\det(I-p^{-s}(\rho_1\oplus\rho_2)(\op{Frob}_\mf p))=\det(I-p^{-s}\rho_1(\op{Frob}_\mf p))\det(I-p^{-s}\rho_2(\op{Frob}_\mf p)).\]This is true by, for example, expanding out what $\oplus$ does in a basis to see that the characteristic polynomial does indeed multiply. Anyways, because\[\rho_{\text{reg}}=\bigoplus_{\rho\text{ irred}}\rho^{\dim\rho}\]by properties of the regular representation (which we showed last month), we conclude\[\zeta_K(s)\simeq L(\rho_{\text{reg}},s)=\prod_{\rho\text{ irred}}L(\rho,s).\]This is called Artin decomposition and is quite nice. For example, this tells us that $\zeta_\QQ\simeq L(\rho_{\text{trivial}},s)$ "divides'' into $\zeta_K(s)$ in some natural way.</p>
+					<h2>
+						February 14th
+					</h2>
+					<p>
+						Today I learned some basic facts about Artin $L$-functions. We define these by an Euler product, but it turns out that unramified primes are a bit annoying to deal with, so I will adopt the notation\[\prod_\mf pf(\mf p)\simeq\prod_\mf pg(\mf p)\]to mean that the two Euler products agree on all but finitely many terms.
+					</p>
+					<p>
+						Fix $L/K$ a finite Galois extension of number fields. (I think this works for arbitrary global fields, but I don't want to think about that.) For an unramified prime $\mf p$ of $K$ under a prime $\mf P$ of $L,$ we have a Frobenius element $\op{Frob}_\mf P\in\op{Gal}(L/K),$ but in fact $\op{Frob}_\mf P$ is determined up to conjugacy by $\mf p.$ So, abusing notation, we write $\op{Frob}_\mf p$ to mean the entire conjugacy class.
+					</p>
+					<p>
+						Now, what Artin $L$-functions bring in is representation theory: for a representation $\rho:\op{Gal}(L/K)\to\op{GL}(V),$ we note that $\rho(\op{Frob}_\mf p)$ is determined up to change of basis (conjugacy), so\[\op{charpoly}(\rho(\op{Frob}_\mf p))=\det(I-t\rho(\op{Frob}_\mf p))\]is completely determined by $\op{Frob}_\mf p.$ Note that this is a bit of a nonstandard definition of the characteristic polynomial, but it functions. Now, we define the Artin $L$-function by plugging in $\op N(\mf p)^{-s}$ into the characteristic polynomial, writing\[L(\rho,s)=\prod_{\mf p\text{ unramified}}\frac1{\det\left(I-\op N(\mf p)^{-s}\rho(\op{Frob}_\mf p)\right)}.\]Note that only finitely many primes are unramified, so this is a pretty good definition of the Artin $L$-function. I have been told there are things one can do to deal with ramification, but I don't know this yet.
+					</p>
+					<p>
+						We do the trivial example for concreteness. If we fix our extension to be $K/\QQ$ and use the trivial representation $\rho_{\text{trivial}}:g\mapsto I,$ then we get\[L(\rho,s)=\prod_{(p)\text{ unramified}}\frac1{\det(I-p^{-s}I)}=\prod_{(p)\text{ unramified}}\frac1{1-p^{-s}}.\]This is $\zeta(s)$ (up to finitely many Euler factors), so our Artin $L$-functions do give the typical $\zeta$ function.
+					</p>
+					<p>
+						The main theorem we're going to show is that Artin $L$-functions include Dedekind $\zeta$-functions. Namely, if we fix our extension $K/\QQ,$\[L(\rho_{\text{reg}},s)\simeq\zeta_K(s),\]where $\zeta_K$ is the Dedekind $\zeta$ function. Notably, the regular representation actually matters. Expanding out the Euler products, we need to show that\[\prod_{(p)\text{ unramified}}\frac1{\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)}\stackrel?\simeq\prod_{\mf p\subseteq K}\frac1{1-\op N(\mf p)^{-s}}.\]For ease, fix $n=[L:K]$ with $e_p$ and $f_p$ the inertial and ramification information of $(p).$ Collecting the Euler factors on the right-hand side above a particular rational $(p),$ we want to show\[\prod_{(p)\text{ unramified}}\frac1{\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)}\stackrel?\simeq\prod_{(p)}\left(\frac1{1-p^{-f_ps}}\right)^{n/(e_pf_p)}.\]In light of the $\simeq,$ it suffices to ignore ramification and show that\[\det\left(I-p^{-s}\rho_{\text{reg}}(\op{Frob}_p)\right)\stackrel?=\left(1-p^{-f_ps}\right)^{n/f_p}.\]The $p^{-s}$ is somewhat arbitrary, so we might as well show $\det\left(I-t\rho_{\text{reg}}(\op{Frob}_p)\right)=\left(1-t^{f_p}\right)^{n/f_p}.$
+					</p>
+					<p>
+						By this point, the number theory is actually gone. For $g\in G=\op{Gal}(K/\QQ)$ with $|G|=n,$ we claim that\[\det(I-t\rho_{\text{reg}}(g))\stackrel?=\left(1-t^f\right)^{n/f},\]where $f$ is the order of $g.$ (Note $f_p$ is the order of $\op{Frob}_p.$) In order to make the characteristic polynomial more familiar, we send $t\mapsto\frac1\lambda$ and multiply by $\lambda^n$ so that we want\[\det(\lambda I-\rho_{\text{reg}}(g))\stackrel?=\left(\lambda^f-1\right)^{n/f}.\]Showing this is the matter of pick the right basis for $\rho_{\text{reg}}(g),$ for there is general theory about how to compute characteristic polynomials of permutation matrices. We organize $G$ by cosets $G/\langle g\rangle$: naming our cosets $h_1\langle g\rangle,h_2\langle g\rangle,\ldots,h_{n/f}\langle g\rangle,$ we order our basis for $\rho_{\text{reg}}(g)$ as\[e_{h_1},e_{h_1g},\ldots,e_{h_1g^{f-1}},\quad e_{h_2},\ldots,e_{h_2g^{f-1}},\quad\ldots\quad e_{h_{n/f}},\ldots,e_{h_{n/f}g^{f-1}}.\]This has the advantage that, for any of these coset-blocks of $f$ vectors, the definition of the regular representation tells us that\[\rho_{\text{reg}}(g):e_{h_\bullet}\mapsto e_{h_\bullet g}\mapsto\cdots\mapsto e_{h_\bullet g^{f-1}}\mapsto e_{h_\bullet}.\]Thus, under this basis, $\rho_{\text{reg}}(g)$ looks like\[\begin{bmatrix}    C_f \\ & \ddots \\ & & C_f\end{bmatrix},\]where $C_f$ is the $f\times f$ matrix\[C_f=\begin{bmatrix}    0 & 0 & \cdots & 0 & 1 \\    1 & 0 & \cdots & 0 & 0 \\    0 & 1 & \cdots & 0 & 0 \\    \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & \cdots & 1 & 0\end{bmatrix}.\]We can now compute the characteristic polynomial with few tears. Because of the blocky form of $\rho_{\text{reg}}(g),$ we already have $\det(\lambda I-\rho_{\text{reg}}(g))=\det(\lambda I-C_f)^{n/f}.$ So we want to show\[\det(\lambda I-C_f)\stackrel?=\lambda^f-1.\]We could show this by computing eigenvalues of $C_f$ or just noting it is\[\det\begin{bmatrix}    \lambda & 0 & \cdots & 0 & -1 \\    -1 & \lambda & \cdots & 0 & 0 \\    0 & -1 & \cdots & 0 & 0 \\    \vdots & \vdots & \ddots & \vdots & \vdots \\    0 & 0 & \cdots & -1 & \lambda\end{bmatrix},\]which is\[\lambda\det\begin{bmatrix}    \lambda & \cdots & 0 & 0 \\    -1 & \cdots & 0 & 0 \\    \vdots & \ddots & \vdots & \vdots \\    0 & \cdots & -1 & \lambda\end{bmatrix}-(-1)^f(-1)\det\begin{bmatrix}    -1 & \lambda & \cdots & 0 \\    0 & -1 & \cdots & 0 \\    \vdots & \vdots & \ddots & \vdots\\    0 & 0 & \cdots & -1\end{bmatrix}\]after doing expansion along the top row. The left-hand matrix is lower-triangle with $\lambda$ along the diagonal, so that term is $\lambda^f.$ The right-hand matrix is upper-triangle with $-1$ along the diagonal, so that term is $(-1)^f(-1)(-1)^{f-1}=1.$ In total, we see\[\det(\lambda I-C_f)=\lambda^f-1,\]which is what we wanted. We remark that this method can find the characteristic polynomial of a general permutation matrix.
+					</p>
+					<p>
+						We give a small application to close. Very quickly, we note that $L(\rho_1\oplus\rho_2,s)=L(\rho_1,s)L(\rho_2,s)$ because, after expanding Euler products, it suffices to show that\[\det(I-p^{-s}(\rho_1\oplus\rho_2)(\op{Frob}_\mf p))=\det(I-p^{-s}\rho_1(\op{Frob}_\mf p))\det(I-p^{-s}\rho_2(\op{Frob}_\mf p)).\]This is true by, for example, expanding out what $\oplus$ does in a basis to see that the characteristic polynomial does indeed multiply. Anyways, because\[\rho_{\text{reg}}=\bigoplus_{\rho\text{ irred}}\rho^{\dim\rho}\]by properties of the regular representation (which we showed last month), we conclude\[\zeta_K(s)\simeq L(\rho_{\text{reg}},s)=\prod_{\rho\text{ irred}}L(\rho,s).\]This is called Artin decomposition and is quite nice. For example, this tells us that $\zeta_\QQ\simeq L(\rho_{\text{trivial}},s)$ "divides'' into $\zeta_K(s)$ in some natural way.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

@@ -1,45 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>February 8th</h2>
-					<p>Today I learned some deeper type-theoretic significance to currying. Quickly, currying is, very roughly, induction for dependent pair types. That is, for $A:\UU$ and $B:A\to\UU$ with $C:\prod_{(a:A)}B(a)\to\UU,$ we define\[\op{curry}:\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\to\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\]by\[\op{curry}(f):\equiv\lambda(a:A).\lambda(b:B(a)).f((a,b)).\]We also have the sibling function\[\op{uncurry}:\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\to\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\]defined by\[\op{uncurry}(f):\equiv\lambda\left((a,b):\textstyle\sum_{(a:A)}B(a)\right).f(a)(b).\]We don't check that these type-check here. We remark that this $\lambda$-calculus on dependent pairs is really just doing an induction by defining how the pair behaves on a particular element. Indeed, $\op{uncurry}$ is the induction principle.</p>
-					<p>The significance here is that $\op{curry}$ and $\op{uncurry}$ actually turn out to be quasi-inverses. So it happens that we have an equivalence (Tewari called it "isomorphism'')\[\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\simeq\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right).\]In lieu of the univalence axiom, we remark that we in fact have currying witness the equality\[\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\simeq\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right).\]This association of pairs and functions is somewhat remarkable. At least in terms of the functions they define, they give exactly the same things, even though functions and pairs feel like profoundly different objects.</p>
-					<p>Anyways, let's show this. In one direction, we need to witness $\op{curry}\circ\op{uncurry}\sim\op{id}.$ That is, given $f:\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b),$ we need to witness\[\op{curry}(\op{uncurry}(f))=f.\]Plugging in, the left-hand side is\[\lambda a.\lambda b.\op{uncurry}(f)((a,b)).\]Continuing, we see it is\[\lambda a.\lambda b.f(a)(b).\]However, this is equal to $f$ just by $\refl_f.$ Indeed, repeated $\beta$-reduction says\[f\equiv\lambda a.f(a)\equiv\lambda a.\lambda b.f(a)(b).\]Remarkably, no function extensionality is required, although it does make for a quick proof of this as well. Namely, we merely have to plug in $a$ and $b$ into the expression and check that it works.</p>
-					<p>For the sake of completeness, I show the other direction even though it is pretty much the same. We need to witness $\op{uncurry}\circ\op{curry}\sim\op{id}.$ That is, given $f:\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b),$ we need to witness\[\op{uncurry}(\op{curry}(f))=f.\]Plugging in, the left-hand side is\[\lambda(a,b).\op{curry}(f)(a)(b).\]Continuing, we see it is\[\lambda(a,b).f((a,b)).\]And again, this is equal to $f$ by just $\refl_f.$ Indeed, a single $\beta$-reduction says\[f\equiv\lambda(a,b).f((a,b)).\]Note that we have omitted the types of each element here, but they are present in the original definitions of $\op{curry}$ and $\op{uncurry}.$ We remark once again that no function extensionality was required.</p>
+					<h2>
+						February 8th
+					</h2>
+					<p>
+						Today I learned some deeper type-theoretic significance to currying. Quickly, currying is, very roughly, induction for dependent pair types. That is, for $A:\UU$ and $B:A\to\UU$ with $C:\prod_{(a:A)}B(a)\to\UU,$ we define\[\op{curry}:\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\to\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\]by\[\op{curry}(f):\equiv\lambda(a:A).\lambda(b:B(a)).f((a,b)).\]We also have the sibling function\[\op{uncurry}:\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right)\to\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\]defined by\[\op{uncurry}(f):\equiv\lambda\left((a,b):\textstyle\sum_{(a:A)}B(a)\right).f(a)(b).\]We don't check that these type-check here. We remark that this $\lambda$-calculus on dependent pairs is really just doing an induction by defining how the pair behaves on a particular element. Indeed, $\op{uncurry}$ is the induction principle.
+					</p>
+					<p>
+						The significance here is that $\op{curry}$ and $\op{uncurry}$ actually turn out to be quasi-inverses. So it happens that we have an equivalence (Tewari called it "isomorphism'')\[\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\simeq\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right).\]In lieu of the univalence axiom, we remark that we in fact have currying witness the equality\[\left(\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b)\right)\simeq\left(\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b)\right).\]This association of pairs and functions is somewhat remarkable. At least in terms of the functions they define, they give exactly the same things, even though functions and pairs feel like profoundly different objects.
+					</p>
+					<p>
+						Anyways, let's show this. In one direction, we need to witness $\op{curry}\circ\op{uncurry}\sim\op{id}.$ That is, given $f:\prod_{(a:A)}\prod_{(b:B(a))}C(a)(b),$ we need to witness\[\op{curry}(\op{uncurry}(f))=f.\]Plugging in, the left-hand side is\[\lambda a.\lambda b.\op{uncurry}(f)((a,b)).\]Continuing, we see it is\[\lambda a.\lambda b.f(a)(b).\]However, this is equal to $f$ just by $\refl_f.$ Indeed, repeated $\beta$-reduction says\[f\equiv\lambda a.f(a)\equiv\lambda a.\lambda b.f(a)(b).\]Remarkably, no function extensionality is required, although it does make for a quick proof of this as well. Namely, we merely have to plug in $a$ and $b$ into the expression and check that it works.
+					</p>
+					<p>
+						For the sake of completeness, I show the other direction even though it is pretty much the same. We need to witness $\op{uncurry}\circ\op{curry}\sim\op{id}.$ That is, given $f:\sum_{(a:A)}\sum_{(b:B(a))}C(a)(b),$ we need to witness\[\op{uncurry}(\op{curry}(f))=f.\]Plugging in, the left-hand side is\[\lambda(a,b).\op{curry}(f)(a)(b).\]Continuing, we see it is\[\lambda(a,b).f((a,b)).\]And again, this is equal to $f$ by just $\refl_f.$ Indeed, a single $\beta$-reduction says\[f\equiv\lambda(a,b).f((a,b)).\]Note that we have omitted the types of each element here, but they are present in the original definitions of $\op{curry}$ and $\op{uncurry}.$ We remark once again that no function extensionality was required.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

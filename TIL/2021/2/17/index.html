@@ -1,47 +1,121 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to February)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>February 17th</h2>
-					<p>Today I learned Ostrowski's theorem for function fields, from <a href="https://kconrad.math.uconn.edu/blurbs/gradnumthy/ostrowskiF(T).pdf">here</a>. The analog here is that all of our nontrivial places $|\bullet|:F(x)\to\RR$ which are trivial on $F$ (!) are equivalent to $|\bullet|_\infty$ or $|\bullet|_\pi$ for a monic irreducible $\pi\in F[x].$ Here, $|\bullet|_\infty=c^{-\deg\bullet}$ and $|\bullet|_\pi=c^{\nu_\pi(\bullet)}$ for some positive constant $c{\lt}1.$ We remark quickly that being trivial on $F$ is somewhat reasonable because, when $F$ is finite, these are our "torsion units'' in $F[x].$ So we expect this statement to reflect the case with $\QQ$ more closely.</p>
-					<p>Anyways, fix $|\bullet|$ a valuation on $F(x).$ Note that $|\bullet|$ is multiplicative, so we can focus on its behavior on $F[x]$ because $F(x)$ is just quotients of $F[x].$ The nice thing about function fields is that $|\bullet|$ is surely nonarchimedean: the embedding $\ZZ\to F[x]$ ends up in $F,$ and $F$ gets sent to $1,$ so\[\max_{n\in\ZZ}|n|=1{\lt}\infty\]is bounded. So being archimedean will not differentiate between $|\bullet|_\infty$ and $|\bullet|_\pi$ as in $\QQ.$ Instead, we do casework on $|x|$ because we know $|x|_\infty{\gt}1$ while $|x|_\pi\le1.$</p>
-					<p>On one hand, we might have $|x|{\gt}1.$ Then we hope $|\bullet|$ is equivalent to $|\bullet|_\infty.$ For a polynomial $\alpha(x)=\sum_{k=0}^{\deg\alpha}a_kx^k,$ we note that being nonarchimedean implies\[|\alpha|=\left|\sum_{k=0}^{\deg a}a_kx^k\right|\le\max_{0\le k\le\deg a}\left(|a_k|\cdot|x|^k\right).\]Because $a_k\in F$ has $|a_k|=1,$ this is actually the maximum of $|x|^\bullet.$ Well, $|x|{\gt}1,$ so the maximum occurs (uniquely!) at $|x|^{\deg\alpha}.$ The importance of a unique maximum is that, because all triangles are isosceles, $|a|$ must be equal to $|x|^{\deg\alpha},$ our unique minimum. That is,\[|\alpha|=(1/|x|)^{-\deg\alpha}\]for a positive constant $1/|x|{\lt}1.$ Thus, $|\bullet|$ is equivalent to $|\bullet|_\infty,$ as desired.</p>
-					<p>On the other hand, we might have $|x|\le1.$ Then we hope $|\bullet|$ is equivalent to $|\bullet|_\pi$ for some monic irreducible $\pi\in F[x].$ In particular, we need to extract the monic irreducible $\pi,$ which we do by thinking about this like $F[x]_\pi.$ Here, $\pi$ is our uniformizer, generating our topology. So, after noting that any $F[x]$ has\[\left|\sum_{k=0}^da_kx^k\right|\le\max_{0\le k\le d}\left(|a_k|\cdot|x|^k\right)\le1,\]and that $|\bullet|$ cannot be trivial on all $F[x]$ (else $|\bullet|$ would be trivial), we're allowed to extract $\pi$ as an element of $F[x]$ satisfying $|\pi|{\lt}1$ with least degree. Because multiplying by an element of $F$ won't affect $|\pi|,$ we take $\pi$ monic.</p>
-					<p>We verify that $\pi$ behaves like we want. Note $\pi$ is non-constant because $|\bullet|$ is trivial on $F$&mdash;this is where this condition shows up in this case. Further, $\pi$ is irreducible, for if $\pi=\alpha\beta$ with $\deg\alpha,\deg\beta{\lt}\deg\pi,$ then $|\alpha|=|\beta|=1$ by the degree of minimality of $\pi.$ But $|\pi|{\lt}1,$ so this is impossible.</p>
-					<p>To finish, fix any $\alpha\in F[x],$ and set $\alpha=\pi^\nu\beta$ where $\nu:=\nu_\pi(\alpha).$ We would like to show that $|\alpha|=|\pi|^\nu,$ where $c:=|\pi|{\lt}1$ will be our positive constant. Well, $|\alpha|=|\pi|^\nu\cdot|\beta|,$ so it suffices to show $|\beta|=1.$ We need to use the condition $\pi\nmid\beta,$ so we use the division algorithm to write\[\beta=q\pi+r.\]Here, $\pi\nmid\beta$ requires $r\ne0,$ so $r$ is a nonzero polynomial with degree smaller than $\deg\pi.$ But by minimality, this means $|r|=1,$ so the inequality\[|\beta|\le\max\{|q|\cdot|\pi|,|r|\}\]has $|r|=1$ as a unique maximum&mdash;$|q|\cdot|\pi|\le|\pi|{\lt}1.$ So because all triangles are isosceles, $|\beta|=1.$ This completes the proof.</p>
+					<h2>
+						February 17th
+					</h2>
+					<p>
+						Today I learned Ostrowski's theorem for function fields, from
+						<a href="https://kconrad.math.uconn.edu/blurbs/gradnumthy/ostrowskiF(T).pdf">
+							here
+						</a>
+						. The analog here is that all of our nontrivial places $|\bullet|:F(x)\to\RR$ which are trivial on $F$ (!) are equivalent to $|\bullet|_\infty$ or $|\bullet|_\pi$ for a monic irreducible $\pi\in F[x].$ Here, $|\bullet|_\infty=c^{-\deg\bullet}$ and $|\bullet|_\pi=c^{\nu_\pi(\bullet)}$ for some positive constant $c{\lt}1.$ We remark quickly that being trivial on $F$ is somewhat reasonable because, when $F$ is finite, these are our "torsion units'' in $F[x].$ So we expect this statement to reflect the case with $\QQ$ more closely.
+					</p>
+					<p>
+						Anyways, fix $|\bullet|$ a valuation on $F(x).$ Note that $|\bullet|$ is multiplicative, so we can focus on its behavior on $F[x]$ because $F(x)$ is just quotients of $F[x].$ The nice thing about function fields is that $|\bullet|$ is surely nonarchimedean: the embedding $\ZZ\to F[x]$ ends up in $F,$ and $F$ gets sent to $1,$ so\[\max_{n\in\ZZ}|n|=1{\lt}\infty\]is bounded. So being archimedean will not differentiate between $|\bullet|_\infty$ and $|\bullet|_\pi$ as in $\QQ.$ Instead, we do casework on $|x|$ because we know $|x|_\infty{\gt}1$ while $|x|_\pi\le1.$
+					</p>
+					<p>
+						On one hand, we might have $|x|{\gt}1.$ Then we hope $|\bullet|$ is equivalent to $|\bullet|_\infty.$ For a polynomial $\alpha(x)=\sum_{k=0}^{\deg\alpha}a_kx^k,$ we note that being nonarchimedean implies\[|\alpha|=\left|\sum_{k=0}^{\deg a}a_kx^k\right|\le\max_{0\le k\le\deg a}\left(|a_k|\cdot|x|^k\right).\]Because $a_k\in F$ has $|a_k|=1,$ this is actually the maximum of $|x|^\bullet.$ Well, $|x|{\gt}1,$ so the maximum occurs (uniquely!) at $|x|^{\deg\alpha}.$ The importance of a unique maximum is that, because all triangles are isosceles, $|a|$ must be equal to $|x|^{\deg\alpha},$ our unique minimum. That is,\[|\alpha|=(1/|x|)^{-\deg\alpha}\]for a positive constant $1/|x|{\lt}1.$ Thus, $|\bullet|$ is equivalent to $|\bullet|_\infty,$ as desired.
+					</p>
+					<p>
+						On the other hand, we might have $|x|\le1.$ Then we hope $|\bullet|$ is equivalent to $|\bullet|_\pi$ for some monic irreducible $\pi\in F[x].$ In particular, we need to extract the monic irreducible $\pi,$ which we do by thinking about this like $F[x]_\pi.$ Here, $\pi$ is our uniformizer, generating our topology. So, after noting that any $F[x]$ has\[\left|\sum_{k=0}^da_kx^k\right|\le\max_{0\le k\le d}\left(|a_k|\cdot|x|^k\right)\le1,\]and that $|\bullet|$ cannot be trivial on all $F[x]$ (else $|\bullet|$ would be trivial), we're allowed to extract $\pi$ as an element of $F[x]$ satisfying $|\pi|{\lt}1$ with least degree. Because multiplying by an element of $F$ won't affect $|\pi|,$ we take $\pi$ monic.
+					</p>
+					<p>
+						We verify that $\pi$ behaves like we want. Note $\pi$ is non-constant because $|\bullet|$ is trivial on $F$&mdash;this is where this condition shows up in this case. Further, $\pi$ is irreducible, for if $\pi=\alpha\beta$ with $\deg\alpha,\deg\beta{\lt}\deg\pi,$ then $|\alpha|=|\beta|=1$ by the degree of minimality of $\pi.$ But $|\pi|{\lt}1,$ so this is impossible.
+					</p>
+					<p>
+						To finish, fix any $\alpha\in F[x],$ and set $\alpha=\pi^\nu\beta$ where $\nu:=\nu_\pi(\alpha).$ We would like to show that $|\alpha|=|\pi|^\nu,$ where $c:=|\pi|{\lt}1$ will be our positive constant. Well, $|\alpha|=|\pi|^\nu\cdot|\beta|,$ so it suffices to show $|\beta|=1.$ We need to use the condition $\pi\nmid\beta,$ so we use the division algorithm to write\[\beta=q\pi+r.\]Here, $\pi\nmid\beta$ requires $r\ne0,$ so $r$ is a nonzero polynomial with degree smaller than $\deg\pi.$ But by minimality, this means $|r|=1,$ so the inequality\[|\beta|\le\max\{|q|\cdot|\pi|,|r|\}\]has $|r|=1$ as a unique maximum&mdash;$|q|\cdot|\pi|\le|\pi|{\lt}1.$ So because all triangles are isosceles, $|\beta|=1.$ This completes the proof.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

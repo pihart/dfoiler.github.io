@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to December)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to December)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>December 28th</h2>
-					<p>Today I learned some $\lambda$ calculus for type theory. Essentially, we can define functions $A\to B$ (where $A,B:\mathcal U$ are types) by writing\[(\lambda x.\Phi):A\to B.\]Here $\Phi$ is just some expression maybe involving $x.$ The function is well-defined if and only if $(\lambda x.\Phi)(a)\equiv\Phi':B$ where $\Phi'$ is the expression $\Phi$ where each instance of $x$ is replaced by $a:A.$ Formally, we should write $\lambda(x:A).\Phi$ or similar, but this is redundant when we know that the codomain is $A$ anyways.</p>
-					<p>The rule where we may write\[(\lambda x.\Phi)(a)\equiv\Phi'\]by replacing instances of $x$ in $\Phi$ with an $a$ to get $\Phi$ is called $\beta$-reduction. Another manipulation rule we have is that for a given function $f:A\to B,$ we may write\[f\equiv(\lambda x.f(x)).\]This is called $\eta$-expansion. Essentially, this says that two functions are equal if they are equal on all inputs, for the $\lambda$ expression is pretty much just an abstract list of all possible expressions. There is also $\alpha$-conversion, where we can say\[\lambda x.\Phi_x\equiv\lambda y.\Phi_y,\]where $\Phi_y$ is just $\Phi_x$ with all $x$s replaced with $y$s. In other words, the dummy variable may be exchanged.</p>
-					<p>I feel obligated to talk about currying. The idea is that we can "simulate'' multiple inputs to a function by making functions output other functions. Explicitly, we may think of a function\[f:A\to(B\to C)\]as taking in two inputs $a:A$ and $b:B$ and outputting $f(a)(b):C.$ As an aside on notation, our arrows are right-associative by convention, so we could (unambiguously) write the above as $f:A\to B\to C.$ We are sweeping under the rug having to think about the fact that $f(a):B\to C$ and just thinking about the composite after applying $b:B.$ Oftentimes we abbreviate this to $f(a,b).$</p>
+					<h2>
+						December 28th
+					</h2>
+					<p>
+						Today I learned some $\lambda$ calculus for type theory. Essentially, we can define functions $A\to B$ (where $A,B:\mathcal U$ are types) by writing\[(\lambda x.\Phi):A\to B.\]Here $\Phi$ is just some expression maybe involving $x.$ The function is well-defined if and only if $(\lambda x.\Phi)(a)\equiv\Phi':B$ where $\Phi'$ is the expression $\Phi$ where each instance of $x$ is replaced by $a:A.$ Formally, we should write $\lambda(x:A).\Phi$ or similar, but this is redundant when we know that the codomain is $A$ anyways.
+					</p>
+					<p>
+						The rule where we may write\[(\lambda x.\Phi)(a)\equiv\Phi'\]by replacing instances of $x$ in $\Phi$ with an $a$ to get $\Phi$ is called $\beta$-reduction. Another manipulation rule we have is that for a given function $f:A\to B,$ we may write\[f\equiv(\lambda x.f(x)).\]This is called $\eta$-expansion. Essentially, this says that two functions are equal if they are equal on all inputs, for the $\lambda$ expression is pretty much just an abstract list of all possible expressions. There is also $\alpha$-conversion, where we can say\[\lambda x.\Phi_x\equiv\lambda y.\Phi_y,\]where $\Phi_y$ is just $\Phi_x$ with all $x$s replaced with $y$s. In other words, the dummy variable may be exchanged.
+					</p>
+					<p>
+						I feel obligated to talk about currying. The idea is that we can "simulate'' multiple inputs to a function by making functions output other functions. Explicitly, we may think of a function\[f:A\to(B\to C)\]as taking in two inputs $a:A$ and $b:B$ and outputting $f(a)(b):C.$ As an aside on notation, our arrows are right-associative by convention, so we could (unambiguously) write the above as $f:A\to B\to C.$ We are sweeping under the rug having to think about the fact that $f(a):B\to C$ and just thinking about the composite after applying $b:B.$ Oftentimes we abbreviate this to $f(a,b).$
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

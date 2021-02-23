@@ -1,44 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 27th</h2>
-					<p>Today I learned why the Solovay&ndash;Strassen (probable) primality test can give confidence of $\left(\frac12\right)^{\text{witnesses}}.$ The primality test for some integer $N$ is done by choosing a random value $a\in(\ZZ/N\ZZ)^\times$ and then comparing the values of\[a^{(N-1)/2}\equiv\left(\frac aN\right)\pmod N.\]Note on the right-hand side we are computing the Jacobi symbol, which can be done quickly using the Euclidean algorithm and quadratic reciprocity; the left-hand side can be done quickly using modular exponentiation via repeated squaring.</p>
-					<p>For this, assume there exists at least one witness $a\in(\ZZ/N\ZZ)^\times.$ We show that at least half of all elements of $(\ZZ/N\ZZ)^\times$ are witnesses. Indeed, suppose $b$ is a liar; that is, we know\[b^{(N-1)/2}\equiv\left(\frac bN\right)\pmod N.\]However, both $(\bullet)^{(N-1)/2}$ and $\left(\frac\bullet N\right)$ are completely multiplicative, so we see that\[(ab)^{(N-1)/2}=a^{(N-1)/2}\cdot b^{(N-1)/2}\equiv a^{(N-1)/2}\left(\frac bN\right)\not\equiv\left(\frac aN\right)\left(\frac bN\right)=\left(\frac{ab}N\right)\pmod N.\]It follows that $ab$ is also a witness. So for every liar, there exists a witness by multiplying by $a,$ and because multiplication by $a$ is a bijection (it's invertible because $a^{-1}$ exists), this means that at least half of all of $(\ZZ/N\ZZ)^\times$ is a witness.</p>
-					<p>I don't currently know why a single witness should exist, but it's claimed all over the place.</p>
+					<h2>
+						September 27th
+					</h2>
+					<p>
+						Today I learned why the Solovay&ndash;Strassen (probable) primality test can give confidence of $\left(\frac12\right)^{\text{witnesses}}.$ The primality test for some integer $N$ is done by choosing a random value $a\in(\ZZ/N\ZZ)^\times$ and then comparing the values of\[a^{(N-1)/2}\equiv\left(\frac aN\right)\pmod N.\]Note on the right-hand side we are computing the Jacobi symbol, which can be done quickly using the Euclidean algorithm and quadratic reciprocity; the left-hand side can be done quickly using modular exponentiation via repeated squaring.
+					</p>
+					<p>
+						For this, assume there exists at least one witness $a\in(\ZZ/N\ZZ)^\times.$ We show that at least half of all elements of $(\ZZ/N\ZZ)^\times$ are witnesses. Indeed, suppose $b$ is a liar; that is, we know\[b^{(N-1)/2}\equiv\left(\frac bN\right)\pmod N.\]However, both $(\bullet)^{(N-1)/2}$ and $\left(\frac\bullet N\right)$ are completely multiplicative, so we see that\[(ab)^{(N-1)/2}=a^{(N-1)/2}\cdot b^{(N-1)/2}\equiv a^{(N-1)/2}\left(\frac bN\right)\not\equiv\left(\frac aN\right)\left(\frac bN\right)=\left(\frac{ab}N\right)\pmod N.\]It follows that $ab$ is also a witness. So for every liar, there exists a witness by multiplying by $a,$ and because multiplication by $a$ is a bijection (it's invertible because $a^{-1}$ exists), this means that at least half of all of $(\ZZ/N\ZZ)^\times$ is a witness.
+					</p>
+					<p>
+						I don't currently know why a single witness should exist, but it's claimed all over the place.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

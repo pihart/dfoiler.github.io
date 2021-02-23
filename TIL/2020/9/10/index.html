@@ -1,50 +1,122 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 10th</h2>
-					<p>Today I learned the definition of "uniformly continuous'' from one of Tom's riddles: show that any uniformly continuous function defined on a bounded domain is bounded.</p>
-					<p>Uniformly continuous means that for any $\varepsilon{\gt}0,$ there exists a $\delta{\gt}0$ such that $|x-y|{\lt}\varepsilon$ implies $|f(x)-f(y)|{\lt}\delta.$ (Note that this $\delta$ works uniformly for all $x.$) The visual image is that $f(x)$ doesn't grow "too fast'' globally: for any vertical error, we can find a suitably thin rectangle so that the rectangle centered along the curve never has the curve go through the tops of the rectangle. (Image on Wikipedia.) So this puzzle is intuitively clear.</p>
-					<p>Now to prove this, force $\varepsilon=1$ so that we get a $\delta$ such that $|x-y|\le\delta$ implies $|f(x)-f(y)|{\lt}1.$ The main lemma is that if we look over intervals $[k\delta,(k+1)\delta]$ for $k\in\ZZ,$ the image of $f$ here is bounded.</p>
+					<h2>
+						September 10th
+					</h2>
+					<p>
+						Today I learned the definition of "uniformly continuous'' from one of Tom's riddles: show that any uniformly continuous function defined on a bounded domain is bounded.
+					</p>
+					<p>
+						Uniformly continuous means that for any $\varepsilon{\gt}0,$ there exists a $\delta{\gt}0$ such that $|x-y|{\lt}\varepsilon$ implies $|f(x)-f(y)|{\lt}\delta.$ (Note that this $\delta$ works uniformly for all $x.$) The visual image is that $f(x)$ doesn't grow "too fast'' globally: for any vertical error, we can find a suitably thin rectangle so that the rectangle centered along the curve never has the curve go through the tops of the rectangle. (Image on Wikipedia.) So this puzzle is intuitively clear.
+					</p>
+					<p>
+						Now to prove this, force $\varepsilon=1$ so that we get a $\delta$ such that $|x-y|\le\delta$ implies $|f(x)-f(y)|{\lt}1.$ The main lemma is that if we look over intervals $[k\delta,(k+1)\delta]$ for $k\in\ZZ,$ the image of $f$ here is bounded.
+					</p>
 					<ol>
-						<li>     If $f$ is defined nowhere in the interval, then this is vacuously true.</li>
-						<li>     Else, fix $x\in[k\delta,(k+1)\delta]$ so that $f(x)$ exists. Then for any $y\in[k\delta,(k+1)\delta]$ for which $f(y)$ exists, we know for free that    \[|x-y|\le(k+1)\delta-k\delta=\delta,\]    so we know $|f(x)-f(y)|{\lt}1.$ It follows that the image of $f$ is bounded in $[f(x)-1,f(x)+1].$</li>
+						<li>
+							If $f$ is defined nowhere in the interval, then this is vacuously true.
+						</li>
+						<li>
+							Else, fix $x\in[k\delta,(k+1)\delta]$ so that $f(x)$ exists. Then for any $y\in[k\delta,(k+1)\delta]$ for which $f(y)$ exists, we know for free that    \[|x-y|\le(k+1)\delta-k\delta=\delta,\]    so we know $|f(x)-f(y)|{\lt}1.$ It follows that the image of $f$ is bounded in $[f(x)-1,f(x)+1].$
+						</li>
 					</ol>
-					<p>This completes the proof of the lemma.</p>
-					<p>To finish the proof, note the fact that $f$ has a bounded domain means that we can say the domain of $f$ lives in $[-M\delta, M\delta]$ for some sufficiently large positive integer $M.$ But then the image of $f$ is\[\op{Im}(f)=f([-M\delta,M\delta])=\bigcup_{k=-M}^{M-1}f([k\delta,(k+1)\delta]),\]a finite union of $2M$ bounded sets. It follows that the total image of $f$ is bounded, so we're done.</p>
+					<p>
+						This completes the proof of the lemma.
+					</p>
+					<p>
+						To finish the proof, note the fact that $f$ has a bounded domain means that we can say the domain of $f$ lives in $[-M\delta, M\delta]$ for some sufficiently large positive integer $M.$ But then the image of $f$ is\[\op{Im}(f)=f([-M\delta,M\delta])=\bigcup_{k=-M}^{M-1}f([k\delta,(k+1)\delta]),\]a finite union of $2M$ bounded sets. It follows that the total image of $f$ is bounded, so we're done.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

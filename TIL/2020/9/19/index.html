@@ -1,69 +1,157 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to September)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to September)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>September 19th</h2>
-					<p>Today I learned an example a proof by universal properties, by proving that localization commutes with arbitrary direct sums. We show this here, with many pretty commutative diagrams.</p>
-					<p>For our first proof, we start with the obvious mappings as follows.</p>
+					<h2>
+						September 19th
+					</h2>
+					<p>
+						Today I learned an example a proof by universal properties, by proving that localization commutes with arbitrary direct sums. We show this here, with many pretty commutative diagrams.
+					</p>
+					<p>
+						For our first proof, we start with the obvious mappings as follows.
+					</p>
 					<img src="img1.png">
-					<p>The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.</p>
+					<p>
+						The direct product $\bigoplus_\alpha M_\alpha$ gives us unique mapping $\bigoplus_\alpha M_\alpha\to\bigoplus_\alpha S^{-1}M_\alpha$ making the diagram commute.
+					</p>
 					<img src="img2.png">
-					<p>We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<p>
+						We claim that this induced mapping satisfies the universal property of $S^{-1}\left(\bigoplus_\alpha M_\alpha\right).$ Indeed, instantiate some mapping of $A$-modules where $\bigoplus_\alpha M_\alpha\to N$ where $N$ is an $S^{-1}A$-module so that we want a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.
+					</p>
 					<img src="img3.png">
-					<p>Indeed, re-expand out the diagram as before.</p>
+					<p>
+						Indeed, re-expand out the diagram as before.
+					</p>
 					<img src="img4.png">
-					<p>Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<p>
+						Then the universal property of localization on $S^{-1}M_\alpha,$ we have a unique mapping $S^{-1}M_\alpha\to N$ making the diagram commute.
+					</p>
 					<img src="img5.png">
-					<p>So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.</p>
+					<p>
+						So lastly, the universal property of $\oplus$ on the $S^{-1}M_\alpha$ gives us a unique mapping $\bigoplus_\alpha S^{-1}M_\alpha\to N$ making the diagram commute.
+					</p>
 					<img src="img6.png">
-					<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+					<p>
+						This is what we wanted. To review, the entire following diagram commutes.
+					</p>
 					<img src="img7.png">
-					<p>We now provide a second proof. Again we start with the obvious mappings.</p>
+					<p>
+						We now provide a second proof. Again we start with the obvious mappings.
+					</p>
 					<img src="img8.png">
-					<p>Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.</p>
+					<p>
+						Now, $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ is an $S^{-1}A$-module, so the universal property of $S^{-1}M_\alpha$ gives us one mapping $S^{-1}M_\alpha\to S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ making the diagram commute.
+					</p>
 					<img src="img9.png">
-					<p>We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.</p>
+					<p>
+						We claim that $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)$ satisfies the universal property of $\bigoplus_\alpha S^{-1}M_\alpha,$ which will be enough. Indeed, instantiate some $N$ for which we have a mapping $S^{-1}M_k\to N,$ and we want a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with it.
+					</p>
 					<img src="img10.png">
-					<p>However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.</p>
+					<p>
+						However, expanding out the diagram, we see that there is a map $M_\alpha\to S^{-1}M_\alpha\to N,$ so the universal property of $\oplus$ gives us a unique mapping $\bigoplus_\alpha M_\alpha$ making the diagram commute.
+					</p>
 					<img src="img11.png">
-					<p>But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.</p>
+					<p>
+						But then the universal property of localization gives us a unique mapping $S^{-1}\left(\bigoplus_\alpha M_\alpha\right)\to N$ commuting with the above map.
+					</p>
 					<img src="img12.png">
-					<p>This is what we wanted. To review, the entire following diagram commutes.</p>
+					<p>
+						This is what we wanted. To review, the entire following diagram commutes.
+					</p>
 					<img src="img13.png">
-					<p>The pretty pictures are pretty.</p>
+					<p>
+						The pretty pictures are pretty.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

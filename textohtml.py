@@ -40,7 +40,7 @@ for year in next(os.walk('TeX'))[1]:
 			+directory+'/">'+title+'</a></span></li>\n'
 	archive += '{0}</ul>\n'
 
-indent = lambda n : (4+n)*'\t'
+indent = lambda n : (0)*'\t'
 def start_html(level):
 	html = header
 	html += '\t<body>\n'
@@ -54,6 +54,31 @@ def start_html(level):
 	html += archive.format(indent(0))
 	html += '\t\t\t</div>\n'
 	html += '\t\t\t<div class="content">\n'
+	return html
+
+def prettify(html):
+	html = html.replace('\n','').replace('\t','')
+	content = []
+	for c in html:
+		if c == '<':
+			content += ['<']
+		elif c == '>':
+			content[-1] += '>'
+			content += ['']
+		else:
+			# We want to put the tag type right after <
+			if not(content[-1] == '<' and c==' '):
+				content[-1] += c
+	content = [c.strip() for c in content if c]
+	level = 0
+	no_close = ['</','<img','<!','<link','<meta']
+	html = ''
+	for c in content:
+		if '</' in c:
+			level -= 1		
+		html += level*'\t' + c + '\n'
+		if '<' in c and not any(n in c for n in no_close):
+			level += 1
 	return html
 
 def end_html(level):
@@ -273,7 +298,7 @@ total_html += indent(0)+'<div style="height: 7pt;"></div>\n'
 total_html += end_html(1)
 # Make the total file
 f = open('TIL/index.html','w')
-f.write(total_html)
+f.write(prettify(total_html))
 f.close()
 
 # Iterate through the years subdirectories
@@ -318,19 +343,19 @@ for year in next(os.walk('TeX'))[1]:
 			os.chdir(PATH)
 			# Extract day from the starting subsection line
 			f = open(directory+'index.html','w')
-			f.write(day_html)
+			f.write(prettify(day_html))
 			f.close()
 			# Add onto the month
 			month_html += month_html_day
 		month_html += end_html(3)
 		# Make the month file
 		f = open('TIL/'+year+'/'+month+'/'+'index.html','w')
-		f.write(month_html)
+		f.write(prettify(month_html))
 		f.close()
 	# Some padding
 	year_html += indent(0)+'<div style="height: 6pt;"></div>\n'
 	year_html += end_html(2)
 	# Make the year file
 	f = open('TIL/'+year+'/index.html','w')
-	f.write(year_html)
+	f.write(prettify(year_html))
 	f.close()

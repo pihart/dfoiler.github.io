@@ -1,46 +1,112 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to November)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to November)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>November 27th</h2>
-					<p>Today I learned the definition of homology groups from algebraic topology, from the Napkin. These, in essence, measure holes in a surface. We have to go a bit of a journey before reaching the definition, however. Using the formalization of algebraic topology from simplices inside of our topological space $X,$ we go ahead and define\[[v_0,\ldots,v_n]\]as the convex hull of these $n+1$ points. The order of the vertices does matter. Provided the points are non-coplanar (or similar), this defines an $n$-simplex. In order to be able to combine simplices, we define $C_n$ as formal linear combinations of these $n$-simplices. Explicitly,\[C_n=\left\{\sum_ka_k\sigma_k:\{a_k\}\subseteq\ZZ,\{\sigma_k\}\text{ simplices}\right\}.\]For example, $[v_0,v_1,v_2]$ is a triangle ($3$-simplex) in the plane. Its border is the linear combination of $2$-simplices $[v_0,v_1]-[v_0,v_2]+[v_1,v_2].$ More generally, we define the boundary operator $\del:C_n\to C_{n-1}$ by letting\[\del([v_0,\ldots,v_n])=\sum_{k=0}^n(-1)^k[v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_n],\]and then extending linearly so that\[\del\left(\sum_ka_k\sigma_k\right)=\sum_ka_k\cdot\del\sigma_k.\]One of the nice properties of the $\del$ operator is that $\del^2(C_\bullet)=0.$ It suffices to check\begin{align*}    \del^2([v_0,\ldots,v_n]) =& \sum_{k=0}^n(-1)^k\del([v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\    =& \sum_{k=0}^n(-1)^k\left(\sum_{\ell=0}^{k-1}(-1)^\ell\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m])\right. \\    &+ \left.\sum_{\ell=k+1}^n(-1)^{\ell-1}\del([v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_m])\right) \\    =& \sum_{\substack{k,\ell=0\\\ell{\lt}k}}^n(-1)^{k+\ell}\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\    &- \sum_{\substack{k,\ell=0\\\ell{\gt}k}}^n(-1)^{k+\ell}\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\    =&\, 0,\end{align*}where the last equality holds because both sums are equal after exchanging $k$ and $\ell.$ Extending this linearly finishes.</p>
-					<p>We care that $\del^2$ is the $0$ mapping because it induces the complex\[\cdots\stackrel\del\longrightarrow C_3\stackrel\del\longrightarrow C_2\stackrel\del\longrightarrow C_1\stackrel\del\longrightarrow C_0\stackrel\del\longrightarrow 0.\]I.e., each image maps into the kernel. This is not an exact sequence because we don't necessarily surject onto the kernel. Explicitly, there might exist a sum of simplices that have boundary $0$ but are not themselves a boundary of a higher-dimensional object. I guess the canonical example is the annulus with a cycle around the hole.</p>
+					<h2>
+						November 27th
+					</h2>
+					<p>
+						Today I learned the definition of homology groups from algebraic topology, from the Napkin. These, in essence, measure holes in a surface. We have to go a bit of a journey before reaching the definition, however. Using the formalization of algebraic topology from simplices inside of our topological space $X,$ we go ahead and define\[[v_0,\ldots,v_n]\]as the convex hull of these $n+1$ points. The order of the vertices does matter. Provided the points are non-coplanar (or similar), this defines an $n$-simplex. In order to be able to combine simplices, we define $C_n$ as formal linear combinations of these $n$-simplices. Explicitly,\[C_n=\left\{\sum_ka_k\sigma_k:\{a_k\}\subseteq\ZZ,\{\sigma_k\}\text{ simplices}\right\}.\]For example, $[v_0,v_1,v_2]$ is a triangle ($3$-simplex) in the plane. Its border is the linear combination of $2$-simplices $[v_0,v_1]-[v_0,v_2]+[v_1,v_2].$ More generally, we define the boundary operator $\del:C_n\to C_{n-1}$ by letting\[\del([v_0,\ldots,v_n])=\sum_{k=0}^n(-1)^k[v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_n],\]and then extending linearly so that\[\del\left(\sum_ka_k\sigma_k\right)=\sum_ka_k\cdot\del\sigma_k.\]One of the nice properties of the $\del$ operator is that $\del^2(C_\bullet)=0.$ It suffices to check\begin{align*}    \del^2([v_0,\ldots,v_n]) =& \sum_{k=0}^n(-1)^k\del([v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\    =& \sum_{k=0}^n(-1)^k\left(\sum_{\ell=0}^{k-1}(-1)^\ell\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m])\right. \\    &+ \left.\sum_{\ell=k+1}^n(-1)^{\ell-1}\del([v_0,\ldots,v_{k-1},v_{k+1},\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_m])\right) \\    =& \sum_{\substack{k,\ell=0\\\ell{\lt}k}}^n(-1)^{k+\ell}\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\    &- \sum_{\substack{k,\ell=0\\\ell{\gt}k}}^n(-1)^{k+\ell}\del([v_0,\ldots,v_{\ell-1},v_{\ell+1},\ldots,v_{k-1},v_{k+1},\ldots,v_m]) \\    =&\, 0,\end{align*}where the last equality holds because both sums are equal after exchanging $k$ and $\ell.$ Extending this linearly finishes.
+					</p>
+					<p>
+						We care that $\del^2$ is the $0$ mapping because it induces the complex\[\cdots\stackrel\del\longrightarrow C_3\stackrel\del\longrightarrow C_2\stackrel\del\longrightarrow C_1\stackrel\del\longrightarrow C_0\stackrel\del\longrightarrow 0.\]I.e., each image maps into the kernel. This is not an exact sequence because we don't necessarily surject onto the kernel. Explicitly, there might exist a sum of simplices that have boundary $0$ but are not themselves a boundary of a higher-dimensional object. I guess the canonical example is the annulus with a cycle around the hole.
+					</p>
 					<img src="img1.png">
-					<p>By construction this is a cycle&mdash;that is, it has no boundary. Indeed, we can imagine filling this to be the border of a triangle, and then there is no border of the border of a triangle. However, it is not actually the boundary of a triangle. We can't make the triangle to fill in this simplex because of the hole in the middle. So we have detected the hole in a somewhat algebraic way.</p>
-					<p>With this in mind, we define our homology group to measure these failings. That is, we let the $n$th homology group be\[H_n=\op{ker}\left(C_n\stackrel\del\to C_{n-1}\right)/\op{im}\left(C_{n+1}\stackrel\del\to C_n\right).\]This is well-defined because the $C_\bullet$ is abelian, so the images and kernels are all abelian and therefore normal subgroups of each other. In an abstract sense, this is really just a measurement of how much our complex failed to be an exact sequence, and this abstract context is I guess why I really care.</p>
+					<p>
+						By construction this is a cycle&mdash;that is, it has no boundary. Indeed, we can imagine filling this to be the border of a triangle, and then there is no border of the border of a triangle. However, it is not actually the boundary of a triangle. We can't make the triangle to fill in this simplex because of the hole in the middle. So we have detected the hole in a somewhat algebraic way.
+					</p>
+					<p>
+						With this in mind, we define our homology group to measure these failings. That is, we let the $n$th homology group be\[H_n=\op{ker}\left(C_n\stackrel\del\to C_{n-1}\right)/\op{im}\left(C_{n+1}\stackrel\del\to C_n\right).\]This is well-defined because the $C_\bullet$ is abelian, so the images and kernels are all abelian and therefore normal subgroups of each other. In an abstract sense, this is really just a measurement of how much our complex failed to be an exact sequence, and this abstract context is I guess why I really care.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>

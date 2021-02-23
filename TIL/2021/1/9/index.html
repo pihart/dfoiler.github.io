@@ -1,46 +1,114 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Today I Learned</title>
+		<title>
+			Today I Learned
+		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
 		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
 		<link rel=icon href="https://dfoiler.github.io/p.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://dfoiler.github.io/js/mathjax-config.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
 	</head>
 	<body>
-		<h1 class="title"><a href="https://dfoiler.github.io/TIL/" class="title">Today I Learned</a></h1>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
 		<div class="container">
 			<div class="sidebar">
-				<p style="text-align: center; font-weight: bold; margin-top: 5px;">Archive</p>
-				<button class="yearmenu">2020</button>
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/9/">September 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/10/">October 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/11/">November 2020</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2020/12/">December 2020</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
 				</ul>
-				<button class="yearmenu">2021</button>
+				<button class="yearmenu">
+					2021
+				</button>
 				<ul class="monthmenu">
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/1/">January 2021</a></span></li>
-					<li><span><a href="https://dfoiler.github.io/TIL/2021/2/">February 2021</a></span></li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
-				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to January)
+					</a>
+				</p>
 				<div class="entry">
-					<h2>January 9th</h2>
-					<p>Today I learned the proof of Fermat's last theorem for polynomials over a perfect field, as a corollary from yesterday's work; notably this holds for function fields. Fix $n$ a positive integer. Further, suppose $a,b,c\in K[t]$ for $K$ perfect and not all $a^n,b^n,c^n$ have vanishing derivative with $abc\ne0.$ Now given\[a^n+b^n=c^n,\]we want to show that $n{\lt}3.$ Without loss of generality, we take $a,b,c$ pairwise relatively prime, which follows from $\gcd(a,b,c)=1.$</p>
-					<p>Plugging into Mason's theorem, we remark that $\op{rad}_{\overline K}(a^nb^nc^n)=\op{rad}(abc),$ so we can say\[n\max\{\deg(a),\deg(b),\deg(c)\}{\lt}\deg(\op{rad}(abc)).\]Now, $\op{rad}(abc)\mid abc,$ and $abc$ is nonzero, so we may also say\[\deg(\op{rad}(abc))\le\deg(abc)=\deg(a)+\deg(b)+\deg(c)\le3\max\{\deg(a),\deg(b),\deg(c)\}.\]Combining this with the estimate from Mason's theorem requires $n{\lt}3,$ as desired.</p>
-					<p>As a side remark, what we proved does look like the normal Fermat's last theorem except for requiring not all of them to have vanishing derivative. On one hand, this is done to disallow constant polynomials, for which this would cover the real Fermat's last theorem.</p>
-					<p>But even ignoring this meta-argument, there are real dangers to watch out for. If our characteristic is $p{\gt}0,$ then for any polynomials $a,b\in K[t],$ we have that\[a^p+b^p=(a+b)^p\]by the Frobenius automorphism. This is a solution to Fermat's last theorem with $n=p,$ but we notice that all of $a^p,b^p,(a+b)^p$ have vanishing derivative, so this is ruled out by the hypotheses. To be clear, there are not such problems in characteristic $0,$ where vanishing derivative really does mean constant.</p>
-					<p>Also, there are infinitely many nontrivial solutions with $n=2,$ aside from characteristic $2$ where $n=2$ forces vanishing derivative. Recall the parameterization of Pythagorean triples by\[\left(m^2-n^2\right)^2+(2mn)^2=\left(m^2+n^2\right)^2.\]Because this is a purely algebraic fact, it'll hold for out polynomials in $K[t],$ so this infinite family will give lots of nontrivial solutions for $n=2,$ for any $m,n\in K[t].$ I think the usual proof that these give all primitive Pythagorean triples can also be ported over to here in $K[t],$ but I haven't worked through the details.</p>
+					<h2>
+						January 9th
+					</h2>
+					<p>
+						Today I learned the proof of Fermat's last theorem for polynomials over a perfect field, as a corollary from yesterday's work; notably this holds for function fields. Fix $n$ a positive integer. Further, suppose $a,b,c\in K[t]$ for $K$ perfect and not all $a^n,b^n,c^n$ have vanishing derivative with $abc\ne0.$ Now given\[a^n+b^n=c^n,\]we want to show that $n{\lt}3.$ Without loss of generality, we take $a,b,c$ pairwise relatively prime, which follows from $\gcd(a,b,c)=1.$
+					</p>
+					<p>
+						Plugging into Mason's theorem, we remark that $\op{rad}_{\overline K}(a^nb^nc^n)=\op{rad}(abc),$ so we can say\[n\max\{\deg(a),\deg(b),\deg(c)\}{\lt}\deg(\op{rad}(abc)).\]Now, $\op{rad}(abc)\mid abc,$ and $abc$ is nonzero, so we may also say\[\deg(\op{rad}(abc))\le\deg(abc)=\deg(a)+\deg(b)+\deg(c)\le3\max\{\deg(a),\deg(b),\deg(c)\}.\]Combining this with the estimate from Mason's theorem requires $n{\lt}3,$ as desired.
+					</p>
+					<p>
+						As a side remark, what we proved does look like the normal Fermat's last theorem except for requiring not all of them to have vanishing derivative. On one hand, this is done to disallow constant polynomials, for which this would cover the real Fermat's last theorem.
+					</p>
+					<p>
+						But even ignoring this meta-argument, there are real dangers to watch out for. If our characteristic is $p{\gt}0,$ then for any polynomials $a,b\in K[t],$ we have that\[a^p+b^p=(a+b)^p\]by the Frobenius automorphism. This is a solution to Fermat's last theorem with $n=p,$ but we notice that all of $a^p,b^p,(a+b)^p$ have vanishing derivative, so this is ruled out by the hypotheses. To be clear, there are not such problems in characteristic $0,$ where vanishing derivative really does mean constant.
+					</p>
+					<p>
+						Also, there are infinitely many nontrivial solutions with $n=2,$ aside from characteristic $2$ where $n=2$ forces vanishing derivative. Recall the parameterization of Pythagorean triples by\[\left(m^2-n^2\right)^2+(2mn)^2=\left(m^2+n^2\right)^2.\]Because this is a purely algebraic fact, it'll hold for out polynomials in $K[t],$ so this infinite family will give lots of nontrivial solutions for $n=2,$ for any $m,n\in K[t].$ I think the usual proof that these give all primitive Pythagorean triples can also be ported over to here in $K[t],$ but I haven't worked through the details.
+					</p>
 				</div>
 			</div>
 		</div>
-		<script src="https://dfoiler.github.io/js/sidebar.js"></script>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
 	</body>
 </html>
