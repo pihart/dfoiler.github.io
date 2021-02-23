@@ -97,31 +97,31 @@ def get_blurb(tex):
 
 def process_line(line, last_tags, first_item):
 	to_add = ''
-	close = last_tags[-1] != '' and not first_item
+	close_until = last_tags[-1] if not first_item else ''
 	new_tags = []
 	# Update ending indents now
 	environs = ['itemize','enumerate']
+	environ_tags = {'itemize':'ul','enumerate':'ol'}
 	# Consecutive lines implies a new paragraph
 	if line == '':
-		to_add += '<p>'
 		new_tags = ['p']
 	# Various list commands
-	elif '\\begin{itemize}' in line:
-		to_add += '<ul>\n'+'<li>'
-		new_tags = ['ul','li']
-	elif '\\end{itemize}' in line:
-		to_add += '</ul>\n'
-	elif '\\begin{enumerate}' in line:
-		to_add += '<ol>\n'+'<li>'
-		new_tags = ['ol','li']
-	elif '\\end{enumerate}' in line:
-		to_add += '</ol>\n'
-		first_item =  False
+	elif any('\\begin{'+env in line for env in environ_tags):
+		env = [e for e in environ_tags if '\\begin{'+e in line][0]
+		# Close if coming from a paragraph
+		close_until = 'p' if last_tags[-1] == 'p' else ''
+		if env == 'itemize' or env == 'enumerate':
+			first_item = True
+			new_tags = [environ_tags[env],'li','p']
+	elif any('\\end{'+env in line for env in environ_tags):
+		env = [e for e in environ_tags if '\\end{'+e in line][0]
+		close_until = environ_tags[env]
 	elif '\\item' in line:
 		line = line.replace('\\item','')
+		# Close tag if not first item
 		if not first_item:
-			to_add += '<li>'
-			new_tags = ['li']
+			new_tags = ['li','p']
+			close_until = 'li'
 		to_add += line
 		first_item = False
 	# Image marker
@@ -130,21 +130,17 @@ def process_line(line, last_tags, first_item):
 		to_add += '<img src="'+filename+'">\n'
 	# Catch-all
 	else:
-		close = False
+		close_until = ''
 		if last_tags[-1] == '':
-			to_add += '<p>'
 			new_tags = ['p']
 		to_add += line
-	# Update beginning indents later
-	if any('\\begin{'+env in line for env in environs):
-		first_item = True
-		# Close if we're coming from a paragraph
-		close = last_tags[-1] == 'p'
 	# Add in the closing
-	if close:
-		to_add = '</'+last_tags.pop()+'>\n'+to_add
-	if any('\\end{'+env in line for env in environs):
-		last_tags.pop()
+	closing = ''
+	if close_until:
+		index = len(last_tags)-1-last_tags[::-1].index(close_until)
+		closing = '\n'.join('</'+t+'>' for t in last_tags[index:][::-1])
+		last_tags = last_tags[:index]
+	to_add = closing + '\n'.join('<'+t+'>' for t in new_tags) + to_add
 	last_tags += new_tags
 	return to_add, last_tags, first_item
 

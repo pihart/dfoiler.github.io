@@ -99,10 +99,14 @@
 					</p>
 					<ol>
 						<li>
-							$n$ is squarefree; write $n=p_1\cdots p_r,$ taking $r \gt 1.$ Because $p_1 \gt 2,$ we may conjure some $b$ for which $\left(\frac b{p_1}\right)=-1.$ Then, from the Chinese Remainder Theorem, we find $a$ satisfying    \[\begin{cases}        a\equiv b\pmod{p_1} \\        a\equiv1\pmod{p_k} & k \gt 1.    \end{cases}\]    We claim that $a$ is a witness. Indeed, it follows that    \[\left(\frac an\right)=\prod_{k=1}^r\left(\frac a{p_k}\right)=-1\cdot\prod_{k=2}^r1=-1.\]    On the other hand, $a\equiv1\pmod{p_2},$ so    \[\left(\frac an\right)\equiv-1\not\equiv1\equiv a^{(n-1)/2}\pmod{p_2},\]    from which it follows that $\left(\frac an\right)\not\equiv a^{(n-1)/2}\pmod n.$
+							<p>
+								$n$ is squarefree; write $n=p_1\cdots p_r,$ taking $r \gt 1.$ Because $p_1 \gt 2,$ we may conjure some $b$ for which $\left(\frac b{p_1}\right)=-1.$ Then, from the Chinese Remainder Theorem, we find $a$ satisfying    \[\begin{cases}        a\equiv b\pmod{p_1} \\        a\equiv1\pmod{p_k} & k \gt 1.    \end{cases}\]    We claim that $a$ is a witness. Indeed, it follows that    \[\left(\frac an\right)=\prod_{k=1}^r\left(\frac a{p_k}\right)=-1\cdot\prod_{k=2}^r1=-1.\]    On the other hand, $a\equiv1\pmod{p_2},$ so    \[\left(\frac an\right)\equiv-1\not\equiv1\equiv a^{(n-1)/2}\pmod{p_2},\]    from which it follows that $\left(\frac an\right)\not\equiv a^{(n-1)/2}\pmod n.$
+							</p>
 						</li>
 						<li>
-							$n$ is the divisible by the square of a prime; write $n=p^km$ with $k=\nu_p(n) \gt 1.$ We'll show that $a$ cannot even be a Carmichael number, which will be good enough. This time we set $a$ so that    \[\begin{cases}        a \equiv 1+p\pmod{p^2} \\         a \equiv 1\pmod m.    \end{cases}\]    Certainly $\gcd(a,n)=1,$ so to witness $n$ is not a Carmichael number, we need $a^{n-1}\not\equiv1\pmod n.$ Indeed, note that    \[a^{n-1}\equiv(1+p)^{n-1}\equiv 1+(n-1)p\pmod{p^2}\]    from the binomial theorem. But $p\mid n$ implies that $1+(n-1)p\not\equiv1\pmod{p^2},$ so $a^{n-1}\not\equiv1\pmod{p^2}.$ It follows $a^{n-1}\not\equiv1\pmod n$ as well, which means that $a$ is a witness for $n.$
+							<p>
+								$n$ is the divisible by the square of a prime; write $n=p^km$ with $k=\nu_p(n) \gt 1.$ We'll show that $a$ cannot even be a Carmichael number, which will be good enough. This time we set $a$ so that    \[\begin{cases}        a \equiv 1+p\pmod{p^2} \\         a \equiv 1\pmod m.    \end{cases}\]    Certainly $\gcd(a,n)=1,$ so to witness $n$ is not a Carmichael number, we need $a^{n-1}\not\equiv1\pmod n.$ Indeed, note that    \[a^{n-1}\equiv(1+p)^{n-1}\equiv 1+(n-1)p\pmod{p^2}\]    from the binomial theorem. But $p\mid n$ implies that $1+(n-1)p\not\equiv1\pmod{p^2},$ so $a^{n-1}\not\equiv1\pmod{p^2}.$ It follows $a^{n-1}\not\equiv1\pmod n$ as well, which means that $a$ is a witness for $n.$
+							</p>
 						</li>
 					</ol>
 					<p>

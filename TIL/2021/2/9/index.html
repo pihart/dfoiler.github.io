@@ -101,22 +101,34 @@
 					</p>
 					<ol>
 						<li>
-							Store $g^0,g^1,\ldots,g^{\lceil\sqrt N\rceil-1}$ in a lookup table.
+							<p>
+								Store $g^0,g^1,\ldots,g^{\lceil\sqrt N\rceil-1}$ in a lookup table.
+							</p>
 						</li>
 						<li>
-							Precompute $g^{\lceil\sqrt N\rceil}$ into $g_*.$
+							<p>
+								Precompute $g^{\lceil\sqrt N\rceil}$ into $g_*.$
+							</p>
 						</li>
 						<li>
-							Move $h$ into a local $h_*.$
+							<p>
+								Move $h$ into a local $h_*.$
+							</p>
 						</li>
 						<li>
-							Loop the following over $0\le a \lt \lceil\sqrt N\rceil.$
+							<p>
+								Loop the following over $0\le a \lt \lceil\sqrt N\rceil.$
+							</p>
 							<ol>
 								<li>
-									If $h_*$ is in the lookup table, return $a\lceil\sqrt N\rceil+b.$
+									<p>
+										If $h_*$ is in the lookup table, return $a\lceil\sqrt N\rceil+b.$
+									</p>
 								</li>
 								<li>
-									Else move $h_*g_*$ into $h_*.$ Now $h_*=hg_*^{-a-1},$ and we're ready to loop.
+									<p>
+										Else move $h_*g_*$ into $h_*.$ Now $h_*=hg_*^{-a-1},$ and we're ready to loop.
+									</p>
 								</li>
 							</ol>
 						</li>
