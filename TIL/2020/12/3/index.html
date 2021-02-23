@@ -104,7 +104,7 @@
 						The perfect matching in this happy graph is drawn for us.
 					</p>
 					<p>
-						It remains to show the inductive step. Suppose that all happy graphs with $|A|{\lt}n$ have a perfect matching so that we want to show all graphs with $|A|=n$ do. We will technically run this as an induction on the number of edges in the graph, but there is no point in saying that explicitly. Anyways, pick up any happy graph $G$ with $|A|=n$ so that we want to show it has a perfect matching.
+						It remains to show the inductive step. Suppose that all happy graphs with $|A| \lt n$ have a perfect matching so that we want to show all graphs with $|A|=n$ do. We will technically run this as an induction on the number of edges in the graph, but there is no point in saying that explicitly. Anyways, pick up any happy graph $G$ with $|A|=n$ so that we want to show it has a perfect matching.
 					</p>
 					<p>
 						The main idea is that we can continue to subtract off vertices from $G$&mdash;while keeping $G$ happy&mdash;until $G$ has been divided into two separate components, letting us trigger induction. Basically, if for all nonempty subsets $A'$ of $A,$ the number of neighbors is strictly larger than the number of elements of $A',$ then we can subtract off any edge, and $G$ will still be happy. Indeed, now a subset $A'\subseteq A$ either wasn't affected by this subtraction, or it was subtracted by one, and the number of neighbors is still at least $|A'|.$

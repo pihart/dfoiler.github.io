@@ -100,17 +100,17 @@
 						So far we have been treating $\RR$ as an entirely algebraic quantity, which is why I called the above "the easy stuff.'' However, an example pathology of doing so is that there are non-linear functions which satisfy $f(x+y)=f(x)+f(y)$ for all real $x,y.$ The reason we don't fall into this trap is that the graphs of all these functions are dense in $\RR^2.$ Why isn't the graph of $\sigma$ dense in $\RR^2$? Well, for any positive $r\in\RR^+,$ we see\[\sigma(r)=\sigma\left(\left(\sqrt r\right)^2\right)=\sigma\left(\sqrt r\right)^2\in\RR^+,\]so the fourth quadrant of the graph of $\sigma$ is guaranteed to be empty. This does tell us that $\sigma$ is linear automatically, but we would like to avoid this machinery. Regardless, we intuitively know that we're going to have to use some topology of $\RR$ to finish this.
 					</p>
 					<p>
-						With this in mind, we show that $\sigma$ satisfies a weak form of continuity&mdash;strictly increasing. (Any strictly increasing function over $\RR$ can only have jump discontinuities and therefore has only countably many discontinuities.) We show that for any $r,s\in\RR,$ with $r{\lt}s$ implies\[\sigma(r){\lt}\sigma(s).\]This inequality is equivalent to $\sigma(s)-\sigma(r)=\sigma(s-r){\gt}0.$ However, $s-r{\gt}0$ by hypothesis, $\sigma(s-r){\gt}0$ because $\sigma$ sends positives to positives from above.
+						With this in mind, we show that $\sigma$ satisfies a weak form of continuity&mdash;strictly increasing. (Any strictly increasing function over $\RR$ can only have jump discontinuities and therefore has only countably many discontinuities.) We show that for any $r,s\in\RR,$ with $r \lt s$ implies\[\sigma(r) \lt \sigma(s).\]This inequality is equivalent to $\sigma(s)-\sigma(r)=\sigma(s-r) \gt 0.$ However, $s-r \gt 0$ by hypothesis, $\sigma(s-r) \gt 0$ because $\sigma$ sends positives to positives from above.
 					</p>
 					<p>
 						We are now ready to finish the proof. In particular, we roughly know that $\sigma$ is continuous, and we know that $\sigma$ is the identity on a dense set of $\RR$ (named $\QQ$), so we should be able to push this through. Suppose for the sake of contradiction that $\sigma(r)\ne r$ for some real $r\in\RR.$ Because $\QQ$ is dense in $\RR,$ we may fit some rational $q\in\QQ$ between $r$ and $\sigma(r).$ (Say, $q=\floor{\frac{r+\sigma(r)}2\ceil{\frac1{|r-\sigma(r)|}}+0.5}/\ceil{\frac1{|r-\sigma(r)|}}.$) We now have two cases.
 					</p>
 					<ul>
 						<li>
-							If $\sigma(r){\gt}r,$ then note $\sigma(r){\gt}q{\gt}r$ implies $\sigma(r){\gt}q=\sigma(q){\gt}\sigma(r),$ a contradiction.
+							If $\sigma(r) \gt r,$ then note $\sigma(r) \gt q \gt r$ implies $\sigma(r) \gt q=\sigma(q) \gt \sigma(r),$ a contradiction.
 						</li>
 						<li>
-							If $\sigma(r){\lt}r,$ then note $\sigma(r){\lt}q{\lt}r$ implies $\sigma(r){\lt}q=\sigma(q){\lt}\sigma(r),$ a contradiction.
+							If $\sigma(r) \lt r,$ then note $\sigma(r) \lt q \lt r$ implies $\sigma(r) \lt q=\sigma(q) \lt \sigma(r),$ a contradiction.
 						</li>
 					</ul>
 					<p>

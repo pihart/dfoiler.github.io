@@ -65,8 +65,8 @@ def process_tex(tex):
 	tex = tex.replace('---','&mdash;')
 	tex = tex.replace('--','&ndash;')
 	# Fix < and > signs for HTML
-	tex = tex.replace('<','{\\lt}')
-	tex = tex.replace('>','{\\gt}')
+	tex = tex.replace('<',' \\lt ')
+	tex = tex.replace('>',' \\gt ')
 	# We process \href manually
 	parts = tex.split('\\href')
 	tex = parts[0]

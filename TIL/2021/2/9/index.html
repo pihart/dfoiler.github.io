@@ -94,7 +94,7 @@
 						Today I learned the baby-step giant-step algorithm to solve the discrete log problem in general finite cyclic groups. As implied, our setup is to fix a finite cyclic group $G=\langle g\rangle$ of order $N$ and element $h\in G$ so that we want $x\in\ZZ$ satisfying $h=g^x.$ We note that the way we represent elements of $G$ is unimportant, as it should be in this algorithm.
 					</p>
 					<p>
-						Brute force would be trying all $N$ different values of $x$ until hitting the correct one. This requires $O(1)$ space but a terrible $O(N)$ run-time. The baby-step giant-step algorithm trades some of the $O(1)$ space for a better run-time, akin to the Dirichlet hyperbola method. The key observation is that\[\frac x{\sqrt N}\le\sqrt N.\]More explicitly, this implies that any $x$ can be written as\[x=a\lceil\sqrt N\rceil+b\]where $0\le a,b{\lt}\lceil\sqrt N\rceil.$ So if we can check $\lceil\sqrt N\rceil$ values of $x$ simultaneously, our run-time will drop to $O(\sqrt N).$
+						Brute force would be trying all $N$ different values of $x$ until hitting the correct one. This requires $O(1)$ space but a terrible $O(N)$ run-time. The baby-step giant-step algorithm trades some of the $O(1)$ space for a better run-time, akin to the Dirichlet hyperbola method. The key observation is that\[\frac x{\sqrt N}\le\sqrt N.\]More explicitly, this implies that any $x$ can be written as\[x=a\lceil\sqrt N\rceil+b\]where $0\le a,b \lt \lceil\sqrt N\rceil.$ So if we can check $\lceil\sqrt N\rceil$ values of $x$ simultaneously, our run-time will drop to $O(\sqrt N).$
 					</p>
 					<p>
 						The way that this is done is by storing $\lceil\sqrt N\rceil$ values of $x$ in a lookup table. Here are the steps.
@@ -110,7 +110,7 @@
 							Move $h$ into a local $h_*.$
 						</li>
 						<li>
-							Loop the following over $0\le a{\lt}\lceil\sqrt N\rceil.$
+							Loop the following over $0\le a \lt \lceil\sqrt N\rceil.$
 							<ol>
 								<li>
 									If $h_*$ is in the lookup table, return $a\lceil\sqrt N\rceil+b.$
@@ -122,7 +122,7 @@
 						</li>
 					</ol>
 					<p>
-						We note that this is gauranteed to terminate because $x=a\lceil\sqrt N\rceil+b$ for some $0\le a,b{\lt}\lceil\sqrt N\rceil$ as above, so we'll find our output eventually.
+						We note that this is gauranteed to terminate because $x=a\lceil\sqrt N\rceil+b$ for some $0\le a,b \lt \lceil\sqrt N\rceil$ as above, so we'll find our output eventually.
 					</p>
 					<p>
 						As for quick run-time analysis, we note that creation of the lookup table and the loop are our limiting $O(\sqrt N)$ operations. There is some worry that the loop operation isn't $O(1),$ but we note that this can be done by hashing: we can hash $h_*$ in and then check the hashed entry in a table in $O(1)$ time without having to check each element of the lookup table manually. This also means that the creation of the lookup table requires hashing, but this is still an $O(\sqrt N)$ operation in total.
