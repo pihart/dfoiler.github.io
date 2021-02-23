@@ -100,11 +100,12 @@ def process_line(line, last_tags, first_item):
 	close_until = last_tags[-1] if not first_item else ''
 	new_tags = []
 	# Update ending indents now
-	environs = ['itemize','enumerate']
-	environ_tags = {'itemize':'ul','enumerate':'ol'}
+	environ_tags = {'itemize':'ul','enumerate':'ol',
+		'theorem':'div','lemma':'div','proposition':'div',
+		'idea':'div','definition':'div','example':'div'}
 	# Consecutive lines implies a new paragraph
-	if line == '':
-		new_tags = ['p']
+	if not line or line.isspace():
+		new_tags = []
 	# Various list commands
 	elif any('\\begin{'+env in line for env in environ_tags):
 		env = [e for e in environ_tags if '\\begin{'+e in line][0]
@@ -113,6 +114,9 @@ def process_line(line, last_tags, first_item):
 		if env == 'itemize' or env == 'enumerate':
 			first_item = True
 			new_tags = [environ_tags[env],'li','p']
+		else:
+			new_tags = ['div class="'+env+'"','p']
+			to_add += '<b>'+env[0].upper()+env[1:]+'.</b> '
 	elif any('\\end{'+env in line for env in environ_tags):
 		env = [e for e in environ_tags if '\\end{'+e in line][0]
 		close_until = environ_tags[env]
@@ -131,7 +135,8 @@ def process_line(line, last_tags, first_item):
 	# Catch-all
 	else:
 		close_until = ''
-		if last_tags[-1] == '':
+		# We can only write into p
+		if last_tags[-1] != 'p':
 			new_tags = ['p']
 		to_add += line
 	# Add in the closing
@@ -141,7 +146,8 @@ def process_line(line, last_tags, first_item):
 		closing = '\n'.join('</'+t+'>' for t in last_tags[index:][::-1])
 		last_tags = last_tags[:index]
 	to_add = closing + '\n'.join('<'+t+'>' for t in new_tags) + to_add
-	last_tags += new_tags
+	# only add in the titles
+	last_tags += [t.split()[0] for t in new_tags]
 	return to_add, last_tags, first_item
 
 def to_html(tex):
@@ -173,8 +179,12 @@ def to_html(tex):
 			month_html += '<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
 			# Go ahead and start the first paragraph
 		else:
-			to_add, last_tags, first_item = \
-				process_line(line, last_tags, first_item)
+			try:
+				to_add, last_tags, first_item = \
+					process_line(line, last_tags, first_item)
+			except:
+				print(day_html)
+				print(0/0)
 			day_html += to_add
 	if last_tags[-1]:
 		day_html += '</'+last_tags[-1]+'>\n'

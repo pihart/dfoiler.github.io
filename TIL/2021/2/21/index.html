@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 21st
+					</h2>
+					<p>
+						Today I learned the proof of the functional equation for the Riemann $\zeta$ function, from
+						<a href="http://math.mit.edu/~poonen/786/notes.pdf">
+							here
+						</a>
+						. We recall the definition of the "completed'' Riemann $\zeta$ function, named\[\xi(s):=\pi^{-s/2}\Gamma(s/2)\zeta(s),\]where the $\Gamma$ function is defined as usual by\[\Gamma(s):=\int_0^\infty e^{-t}t^s\,\frac{dt}t.\]We note that the above definition only works for $\op{Re}(s) \gt 0,$ but the we have a reflection formula we proved a while ago, exhibiting an analytic continuation of $\Gamma$ to all of $\CC$ with simple poles at $-1,-2,\ldots.$ Anyways, we show the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							We have that $\xi(s)=\xi(1-s).$
+						</p>
+					</div>
+					<p>
+						I'm not sure where the completion of $\zeta$ comes from, but we can motivate the rest of the argument from here. We use the definition\[\zeta(s)=\sum_{n=1}^\infty\frac1{n^s},\]which holes for $\op{Re}(s) \gt 1,$ and we will gradually continue this to $\CC$ as is possible. A single term $n^{-s}$ in the sum makes\[\pi^{-s/2}\Gamma(s/2)n^{-s}\]in $\xi.$ (This still holds for $\op{Re}(s) \gt 1$ because we've merely factored into the sum.) Simplifying, this term is\[\left(\pi n^2\right)^{-s/2}\int_0^\infty e^{-t}t^{s/2}\,\frac{dt}t.\]Taking $t\mapsto t\pi n^2$ so that $dt/t\mapsto dt/t,$ this becomes\[\int_0^\infty e^{-\pi n^2t}t^{s/2}\,\frac{dt}t.\]Summing over all $n,$ we see that\[\xi(s)=\sum_{n=1}^\infty\int_0^\infty e^{-\pi n^2t}t^{s/2}\,\frac{dt}t.\]Note that we are still working over $\op{Re}(s) \gt 1.$ We would like to interchange the sum and integral, which we do by testing absolute convergence (via Fubini's). Indeed, we know that the integral term is $\pi^{-s/2}\Gamma(s/2)n^{-s}$ because it's just from $\xi,$ and $\xi$'s sum converges absolutely for $\op{Re}(s) \gt 1.$ Explicitly,\[\sum_{n=1}^\infty\left|\frac1{n^s}\right|=\sum_{n=1}^\infty\frac1{n^{\op{Re}(s)}},\]which converges for $\op{Re}(s) \gt 1$ by the $p$-series test or something.
+					</p>
+					<p>
+						Anyways, we get to say\[\xi(s)=\int_0^\infty\left(\sum_{n=1}^\infty e^{-\pi n^2t}\right)t^{s/2}\,\frac{dt}t\]for $\op{Re}(s) \gt 1.$ It might appear like we've made no progress, but in fact this integral is more malleable than $\xi$ because the sum $\sum e^{-\pi n^2t}$ is much better-behaved.
+					</p>
+					<p>
+						In particular, fix\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}\]so that $\frac{\Theta(t)-1}2=\sum e^{-\pi n^2t}.$ This $\Theta$ can be understood by the Poisson summation formula to get a functional equation for $\Theta.$ What's nice here is that $f(x)=e^{-\pi x^2}$ has its own Fourier transform: $\hat f=f.$ (We do not show this here, but a proof exists
+						<a href="https://math.stackexchange.com/questions/270566/how-to-calculate-the-fourier-transform-of-a-gaussian-function">
+							here
+						</a>
+						.) So if we let $f_t(x)=e^{-\pi x^2t}=f(x\sqrt t),$ then\[\hat f_t(s)=\int_\RR f(x\sqrt t)e^{-2\pi ixs}\,dx=\int_\RR f(x)e^{-2\pi ix(s/\sqrt t)}\,\frac{dx}{\sqrt t}=\frac1{\sqrt t}\hat f\left(\frac s{\sqrt t}\right).\]Thus, $\hat f_t(s)=\frac1{\sqrt t}f\left(\frac x{\sqrt t}\right)=\frac1{\sqrt t}e^{-\pi x^2/t}.$ Now, the Poisson summation formula tells us\[\sum_{n\in\ZZ}f_t(n)=\sum_{n\in\ZZ}\hat f_t(n),\]which expands into\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}=\sum_{n\in\ZZ}\frac1{\sqrt t}e^{-\pi n^2/t}=\frac1{\sqrt t}\Theta\left(\frac1t\right).\]This is our functional equation for $\Theta.$ We remark that, with more work, one can use this to show $\Theta$ is a modular form with "weight $1/2$.''
+					</p>
+					<p>
+						Now we return to $\xi.$ For $\op{Re}(s) \gt 1,$ we know\[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t.\]We would like to extend this integral to all of $\CC,$ but the integral explodes with $s=1,$ so it's not obvious how to do this. (In fact, $\xi$ explodes at $s=0$ and $s=1,$ so some care is required.) To proceed, the trick is to split the integral to $(0,1)$ and $(1,\infty).$ On $(1,\infty),$ the integral is well-behaved over all $\CC,$ and $(0,1),$ we can use the functional equation we just established to turn the integral into the one over $(1,\infty).$
+					</p>
+					<p>
+						We make this explicit. Over $(1,\infty),$ we claim that\[I(s):=\int_1^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t\]defines an entire function on $\CC.$ It suffices to show that this converges everywhere, which holds because, for $t \gt 0,$\[\frac{\Theta(t)-2}2=\sum_{n=1}^\infty e^{-\pi n^2t} \lt \sum_{n=1}^\infty\left(e^{-\pi t}\right)^n=\frac{e^{-\pi t}}{1-e^{-\pi t}} \lt e^{-\pi t}.\]Thus,\[|I(s)| \lt \int_1^\infty e^{-\pi t}t^{\op{Re}(s)/2-1}\,dt.\]Now, $t^\bullet=O\left(e^t\right)$ for $t \gt 1$ (say, by L'Hospital's rule on $t^\bullet\le t^{\ceil{\bullet}}$), so\[|I(s)|=O\left(\int_1^\infty e^{(1-\pi)t}\,dt\right)=O(1).\]This is what we wanted.
+					</p>
+					<p>
+						Now we deal with $(0,1).$ To coerce our integral into $(1,\infty),$ we make the substitution $t\mapsto1/t$ with $dt/t=-dt/t,$ giving\[\int_0^1\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=\int_\infty^1\left(\frac{\Theta(1/t)-1}2\right)t^{-s/2}\cdot-\frac{dt}t.\]This rearranges to\[\int_1^\infty\left(\frac{\Theta(1/t)-1}2\right)t^{-s/2}\,\frac{dt}t.\]We are now ripe to use the functional equation of $\Theta,$ which tells us this is\[\int_1^\infty\left(\frac{\Theta(t)\sqrt t-1}2\right)t^{-s/2}\,\frac{dt}t.\]Coercing the $(1,\infty)$ integral out of this, we add and subtract $\int_1^\infty\sqrt t\cdot t^{-s/2}\,\frac{dt}t$ (which is safe over $\op{Re}(s) \gt 1$), giving\[\int_1^\infty\left(\frac{\Theta(t)-1}2\right)\sqrt t\cdot t^{-s/2}\,\frac{dt}t+\int_1^\infty\frac{\sqrt t}2\cdot t^{-s/2}\,\frac{dt}t+\int_1^\infty-\frac12\cdot t^{-s/2}\,\frac{dt}t.\]These integrals evaluate to\[I(1-s)+\frac12\cdot\frac{t^{(1-s)/2}}{(1-s)/2}\bigg|_1^\infty-\frac12\cdot\frac{t^{-s/2}}{(-s/2)}\bigg|_1^\infty.\]Thus, we have\[\int_0^1\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(1-s)-\frac1{1-s}-\frac1s.\]Note that $I(1-s)$ is legal for $\op{Re}(s) \gt 1$ because we showed $I$ is entire.
+					</p>
+					<p>
+						Bringing this all together, we see that, for $\op{Re}(s) \gt 1,$\[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(s)+I(1-s)-\frac1{1-s}-\frac1s.\]However, because $I$ is entire, this final expression is therefore an analytic continuation of $\xi$ to all of $\CC$ with simple poles at $0$ and $1.$ By extension, we can divide out by the $\pi^{-s/2}\Gamma(s/2)$ factor to give $\zeta$ its meromorphic continuation to all of $\CC.$ We close by saying the symmetry of $\xi$'s analytic continuation implies\[\xi(s)=\xi(1-s).\]Expanding this out to $\zeta$ gives it a functional equation. I think some care with $\Gamma$ is required to give $\zeta$'s functional equation in its usual presentation, but whatever.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

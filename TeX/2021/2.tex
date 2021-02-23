@@ -678,3 +678,210 @@ To finish, fix any $\alpha\in F[x],$ and set $\alpha=\pi^\nu\beta$ where $\nu:=\
 Here, $\pi\nmid\beta$ requires $r\ne0,$ so $r$ is a nonzero polynomial with degree smaller than $\deg\pi.$ But by minimality, this means $|r|=1,$ so the inequality
 \[|\beta|\le\max\{|q|\cdot|\pi|,|r|\}\]
 has $|r|=1$ as a unique maximum---$|q|\cdot|\pi|\le|\pi|<1.$ So because all triangles are isosceles, $|\beta|=1.$ This completes the proof.
+
+\subsubsection{February 18th}
+Today I learned an example of representation theory in the service of combinatorics, from Artin 10.6.5. The setup here is that we have $S_n$ act on $\CC^n$ by permuting coordinates, and we're interested in decomposing this representation into irreducible representations.
+
+We do this decomposition manually. We claim the following.
+\begin{proposition}
+    All $S_n$-invariant subspaces of $\CC^n$ are one of
+    \[\{0\},\qquad L:=\{\langle a,\ldots,a\rangle\in\CC^n\},\qquad P:=\{\langle a_1,\ldots,a_n\rangle:a_1+\cdots+a_n=0\},\qquad\CC^n.\]
+\end{proposition}
+Quickly, we check that these are actually $S_n$-invariant. Note that permuting the coordinates of $0$ or $\langle a,\ldots,a\rangle$ fixes the vector, so $\{0\}$ and $L$ are fixed. And if $\langle a_1,\ldots,a_n\rangle\in P,$ then for any $\sigma\in S_n,$ we have $\langle a_{\sigma1},\ldots,a_{\sigma n}\rangle$ satisfies
+\[a_{\sigma1}+\cdots+a_{\sigma n}=a_1+\cdots+a_n=0,\]
+so $\langle a_{\sigma1},\ldots,a_{\sigma n}\rangle\in P.$ Thus, $S_n$ also fixes $P.$ And of course $S_n$ fixes the entire space $\CC^n.$
+
+We now show that these are the only subspaces; fix $V$ to be $S_n$-invariant. We begin by getting rid of trivial cases. If the only vector is $0,$ then $V=\{0\}.$ If all vectors in $V$ have all equal coordinates, and $V$ has a nonzero vector, then we can scale the nonzero vector to force $V\supseteq\{\langle a,\ldots,a\rangle\in\CC^n.$ But then these are all the vectors with equal coordinates, so $V=L.$
+
+Otherwise, we have a vector $v\in S_n$ with not all coordinates equal; applying a suitable permutation in $S_n$ lets us assume that $v=\langle v_1,\ldots,v_n\rangle$ has $v_1\ne v_2.$ Transpositions are in $S_n,$ so we also know
+\[\hat v=\langle v_2,v_1,v_3,v_4,\ldots,v_n\rangle\in V.\]
+In particular,
+\[\frac{v-\hat v}{v_1-v_2}=\langle1,-1,0,0,\ldots,0\rangle\in V.\]
+So we have $e_1-e_2\in V,$ and applying cyclic shifts tells us $e_k-e_{k+1}\in V$ for $k\in[1,n).$ But this tells us $P\subseteq V$: taking $\langle a_1,\ldots,a_n\rangle\in P,$ we have
+\[\langle a_1,\ldots,a_n\rangle=\sum_{k=1}^{n-1}\left(\sum_{\ell=1}^ka_\ell\right)(e_k-e_{k+1}).\]
+Indeed, for $k<n$ we get the subtraction of two consecutive sums to give $a_ke_k,$ and at $k=n,$ we get $-(a_1+\cdots+a_{n-1})e_n,$ which is $a_n$ because $\langle a_1,\ldots,a_n\rangle\in P$ has coordinate sum $0.$ To finish, either $V\subseteq P,$ so $V=P,$ or $V$ has a vector $w$ outside of $P,$ in which case $P\cap\CC w=\{0\},$ and so
+\[\dim V\ge\dim(P\oplus\CC w)=\dim P+\dim\CC w=(n-1)+1=n.\]
+It follows $\dim V=n,$ so in fact $V=\CC^n.$ This completes the classification of $S_n$-invariant subspaces.
+
+From here it is quick to decompose this representation into irreducible representations. Using our $S_n$-invariant subspaces, we label our representation $\rho:S_n\to\op{GL}_n(\CC)$ and let $\rho_L$ and $\rho_P$ be its restrictions to $L$ and $P$ respectively. (These are well-defined because $L$ and $P$ are $S_n$-invariant.) Further, $\CC^n=L\oplus P$ (count dimensions), so we see
+\[\rho=\rho_L\oplus\rho_P.\]
+We claim that these are irreducible. Indeed, because of our classification of $S_n$-invariant subspaces, we see that the only $S_n$-invariant subspaces of $L$ is either $\{0\}$ or $L,$ neither of which give us a useful decomposition. The same holds for $P.$ Thus, the above is our decomposition into irreducibles.
+
+Let's use this to do some combinatorics. Because $\rho$ basically makes permutation matrices, we see that $g\in G$ makes $\op{trace}(\rho\sigma)$ equal to the number of $1$s along the diagonal, which is the number of elements fixed by $\sigma.$ That is, our character $\chi$ has
+\[\chi(\sigma)=|\{n:\sigma n=n\}|.\]
+Now, using our inner product, we see
+\[\langle\chi,\chi_L\rangle=1.\]
+But we can compute the inner product manually, for $\rho_L$ is the trivial representation: for any $\sigma,$ $\rho_L\sigma$ fixes everything in $L.$ So we write
+\[\langle\chi_L,\chi\rangle=\frac1{n!}\sum_{\sigma\in S_n}\chi(\sigma)\overline{\chi_L(\sigma)}=\frac1{n!}\sum_{\sigma\in S_n}\chi(\sigma).\]
+Using what we know about $\chi(\sigma),$ we see that this is implies
+\[\mathbb E[\text{number of fixed points}]=1.\]
+Of course, this follows quickly from linearity of expectation, but it's amusing that we got here from representation theory. Similarly, we can compute
+\[2=\langle\chi,\chi\rangle=\frac1{n!}\sum_{\sigma\in S_n}|\chi(\sigma)|.\]
+From this it follows
+\[\mathbb E\left[(\text{number of fixed points})^2\right]=2,\]
+which is less trivial to prove, so the ease by which representation theory got here is more impressive.
+
+We do remark that we can actually compute $\mathbb E\left[(\text{number of fixed points})^2\right]$ using linearity of expectation. For a random permutation, we (as usual), let $X_k$ by the event that $k$ is fixed by the permutation. We want
+\[\mathbb E\left[\left(\sum_{k=1}^nX_k\right)^2\right]=\mathbb E\left[\sum_{k=1}^nX_k^2+2\sum_{\substack{k,\ell=1\\k\ne\ell}}^nX_kX_\ell\right].\]
+To be clear, the trick here is to believe that this expansion is useful. From here, we use linearity of expectation tells us we want
+\[\sum_{k=1}^n\mathbb E\left[X_k^2\right]+2\sum_{\substack{k,\ell=1\\k\ne\ell}}^n\mathbb E[X_kX_\ell].\]
+Now, $X_k$ is either $0$ or $1,$ so $X_k^2=X_k,$ so $\mathbb E[X_k^2]=1/n.$ So
+\[\sum_{k=1}^n\mathbb E\left[X_k^2\right]=1.\]
+As for $X_kX_\ell,$ this is equal to $1$ if and only if both $k$ and $\ell$ are fixed, which occurs with probability $\frac1n\cdot\frac1{n-1},$ which is our $\mathbb E[X_kX_\ell].$ Thus,
+\[\sum_{\substack{k,\ell=1\\k\ne\ell}}^n\mathbb E[X_kX_\ell]=n(n-1)\cdot\frac1{n(n-1)}=1.\]
+Combining, we see
+\[\mathbb E\left[(\text{number of fixed points})^2\right]=1+1=2,\]
+as desired.
+
+Quickly, we say that the fact we have combinatorial proofs of those identities could actually be read backwards to prove the classification of $S_n$-invariant subspaces. Indeed, we claim $L$ and $P$ have no nontrivial $S_n$-invariant subspaces. Knowing $\langle\chi,\chi,\rangle=2$ tells us that $\rho$ is the direct sum of two irreducible representations; we can check $S_n$ is trivial on $L,$ so the trivial representation $\rho_L$ is one of the irreducibles, and
+\[\langle\chi,\chi_L\rangle=1\]
+tells us that there is only one other irreducible. Well, we also check that $P$ is $S_n$-invariant and that $\CC^n=L\oplus P,$ so we are forced to conclude
+\[\rho=\rho_L\oplus\rho_P\]
+is a decomposition into irreducibles. Thus, $L$ and $P$ cannot have any nontrivial $S_n$-invariant subspaces, which is what we wanted.
+
+\subsubsection{February 19th}
+Today I learned about the topology of profinite groups. A profinite group is the inverse limit of a family of finite groups; that is, for a directed set (proset where finite subsets are upper-bounded) $\mathcal I$ and a contravariant functor $F$ from $\mathcal I$ to $\texttt{Grp}$ with image only finite groups, we take
+\[G:=\varprojlim_{\mathcal I}F(\bullet)\]
+as our profinite group. In practice, we realize $G$ by writing $G_k:=F_k$ for $k\in\mathcal I$ and $\varphi_{\ell k}:G_\ell\to G_k$ for the morphism when $k\le\ell.$ Then we can define $G$ by coherent sequences of the $G_\bullet$ by writing
+\[G:=\left\{(g_\bullet)\in\prod_\mathcal IG_\bullet:k\le\ell\implies\varphi_{\ell k}(g_k)=g_\ell\right\}.\]
+Note the morphisms $\varphi_{\ell k}$ are best read from right to left. Our prototypical example of this construction is $\ZZ_p.$ We remark that it is a fact that this $G$ is non-empty when the $G_\bullet$ is non-empty, but this is nontrivial to prove.
+
+Now we provide a topology to this. The $G_\bullet$ are finite (nonempty) groups, so we give them the discrete topology. Then we note our coherent sequences lets us think
+\[G\subseteq\prod_\mathcal IG_\bullet,\]
+so we first give $\prod_\mathcal IG_\bullet$ the product (``finite gate'') topology, and second give $G$ the subspace topology from this.
+
+From this presentation, the topology on $G$ feels somewhat contrived, but it has some nice properties. Doing fact collection, we quickly remark that $G$ is Hausdorff because it is the subspace of a Hausdorff space, where $\prod_\mathcal IG_\bullet$ is Hausdorff because it is the product of Hausdorff spaces. Additionally, $G$ is closed in $\prod_\mathcal IG_\bullet$ because its complement is
+\[G^c=\left\{(g_\bullet)\in\prod_\mathcal IG_\bullet:\exists k,\ell,k\le\ell,\varphi_{\ell k}(g_k)\ne g_\ell\right\},\]
+which rearranges to
+\[G^c=\bigcup_k\bigcup_{k\le\ell}\left\{(g_\bullet)\in\prod_\mathcal IG_\bullet:\varphi_{\ell k}(g_k)\ne g_\ell\right\}.\]
+This last set is open because it is the union of various $\{(g_\bullet):\varphi_{\ell k}(g_k)\ne g_\ell\},$ a condition which only focuses on $G_k$ and $G_\ell.$ In particular, the $G_k$ and $G_\ell$ components of this set will be ugly---but open because their topology is discrete---while the other $G_\bullet$ components have all $G_\bullet.$ This means our sets are open in the product topology, so $G^c$ is open, so $G$ is closed.
+
+Finally, our final piece of fact collection is that $G$ is compact, for it is a closed set in a compact space, where $\prod_\mathcal IG_\bullet$ is compact by Tychonoff's theorem. I don't actually know a proof of either of these facts (being closed means compact or Tychonoff's), but it won't affect my sleep schedule.
+
+Anyways, what's really nice about profinite groups is that we have an equivalent topological definition: a topological group is profinite if and only if it is compact and totally disconnected. As usual, think $\mathbb Z_p.$ We recall that a space is connected if and only if it cannot be decomposed into two disjoint open subsets, and totally disconnected means that points are the largest connected subspaces.
+
+Currently I know only one direction of this proof currently, where $G$ being profinite implies totally disconnected. Our definition of totally disconnected focuses on open sets, so it suffices to look only at the connected component of the identity $e\in G.$ Name this component $G^\circ,$ and we would like to show that $G^\circ=\{e\}.$
+
+Quickly, we note it is generally true that $G^\circ$ is a subgroup of $G,$ in any topological group. Indeed, $g\in G^\circ$ gives $g^{-1}G^\circ$ connected and containing $e,$ so
+\[g^{-1}\in g^{-1}G^\circ\subseteq G^\circ,\]
+so $G^\circ$ is closed under inverses. Doing the same for $gG^\circ$ tells us $G^\circ$ is closed under products as well, so $G^\circ$ is indeed a subgroup.
+
+Returning to the proof, the key trick here is to look at open subgroups. In particular, open subgroups of $G$ we expect to have ``substance,'' in that because multiplication is continuous, we expect to be able to ``wiggle'' $e$ around inside of an open subgroup. So intuitively, we expect $G^\circ$ to be inside every open subgroup. To show this, we use the fact $G^\circ$ is connected: fix any open subgroup $U,$ and look at
+\[V=\bigcup_{x\in G^\circ\setminus U}x(G^\circ\cap U).\]
+Note $V$ is open in $G^\circ$ because $G^\circ\cap U$ is open in $G^\circ$; in fact $V\subseteq G^\circ$ because $G^\circ$ is a subgroup. Because $e\in G^\circ\cap U,$ we see $G^\circ\setminus U\subseteq V,$ so $G^\circ$ splits into open sets $G^\circ\cap U$ and $V.$ And finally, $G^\circ\cap U$ and $V$ are disjoint because if $gu\in V$ with $u\in G^\circ\cap U$ also has $gu\in G^\circ\cap U,$ then $g\in G^\circ\cap U.$
+
+Finishing up here, $G^\circ\cap U$ and $V$ decompose $G^\circ$ into disjoint open sets, so one of them must be empty. Certainly $e\in U,$ so $V$ must in fact be empty. But this requires $G^\circ\setminus U$ to be empty, so indeed $G^\circ\subseteq U.$
+
+Now we know $G^\circ$ to be quite small, inside of every open subgroup of $G.$ This is not quite good enough to deduce that $G^\circ=\{e\}$---we haven't even used the fact $G$ is profinite yet! But we can finish now. Fix any $g\in G\setminus\{e\},$ which we label $(g_\bullet)$ to get us thinking profinitely. We want to know $g\not\in G^\circ,$ which we can show $x$ not in some open subgroup of $G.$
+
+Well, $(g_\bullet)\ne e$ cannot be the identity on all coordinates, so fix $g_k\ne e_k\in G_k.$ Then we look at
+\[U=\{(x_\bullet)\in G:x_k=e_k\}.\]
+Note $U$ is open, for all but the $k$th coordinate is $G_\bullet,$ and $\{e_k\}$ is an open set in $G_k.$ Additionally, being the identity on one coordinate is a property closed under inversion and multiplication, so $U$ is also a subgroup. Thus, $G^\circ\subseteq U,$ but $U$ doe not contain $g,$ so $G^\circ$ doesn't either. This completes the proof.
+
+\subsubsection{February 20th}
+Today I learned about the Mellin transformation, from \href{http://dsp-book.narod.ru/TAH/ch11.pdf}{here} mostly. We take the following definition.
+\begin{definition}
+    For $f:\CC\to\CC,$ the Mellin transform of $f$ is defined as
+    \[\{\mathcal Mf(t)\}(s):=\int_{\RR^+} f(t)t^{s-1}\,dt.\]
+\end{definition}
+\href{https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/}{Terrence Tao} mentions this is like a ``multiplicative Fourier transform,'' which we can already see in the $\RR^+.$ Let's attempt to make this rigorous. For clarity, we define the Fourier transform by
+\[\{\mathcal Ff(t)\}(s):=\int_\RR f(t)e^{-2\pi its}\,dt.\]
+To translate from $\mathcal M$ to $\mathcal F,$ we begin by applying the variable change $t\mapsto e^{-u}$ with $dt\mapsto-e^{-u}\,du.$ This gives
+\[\{\mathcal Mf(t)\}(s)=\int_\infty^{-\infty}f\left(e^{-u}\right)e^{-us}e^u\cdot-e^{-u}\,du=\int_{-\infty}^\infty f\left(e^{-u}\right)e^{-us}\,dt.\]
+This is almost the Fourier transform (actually this is the ``two-sided Laplace transform''). To finish, we fix $s=a+2\pi ib,$ which implies
+\[\{\mathcal Mf(t)\}(s)=\int_{-\infty}^\infty\left(f\left(e^{-u}\right)e^{-ua}\right)e^{-2\pi iub}\,du=\left\{\mathcal Ff\left(e^{-u}\right)e^{-ua}\right\}(b).\]
+I agree---this is a bit ugly. Regardless, I think we can see the multiplicativity hiding in the $e^{-u}.$
+
+However, this relationship is somewhat useful. For example, we get an inversion formula for free from Fourier inversion. In particular, we recall
+\[f(t)=\int_\RR\{\mathcal Ff(t)\}(s)e^{2\pi its}\,dt,\]
+which when applied to $\{\mathcal Mf(t)\}$ gives
+\[f\left(e^{-u}\right)e^{-ua}=\int_{-\infty}^\infty\{\mathcal Mf(t)\}(s)e^{2\pi iub}\,db.\]
+Rearranging, this is
+\[f\left(e^{-u}\right)=\int_{-\infty}^\infty\{\mathcal Mf(t)\}(s)e^{u(a+2\pi ib)}\,db.\]
+We would like to integrate over $s=a+2\pi ib,$ but some care is required because we are integrating $db.$ Interpreting this as a variable change, we see
+\[f\left(e^{-u}\right)=\frac1{2\pi i}\int_{a-i\infty}^{a+i\infty}\{\mathcal Mf(t)\}(s)e^{us}\,ds.\]
+At this point, the $t=e^{-u}$ substitution is no longer helpful, so we rewrite this as
+\[f(t)=\frac1{2\pi i}\int_{a-i\infty}^{a+i\infty}\{\mathcal Mf(t)\}(s)t^{-s}\,ds.\]
+This is our inversion formula. Note the introduction of complex numbers. Also note that we are ignoring convergence issues, as usual.
+
+I guess I should actually do an example. I think the example I'm supposed to care about is
+\[\left\{\mathcal Me^{-t}\right\}(s)=\int_0^\infty e^{-t}t^{s-1}\,dt.\]
+However, this is exactly $\Gamma(s),$ which is nice. In general, if we do $\left\{\mathcal Me^{-pt}\right\}$ for $p>0,$ then we get
+\[\left\{\mathcal Me^{-pt}\right\}(s)=\int_0^\infty t^{s-1}e^{-pt}\,dt.\]
+To make $\Gamma$ appear now, we have to do a variable transformation $pt\mapsto t.$ This gives
+\[\left\{\mathcal Me^{-pt}\right\}(s)=\int_0^\infty\frac{t^{s-1}}{p^{s-1}}e^{-t}\,\frac{dt}p=\frac{\Gamma(s)}{p^s}.\]
+I guess this feels multiplicative, in that taking exponents amounts to a multiplication factor.
+
+In other news, happy birthday to me I guess.
+
+\subsubsection{February 21st}
+Today I learned the proof of the functional equation for the Riemann $\zeta$ function, from \href{http://math.mit.edu/~poonen/786/notes.pdf}{here}. We recall the definition of the ``completed'' Riemann $\zeta$ function, named
+\[\xi(s):=\pi^{-s/2}\Gamma(s/2)\zeta(s),\]
+where the $\Gamma$ function is defined as usual by
+\[\Gamma(s):=\int_0^\infty e^{-t}t^s\,\frac{dt}t.\]
+We note that the above definition only works for $\op{Re}(s)>0,$ but the we have a reflection formula we proved a while ago, exhibiting an analytic continuation of $\Gamma$ to all of $\CC$ with simple poles at $-1,-2,\ldots.$ Anyways, we show the following.
+\begin{theorem}
+    We have that $\xi(s)=\xi(1-s).$
+\end{theorem}
+
+I'm not sure where the completion of $\zeta$ comes from, but we can motivate the rest of the argument from here. We use the definition
+\[\zeta(s)=\sum_{n=1}^\infty\frac1{n^s},\]
+which holes for $\op{Re}(s)>1,$ and we will gradually continue this to $\CC$ as is possible. A single term $n^{-s}$ in the sum makes
+\[\pi^{-s/2}\Gamma(s/2)n^{-s}\]
+in $\xi.$ (This still holds for $\op{Re}(s)>1$ because we've merely factored into the sum.) Simplifying, this term is
+\[\left(\pi n^2\right)^{-s/2}\int_0^\infty e^{-t}t^{s/2}\,\frac{dt}t.\]
+Taking $t\mapsto t\pi n^2$ so that $dt/t\mapsto dt/t,$ this becomes
+\[\int_0^\infty e^{-\pi n^2t}t^{s/2}\,\frac{dt}t.\]
+Summing over all $n,$ we see that
+\[\xi(s)=\sum_{n=1}^\infty\int_0^\infty e^{-\pi n^2t}t^{s/2}\,\frac{dt}t.\]
+Note that we are still working over $\op{Re}(s)>1.$ We would like to interchange the sum and integral, which we do by testing absolute convergence (via Fubini's). Indeed, we know that the integral term is $\pi^{-s/2}\Gamma(s/2)n^{-s}$ because it's just from $\xi,$ and $\xi$'s sum converges absolutely for $\op{Re}(s)>1.$ Explicitly,
+\[\sum_{n=1}^\infty\left|\frac1{n^s}\right|=\sum_{n=1}^\infty\frac1{n^{\op{Re}(s)}},\]
+which converges for $\op{Re}(s)>1$ by the $p$-series test or something.
+
+Anyways, we get to say
+\[\xi(s)=\int_0^\infty\left(\sum_{n=1}^\infty e^{-\pi n^2t}\right)t^{s/2}\,\frac{dt}t\]
+for $\op{Re}(s)>1.$ It might appear like we've made no progress, but in fact this integral is more malleable than $\xi$ because the sum $\sum e^{-\pi n^2t}$ is much better-behaved.
+
+In particular, fix
+\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}\]
+so that $\frac{\Theta(t)-1}2=\sum e^{-\pi n^2t}.$ This $\Theta$ can be understood by the Poisson summation formula to get a functional equation for $\Theta.$ What's nice here is that $f(x)=e^{-\pi x^2}$ has its own Fourier transform: $\hat f=f.$ (We do not show this here, but a proof exists \href{https://math.stackexchange.com/questions/270566/how-to-calculate-the-fourier-transform-of-a-gaussian-function}{here}.) So if we let $f_t(x)=e^{-\pi x^2t}=f(x\sqrt t),$ then
+\[\hat f_t(s)=\int_\RR f(x\sqrt t)e^{-2\pi ixs}\,dx=\int_\RR f(x)e^{-2\pi ix(s/\sqrt t)}\,\frac{dx}{\sqrt t}=\frac1{\sqrt t}\hat f\left(\frac s{\sqrt t}\right).\]
+Thus, $\hat f_t(s)=\frac1{\sqrt t}f\left(\frac x{\sqrt t}\right)=\frac1{\sqrt t}e^{-\pi x^2/t}.$ Now, the Poisson summation formula tells us
+\[\sum_{n\in\ZZ}f_t(n)=\sum_{n\in\ZZ}\hat f_t(n),\]
+which expands into
+\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}=\sum_{n\in\ZZ}\frac1{\sqrt t}e^{-\pi n^2/t}=\frac1{\sqrt t}\Theta\left(\frac1t\right).\]
+This is our functional equation for $\Theta.$ We remark that, with more work, one can use this to show $\Theta$ is a modular form with ``weight $1/2$.''
+
+Now we return to $\xi.$ For $\op{Re}(s)>1,$ we know
+\[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t.\]
+We would like to extend this integral to all of $\CC,$ but the integral explodes with $s=1,$ so it's not obvious how to do this. (In fact, $\xi$ explodes at $s=0$ and $s=1,$ so some care is required.) To proceed, the trick is to split the integral to $(0,1)$ and $(1,\infty).$ On $(1,\infty),$ the integral is well-behaved over all $\CC,$ and $(0,1),$ we can use the functional equation we just established to turn the integral into the one over $(1,\infty).$
+
+We make this explicit. Over $(1,\infty),$ we claim that
+\[I(s):=\int_1^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t\]
+defines an entire function on $\CC.$ It suffices to show that this converges everywhere, which holds because, for $t>0,$
+\[\frac{\Theta(t)-2}2=\sum_{n=1}^\infty e^{-\pi n^2t}<\sum_{n=1}^\infty\left(e^{-\pi t}\right)^n=\frac{e^{-\pi t}}{1-e^{-\pi t}}<e^{-\pi t}.\]
+Thus,
+\[|I(s)|<\int_1^\infty e^{-\pi t}t^{\op{Re}(s)/2-1}\,dt.\]
+Now, $t^\bullet=O\left(e^t\right)$ for $t>1$ (say, by L'Hospital's rule on $t^\bullet\le t^{\ceil{\bullet}}$), so
+\[|I(s)|=O\left(\int_1^\infty e^{(1-\pi)t}\,dt\right)=O(1).\]
+This is what we wanted.
+
+Now we deal with $(0,1).$ To coerce our integral into $(1,\infty),$ we make the substitution $t\mapsto1/t$ with $dt/t=-dt/t,$ giving
+\[\int_0^1\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=\int_\infty^1\left(\frac{\Theta(1/t)-1}2\right)t^{-s/2}\cdot-\frac{dt}t.\]
+This rearranges to
+\[\int_1^\infty\left(\frac{\Theta(1/t)-1}2\right)t^{-s/2}\,\frac{dt}t.\]
+We are now ripe to use the functional equation of $\Theta,$ which tells us this is
+\[\int_1^\infty\left(\frac{\Theta(t)\sqrt t-1}2\right)t^{-s/2}\,\frac{dt}t.\]
+Coercing the $(1,\infty)$ integral out of this, we add and subtract $\int_1^\infty\sqrt t\cdot t^{-s/2}\,\frac{dt}t$ (which is safe over $\op{Re}(s)>1$), giving
+\[\int_1^\infty\left(\frac{\Theta(t)-1}2\right)\sqrt t\cdot t^{-s/2}\,\frac{dt}t+\int_1^\infty\frac{\sqrt t}2\cdot t^{-s/2}\,\frac{dt}t+\int_1^\infty-\frac12\cdot t^{-s/2}\,\frac{dt}t.\]
+These integrals evaluate to
+\[I(1-s)+\frac12\cdot\frac{t^{(1-s)/2}}{(1-s)/2}\bigg|_1^\infty-\frac12\cdot\frac{t^{-s/2}}{(-s/2)}\bigg|_1^\infty.\]
+Thus, we have
+\[\int_0^1\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(1-s)-\frac1{1-s}-\frac1s.\]
+Note that $I(1-s)$ is legal for $\op{Re}(s)>1$ because we showed $I$ is entire.
+
+Bringing this all together, we see that, for $\op{Re}(s)>1,$
+\[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(s)+I(1-s)-\frac1{1-s}-\frac1s.\]
+However, because $I$ is entire, this final expression is therefore an analytic continuation of $\xi$ to all of $\CC$ with simple poles at $0$ and $1.$ By extension, we can divide out by the $\pi^{-s/2}\Gamma(s/2)$ factor to give $\zeta$ its meromorphic continuation to all of $\CC.$ We close by saying the symmetry of $\xi$'s analytic continuation implies
+\[\xi(s)=\xi(1-s).\]
+Expanding this out to $\zeta$ gives it a functional equation. I think some care with $\Gamma$ is required to give $\zeta$'s functional equation in its usual presentation, but whatever.

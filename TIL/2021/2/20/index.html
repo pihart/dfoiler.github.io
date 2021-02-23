@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 20th
+					</h2>
+					<p>
+						Today I learned about the Mellin transformation, from
+						<a href="http://dsp-book.narod.ru/TAH/ch11.pdf">
+							here
+						</a>
+						mostly. We take the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							For $f:\CC\to\CC,$ the Mellin transform of $f$ is defined as    \[\{\mathcal Mf(t)\}(s):=\int_{\RR^+} f(t)t^{s-1}\,dt.\]
+						</p>
+					</div>
+					<p>
+						<a href="https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/">
+							Terrence Tao
+						</a>
+						mentions this is like a "multiplicative Fourier transform,'' which we can already see in the $\RR^+.$ Let's attempt to make this rigorous. For clarity, we define the Fourier transform by\[\{\mathcal Ff(t)\}(s):=\int_\RR f(t)e^{-2\pi its}\,dt.\]To translate from $\mathcal M$ to $\mathcal F,$ we begin by applying the variable change $t\mapsto e^{-u}$ with $dt\mapsto-e^{-u}\,du.$ This gives\[\{\mathcal Mf(t)\}(s)=\int_\infty^{-\infty}f\left(e^{-u}\right)e^{-us}e^u\cdot-e^{-u}\,du=\int_{-\infty}^\infty f\left(e^{-u}\right)e^{-us}\,dt.\]This is almost the Fourier transform (actually this is the "two-sided Laplace transform''). To finish, we fix $s=a+2\pi ib,$ which implies\[\{\mathcal Mf(t)\}(s)=\int_{-\infty}^\infty\left(f\left(e^{-u}\right)e^{-ua}\right)e^{-2\pi iub}\,du=\left\{\mathcal Ff\left(e^{-u}\right)e^{-ua}\right\}(b).\]I agree&mdash;this is a bit ugly. Regardless, I think we can see the multiplicativity hiding in the $e^{-u}.$
+					</p>
+					<p>
+						However, this relationship is somewhat useful. For example, we get an inversion formula for free from Fourier inversion. In particular, we recall\[f(t)=\int_\RR\{\mathcal Ff(t)\}(s)e^{2\pi its}\,dt,\]which when applied to $\{\mathcal Mf(t)\}$ gives\[f\left(e^{-u}\right)e^{-ua}=\int_{-\infty}^\infty\{\mathcal Mf(t)\}(s)e^{2\pi iub}\,db.\]Rearranging, this is\[f\left(e^{-u}\right)=\int_{-\infty}^\infty\{\mathcal Mf(t)\}(s)e^{u(a+2\pi ib)}\,db.\]We would like to integrate over $s=a+2\pi ib,$ but some care is required because we are integrating $db.$ Interpreting this as a variable change, we see\[f\left(e^{-u}\right)=\frac1{2\pi i}\int_{a-i\infty}^{a+i\infty}\{\mathcal Mf(t)\}(s)e^{us}\,ds.\]At this point, the $t=e^{-u}$ substitution is no longer helpful, so we rewrite this as\[f(t)=\frac1{2\pi i}\int_{a-i\infty}^{a+i\infty}\{\mathcal Mf(t)\}(s)t^{-s}\,ds.\]This is our inversion formula. Note the introduction of complex numbers. Also note that we are ignoring convergence issues, as usual.
+					</p>
+					<p>
+						I guess I should actually do an example. I think the example I'm supposed to care about is\[\left\{\mathcal Me^{-t}\right\}(s)=\int_0^\infty e^{-t}t^{s-1}\,dt.\]However, this is exactly $\Gamma(s),$ which is nice. In general, if we do $\left\{\mathcal Me^{-pt}\right\}$ for $p \gt 0,$ then we get\[\left\{\mathcal Me^{-pt}\right\}(s)=\int_0^\infty t^{s-1}e^{-pt}\,dt.\]To make $\Gamma$ appear now, we have to do a variable transformation $pt\mapsto t.$ This gives\[\left\{\mathcal Me^{-pt}\right\}(s)=\int_0^\infty\frac{t^{s-1}}{p^{s-1}}e^{-t}\,\frac{dt}p=\frac{\Gamma(s)}{p^s}.\]I guess this feels multiplicative, in that taking exponents amounts to a multiplication factor.
+					</p>
+					<p>
+						In other news, happy birthday to me I guess.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

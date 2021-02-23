@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 19th
+					</h2>
+					<p>
+						Today I learned about the topology of profinite groups. A profinite group is the inverse limit of a family of finite groups; that is, for a directed set (proset where finite subsets are upper-bounded) $\mathcal I$ and a contravariant functor $F$ from $\mathcal I$ to $\texttt{Grp}$ with image only finite groups, we take\[G:=\varprojlim_{\mathcal I}F(\bullet)\]as our profinite group. In practice, we realize $G$ by writing $G_k:=F_k$ for $k\in\mathcal I$ and $\varphi_{\ell k}:G_\ell\to G_k$ for the morphism when $k\le\ell.$ Then we can define $G$ by coherent sequences of the $G_\bullet$ by writing\[G:=\left\{(g_\bullet)\in\prod_\mathcal IG_\bullet:k\le\ell\implies\varphi_{\ell k}(g_k)=g_\ell\right\}.\]Note the morphisms $\varphi_{\ell k}$ are best read from right to left. Our prototypical example of this construction is $\ZZ_p.$ We remark that it is a fact that this $G$ is non-empty when the $G_\bullet$ is non-empty, but this is nontrivial to prove.
+					</p>
+					<p>
+						Now we provide a topology to this. The $G_\bullet$ are finite (nonempty) groups, so we give them the discrete topology. Then we note our coherent sequences lets us think\[G\subseteq\prod_\mathcal IG_\bullet,\]so we first give $\prod_\mathcal IG_\bullet$ the product ("finite gate'') topology, and second give $G$ the subspace topology from this.
+					</p>
+					<p>
+						From this presentation, the topology on $G$ feels somewhat contrived, but it has some nice properties. Doing fact collection, we quickly remark that $G$ is Hausdorff because it is the subspace of a Hausdorff space, where $\prod_\mathcal IG_\bullet$ is Hausdorff because it is the product of Hausdorff spaces. Additionally, $G$ is closed in $\prod_\mathcal IG_\bullet$ because its complement is\[G^c=\left\{(g_\bullet)\in\prod_\mathcal IG_\bullet:\exists k,\ell,k\le\ell,\varphi_{\ell k}(g_k)\ne g_\ell\right\},\]which rearranges to\[G^c=\bigcup_k\bigcup_{k\le\ell}\left\{(g_\bullet)\in\prod_\mathcal IG_\bullet:\varphi_{\ell k}(g_k)\ne g_\ell\right\}.\]This last set is open because it is the union of various $\{(g_\bullet):\varphi_{\ell k}(g_k)\ne g_\ell\},$ a condition which only focuses on $G_k$ and $G_\ell.$ In particular, the $G_k$ and $G_\ell$ components of this set will be ugly&mdash;but open because their topology is discrete&mdash;while the other $G_\bullet$ components have all $G_\bullet.$ This means our sets are open in the product topology, so $G^c$ is open, so $G$ is closed.
+					</p>
+					<p>
+						Finally, our final piece of fact collection is that $G$ is compact, for it is a closed set in a compact space, where $\prod_\mathcal IG_\bullet$ is compact by Tychonoff's theorem. I don't actually know a proof of either of these facts (being closed means compact or Tychonoff's), but it won't affect my sleep schedule.
+					</p>
+					<p>
+						Anyways, what's really nice about profinite groups is that we have an equivalent topological definition: a topological group is profinite if and only if it is compact and totally disconnected. As usual, think $\mathbb Z_p.$ We recall that a space is connected if and only if it cannot be decomposed into two disjoint open subsets, and totally disconnected means that points are the largest connected subspaces.
+					</p>
+					<p>
+						Currently I know only one direction of this proof currently, where $G$ being profinite implies totally disconnected. Our definition of totally disconnected focuses on open sets, so it suffices to look only at the connected component of the identity $e\in G.$ Name this component $G^\circ,$ and we would like to show that $G^\circ=\{e\}.$
+					</p>
+					<p>
+						Quickly, we note it is generally true that $G^\circ$ is a subgroup of $G,$ in any topological group. Indeed, $g\in G^\circ$ gives $g^{-1}G^\circ$ connected and containing $e,$ so\[g^{-1}\in g^{-1}G^\circ\subseteq G^\circ,\]so $G^\circ$ is closed under inverses. Doing the same for $gG^\circ$ tells us $G^\circ$ is closed under products as well, so $G^\circ$ is indeed a subgroup.
+					</p>
+					<p>
+						Returning to the proof, the key trick here is to look at open subgroups. In particular, open subgroups of $G$ we expect to have "substance,'' in that because multiplication is continuous, we expect to be able to "wiggle'' $e$ around inside of an open subgroup. So intuitively, we expect $G^\circ$ to be inside every open subgroup. To show this, we use the fact $G^\circ$ is connected: fix any open subgroup $U,$ and look at\[V=\bigcup_{x\in G^\circ\setminus U}x(G^\circ\cap U).\]Note $V$ is open in $G^\circ$ because $G^\circ\cap U$ is open in $G^\circ$; in fact $V\subseteq G^\circ$ because $G^\circ$ is a subgroup. Because $e\in G^\circ\cap U,$ we see $G^\circ\setminus U\subseteq V,$ so $G^\circ$ splits into open sets $G^\circ\cap U$ and $V.$ And finally, $G^\circ\cap U$ and $V$ are disjoint because if $gu\in V$ with $u\in G^\circ\cap U$ also has $gu\in G^\circ\cap U,$ then $g\in G^\circ\cap U.$
+					</p>
+					<p>
+						Finishing up here, $G^\circ\cap U$ and $V$ decompose $G^\circ$ into disjoint open sets, so one of them must be empty. Certainly $e\in U,$ so $V$ must in fact be empty. But this requires $G^\circ\setminus U$ to be empty, so indeed $G^\circ\subseteq U.$
+					</p>
+					<p>
+						Now we know $G^\circ$ to be quite small, inside of every open subgroup of $G.$ This is not quite good enough to deduce that $G^\circ=\{e\}$&mdash;we haven't even used the fact $G$ is profinite yet! But we can finish now. Fix any $g\in G\setminus\{e\},$ which we label $(g_\bullet)$ to get us thinking profinitely. We want to know $g\not\in G^\circ,$ which we can show $x$ not in some open subgroup of $G.$
+					</p>
+					<p>
+						Well, $(g_\bullet)\ne e$ cannot be the identity on all coordinates, so fix $g_k\ne e_k\in G_k.$ Then we look at\[U=\{(x_\bullet)\in G:x_k=e_k\}.\]Note $U$ is open, for all but the $k$th coordinate is $G_\bullet,$ and $\{e_k\}$ is an open set in $G_k.$ Additionally, being the identity on one coordinate is a property closed under inversion and multiplication, so $U$ is also a subgroup. Thus, $G^\circ\subseteq U,$ but $U$ doe not contain $g,$ so $G^\circ$ doesn't either. This completes the proof.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>
