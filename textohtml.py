@@ -104,7 +104,7 @@ def process_img(tex):
 		tex += parts[i][parts[i].index('\\end{center}')+len('\\end{center}'):]
 	# Clean
 	for filename in os.listdir():
-		if filename.split('.')[-1] in ['asy','tex','aux','dvi','log','ps','pdf']:
+		if filename.split('.')[-1] in ['asy','aux','dvi','log','tex','ps','pdf']:
 			os.remove(filename)
 	return tex
 
@@ -146,6 +146,57 @@ def get_blurb(tex):
 	blurb = blurb[:end].strip()
 	return blurb
 
+def process_line(html, line, i, first_item, last_tag):
+	to_add = ''
+	close = (last_tag != '')
+	closing_tag = last_tag
+	# Two consecutive new lines implies new paragraph
+	if line == '':
+		to_add += indent(i)+'<p>'
+		last_tag = 'p'
+	# Various list commands
+	# We start the first item
+	elif '\\begin{itemize}' in line:
+		to_add += indent(i)+'<ul>\n'+indent(i+1)+'<li>'
+		i += 1
+		first_item = True
+		last_tag = ''
+	elif '\\end{itemize}' in line:
+		i -= 1
+		to_add += indent(i)+'</ul>\n'
+		last_tag = ''
+	elif '\\begin{enumerate}' in line:
+		to_add += indent(i)+'<ol>\n'+indent(i+1)+'<li>'
+		i += 1
+		first_item = True
+		last_tag = ''
+	elif '\\end{enumerate}' in line:
+		i -= 1
+		to_add += indent(i)+'</ol>\n'
+		last_tag = ''
+	elif '\\item' in line:
+		line = line.replace('\\item','')
+		if not first_item:
+			to_add += indent(i)+'<li>'
+		first_item = False
+		to_add += line
+		last_tag = 'li'
+	# Image marker
+	elif line[0] == '\00':
+		filename = line[1:]
+		to_add += indent(i)+'<img src="'+filename+'">\n'
+		last_tag = ''
+	# Catch-all
+	else:
+		close = False
+		if last_tag == '':
+			to_add += indent(i)+'<p>'
+			last_tag = 'p'
+		to_add += line
+	if close:
+		to_add = '</'+closing_tag+'>\n'+to_add
+	return html+to_add, i, first_item, last_tag
+
 def to_html(tex):
 	# This is not general-purpose and will not work with your TeX
 	# Preprocess
@@ -159,6 +210,9 @@ def to_html(tex):
 	month_html = indent(0)+'<div class="entry">\n'
 	# We work line-by-line
 	first_item = False
+	# Indents
+	i = 1
+	last_tag = ''
 	for line in tex:
 		# A starting line
 		if '\\subsubsection' in line:
@@ -171,36 +225,12 @@ def to_html(tex):
 			day = day[:-len('th')]
 			month_html += indent(1)+'<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
 			# Go ahead and start the first paragraph
-			day_html += indent(1)+'<p>'
-		# Two consecutive new lines implies new paragraph
-		elif line == '':
-			day_html += '</p>\n'+indent(1)+'<p>'
-		# Various list commands
-		# We start the first item
-		elif '\\begin{itemize}' in line:
-			day_html += indent(1)+'</p>\n'+indent(1)+'<ul>\n'+indent(2)+'<li>'
-			first_item = True
-		elif '\\end{itemize}' in line:
-			day_html += '</li>\n'+indent(1)+'</ul>\n'+indent(1)+'<p>'
-		elif '\\begin{enumerate}' in line:
-			day_html += indent(1)+'</p>\n'+indent(1)+'<ol>\n'+indent(2)+'<li>'
-			first_item = True
-		elif '\\end{enumerate}' in line:
-			day_html += '</li>\n'+indent(1)+'</ol>\n'+indent(1)+'<p>'
-		elif '\\item' in line:
-			line = line.replace('\\item','')
-			if not first_item:
-				day_html += '</li>\n'+indent(2)+'<li>'
-			first_item = False
-			day_html += line
-		# Image marker
-		elif line[0] == '\00':
-			filename = line[1:]
-			day_html += '</p>\n'+indent(1)+'<img src="'+filename+'">\n'+indent(1)+'<p>'
-		# Catch-all
 		else:
-			day_html += line
-	day_html += '</p>\n'+indent(0)+'</div>\n' + end_html(4)
+			day_html, i, first_item, last_tag = \
+				process_line(day_html, line, i, first_item, last_tag)
+	if last_tag:
+		day_html += '</'+last_tag+'>\n'
+	day_html += indent(0)+'</div>\n' + end_html(4)
 	month_html += indent(1)+'<p>'+blurb+'\n'
 	month_html += indent(1)+'<a href="'+day+'/" class="link">(continue reading...)</a></p>\n'
 	month_html += indent(0)+'</div>\n'
@@ -226,7 +256,7 @@ total_html += archive.format(indent(1))
 # Some padding
 total_html += indent(1)+'<div style="height: 6pt;"></div>\n'
 total_html += indent(0)+'</div>\n'
-total_html += indent(0)+'<div style="height: 6pt;"></div>\n'
+total_html += indent(0)+'<div style="height: 7pt;"></div>\n'
 total_html += end_html(1)
 # Make the total file
 f = open('TIL/index.html','w')

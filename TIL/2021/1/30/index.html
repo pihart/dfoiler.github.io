@@ -33,7 +33,7 @@
 				<p class="mobilenav"><a href="../" class="link">(back up to January)</a></p>
 				<div class="entry">
 					<h2>January 30th</h2>
-					<p>Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute\[(a_\varphi)_n=\begin{cases}    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\    0 & \text{otherwise}.\end{cases}\]Now, we do the casework on $\varphi$ halts.					</p>
+					<p>Today I learned some stuff about the computability of convergence. To start, we note that given a computable sequence $(a_n)_{n=0}^\infty,$ it is not in general computable if\[\sum_{n=0}^\infty a_n,\quad\text{or}\quad\prod_{n=0}^\infty a_n\]converge. Indeed, we can reduce this quickly to halting. Given a program $\varphi,$ it is possible to compute\[(a_\varphi)_n=\begin{cases}    2 & \text{if }\varphi\text{ halts in }n\text{ steps}, \\    0 & \text{otherwise}.\end{cases}\]Now, we do the casework on $\varphi$ halts.</p>
 					<ul>
 						<li>     If $\varphi$ halts in $N$ steps, then the infinite sum is $0$ after $N,$ so the sum is finite and converges. Similarly, this would mean that there is a $0$ in the infinite product, so the infinite product would converge to $0.$</li>
 						<li>     If $\varphi$ never halts, then the infinite sum sums $2$ for each $n,$ which of course diverges (say, by divergence test). And the infinite product is multiplying $2$ for each $n,$ which also diverges.</li>
