@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 22nd
+					</h2>
+					<p>
+						Today I learned about the $p$-adic Gaussian from
+						<a href="https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/">
+							Terrence Tao
+						</a>
+						. I think this is an instance of Pontryagin duality, but I don't know enough theory to say for sure. Anyways, the main character in our story is (fittingly) the character $\QQ_p\to\CC$ by\[e_p(x)=e^{2\pi i\{x\}_p},\]where $\{x\}_p$ is the $p$-adic fractional part of $x\in\QQ_p.$ Because $\QQ_p$ is locally compact (and abelian), we get an additive Haar measure, and we normalize it so that $\int_{\ZZ_p}dx_p=1.$ From this character we get a Fourier transform, which we denote\[\hat f(s)=\int_{\QQ_p}f(x_p)e_p(-sx_p)\,dx_p.\]Note that we're assuming stuff that I can't prove currently.
+					</p>
+					<p>
+						We're trying to build the machinery we had in Riemann's proof of the functional equation of $\zeta.$ We have an $\exp$ in $e_p,$ and now we would like to build a Gaussian $G_p$ like $G_\infty=e^{-\pi x^2}$ for $\RR.$ This function should be its own Fourier transform, so\[G_p(s)=\int_{\QQ_p}G_p(x_p)e_p(-sx_p)\,dx_p.\]We claim that the indicator function on $\ZZ_p$ works.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Let $G_p:\QQ_p\to\RR$ be $1$ on inputs in $\ZZ_p$ and $0$ otherwise. Then    \[G_p(s)=\int_{\QQ_p}G_p(x_p)e_p(-sx_p)\,dx_p.\]
+						</p>
+					</div>
+					<p>
+						We're going to be obnoxiously careful because integration on $\QQ_p$ is somewhat new to me. We focus on the integral. Note $x_p\in\QQ_p\setminus\ZZ_p$ gives $G_p(x_p)=0,$ vanishing entirely, so we're left integrating $x_p\in\ZZ_p,$ which looks like\[G_p(s)\stackrel?=\int_{\ZZ_p}e_p(-sx_p)\,dx_p.\]Because we have the words Fourier and exponential and indicator floating around, we hope to turn this into a sum of roots of unity/discrete Fourier transform. In particular, we need to make the integral better-behaved. Fix $s=p^{-\nu}t$ with $t\in\ZZ_p\setminus p\ZZ_p,$ and we split up $\ZZ_p$ by$\pmod{p^\nu}.$ (These sets countably and disjointly partition $\ZZ_p.$) This looks like\[\int_{\ZZ_p}e_p(-sx_p)\,dx_p=\sum_{k\in\ZZ/p^\nu\ZZ}\int_{x_p\equiv k}e_p(-sx_p)\,dx_p.\]Now, for $x_p\equiv k\pmod{p^\nu},$ we get to write $x_p=k+\ell p^\nu$ for $\ell\in\ZZ_p,$ implying\[\{sx_p\}_p=\left\{p^{-\nu}tk+t\ell\right\}_p=\left\{p^{-\nu}tk\right\}_p.\]In particular, this is constant with respect to $k,$ so we are now proving\[G_p(s)\stackrel?=\sum_{k\in\ZZ/p^\nu\ZZ}e^{2\pi i\{-p^{-\nu}tk\}_p}\int_{x_p\equiv k}dx_p.\]At this point, we can remove the integral. The measures of $\{x_p\in\ZZ_p:x_p\equiv k\}$ must be equal for each $k$ because adding $1$ cyclically shifts them, and the Haar measures is fixed under such shifts. Because the total of all these $p^\nu$ cosets is $1,$ each individual coset must have measure $1/p^\nu.$ So it remains to prove\[G_p(s)\stackrel?=\frac1{p^\nu}\sum_{k\in\ZZ/p^\nu\ZZ}e^{2\pi i\{-p^{-\nu}tk\}_p}.\]Note $\left\{-p^{-\nu}tk\right\}_p=(-tk\bmod{p^\nu})/p^\nu,$ but $p\nmid t,$ so $-tk$ ranges over $\ZZ/p^\nu\ZZ$ as $k$ does. Thus, we want to show\[G_p(s)\stackrel?=\frac1{p^\nu}\sum_{k\in\ZZ/p^\nu\ZZ}e^{2\pi ik/p^\nu}.\]Only now do we remark that $s\in\ZZ_p$ implies that $\nu=0,$ in which case the sum degenerates to just a $1.$ Otherwise $s\in\QQ_p\setminus\ZZ_p,$ implying $\nu\ge1,$ so we are summing the $p^\nu$th roots of unity, which does come out to $0.$ So our Gaussian works. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

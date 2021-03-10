@@ -62,6 +62,7 @@ end_html += '</body>\n'
 end_html += '</html>\n'
 
 # Reducing my headaches
+# TODO: fix weird spacing after links due to excessive whitespace
 def prettify(html):
 	# Standardize input
 	html = html.replace('\n','').replace('\t','')

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 6th
+					</h2>
+					<p>
+						Today I learned a little motivation for the compact-open topology: the evaluation map is continuous, from
+						<a href="https://ncatlab.org/nlab/show/compact-open+topology">
+							the nlab page
+						</a>
+						. That is, we have the following proposition.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							For locally compact Hausdorff space $X$ and space $Y,$ the map $\op{ev}:X\times\op{Hom}(X,Y)\to Y$ by $(x,f)\mapsto f(x)$ is continuous.
+						</p>
+					</div>
+					<p>
+						Here, $\op{Hom}(X,Y)$ means the set of continuous functions $X\to Y,$ equipped with the compact-open topology. Also, we are ordering the arguments like this to have a future with currying. However, I did not do currying today.
+					</p>
+					<p>
+						Fix $U_Y\subseteq Y$ any open set. We need to show that its preimage under $\op{ev}$ is open. We note that it suffices to show, for each $(x,f)\in\op{ev}^{-1}(U_Y),$ that there is an open neighborhood $U_{(x,f)}$ around $(x,f)$ such that $U_{(x,f)}\subseteq\op{ev}^{-1}(U_Y).$ Indeed, we could then write\[\op{ev}^{-1}(U_Y)=\bigcup_{(x,f)\in\op{ev}^{-1}(U_Y)}U_{(x,f)},\]which is manifestly open. In fact, this condition is equivalent to $\op{ev}^{-1}(U_Y)$ being open, for it if were open, then we could just set $U_{(x,f)}=\op{ev}^{-1}(U_Y).$ Anyways, the point is that we are able to look locally at points $(x,f)$ of $X\times\op{Hom}(X,Y).$
+					</p>
+					<p>
+						It remains to exhibit $U_{(x,f)}.$ This comes down to the interaction of $X$ being locally compact with the compact-open topology. For any function $f,$ we can use the continuity of $f$ to yield an open set $f^{-1}(U_Y),$ which in fact contains $x.$ The reason we do this is to use local compactness: now we get an open set $U_x$ and compact $V$ such that\[x\in U_x\subseteq V\subseteq f^{-1}(U_Y).\]Read this definition of local compactness as essentially meaning that we have a basis of compact sets around $x.$
+					</p>
+					<p>
+						We still have to use the compact-open topology. Well, we have an instantiated a compact $V\subseteq X$ in our input space, and we have an open set $U_Y\subseteq Y$ of the output space, so we note that\[\{g\in\op{Hom}(X,Y):g(V)\subseteq U_Y\}\]is open in $\op{Hom}(X,Y).$ So we claim that\[U_{(x,f)}:=U_x\times\{g\in\op{Hom}(X,Y):g(V)\subseteq U_Y\}\]suffices. Certainly this open in the product topology. Further, $x\in U_x$ and $f(V)\subseteq f(f^{-1}(U_Y))\subseteq U_Y,$ so $U_{(x,f)}$ is indeed a neighborhood of $(x,f).$ And finally,\[\op{ev}(U_{(x,f)})=\bigcup_{g(V)\subseteq U_Y}g(U_x)\subseteq\bigcup_{g(V)\subseteq U_Y}g(V)\subseteq U_Y,\]which is what we wanted. So we have exhibited our local neighborhoods, and we are done. $\blacksquare$
+					</p>
+					<p>
+						Of course, this is not really motivation for the compact-open topology. We could replace "locally compact'' with something like "locally open'' and the topology on $\op{Hom}(X,Y)$ with an "open-open'' topology, and the proof would still work fine.
+					</p>
+					<p>
+						However, the fact that w are focusing on mostly locally compact topologies in what I'm reading (e.g., for Pontryagin duality) motivates the "locally compact'' condition for me, which makes the compact-open topology feel more natural given the above argument.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

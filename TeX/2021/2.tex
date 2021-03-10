@@ -701,7 +701,7 @@ So we have $e_1-e_2\in V,$ and applying cyclic shifts tells us $e_k-e_{k+1}\in V
 \[\langle a_1,\ldots,a_n\rangle=\sum_{k=1}^{n-1}\left(\sum_{\ell=1}^ka_\ell\right)(e_k-e_{k+1}).\]
 Indeed, for $k<n$ we get the subtraction of two consecutive sums to give $a_ke_k,$ and at $k=n,$ we get $-(a_1+\cdots+a_{n-1})e_n,$ which is $a_n$ because $\langle a_1,\ldots,a_n\rangle\in P$ has coordinate sum $0.$ To finish, either $V\subseteq P,$ so $V=P,$ or $V$ has a vector $w$ outside of $P,$ in which case $P\cap\CC w=\{0\},$ and so
 \[\dim V\ge\dim(P\oplus\CC w)=\dim P+\dim\CC w=(n-1)+1=n.\]
-It follows $\dim V=n,$ so in fact $V=\CC^n.$ This completes the classification of $S_n$-invariant subspaces.
+It follows $\dim V=n,$ so in fact $V=\CC^n.$ This completes the classification of $S_n$-invariant subspaces. $\blacksquare$
 
 From here it is quick to decompose this representation into irreducible representations. Using our $S_n$-invariant subspaces, we label our representation $\rho:S_n\to\op{GL}_n(\CC)$ and let $\rho_L$ and $\rho_P$ be its restrictions to $L$ and $P$ respectively. (These are well-defined because $L$ and $P$ are $S_n$-invariant.) Further, $\CC^n=L\oplus P$ (count dimensions), so we see
 \[\rho=\rho_L\oplus\rho_P.\]
@@ -716,7 +716,7 @@ But we can compute the inner product manually, for $\rho_L$ is the trivial repre
 Using what we know about $\chi(\sigma),$ we see that this is implies
 \[\mathbb E[\text{number of fixed points}]=1.\]
 Of course, this follows quickly from linearity of expectation, but it's amusing that we got here from representation theory. Similarly, we can compute
-\[2=\langle\chi,\chi\rangle=\frac1{n!}\sum_{\sigma\in S_n}|\chi(\sigma)|.\]
+\[2=\langle\chi,\chi\rangle=\frac1{n!}\sum_{\sigma\in S_n}|\chi(\sigma)|^2.\]
 From this it follows
 \[\mathbb E\left[(\text{number of fixed points})^2\right]=2,\]
 which is less trivial to prove, so the ease by which representation theory got here is more impressive.
@@ -782,9 +782,13 @@ Note $U$ is open, for all but the $k$th coordinate is $G_\bullet,$ and $\{e_k\}$
 Today I learned about the Mellin transformation, from \href{http://dsp-book.narod.ru/TAH/ch11.pdf}{here} mostly. We take the following definition.
 \begin{definition}
     For $f:\CC\to\CC,$ the Mellin transform of $f$ is defined as
-    \[\{\mathcal Mf(t)\}(s):=\int_{\RR^+} f(t)t^{s-1}\,dt.\]
+    \[\{\mathcal Mf(t)\}(s):=\int_{\RR^+}f(t)t^{s-1}\,dt.\]
 \end{definition}
-\href{https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/}{Terrence Tao} mentions this is like a ``multiplicative Fourier transform,'' which we can already see in the $\RR^+.$ Let's attempt to make this rigorous. For clarity, we define the Fourier transform by
+\href{https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/}{Terrence Tao} mentions this is like a ``multiplicative Fourier transform,'' which we can already see in the $\RR^+.$ Quickly, we'll be a bit more explicit with this. Rewrite the definition as
+\[2\{\mathcal Mf(t)\}(s)=\int_{\RR^\times}f(t)|t|^s\,\frac{dt}{|t|}.\]
+So we claim $2\{\mathcal Mf(t)\}$ is the Fourier transform of $f(t):\RR^\times\to\CC.$ Note $dt/|t|$ is a multiplicative Haar measure on $\RR^\times,$ for $t\mapsto|c|t$ gives $dt/|t|\mapsto dt/|t|.$ Additionally, our character group $\RR^\times\to\CC$ is $|t|\mapsto |t|^s$; we don't show this here, but we do remark that it makes our desired (abstract) Fourier transform as above.
+
+There are also some concrete connections to the Fourier transform. For clarity, we define the Fourier transform by
 \[\{\mathcal Ff(t)\}(s):=\int_\RR f(t)e^{-2\pi its}\,dt.\]
 To translate from $\mathcal M$ to $\mathcal F,$ we begin by applying the variable change $t\mapsto e^{-u}$ with $dt\mapsto-e^{-u}\,du.$ This gives
 \[\{\mathcal Mf(t)\}(s)=\int_\infty^{-\infty}f\left(e^{-u}\right)e^{-us}e^u\cdot-e^{-u}\,du=\int_{-\infty}^\infty f\left(e^{-u}\right)e^{-us}\,dt.\]
@@ -844,7 +848,12 @@ for $\op{Re}(s)>1.$ It might appear like we've made no progress, but in fact thi
 
 In particular, fix
 \[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}\]
-so that $\frac{\Theta(t)-1}2=\sum e^{-\pi n^2t}.$ This $\Theta$ can be understood by the Poisson summation formula to get a functional equation for $\Theta.$ What's nice here is that $f(x)=e^{-\pi x^2}$ has its own Fourier transform: $\hat f=f.$ (We do not show this here, but a proof exists \href{https://math.stackexchange.com/questions/270566/how-to-calculate-the-fourier-transform-of-a-gaussian-function}{here}.) So if we let $f_t(x)=e^{-\pi x^2t}=f(x\sqrt t),$ then
+so that $\frac{\Theta(t)-1}2=\sum e^{-\pi n^2t}.$ This $\Theta$ can be understood by the Poisson summation formula to get a functional equation for $\Theta.$ We claim the following.
+\begin{lemma}
+    We have that
+    \[\Theta(t)=\frac1{\sqrt t}\Theta\left(\frac1t\right).\]
+\end{lemma}
+What's nice here is that $f(x)=e^{-\pi x^2}$ has its own Fourier transform: $\hat f=f.$ (We do not show this here, but a proof exists \href{https://math.stackexchange.com/questions/270566/how-to-calculate-the-fourier-transform-of-a-gaussian-function}{here}.) So if we let $f_t(x)=e^{-\pi x^2t}=f(x\sqrt t),$ then
 \[\hat f_t(s)=\int_\RR f(x\sqrt t)e^{-2\pi ixs}\,dx=\int_\RR f(x)e^{-2\pi ix(s/\sqrt t)}\,\frac{dx}{\sqrt t}=\frac1{\sqrt t}\hat f\left(\frac s{\sqrt t}\right).\]
 Thus, $\hat f_t(s)=\frac1{\sqrt t}f\left(\frac x{\sqrt t}\right)=\frac1{\sqrt t}e^{-\pi x^2/t}.$ Now, the Poisson summation formula tells us
 \[\sum_{n\in\ZZ}f_t(n)=\sum_{n\in\ZZ}\hat f_t(n),\]
@@ -884,4 +893,341 @@ Bringing this all together, we see that, for $\op{Re}(s)>1,$
 \[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(s)+I(1-s)-\frac1{1-s}-\frac1s.\]
 However, because $I$ is entire, this final expression is therefore an analytic continuation of $\xi$ to all of $\CC$ with simple poles at $0$ and $1.$ By extension, we can divide out by the $\pi^{-s/2}\Gamma(s/2)$ factor to give $\zeta$ its meromorphic continuation to all of $\CC.$ We close by saying the symmetry of $\xi$'s analytic continuation implies
 \[\xi(s)=\xi(1-s).\]
+This is what we wanted. $\blacksquare$
+
 Expanding this out to $\zeta$ gives it a functional equation. I think some care with $\Gamma$ is required to give $\zeta$'s functional equation in its usual presentation, but whatever.
+
+\subsubsection{February 22nd}
+Today I learned about the $p$-adic Gaussian from \href{https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/}{Terrence Tao}. I think this is an instance of Pontryagin duality, but I don't know enough theory to say for sure. Anyways, the main character in our story is (fittingly) the character $\QQ_p\to\CC$ by
+\[e_p(x)=e^{2\pi i\{x\}_p},\]
+where $\{x\}_p$ is the $p$-adic fractional part of $x\in\QQ_p.$ Because $\QQ_p$ is locally compact (and abelian), we get an additive Haar measure, and we normalize it so that $\int_{\ZZ_p}dx_p=1.$ From this character we get a Fourier transform, which we denote
+\[\hat f(s)=\int_{\QQ_p}f(x_p)e_p(-sx_p)\,dx_p.\]
+Note that we're assuming stuff that I can't prove currently.
+
+We're trying to build the machinery we had in Riemann's proof of the functional equation of $\zeta.$ We have an $\exp$ in $e_p,$ and now we would like to build a Gaussian $G_p$ like $G_\infty=e^{-\pi x^2}$ for $\RR.$ This function should be its own Fourier transform, so
+\[G_p(s)=\int_{\QQ_p}G_p(x_p)e_p(-sx_p)\,dx_p.\]
+We claim that the indicator function on $\ZZ_p$ works.
+\begin{proposition}
+    Let $G_p:\QQ_p\to\RR$ be $1$ on inputs in $\ZZ_p$ and $0$ otherwise. Then
+    \[G_p(s)=\int_{\QQ_p}G_p(x_p)e_p(-sx_p)\,dx_p.\]
+\end{proposition}
+We're going to be obnoxiously careful because integration on $\QQ_p$ is somewhat new to me. We focus on the integral. Note $x_p\in\QQ_p\setminus\ZZ_p$ gives $G_p(x_p)=0,$ vanishing entirely, so we're left integrating $x_p\in\ZZ_p,$ which looks like
+\[G_p(s)\stackrel?=\int_{\ZZ_p}e_p(-sx_p)\,dx_p.\]
+Because we have the words Fourier and exponential and indicator floating around, we hope to turn this into a sum of roots of unity/discrete Fourier transform. In particular, we need to make the integral better-behaved. Fix $s=p^{-\nu}t$ with $t\in\ZZ_p\setminus p\ZZ_p,$ and we split up $\ZZ_p$ by$\pmod{p^\nu}.$ (These sets countably and disjointly partition $\ZZ_p.$) This looks like
+\[\int_{\ZZ_p}e_p(-sx_p)\,dx_p=\sum_{k\in\ZZ/p^\nu\ZZ}\int_{x_p\equiv k}e_p(-sx_p)\,dx_p.\]
+Now, for $x_p\equiv k\pmod{p^\nu},$ we get to write $x_p=k+\ell p^\nu$ for $\ell\in\ZZ_p,$ implying
+\[\{sx_p\}_p=\left\{p^{-\nu}tk+t\ell\right\}_p=\left\{p^{-\nu}tk\right\}_p.\]
+In particular, this is constant with respect to $k,$ so we are now proving
+\[G_p(s)\stackrel?=\sum_{k\in\ZZ/p^\nu\ZZ}e^{2\pi i\{-p^{-\nu}tk\}_p}\int_{x_p\equiv k}dx_p.\]
+At this point, we can remove the integral. The measures of $\{x_p\in\ZZ_p:x_p\equiv k\}$ must be equal for each $k$ because adding $1$ cyclically shifts them, and the Haar measures is fixed under such shifts. Because the total of all these $p^\nu$ cosets is $1,$ each individual coset must have measure $1/p^\nu.$ So it remains to prove
+\[G_p(s)\stackrel?=\frac1{p^\nu}\sum_{k\in\ZZ/p^\nu\ZZ}e^{2\pi i\{-p^{-\nu}tk\}_p}.\]
+Note $\left\{-p^{-\nu}tk\right\}_p=(-tk\bmod{p^\nu})/p^\nu,$ but $p\nmid t,$ so $-tk$ ranges over $\ZZ/p^\nu\ZZ$ as $k$ does. Thus, we want to show
+\[G_p(s)\stackrel?=\frac1{p^\nu}\sum_{k\in\ZZ/p^\nu\ZZ}e^{2\pi ik/p^\nu}.\]
+Only now do we remark that $s\in\ZZ_p$ implies that $\nu=0,$ in which case the sum degenerates to just a $1.$ Otherwise $s\in\QQ_p\setminus\ZZ_p,$ implying $\nu\ge1,$ so we are summing the $p^\nu$th roots of unity, which does come out to $0.$ So our Gaussian works. $\blacksquare$
+
+\subsubsection{February 23rd}
+Today I learned about the Zariski topology. I think the first definition came from algebraic varieties. If you have an affine space (say, over $\CC$) which we'll name $\AA^n,$ then the Zariski topology is defined by its closed sets
+\[V(S)=\left\{x\in\AA^n:f\in S\implies f(x)=0\right\},\]
+where $S$ is a set of polynomials in $n$ variables. Note that if $f$ and $g$ are polynomials, then $f(x)=0$ and $g(x)=0$ is equivalent to $af(x)+bg(x)=0$ for all $a,b\in\AA.$ Thus, the closed set generated by $S$ is equal to the closed set generated by the ideal generated by $S.$ So we consider ideals $I$ of polynomials in $n$ variables from here on.
+
+We can quickly check that this is indeed a topology. For the easy stuff, note that $S=\emp$ gives $V(S)=\AA^n,$ and $S=\{1\}$ gives $V(S)=\emp.$ So we see that $\emp$ and $\AA^n$ are closed sets.
+
+The intersection $V(I)\cap V(J)$ is extracting points which are $0$ on everyone in $I$ and everyone in $J,$ so we claim
+\[V(I)\cap V(J)=V(I+J).\]
+Indeed, $x\in V(I+J)$ if and only if $x$ is $0$ on every polynomial $af(x)+bg(x)$ for $f,g\in I,J$ and $a,b\in\AA.$ Setting $a=0$ and then $b=0$ tells us this occurs if and only if $x$ is $0$ on every polynomial $f\in I$ and every polynomial $g\in J,$ which is what we wanted. Generalizing, the same argument tells us that for a collection $\{I_\alpha\}_{\alpha\in\lambda}$
+\[\bigcap_{\alpha\in\lambda}V(I_\alpha)=V\left(\sum_{\alpha\in\lambda}I_\alpha\right).\]
+So our closed sets are closed under arbitrary intersection.
+
+Similarly, the union $V(I)\cup V(J)$ is extracting points which are $0$ on either everyone in $I$ or everyone in $J.$ This is a bit fuzzier, but we claim
+\[V(I)\cup V(J)=V(IJ).\]
+If $x\in V(I)\cup V(J),$ then $x\in V(IJ),$ for $IJ$ is generated by products $fg$ with $f\in I$ and $g\in J,$ and we must have $(fg)(x)=0.$ Conversely, if $x\not\in V(I)\cup V(J),$ then there exists a polynomial $f\in I$ and a polynomial $g\in J$ such that
+\[f(x)\ne0\quad\text{and}\quad g(x)\ne0.\]
+Thus, $(fg)(x)\ne0$ with $fg\in IJ,$ so $x\not\in V(IJ).$ So the claim follows. Inducting, we see that for a collection $\{I_n\}_{n\in\NN}$
+\[\bigcup_{n\in\NN}V(I_n)=V\left(\prod_{n\in\NN}I_n\right).\]
+Note that this argument had to use a contrapositive to get the second inclusion, which I think is why we don't have arbitrary union.
+
+Of course, the reason why I care about the Zariski topolgy is the spectrum of a ring. With this in mind, we state explicitly that we are looking towards a ring-theoretic Zariski topology. I think the motivation here comes from looking at the case $\AA^n=\CC^1.$ (I think we should be looking at $\CC P^1,$ but I don't know enough algebraic geometry to be able to tell the difference.) In this case, our closed sets are
+\[V(S)=\{\alpha\in\CC:f\in S\implies f(\alpha)=0\}\]
+for $S\subseteq\CC[t].$ Now, we remark that all polynomials over $\CC[t]$ factor, so for $f\in\CC[t],$ we see $V(f)$ is just the zeroes of $f.$ So our topology is ``really'' generated closed sets consisting of finitely many points. Of course, simple factorization in $\CC[t]$ doesn't generalize well, but ideal factorization does, where we can still write
+\[(f(t))=\prod_{f(\alpha)=0}(t-\alpha).\]
+Here $(t-\alpha)$ are the prime ideals of $\CC[t],$ and they both associate with $\CC$ and encode our closed sets. At this point, writing
+\[V(I)=\{(t-\alpha):I\subseteq(t-\alpha)\}\]
+turns our definition into an entirely ring-theoretic one. Note that this is pretty much the same Zariski topology over $\CC,$ but now we're encoding points $\alpha\in\CC$ with their ideals $(t-\alpha).$ With this in mind, here's our definition.
+\begin{definition}
+    For a commutative ring $R,$ we define the spectrum of a ring $\op{Spec}R$ with points the prime ideals of $R$ and a topology where
+    \[V(I)=\{\mf p\subseteq R:I\subseteq\mf p\}\]
+    is a closed set for each ideal $I\subseteq R.$
+\end{definition}
+We provide the check that this is a topology to hammer home that this really deserve the name ``Zariski topology.'' Notably, these proofs are pretty much identical. Again, $I=(0)$ means $\op{Spec}R$ is closed, and $I=R$ means $\emp$ is closed.
+
+For intersections, we still have, for a collection $\{I_\alpha\}_{\alpha\in\lambda},$ that
+\[\bigcap_{\alpha\in\lambda}V(I_\alpha)=V\left(\sum_{\alpha\in\lambda}I_\alpha\right).\]
+Now, $\mf p$ is in the intersection is and only if each $I_\bullet\subseteq\mf p.$ But the sum $\sum I_\bullet$ is generated by (finite) linear combinations of elements in the $I_\bullet,$ so indeed $\mf p$ is $V\left(\sum I_\bullet\right).$ And then because $I_\bullet\subseteq V\left(\sum I_\bullet\right),$ we see $\mf p\in V\left(\sum I_\bullet\right)$ implies
+\[I_\bullet\subseteq\mf p\]
+for each $I_\bullet.$ So $\mf p$ is also in the intersection. So we have arbitrary intersection.
+
+For unions, we again still have $V(I)\cup V(J)=V(IJ).$ Here, we see $\mf p\in V(I)\cup V(J)$ if and only if $I,J\subseteq\mf p.$ So because $IJ$ is generated by products $ab$ with $a\in I$ and $b\in J,$ we see $IJ\subseteq\mf p$ because each $ab\in\mf p.$ Conversely, if $\mf p\not\in V(I)\cup V(J),$ then there exists $a\in V(I)$ and $b\in V(J)$ with
+\[a\not\in\mf p\quad\text{and}\quad b\not\in\mf p\]
+But then $ab\not\in\mf p$ because $\mf p$ is prime (!), so $\mf p\not\in V(IJ).$ Inducting from here gives finite unions.
+
+\subsubsection{February 24th}
+Today I learned about the $p$-adic Gaussian to derive the completed Riemann $\xi$ function, from \href{https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/}{Terrence Tao}. We're going to synthetically derive the $\Gamma$ factor of the $\xi$ function, and then this will give us an idea of how to synthetically derive the entire $\xi$ function.
+
+Fix $G_\infty(x)=e^{-\pi x^2}$ to be our Gaussian over $\RR=\QQ_\infty.$ Recall that we also have the Gaussian $G_p(x)=1_{\ZZ_p}$ on $\QQ_p$ as we showed two days ago. Additionally, we want our $\Gamma$ factor to be
+\[\Gamma_\infty(s):=\pi^{-s/2}\Gamma(s/2)=\pi^{-s/2}\int_0^\infty e^{-t}t^{s/2}\,\frac{dt}t.\]
+The correct to do here is to attempt to make $G_\infty$ appear in this expression. So we take $t\mapsto\pi t^2$ and $dt/t\mapsto 2dt/t,$ giving
+\[\Gamma_\infty(s)=2\int_0^\infty e^{-\pi t^2}t^s\,\frac{dt}t.\]
+Now this definition looks more motivated, for we get to write
+\[\Gamma_\infty(s)=\int_{\QQ_\infty^\times}G_\infty(t)|t|^s\,\frac{dt}{|t|},\]
+and all the artifacts of $\RR$ have disappeared: we can define the $\Gamma_\infty$ factor as (twice) the Mellin transform of the Gaussian! Further, note that $dt/|t|$ is a Haar measure on $\QQ_\infty^\times,$ so it feels a bit more natural (notationally) to integrate over $\QQ_\infty^\times$ instead of $\QQ_\infty\setminus\{0\}.$
+
+Anyways, this suggests that we define
+\[\Gamma_p(s):=\int_{\QQ_p^\times}G_p(t)|t_p|_p^s\left(\frac p{p-1}\cdot\frac{dt_p}{|t_p|_p}\right).\]
+We remark that we choose our measure $\frac p{p-1}\cdot\frac{dt_p}{|t_p|_p}$ to be a multiplicative measure on $\QQ_p^\times,$ scaled so that the units $\ZZ_p^\times=\ZZ_p\setminus p\ZZ_p$ has measure $1.$ We show explicitly that $\ZZ_p\setminus p\ZZ_p$ has the desired measure, for it's a basic case of something we'll do shortly. Essentially, $t_p\in\ZZ_p\setminus p\ZZ_p$ will always have $|t_p|_p=1,$ so
+\[\int_{\ZZ_p\setminus p\ZZ_p}\frac{dt_p}{|t_p|_p}=\int_{\ZZ_p\setminus p\ZZ_p}dt_p.\]
+Now, $\ZZ_p\setminus p\ZZ_p$ is made up of $p-1$ cosets of $\ZZ_p/p\ZZ_p,$ of which there are $p.$ So with the $p$ total cosets, which all have the same measure because $dt_p$ is shift-invariant, partitioning $\ZZ_p$ of measure $1,$ it follows each coset has measure $\frac1p.$ Thus,
+\[\int_{\ZZ_p\setminus p\ZZ_p}\frac{dt_p}{|t_p|_p}=\frac{p-1}p,\]
+which is what we wanted.
+
+This argument turns out to be helpful for the following claim, which is what we're really here for.
+\begin{proposition}
+    We have that
+    \[\Gamma_p(s)=\frac1{1-p^{-s}}.\]
+\end{proposition}
+This is a miracle. The $p$-adic $\Gamma$ factor turns out to be an Euler factor! We will make more comments on this later.
+
+At a high level, what makes this formula so nice is that our Gaussian $G_p$ is so nice. Because $G_p$ merely indicates $\ZZ_p,$ our integral over $\QQ_p^\times$ turns into an integral over $\ZZ_p\setminus\{0\}.$ So we see
+\[\Gamma_p(s)=\frac p{p-1}\int_{\ZZ_p\setminus\{0\}}|t_p|^s_p\,\frac{dt_p}{|t_p|_p}.\]
+Here we mimic the argument that $\ZZ_p\setminus p\ZZ_p$ has multiplicative maesure $1.$ We see $\ZZ_p$ is inherently granular, so we can make the integrand constant by summing over each possible $|x_p|_p.$ In particular, $x_p\in\ZZ_p\setminus\{0\}$ implies $|x_p|_p=p^{-\nu}$ for some nonnegative integer $\nu.$ So because $\ZZ_p\setminus\{0\}$ is countably partitioned by $\nu,$ we may write
+\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\int_{|x_p|=p^{-\nu}}p^{-\nu s}\,\frac{dt_p}{p^{-\nu}}.\]
+Now, the integrand is constant with respect to $t_p,$ so we can move it out of the integral, giving
+\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\frac{p^{-\nu s}}{p^{-\nu}}\int_{|x_p|=p^{-\nu}}dt_p.\]
+At this point, we can begin to see the $\left(1-p^{-s}\right)^{-1}$ coming from the infinite series. We note that $\left\{x_p:|x_p|=p^{-\nu}\right\}$ is the $p^\nu\ZZ_p\setminus p^{\nu+1}\ZZ_p,$ the set of elements divisible by $p^\nu$ but not $p^{\nu+1}.$ So our integral is
+\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\frac{p^{-\nu s}}{p^{-\nu}}\int_{p^{\nu}\ZZ_p\setminus p^{\nu+1}\ZZ_p}dt_p.\]
+We can evaluate the integral as we did when showing $\ZZ_p\setminus p\ZZ_p$ has multiplicative measure $1.$ The coset $p^\nu\ZZ_p$ is one of $p^\nu$ in $\ZZ_p/p^\nu\ZZ_p,$ and all cosets have the same size, so the measure of $p^\nu\ZZ_p$ is $1/p^\nu.$ The same argument shows $p^{\nu+1}\ZZ_p$ has measure $1/p^{\nu+1},$ so
+\[\int_{p^{\nu}\ZZ_p\setminus p^{\nu+1}\ZZ_p}dt_p=\frac1{p^\nu}-\frac1{p^{\nu+1}}=\frac{p-1}{p^{\nu+1}}\]
+because $p^{\nu+1}\ZZ_p\subseteq p^\nu\ZZ_p.$ From here, we have
+\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\frac{p^{-\nu s}}{p^{-\nu}}\cdot\frac{p-1}{p^{\nu+1}}.\]
+Simplifying, we see
+\[\Gamma_p(s)=\sum_{\nu=0}^\infty p^{-\nu s}=\frac1{1-p^{-s}},\]
+which is what we wanted. $\blacksquare$
+
+Quickly, we remark that if I were more comfortable with $p$-adic integration, we could write $d^\times t_p:=\frac p{p-1}\cdot\frac{dt_p}{|t_p|_p}$ as our multiplicative measure so that
+\[\int_{|t_p|_p=p^{-\nu s}}d^\times t_p=\int_{|t_p|_p=1}d^\times t_p=\int_{\ZZ_p\setminus p\ZZ_p}d^\times t_p=1\]
+because we are integrating over that multiplicative (!) measure. This is faster, but the multiplicative measure scares me.
+
+We now remark on the miracle that just happened. It would appear that we can define $\zeta$ synthetically (!) by
+\[\zeta(s)=\prod_{p<\infty}\Gamma_p(s),\]
+and this feels somewhat more natural than the the infinite sum definition. In particular, the analysis that we did above kind of implies that the ``correct'' way to define our $\zeta$-functions is by an Euler product, which aligns with the way Artin $L$-functions are defined by Euler factors. Further,
+\[\xi(s)=\prod_\nu\Gamma_\nu(s),\]
+where $\nu$ ranges over all places (finite and infinite) of $\QQ.$ This presents a much more motivated view of the $\Gamma$ factor by placing it on equal footing with the rest of the Euler factors.
+
+\subsubsection{February 25th}
+Today I learned about the Lesbegue measure. The basic idea is that we want to create a Haar (translation-invariant and outer Radon) measure which communicates niecly with our basis elements. To start off, we define $\lambda((a,b))=b-a$ to be our measure on the basis elements of our topology.
+
+Next we extend this to all open sets. This is not actually trivial because even though we can write
+\[U=\bigcup_\alpha(a_\alpha,b_\alpha)\]
+for some collection of basis elements $(a_\alpha,b_\alpha),$ these basis elements might overlap. The trick is that our basis elements are totally ordered by containment, so we can intuitively choose the ``largest'' basis elements to cover $U$ and not worry about overlap. Making this rigorous is somewhat annoying, but one way to do this is to write
+\[\mathcal B=\{(a,b):(a,b)\subseteq U\},\]
+and then $\mathcal B$ is a partially ordered set under $\subseteq.$ Each ascending chain has an upper bound (say, $\RR$), so each $B\in\mathcal B$ is contained in some maximal element of $\mathcal B.$ So we can define a function $\varphi:\mathcal B\to\mathcal B$ taking each basis element to its maximal and define
+\[\mu(U)=\sum_{B\in\varphi(\mathcal B)}\lambda(B).\]
+This is disgusting, but it provides the idea of what's to come.
+
+We notice now that we want an outer Radon measure, which requires being outer regular. So it would be lovely if we could just define
+\[\mu(S)=\inf_{\text{open }U\supseteq S}\mu(U)\]
+to get outer regular for free. However, this forces us to take $\inf$ over the $\varphi$ function from earlier which we already don't understand very well. The technical trick to avoid $\varphi,$ then, is to let the $\inf$ check for overlaps for us. We take the following definition.
+\begin{definition}
+    Define the Lebesgue measure $\mu$ on $\RR$ to be
+    \[\mu(S):=\inf\left\{\sum_{k=0}^\infty(b_k-a_k):S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]
+\end{definition}
+Note now that overlaps between the $(a_\bullet,b_\bullet)$ are entirely permitted, but the $\inf$ will tell us that overlapping is not minimal.
+
+It remains to check that $\mu$ is actually a Haar measure. We will show it is an outer measure today and move towards showing Haar. The easiest part of this showing that $\mu$ is translation-invariant, so we get that out of the way. Indeed, for set $S$ and constant $c\in\RR,$ we have to show that $\mu(S)=\mu(c+S),$ or
+\[\inf\left\{\sum_{k=0}^\infty(b_k-a_k):S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}=\inf\left\{\sum_{k=0}^\infty(b_k-a_k):c+S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]
+Now, for any collection $\{(a_k,b_k)\}_{k=0}^\infty$ covering $S,$ we note $\{(a_k+c,b_k+c)\}_{k=0}^\infty$ will cover $c+S$ while preserving all of the lengths $b_k-a_k=(b_k+c)-(a_k+c).$ It follows that any bound $M$ occuring in the left-hand set will also appear in the right-hand set, so
+\[\mu(S)\ge\mu(c+S).\]
+Taking $S\mapsto c+S$ and $c\mapsto-c$ implies $\mu(c+S)\ge\mu(S),$ so $\mu(S)=\mu(c+S),$ as desired.
+
+Before continuing, we establish a lemma. We show that if $A\subseteq B,$ then $\mu(A)\le\mu(B).$ Expanding, we have to show that
+\[\inf\left\{\sum_{k=0}^\infty(b_k-a_k):A\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}\le\inf\left\{\sum_{k=0}^\infty(b_k-a_k):B\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]
+Well, we note that any collection $\{(a_k,b_k)\}_{k=1}^\infty$ covering $B$ will also cover $A,$ so any bound $M$ appearing in the right-hand set also appears in the left-hand set. It follows $\mu(A)\le\mu(B).$
+
+We now show that $\mu$ is outer regular. That is, we have to show
+\[\mu(S)=\inf_{\text{open }U\supseteq S}\mu(U).\]
+Quickly, we note that $U\supseteq S$ directly implies $\mu(U)\ge\mu(S),$ so we immediately know
+\[\mu(S)\le\inf_{\text{open }U\supseteq S}\mu(U)\]
+from the lemma. To get the other direction, we expanding out the definition of $\mu,$ so we have to show
+\[\inf\left\{\sum_{k=0}^\infty(b_k-a_k):S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}\stackrel?\ge\inf_{\text{open }U\supseteq S}\left\{\sum_{k=0}^\infty(b_k-a_k):U\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]
+Now, note that any collection $\{(a_k,b_k)\}$ covering $S$ on the left-hand side will union to an open set that we can give to the right-hand side, with the same cover. So any bound $M$ appearing in the left-hand set will also appear in the right-hand set, so
+\[\mu(S)\ge\inf_{\text{open }U\supseteq S}\mu(U).\]
+Combining the two inequalities gets what we want.
+
+Only now do we try to check that $\mu$ is a measure. Take $\{S_k\}_{k=0}^\infty$ sets so that we want to show
+\[\sum_{k=0}^\infty\mu(S_k)\stackrel?=\mu\left(\bigcup_{k=0}^\infty S_k\right).\]
+Expanding, we want to know
+\[\sum_{k=0}^\infty\inf\left\{\sum_{\ell=0}^\infty(b_\ell-a_\ell):S_k\subseteq\bigcup_{\ell=0}^\infty(a_\ell,b_\ell)\right\}\stackrel?=\inf\left\{\sum_{\ell=0}^\infty(b_\ell-a_\ell):\bigcup_{k=0}^\infty S_k\subseteq\bigcup_{\ell=0}^\infty(a_\ell,b_\ell)\right\}.\]
+The outer sum on the left-hand side is unnatural, so we write
+\[\inf\left\{\sum_{k,\ell=0}^\infty(b_{k,\ell}-a_{k,\ell}):S_k\subseteq\bigcup_{\ell=0}^\infty(a_{k,\ell},b_{k,\ell})\right\}\stackrel?=\inf\left\{\sum_{\ell=0}^\infty(b_\ell-a_\ell):\bigcup_{k=0}^\infty S_k\subseteq\bigcup_{\ell=0}^\infty(a_\ell,b_\ell)\right\}.\]
+Now, in one direction, note that for any bound $M$ in the left-hand side, we can associate it with a countable (!) collection $(a_{k,\ell},b_{k,\ell})$ of basis sets. This collection covers each of the $S_\bullet,$ so it covers their union, so this collection will also appear in the right-hand set. Thus, the bound $M$ also appears in the right-hand side. It follows
+\[\sum_{k=0}^\infty\mu(S_k)\ge\mu\left(\bigcup_{k=0}^\infty S_k\right).\]
+This is enough for $\mu$ to be an outer measure, but it remains to check the $\le$ inequality. This is because it is actually impossible to show this for arbitrary sets $S_\bullet,$ even though we haven't used the disjoint condition. I don't currently know enough about measurable sets to be able to fix this.
+
+\subsubsection{February 26th}
+Today I learned how to show intervals $[a,b]$ have Lebesgue measure $b-a.$ I don't think I'm going to complete showing that $\mu$ is a measure soon because it looks significantly more involved than I bargained for.
+
+Computing $\mu([a,b])$ is mostly to sanity-check that our definition makes sense. This turns out to be somewhat subtle---because we're using countably many intervals in our definition of $\mu,$ we have to deal with infinite sums somehow. What makes closed intervals nice is that they are compact, letting us deal with finite sums instead. We claim the following.
+\begin{proposition}
+    The closed interval $[a,b]$ for $a,b\in\RR$ has Lebesgue measure $b-a.$
+\end{proposition}
+To show this, we want.
+\[\mu([a,b])=\inf\left\{\sum_{k=0}^\infty(b_k-a_k):[a,b]\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]
+Note that $(a-\varepsilon/2,b+\varepsilon/2)$ makes a basis cover of $[a,b]$ of length $b-a+\varepsilon,$ so sending $\varepsilon\to0$ means that $\mu([a,b])\ge b-a.$ For the reverse inequality, take any basis cover $\{(a_k,b_k)\}_{k=0}^\infty$ of $[a,b].$ We want to show
+\[\sum_{k=0}^\infty(b_k-a_k)\stackrel?\ge b-a.\]
+However, $[a,b]$ is compact (!), so we can extract a finite subcover from $\{(a_k,b_k)\}_{k=0}^\infty.$ Note that each interval has nonnegative $b_\bullet-a_\bullet,$ so the sum does not increase by removing all but finitely many of the intervals. Re-indexing, we name our subcover $\{(a_k,b_k)\}_{k=0}^N$ so that we want
+\[\sum_{k=0}^N(b_k-a_k)\stackrel?\ge b-a.\]
+The reason why a finite sum is nice is that we can now rearrange terms freely. The picture now is that the intervals $(a_\bullet,b_\bullet)$ should look something like this.
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        real a=0, b=6;
+        real space=0.3;
+        dot((a,0));
+        dot((b,0));
+        draw((a,0)--(b,0));
+        int steps = 4;
+        for(int i = 0; i < steps; ++i)
+        {
+            label("$($",(a + (b-a)/steps * i - space, 0));
+            label("$)$",(a + (b-a)/steps * (i+1) + space, 0));
+            if((int)i % 2 == 0)
+            {
+                label("$a_"+string(i)+"$",(a + (b-a)/steps * i - space, -0.4));
+                label("$b_"+string(i)+"$",(a + (b-a)/steps * (i+1) + space, -0.4));
+            }
+            else
+            {
+                label("$a_"+string(i)+"$",(a + (b-a)/steps * i - space, 0.4));
+                label("$b_"+string(i)+"$",(a + (b-a)/steps * (i+1) + space, 0.4));
+            }
+        }
+    \end{asy}
+\end{center}
+In particular, the differences $b_k-a_{k+1}$ are all positive while $a_0<a$ and $b_N>b.$ This suggests how to get our inequality. To help with technicalities, we apply the following filters and rearranging.
+\begin{itemize}
+    \item We get rid of any intervals in the $\{(a_k,b_k)\}_{k=0}^N$ that are a strict subset of any other interval.
+    \item We get rid of intervals that do not intersect $[a,b]$ at all.
+    \item Among the $(a_\bullet,b_\bullet)$ with $a_\bullet<a,$ we choose the one with greatest $b_\bullet$ and get rid of the others. (This is effectively chooses the largest interval with respect to $[a,b].$)
+    \item Similarly, among the $(a_\bullet,b_\bullet)$ with $a_\bullet<a,$ we choose the one with least $a_\bullet.$
+    \item We arrange the $(a_\bullet,b_\bullet)$ to ascend by $a_\bullet.$ We note that this makes the $b_\bullet$ ascend as well, for $a_k\le a_{k+1}$ with $b_k\ge b_{k+1}$ implies $(a_k,b_k)\supseteq(a_{k+1},b_{k+1}).$
+\end{itemize}
+Now, we think about the sum like
+\[b_N+(-a_N+b_{N-1})+(-a_{N+1}-b_{N+2})+\cdots+(-a_1+b_0)-a_0\stackrel?\ge b-a.\]
+We note $b_N$ is the largest $b_\bullet,$ so we must have $b_N>b$ to cover $[a,b].$ Also, it is the only $b_\bullet$ with $b_\bullet>b$ because we filtered the others out. Similarly, $a_0<a$ and is the only $a_\bullet$ with this property. Thus, $b_N-a_0\ge b-a,$ and we need to show the remaining terms are nonnegative.
+
+Our ordering by $a_\bullet$ means $a_{k+1}\in(a_k,b_k)$ or $k<N$ for each $k.$ Indeed, $a_{k+1}\ge a_k,$ and if $a_{k+1}\ge b_k,$ then all of the remaining $a_\bullet$ past $a_{k+1}$ are also at least $b_k,$ so $b_k$ never gets covered in $[a,b],$ which is a problem: $b_k<a$ means $(a_k,b_k)$ doesn't intersect $[a,b],$ and $b_k>b$ requires $k=N,$ for this is the only $k$ (the largest one) satisfying this.
+
+It follows $-a_{k+1}+b_k\ge0,$ so we see
+\[b_N+(-a_N+b_{N-1})+\cdots+(-a_1+b_0)-a_0\ge b-a.\]
+This is what we wanted. $\blacksquare$
+
+We take a second to remark that we have not actually shown $[a,b]$ is measurable, and I have not even defined what measurable means. For the sake of completeness, we take the following definition.
+\begin{definition}
+    A set $A\subseteq\RR$ is Lebesgue-measurable if and only if $\mu(A)=\mu(A\cap S)+\mu(A\cap S^c)$ for all sets $S\subseteq\RR.$
+\end{definition}
+It turns out that Lebesgue-measurable sets form a $\sigma$-algebra, so showing that (open or closed) intervals are Lebesgue-measurable implies that this is a Borel measure. (We still have to verify that countable disjoint unions can be separated.) I don't know how to prove either of these, but honestly that sounds like someone else's job.
+
+\subsubsection{February 27th}
+Today I learned about the adeles of $\CC(t),$ which provides some nice analogy to the situation with number fields. Recall geometrically, we are interested in prime ideals as the connection in our analogy: $\CC[t]$ has prime ideals $(t-\alpha)$ for $\alpha\in\CC$ while number fields $K$ have prime ideals $\mf p.$ (There is also the prime $(0).$) We also recall this analogy gave rise to the Zariski topology on $\op{Spec}\mathcal O_K$ by comparing with the Zariski topology on $\op{Spec}\CC[t].$
+
+The individual components of the adeles are local components, and this is clear from $\CC(t).$ Quite literally, studying a rational function $f(t)\in\CC(t)$ ``locally'' at the prime $(t-\alpha)$ means we write
+\[f(t)=\sum_{k=-N}^\infty c_k(t-\alpha)^k\in\CC((t-\alpha))\]
+as our Taylor series. The term ``local'' means that we're studying $f$ by focusing on the individual point at $\alpha.$
+
+I had some confusion in intuition for a while because I felt like ``local'' information should still communicate to nearby neighborhoods: studying a rational function at $\alpha$ should give information about $\alpha+\varepsilon.$ However, algebraically this doesn't make much sense, and even analytically, some conditions are needed on $f$ and $\varepsilon$ to make $\alpha$ and $\alpha+\varepsilon$ behave nicely. To be explicit,
+\[f(t)=\frac{t-(\alpha+\varepsilon)}{t-\alpha}\]
+has very different behavior at $\alpha$ and $\alpha+\varepsilon.$ It is not clear to me how to prevent this from happening, and I'm not sure if it's easily doable at all. Further, in the number field case, this is more explicit: the prime $(101)$ does not communicate with $(103)$ well.
+
+Anyways, to combine all of our local information together, we define the adeles as
+\[\sideset{}{'}\prod_{\alpha\in\CC}\CC((t-\alpha)).\]
+The $\prod'$ refers to the restricted product: we require that all but finitely many of our coordinates in $\CC((t-\alpha))$ to actually live in our ``ring of integers'' $\CC[[t-\alpha]].$ Note that rational functions in $\CC(t)$ do embed into these adeles because a rational function only has finitely many poles (say, by Lagrange's theorem on fields). We remark that the ideles can also be defined as
+\[\sideset{}{'}\prod_{\alpha\in\CC}\CC((t-\alpha))\]
+where now all but finitely many of the coordinates are in $\CC[[t-\alpha]]^\times.$ We still have $\CC(t)$ embedding into the ideles because a rational function has both finitely many poles and finitely many zeroes. I also think the image of $\CC(t)$ into the ideles is discrete as in the number field case, where
+\[\prod_{\alpha\in\CC}\CC[[t-\alpha]]^\times\]
+is our fundamental domain of the ideles modulo $\CC(t).$ I'm not totally sure about this.
+
+The restricted product on the adeles are exactly analogous to wanting all but finitely many of the coordinates of $\AA_K$ to live in $\mathcal O_{K,\nu}$ over our places $\nu.$ We even have the analogy that local fields $K_\nu$ behave as Taylor series like $\CC((t-\alpha)).$ I think what's happening in this analogy is that we think of (fractional) ideals $\mf a$ as functions over primes $\mf p$ with
+\[\mf a(\mf p)=\mf p^{\nu_\mf p(\mf a)}.\]
+I should say that I'm trying to think of ideals $\mf a$ as functions of primes $\mf p$ because that's what's going in $\CC$: elements of $\CC(t)$ are effectively rational functions of the primes $(t-\alpha).$
+
+Of course, the provided function doesn't quite catch the behavior we want, but it's catching some: expanding $\mf a$ locally at $\mf p$ like a Taylor series now will maintain the idea of zeroes and poles. Additionally, we see that these primes really do not communicate well with each other.
+
+\subsubsection{February 28th}
+Today I learned the classification of characters over $\QQ_p$ as $\QQ_p\cong\widehat{\QQ_p},$ from \href{https://kconrad.math.uconn.edu/blurbs/gradnumthy/characterQ.pdf}{Keith Conrad} as usual. Fix $e_p(x):=e^{2\pi i\{x\}_p}.$ The following is what we're building towards.
+\begin{theorem}
+    The mapping $\Psi_\bullet:\QQ_p\to\widehat{\QQ_p}$ defined by taking $\Psi_a:=(x\mapsto e_p(ax))$ is an isomorphism of groups.
+\end{theorem}
+In fact it is true that $\Psi_\bullet$ is an isomorphism of the groups as well as a homeomorphism of the two spaces.
+
+We begin by showing that $\Psi_\bullet$ is well-defined. For any $a\in\QQ_p,$ we need to know $\Psi_a$ is a character. Well, $\Psi_a$ is homomorphic because
+\[\Psi_a(x+y)=e^{2\pi i\{a(x+y)\}_p}=e^{2\pi i\{ax\}_p}\cdot e^{2\pi i\{ay\}_p}=\Psi_a(x)\Psi_a(y).\]
+In particular, we know $\{x+y\}_p=\{\{x\}_p+\{y\}_p\}$ by expanding $x=x_0+x_\bullet/p^\bullet$ and $y=y_0+y_\bullet/p^\bullet$ for $x_0,y_0\in\ZZ_p$ and $x_\bullet,y_\bullet\in\ZZ/p^\bullet\ZZ.$ Further, $\Psi_a$ is continuous because if we have a Cauchy sequence $x_\bullet\to x$ in $\QQ_p,$ then
+\[\{x_\bullet\}_p\to\{x\}_p\]
+in $\RR.$ For example, $\{x_\bullet\}_p=\{x\}_p$ holds as soon as $|x_\bullet-x|\le1,$ which must happen eventually. It follows that $\Psi_a(x_\bullet)\to\Psi_a(x).$ Note how discrete this argument feels.
+
+It also not terribly difficult to show that $\Psi_\bullet$ is an injective homomorphism. Showing show $\Psi_\bullet$ is homomorphic is similar to showing $\Psi_\bullet$ is well-defined. For $a,b,x\in\QQ_p,$ we see
+\[\Psi_{a+b}(x)=e^{2\pi i\{(a+b)x\}_p}=e^{2\pi i\{ax\}_p}\cdot e^{2\pi i\{bx\}_p}=\Psi_a(x)\Psi_b(x),\]
+which is what we wanted. Again, $\{x+y\}_p=\{\{x\}_p+\{y\}_p\}$ by expanding out fractional parts.
+
+For injective, we need to know that distinct $a,b\in\QQ_p$ give distinct characters $\Psi_a\ne\Psi_b.$ Well, $a\ne b$ means $b-a\ne0,$ so $|b-a|_p>0.$ If we let $|b-a|_p=p^{-\nu},$ then surely
+\[a\not\equiv b\pmod{p^\nu}.\]
+In particular, $\left\{a/p^\nu\right\}_p\ne\left\{b/p^\nu\right\}_p,$ so $\Psi_a\left(1/p^\nu\right)\ne\Psi_b\left(1/p^\nu\right).$ So $\Psi_a\ne\Psi_b,$ as desired.
+
+To show $\Psi_\bullet$ is an isomorphism of groups, it remains to show that $\Psi_\bullet$ is surjective. The algebraic core of the argument is the following claim.
+\begin{lemma}
+    All characters $\chi:\QQ_p\to S^1$ satisfying $\chi(\ZZ_p)=\{1\}$ take the form $\chi(x)=\Psi_c(x)=e_p(cx)$ for some $c\in\ZZ_p.$
+\end{lemma}
+The idea here is to extract $c\in\ZZ_p$ as a Cauchy sequence. The interesting behavior of $\QQ_p$ occurs at negative powers of $p,$ so we note that for a power $p^\bullet,$ we have
+\[\chi\left(1/p^\bullet\right)^{p^\bullet}=\chi\left(p^\bullet\cdot1/p^\bullet\right)=1.\]
+It follows $\chi\left(1/p^\bullet\right)$ is a $p^\bullet$th root of unity, so we may define the sequence $\{c_\bullet\}$ to satisfy $\chi\left(1/p^\bullet\right)=e^{2\pi ic_\bullet/p^\bullet}.$ Noting that
+\[e^{2\pi ic_\bullet/p^\bullet}=\chi\left(1/p^\bullet\right)=\chi\left(1/p^{\bullet+1}\right)^p=e^{2\pi ic_{\bullet+1}/p^\bullet}\]
+implies that $c_{\bullet+1}\equiv c_\bullet\pmod{p^\bullet}.$ In particular $\{c_\bullet\}$ is a Cauchy/coherent sequence in $\ZZ_p,$ so it will converge to some $c\in\ZZ_p$ with $\left\{c/p^\bullet\right\}=c_\bullet/p^\bullet.$
+
+Having extracted $c,$ we claim each $x\in\QQ_p$ has
+\[\chi(x)\stackrel?=e^{2\pi i\{cx\}_p}.\]
+This comes down to some technical computations involving $\{\bullet\}_p.$ Fix $x=y/p^\bullet$ for some $y\in\ZZ_p,$ and we can write $y=x_\bullet+x_0p^\bullet$ with $x_\bullet\in\ZZ/p^\bullet\ZZ$ and $x_0\in\ZZ_p$ so that $x=x_0+x_\bullet/p^\bullet.$ Combining this with $\chi(x_0)=1,$ we see
+\[\chi(x)=\chi(x_0)\chi\left(x_\bullet/p^\bullet\right)=1\cdot\chi\left(1/p^\bullet\right)^{x_\bullet}=e^{2\pi ic_\bullet x_\bullet/p^\bullet}.\]
+It remains to compare $c_\bullet x_\bullet/p^\bullet$ with $\{cx\}_p.$ Well, we can write $c=c_\bullet+c_0p^\bullet$ with $c_\bullet\in\ZZ/p^\bullet\ZZ$ and $c_0\in\ZZ_p$ so that
+\[cx=\underbrace{cx_0}_{\in\ZZ_p}+\underbrace{c_0x_\bullet}_{\in\ZZ_p}+c_\bullet x_\bullet/p^\bullet.\]
+It follows $\{cx\}_p=\left\{c_\bullet x_\bullet/p^\bullet\right\}_p,$ and because $c_\bullet,x_\bullet\in\ZZ,$ we have $\{cx\}_p=\left\{c_\bullet x_\bullet/p^\bullet\right\}.$ This completes the proof of the lemma. It is somewhat remarkable that we have not used continuity anywhere in this argument; I think $\chi(\ZZ_p)=\{1\}$ guarantees that $\chi$ is locally constant, which obviates the need for continuity. $\blacksquare$
+
+At this point, we're a clever step away from getting any character $\chi.$
+\begin{lemma}
+    All characters $\chi:\QQ_p\to S^1$ take the form $\chi(x)=\Psi_c(x)=e_p(cx)$ for some $c\in\QQ_p.$
+\end{lemma}
+The main idea here is to show that $\chi$ should be $1$ on small inputs. This roughly comes from a difference in the way the topologies on $\QQ_p$ and $S^1$ behave, for $\QQ_p$ has subgroups of arbitrarily small norm while $S^1$ does not. To make this explicit, look at the open set
+\[U_1:=\left\{z\in S^1:|z-1|<1\right\}\subseteq S^1.\]
+Because $\chi$ is continuous, $\chi^{-1}(U_1)$ is also open. Note $\chi(0)=1,$ so $0\in\chi^{-1}(U_1),$ so there's a basis element around $0$ named $p^\nu\ZZ_p\subseteq\chi^{-1}(U_1).$ This is our only use of the continuity of $\chi.$
+
+So far everything done is topological, but now noting that $p^\nu\ZZ_p$ is a subgroup $\QQ_p$ requires $\chi\left(p^\nu\ZZ_p\right)\subseteq U$ to also be a subgroup. But looking at $U,$ the only available subgroup is $\{1\}$! Thus, we define $\chi_0(x):=\chi\left(p^\nu x\right)$ so that
+\[\chi_0\left(\ZZ_p\right)=\chi\left(p^\nu\ZZ_p\right)=\{1\}.\]
+In particular, the previous lemma now kicks in so that $\chi_0(x)=e^{2\pi i\{cx\}_p}$ for some $c\in\ZZ_p.$ It follows
+\[\chi(x)=\chi_0\left(x/p^\nu\right)=e^{2\pi i\left\{c/p^\nu\cdot x\right\}_p}.\]
+Thus we have shown $\chi$ has the desired form with constant $c/p^\nu\in\QQ_p.$ $\blacksquare$
+
+While we're here, we remark that the above argument can show that $\Psi_\bullet$ is an open map.
+\begin{lemma}
+    The map $\Psi_\bullet:\QQ_p\to\widehat{\QQ_p}$ is an open map.
+\end{lemma}
+Here $\widehat{\QQ_p}$ is endowed with the compact-open topology, which is created by the subbasis of sets
+\[\left\{\chi\in\widehat{\QQ_p}:\chi(K)\subseteq U\right\}\]
+for any compact $K$ and open set $U.$ It is a fact that $\widehat{\QQ_p}$ is a topological group under this topology.
+
+Anyways, any open set in $\QQ_p$ can be decomposed into basis elements, and because function application preserves unions, it therefore suffices to show that basis elements of the topology of $\QQ_p$ map to open sets. Further, for any basis element $x+p^\nu\ZZ_p,$ we see
+\[\Psi\left(x+p^\nu\ZZ_p\right)=\Psi(x)\cdot\Psi\left(p^\nu\ZZ_p\right),\]
+so it suffices to show that $\Psi\left(p^\nu\ZZ_p\right)$ is an open set. Well, $a\in p^\nu\ZZ_p$ if and only if
+\[\Psi_a\left(p^{-\nu}\ZZ_p\right)=\Psi_1\left(ap^{-\nu}\ZZ_p\right)=\Psi(\ZZ_p)=\{1\}.\]
+But then we can substitute $\{1\}$ out with $U_1$ because $p^\nu\ZZ_p$ is a subgroup (which requires $\Psi\left(p^\nu\ZZ_p\right)$ to be a subgroup as above), so indeed
+\[\Psi\left(p^\nu\ZZ_p\right)=\left\{\chi\in\widehat{\QQ_p}:\chi\left(p^{-\nu}\ZZ_p\right)\subseteq U_1\right\}.\]
+So we see $\Psi$ is an open map. $\blacksquare$
+
+To show that $\Psi$ is an isomorphism of topological groups, we need to complete the proof that $\Psi$ is a homeomorphism by showing $\Psi$ is continuous. I don't currently know how to do this.

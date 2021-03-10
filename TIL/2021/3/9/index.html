@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 9th
+					</h2>
+					<p>
+						Today I learned a way generating functions explicitly intersects with additive combinatorics. In reality, I just want to showcase the following problem from the IMOSL and then talk some philosophy.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							There exists a set $X\subseteq\NN$ such that, for every $n\in\NN,$ there exists unique (but not necessarily distinct) $a,b,c\in X$ such that $a+2b+4c=n.$
+						</p>
+					</div>
+					<p>
+						The motivated way to solve this question is via generating functions. Let\[f(x)=\sum_{a\in X}x^a.\]Note that $f(x) \lt \sum_{n\in\NN}x^n=\frac1{1-x},$ so $f(x)$ at least converges (absolutely!) for $|x| \lt 1.$ This doesn't matter so much because we're going to consider $f(x)$ formally anyways. To get a condition like $a+2b+4c=n,$ we have to consider as well the functions\[f\left(x^2\right)=\sum_{b\in X}x^{2b}\quad\text{and}\quad f\left(x^4\right)=\sum_{c\in X}x^{4c}.\]At this point, the translation to the question at hand is done by just multiplying\[f(x)f\left(x^2\right)f\left(x^4\right)=\sum_{a,b,c\in X}x^{a+2b+4c}.\]The condition that there exists exactly one unique way to write each $n\in\NN$ as $n=a+2b+4c$ means that each power $x^n$ occurs exactly once in the sum. Additionally, we certainly have $a+2b+4c\in\NN$ because $a,b,c\in X\subseteq\NN,$ so the right-hand sum must actually be $\sum_{n\in\NN}x^n.$ That is, we have to exhibit $f(x)$ so that\[f(x)f\left(x^2\right)f\left(x^4\right)=\sum_{a,b,c\in X}x^n.\]This is not actually easy.
+					</p>
+					<p>
+						Numerical experiments does one well here. Experimentally, we can basically just guess-and-check adding on monomials to $f(x)$ to force the expansion of $f(x)f\left(x^2\right)f\left(x^3\right)$ to hit every single $x^n$ while keeping the coefficients at $1.$ The first few terms come out to\[f(x)=1+x+x^8+x^9+x^{64}+x^{65}+x^{72}+x^{73}+x^{512}+\cdots\]The fact that terms come in pairs of $x^n+x^{n+1}$ suggests that we should factor out $1+x.$ Continuing the expansion, we get\[f(x)=(1+x)\left(1+x^8+x^{64}+x^{72}+x^{512}+x^{520}+\cdots\right).\]Now terms come in pairs of $x^n+x^{n+8},$ so we factor out $1+x^8$ to get\[f(x)=(1+x)\left(1+x^8\right)\left(1+x^{64}+x^{512}+x^{576}+x^{4096}+x^{4160}+\cdots\right).\]We see terms come in pairs of $x^n+x^{n+64},$ so we factor this out again to get\[f(x)=(1+x)\left(1+x^8\right)\left(1+x^64\right)\left(1+x^{512}+x^{4096}+\cdots\right)\]At this point, the pattern suggests that we have\[f(x)\stackrel?=\prod_{k=0}^\infty\left(1+x^{8^k}\right).\]This doesn't actually expand out to any nice (say, rational) function, so trying to solve $f(x)f\left(x^2\right)f\left(x^4\right)=\frac1{1-x}$ by inspection would likely fail.
+					</p>
+					<p>
+						Anyways, it remains to show that this $f(x)$ actually works. Well, now that we're thinking infinite products, we note that\[\sum_{n\in\NN}x^n=\prod_{k=0}^\infty\left(1+x^{2^k}\right)\]by considering the unique binary expansion of each $n\in\NN.$ So we can now split up this factorization as\[\sum_{n\in\NN}x^n=\prod_{k=0}^\infty\left[\left(1+x^{2^{3k}}\right)\left(1+x^{2^{3k+1}}\right)\left(1+x^{2^{3k+2}}\right)\right],\]which is\[\sum_{n\in\NN}x^n=\underbrace{\left(\prod_{k=0}^\infty1+x^{8^k}\right)}_{f(x)}\underbrace{\left(\prod_{k=0}^\infty1+\left(x^2\right)^{8^k}\right)}_{f(x^2)}\underbrace{\left(\prod_{k=0}^\infty1+\left(x^4\right)^{8^k}\right)}_{f(x^4)}.\]So we see that $f(x)$ does in fact exist. Expanding out $f(x)$ directly and extracting the powers back out gives the elements of $X.$ In particular, the coefficient of each nonzero term in the expansion of $f(x)$ is $1$ because, considering the base-$8$ expansion of each exponent, all oct-its need to be $0$ or $1,$ and the uniqueness follows for the same reason that base-$2$ expansion is unique. $\blacksquare$
+					</p>
+					<p>
+						What's nice about the generating functions proof is that, once one begins to use generating functions, no part of the proof requires extreme cleverness. However, now that we know that we are supposed to get\[f(x)=\prod_{k=0}^\infty\left(1+x^{8^k}\right)\]at the end, we can exhibit $X$ without mentioning generating functions at all. In particular, we mentioned at the end that the nonzero terms of $f(x)$ are those with only $0$s and $1$s in their base-$8$ expansion, which we see by directly expanding the above product. So we claim directly that\[X\stackrel?=\{x\in\NN:x_8\text{ has only }0\text{ and }1\}.\]Thinking in terms of base $8,$ it is not as hard to see that every $n\in\NN$ can be written as $a+2b+4c$ for $a,b,c\in X.$ Indeed, fix any $n\in\NN,$ and write its binary expansion as\[n=\sum_{k=0}^\infty b_k2^k,\]where $\{b_k\}_{k=0}^\infty$ is eventually constantly $0.$ Now, as in the generating functions proof, we split by $k\pmod3,$ writing\[n=\sum_{k=0}^\infty\left(b_{3k}2^{3k}+b_{3k+1}2^{3k+1}+b_{3k+2}2^{3k+2}\right)\]so that we can regroup as\[n=\underbrace{\left(\sum_{k=0}^\infty b_{3k}8^k\right)}_{\in X}+2\underbrace{\left(\sum_{k=0}^\infty b_{3k+1}8^k\right)}_{\in X}+4\underbrace{\left(\sum_{k=0}^\infty b_{3k+2}8^k\right)}_{\in X}.\]So we get our representation of each $n\in\NN,$ and it certainly feels very unique. Indeed, the computation has $a+2b+4c$ has no carries in base $2,$ so we can biject bits from each $a,b,c\in X$ with bits in $n\in\NN,$ and there is no overlap. Explicitly, bit $a_k2^k$ of $a$ goes to $n_{3k}8^k$ and so on.
+					</p>
+					<p>
+						This is not terribly rigorous, but we could make it rigorous if we wanted. For example, $n\pmod8$ certainly uniquely determines $a,b,c\pmod2$ because the higher bits of $a,b,c\in X$ don't matter. After subtracting the required bit, each of $n,a,b,c$ will be divisible by $8$ (because $a_8,b_8,c_8$ only have $0$s and $1$s), so we can divide everything by $8$ and induct downwards. $\blacksquare$
+					</p>
+					<p>
+						Anyways, the point of all this discussion is that expansion of generating functions can algebraically deal with sums of restricted subsets of $\NN,$ and they can even count the number of times some $n\in\NN$ gets hit. For example, I think the Hardy-Littlewood circle method concerns itself with products of\[f(q)=\sum_{k\in\NN}q^{k^2},\]which can feasibly compute properties of sums of squares (and other powers more generally).
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 25th
+					</h2>
+					<p>
+						Today I learned about the Lesbegue measure. The basic idea is that we want to create a Haar (translation-invariant and outer Radon) measure which communicates niecly with our basis elements. To start off, we define $\lambda((a,b))=b-a$ to be our measure on the basis elements of our topology.
+					</p>
+					<p>
+						Next we extend this to all open sets. This is not actually trivial because even though we can write\[U=\bigcup_\alpha(a_\alpha,b_\alpha)\]for some collection of basis elements $(a_\alpha,b_\alpha),$ these basis elements might overlap. The trick is that our basis elements are totally ordered by containment, so we can intuitively choose the "largest'' basis elements to cover $U$ and not worry about overlap. Making this rigorous is somewhat annoying, but one way to do this is to write\[\mathcal B=\{(a,b):(a,b)\subseteq U\},\]and then $\mathcal B$ is a partially ordered set under $\subseteq.$ Each ascending chain has an upper bound (say, $\RR$), so each $B\in\mathcal B$ is contained in some maximal element of $\mathcal B.$ So we can define a function $\varphi:\mathcal B\to\mathcal B$ taking each basis element to its maximal and define\[\mu(U)=\sum_{B\in\varphi(\mathcal B)}\lambda(B).\]This is disgusting, but it provides the idea of what's to come.
+					</p>
+					<p>
+						We notice now that we want an outer Radon measure, which requires being outer regular. So it would be lovely if we could just define\[\mu(S)=\inf_{\text{open }U\supseteq S}\mu(U)\]to get outer regular for free. However, this forces us to take $\inf$ over the $\varphi$ function from earlier which we already don't understand very well. The technical trick to avoid $\varphi,$ then, is to let the $\inf$ check for overlaps for us. We take the following definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							Define the Lebesgue measure $\mu$ on $\RR$ to be    \[\mu(S):=\inf\left\{\sum_{k=0}^\infty(b_k-a_k):S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]
+						</p>
+					</div>
+					<p>
+						Note now that overlaps between the $(a_\bullet,b_\bullet)$ are entirely permitted, but the $\inf$ will tell us that overlapping is not minimal.
+					</p>
+					<p>
+						It remains to check that $\mu$ is actually a Haar measure. We will show it is an outer measure today and move towards showing Haar. The easiest part of this showing that $\mu$ is translation-invariant, so we get that out of the way. Indeed, for set $S$ and constant $c\in\RR,$ we have to show that $\mu(S)=\mu(c+S),$ or\[\inf\left\{\sum_{k=0}^\infty(b_k-a_k):S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}=\inf\left\{\sum_{k=0}^\infty(b_k-a_k):c+S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]Now, for any collection $\{(a_k,b_k)\}_{k=0}^\infty$ covering $S,$ we note $\{(a_k+c,b_k+c)\}_{k=0}^\infty$ will cover $c+S$ while preserving all of the lengths $b_k-a_k=(b_k+c)-(a_k+c).$ It follows that any bound $M$ occuring in the left-hand set will also appear in the right-hand set, so\[\mu(S)\ge\mu(c+S).\]Taking $S\mapsto c+S$ and $c\mapsto-c$ implies $\mu(c+S)\ge\mu(S),$ so $\mu(S)=\mu(c+S),$ as desired.
+					</p>
+					<p>
+						Before continuing, we establish a lemma. We show that if $A\subseteq B,$ then $\mu(A)\le\mu(B).$ Expanding, we have to show that\[\inf\left\{\sum_{k=0}^\infty(b_k-a_k):A\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}\le\inf\left\{\sum_{k=0}^\infty(b_k-a_k):B\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]Well, we note that any collection $\{(a_k,b_k)\}_{k=1}^\infty$ covering $B$ will also cover $A,$ so any bound $M$ appearing in the right-hand set also appears in the left-hand set. It follows $\mu(A)\le\mu(B).$
+					</p>
+					<p>
+						We now show that $\mu$ is outer regular. That is, we have to show\[\mu(S)=\inf_{\text{open }U\supseteq S}\mu(U).\]Quickly, we note that $U\supseteq S$ directly implies $\mu(U)\ge\mu(S),$ so we immediately know\[\mu(S)\le\inf_{\text{open }U\supseteq S}\mu(U)\]from the lemma. To get the other direction, we expanding out the definition of $\mu,$ so we have to show\[\inf\left\{\sum_{k=0}^\infty(b_k-a_k):S\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}\stackrel?\ge\inf_{\text{open }U\supseteq S}\left\{\sum_{k=0}^\infty(b_k-a_k):U\subseteq\bigcup_{k=0}^\infty(a_k,b_k)\right\}.\]Now, note that any collection $\{(a_k,b_k)\}$ covering $S$ on the left-hand side will union to an open set that we can give to the right-hand side, with the same cover. So any bound $M$ appearing in the left-hand set will also appear in the right-hand set, so\[\mu(S)\ge\inf_{\text{open }U\supseteq S}\mu(U).\]Combining the two inequalities gets what we want.
+					</p>
+					<p>
+						Only now do we try to check that $\mu$ is a measure. Take $\{S_k\}_{k=0}^\infty$ sets so that we want to show\[\sum_{k=0}^\infty\mu(S_k)\stackrel?=\mu\left(\bigcup_{k=0}^\infty S_k\right).\]Expanding, we want to know\[\sum_{k=0}^\infty\inf\left\{\sum_{\ell=0}^\infty(b_\ell-a_\ell):S_k\subseteq\bigcup_{\ell=0}^\infty(a_\ell,b_\ell)\right\}\stackrel?=\inf\left\{\sum_{\ell=0}^\infty(b_\ell-a_\ell):\bigcup_{k=0}^\infty S_k\subseteq\bigcup_{\ell=0}^\infty(a_\ell,b_\ell)\right\}.\]The outer sum on the left-hand side is unnatural, so we write\[\inf\left\{\sum_{k,\ell=0}^\infty(b_{k,\ell}-a_{k,\ell}):S_k\subseteq\bigcup_{\ell=0}^\infty(a_{k,\ell},b_{k,\ell})\right\}\stackrel?=\inf\left\{\sum_{\ell=0}^\infty(b_\ell-a_\ell):\bigcup_{k=0}^\infty S_k\subseteq\bigcup_{\ell=0}^\infty(a_\ell,b_\ell)\right\}.\]Now, in one direction, note that for any bound $M$ in the left-hand side, we can associate it with a countable (!) collection $(a_{k,\ell},b_{k,\ell})$ of basis sets. This collection covers each of the $S_\bullet,$ so it covers their union, so this collection will also appear in the right-hand set. Thus, the bound $M$ also appears in the right-hand side. It follows\[\sum_{k=0}^\infty\mu(S_k)\ge\mu\left(\bigcup_{k=0}^\infty S_k\right).\]This is enough for $\mu$ to be an outer measure, but it remains to check the $\le$ inequality. This is because it is actually impossible to show this for arbitrary sets $S_\bullet,$ even though we haven't used the disjoint condition. I don't currently know enough about measurable sets to be able to fix this.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

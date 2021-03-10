@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 1st
+					</h2>
+					<p>
+						Today I learned that local fields $F$ have character group $\widehat F$ isomorphic to themselves, from the
+						<a href="http://math.mit.edu/~poonen/786/notes.pdf">
+							MIT notes
+						</a>
+						I've been reading. This is somewhat similar to the proof $\QQ_p\cong\widehat{\QQ_p}$ I did yesterday, but this is different in topological ways.
+					</p>
+					<p>
+						To set up, we fix any nontrivial character $\psi\in\widehat F.$ One exists by Pontryagin duality: $\widehat{F}\cong\{e\}$ means that $F\cong\widehat{\smash{\widehat F}\vphantom{1^]}\,}\cong\{e\},$ but $F\not\cong\{e\}.$ Then we define the map $\Psi:F\to\widehat F$ by\[\Psi_a:=(x\mapsto\psi(ax)).\]Before continuing, we check that this is well-defined. In particular, $\Psi_a$ is still a character because $\Psi_a(0)=\psi(a\cdot0)=\psi(0)=1.$ And $\Psi_a$ is continuous because it is the composite of the continuous maps $x\mapsto ax$ and $x\mapsto\psi(x).$ Anyways, we now claim the following.
+					</p>
+					<div class="theorem">
+						<p>
+							<b>
+								Theorem.
+							</b>
+							The map $\Psi:F\to\widehat F$ is an isomorphism of topological groups.
+						</p>
+					</div>
+					<p>
+						This means that we have show $\Psi$ is both an isomorphism of groups and a homeomorphism of topological spaces.
+					</p>
+					<p>
+						We begin by getting the easier stuff out of the way first.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The map $\Psi$ is an injective homomorphism of groups.
+						</p>
+					</div>
+					<p>
+						To show that $\Psi$ is a homomorphism, we have to show that $\Psi_{(a+b)}=\Psi_a\Psi_b$ for $a,b\in F.$ Well, plugging into the definitions, we see\[\psi((a+b)x)=\psi(ax+bx)=\psi(ax)\psi(bx),\]which is what we wanted. Now to show that $\Psi$ is injective, it suffices to show that it has trivial kernel. Well, $\psi$ is nontrivial (note we have used this condition here), so some $\psi(g)\ne1.$ Then for $a\ne0,$ we have $a\in F^\times,$ so\[\Psi_a\left(a^{-1}g\right)=\psi\left(aa^{-1}g\right)=\psi(g)\ne1.\]Thus, $\Psi_a$ is not the identity, so we see $\Psi$ has trivial kernel. $\blacksquare$
+					</p>
+					<p>
+						It would be nice, thematically speaking, to show surjectivity now to complete the proof that $\Psi$ is a group isomorphism. However, this will turn out to follow cleanly from a topological argument, so we postpone doing so.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The map $\Psi$ is a homeomorphism onto its own image.
+						</p>
+					</div>
+					<p>
+						Because $\Psi$ is injective, note that we can pull back the open sets in $\Psi(F)$ to make a topology on $F.$ To be explicit, we our open sets in the subspace $\Psi(F)$ have subbasis\[\big\{\psi_a\in\widehat F:\psi_a(K)\subseteq U\big\}\]for compact $K$ and open $U,$ and now we violently push this backwards to\[V(U,K):=\{a\in F:\psi_a(K)\subseteq U\}=\left\{a\in F:aK\subseteq\psi^{-1}(U)\right\}.\]This gives us a funny topology on $F,$ and we want to show that the normal topology on $F$ is the same as this one. That is, if an open set $U$ is open in the normal topology if and only if it's open in the funny topology, then we can push the funny topology back through to $\Psi(F)$ so that $U$ is open in the normal topology if and only if $\Psi(U)$ is open in $\widehat F$ and conversely.
+					</p>
+					<p>
+						The normal topology on $F$ is generated by open balls $B(a,r).$ To equate topologies, it suffices to focus on (sub)basis elements: we show that each $\bigcap_\bullet V(U_\bullet,K_\bullet)$ contains open ball neighborhoods of any individual element of a basis element $\bigcap_\bullet V(U_\bullet,K_\bullet),$ and each open ball contains some basis element $\bigcap_\bullet V(U_\bullet,K_\bullet)$ containing the center of the ball. Visualize this by populating funny open basis elements with balls and populating balls with funny open basis elements.
+					</p>
+					<p>
+						Quickly, we show this is enough. Indeed, then for any open ball $B(a,r),$ we write\[B(a,r)=\bigcup_{u\in B(a,r)}\left(\bigcap_{k=1}^{n_u}V(U_{u,k},K_{u,k})\right),\]where $u\in\bigcap_\bullet V(U_{u,\bullet},K_{u,\bullet})\subseteq B(u,r-|a-u|)\subseteq B(a,r).$ Thus open balls can be expressed as a union of funny basis elements, and anything open in the normal topology is open in the funny topology. And conversely, each basis element $\bigcap_{k=1}^nV(U,K)$ contains open ball neighborhoods of any individual element, so we can write\[\bigcap_{k=1}^nV(U,K)=\bigcup_{v\in V}B(a_v,r_v),\]where $v\in B(a_v,r_v)\subseteq\bigcap_{k=1}^nV(U,K).$ Thus, the open balls also form a subbasis of the funny topology, and anything open in the funny topology is open in the normal topology.
+					</p>
+					<p>
+						Continuing, the topological group structure actually lets us focus only around $0.$ Indeed, it will be enough to claim the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Any funny open set $V(U,K)$ containing $0$ contains an open ball centered at $0$ and conversely.
+						</p>
+					</div>
+					<p>
+						Indeed, suppose we knew this. To show that each funny basis element $V$ contains open ball neighborhoods around each element of $v,$ then we note $-v+V$ is an a funny open set (by homogeneity) containing $0.$ So fixing a finite intersection of some $V(U_\bullet,K_\bullet)$ to be a basis element around $0$ in $V,$ each $V(U_\bullet,K_\bullet)$ contains $0$ and thus some $B(0,r_\bullet)$ by lemma. Taking the minimum of the $r_\bullet$ lets us assert $B(0,r_\bullet)\subseteq-v+V,$ so\[B(v,r_\bullet)\subseteq V.\]To show that each open ball $B(a,r)$ contains a funny basis element $V$ around the center $a,$ we note that $B(0,r)$ contains some funny open set $V(U,K)$ around $0,$ and then $a+V(U,K)$ is still a funny open set now containing $a.$ Thus, we can extract a basis element of $a+V(U,K)$ containing $a$ to finish.
+					</p>
+					<p>
+						Now we show the (sub)lemma. To show that each $V(U,K)$ containing $0$ contains an open ball centered at $0,$ we note that this means exhibiting an $\varepsilon$ for which\[|a| \lt \varepsilon\implies aK\subseteq\psi^{-1}(U)\]after unraveling the definitions. Note that none of the previous arguments about basis elements have used anything about the topology on $F,$ but we note now that $K$ is compact requires that $K$ is bounded, so we're essentially trying to squeeze a small set into $\psi^{-1}(U).$ Well, $\psi^{-1}(U)$ is open by continuity, and it contains $0,$ so fix some\[B(0,r)\subseteq\psi^{-1}(U).\]Because $K$ is bounded, we can say $k\in K$ implies $|k|\le m$ for some $m,$ which now lets us finish with $\varepsilon=r/m.$ Indeed, if $|a| \lt r/m,$ then any $ak\in K$ satisfies\[|ak|=|a|\cdot|k| \lt \frac rm\cdot m=r,\]so $ak\in B(0,r)\subseteq\psi^{-1}(U).$ So we finish this part.
+					</p>
+					<p>
+						Conversely, we now show that each open ball $B(0,r)$ around $0$ contains some $V(U,K)$ containing $0.$ Unpacking definitions, we will exhibit compact $K$ and open $U$ containing $1$ such that\[aK\subseteq\psi^{-1}(U)\implies|a| \lt r.\]We are forcing $1\in U$ so that $a=0$ works. We note that if $\psi$ is trivial, then this is false, so we need to introduce $x\in G$ so that $\psi(x)\ne1.$ Now, the main trick here is to take a closed ball for $K,$ which are compact, and this will let us move this to a size condition. Namely, we take $U=S^1\setminus\{\psi(x)\},$ and\[K=\{k\in G:|k|\le|x|/r\}.\]The visual here is that $a\in F$ is permitted as long as $aK$ doesn't "blow up'' too much to hit $x.$ Anyways, we show this works; fix $a\in F,$ and we show the contrapositive that\[|a|\ge r\implies aK\not\subseteq\psi^{-1}(U).\]We see $|x/a|\le|x|/r,$ so $x/a\in K,$ implying that $x\in aK.$ However, $\psi(x)\not\in U,$ so $x$ witnesses $aK\not\subseteq\psi^{-1}(U).$ This completes the proof that $\Psi$ is a homeomorphism onto its image. $\blacksquare$
+					</p>
+					<p>
+						We are now almost ready to show that $\Psi$ is surjective. To do this cleanly, we pick up some theory about the "annihilator.'' In a general locally compact abelian group $G,$ we fix a subgroup $H\subseteq G.$ Then the annihilator $H$ denoted $H^\perp\subseteq\widehat G$ is defined as\[H^\perp:=\big\{\chi\in\widehat G:\chi(H)=\{1\}\big\}.\]We note that $H^\perp$ is a subgroup of $\widehat G$ ($\chi_1(H)=\{1\}$ and $\chi_2(H)=\{1\}$ certainly implies $(\chi_1\chi_2)(H)=\{1\}$), and in fact writing\[H^\perp=\bigcap_{h\in H}\big\{\chi\in\widehat G:\chi(h)=1\big\},\]we see that $H^\perp$ is in fact closed. Indeed, it suffices to show that the intersected sets are closed, for which we note that the complement of these sets is\[\big\{\chi\in\widehat G:\chi(\{h\})\in S^1\setminus\{1\}\big\}.\]This complement is open because we're using the compact-open topology on $\widehat G.$
+					</p>
+					<p>
+						With the introductory remarks complete, we claim the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							Fix $G$ a locally compact abelian group. Then the annihilator $\perp$ is a bijective and inclusion-reversing mapping from closed subgroups of $G$ to closed subgroups $\widehat G.$
+						</p>
+					</div>
+					<p>
+						This lemma is quite remarkable, but we won't spend time admiring it. We note that $\perp$ always outputs closed subgroups, so at least this restriction to closed subgroups makes sense.
+					</p>
+					<p>
+						We start by showing that $\perp$ is inclusion-reversing because this is easier. For closed subgroups $A\subseteq B$ of $G,$ then we note $\chi\in B^\perp$ if and only if $\chi(B)=\{1\}.$ But now $A\subseteq B,$ so certainly\[\chi(A)=\{1\}.\]It follows $\chi\in A^\perp,$ so we see $B^\perp\subseteq A^\perp.$
+					</p>
+					<p>
+						To show that $\perp$ is bijective, we actually show that $\perp$ is kind of involutive, which is stronger. That is, we fix a closed subgroup $A$ of $G$ and show $\left(A^\perp\right)^\perp=A,$ in the sense that these are equal under the Pontryagin duality correspondence. (The technicality is that $\left(A^\perp\right)^\perp$ lives in the character group of $\widehat G,$ which is isomorphic but not equal to $G.$) Anyways, unpacking the definitions, we are interested in\[\left(A^\perp\right)^\perp=\Big\{\chi\in\widehat{\smash{\widehat G}\vphantom{1^]}\,}:\chi\left(A^\perp\right)=\{1\}\Big\}.\]Using Pontryagin duality, we can parameterize characters of $\widehat G$ with $a\in G$ by the map $\chi\mapsto\chi(a).$ So we are actually interested in showing that\[A\stackrel?=\left\{a\in G:\chi\in A^\perp\implies\chi(a)=1\right\}.\]This is equivalent to showing that\[A\stackrel?=\bigcap_{\chi(A)=\{1\}}\{a\in G:\chi(a)=1\}.\]So essentially we have to show that we can determine a closed subgroup $A\subseteq G$ by looking entirely at the character group of $G.$ Note that surely $A$ is a subset of the right-hand side, so the difficult part is showing that if $g\in G$ has $\chi(g)=1$ for each $\chi\in A^\perp,$ then $g\in A.$
+					</p>
+					<p>
+						We do this by modding out $G$ by $A.$ Because $G$ is abelian, $A$ is normal, and because $A$ is closed, the quotient space is still Hausdorff. Additionally, $G/A$ inherits being locally compact from $G.$ Indeed, focus on the projection map $\pi:G\to G/A$ which is open and continuous by construction. Then for any $gA\in G/A,$ we have some compact neighborhood of $g$ named $K_g\subseteq G.$ Then\[\pi^{-1}(K_g)\subseteq G/A\]is also compact because an open cover of one makes an open cover of the other by $\pi.$
+					</p>
+					<p>
+						Now, considering the space $G/A$ means that it will suffice to show that\[\bigcap_{\chi\in\widehat G'}\{a\in G:\chi(a)=1\}\stackrel?=\{e\}\]in an arbitrary locally compact abelian group $G'.$ Indeed, this is enough because then if $\chi(g)\in A$ for each $\chi\in A^\perp,$ then $\chi\circ\pi^{-1}$ is a character on $G/A$ for which\[\left(\chi\circ\pi^{-1}\right)(gA)=A.\]Additionally, all characters on $G/A$ are of this form because $\chi:G/A\to S^1$ can be pulled back to $\chi\circ\pi:G\to S^1,$ which satisfies $\chi=\chi\circ\pi\circ\pi^{-1}.$ Anyways, the point is that all characters take $gA$ to the identity element $A,$ so we must actually have $gA=A,$ implying $g\in A.$
+					</p>
+					<p>
+						Anyways, we now show that\[\bigcap_{\chi\in\widehat G'}\{a\in G:\chi(a)=1\}\stackrel?=\{e\}.\]This follows quickly from Pontryagin duality. Suppose $g$ is in the left-hand set so that we want to show $g=e.$ Well, under Pontryagin duality, $g$ turns into a character on $\widehat G,$ taking $\chi\mapsto\chi(g).$ But then we're taking each $\chi$ to $1$ directly, so $g$ corresponds to the identity mapping! So indeed $g=e.$
+					</p>
+					<p>
+						Because $\perp$ isn't actually involutive but only under a canonical isomorphism, we provide the details for why we now know $\perp$ is bijective. We do this clumsily because I can't be bothered to find the correct way. For injectivity, suppose $A$ and $B$ are closed subgroups of $G$ for which $A^\perp=B^\perp.$ However, then we see\[A=\bigcap_{\chi\in A^\perp}\{a\in G:\chi(a)=1\}=\bigcap_{\chi\in B^\perp}\{b\in G:\chi(b)=1\}=B.\]For surjectivity, fix a closed subgroup $C$ of $\widehat G,$ and we note that\[C=\bigcap_{a\in C^\perp}\big\{\chi\in\widehat G:a(\chi)=1\big\}.\]However, Pontryagin duality lets us equivalently associate $a\in C^\perp$ characters of $\widehat G$ with elements of $G.$ So now elements $a\in C^\perp$ look like elements $a\in G$ for which $\chi(a)=1$ for each $\chi\in C$; i.e., $\{a\}^\perp\supseteq C.$ Thus,\[C=\bigcap_{\{a\}^\perp\supseteq C}\big\{\chi\in\widehat G:\chi(a)=1\big\}.\]Moving the intersection into a single set, we are essentially asserting that\[C=\left\{a\in G:\{a\}^\perp\supseteq C\right\}^\perp.\]It remains to show that the inner set is a closed subgroup of $G.$ Well, it consists of $a\in G$ for which $\chi(a)=1$ for each $\chi\in C.$ This condition is closed under group multiplication and inversion, so we have a subgroup. Additionally, we can write the set as\[\bigcap_{\chi\in C}\{a\in G:\chi(a)=1\},\]which shows that it is closed, for $G\setminus\{a\in G:\chi(a)=1\}=\chi^{-1}(S^1\setminus\{1\})$ is open. $\blacksquare$
+					</p>
+					<p>
+						Having studied the annihilator sufficiently, we are now ready to complete the proof of the theorem.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							The map $\Psi$ is surjective.
+						</p>
+					</div>
+					<p>
+						Recall $F$ is complete with respect to its metric. So considering a convergent sequence in $\Psi(F),$ we can map this sequence back into $F,$ note that it must converge in $F,$ and then map the limit point back into $\Psi(F).$ (This only works because we know $\Psi$ is a homeomorphism onto its image.) Thus $\Psi(F)$ is closed.
+					</p>
+					<p>
+						To finish, we note that showing $\Psi(F)=\widehat F$ is equivalent to showing $\Psi(F)^\perp=\widehat F^\perp,$ from the theory developed above. We also know $\widehat F^\perp$ only consists of the trivial character, so we have to show that $\Psi(F)^\perp$ also only consists of the trivial character. Expanding out definitions, we want to show\[\Psi(F)^\perp=\Big\{x\in\widehat{\smash{\widehat F}\vphantom{1^]}\,}:\chi\in\Psi(F)\implies x(\chi)=1\Big\}\stackrel?=\{e\}.\]Using Pontryagin duality, this is the same as showing\[\Psi(F)^\perp=\{x\in F:\chi\in\Psi(F)\implies\chi(x)=1\}\stackrel?=\{0\}.\]However, $\Psi(F)$ is parameterized by $F,$ so the condition on $x$ is that $\Psi(a)(x)=1$ for all $a\in F.$ But $\Psi(a)(x)=\Psi(x)(a),$ so we require that $\Psi(x)$ be a trivial character, which requires $x=0$ because $\Psi$ is known to be injective. Thus, we are done here. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

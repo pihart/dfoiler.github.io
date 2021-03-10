@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 4th
+					</h2>
+					<p>
+						Today I learned some examples of $p$-adic geometry being horrible, from
+						<a href="https://scholar.rose-hulman.edu/rhumj/vol8/iss1/2/">
+							this undergraduate paper
+						</a>
+						. For example, we have the following.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							No three distinct points in $\QQ_p$ are collinear.
+						</p>
+					</div>
+					<p>
+						The meaning of "collinear'' is unclear here because $\QQ_p$ doesn't have a clear geometry, but we will take lines as geodesics. That is, if $a,b,c\in\QQ_p$ all lie on the same line with (say) $b$ between $a$ and $c,$ then the shortest path between $a$ and $c$ goes through $b.$ Do we must have\[|a-c|_p=|a-b|_p+|b-c|_p\]by following the path through $b.$ This is not a totally rigorous argument, but it will serve fine as a definition for collinear. Anyways, it's not hard to see there are no three distinct $a,b,c\in\QQ_p$ satisfying this by the ultrametric inequality. Indeed, we have\[|a-c|_p\le\max\{|a-b|_p,|b-c|_p\} \lt |a-b|_p+|b-c|_p=|a-c|_p,\]which is our contradiction. In particular, we have a $ \lt $ because $a,b,c$ are distinct, implying all distances are positive. $\blacksquare$
+					</p>
+					<p>
+						Visually, I see the above proposition as a geometric way to view "totally disconnected.'' As in, we do have a metric and notion of distance, but this distance is quite discrete in $\QQ_p$ and gives very separated space. Lines would require some connections between points, which doesn't exist in $\QQ_p.$ We also remark that the above proof works for any ultrametric space.
+					</p>
+					<p>
+						However, I find the following more interesting with respect to $\QQ_p$'s geometry.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							At most $p$ distinct points in $\QQ_p$ are equidistant.
+						</p>
+					</div>
+					<p>
+						We note that equality is possible: choose points in each coset $\ZZ_p/p\ZZ_p,$ and then each will differ by some element in $\ZZ_p\setminus p\ZZ_p,$ making each point a distance $1$ from each other point. Here's a picture in $\ZZ_5.$
+					</p>
+					<img src="img1.png">
+					<p>
+						This equality case actually tells us where to look: if there are more than $p$ elements, we should try to force two elements into some small coset. In fact, we will manipulate our sequence to fit nicely into $\ZZ_p/p\ZZ_p.$
+					</p>
+					<p>
+						Suppose we have $n$ points $a_0,\ldots,a_{n-1}\in\QQ_p.$ To make things easier to handle, we note that\[|a-b|_p=|(a-c)-(b-c)|_p,\]so shifting all points by some constant $c$ will not change being equidistant. So we subtract $a_0$ from all points and relabel our sequence to $0,a_1,\ldots,a_{n-1}.$
+					</p>
+					<p>
+						We would like to force our nonzero points in $\ZZ_p\setminus p\ZZ_p,$ so we write $a_\bullet=b_\bullet p^{\nu_\bullet}$ with $b_\bullet\in\ZZ_p\setminus p\ZZ_p$ for $\bullet \gt 0.$ We want to get rid of the $p^{\nu_\bullet},$ so we fix let $\nu$ be the minimum of the $\nu_\bullet$s and get ready to divide by $p^\nu.$ Namely, we see\[|c|_p\cdot|a-b|_p=|ac-bc|_p,\]so multiplying all points by some constant $c$ will not change being equidistant either. Thus, we reorder our sequence to put $\nu_1=\nu$ and then multiply through by $p^{-\nu}.$ Relabeling our sequence, we now have $0,a_1,\ldots,a_{n-1}$ where $a_1\in\ZZ_p\setminus p\ZZ_p$ and each $a_\bullet\in\ZZ_p$ for each $\bullet \gt 0.$
+					</p>
+					<p>
+						Now we finish. Note that $|a_1-0|_p=1$ because $a_1\in\ZZ_p\setminus p\ZZ_p,$ implying that all points must be a distance of $1$ from each other because they're equidistant. In other words, for any two points $a_k$ and $a_\ell,$ we must have $\nu_p(a_k-a_\ell)=0,$ or\[a_k-a_\ell\not\in p\ZZ_p.\]However, this forces all $n$ points to be in different cosets of $\ZZ_p/p\ZZ_p,$ of which there are only $p.$ Thus, the pigeonhole principle forces $n\le p,$ and we are done. $\blacksquare$
+					</p>
+					<p>
+						The proposition is written as an "at most'' statement, but I find it remarkable that the equality case exists at all. The fact that we can embed the complete graph $K_p$ in $\QQ_p$ (and with ease!) makes its geometry feel super weird. For comparison, $\RR$ can only do $2,$ and $\CC$ can only do $3$; and typically, I think this many equidistant points is visualized as a $p$-simplex in $\RR^p,$ which $\QQ_p$ feels very different from.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

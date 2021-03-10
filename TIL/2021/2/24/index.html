@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 24th
+					</h2>
+					<p>
+						Today I learned about the $p$-adic Gaussian to derive the completed Riemann $\xi$ function, from
+						<a href="https://terrytao.wordpress.com/2008/07/27/tates-proof-of-the-functional-equation/">
+							Terrence Tao
+						</a>
+						. We're going to synthetically derive the $\Gamma$ factor of the $\xi$ function, and then this will give us an idea of how to synthetically derive the entire $\xi$ function.
+					</p>
+					<p>
+						Fix $G_\infty(x)=e^{-\pi x^2}$ to be our Gaussian over $\RR=\QQ_\infty.$ Recall that we also have the Gaussian $G_p(x)=1_{\ZZ_p}$ on $\QQ_p$ as we showed two days ago. Additionally, we want our $\Gamma$ factor to be\[\Gamma_\infty(s):=\pi^{-s/2}\Gamma(s/2)=\pi^{-s/2}\int_0^\infty e^{-t}t^{s/2}\,\frac{dt}t.\]The correct to do here is to attempt to make $G_\infty$ appear in this expression. So we take $t\mapsto\pi t^2$ and $dt/t\mapsto 2dt/t,$ giving\[\Gamma_\infty(s)=2\int_0^\infty e^{-\pi t^2}t^s\,\frac{dt}t.\]Now this definition looks more motivated, for we get to write\[\Gamma_\infty(s)=\int_{\QQ_\infty^\times}G_\infty(t)|t|^s\,\frac{dt}{|t|},\]and all the artifacts of $\RR$ have disappeared: we can define the $\Gamma_\infty$ factor as (twice) the Mellin transform of the Gaussian! Further, note that $dt/|t|$ is a Haar measure on $\QQ_\infty^\times,$ so it feels a bit more natural (notationally) to integrate over $\QQ_\infty^\times$ instead of $\QQ_\infty\setminus\{0\}.$
+					</p>
+					<p>
+						Anyways, this suggests that we define\[\Gamma_p(s):=\int_{\QQ_p^\times}G_p(t)|t_p|_p^s\left(\frac p{p-1}\cdot\frac{dt_p}{|t_p|_p}\right).\]We remark that we choose our measure $\frac p{p-1}\cdot\frac{dt_p}{|t_p|_p}$ to be a multiplicative measure on $\QQ_p^\times,$ scaled so that the units $\ZZ_p^\times=\ZZ_p\setminus p\ZZ_p$ has measure $1.$ We show explicitly that $\ZZ_p\setminus p\ZZ_p$ has the desired measure, for it's a basic case of something we'll do shortly. Essentially, $t_p\in\ZZ_p\setminus p\ZZ_p$ will always have $|t_p|_p=1,$ so\[\int_{\ZZ_p\setminus p\ZZ_p}\frac{dt_p}{|t_p|_p}=\int_{\ZZ_p\setminus p\ZZ_p}dt_p.\]Now, $\ZZ_p\setminus p\ZZ_p$ is made up of $p-1$ cosets of $\ZZ_p/p\ZZ_p,$ of which there are $p.$ So with the $p$ total cosets, which all have the same measure because $dt_p$ is shift-invariant, partitioning $\ZZ_p$ of measure $1,$ it follows each coset has measure $\frac1p.$ Thus,\[\int_{\ZZ_p\setminus p\ZZ_p}\frac{dt_p}{|t_p|_p}=\frac{p-1}p,\]which is what we wanted.
+					</p>
+					<p>
+						This argument turns out to be helpful for the following claim, which is what we're really here for.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							We have that    \[\Gamma_p(s)=\frac1{1-p^{-s}}.\]
+						</p>
+					</div>
+					<p>
+						This is a miracle. The $p$-adic $\Gamma$ factor turns out to be an Euler factor! We will make more comments on this later.
+					</p>
+					<p>
+						At a high level, what makes this formula so nice is that our Gaussian $G_p$ is so nice. Because $G_p$ merely indicates $\ZZ_p,$ our integral over $\QQ_p^\times$ turns into an integral over $\ZZ_p\setminus\{0\}.$ So we see\[\Gamma_p(s)=\frac p{p-1}\int_{\ZZ_p\setminus\{0\}}|t_p|^s_p\,\frac{dt_p}{|t_p|_p}.\]Here we mimic the argument that $\ZZ_p\setminus p\ZZ_p$ has multiplicative maesure $1.$ We see $\ZZ_p$ is inherently granular, so we can make the integrand constant by summing over each possible $|x_p|_p.$ In particular, $x_p\in\ZZ_p\setminus\{0\}$ implies $|x_p|_p=p^{-\nu}$ for some nonnegative integer $\nu.$ So because $\ZZ_p\setminus\{0\}$ is countably partitioned by $\nu,$ we may write\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\int_{|x_p|=p^{-\nu}}p^{-\nu s}\,\frac{dt_p}{p^{-\nu}}.\]Now, the integrand is constant with respect to $t_p,$ so we can move it out of the integral, giving\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\frac{p^{-\nu s}}{p^{-\nu}}\int_{|x_p|=p^{-\nu}}dt_p.\]At this point, we can begin to see the $\left(1-p^{-s}\right)^{-1}$ coming from the infinite series. We note that $\left\{x_p:|x_p|=p^{-\nu}\right\}$ is the $p^\nu\ZZ_p\setminus p^{\nu+1}\ZZ_p,$ the set of elements divisible by $p^\nu$ but not $p^{\nu+1}.$ So our integral is\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\frac{p^{-\nu s}}{p^{-\nu}}\int_{p^{\nu}\ZZ_p\setminus p^{\nu+1}\ZZ_p}dt_p.\]We can evaluate the integral as we did when showing $\ZZ_p\setminus p\ZZ_p$ has multiplicative measure $1.$ The coset $p^\nu\ZZ_p$ is one of $p^\nu$ in $\ZZ_p/p^\nu\ZZ_p,$ and all cosets have the same size, so the measure of $p^\nu\ZZ_p$ is $1/p^\nu.$ The same argument shows $p^{\nu+1}\ZZ_p$ has measure $1/p^{\nu+1},$ so\[\int_{p^{\nu}\ZZ_p\setminus p^{\nu+1}\ZZ_p}dt_p=\frac1{p^\nu}-\frac1{p^{\nu+1}}=\frac{p-1}{p^{\nu+1}}\]because $p^{\nu+1}\ZZ_p\subseteq p^\nu\ZZ_p.$ From here, we have\[\Gamma_p(s)=\frac p{p-1}\sum_{\nu=0}^\infty\frac{p^{-\nu s}}{p^{-\nu}}\cdot\frac{p-1}{p^{\nu+1}}.\]Simplifying, we see\[\Gamma_p(s)=\sum_{\nu=0}^\infty p^{-\nu s}=\frac1{1-p^{-s}},\]which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Quickly, we remark that if I were more comfortable with $p$-adic integration, we could write $d^\times t_p:=\frac p{p-1}\cdot\frac{dt_p}{|t_p|_p}$ as our multiplicative measure so that\[\int_{|t_p|_p=p^{-\nu s}}d^\times t_p=\int_{|t_p|_p=1}d^\times t_p=\int_{\ZZ_p\setminus p\ZZ_p}d^\times t_p=1\]because we are integrating over that multiplicative (!) measure. This is faster, but the multiplicative measure scares me.
+					</p>
+					<p>
+						We now remark on the miracle that just happened. It would appear that we can define $\zeta$ synthetically (!) by\[\zeta(s)=\prod_{p \lt \infty}\Gamma_p(s),\]and this feels somewhat more natural than the the infinite sum definition. In particular, the analysis that we did above kind of implies that the "correct'' way to define our $\zeta$-functions is by an Euler product, which aligns with the way Artin $L$-functions are defined by Euler factors. Further,\[\xi(s)=\prod_\nu\Gamma_\nu(s),\]where $\nu$ ranges over all places (finite and infinite) of $\QQ.$ This presents a much more motivated view of the $\Gamma$ factor by placing it on equal footing with the rest of the Euler factors.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

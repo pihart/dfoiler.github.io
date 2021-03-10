@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 8th
+					</h2>
+					<p>
+						Today I learned some more solid motivation for the compact-open topology, again from the
+						<a href="https://ncatlab.org/nlab/show/compact-open+topology">
+							nlab page
+						</a>
+						. In particular, this time compactness actually matters. The following is our claim.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Let $X,Y,Z$ be topological spaces. Suppose $f:X\times Y\to Z$ is continuous. Then the map $\op{curry}:X\to\op{Hom}(Y,Z)$ defined by $x\mapsto[y\mapsto f((x,y))]$ is a continuous map, where $\op{Hom}(Y,Z)$ is equipped with the compact-open topology.
+						</p>
+					</div>
+					<p>
+						What's remarkable here is that $X,Y,Z$ have no hypotheses other than being topological spaces. In particular, we don't need locally compact or even something like Hausdorff.
+					</p>
+					<p>
+						We begin by showing that $\op{curry}$ is actually well-defined.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							For fixed $x\in X,$ the function $\op{curry}(x):=[y\mapsto f((x,y))]$ is continuous.
+						</p>
+					</div>
+					<p>
+						Fix any $U\subseteq Z$ open so that we want to show its preimage\[\op{curry}(x)^{-1}(U)=\{y\in Y:f((x,y))\in U\}\subseteq U\]is also open. However, we know that $f^{-1}(U)\subseteq X\times Y$ is open because $f$ is continuous, and the idea is to attempt to project $f^{-1}(U)$ onto $\{x\}\subseteq X.$
+					</p>
+					<p>
+						Because $X\times Y$ has basis pairs of open sets, we know that any $y\in Y$ with $(x,y)\in f^{-1}(U)$ has some $U_\bullet$ and $U_y$ with $(x,y)\in U_\bullet\times U_y\subseteq f^{-1}(U).$ Further, we note that each $U_y$ has $U_y\subseteq\op{curry}(x)^{-1}(U)$ because\[\op{curry}(x)(U_y)=f(\{x\}\times U_y)\subseteq U.\]It follows that we can write\[\op{curry}(x)^{-1}(U)\subseteq\bigcup_{(x,y)\in f^{-1}(U)}U_y\subseteq\op{curry}(x)^{-1}(U).\]We see that equalities must hold, and the middle arbitrary union is an open set, so $\op{curry}(x)^{-1}(U)$ is therefore open. Thus, $\op{curry}(x)$ is continuous, which is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Anyways, we now go after the proposition directly. We need to show that each open set $U$ in $\op{Hom}(Y,Z)$ has $\op{curry}^{-1}(U)$ open in $X.$ We'll have to use the compact-open topology sometime, so we begin by reducing to subbasis elements. Letting $V(K,U):=\{f:f(K)\subseteq U\}$ being our subbasis elements of $\op{Hom}(Y,Z),$ we note that we can write\[U=\bigcup_{\alpha\in\lambda}\left(\bigcap_{k=1}^{n_\alpha}V(K_{\alpha,k},U_{\alpha,k})\right),\]for $V_{\bullet,\bullet}\subseteq Y$ compact and $U_{\bullet,\bullet}\subseteq Z$ open. Now, we note that\[\op{curry}^{-1}(U)=\bigcup_{\alpha\in\lambda}\left(\bigcap_{k=1}^{n_\alpha}\op{curry}^{-1}\big(V(K_{\alpha,k},U_{\alpha,k})\big)\right),\]so it suffices to show that $\op{curry}^{-1}(V(K,U))$ is open for any $K$ and $U.$
+					</p>
+					<p>
+						As an aside, we note briefly that it is in fact true that, for any function $\varphi:S\to T$ and subsets $\{T_\alpha\}_{\alpha\in\lambda}$ of $T,$\[\varphi^{-1}\left(\bigcup_{\alpha\in\lambda}T_\alpha\right)=\bigcup_{\alpha\in\lambda}\varphi^{-1}(T_\alpha),\]for $s$ is in either set if and only there exists an $\alpha\in\lambda$ for which $\varphi(s)\in T_\alpha.$ Similarly,\[\varphi^{-1}\left(\bigcap_{\alpha\in\lambda}T_\alpha\right)=\bigcap_{\alpha\in\lambda}\varphi^{-1}(T_\alpha),\]for $s$ is in either set if and only if $\varphi(s)\in T_\alpha$ for each $\alpha\in\lambda.$ We used these facts implicitly to reduce to subbasis; I only mention this because I thought the $\bigcap$ equation above was actually false because $\varphi(S_1\cap S_2)$ is not necessarily equal to $\varphi(S_1)\cap g(S_2)$ for subsets $S_1,S_2\subseteq S.$
+					</p>
+					<p>
+						Continuing, we fix $K_Y\subseteq Y$ compact and $U_Z\subseteq Z$ open, and we want to show $\op{curry}^{-1}(V(K_Y,U_Z))=:S$ is open. Expanding out the definitions, we want to show that\[S=\{x\in X:[y\mapsto f((x,y))]\in V(K_Y,U_Z)\}=\{x\in X:f(\{x\}\times K_Y)\subseteq U_Z\}\]is open. Here we see opportunity to use the continuity of $f,$ so we take it: it suffices to show that\[S=\left\{x\in X:\{x\}\times K_Y\subseteq f^{-1}(U_Z)\right\}\]is open. The set $f^{-1}(U_Z)$ is pretty much just an arbitrary open set by continuity, so we let it be $U_{XY}\subseteq X\times Y.$
+					</p>
+					<p>
+						To continue the argument, we look locally. It suffices to show that, for each $x\in S,$ there is an open neighborhood $U_x\subseteq X$ around $x$ for which $U_x\subseteq S.$ Indeed, then we could write\[S\subseteq\bigcup_{x\in S}U_x\subseteq S,\]from which $S$ being open would follow. So we have to show that $\{x\}\times K_Y\subseteq U_{XY}$ implies there exists an open set $U_x\subseteq X$ containing $x$ for which $U_x\times K_Y\subseteq U_{XY}.$ Visually, we have to "expand'' $\{x\}$ into a slightly larger box inside $U_{XY}.$
+					</p>
+					<p>
+						We should have to use the compactness of $K_Y$ eventually because I promised it was important, so we attempt to build an open cover of $K_Y.$ For each $k\in K_Y,$ we note that $(x,k)\in U_{XY}.$ Using the basis of $X\times Y,$ this gives us open sets $U_{(x,k),x}$ and $U_{(x,k),k}$ for which\[(x,k)\in U_{(x,k),x}\times U_{(x,k),k}\subseteq U_{XY}.\]We would like to just intersect all of the $U_{(x,k),x}$ to generate a set around $x$ whose product with $K_Y$ is inside of $U_{XY}.$ However, we can't take arbitrary intersections, so we use the compactness of $K_Y$ to make it a finite intersection. Because the $U_{(x,k),k}$ are neighborhoods around each $k\in K_Y,$ we see\[K_Y\subseteq\bigcup_{k\in K_Y}U_{(x,k),k},\]so we have an open cover. So we extract $k_1,\ldots,k_n\in K_Y$ for which $U_{(x,k_\bullet),k_\bullet}$ completely coves $K_Y$ by compactness, and we claim that\[U_x:=\bigcap_{\ell=1}^nU_{(x,k_\ell),x}\]works. Indeed, $U_x$ is the finite intersection of open sets all containing $x,$ so $U_x$ is also an open set containing $x.$ And for any $x'\in U_x,$ we have that\[\{x'\}\times U_{(x,k_\bullet),k_\bullet}\subseteq U_{(x,k_\bullet),x}\times U_{(x,k_\bullet),k_\bullet}\subseteq U\]for each $k_\bullet,$ so $\{x'\}\times K_Y\subseteq U$ follows. Thus, we do have $U_x\subseteq U_{XY},$ and we are done here. $\blacksquare$
+					</p>
+					<p>
+						As a final remark, we note that both the "open'' and the "compact'' of the compact-open topology played subtle but crucial roles. The "open'' part was used in the continuity of $f$ to get $U_{XY}=f^{-1}(U_Z)$ open. This feels quite natural to me, for it's not clear how we would use the continuity of $f$ except for requiring the open set to be open.
+					</p>
+					<p>
+						The "compact'' part was used at the very end to expand out $\{x\}\times K_Y$ to an open neighborhood around $\{x\}.$ I can almost believe that compactness is the "correct'' hypothesis to make currying work because otherwise it's not clear if we're always able to expand out $\{x\}\times K_Y.$ Namely, some kind of smallness condition is necessary on $K_Y$ to be able to expand out a box like this.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

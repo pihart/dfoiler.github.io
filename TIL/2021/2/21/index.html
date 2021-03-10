@@ -79,6 +79,13 @@
 							</a>
 						</span>
 					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -113,7 +120,18 @@
 						Anyways, we get to say\[\xi(s)=\int_0^\infty\left(\sum_{n=1}^\infty e^{-\pi n^2t}\right)t^{s/2}\,\frac{dt}t\]for $\op{Re}(s) \gt 1.$ It might appear like we've made no progress, but in fact this integral is more malleable than $\xi$ because the sum $\sum e^{-\pi n^2t}$ is much better-behaved.
 					</p>
 					<p>
-						In particular, fix\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}\]so that $\frac{\Theta(t)-1}2=\sum e^{-\pi n^2t}.$ This $\Theta$ can be understood by the Poisson summation formula to get a functional equation for $\Theta.$ What's nice here is that $f(x)=e^{-\pi x^2}$ has its own Fourier transform: $\hat f=f.$ (We do not show this here, but a proof exists
+						In particular, fix\[\Theta(t)=\sum_{n\in\ZZ}e^{-\pi n^2t}\]so that $\frac{\Theta(t)-1}2=\sum e^{-\pi n^2t}.$ This $\Theta$ can be understood by the Poisson summation formula to get a functional equation for $\Theta.$ We claim the following.
+					</p>
+					<div class="lemma">
+						<p>
+							<b>
+								Lemma.
+							</b>
+							We have that    \[\Theta(t)=\frac1{\sqrt t}\Theta\left(\frac1t\right).\]
+						</p>
+					</div>
+					<p>
+						What's nice here is that $f(x)=e^{-\pi x^2}$ has its own Fourier transform: $\hat f=f.$ (We do not show this here, but a proof exists
 						<a href="https://math.stackexchange.com/questions/270566/how-to-calculate-the-fourier-transform-of-a-gaussian-function">
 							here
 						</a>
@@ -129,7 +147,10 @@
 						Now we deal with $(0,1).$ To coerce our integral into $(1,\infty),$ we make the substitution $t\mapsto1/t$ with $dt/t=-dt/t,$ giving\[\int_0^1\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=\int_\infty^1\left(\frac{\Theta(1/t)-1}2\right)t^{-s/2}\cdot-\frac{dt}t.\]This rearranges to\[\int_1^\infty\left(\frac{\Theta(1/t)-1}2\right)t^{-s/2}\,\frac{dt}t.\]We are now ripe to use the functional equation of $\Theta,$ which tells us this is\[\int_1^\infty\left(\frac{\Theta(t)\sqrt t-1}2\right)t^{-s/2}\,\frac{dt}t.\]Coercing the $(1,\infty)$ integral out of this, we add and subtract $\int_1^\infty\sqrt t\cdot t^{-s/2}\,\frac{dt}t$ (which is safe over $\op{Re}(s) \gt 1$), giving\[\int_1^\infty\left(\frac{\Theta(t)-1}2\right)\sqrt t\cdot t^{-s/2}\,\frac{dt}t+\int_1^\infty\frac{\sqrt t}2\cdot t^{-s/2}\,\frac{dt}t+\int_1^\infty-\frac12\cdot t^{-s/2}\,\frac{dt}t.\]These integrals evaluate to\[I(1-s)+\frac12\cdot\frac{t^{(1-s)/2}}{(1-s)/2}\bigg|_1^\infty-\frac12\cdot\frac{t^{-s/2}}{(-s/2)}\bigg|_1^\infty.\]Thus, we have\[\int_0^1\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(1-s)-\frac1{1-s}-\frac1s.\]Note that $I(1-s)$ is legal for $\op{Re}(s) \gt 1$ because we showed $I$ is entire.
 					</p>
 					<p>
-						Bringing this all together, we see that, for $\op{Re}(s) \gt 1,$\[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(s)+I(1-s)-\frac1{1-s}-\frac1s.\]However, because $I$ is entire, this final expression is therefore an analytic continuation of $\xi$ to all of $\CC$ with simple poles at $0$ and $1.$ By extension, we can divide out by the $\pi^{-s/2}\Gamma(s/2)$ factor to give $\zeta$ its meromorphic continuation to all of $\CC.$ We close by saying the symmetry of $\xi$'s analytic continuation implies\[\xi(s)=\xi(1-s).\]Expanding this out to $\zeta$ gives it a functional equation. I think some care with $\Gamma$ is required to give $\zeta$'s functional equation in its usual presentation, but whatever.
+						Bringing this all together, we see that, for $\op{Re}(s) \gt 1,$\[\xi(s)=\int_0^\infty\left(\frac{\Theta(t)-1}2\right)t^{s/2}\,\frac{dt}t=I(s)+I(1-s)-\frac1{1-s}-\frac1s.\]However, because $I$ is entire, this final expression is therefore an analytic continuation of $\xi$ to all of $\CC$ with simple poles at $0$ and $1.$ By extension, we can divide out by the $\pi^{-s/2}\Gamma(s/2)$ factor to give $\zeta$ its meromorphic continuation to all of $\CC.$ We close by saying the symmetry of $\xi$'s analytic continuation implies\[\xi(s)=\xi(1-s).\]This is what we wanted. $\blacksquare$
+					</p>
+					<p>
+						Expanding this out to $\zeta$ gives it a functional equation. I think some care with $\Gamma$ is required to give $\zeta$'s functional equation in its usual presentation, but whatever.
 					</p>
 				</div>
 			</div>

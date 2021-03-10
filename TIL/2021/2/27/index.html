@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to February)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						February 27th
+					</h2>
+					<p>
+						Today I learned about the adeles of $\CC(t),$ which provides some nice analogy to the situation with number fields. Recall geometrically, we are interested in prime ideals as the connection in our analogy: $\CC[t]$ has prime ideals $(t-\alpha)$ for $\alpha\in\CC$ while number fields $K$ have prime ideals $\mf p.$ (There is also the prime $(0).$) We also recall this analogy gave rise to the Zariski topology on $\op{Spec}\mathcal O_K$ by comparing with the Zariski topology on $\op{Spec}\CC[t].$
+					</p>
+					<p>
+						The individual components of the adeles are local components, and this is clear from $\CC(t).$ Quite literally, studying a rational function $f(t)\in\CC(t)$ "locally'' at the prime $(t-\alpha)$ means we write\[f(t)=\sum_{k=-N}^\infty c_k(t-\alpha)^k\in\CC((t-\alpha))\]as our Taylor series. The term "local'' means that we're studying $f$ by focusing on the individual point at $\alpha.$
+					</p>
+					<p>
+						I had some confusion in intuition for a while because I felt like "local'' information should still communicate to nearby neighborhoods: studying a rational function at $\alpha$ should give information about $\alpha+\varepsilon.$ However, algebraically this doesn't make much sense, and even analytically, some conditions are needed on $f$ and $\varepsilon$ to make $\alpha$ and $\alpha+\varepsilon$ behave nicely. To be explicit,\[f(t)=\frac{t-(\alpha+\varepsilon)}{t-\alpha}\]has very different behavior at $\alpha$ and $\alpha+\varepsilon.$ It is not clear to me how to prevent this from happening, and I'm not sure if it's easily doable at all. Further, in the number field case, this is more explicit: the prime $(101)$ does not communicate with $(103)$ well.
+					</p>
+					<p>
+						Anyways, to combine all of our local information together, we define the adeles as\[\sideset{}{'}\prod_{\alpha\in\CC}\CC((t-\alpha)).\]The $\prod'$ refers to the restricted product: we require that all but finitely many of our coordinates in $\CC((t-\alpha))$ to actually live in our "ring of integers'' $\CC[[t-\alpha]].$ Note that rational functions in $\CC(t)$ do embed into these adeles because a rational function only has finitely many poles (say, by Lagrange's theorem on fields). We remark that the ideles can also be defined as\[\sideset{}{'}\prod_{\alpha\in\CC}\CC((t-\alpha))\]where now all but finitely many of the coordinates are in $\CC[[t-\alpha]]^\times.$ We still have $\CC(t)$ embedding into the ideles because a rational function has both finitely many poles and finitely many zeroes. I also think the image of $\CC(t)$ into the ideles is discrete as in the number field case, where\[\prod_{\alpha\in\CC}\CC[[t-\alpha]]^\times\]is our fundamental domain of the ideles modulo $\CC(t).$ I'm not totally sure about this.
+					</p>
+					<p>
+						The restricted product on the adeles are exactly analogous to wanting all but finitely many of the coordinates of $\AA_K$ to live in $\mathcal O_{K,\nu}$ over our places $\nu.$ We even have the analogy that local fields $K_\nu$ behave as Taylor series like $\CC((t-\alpha)).$ I think what's happening in this analogy is that we think of (fractional) ideals $\mf a$ as functions over primes $\mf p$ with\[\mf a(\mf p)=\mf p^{\nu_\mf p(\mf a)}.\]I should say that I'm trying to think of ideals $\mf a$ as functions of primes $\mf p$ because that's what's going in $\CC$: elements of $\CC(t)$ are effectively rational functions of the primes $(t-\alpha).$
+					</p>
+					<p>
+						Of course, the provided function doesn't quite catch the behavior we want, but it's catching some: expanding $\mf a$ locally at $\mf p$ like a Taylor series now will maintain the idea of zeroes and poles. Additionally, we see that these primes really do not communicate well with each other.
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>

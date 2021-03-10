@@ -105,7 +105,7 @@ def process_line(line, last_tags, first_item):
 		'idea':'div','definition':'div','example':'div'}
 	# Consecutive lines implies a new paragraph
 	if not line or line.isspace():
-		new_tags = []
+		pass
 	# Various list commands
 	elif any('\\begin{'+env in line for env in environ_tags):
 		env = [e for e in environ_tags if '\\begin{'+e in line][0]

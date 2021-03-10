@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Today I Learned
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/main.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/sidebar.css">
+		<link rel="stylesheet" href="https://dfoiler.github.io/css/tex.css">
+		<link rel=icon href="https://dfoiler.github.io/p.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://dfoiler.github.io/js/mathjax-config.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+		</script>
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="https://dfoiler.github.io/TIL/" class="title">
+				Today I Learned
+			</a>
+		</h1>
+		<div class="container">
+			<div class="sidebar">
+				<p style="text-align: center; font-weight: bold; margin-top: 5px;">
+					Archive
+				</p>
+				<button class="yearmenu">
+					2020
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/9/">
+								September 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/10/">
+								October 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/11/">
+								November 2020
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2020/12/">
+								December 2020
+							</a>
+						</span>
+					</li>
+				</ul>
+				<button class="yearmenu">
+					2021
+				</button>
+				<ul class="monthmenu">
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/1/">
+								January 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/2/">
+								February 2021
+							</a>
+						</span>
+					</li>
+					<li>
+						<span>
+							<a href="https://dfoiler.github.io/TIL/2021/3/">
+								March 2021
+							</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p class="mobilenav">
+					<a href="../" class="link">
+						(back up to March)
+					</a>
+				</p>
+				<div class="entry">
+					<h2>
+						March 3rd
+					</h2>
+					<p>
+						Today I learned (formally) about locally constant functions. We take the following abstract definition.
+					</p>
+					<div class="definition">
+						<p>
+							<b>
+								Definition.
+							</b>
+							For topological space $X$ and set $S,$ we say $f:X\to S$ is locally constant if and only if, for each $x\in X,$ there exists an open neighborhood $U$ of $x$ such that $f(X)=\{f(x)\}.$
+						</p>
+					</div>
+					<p>
+						It is a fact (that we will prove) that locally constant functions on $\RR$ are in fact constant everywhere. This is not hard to visualize: if every point has a little interval around it where $f$ is constant, then we can imagine extending out these intervals out to all of $\RR.$ Note how similar this feels to compactness.
+					</p>
+					<p>
+						Anyways, we claim the following, which is stronger. The following is (almost) a characterization of locally constant functions.
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							If $f:X\to S$ is locally constant, then $f$ is locally constant on connected components of $X.$
+						</p>
+					</div>
+					<p>
+						Fix any $x\in X,$ and we show that $f$ is constant on the connected component of $x.$ In fact, we claim that\[Y:=\{y\in X:f(y)=f(x)\}\]is both closed and open. This is open because, for any $y\in Y,$ we can select an open neighborhood $U_y$ of $y$ on which $f$ is locally constant. Then each $U_y\subseteq Y,$ and surely\[Y=\bigcup_{y\in Y}U_y.\]So $Y$ is open.
+					</p>
+					<p>
+						Conversely, this is closed because the complement of $Y$ is\[\{y\in X:f(y)\in S\setminus\{f(x)\}\}=\bigcup_{s\in S\setminus\{f(x)\}}\{y\in X:f(y)=s\}.\]We already know that each $\{y\in X:f(y)=s\}$ is open by either the above argument or because it is empty, so it follows $X\setminus Y$ in total is open.
+					</p>
+					<p>
+						To finish, let $C_x$ be the connected component of $x\in X.$ This implies that both $C_x\cap Y$ and $C_x\cap(X\setminus Y)$ are open in the subspace of topology of $C_x,$ and these two open sets are disjoint and partition $C_x.$ So because $C_x$ is by definition connected, we must have one of $C_x\cap Y$ or $C_x\cap(X\setminus Y)$ be empty, but $x\in C_x\cap Y,$ so\[C_x\cap(X\setminus Y)=\emp.\]But this requires $C_x\subseteq Y,$ so $f(C_x)=\{f(x)\}.$ So we are done here. $\blacksquare$
+					</p>
+					<p>
+						We remark now that the connectedness of $\RR$ implies what we wanted, and no compactness condition was necessary. Of course, compactness provides a nice visual for what the argument above is doing, but it is less efficient. Anywyas, if we wanted to rigorize the compactness argument, I think the least-upper principle on $Y$ can get $Y=\RR$ quickly.
+					</p>
+					<p>
+						We also note here that this characterization of locally constant is pretty unhelpful on totally disconnected spaces. (We do care about totally disconnected spaces because of $\QQ_p.$) To fix our intuitive picture, I think it's helpful to attach the discrete topology on $S$ and visualize $f$ as continuous. That is, "locally constant'' is somehow similar to "continuous'' on totally disconnected spaces.
+					</p>
+					<p>
+						To be explicit, Tate's thesis is concerned with Fourier analysis on "smooth'' functions on which "tend to $0$ rapidly.'' On $\RR$ or $\CC,$ we can just say that $f:\RR\to\CC$ is in $C^\infty$ and has all of its derivatives go to $0.$ But on local fields, we make "smooth'' into "locally constant'' and "tend to $0$ rapidly'' into "compact support.'' We have the following characterization; read as $F=\QQ_p.$
+					</p>
+					<div class="proposition">
+						<p>
+							<b>
+								Proposition.
+							</b>
+							Fix $F$ a non-Archimedean topological field. Suppose $f:F\to\CC$ is locally constant and has compact support. Then $f$ is a $\CC$-linear combination of indicators on open sets.
+						</p>
+					</div>
+					<p>
+						For $x\in F,$ denote $B_x$ an open ball (inside an open neighborhood) around $x$ such that $f$ is constant. We would like to just sum indicators on all of these open balls, but there are infinitely many. The main trick is that\[\op{supp}f\subseteq\bigcup_{x\in\op{supp}f}B_x,\]so we have an open cover of $\op{supp}f.$ So we are allowed to extract a finite subcover named $\{B_{x_k}\}_{k=1}^N.$ Because $F$ is non-Archimedean, these balls are either disjoint or contain each other, so we can refine our cover to consist of disjoint balls. From this we claim\[f=\sum_{k=1}^Nf(x_k)\cdot1_{B_{x_k}}.\]Note that this will finish the proof of the proposition. Indeed, for $x\in F,$ if $x$ is in no open ball $B_{x_\bullet},$ then $x\not\in\op{supp}f,$ so $f(x)=0$ anyways. But if $x\in B_{x_\bullet}$ for some $x_\bullet,$ then $x_\bullet$ is in exactly one such ball by disjointness. Further, $f$ is constant on $B_{x_\bullet},$ so $f(x)=f(x_\bullet),$ and our claim is finished. $\blacksquare$
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://dfoiler.github.io/js/sidebar.js">
+		</script>
+	</body>
+</html>
