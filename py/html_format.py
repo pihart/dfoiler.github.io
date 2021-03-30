@@ -36,8 +36,8 @@ for year in next(os.walk('TeX'))[1]:
 	for month in year_months:
 		directory = year + '/'+str(month)
 		title = months[month-1] + ' ' + year
-		archive += '<li><span><a href="https://dfoiler.github.io/TIL/' \
-			+directory+'/">'+title+'</a></span></li>\n'
+		archive += '<li><a href="https://dfoiler.github.io/TIL/' \
+			+directory+'/">'+title+'</a></li>\n'
 	archive += '</ul>\n'
 
 # Generating the top HTML

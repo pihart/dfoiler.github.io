@@ -69,13 +69,6 @@
 	color: #003080;
 }
 
-/* the month lists in the archive are pushed */
-li span
-{
-	position: relative;
-	left: -2.25pt;
-}
-
 /* messages going up the tree for small screens */
 .mobilenav
 {
