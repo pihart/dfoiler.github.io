@@ -1,3 +1,4 @@
+import calendar
 import sys			# argv
 import os			# path, chdir, listdir, mkdir
 
@@ -7,6 +8,7 @@ PATH = PATH[:-PATH[::-1].index('/')]
 os.chdir(PATH)
 
 from html_format import *
+from archive import create_archive
 
 # Relocate for the rest of the program
 PATH = os.path.abspath(__file__)
@@ -159,8 +161,8 @@ def to_html(tex):
 	# Now we work line-by-line
 	tex = tex.split('\n')
 	while tex[-1] == '': tex = tex[:-1]
-	day_html = start_html
-	month_html = '<div class="entry">\n'
+	day_html = ''
+	month_html = ''
 	# We work line-by-line
 	first_item = False
 	# Indents
@@ -171,11 +173,14 @@ def to_html(tex):
 		if '\\subsubsection' in line:
 			h2 = line[len('\\subsubsection{'):-len('}')]
 			month, day = h2.split()
-			day_html += '<p class="mobilenav"><a href="../" class="link">' \
-				'(back up to '+month+')</a></p>\n'
-			day_html += '<div class="entry">\n'
-			day_html += '<h2>'+h2+'</h2>\n'
 			day = day[:-len('th')]
+			day_html += f"""---
+layout: til-post
+day: {day}
+month: {month}
+---
+
+"""
 			month_html += '<h3><a href="'+day+'/">'+h2+'</a></h3>\n'
 			# Go ahead and start the first paragraph
 		else:
@@ -188,46 +193,33 @@ def to_html(tex):
 			day_html += to_add
 	if last_tags[-1]:
 		day_html += '</'+last_tags[-1]+'>\n'
-	day_html += '</div>\n' + end_html
+	day_html += '</div>\n'
 	month_html += '<p>'+blurb+'\n'
 	month_html += '<a href="'+day+'/" class="link">(continue reading...)</a></p>\n'
-	month_html += '</div>\n'
 	return day_html, month_html
+
+# Make _includes folder if not present
+if '__includes' not in os.listdir():
+	os.mkdir('__includes')
+
+# Make the archive file
+f = open('__includes/til-archive.html','w')
+f.write(prettify(create_archive()))
+f.close()
 
 # Make TIL folder if not present
 if 'TIL' not in os.listdir():
 	os.mkdir('TIL')
 
-# Start the total file
-total_html = start_html
-# Add in the intro
-total_html += '<h2>Welcome</h2>\n'
-intro = process_tex(open('TeX/intro.tex').read())
-parts = [part for part in intro.split('\n') if part]
-for part in parts:
-	total_html += '<p>'+part+'</p>\n'
-# Mobile navigation
-total_html += '<div class="mobilenav">\n'
-total_html += '<h2 style="margin-top: 8pt">Archive</h2>\n'
-total_html += '<p>You can navigate to an entry from the archive below.</p>\n'
-total_html += archive
-# Some padding
-total_html += '<div style="height: 6pt;"></div>\n'
-total_html += '</div>\n'
-total_html += '<div style="height: 7pt;"></div>\n'
-total_html += end_html
-# Make the total file
-f = open('TIL/index.html','w')
-f.write(prettify(total_html))
-f.close()
-
 # Iterate through the years subdirectories
 for year in next(os.walk('TeX'))[1]:
 	# Start the year file
-	year_html = start_html
-	year_html += '<p class="mobilenav"><a href="../" class="link">' \
-		'(back up to main page) </a></p>\n'
-	year_html += '<h2><a href="./">'+year+'</a></h2>\n'
+	year_html = f"""---
+layout: til-year
+---
+
+<h2><a href="">{year}</a></h2>
+"""
 	# Make year if not there
 	if year not in next(os.walk('TeX'))[1]:
 		os.mkdir('TIL/'+year)
@@ -239,13 +231,14 @@ for year in next(os.walk('TeX'))[1]:
 		if month not in os.listdir('TIL/'+year):
 			os.mkdir('TIL/'+year+'/'+month)
 		# Start the month file
-		month_html = start_html
-		month_html += '<p class="mobilenav"><a href="../../" class="link">' \
-			'(back up to main page)</a></p>\n'
-		month_html += '<h2>' + months[int(month)-1] + ' '+year+'</h2>\n'
+		month_html = f"""---
+layout: til-month
+---
+
+<h2>{calendar.month_name[month]} {year}</a></h2>
+"""
 		# Increment the year file
-		year_html += '<h3><a href="'+month+'/">'+ \
-			months[int(month)-1] +'</a></h3>\n'
+		year_html += f'<h3><a href="{month}/">{calendar.month_name[month]}</a></h3>\n'
 		# Break up the months into days
 		alltex = open(PATH+'TeX/'+year+'/'+month+'.tex').read()
 		# We start with a section line, so the first is useless
@@ -267,14 +260,10 @@ for year in next(os.walk('TeX'))[1]:
 			f.close()
 			# Add onto the month
 			month_html += month_html_day
-		month_html += end_html
 		# Make the month file
 		f = open('TIL/'+year+'/'+month+'/'+'index.html','w')
 		f.write(prettify(month_html))
 		f.close()
-	# Some padding
-	year_html += '<div style="height: 6pt;"></div>\n'
-	year_html += end_html
 	# Make the year file
 	f = open('TIL/'+year+'/index.html','w')
 	f.write(prettify(year_html))
