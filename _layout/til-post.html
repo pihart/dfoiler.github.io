@@ -1,0 +1,17 @@
+---
+layout: til
+tex: true
+---
+
+<p class="mobilenav">
+	<a href=".." class="link">
+		(back up to {{ page.month }})
+	</a>
+</p>
+
+<div class="entry">
+	<h2>
+		{{ page.month }} {% include functions/ordinal num=page.day %}
+	</h2>
+	{{ content }}
+</div>

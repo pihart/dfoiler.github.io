@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>
+			{{ page.title }}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" href="{{ "/css/main.css" | relative_url }}">
+		<link rel="stylesheet" href="{{ "/css/sidebar.css" | relative_url }}">
+		<link rel=icon href="{{ "/p.ico" | relative_url }}">
+
+		{% assign tex = page.tex | default: layout.tex | default: site.tex | default: false %}
+
+		{% if tex %}
+			<link rel="stylesheet" href="{{ "/css/tex.css" | relative_url }}">
+			<script src="{{ "/js/mathjax-config.js" | relative_url }}">
+			</script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_SVG-full">
+			</script>
+		{% endif %}
+
+		{% assign jquery = page.jquery | default: layout.jquery | default: site.jquery | default: false %}
+
+		{% if jquery %}
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+			</script>
+		{% endif %}
+	</head>
+	<body>
+		<h1 class="title">
+			<a href="{{ page.title_url | default: layout.title_url | default: site.url | relative_url }}" class="title">
+				{{ page.title }}
+			</a>
+		</h1>
+
+		<div class="container">
+			{{ content }}
+		</div>
+
+		{% assign sidebar = page.sidebar | default: layout.sidebar | default: site.sidebar | default: false %}
+
+		<script src="{{ "/js/sidebar.js" | relative_url }}">
+		</script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+{% comment %}
+Adapted from https://stackoverflow.com/a/28108924/6698132
+{% endcomment %}
+
+{% if include.num >= "11" and include.num <= "13" %}
+    {% assign suffix = "th" %}
+{% else %}
+    {% assign lastDigit = day | modulo: 10 %}
+    {% case lastDigit %}
+        {% when "1" %}
+            {% assign suffix = "st" %}
+        {% when "2" %}
+            {% assign suffix = "nd" %}
+        {% when "3" %}
+            {% assign suffix = "rd" %}
+        {% else %}
+            {% assign suffix = "th" %}
+    {% endcase %}
+{% endif %}
+
+{{ include.num }}{{ suffix }}
